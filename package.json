@@ -1,5 +1,5 @@
 {
-  "name": "repo",
+  "name": "app",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
