@@ -3,7 +3,7 @@
         <!-- TODO:修改链接地址 -->
         <a class="u-channel" href="/">
             <!-- img class="u-channel-logo" svg-inline src="../assets/img/cj.svg" / -->
-            <span class="u-title">栏目</span>
+            <span class="u-title">{{APP_NAME}}</span>
         </a>
         <!-- 统计数据 -->
         <div class="u-stat">
@@ -19,7 +19,7 @@
 <script>
 export default {
     name: "Breadcrumb",
-    props: [],
+    props: ['APP_NAME'],
     data: function() {
         return {};
     },

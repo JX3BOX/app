@@ -19,6 +19,7 @@ module.exports = {
             template : 'public/timeline/index.html',
             filename:'timeline/index.html',
         }
+        // TODO:旧路径统一重定向
     },
 
     //❤️ define path for static files ~

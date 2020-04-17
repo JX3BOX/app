@@ -1,7 +1,9 @@
 <template>
     <div id="app">
+        <Header />
         <Breadcrumb />
         <Sidebar />
+        
         <router-view />
     </div>
 </template>

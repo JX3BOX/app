@@ -8,13 +8,14 @@
     "inspect": "vue inspect > output.js"
   },
   "dependencies": {
-    "@jx3box/jx3box-common": "^1.0.30",
+    "@jx3box/jx3box-common": "^1.0.33",
     "axios": "^0.19.2",
     "core-js": "^3.4.3",
     "csslab": "^4.0.3",
     "element-ui": "^2.13.0",
     "localforage": "^1.7.3",
     "lodash": "^4.17.15",
+    "lua4fe": "0.0.2",
     "moment": "^2.24.0",
     "register-service-worker": "^1.6.2",
     "urijs": "^1.19.2",
