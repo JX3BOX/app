@@ -13,13 +13,18 @@ module.exports = {
             template : 'public/index.html',
             filename:'index.html',
         },
-        sub : {
+        timeline : {
             title : 'BOSS技能分析 - JX3BOX',
             entry:'src/core/timeline/timeline.js',
             template : 'public/timeline/index.html',
             filename:'timeline/index.html',
+        },
+        sudoku : {
+            title : '九宫格计算器 - JX3BOX',
+            entry:'src/core/sudoku/sudoku.js',
+            template : 'public/sudoku/index.html',
+            filename:'sudoku/index.html',
         }
-        // TODO:旧路径统一重定向
     },
 
     //❤️ define path for static files ~
