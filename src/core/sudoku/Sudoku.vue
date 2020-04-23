@@ -1,52 +1,50 @@
 <template>
     <div id="app">
         <Header />
-        1111
-        <Breadcrumb APP_NAME="九宫格计算器" />
-        <Sidebar />
-
-        <main class="c-main p-app-timeline">
-
+        <Breadcrumb>
+            <Info :APP_INFO="APP_INFO">
+                <img slot="logo" class="u-channel-logo" svg-inline src="../../assets/img/sudoku.svg" />
+            </Info>
+        </Breadcrumb>
+        <LeftSidebar>
+            <Nav />
+        </LeftSidebar>
+        <Main>
             <div class="m-sudoku">
-                应用部分
-            </div>
 
-            <aside class="c-sidebar-right c-sidebar">
-                右侧边栏，历史存档等
-            </aside>
-        </main>
+            </div>
+            <RightSidebar>
+                <div class="m-sudoku-aside">
+
+                </div>
+            </RightSidebar>
+            <Footer/>
+        </Main>
     </div>
 </template>
 
 <script>
-import Breadcrumb from "@/components/Breadcrumb.vue";
-import Sidebar from "@/components/Sidebar.vue";
-const { LuaReader, LuaData } = require("lua4fe");
+import Info from "@/components/Info.vue";
+import Nav from "@/components/Nav.vue";
 
 export default {
-    name: "App",
+    name: "Sudoku",
     data: function() {
-        return {};
+        return {
+            APP_INFO : {
+                name : '九宫格计算器',
+                link : '/app/sudoku',
+            }
+        };
     },
     computed: {},
     methods: {},
     filters: {},
     mounted: function() {
-        const luap = new LuaReader();
-
-        luap.then((it) => {
-            it.watch("test", function(data) {
-                let result = data.toJSON();
-                console.log(result);
-            });
-        }).catch((err) => {
-            console.error(err);
-            console.log("not support 浏览器不支持");
-        });
     },
     components: {
-        Breadcrumb,
-        Sidebar,
+        Info,
+        Nav,
     },
 };
 </script>

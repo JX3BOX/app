@@ -1,12 +1,13 @@
 <template>
-    <aside class="c-sidebar-left c-sidebar">
+    <div class="m-extend">
 
-    </aside>
+    </div>
 </template>
 
 <script>
 export default {
-    name: "Sidebar",
+    name: "Extend",
+    props: [],
     data: function() {
         return {};
     },

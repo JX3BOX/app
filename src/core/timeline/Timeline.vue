@@ -1,30 +1,32 @@
 <template>
     <div id="app">
         <Header />
-        <Breadcrumb APP_NAME="BOSS技能分析" />
-        <Sidebar />
+        <Breadcrumb>
+            <Info :APP_INFO="APP_INFO"/>
+        </Breadcrumb>
+        <LeftSidebar>
+            <Nav />
+        </LeftSidebar>
+        <Main>
+            <div class="m-sudoku">
 
-        <main class="c-main p-app-timeline">
-            Timeline
-            <br>
-            ---------------
-            <input type="file" id="test" />
-            ---------------
-            <br>
-            <aside class="c-sidebar-right c-sidebar">
-                右侧边栏，历史存档等
-            </aside>
-        </main>
+            </div>
+            <RightSidebar>
+                <div class="m-sudoku-aside">
+
+                </div>
+            </RightSidebar>
+            <Footer/>
+        </Main>
     </div>
 </template>
 
 <script>
-import Breadcrumb from "@/components/Breadcrumb.vue";
-import Sidebar from "@/components/Sidebar.vue";
-const { LuaReader, LuaData } = require("lua4fe");
+import Info from "@/components/Info.vue";
+import Nav from "@/components/Nav.vue";
 
 export default {
-    name: "App",
+    name: "Timeline",
     data: function() {
         return {};
     },
@@ -45,8 +47,8 @@ export default {
         });
     },
     components: {
-        Breadcrumb,
-        Sidebar,
+        Info,
+        Nav,
     },
 };
 </script>

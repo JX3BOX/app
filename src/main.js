@@ -8,14 +8,14 @@ Vue.config.productionTip = false;
 import JX3BOX_UI from '@jx3box/jx3box-common/vue'
 Vue.use(JX3BOX_UI);
 
-import router from "./router";
-import store from "./store";
+// import router from "./router";
+// import store from "./store";
 
 import App from "./App.vue";
 
 new Vue({
-    router,
-    store,
+    // router,
+    // store,
     render: h => h(App),
 }).$mount("#app");
 
