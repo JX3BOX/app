@@ -6,15 +6,17 @@
         @mouseleave="serverHovered = false"
     >
         <div class="button-wrapper">
-            <el-button
-                plain
-                style="width: 100%;"
-                class="server-button"
-                :class="{ 'server-online': status === 'online', 'server-offline': status === 'offline', 'server-pinned': pinned }"
-                @click="$emit('toogle-server', name)"
-            >
-                {{ name }}
-            </el-button>
+            <el-tooltip class="item" effect="dark" :content="address" placement="top" :hide-after="0" popper-class="tooltip-ipaddress">
+                <el-button
+                    plain
+                    style="width: 100%;"
+                    class="server-button"
+                    :class="{ 'server-online': status === 'online', 'server-offline': status === 'offline', 'server-pinned': pinned }"
+                    @click="$emit('toogle-server', name)"
+                >
+                    {{ name }}
+                </el-button>
+            </el-tooltip>
         </div>
         <div class="text-wrapper">
             <span>{{ zone }} | {{ main }}</span>
@@ -43,22 +45,22 @@ export default {
         // 服务器名
         name: {
             type: String,
-            default: ''
+            default: '服务器'
         },
         // 大区
         zone: {
             type: String,
-            default: ''
+            default: '游戏大区'
         },
         // 主服务器名
         main: {
             type: String,
-            default: ''
+            default: '主服'
         },
         // 服务器地址
         address: {
             type: String,
-            default: ''
+            default: '0.0.0.0:2333'
         }
     },
     data() {
@@ -129,4 +131,10 @@ export default {
 .server-pinned:hover::after {
     filter: saturate(0);
 }
+</style>
+<style lang="less">
+    .tooltip-ipaddress {
+        font-size: 14px !important;
+        line-height: 0.8;
+    }
 </style>
