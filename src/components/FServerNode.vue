@@ -1,25 +1,21 @@
 <template>
-    <div
-        class="server-node"
-        :style="{ width: `${width}px`, '--leftVar': pseudoElementLeft, '--rightVar': pseudoElementRight }"
-        @mouseover="serverHovered = true"
-        @mouseleave="serverHovered = false"
-    >
+    <div class="server-node" :style="{ width: `${width}px`, '--leftVar': pseudoElementLeft, '--rightVar': pseudoElementRight }">
         <div class="button-wrapper">
-            <el-tooltip class="item" effect="dark" :content="address" placement="top" :hide-after="0" popper-class="tooltip-ipaddress">
+            <el-tooltip class="item" effect="dark" :content="`${server.ipAddress}:${server.ipPort}`" placement="top" popper-class="tooltip-ipaddress">
                 <el-button
                     plain
                     style="width: 100%;"
                     class="server-button"
-                    :class="{ 'server-online': status === 'online', 'server-offline': status === 'offline', 'server-pinned': pinned }"
-                    @click="$emit('toogle-server', name)"
+                    :class="{ 'server-online': server.connectState, 'server-offline': !server.connectState, 'server-pinned': pinned }"
+                    @click="$emit('toogle-server', server.serverName)"
                 >
-                    {{ name }}
+                    {{ server.serverName }}
+                    <span style="color:red" v-if="server.serverName === server.mainServer">[主]</span>
                 </el-button>
             </el-tooltip>
         </div>
         <div class="text-wrapper">
-            <span>{{ zone }} | {{ main }}</span>
+            <span>{{ server.zoneName }} | {{ server.mainServer }}</span>
         </div>
     </div>
 </template>
@@ -33,34 +29,22 @@ export default {
             type: Number,
             default: 200
         },
+        server: {
+            type: Object,
+            default: () => {
+                return {
+                    connectState: true,
+                    ipAddress: '120.92.176.35',
+                    ipPort: '3724',
+                    mainServer: '天鹅坪',
+                    serverName: '双剑合璧',
+                    zoneName: '双线一区'
+                };
+            }
+        },
         pinned: {
             type: Boolean,
             default: false
-        },
-        // 服务器状态，'hidden'不显示,'online'开服,'offline'未开服
-        status: {
-            type: String,
-            default: 'online'
-        },
-        // 服务器名
-        name: {
-            type: String,
-            default: '服务器'
-        },
-        // 大区
-        zone: {
-            type: String,
-            default: '游戏大区'
-        },
-        // 主服务器名
-        main: {
-            type: String,
-            default: '主服'
-        },
-        // 服务器地址
-        address: {
-            type: String,
-            default: '0.0.0.0:2333'
         }
     },
     data() {
@@ -70,21 +54,30 @@ export default {
     },
     computed: {
         pseudoElementLeft() {
-            return `calc((${this.width}px - ${this.name.length}em) / 4)`;
+            if (this.server.serverName === this.server.mainServer) {
+                return `calc((${this.width}px - ${this.server.serverName.length+2}em) / 4)`;
+            }
+            return `calc((${this.width}px - ${this.server.serverName.length}em) / 4)`;
         },
         pseudoElementRight() {
-            return `calc((3 * ${this.width}px + ${this.name.length}em) / 4 - 16px)`;
-        }
+            return `calc((3 * ${this.width}px + ${this.server.serverName.length+2}em) / 4 - 16px)`;
+        },
     },
     methods: {}
 };
 </script>
 
 <style scoped lang="less">
+.server-node {
+    margin: 0 10px 20px 10px;
+}
 .text-wrapper {
     text-align: center;
     font-size: 12px;
     color: #999;
+}
+.server-button {
+    position: relative;
 }
 .server-button::before {
     content: '';
@@ -98,7 +91,7 @@ export default {
 .server-button::after {
     content: '';
     position: absolute;
-    background: url(https://console.cnyixun.com/img/app/pin.svg) no-repeat center center;
+    background: url('../assets/img/pin.svg') no-repeat center center;
     background-size: contain;
     height: 16px;
     width: 16px;
@@ -113,13 +106,14 @@ export default {
 .server-button:hover {
     color: black;
     border-color: #409eff;
-    ::after {
-        visibility: visible;
-    }
+}
+.server-button:hover::after {
+    visibility: visible;
+    filter: url(../assets/img/pin.svg#change);
 }
 .server-online::before {
     visibility: visible;
-    background-color: lawngreen;
+    background-color: rgb(0,200,0);
 }
 .server-offline::before {
     visibility: visible;
@@ -127,14 +121,16 @@ export default {
 }
 .server-pinned::after {
     visibility: visible;
+    filter: url(../assets/img/pin.svg#change);
 }
 .server-pinned:hover::after {
-    filter: saturate(0);
+    filter: blur(1px);
+    opacity: 0.5;
 }
 </style>
 <style lang="less">
-    .tooltip-ipaddress {
-        font-size: 14px !important;
-        line-height: 0.8;
-    }
+.tooltip-ipaddress {
+    font-size: 14px !important;
+    line-height: 0.8;
+}
 </style>
