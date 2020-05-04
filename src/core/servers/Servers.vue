@@ -2,7 +2,7 @@
     <div id="app">
         <Header />
         <Breadcrumb>
-            <Info :APP_INFO="APP_INFO"><img slot="logo" class="u-channel-logo" svg-inline src="../../assets/img/sudoku.svg" /></Info>
+            <Info :APP_INFO="APP_INFO"><img slot="logo" class="u-channel-logo" svg-inline src="../../assets/img/servers.svg" /></Info>
         </Breadcrumb>
         <LeftSidebar><Nav /></LeftSidebar>
         <Main>
@@ -89,7 +89,14 @@ export default {
             axios(url, 'GET')
                 .then(response => {
                     if (response.msg === 'success') {
-                        this.serverList = response.data;
+                        let tmpMainServerList = []
+                        let tmpNotMainServerList = response.data.filter((server) => {
+                            if (server.serverName === server.mainServer) {
+                                tmpMainServerList.push(server)
+                            }
+                            return server.serverName !== server.mainServer
+                        })
+                        this.serverList = tmpMainServerList.concat(tmpNotMainServerList)
                     }
                 })
                 .catch(e => {
@@ -99,7 +106,7 @@ export default {
         },
         getUserId() {
             if (User.isLogin()) {
-                this.uid = User.getInfo().uid
+                this.uid = User.getInfo().uid;
             }
         },
         getSavedServers() {
@@ -107,24 +114,14 @@ export default {
             if (this.uid) {
                 // 从服务器读取
                 let url = JX3BOX.__server + 'user/meta';
-                axios(
-                    url,
-                    'GET',
-                    true,
-                    {},
-                    {},
-                    {
-                        uid: this.uid,
-                        key: 'jx3_servers'
-                    }
-                )
+                axios(url, 'GET', true, {}, {}, { uid: this.uid, key: 'jx3_servers' })
                     .then(response => {
                         if (response.code == 10050) {
-                            let serverValue = response.data.value
+                            let serverValue = response.data.value;
                             if (response.data.value) {
-                                this.pinnedServerName = response.data.value.split(',')
+                                this.pinnedServerName = response.data.value.split(',');
                             } else {
-                                this.pinnedServerName = []
+                                this.pinnedServerName = [];
                             }
                         }
                     })
@@ -138,13 +135,13 @@ export default {
                             case 9999:
                                 this.$message.error('登录失效, 请重新登录');
                                 //1.注销
-                                User.destroy()
+                                User.destroy();
                                 //2.保存未提交成功的信息
                                 //请保存至IndexedDB,勿占用localstorage
                                 //3.跳转至登录页携带redirect
                                 setTimeout(() => {
                                     User.toLogin();
-                                },2000)
+                                }, 2000);
                                 //不指定url时则自动跳回当前所在页面
                                 break;
                             default:
@@ -171,16 +168,11 @@ export default {
             if (this.uid) {
                 // 保存到服务器
                 let url = JX3BOX.__server + 'user/meta';
-                axios(
-                    url,
-                    'POST',
-                    true,
-                    {
-                        uid: this.uid,
-                        key: 'jx3_servers',
-                        value: this.pinnedServerName.join(',')
-                    },
-                )
+                axios(url, 'POST', true, {
+                    uid: this.uid,
+                    key: 'jx3_servers',
+                    value: this.pinnedServerName.join(',')
+                })
                     .then(response => {
                         if (response.code == 10052) {
                             // 成功
@@ -191,30 +183,30 @@ export default {
                             case -1:
                                 // 网络异常
                                 this.$message.error(e.data);
-                                this.setToLocal()
+                                this.setToLocal();
                                 break;
                             case 9999:
                                 this.$message.error('登录失效, 请重新登录');
                                 //1.注销
-                                User.destroy()
+                                User.destroy();
                                 //2.保存未提交成功的信息
                                 //请保存至IndexedDB,勿占用localstorage
                                 //3.跳转至登录页携带redirect
                                 setTimeout(() => {
                                     User.toLogin();
-                                },2000)
+                                }, 2000);
                                 //不指定url时则自动跳回当前所在页面
                                 break;
                             default:
                                 // 服务器错误
                                 this.$message.error(e.msg);
-                                this.setToLocal()
+                                this.setToLocal();
                         }
                     })
                     .then(() => {});
             } else {
                 // 储存在本地
-                this.setToLocal()
+                this.setToLocal();
             }
         },
         setToLocal() {
