@@ -24,6 +24,12 @@ module.exports = {
             entry:'src/core/sudoku/sudoku.js',
             template : 'public/sudoku/index.html',
             filename:'sudoku/index.html',
+        },
+        servers : {
+            title : '开服监控 - JX3BOX',
+            entry:'src/core/servers/servers.js',
+            template : 'public/servers/index.html',
+            filename:'servers/index.html',
         }
     },
 
