@@ -1,0 +1,106 @@
+.p-app-index .u-app-index {
+    padding: 2px;
+    box-sizing: border-box;
+}
+.m-app-index {
+    padding: 20px;
+    ul {
+        padding: 0;
+        margin: 0;
+        .w(100%);
+    }
+    a {
+        border: 1px solid #eee;
+        padding: 20px 10px;
+        border-radius: 4px;
+        background-color: #fafbfc;
+        .db;
+        .mr(20px);
+        .mb(20px);
+        .w(210px);
+        .fl;
+
+        &:hover{
+            border-color:#39d45d;
+        }
+        .pr;
+    }
+
+    .u-icon {
+        .db;
+        .mb(10px);
+        svg {
+            .db;
+            .auto(x);
+            .size(60px);
+        }
+    }
+
+    .u-name {
+        .db;
+        font-size: 20px;
+        font-weight: 300;
+        display: block;
+        text-align: center;
+        .nobreak;
+    }
+
+    .u-desc {
+        .db;
+        font-size: 14px;
+        line-height: 2;
+        display: block;
+        text-align: center;
+        color: #999;
+        .nobreak;
+    }
+
+    .u-features {
+        .db;
+        margin-top: 20px;
+        text-indent: 20px;
+        overflow: hidden;
+        span {
+            display: block;
+            color: #555;
+            font-size: 15px;
+            line-height: 1.8;
+            white-space: nowrap;
+            word-wrap: normal;
+            word-break: keep-all;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+    }
+
+    .u-blank{
+        .pa;.rt(10px);
+    }
+}
+@media screen and (max-width:@notebook){
+    .m-app-index a{
+        .w(200px);
+    }
+}
+@media screen and (max-width:@mininote){
+    .m-app-index a{
+        .w(190px);
+    }
+}
+@media screen and (max-width:@phone){
+    .m-app-index a{
+        box-sizing:border-box;
+        .w(48%);
+
+        .mr(4%);
+
+        &:nth-child(2n){
+            .mr(0);
+        }
+
+        .u-icon svg{.size(40px);}
+        .u-name{.fz(1em);}
+        .u-desc{.fz(13px);}
+        .u-features{.indent(0);span{.fz(12px);}}
+    }
+}
