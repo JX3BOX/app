@@ -1,15 +1,25 @@
 <template>
     <div id="app">
-        <Header />
-        <Breadcrumb>
-            <Info :APP_INFO="APP_INFO"><img slot="logo" class="u-channel-logo" svg-inline src="../../assets/img/servers.svg" /></Info>
+        <Header></Header>
+        <Breadcrumb name="开服监控" slug="servers" root="/app/servers">
+            <img
+                slot="logo"
+                svg-inline
+                src="../../assets/img/servers/servers.svg"
+            />
         </Breadcrumb>
-        <LeftSidebar><Nav /></LeftSidebar>
-        <Main>
+        <LeftSidebar>
+            <Nav />
+        </LeftSidebar>
+        <Main :withoutRight="false">
             <div class="m-servers">
                 <el-row class="searchbar-wrapper" :gutter="10">
                     <el-col :xl="20" :sm="17" :xs="10">
-                        <el-input placeholder="搜索服务器" v-model="searchServerName" class="input-with-select">
+                        <el-input
+                            placeholder="搜索服务器"
+                            v-model="searchServerName"
+                            class="input-with-select"
+                        >
                             <!-- <el-select v-model="select" slot="prepend" placeholder="请选择大区">
                             <el-option label="全部大区" value="1"></el-option>
                             <el-option label="电信一区" value="2"></el-option>
@@ -18,60 +28,94 @@
                             <!-- <el-button slot="append" icon="el-icon-search"></el-button> -->
                         </el-input>
                     </el-col>
-                    <el-col :xl="4" :sm="7" :xs="14" style="text-align: center;">
-                        <el-switch style="display: block" v-model="isShowMainServer" active-color="#13ce66" active-text="只看主服" inactive-text="所有服务器"></el-switch>
+                    <el-col
+                        :xl="4"
+                        :sm="7"
+                        :xs="14"
+                        style="text-align: center;"
+                    >
+                        <el-switch
+                            style="display: block"
+                            v-model="isShowMainServer"
+                            active-color="#13ce66"
+                            active-text="只看主服"
+                            inactive-text="所有服务器"
+                        ></el-switch>
                     </el-col>
                 </el-row>
-                <div class="server-wrapper server-group-pinned" v-show="pinnedServerName.length > 0 && serverList.length > 0">
+                <div
+                    class="server-wrapper server-group-pinned"
+                    v-show="
+                        pinnedServerName.length > 0 && serverList.length > 0
+                    "
+                >
                     <template v-for="(server, index) in serverList">
-                        <f-server-node :key="index" :server="server" :pinned="true" @toogle-server="clickServer" v-show="pinnedServerName.includes(server.serverName)" />
+                        <f-server-node
+                            :key="index"
+                            :server="server"
+                            :pinned="true"
+                            @toogle-server="clickServer"
+                            v-show="
+                                pinnedServerName.includes(server.serverName)
+                            "
+                        />
                         <!-- <f-server-node name="如梦令" :pinned="true" zone="电信五区" main="梦江南" status="online" @toogle-server="clickServer"></f-server-node> -->
                     </template>
                 </div>
                 <div class="server-wrapper server-group-unpinned">
                     <template v-for="(server, index) in serverList">
-                        <f-server-node :key="index" :server="server" :pinned="false" @toogle-server="clickServer" v-show="showUnpinnedServerCondition(server)" />
+                        <f-server-node
+                            :key="index"
+                            :server="server"
+                            :pinned="false"
+                            @toogle-server="clickServer"
+                            v-show="showUnpinnedServerCondition(server)"
+                        />
                         <!-- <f-server-node name="如梦令" :pinned="true" zone="电信五区" main="梦江南" status="online" @toogle-server="clickServer"></f-server-node> -->
                     </template>
                 </div>
             </div>
-            <RightSidebar><div class="m-servers-aside"></div></RightSidebar>
-            <Footer />
+            <RightSidebar>
+                <div class="m-servers-aside"></div>
+            </RightSidebar>
+            <Footer></Footer>
         </Main>
     </div>
 </template>
 
 <script>
-import Info from '@/components/Info.vue';
-import Nav from '@/components/Nav.vue';
-import FServerNode from '@/components/FServerNode.vue';
-import { axios } from '@/components/axios/api.js';
-import { JX3BOX, User } from '@jx3box/jx3box-common';
+import Info from "@/components/Info.vue";
+import Nav from "@/components/Nav.vue";
+import FServerNode from "./FServerNode.vue";
+import { axios } from "@/service/api.js";
+import { JX3BOX, User } from "@jx3box/jx3box-common";
 
 export default {
-    name: 'Servers',
+    name: "Servers",
     data: function() {
         return {
-            APP_INFO: {
-                name: '开服监控',
-                link: '/app/servers'
-            },
-            searchServerName: '',
+            searchServerName: "",
             isShowMainServer: true,
             serverList: [],
-            pinnedServerName: []
+            pinnedServerName: [],
         };
     },
     computed: {},
     methods: {
         showUnpinnedServerCondition(server) {
-            let searchServerNameTrimed = this.searchServerName.replace(/\ /g, '');
-            let isSearchInputEmpty = searchServerNameTrimed === '';
-            let isServerNameSearched = server.serverName.indexOf(searchServerNameTrimed) !== -1;
+            let searchServerNameTrimed = this.searchServerName.replace(
+                /\ /g,
+                ""
+            );
+            let isSearchInputEmpty = searchServerNameTrimed === "";
+            let isServerNameSearched =
+                server.serverName.indexOf(searchServerNameTrimed) !== -1;
             let isMainServer = server.serverName === server.mainServer;
             return (
                 !this.pinnedServerName.includes(server.serverName) &&
-                ((!isSearchInputEmpty && isServerNameSearched) || (isSearchInputEmpty && !this.isShowMainServer) || (isSearchInputEmpty && isMainServer))
+                ((!isSearchInputEmpty && isServerNameSearched) ||
+                    (isSearchInputEmpty && !this.isShowMainServer) ||
+                    (isSearchInputEmpty && isMainServer))
             );
         },
         clickServer(serverName) {
@@ -84,22 +128,25 @@ export default {
             this.setSavedServers();
         },
         loadAllServers() {
-            // const API = JX3BOX.__spider + 'jx3servers'
-            let url = 'https://spider.jx3box.com/jx3servers';
-            axios(url, 'GET')
-                .then(response => {
-                    if (response.msg === 'success') {
-                        let tmpMainServerList = []
-                        let tmpNotMainServerList = response.data.filter((server) => {
-                            if (server.serverName === server.mainServer) {
-                                tmpMainServerList.push(server)
+            let url = JX3BOX.__spider + "jx3servers";
+            axios(url, "GET")
+                .then((response) => {
+                    if (response.msg === "success") {
+                        let tmpMainServerList = [];
+                        let tmpNotMainServerList = response.data.filter(
+                            (server) => {
+                                if (server.serverName === server.mainServer) {
+                                    tmpMainServerList.push(server);
+                                }
+                                return server.serverName !== server.mainServer;
                             }
-                            return server.serverName !== server.mainServer
-                        })
-                        this.serverList = tmpMainServerList.concat(tmpNotMainServerList)
+                        );
+                        this.serverList = tmpMainServerList.concat(
+                            tmpNotMainServerList
+                        );
                     }
                 })
-                .catch(e => {
+                .catch((e) => {
                     console.log(e);
                 })
                 .then(() => {});
@@ -113,19 +160,27 @@ export default {
             // 获取用户储存的服务器列表
             if (this.uid) {
                 // 从服务器读取
-                let url = JX3BOX.__server + 'user/meta';
-                axios(url, 'GET', true, {}, {}, { uid: this.uid, key: 'jx3_servers' })
-                    .then(response => {
+                axios(
+                    API,
+                    "GET",
+                    true,
+                    {},
+                    {},
+                    { uid: this.uid, key: "jx3_servers" }
+                )
+                    .then((response) => {
                         if (response.code == 10050) {
                             let serverValue = response.data.value;
                             if (response.data.value) {
-                                this.pinnedServerName = response.data.value.split(',');
+                                this.pinnedServerName = response.data.value.split(
+                                    ","
+                                );
                             } else {
                                 this.pinnedServerName = [];
                             }
                         }
                     })
-                    .catch(e => {
+                    .catch((e) => {
                         switch (e.code) {
                             case -1:
                                 // 网络异常
@@ -133,7 +188,7 @@ export default {
                                 this.getFromLocal();
                                 break;
                             case 9999:
-                                this.$message.error('登录失效, 请重新登录');
+                                this.$message.error("登录失效, 请重新登录");
                                 //1.注销
                                 User.destroy();
                                 //2.保存未提交成功的信息
@@ -158,27 +213,27 @@ export default {
         },
         getFromLocal() {
             if (window.localStorage) {
-                let current = localStorage.getItem('jx3_servers');
+                let current = localStorage.getItem("jx3_servers");
                 if (current) {
-                    this.pinnedServerName = current.split(',');
+                    this.pinnedServerName = current.split(",");
                 }
             }
         },
         setSavedServers() {
             if (this.uid) {
                 // 保存到服务器
-                let url = JX3BOX.__server + 'user/meta';
-                axios(url, 'POST', true, {
+                let url = JX3BOX.__server + "user/meta";
+                axios(url, "POST", true, {
                     uid: this.uid,
-                    key: 'jx3_servers',
-                    value: this.pinnedServerName.join(',')
+                    key: "jx3_servers",
+                    value: this.pinnedServerName.join(","),
                 })
-                    .then(response => {
+                    .then((response) => {
                         if (response.code == 10052) {
                             // 成功
                         }
                     })
-                    .catch(e => {
+                    .catch((e) => {
                         switch (e.code) {
                             case -1:
                                 // 网络异常
@@ -186,7 +241,7 @@ export default {
                                 this.setToLocal();
                                 break;
                             case 9999:
-                                this.$message.error('登录失效, 请重新登录');
+                                this.$message.error("登录失效, 请重新登录");
                                 //1.注销
                                 User.destroy();
                                 //2.保存未提交成功的信息
@@ -211,10 +266,10 @@ export default {
         },
         setToLocal() {
             if (window.localStorage) {
-                let names = this.pinnedServerName.join(',');
-                localStorage.setItem('jx3_servers', names);
+                let names = this.pinnedServerName.join(",");
+                localStorage.setItem("jx3_servers", names);
             }
-        }
+        },
     },
     filters: {},
     mounted: function() {
@@ -223,10 +278,9 @@ export default {
         this.loadAllServers();
     },
     components: {
-        Info,
         Nav,
-        FServerNode
-    }
+        FServerNode,
+    },
 };
 </script>
 
@@ -235,7 +289,7 @@ export default {
     padding: 10px;
 }
 .m-servers::after {
-    content: '';
+    content: "";
     display: table;
     clear: both;
 }
@@ -251,7 +305,7 @@ export default {
     justify-content: center;
 }
 .server-wrapper::after {
-    content: '';
+    content: "";
     display: table;
     clear: both;
 }

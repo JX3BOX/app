@@ -5,7 +5,7 @@ Vue.config.productionTip = false;
 // import "element-ui/lib/theme-chalk/index.css";
 // Vue.use(ElementUI);
 
-import JX3BOX_UI from '@jx3box/jx3box-common/vue'
+import JX3BOX_UI from '@jx3box/jx3box-common-ui'
 Vue.use(JX3BOX_UI);
 
 // import router from "../router";

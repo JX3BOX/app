@@ -91,7 +91,7 @@ export default {
 .server-button::after {
     content: '';
     position: absolute;
-    background: url('../assets/img/pin.svg') no-repeat center center;
+    background: url('../../assets/img/servers/pin.svg') no-repeat center center;
     background-size: contain;
     height: 16px;
     width: 16px;
@@ -109,7 +109,7 @@ export default {
 }
 .server-button:hover::after {
     visibility: visible;
-    filter: url(../assets/img/pin.svg#change);
+    filter: url(../../assets/img/servers/pin.svg#change);
 }
 .server-online::before {
     visibility: visible;
@@ -121,7 +121,7 @@ export default {
 }
 .server-pinned::after {
     visibility: visible;
-    filter: url(../assets/img/pin.svg#change);
+    filter: url(../../assets/img/servers/pin.svg#change);
 }
 .server-pinned:hover::after {
     filter: blur(1px);

@@ -1,36 +1,30 @@
 const path = require('path');
 const pkg = require("./package.json");
-const { JX3BOX, SEO } = require("@jx3box/jx3box-common");
-const Setting = require("./setting.json");
+const { JX3BOX } = require("@jx3box/jx3box-common");
+// const Setting = require("./setting.json");
 
 module.exports = {
 
     //❤️ Multiple pages ~
     pages:{
         index : {
-            title : 'App - JX3BOX',
+            title : '应用 - JX3BOX',
             entry:'src/main.js',
             template : 'public/index.html',
             filename:'index.html',
         },
-        timeline : {
-            title : 'BOSS技能分析 - JX3BOX',
-            entry:'src/core/timeline/timeline.js',
-            template : 'public/timeline/index.html',
-            filename:'timeline/index.html',
+        servers : {
+            title : '开服监控 - JX3BOX',
+            entry:'src/core/servers/servers.js',
+            template : 'public/index.html',
+            filename:'servers/index.html',
         },
         sudoku : {
             title : '九宫格计算器 - JX3BOX',
             entry:'src/core/sudoku/sudoku.js',
-            template : 'public/sudoku/index.html',
+            template : 'public/index.html',
             filename:'sudoku/index.html',
         },
-        servers : {
-            title : '开服监控 - JX3BOX',
-            entry:'src/core/servers/servers.js',
-            template : 'public/servers/index.html',
-            filename:'servers/index.html',
-        }
     },
 
     //❤️ define path for static files ~
@@ -54,17 +48,6 @@ module.exports = {
         '/',
 
     chainWebpack: config => {
-
-        //💘 html-webpack-plugin ~
-        // config.plugin("html").tap(args => {
-        //     args[0].meta = {                            //------设置SEO信息
-        //         Keywords: Setting.keys,
-        //         Description: Setting.desc
-        //     };
-        //     args[0].title = Setting.title + SEO.title;  //------自动添加标题后缀
-        //     return args;
-        // });
-
 
         //💝 in-line small imgs ~
         config.module

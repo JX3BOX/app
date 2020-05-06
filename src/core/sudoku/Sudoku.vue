@@ -1,52 +1,43 @@
 <template>
     <div id="app">
-        <Header />
-        <Breadcrumb>
-            <Info :APP_INFO="APP_INFO">
-                <img slot="logo" class="u-channel-logo" svg-inline src="../../assets/img/sudoku.svg" />
-            </Info>
+        <Header></Header>
+        <Breadcrumb name="频道名称" slug="slug" root="/slug">
+            <img slot="logo" svg-inline src="../../assets/img/logo.svg" />
+            <Info />
         </Breadcrumb>
         <LeftSidebar>
             <Nav />
         </LeftSidebar>
-        <Main>
-            <div class="m-sudoku">
-
-            </div>
+        <Main :withoutRight="false">
+            primary content
             <RightSidebar>
-                <div class="m-sudoku-aside">
-
-                </div>
+                <Extend/>
             </RightSidebar>
-            <Footer/>
+            <Footer></Footer>
         </Main>
     </div>
 </template>
 
 <script>
-import Info from "@/components/Info.vue";
-import Nav from "@/components/Nav.vue";
+import Info from '@/components/Info.vue';
+import Nav from '@/components/Nav.vue';
+import Extend from '@/components/Extend.vue';
 
-export default {
-    name: "Sudoku",
-    data: function() {
-        return {
-            APP_INFO : {
-                name : '九宫格计算器',
-                link : '/app/sudoku',
+    export default {
+        name : 'Sudoku',
+        props:[],
+        data : function(){
+            return {
+                
             }
-        };
-    },
-    computed: {},
-    methods: {},
-    filters: {},
-    mounted: function() {
-    },
-    components: {
-        Info,
-        Nav,
-    },
-};
+        },
+        computed:{},
+        methods:{},
+        mounted:function(){},
+        components:{
+            Info,
+            Nav,
+            Extend,
+        }
+    }
 </script>
-
-<style lang="less"></style>
