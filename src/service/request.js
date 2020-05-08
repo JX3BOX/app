@@ -16,7 +16,7 @@ export function req(options) {
             })
             .catch(error => {
                 console.log('axios错误：' + error)
-                reject(error.response ? error.response.data : {msg: error.message, code: -1});
+                reject(error.response ? error.response.data : {data: error.message, code: -1});
             })
     });
 }

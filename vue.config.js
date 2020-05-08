@@ -4,6 +4,9 @@ const { JX3BOX } = require("@jx3box/jx3box-common");
 // const Setting = require("./setting.json");
 
 module.exports = {
+    devServer: {
+        disableHostCheck: true
+      },
 
     //❤️ Multiple pages ~
     pages:{
@@ -25,6 +28,12 @@ module.exports = {
             template : 'public/index.html',
             filename:'sudoku/index.html',
         },
+        price : {
+            title : '金价走势 - JX3BOX',
+            entry:'src/core/price/price.js',
+            template : 'public/index.html',
+            filename:'price/index.html',
+        }
     },
 
     //❤️ define path for static files ~
@@ -81,5 +90,10 @@ module.exports = {
         }
         types.forEach(type => addStyleResource(config.module.rule('less').oneOf(type)));
 
-    }
+    },
+    
+    transpileDependencies: [
+        'vue-echarts',
+        'resize-detector'
+      ]
 };
