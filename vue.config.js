@@ -33,6 +33,12 @@ module.exports = {
             entry:'src/core/price/price.js',
             template : 'public/index.html',
             filename:'price/index.html',
+        },
+        icon : {
+            title : '图标大全 - JX3BOX',
+            entry:'src/core/icons/icons.js',
+            template : 'public/index.html',
+            filename:'icons/index.html',
         }
     },
 
