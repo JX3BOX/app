@@ -1,18 +1,18 @@
 <template>
-    <div id="app">
+    <div id="app" class="p-app-servers">
         <Header></Header>
         <Breadcrumb name="开服监控" slug="servers" root="/app/servers">
             <img
-                slot="logo"
+                slot="logo" class="u-app-servers"
                 svg-inline
-                src="../../assets/img/servers/servers.svg"
+                src="../../assets/img/logos/servers.svg"
             />
         </Breadcrumb>
         <LeftSidebar>
             <Nav />
         </LeftSidebar>
         <Main :withoutRight="false">
-            <div class="m-servers">
+            <div class="m-app-servers">
                 <el-row class="searchbar-wrapper" :gutter="10">
                     <el-col :xl="20" :sm="17" :xs="10">
                         <el-input
@@ -78,7 +78,7 @@
                 </div>
             </div>
             <RightSidebar>
-                <div class="m-servers-aside"></div>
+                <div class="m-app-servers-aside"></div>
             </RightSidebar>
             <Footer></Footer>
         </Main>
@@ -288,33 +288,5 @@ export default {
 </script>
 
 <style lang="less">
-.m-servers {
-    padding: 10px;
-}
-.m-servers::after {
-    content: "";
-    display: table;
-    clear: both;
-}
-.searchbar-wrapper {
-    display: flex;
-    align-items: center;
-    margin: auto 0 !important;
-}
-.server-wrapper {
-    margin-top: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-.server-wrapper::after {
-    content: "";
-    display: table;
-    clear: both;
-}
-.server-group-pinned {
-    background-color: #eeeeee;
-    padding-top: 20px;
-    border-radius: 10px;
-}
+    @import '../../assets/css/servers.less';
 </style>
