@@ -52,6 +52,7 @@
                     <template v-for="(server, index) in serverList">
                         <f-server-node
                             :key="index"
+                            width="200px"
                             :server="server"
                             :pinned="true"
                             @toogle-server="clickServer"
@@ -66,6 +67,7 @@
                     <template v-for="(server, index) in serverList">
                         <f-server-node
                             :key="index"
+                            width="200px"
                             :server="server"
                             :pinned="false"
                             @toogle-server="clickServer"
@@ -157,10 +159,11 @@ export default {
         },
         getSavedServers() {
             // 获取用户储存的服务器列表
+            let url = JX3BOX.__server + "user/meta";
             if (this.uid) {
                 // 从服务器读取
                 axios(
-                    API,
+                    url,
                     "GET",
                     true,
                     {},
