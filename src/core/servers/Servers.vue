@@ -84,7 +84,6 @@
 </template>
 
 <script>
-import Info from "@/components/Info.vue";
 import Nav from "@/components/Nav.vue";
 import FServerNode from "./FServerNode.vue";
 import { axios } from "@/service/api.js";

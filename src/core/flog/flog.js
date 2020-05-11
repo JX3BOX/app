@@ -5,16 +5,16 @@ Vue.config.productionTip = false;
 // import "element-ui/lib/theme-chalk/index.css";
 // Vue.use(ElementUI);
 
-// import JX3BOX_UI from '@jx3box/jx3box-common/vue'
-// Vue.use(JX3BOX_UI);
+import JX3BOX_UI from '@jx3box/jx3box-common-ui'
+Vue.use(JX3BOX_UI);
 
 // import router from "../router";
 // import store from "../store";
 
-import Timeline from "./Timeline.vue";
+import Flog from "./Flog.vue";
 
 new Vue({
     // router,
     // store,
-    render: (h) => h(Timeline),
+    render: (h) => h(Flog),
 }).$mount("#app");
