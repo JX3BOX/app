@@ -553,7 +553,8 @@ ul li {
             .r(6px);
         }
         .u-img {
-            padding: 2px;
+            .ml(1px);
+            .mt(1px);
             .size(48px);
             .db;
             .r(6px);
@@ -708,11 +709,11 @@ ul li {
     background-position: 0 0;
 }
 .u-icon-close {
-    background-image: url('@{url}footer/close.svg');
+    background-image: url(../../assets/img/icons/close.svg);
 }
 /* 爆炸心心-------------------------- */
 .w-heart {
-    background: url('@{url}widget/web_heart_animation.png');
+    background: url(../../assets/img/icons/web_heart_animation.png);
     background-position: left;
     background-repeat: no-repeat;
     height: 50px;
