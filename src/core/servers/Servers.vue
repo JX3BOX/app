@@ -133,8 +133,8 @@ export default {
             this.setSavedServers();
         },
         loadAllServers() {
-            let url = 'http://localhost:3002/jx3servers';
-            // let url = JX3BOX.__spider + "jx3servers";
+            // let url = 'http://localhost:3002/jx3servers';
+            let url = JX3BOX.__spider + "jx3servers";
             axios(url, "GET")
                 .then((response) => {
                     if (response.msg === "success") {
