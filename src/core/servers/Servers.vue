@@ -77,7 +77,7 @@
                 <div class="m-app-servers-aside">
                     <Github_REPO REPO="app" coder="172,8"></Github_REPO>
                     <ins class="adsbygoogle"
-                        style="display:block"
+                        style="display:block; width: 100%; overflow: hidden;"
                         data-ad-client="ca-pub-4388499329141185"
                         data-ad-slot="9773281887"
                         data-ad-format="auto"
@@ -133,8 +133,8 @@ export default {
             this.setSavedServers();
         },
         loadAllServers() {
-            let url = 'http://localhost:3002/jx3servers';
-            // let url = JX3BOX.__spider + "jx3servers";
+            // let url = 'http://localhost:3002/jx3servers';
+            let url = JX3BOX.__spider + "jx3servers";
             axios(url, "GET")
                 .then((response) => {
                     if (response.msg === "success") {
@@ -153,7 +153,17 @@ export default {
                     }
                 })
                 .catch((e) => {
-                    console.log(e);
+                    switch (e.code) {
+                        case -1:
+                            // 网络异常
+                            this.$message.error(e.msg);
+                            this.getFromLocal();
+                            break;
+                        default:
+                            // 服务器错误
+                            this.$message.error(`[${e.code}]${e.msg}`);
+                            this.getFromLocal();
+                    }
                 })
                 .then(() => {});
         },
