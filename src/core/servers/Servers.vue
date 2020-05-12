@@ -173,8 +173,8 @@ export default {
                     .then((response) => {
                         if (response.code == 10050) {
                             let serverValue = response.data.value;
-                            if (response.data.value) {
-                                this.pinnedServerName = response.data.value.split(
+                            if (serverValue) {
+                                this.pinnedServerName = serverValue.split(
                                     ","
                                 );
                             } else {
@@ -186,7 +186,7 @@ export default {
                         switch (e.code) {
                             case -1:
                                 // 网络异常
-                                this.$message.error(e.data);
+                                this.$message.error(e.msg);
                                 this.getFromLocal();
                                 break;
                             case 9999:
@@ -203,7 +203,7 @@ export default {
                                 break;
                             default:
                                 // 服务器错误
-                                this.$message.error(e.msg);
+                                this.$message.error(`[${e.code}]${e.msg}`);
                                 this.getFromLocal();
                         }
                     })
@@ -239,7 +239,7 @@ export default {
                         switch (e.code) {
                             case -1:
                                 // 网络异常
-                                this.$message.error(e.data);
+                                this.$message.error(e.msg);
                                 this.setToLocal();
                                 break;
                             case 9999:
@@ -256,7 +256,7 @@ export default {
                                 break;
                             default:
                                 // 服务器错误
-                                this.$message.error(e.msg);
+                                this.$message.error(`[${e.code}]${e.msg}`);
                                 this.setToLocal();
                         }
                     })

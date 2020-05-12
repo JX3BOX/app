@@ -15,8 +15,22 @@ export function req(options) {
                 resolve(response.data);
             })
             .catch(error => {
-                console.log('axios错误：' + error)
-                reject(error.response ? error.response.data : {data: error.message, code: -1});
+                console.log(error.response)
+                if (error.response) {
+                    if (error.response.data.code) {
+                        reject(error.response.data)
+                    } else {
+                        reject({
+                            msg: error.response.data,
+                            code: error.response.status
+                        })
+                    }
+                } else {
+                    reject({
+                        msg: '网络请求异常',
+                        code: -1
+                    });
+                }
             })
     });
 }

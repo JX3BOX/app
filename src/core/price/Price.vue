@@ -523,11 +523,11 @@ export default {
                     this.currentGate = this.pinnedServerName;
                     axiosSuccess = true;
                 })
-                .catch(error => {
-                    switch (error.code) {
+                .catch(e => {
+                    switch (e.code) {
                         case -1:
                             // 网络异常
-                            this.$message.error(error.data);
+                            this.$message.error(e.msg);
                             break;
                         case 9999:
                             this.$message.error('登录失效, 请重新登录');
@@ -543,8 +543,8 @@ export default {
                             break;
                         default:
                             // 服务器错误
-                            console.log(error);
-                            this.$message.error(error);
+                            console.log(e);
+                            this.$message.error(`[${e.code}]${e.msg}`);
                     }
                 })
                 .then(() => {
@@ -721,53 +721,53 @@ export default {
                 this.uid = User.getInfo().uid;
             }
         },
-        getSavedServers() {
-            // 获取用户储存的服务器列表
-            if (this.uid) {
-                // 从服务器读取
-                let url = JX3BOX.__server + 'user/meta';
-                axios(url, 'GET', true, {}, {}, { uid: this.uid, key: 'jx3price' })
-                    .then(response => {
-                        if (response.code == 10050) {
-                            let serverValue = response.data.value;
-                            if (response.data.value) {
-                                this.pinnedServerName = response.data.value;
-                            } else {
-                                this.pinnedServerName = [];
-                            }
-                        }
-                    })
-                    .catch(e => {
-                        switch (e.code) {
-                            case -1:
-                                // 网络异常
-                                this.$message.error(e.data);
-                                this.getFromLocal();
-                                break;
-                            case 9999:
-                                this.$message.error('登录失效, 请重新登录');
-                                //1.注销
-                                User.destroy();
-                                //2.保存未提交成功的信息
-                                //请保存至IndexedDB,勿占用localstorage
-                                //3.跳转至登录页携带redirect
-                                setTimeout(() => {
-                                    User.toLogin();
-                                }, 2000);
-                                //不指定url时则自动跳回当前所在页面
-                                break;
-                            default:
-                                // 服务器错误
-                                this.$message.error(e.msg);
-                                this.getFromLocal();
-                        }
-                    })
-                    .then(() => {});
-            } else {
-                // 本地读取
-                this.getFromLocal();
-            }
-        },
+        // getSavedServers() {
+        //     // 获取用户储存的服务器列表
+        //     if (this.uid) {
+        //         // 从服务器读取
+        //         let url = JX3BOX.__server + 'user/meta';
+        //         axios(url, 'GET', true, {}, {}, { uid: this.uid, key: 'jx3price' })
+        //             .then(response => {
+        //                 if (response.code == 10050) {
+        //                     let serverValue = response.data.value;
+        //                     if (serverValue) {
+        //                         this.pinnedServerName = serverValue;
+        //                     } else {
+        //                         this.pinnedServerName = [];
+        //                     }
+        //                 }
+        //             })
+        //             .catch(e => {
+        //                 switch (e.code) {
+        //                     case -1:
+        //                         // 网络异常
+        //                         this.$message.error(e.msg);
+        //                         this.getFromLocal();
+        //                         break;
+        //                     case 9999:
+        //                         this.$message.error('登录失效, 请重新登录');
+        //                         //1.注销
+        //                         User.destroy();
+        //                         //2.保存未提交成功的信息
+        //                         //请保存至IndexedDB,勿占用localstorage
+        //                         //3.跳转至登录页携带redirect
+        //                         setTimeout(() => {
+        //                             User.toLogin();
+        //                         }, 2000);
+        //                         //不指定url时则自动跳回当前所在页面
+        //                         break;
+        //                     default:
+        //                         // 服务器错误
+        //                         this.$message.error(`[${e.code}]${e.msg}`);
+        //                         this.getFromLocal();
+        //                 }
+        //             })
+        //             .then(() => {});
+        //     } else {
+        //         // 本地读取
+        //         this.getFromLocal();
+        //     }
+        // },
         getFromLocal() {
             return new Promise((resolve, reject) => {
                 if (window.localStorage) {
@@ -797,7 +797,7 @@ export default {
                         switch (e.code) {
                             case -1:
                                 // 网络异常
-                                this.$message.error(e.data);
+                                this.$message.error(e.msg);
                                 this.setToLocal();
                                 break;
                             case 9999:
@@ -814,7 +814,7 @@ export default {
                                 break;
                             default:
                                 // 服务器错误
-                                this.$message.error(e.msg);
+                                this.$message.error(`[${e.code}]${e.msg}`);
                                 this.setToLocal();
                         }
                     })

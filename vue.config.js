@@ -22,17 +22,17 @@ module.exports = {
             template: "public/index.html",
             filename: "servers/index.html",
         },
-        sudoku: {
-            title: "九宫格计算器 - JX3BOX",
-            entry: "src/core/sudoku/sudoku.js",
-            template: "public/index.html",
-            filename: "sudoku/index.html",
+        price : {
+            title : '金价走势 - JX3BOX',
+            entry:'src/core/price/price.js',
+            template : 'public/index.html',
+            filename:'price/index.html',
         },
-        price: {
-            title: "金价走势 - JX3BOX",
-            entry: "src/core/price/price.js",
-            template: "public/index.html",
-            filename: "price/index.html",
+        icon : {
+            title : '图标大全 - JX3BOX',
+            entry:'src/core/icons/icons.js',
+            template : 'public/index.html',
+            filename:'icons/index.html',
         },
         flog: {
             title: "BOSS日志分析 - JX3BOX",
@@ -40,6 +40,12 @@ module.exports = {
             template: "public/index.html",
             filename: "flog/index.html",
         },
+        sudoku: {
+            title: "九宫格计算器 - JX3BOX",
+            entry: "src/core/sudoku/sudoku.js",
+            template: "public/index.html",
+            filename: "sudoku/index.html",
+        }
     },
 
     //❤️ define path for static files ~
