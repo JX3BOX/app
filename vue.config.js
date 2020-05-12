@@ -4,9 +4,6 @@ const { JX3BOX } = require("@jx3box/jx3box-common");
 // const Setting = require("./setting.json");
 
 module.exports = {
-    devServer: {
-        disableHostCheck: true,
-    },
 
     //❤️ Multiple pages ~
     pages: {

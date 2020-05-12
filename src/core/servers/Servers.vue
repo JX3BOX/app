@@ -3,7 +3,8 @@
         <Header></Header>
         <Breadcrumb name="开服监控" slug="servers" root="/app/servers">
             <img
-                slot="logo" class="u-app-servers"
+                slot="logo"
+                class="u-app-servers"
                 svg-inline
                 src="../../assets/img/logos/servers.svg"
             />
@@ -13,37 +14,30 @@
         </LeftSidebar>
         <Main :withoutRight="false">
             <div class="m-app-servers">
-                <el-row class="searchbar-wrapper" :gutter="10">
-                    <el-col :xl="20" :sm="17" :xs="10">
-                        <el-input
-                            placeholder="搜索服务器"
-                            v-model="searchServerName"
-                            class="input-with-select"
-                        >
-                            <!-- <el-select v-model="select" slot="prepend" placeholder="请选择大区">
-                            <el-option label="全部大区" value="1"></el-option>
-                            <el-option label="电信一区" value="2"></el-option>
-                            <el-option label="电信五区" value="3"></el-option>
-                        </el-select> -->
-                            <!-- <el-button slot="append" icon="el-icon-search"></el-button> -->
-                        </el-input>
-                    </el-col>
-                    <el-col
-                        :xl="4"
-                        :sm="7"
-                        :xs="14"
-                        style="text-align: center;"
+                <!-- 标题 -->
+                <h1 class="m-app-servers-title">剑三服务器实时监控面板</h1>
+
+                <!-- 搜索框 -->
+                <div class="searchbar-wrapper">
+                    <el-input
+                        placeholder="搜索服务器"
+                        v-model="searchServerName"
+                        class="input-with-select"
                     >
-                        <el-switch
-                            style="display: block"
-                            v-model="isShowMainServer"
-                            active-color="#13ce66"
-                            active-text="只看主服"
-                            inactive-text="所有服务器"
-                        ></el-switch>
-                    </el-col>
-                </el-row>
-                <div
+                        <template slot="prepend">服务器名</template>
+                        <template slot="append">
+                            <el-switch
+                                style="display: block"
+                                v-model="isShowMainServer"
+                                active-text="只看主服"
+                            ></el-switch>
+                        </template>
+                    </el-input>
+                </div>
+
+                <!-- 收藏列表 -->
+                <el-row
+                    :gutter="20"
                     class="server-wrapper server-group-pinned"
                     v-show="
                         pinnedServerName.length > 0 && serverList.length > 0
@@ -52,7 +46,6 @@
                     <template v-for="(server, index) in serverList">
                         <f-server-node
                             :key="index"
-                            width="200px"
                             :server="server"
                             :pinned="true"
                             @toogle-server="clickServer"
@@ -60,10 +53,14 @@
                                 pinnedServerName.includes(server.serverName)
                             "
                         />
-                        <!-- <f-server-node name="如梦令" :pinned="true" zone="电信五区" main="梦江南" status="online" @toogle-server="clickServer"></f-server-node> -->
                     </template>
-                </div>
-                <div class="server-wrapper server-group-unpinned">
+                </el-row>
+
+                <!-- 全部列表 -->
+                <el-row
+                    :gutter="20"
+                    class="server-wrapper server-group-unpinned"
+                >
                     <template v-for="(server, index) in serverList">
                         <f-server-node
                             :key="index"
@@ -73,12 +70,19 @@
                             @toogle-server="clickServer"
                             v-show="showUnpinnedServerCondition(server)"
                         />
-                        <!-- <f-server-node name="如梦令" :pinned="true" zone="电信五区" main="梦江南" status="online" @toogle-server="clickServer"></f-server-node> -->
                     </template>
-                </div>
+                </el-row>
             </div>
             <RightSidebar>
-                <div class="m-app-servers-aside"></div>
+                <div class="m-app-servers-aside">
+                    <Github_REPO REPO="app" coder="172,8"></Github_REPO>
+                    <ins class="adsbygoogle"
+                        style="display:block"
+                        data-ad-client="ca-pub-4388499329141185"
+                        data-ad-slot="9773281887"
+                        data-ad-format="auto"
+                        data-full-width-responsive="true"></ins>
+                </div>
             </RightSidebar>
             <Footer></Footer>
         </Main>
@@ -129,7 +133,8 @@ export default {
             this.setSavedServers();
         },
         loadAllServers() {
-            let url = JX3BOX.__spider + "jx3servers";
+            let url = 'http://localhost:3002/jx3servers';
+            // let url = JX3BOX.__spider + "jx3servers";
             axios(url, "GET")
                 .then((response) => {
                     if (response.msg === "success") {
@@ -174,9 +179,7 @@ export default {
                         if (response.code == 10050) {
                             let serverValue = response.data.value;
                             if (serverValue) {
-                                this.pinnedServerName = serverValue.split(
-                                    ","
-                                );
+                                this.pinnedServerName = serverValue.split(",");
                             } else {
                                 this.pinnedServerName = [];
                             }
@@ -287,5 +290,5 @@ export default {
 </script>
 
 <style lang="less">
-    @import '../../assets/css/servers.less';
+@import "../../assets/css/servers.less";
 </style>

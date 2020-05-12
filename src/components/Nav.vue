@@ -2,34 +2,34 @@
     <nav class="m-nav">
         <h5 class="u-title">站内应用</h5>
         <div class="m-nav-group">
-            <a href="/app/database" :class="{on:isActive('database')}"
+            <!-- <a href="/app/database" :class="{on:isActive('database')}"
                 ><i><img svg-inline src="../assets/img/logos/db.svg"/></i
                 ><span>剑三数据库</span></a
-            >
-            <a href="/app/talent" :class="{on:isActive('talent')}"
+            > -->
+            <!-- <a href="/app/talent" :class="{on:isActive('talent')}"
                 ><i><img svg-inline src="../assets/img/logos/talent.svg"/></i
                 ><span>奇穴模拟器</span></a
-            >
-            <a href="/app/icons" :class="{on:isActive('icons')}"
+            > -->
+            <!-- <a href="/app/icons" :class="{on:isActive('icons')}"
                 ><i><img svg-inline src="../assets/img/logos/icons.svg"/></i
                 ><span>图标大全</span></a
-            >
-            <a href="/app/flog" :class="{on:isActive('flog')}"
+            > -->
+            <!-- <a href="/app/flog" :class="{on:isActive('flog')}"
                 ><i><img svg-inline src="../assets/img/logos/flog.svg"/></i
                 ><span>BOSS日志分析</span></a
-            >
-            <a href="/app/face" :class="{on:isActive('face')}"
+            > -->
+            <!-- <a href="/app/face" :class="{on:isActive('face')}"
                 ><i><img svg-inline src="../assets/img/logos/face.svg"/></i
                 ><span>脸型数据分析</span></a
-            >
+            > -->
             <a href="/app/servers" :class="{on:isActive('servers')}"
                 ><i><img svg-inline src="../assets/img/logos/servers.svg"/></i
                 ><span>开服监控</span></a
             >
-            <a href="/app/price" :class="{on:isActive('price')}"
+            <!-- <a href="/app/price" :class="{on:isActive('price')}"
                 ><i><img svg-inline src="../assets/img/logos/price.svg"/></i
                 ><span>金价走势</span></a
-            >
+            > -->
         </div>
         <h5 class="u-title">站外应用</h5>
         <div class="m-nav-group">

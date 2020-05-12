@@ -1,1 +1,19 @@
-<svg height="512pt" viewBox="0 0 512 512" width="512pt" xmlns="http://www.w3.org/2000/svg"><path d="m480.109375 128.144531-244.125-20.015625v295.742188l244.125-20.015625zm0 0" fill="#03232e"/><g fill="#07485e"><path d="m31.894531 128.144531v255.710938l224.109375 20.015625v-295.742188zm0 0"/><path d="m512 0h-255.996094l-20.019531 64.070312 20.019531 64.074219h255.996094zm0 0"/><path d="m512 320.070312v-128.140624h-255.996094l-20.019531 64.070312 20.019531 64.070312zm0 0"/><path d="m512 512v-128.144531h-255.996094l-20.019531 64.074219 20.019531 64.070312zm0 0"/></g><path d="m0 0h256.003906v128.144531h-256.003906zm0 0" fill="#0b799d"/><path d="m0 191.929688h256.003906v128.140624h-256.003906zm0 0" fill="#0b799d"/><path d="m0 383.855469h256.003906v128.144531h-256.003906zm0 0" fill="#0b799d"/><path d="m326.070312 49.070312h138.089844v30h-138.089844zm0 0" fill="#b4d2d7"/><path d="m326.070312 241h138.089844v30h-138.089844zm0 0" fill="#b4d2d7"/><path d="m326.070312 432.929688h138.089844v30h-138.089844zm0 0" fill="#b4d2d7"/><path d="m47.839844 49.070312h31.890625v30h-31.890625zm0 0" fill="#00ff94"/><path d="m111.625 49.070312h31.894531v30h-31.894531zm0 0" fill="#ffd422"/><path d="m47.839844 241h31.890625v30h-31.890625zm0 0" fill="#00ff94"/><path d="m111.625 241h31.894531v30h-31.894531zm0 0" fill="#ffd422"/><path d="m47.839844 432.929688h31.890625v30h-31.890625zm0 0" fill="#00ff94"/><path d="m111.625 432.929688h31.894531v30h-31.894531zm0 0" fill="#ffd422"/></svg>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 22.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="图层_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 1022.2 396.9" style="enable-background:new 0 0 1022.2 396.9;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#07485E;}
+	.st1{fill:#0B799D;}
+	.st2{fill:#B4D2D7;}
+	.st3{fill:#00FF94;}
+	.st4{fill:#FFD422;}
+</style>
+<g>
+	<path class="st0" d="M1022.2,0H507.4l-40.3,198.4l40.3,198.4h514.9V0z"/>
+</g>
+<path class="st1" d="M0,0h511.1v396.9H0V0z"/>
+<path class="st2" d="M594.5,141.3H943v136H594.5V141.3z"/>
+<path class="st3" d="M86.3,140.3h123.2v136H86.3V140.3z"/>
+<path class="st4" d="M295.5,141.3h123.2v136H295.5V141.3z"/>
+</svg>
