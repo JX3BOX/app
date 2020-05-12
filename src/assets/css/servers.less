@@ -50,6 +50,13 @@
         .w(100%);
         box-sizing:border-box;
         .x(left);
+        border-color:#07485e;
+        color:#07485e;
+    }
+    .server-button:focus,.server-button:hover {
+        background-color:@bg-light;
+        color:#07485e;
+        border-color:#07485e;
     }
     .u-server-icon{
         .size(20px,20px);
@@ -59,12 +66,6 @@
     }
     .u-server-ismain{
         color:#c00;
-    }
-    .server-button:focus {
-        background-color: white;
-    }
-    .server-button:hover {
-        background-color: white;
     }
     
     .text-wrapper {
@@ -103,7 +104,7 @@
         }
     }
     .server-offline {
-        .tm(0.7);
+        .tm(0.4);
         visibility: visible;
         svg{
             path:nth-child(2){
@@ -135,14 +136,13 @@
     }
     .server-button:hover::after {
         visibility: visible;
-        filter: url(../../assets/img/servers/pin.svg#change);
     }
     .server-pinned::after {
-        visibility: visible;
-        filter: url(../../assets/img/servers/pin.svg#change);
+        // filter: saturate(0%);
     }
     .server-pinned:hover::after {
-        filter: blur(1px);
+        visibility: visible;
+        filter: saturate(0%);
         opacity: 0.5;
     }
 }
