@@ -77,7 +77,7 @@
                 <div class="m-app-servers-aside">
                     <Github_REPO REPO="app" coder="172,8"></Github_REPO>
                     <ins class="adsbygoogle"
-                        style="display:block"
+                        style="display:block;width:100%;overflow:hidden;"
                         data-ad-client="ca-pub-4388499329141185"
                         data-ad-slot="9773281887"
                         data-ad-format="auto"
