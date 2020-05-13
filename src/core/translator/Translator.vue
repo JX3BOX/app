@@ -113,7 +113,7 @@
                         </div>
                     </el-tab-pane>
                     <el-tab-pane
-                        label="貢獻詞庫"
+                        label="💖貢獻詞庫"
                         :disabled="isLoading"
                         name="add-dict"
                     ></el-tab-pane>
