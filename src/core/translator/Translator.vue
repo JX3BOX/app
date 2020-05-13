@@ -137,7 +137,7 @@ export default {
                 }
             });
             worker.addEventListener('error', event => {
-                this.$message.error('转换出错');
+                this.$message.error('轉換出錯');
                 console.log(['ERROR: Line ', e.lineno, ' in ', e.filename, ': ', e.message].join(''));
             });
         },
