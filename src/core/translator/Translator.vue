@@ -144,8 +144,10 @@ import Info from "@/components/Info.vue";
 import Nav from "@/components/Nav.vue";
 import { axios } from "@/service/api.js";
 import { JX3BOX, User } from "@jx3box/jx3box-common";
-import Worker from "worker-loader!./translatorWorker";
-const worker = new Worker();
+var blob = new Blob([document.querySelector('#worker').textContent]);
+var url = window.URL.createObjectURL(blob);
+var worker = new Worker(url);
+
 export default {
     name: "Translator",
     data: function() {

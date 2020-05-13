@@ -34,7 +34,7 @@ module.exports = {
         translator : {
             title : '簡繁轉換 - JX3BOX',
             entry:'src/core/translator/translator.js',
-            template : 'public/index.html',
+            template : 'public/translator.html',
             filename:'translator/index.html',
         },
         flog: {
