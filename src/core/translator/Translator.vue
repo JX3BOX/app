@@ -1,7 +1,7 @@
 <template>
     <div id="app">
         <Header></Header>
-        <Breadcrumb name="簡繁轉換" slug="translator" root="/app/translator"><img slot="logo" svg-inline src="../../assets/img/translator/icons.svg" /></Breadcrumb>
+        <Breadcrumb name="簡繁轉換" slug="translator" root="/app/translator"><img slot="logo" svg-inline src="../../assets/img/translator/translator.svg" /></Breadcrumb>
         <LeftSidebar><Nav /></LeftSidebar>
         <Main :withoutRight="false">
             <div class="m-translator">
