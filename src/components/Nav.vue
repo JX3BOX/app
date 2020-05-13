@@ -26,6 +26,10 @@
                 ><i><img svg-inline src="../assets/img/logos/servers.svg"/></i
                 ><span>开服监控</span></a
             >
+            <a href="/app/translator" :class="{on:isActive('translator')}"
+                ><i><img svg-inline src="../assets/img/logos/translator.svg"/></i
+                ><span>轉換繁體</span></a
+            >
             <!-- <a href="/app/price" :class="{on:isActive('price')}"
                 ><i><img svg-inline src="../assets/img/logos/price.svg"/></i
                 ><span>金价走势</span></a

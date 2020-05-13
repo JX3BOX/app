@@ -1,0 +1,55 @@
+.m-translator {
+    padding: 10px;
+    .title {
+        text-align: center;
+    }
+    .translate-wrapper {
+        text-align: center;
+        .w(95%);
+        .auto(x);
+        .el-tabs__content {
+            .mt(-14px);
+        }
+        .translate-content {
+            .h(calc(50vh - 144px));
+            .pr;
+            .mt(24px);
+            .textarea-translate {
+                .h(100%);
+                .w(48%);
+                .el-textarea__inner {
+                    .h(100%);
+                    .w(100%);
+                }
+            }
+            .textarea-translate-pre {
+                .fl;
+            }
+            .textarea-translate-post {
+                .fr;
+            }
+        }
+        .el-alert--success {
+            text-align: left;
+            .btn-download {
+                padding: 0;
+                font-size: 12px;
+            }
+        }
+        .btn-convert {
+            .mt(20px);
+            .w(128px);
+        }
+        .el-progress {
+            .mt(20px);
+        }
+        .el-progress--circle > .el-progress__text {
+            white-space: pre-line;
+        }
+    }
+}
+.m-translator::after {
+    content: "";
+    display: table;
+    clear: both;
+}

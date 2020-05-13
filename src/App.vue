@@ -101,7 +101,7 @@
                             svg-inline
                             src="./assets/img/logos/translator.svg"/></i
                     ><span class="u-name">繁体转换</span
-                    ><span class="u-desc">台灣服專用</span
+                    ><span class="u-desc">國際服專用</span
                     ><span class="u-features"
                         ><span>✔️ 標準簡繁轉換</span>
                         <span>✔️ 劍網三特殊詞庫</span>

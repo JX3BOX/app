@@ -1,7 +1,12 @@
 <template>
     <div id="app" class="p-app-servers">
         <Header></Header>
-        <Breadcrumb name="开服监控" slug="servers" root="/app/servers" class="m-app-servers-bread">
+        <Breadcrumb
+            name="开服监控"
+            slug="servers"
+            root="/app/servers"
+            class="m-app-servers-bread"
+        >
             <img
                 slot="logo"
                 class="u-app-servers"
@@ -9,7 +14,7 @@
                 src="../../assets/img/logos/servers.svg"
             />
             <div class="u-misc">
-                常用链接 : 
+                常用链接 :
                 <a href="http://zt.xoyo.com/jx3/server/">合服查询</a>
             </div>
         </Breadcrumb>
@@ -80,12 +85,14 @@
             <RightSidebar>
                 <div class="m-app-servers-aside">
                     <Github_REPO REPO="app" coder="172,8"></Github_REPO>
-                    <ins class="adsbygoogle"
+                    <ins
+                        class="adsbygoogle"
                         style="display:block;width:100%;overflow:hidden;"
                         data-ad-client="ca-pub-4388499329141185"
                         data-ad-slot="9773281887"
                         data-ad-format="auto"
-                        data-full-width-responsive="true"></ins>
+                        data-full-width-responsive="true"
+                    ></ins>
                 </div>
             </RightSidebar>
             <Footer></Footer>

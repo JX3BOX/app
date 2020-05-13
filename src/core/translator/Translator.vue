@@ -122,7 +122,18 @@
                     
                 </div> -->
             </div>
-            <RightSidebar><div class="m-translator-aside"></div></RightSidebar>
+            <RightSidebar
+                ><div class="m-translator-aside">
+                    <Github_REPO REPO="app" coder="172"></Github_REPO>
+                    <ins
+                        class="adsbygoogle"
+                        style="display:block;width:100%;overflow:hidden;"
+                        data-ad-client="ca-pub-4388499329141185"
+                        data-ad-slot="9773281887"
+                        data-ad-format="auto"
+                        data-full-width-responsive="true"
+                    ></ins></div
+            ></RightSidebar>
             <Footer></Footer>
         </Main>
     </div>
