@@ -7,8 +7,8 @@
             <div class="m-translator">
                 <h1 class="title">簡繁轉換工具</h1>
                 <h3 class="title">將宏或插件數據等轉為劍網三國際服專用繁體</h3>
-                <el-tabs type="card" class="translate-wrapper">
-                    <el-tab-pane label="文字轉換" :disabled="isLoading">
+                <el-tabs type="card" class="translate-wrapper" :before-leave="tabClick" v-model="activeTabName">
+                    <el-tab-pane label="文字轉換" :disabled="isLoading" name="translate-str">
                         <div class="translate-content">
                             <el-input
                                 type="textarea"
@@ -35,7 +35,7 @@
                         </el-button>
                         <el-progress :text-inside="true" :stroke-width="20" :percentage="percentage" v-if="isLoading && percentage >= 0"></el-progress>
                     </el-tab-pane>
-                    <el-tab-pane label="文件轉換" :disabled="isLoading">
+                    <el-tab-pane label="文件轉換" :disabled="isLoading" name="translate-file">
                         <transition name="el-zoom-in-top">
                             <el-alert title="转换成功!" type="success" show-icon v-if="downloadFileUrl !== ''">
                                 如果沒有自動下載的話,
@@ -62,9 +62,10 @@
                                 </div>
                                 <div class="el-upload__tip" slot="tip">暫不支持word等帶樣式文檔</div>
                             </el-upload>
-                            <el-progress type="circle" :percentage="percentage" v-if="isLoading && percentage >= 0" :format="format"></el-progress>
+                            <el-progress type="circle" :percentage="percentage" v-if="isLoading && percentage >= 0" :format="progressFormat"></el-progress>
                         </div>
                     </el-tab-pane>
+                    <el-tab-pane label="貢獻詞庫" :disabled="isLoading" name="add-dict"></el-tab-pane>
                 </el-tabs>
                 <!-- <div class="translate-wrapper">
                     
@@ -88,6 +89,7 @@ export default {
     data: function() {
         return {
             worker: null,
+            activeTabName: 'translate-str',
             preTranslateText: '',
             postTranslateText: '',
             isLoading: true,
@@ -97,7 +99,17 @@ export default {
     },
     computed: {},
     methods: {
-        format(percentage) {
+        tabClick(activeName, oldName) {
+            if (activeName === 'add-dict') {
+                var aTag = document.createElement('a');
+                aTag.href = 'https://github.com/JX3BOX/jx3box-dict/issues';
+                aTag.target = '_blank'
+                aTag.click();
+            } else {
+                return true
+            }
+        },
+        progressFormat(percentage) {
             return percentage === 100 ? '完成' : `${percentage}% \n正在轉換...`;
         },
         initWorker() {
