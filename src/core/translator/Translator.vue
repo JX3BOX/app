@@ -1,14 +1,28 @@
 <template>
     <div id="app">
         <Header></Header>
-        <Breadcrumb name="簡繁轉換" slug="translator" root="/app/translator"><img slot="logo" svg-inline src="../../assets/img/translator/translator.svg" /></Breadcrumb>
+        <Breadcrumb name="簡繁轉換" slug="translator" root="/app/translator"
+            ><img
+                slot="logo"
+                svg-inline
+                src="../../assets/img/translator/translator.svg"
+        /></Breadcrumb>
         <LeftSidebar><Nav /></LeftSidebar>
         <Main :withoutRight="false">
             <div class="m-translator">
                 <h1 class="title">簡繁轉換工具</h1>
                 <h3 class="title">將宏或插件數據等轉為劍網三國際服專用繁體</h3>
-                <el-tabs type="card" class="translate-wrapper" :before-leave="tabClick" v-model="activeTabName">
-                    <el-tab-pane label="文字轉換" :disabled="isLoading" name="translate-str">
+                <el-tabs
+                    type="card"
+                    class="translate-wrapper"
+                    :before-leave="tabClick"
+                    v-model="activeTabName"
+                >
+                    <el-tab-pane
+                        label="文字轉換"
+                        :disabled="isLoading"
+                        name="translate-str"
+                    >
                         <div class="translate-content">
                             <el-input
                                 type="textarea"
@@ -30,16 +44,42 @@
                                 class="textarea-translate textarea-translate-post"
                             ></el-input>
                         </div>
-                        <el-button type="primary" :loading="isLoading" class="btn-convert" size="medium" @click="convertText" v-if="percentage < 0">
-                            {{ isLoading ? '正在加載' : '轉換' }}
+                        <el-button
+                            type="primary"
+                            :loading="isLoading"
+                            class="btn-convert"
+                            size="medium"
+                            @click="convertText"
+                            v-if="percentage < 0"
+                        >
+                            {{ isLoading ? "正在加載" : "轉換" }}
                         </el-button>
-                        <el-progress :text-inside="true" :stroke-width="20" :percentage="percentage" v-if="isLoading && percentage >= 0"></el-progress>
+                        <el-progress
+                            :text-inside="true"
+                            :stroke-width="20"
+                            :percentage="percentage"
+                            v-if="isLoading && percentage >= 0"
+                        ></el-progress>
                     </el-tab-pane>
-                    <el-tab-pane label="文件轉換" :disabled="isLoading" name="translate-file">
+                    <el-tab-pane
+                        label="文件轉換"
+                        :disabled="isLoading"
+                        name="translate-file"
+                    >
                         <transition name="el-zoom-in-top">
-                            <el-alert title="转换成功!" type="success" show-icon v-if="downloadFileUrl !== ''">
+                            <el-alert
+                                title="转换成功!"
+                                type="success"
+                                show-icon
+                                v-if="downloadFileUrl !== ''"
+                            >
                                 如果沒有自動下載的話,
-                                <el-button type="text" class="btn-download" @click="downloadByUrl">點此下載</el-button>
+                                <el-button
+                                    type="text"
+                                    class="btn-download"
+                                    @click="downloadByUrl"
+                                    >點此下載</el-button
+                                >
                             </el-alert>
                         </transition>
 
@@ -60,12 +100,23 @@
                                     將文件拖到此處,或
                                     <em>點擊上傳</em>
                                 </div>
-                                <div class="el-upload__tip" slot="tip">暫不支持word等帶樣式文檔</div>
+                                <div class="el-upload__tip" slot="tip">
+                                    暫不支持word等帶樣式文檔
+                                </div>
                             </el-upload>
-                            <el-progress type="circle" :percentage="percentage" v-if="isLoading && percentage >= 0" :format="progressFormat"></el-progress>
+                            <el-progress
+                                type="circle"
+                                :percentage="percentage"
+                                v-if="isLoading && percentage >= 0"
+                                :format="progressFormat"
+                            ></el-progress>
                         </div>
                     </el-tab-pane>
-                    <el-tab-pane label="貢獻詞庫" :disabled="isLoading" name="add-dict"></el-tab-pane>
+                    <el-tab-pane
+                        label="貢獻詞庫"
+                        :disabled="isLoading"
+                        name="add-dict"
+                    ></el-tab-pane>
                 </el-tabs>
                 <!-- <div class="translate-wrapper">
                     
@@ -78,57 +129,57 @@
 </template>
 
 <script>
-import Info from '@/components/Info.vue';
-import Nav from '@/components/Nav.vue';
-import { axios } from '@/service/api.js';
-import { JX3BOX, User } from '@jx3box/jx3box-common';
-import Worker from 'worker-loader!./translatorWorker';
+import Info from "@/components/Info.vue";
+import Nav from "@/components/Nav.vue";
+import { axios } from "@/service/api.js";
+import { JX3BOX, User } from "@jx3box/jx3box-common";
+import Worker from "worker-loader!./translatorWorker";
 const worker = new Worker();
 export default {
-    name: 'Translator',
+    name: "Translator",
     data: function() {
         return {
             worker: null,
-            activeTabName: 'translate-str',
-            preTranslateText: '',
-            postTranslateText: '',
+            activeTabName: "translate-str",
+            preTranslateText: "",
+            postTranslateText: "",
             isLoading: true,
             percentage: -1,
-            downloadFileUrl: ''
+            downloadFileUrl: "",
         };
     },
     computed: {},
     methods: {
         tabClick(activeName, oldName) {
-            if (activeName === 'add-dict') {
-                var aTag = document.createElement('a');
-                aTag.href = 'https://github.com/JX3BOX/jx3box-dict/issues';
-                aTag.target = '_blank'
+            if (activeName === "add-dict") {
+                var aTag = document.createElement("a");
+                aTag.href = "https://github.com/JX3BOX/jx3box-dict/issues";
+                aTag.target = "_blank";
                 aTag.click();
             } else {
-                return true
+                return true;
             }
         },
         progressFormat(percentage) {
-            return percentage === 100 ? '完成' : `${percentage}% \n正在轉換...`;
+            return percentage === 100 ? "完成" : `${percentage}% \n正在轉換...`;
         },
         initWorker() {
-            worker.addEventListener('message', event => {
+            worker.addEventListener("message", (event) => {
                 let data = event.data;
                 let progress = 0;
                 if (data.success) {
                     switch (data.type) {
-                        case 'str':
+                        case "str":
                             this.postTranslateText = data.result;
                             this.isLoading = false;
                             this.percentage = -1;
                             break;
-                        case 'file':
+                        case "file":
                             this.downloadTranslatedFile(data.result);
                             this.isLoading = false;
                             this.percentage = -1;
                             break;
-                        case 'progress':
+                        case "progress":
                             this.percentage = data.result;
                             break;
                         default:
@@ -136,19 +187,28 @@ export default {
                     }
                 }
             });
-            worker.addEventListener('error', event => {
-                this.$message.error('轉換出錯');
-                console.log(['ERROR: Line ', e.lineno, ' in ', e.filename, ': ', e.message].join(''));
+            worker.addEventListener("error", (event) => {
+                this.$message.error("轉換出錯");
+                console.log(
+                    [
+                        "ERROR: Line ",
+                        e.lineno,
+                        " in ",
+                        e.filename,
+                        ": ",
+                        e.message,
+                    ].join("")
+                );
             });
         },
         getDict() {
             let url = `https://cdn.jsdelivr.net/npm/@jx3box/jx3box-dict/dict.json?v=${Date.now()}`;
             axios(url)
-                .then(response => {
+                .then((response) => {
                     this.dict = response;
                     this.isLoading = false;
                 })
-                .catch(e => {
+                .catch((e) => {
                     switch (e.code) {
                         case -1:
                             // 网络异常
@@ -163,7 +223,7 @@ export default {
         },
         async convertText() {
             let preText = this.preTranslateText;
-            if (preText.replace(/\ /g, '') === '') {
+            if (preText.replace(/\ /g, "") === "") {
                 return;
             }
             let isLogin = true;
@@ -171,13 +231,19 @@ export default {
             if (preText.length > 1000) {
                 isLogin = await this.checkLogin();
                 if (!isLogin) {
-                    this.$message.warning('转换的字符超过1000个需要先登录再尝试转换~');
+                    this.$message.warning(
+                        "转换的字符超过1000个需要先登录再尝试转换~"
+                    );
                     this.isLoading = false;
                     return;
                 }
             }
             this.percentage = 0;
-            worker.postMessage({ cmd: 'translate-str', str: preText, dict: this.dict });
+            worker.postMessage({
+                cmd: "translate-str",
+                str: preText,
+                dict: this.dict,
+            });
         },
         async uploadFile(file) {
             if (file.file) {
@@ -186,19 +252,25 @@ export default {
                 if (file.file.size > 1024 * 1024) {
                     isLogin = await this.checkLogin();
                     if (!isLogin) {
-                        this.$message.warning('转换的文件大小超过1MB需要先登录再尝试转换~');
+                        this.$message.warning(
+                            "转换的文件大小超过1MB需要先登录再尝试转换~"
+                        );
                         this.isLoading = false;
                         return;
                     }
                 }
-                this.downloadFileUrl = '';
+                this.downloadFileUrl = "";
                 this.filename = file.file.name;
                 this.percentage = 0;
-                worker.postMessage({ cmd: 'translate-file', file: file.file, dict: this.dict });
+                worker.postMessage({
+                    cmd: "translate-file",
+                    file: file.file,
+                    dict: this.dict,
+                });
             }
         },
         downloadTranslatedFile(blob) {
-            var aTag = document.createElement('a');
+            var aTag = document.createElement("a");
             aTag.download = `JX3BOX轉換-${this.filename}`;
             let url = URL.createObjectURL(blob);
             aTag.href = url;
@@ -207,10 +279,10 @@ export default {
             this.isLoading = false;
         },
         downloadByUrl() {
-            if (this.downloadFileUrl === '') {
+            if (this.downloadFileUrl === "") {
                 return;
             }
-            var aTag = document.createElement('a');
+            var aTag = document.createElement("a");
             aTag.download = `JX3BOX轉換-${this.filename}`;
             let url = this.downloadFileUrl;
             aTag.href = url;
@@ -229,16 +301,23 @@ export default {
         },
         // 用于验证是否真的登录了
         testCheckIsLogin() {
-            let url = JX3BOX.__server + 'user/meta';
-            return axios(url, 'GET', true, {}, {}, { uid: this.uid, key: 'jx3_servers' })
-                .then(response => {
+            let url = JX3BOX.__server + "user/meta";
+            return axios(
+                url,
+                "GET",
+                true,
+                {},
+                {},
+                { uid: this.uid, key: "jx3_servers" }
+            )
+                .then((response) => {
                     if (response.code == 10050) {
                         return true;
                     } else {
                         return false;
                     }
                 })
-                .catch(e => {
+                .catch((e) => {
                     switch (e.code) {
                         case -1:
                             // 网络异常
@@ -246,7 +325,7 @@ export default {
                             this.getFromLocal();
                             break;
                         case 9999:
-                            this.$message.error('登录失效, 请重新登录');
+                            this.$message.error("登录失效, 请重新登录");
                             User.destroy();
                             setTimeout(() => {
                                 User.toLogin();
@@ -267,7 +346,7 @@ export default {
             if (User.isLogin()) {
                 this.uid = User.getInfo().uid;
             }
-        }
+        },
     },
     filters: {},
     created() {
@@ -281,65 +360,11 @@ export default {
         worker.terminate();
     },
     components: {
-        Nav
-    }
+        Nav,
+    },
 };
 </script>
 
 <style lang="less">
-.m-translator {
-    padding: 10px;
-    .title {
-        text-align: center;
-    }
-    .translate-wrapper {
-        text-align: center;
-        .w(95%);
-        .auto(x);
-        .el-tabs__content {
-            .mt(-14px);
-        }
-        .translate-content {
-            .h(calc(50vh - 144px));
-            .pr;
-            .mt(24px);
-            .textarea-translate {
-                .h(100%);
-                .w(48%);
-                .el-textarea__inner {
-                    .h(100%);
-                    .w(100%);
-                }
-            }
-            .textarea-translate-pre {
-                .fl;
-            }
-            .textarea-translate-post {
-                .fr;
-            }
-        }
-        .el-alert--success {
-            text-align: left;
-            .btn-download {
-                padding: 0;
-                font-size: 12px;
-            }
-        }
-        .btn-convert {
-            .mt(20px);
-            .w(128px);
-        }
-        .el-progress {
-            .mt(20px);
-        }
-        .el-progress--circle > .el-progress__text {
-            white-space: pre-line;
-        }
-    }
-}
-.m-translator::after {
-    content: '';
-    display: table;
-    clear: both;
-}
+@import "../../assets/css/translator.less";
 </style>
