@@ -199,7 +199,7 @@ export default {
         },
         downloadTranslatedFile(blob) {
             var aTag = document.createElement('a');
-            aTag.download = `JX3BOX翻譯-${this.filename}`;
+            aTag.download = `JX3BOX轉換-${this.filename}`;
             let url = URL.createObjectURL(blob);
             aTag.href = url;
             this.downloadFileUrl = url;
@@ -211,7 +211,7 @@ export default {
                 return;
             }
             var aTag = document.createElement('a');
-            aTag.download = `JX3BOX翻譯-${this.filename}`;
+            aTag.download = `JX3BOX轉換-${this.filename}`;
             let url = this.downloadFileUrl;
             aTag.href = url;
             aTag.click();
