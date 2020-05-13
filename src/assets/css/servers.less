@@ -59,9 +59,12 @@
         border-color:#07485e;
     }
     .u-server-icon{
-        .size(20px,20px);
+        .size(16px,16px);
         .db;.fl;
-        svg{.size(100%,auto);}
+        .mt(2px);
+        // svg{.size(100%,auto);}
+        border-radius: 8px;
+        background-color: #70b603;
         margin-right:10px;
     }
     .u-server-ismain{
@@ -94,32 +97,35 @@
 
     .server-online{
         visibility: visible;
-        svg{
-            path:nth-child(4){
-                animation: spark 0.4s infinite;
-            }
-            path:nth-child(5){
-                animation: sparkRE 0.4s infinite;
-            }
-        }
+        // svg{
+        //     path:nth-child(4){
+        //         animation: spark 0.4s infinite;
+        //     }
+        //     path:nth-child(5){
+        //         animation: sparkRE 0.4s infinite;
+        //     }
+        // }
     }
     .server-offline {
-        .tm(0.4);
+        // .tm(0.4);
         visibility: visible;
-        svg{
-            path:nth-child(2){
-                fill:#999;
-            }
-            path:nth-child(1){
-                fill:#444;
-            }
-            path:nth-child(3){
-                fill:#fff !important;
-            }
-            path:nth-child(4),path:nth-child(5){
-                fill:#fff !important;
-            }
+        i {
+            background-color: #aaaaaa;
         }
+        // svg{
+        //     path:nth-child(2){
+        //         fill:#999;
+        //     }
+        //     path:nth-child(1){
+        //         fill:#444;
+        //     }
+        //     path:nth-child(3){
+        //         fill:#fff !important;
+        //     }
+        //     path:nth-child(4),path:nth-child(5){
+        //         fill:#fff !important;
+        //     }
+        // }
     }
     
     // PIN

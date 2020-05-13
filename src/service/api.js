@@ -3,7 +3,7 @@ import {req} from './request.js';
 export function axios(url,method,withCredentials,data,headers,params) {
     let options = {
         url: (process.env.NODE_ENV === 'production' ? '' : '')+url,
-        method: method
+        method: method ? method : 'GET'
     };
     if (withCredentials === undefined) {
         options['withCredentials'] = false;

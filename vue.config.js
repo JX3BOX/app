@@ -31,6 +31,12 @@ module.exports = {
             template : 'public/index.html',
             filename:'icons/index.html',
         },
+        translator : {
+            title : '簡繁轉換 - JX3BOX',
+            entry:'src/core/translator/translator.js',
+            template : 'public/index.html',
+            filename:'translator/index.html',
+        },
         flog: {
             title: "BOSS日志分析 - JX3BOX",
             entry: "src/core/flog/flog.js",
@@ -75,6 +81,13 @@ module.exports = {
             .rule("vue")
             .use("vue-svg-inline-loader")
             .loader("vue-svg-inline-loader");
+            
+        config.module
+            .rule("worker-loader")
+            .test(/\.worker\.js$/)
+            .use("worker-loader")
+            .loader("worker-loader");
+           
 
         //💖 import common less var * mixin ~
         const types = ["vue-modules", "vue", "normal-modules", "normal"];

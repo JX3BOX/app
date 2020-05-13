@@ -11,7 +11,8 @@
                     @click="$emit('toogle-server', server.serverName, server.gate)"
                     ref="button"
                 >
-                    <i class="u-server-icon"><img svg-inline src="../../assets/img/servers/open.svg" /></i>
+                    <!-- <i class="u-server-icon"><img svg-inline src="../../assets/img/servers/open.svg" /></i> -->
+                    <i class="u-server-icon"></i>
                     {{ server.serverName }}
                     <span class="u-server-ismain" v-if="server.serverName === server.mainServer">[主]</span>
                 </el-button>
