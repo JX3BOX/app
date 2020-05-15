@@ -129,7 +129,7 @@ export default {
             );
         },
         clickServer(serverName) {
-            let index = $.inArray(serverName, this.pinnedServerName);
+            let index = this.pinnedServerName.indexOf(serverName)
             if (index === -1) {
                 this.pinnedServerName.push(serverName);
             } else {
