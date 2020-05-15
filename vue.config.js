@@ -4,7 +4,6 @@ const { JX3BOX } = require("@jx3box/jx3box-common");
 // const Setting = require("./setting.json");
 
 module.exports = {
-
     //❤️ Multiple pages ~
     pages: {
         index: {
@@ -19,23 +18,23 @@ module.exports = {
             template: "public/index.html",
             filename: "servers/index.html",
         },
-        price : {
-            title : '金价走势 - JX3BOX',
-            entry:'src/core/price/price.js',
-            template : 'public/index.html',
-            filename:'price/index.html',
+        price: {
+            title: "金价走势 - JX3BOX",
+            entry: "src/core/price/price.js",
+            template: "public/index.html",
+            filename: "price/index.html",
         },
-        icon : {
-            title : '图标大全 - JX3BOX',
-            entry:'src/core/icons/icons.js',
-            template : 'public/index.html',
-            filename:'icons/index.html',
+        icon: {
+            title: "图标大全 - JX3BOX",
+            entry: "src/core/icons/icons.js",
+            template: "public/index.html",
+            filename: "icons/index.html",
         },
-        translator : {
-            title : '簡繁轉換 - JX3BOX',
-            entry:'src/core/translator/translator.js',
-            template : 'public/translator.html',
-            filename:'translator/index.html',
+        translator: {
+            title: "簡繁轉換 - JX3BOX",
+            entry: "src/core/translator/translator.js",
+            template: "public/translator.html",
+            filename: "translator/index.html",
         },
         flog: {
             title: "BOSS日志分析 - JX3BOX",
@@ -48,13 +47,19 @@ module.exports = {
             entry: "src/core/sudoku/sudoku.js",
             template: "public/index.html",
             filename: "sudoku/index.html",
-        }
+        },
     },
 
     //❤️ define path for static files ~
     publicPath:
         //FOR Localhost => development
         (process.env.NODE_ENV === "development" && "/") ||
+        //BY origin
+        (process.env.STATIC_PATH === "origin" &&
+            `${JX3BOX.__staticPath["origin"]}${pkg.name}/`) ||
+        //BY github
+        (process.env.STATIC_PATH === "github" &&
+            `${JX3BOX.__staticPath["github"]}${pkg.name}/`) ||
         //BY jsdelivr
         (process.env.STATIC_PATH === "jsdelivr" &&
             `${JX3BOX.__staticPath["jsdelivr"]}${pkg.name}@gh-pages/`) ||
@@ -81,13 +86,12 @@ module.exports = {
             .rule("vue")
             .use("vue-svg-inline-loader")
             .loader("vue-svg-inline-loader");
-            
+
         config.module
             .rule("worker-loader")
             .test(/\.worker\.js$/)
             .use("worker-loader")
             .loader("worker-loader");
-           
 
         //💖 import common less var * mixin ~
         const types = ["vue-modules", "vue", "normal-modules", "normal"];

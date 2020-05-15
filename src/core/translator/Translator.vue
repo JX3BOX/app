@@ -132,8 +132,10 @@
                         data-ad-slot="9773281887"
                         data-ad-format="auto"
                         data-full-width-responsive="true"
-                    ></ins></div
-            ></RightSidebar>
+                    ></ins>
+                </div>
+                <Extend
+            /></RightSidebar>
             <Footer></Footer>
         </Main>
     </div>
@@ -144,7 +146,8 @@ import Info from "@/components/Info.vue";
 import Nav from "@/components/Nav.vue";
 import { axios } from "@/service/api.js";
 import { JX3BOX, User } from "@jx3box/jx3box-common";
-var blob = new Blob([document.querySelector('#worker').textContent]);
+import Extend from '@/components/Extend.vue';
+var blob = new Blob([document.querySelector("#worker").textContent]);
 var url = window.URL.createObjectURL(blob);
 var worker = new Worker(url);
 
@@ -374,6 +377,7 @@ export default {
     },
     components: {
         Nav,
+        Extend
     },
 };
 </script>

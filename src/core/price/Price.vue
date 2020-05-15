@@ -160,7 +160,7 @@
                     </el-col>
                 </el-row>
             </div>
-            <RightSidebar><div class="m-price-aside"></div></RightSidebar>
+            <RightSidebar><div class="m-price-aside"></div><Extend/></RightSidebar>
             <Footer />
         </Main>
     </div>
@@ -174,6 +174,7 @@ import { axios } from '@/service/api.js';
 import { JX3BOX, User } from '@jx3box/jx3box-common';
 import { dataPath } from '@jx3box/jx3box-common/js/utils';
 import { prepareBoxplotData } from 'echarts/extension/dataTool';
+import Extend from '@/components/Extend.vue';
 export default {
     name: 'Price',
     data: function() {
@@ -842,7 +843,8 @@ export default {
     },
     components: {
         Nav,
-        FServerNode
+        FServerNode,
+        Extend
     }
 };
 </script>

@@ -85,15 +85,8 @@
             <RightSidebar>
                 <div class="m-app-servers-aside">
                     <Github_REPO REPO="app" coder="172,8"></Github_REPO>
-                    <ins
-                        class="adsbygoogle"
-                        style="display:block;width:100%;overflow:hidden;"
-                        data-ad-client="ca-pub-4388499329141185"
-                        data-ad-slot="9773281887"
-                        data-ad-format="auto"
-                        data-full-width-responsive="true"
-                    ></ins>
                 </div>
+                <Extend/>
             </RightSidebar>
             <Footer></Footer>
         </Main>
@@ -105,6 +98,7 @@ import Nav from "@/components/Nav.vue";
 import FServerNode from "./FServerNode.vue";
 import { axios } from "@/service/api.js";
 import { JX3BOX, User } from "@jx3box/jx3box-common";
+import Extend from '@/components/Extend.vue';
 
 export default {
     name: "Servers",
@@ -296,6 +290,7 @@ export default {
     components: {
         Nav,
         FServerNode,
+        Extend
     },
 };
 </script>

@@ -91,6 +91,7 @@
                         >
                     </div>
                 </div>
+                <Extend />
             </RightSidebar>
             <Footer></Footer>
         </Main>
@@ -100,6 +101,7 @@
 <script>
 import Nav from "@/components/Nav.vue";
 import { dattxt } from "./data.js";
+import Extend from "@/components/Extend.vue";
 Date.prototype.toLocaleString = function() {
     function addZero(num) {
         if (num < 10) return "0" + num;
@@ -239,7 +241,7 @@ export default {
             this.readAsArrayBuffer(f);
         };
     },
-    components: {},
+    components: { Extend },
 };
 </script>
 
