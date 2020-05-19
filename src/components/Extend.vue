@@ -2,7 +2,7 @@
     <div class="m-extend">
         <ins
             class="adsbygoogle"
-            style="display:block;width:100%;overflow:hidden;"
+            style="display:block;width:100%;overflow:hidden;margin:10px auto"
             data-ad-client="ca-pub-4388499329141185"
             data-ad-slot="9773281887"
             data-ad-format="auto"
