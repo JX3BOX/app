@@ -1,8 +1,8 @@
 <template>
     <div class="m-extend">
-        <ins
+        <ins 
             class="adsbygoogle"
-            style="display:block;width:100%;overflow:hidden;margin:10px auto"
+            style="display:block;max-width:100%;overflow:hidden;margin:10px;"
             data-ad-client="ca-pub-4388499329141185"
             data-ad-slot="9773281887"
             data-ad-format="auto"
