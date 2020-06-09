@@ -736,8 +736,8 @@ export default {
                     }
                     this.serverList = tmpdict;
 
-                    if (result[1].code == 10050) {
-                        let serverValue = result[1].data.value;
+                    if (result[0].code == 10050) {
+                        let serverValue = result[0].data.value;
                         if (serverValue) {
                             this.pinnedServerName = serverValue;
                         } else {
@@ -745,7 +745,7 @@ export default {
                         }
                     }
 
-                    let priceData = result[2];
+                    let priceData = result[1];
                     if ("gate0000" in priceData) {
                         this.allPriceDataRaw = priceData;
                     }
