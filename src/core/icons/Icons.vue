@@ -1,7 +1,11 @@
 <template>
     <div id="app">
         <Header></Header>
-        <Breadcrumb name="图标大全" slug="icons" root="/app/icons"
+        <Breadcrumb
+            name="图标大全"
+            slug="icons"
+            root="/app/icons"
+            :feedbackEnable="true"
             ><img slot="logo" svg-inline src="../../assets/img/icons/icons.svg"
         /></Breadcrumb>
         <LeftSidebar><Nav /></LeftSidebar>

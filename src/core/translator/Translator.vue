@@ -1,7 +1,7 @@
 <template>
     <div id="app">
         <Header></Header>
-        <Breadcrumb name="簡繁轉換" slug="translator" root="/app/translator"
+        <Breadcrumb name="簡繁轉換" slug="translator" root="/app/translator" :feedbackEnable="true"
             ><img
                 slot="logo"
                 svg-inline

@@ -36,12 +36,12 @@ module.exports = {
             template: "public/translator.html",
             filename: "translator/index.html",
         },
-        flog: {
-            title: "BOSS日志分析 - JX3BOX",
-            entry: "src/core/flog/flog.js",
-            template: "public/index.html",
-            filename: "flog/index.html",
-        },
+        // flog: {
+        //     title: "BOSS日志分析 - JX3BOX",
+        //     entry: "src/core/flog/flog.js",
+        //     template: "public/index.html",
+        //     filename: "flog/index.html",
+        // },
         sudoku: {
             title: "九宫格计算器 - JX3BOX",
             entry: "src/core/sudoku/sudoku.js",

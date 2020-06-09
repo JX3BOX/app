@@ -6,6 +6,7 @@
             slug="servers"
             root="/app/servers"
             class="m-app-servers-bread"
+            :feedbackEnable="true"
         >
             <img
                 slot="logo"
@@ -38,6 +39,7 @@
                             <el-switch
                                 style="display: block"
                                 v-model="isShowMainServer"
+                                active-color="#13ce66"
                                 active-text="只看主服"
                             ></el-switch>
                         </template>
