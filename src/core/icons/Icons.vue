@@ -270,7 +270,7 @@
                 </el-tabs>
             </div>
             <RightSidebar>
-                <div class="m-icons-aside"></div>
+                <Github_REPO REPO="app" coder="172,8"></Github_REPO>
                 <Extend />
             </RightSidebar>
             <Footer></Footer>

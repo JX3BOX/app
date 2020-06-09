@@ -1,0 +1,131 @@
+.m-sudoku {
+    padding: 20px;
+}
+.m-sudoku-title {
+    font-weight: 300;
+    .x;
+    margin: 0 0 20px 0;
+    padding: 0;
+}
+
+
+@table-width: 450px;
+.m-table {
+    width: @table-width + 1px;
+    margin: 20px auto;
+
+    // border-collapse: collapse;
+    // padding: 0;
+    // margin: 0;
+    .fl;
+    margin-right: 20px;
+    .x;
+
+    .u-clear {
+        .w(220px);
+        .mt(10px);
+    }
+}
+
+.m-table ul {
+    padding: 0;
+    margin: 0;
+    background-color: #fafbfc;
+    // margin-right:-3px;
+    box-sizing: border-box;
+    border-left: 1px solid #ddd;
+    border-top: 1px solid #ddd;
+    .clearfix;
+}
+
+.m-table li {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    font-size: 42px;
+    text-align: center;
+    font-size: 42px;
+    height: @table-width / 3;
+    width: @table-width / 3;
+    .fl;
+    box-sizing: border-box;
+}
+.m-table input {
+    border: none;
+    width: 100%;
+    height: 100%;
+    background: none;
+    padding: 0;
+    margin: 0;
+    font-size: 42px;
+    text-align: center;
+}
+
+.m-table input:hover {
+    background-color: #f2f8fe;
+}
+.m-table input:focus {
+    background-color: #fdfddc;
+}
+
+@media screen and (max-width: 767px) {
+    body {
+        font-size: 1rem;
+    }
+    .m-table {
+        width: 90%;
+    }
+    .m-table td {
+        height: auto;
+        font-size: 2rem;
+        line-height: 2;
+    }
+    .m-table input {
+        font-size: 2rem;
+        text-align: center;
+        line-height: 100px;
+        height: 100px;
+    }
+}
+
+.m-preview {
+    .u-mode {
+        .fz(120px);
+        font-weight: 600;
+        .x;
+        margin: 20px auto;
+    }
+    .u-imglist-1 {
+        .x;
+        img {
+            background-color: @bg-light;
+            border: 1px solid #eee;
+            .r(4px);
+            padding: 5px;
+            box-sizing: border-box;
+        }
+    }
+    .u-imglist-2 {
+        .x;
+        .el-image {
+            .w(100px);
+            .mr(6px);
+        }
+    }
+}
+.el-icon-circle-close {
+    &:before {
+        color: #fff;
+    }
+}
+
+.u-demolist{
+    li{
+        list-style:none;
+        .fl;
+        .mr(20px);
+        .fz(1.5rem);
+    }
+}

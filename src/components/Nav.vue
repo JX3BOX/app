@@ -79,6 +79,10 @@
                 ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/face.svg"/></i
                 ><span>脸型分析</span></a
             >
+            <a class="u-app" href="/app/sudoku"
+                ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/sudoku.svg"/></i
+                ><span>九宫格</span></a
+            >
         </div>
     </nav>
 </template>

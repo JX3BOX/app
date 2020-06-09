@@ -12,6 +12,12 @@ module.exports = {
             template: "public/index.html",
             filename: "index.html",
         },
+        talent: {
+            title: "奇穴模拟器 - JX3BOX",
+            entry: "src/core/talent/talent.js",
+            template: "public/index.html",
+            filename: "talent/index.html",
+        },
         servers: {
             title: "开服监控 - JX3BOX",
             entry: "src/core/servers/servers.js",
