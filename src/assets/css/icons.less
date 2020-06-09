@@ -1,0 +1,281 @@
+@import './components/info.less';
+.m-icons-page{
+    padding:20px;
+}
+.m-icons-title{
+    font-weight:300;
+    .x;
+    margin:0 0 20px 0;
+    padding:0;
+}
+.el-tabs__item{
+    background-color:@bg-light;
+
+    &.is-active{
+        background-color:#fff;
+        .bold;
+    }
+}
+
+.m-icon-search-tip{
+    margin-top: 10px;
+    background-color: #fafafa;
+    border: 1px dashed #eee;
+    padding: 10px;
+    font-size: 13px;
+    line-height: 2;
+}
+
+
+ul,
+ul li {
+    margin: 0;
+    padding: 0;
+}
+.el-tabs--top {
+    .mt(10px);
+}
+.searchbar-wrapper {
+    .el-alert--info {
+        margin: 10px auto;
+    }
+}
+.loading-placeholder {
+    height: 50px;
+}
+.m-icon-list {
+    .mt(10px);
+    .clearfix;
+    .el-alert--warning {
+        margin: 20px auto;
+    }
+    li {
+        list-style: none;
+        .fl;
+        margin: 0 10px 5px 0;
+
+        .u-pic {
+            .pr;
+            .size(50px);
+            .db;
+            border: 1px solid #eee;
+            .r(6px);
+        }
+        .u-img {
+            .ml(1px);
+            .mt(1px);
+            .size(48px);
+            .db;
+            .r(6px);
+            .image-slot {
+                display: flex;
+                .full;
+                justify-content: center;
+                align-items: center;
+                .ml(-1px);
+                .mt(-1px);
+            }
+        }
+        .u-love {
+            .pa;
+            .lt(0);
+            .size(50px);
+            background-color: rgba(255, 255, 255, 0.8);
+            .r(6px);
+            .pointer;
+            i {
+                .db;
+            }
+            .none;
+        }
+        .u-remove {
+            .pa;
+            .rt(0);
+            .u-icon;
+            .u-icon-close;
+            .size(16px);
+            .pointer;
+        }
+        &:hover {
+            .u-love {
+                .db;
+            }
+        }
+        .u-iconid {
+            .db;
+            .x;
+            padding: 5px 0;
+        }
+    }
+}
+
+// 收藏
+.m-icons-sync{
+    .mb(10px);
+}
+
+// emoji
+.m-emotion-nav {
+    .mt(10px);
+    list-style: none;
+    .clearfix;
+    li {
+        border: 1px solid #eee;
+        .r(4px);
+        .fz(15px, 30px);
+        padding: 0 20px;
+        .fl;
+        .w(140px);
+        .x;
+        span {
+            color: #777;
+            .fz(13px);
+            .ml(5px);
+        }
+        .pointer;
+        .mr(10px);
+        .mb(10px);
+
+        &.active,
+        &:hover {
+            background-color: #fafafa;
+        }
+    }
+}
+@media screen and (max-width: @ipad) {
+    .m-emotion-nav {
+        .none;
+    }
+}
+.m-emotion-selection {
+    .mt(10px);
+    .none;
+}
+@media screen and (max-width: @ipad) {
+    .m-emotion-selection {
+        .db;
+    }
+}
+.m-emotion-list {
+    list-style: none;
+    .clearfix;
+    li {
+        padding: 10px;
+        .fl;
+    }
+}
+.btn-download-emoji {
+    .pr;
+    .db;
+    .auto(x);
+    i {
+        .pa;
+        .fz(22px);
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    .el-icon-loading {
+        top: 30%;
+    }
+}
+.btn-download-emoji:hover {
+    // b,
+    // span {
+    //     color: rgb(64, 158, 255);
+    // }
+}
+.m-emotion-down {
+    .dbi;
+    .x;
+    .ml(28px);
+    .el-icon-cownload {
+        font-size: 22px;
+    }
+    b{font-weight:300;}
+    // b,
+    // span {
+    //     .db;
+    // }
+    // b {
+    //     .fz(18px);
+    //     color: #444;
+    // }
+    // span {
+    //     .fz(14px);
+    //     color: #888;
+    // }
+}
+
+// 分割线
+// 公共
+.el-link {
+    font-size: 12px;
+    vertical-align: top;
+}
+.el-button--text {
+    padding: 0;
+    font-size: 12px;
+}
+.u-icon {
+    .dbi;
+    .y;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+}
+.u-icon-close {
+    background-image: url(../../assets/img/icons/close.svg);
+}
+/* 爆炸心心-------------------------- */
+.w-heart {
+    background: url(../../assets/img/icons/web_heart_animation.png);
+    background-position: left;
+    background-repeat: no-repeat;
+    height: 50px;
+    width: 50px;
+    cursor: pointer;
+    background-size: 1450px; //实际背景图片尺寸2900px
+}
+.w-heart:hover {
+    background-position: left; //显示最后一个红心帧
+    // background-position: right; //显示第一个红心帧
+}
+@-webkit-keyframes heartBlast {
+    0% {
+        background-position: left;
+    }
+    100% {
+        background-position: right;
+    }
+}
+@keyframes heartBlast {
+    0% {
+        background-position: left;
+    }
+    100% {
+        background-position: right;
+    }
+}
+.w-heart-animation {
+    -webkit-animation-name: heartBlast; //webkit内核浏览器
+    animation-name: heartBlast;
+    -webkit-animation-duration: 0.8s;
+    animation-duration: 0.8s;
+    -webkit-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+    -webkit-animation-timing-function: steps(28); //共28个背景图片帧
+    animation-timing-function: steps(28);
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    background-position: right;
+}
+
+//  分割线
+.m-icons {
+    padding: 10px;
+}
+.m-icons::after {
+    content: "";
+    display: table;
+    clear: both;
+}

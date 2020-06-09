@@ -6,11 +6,19 @@
             slug="icons"
             root="/app/icons"
             :feedbackEnable="true"
-            ><img slot="logo" svg-inline src="../../assets/img/icons/icons.svg"
-        /></Breadcrumb>
-        <LeftSidebar><Nav /></LeftSidebar>
-        <Main :withoutRight="false">
-            <div class="m-icons">
+            ><img
+                slot="logo"
+                svg-inline
+                src="../../assets/img/logos/icons.svg"
+            />
+            <div class="m-info">👒 新增支持中文搜索</div>
+        </Breadcrumb>
+        <LeftSidebar>
+            <Nav />
+        </LeftSidebar>
+        <Main class="m-icons-page" :withoutRight="false">
+            <h1 class="m-icons-title">剑三图标大全</h1>
+            <div class="m-icons-box">
                 <el-tabs
                     v-model="activeTabName"
                     type="card"
@@ -19,7 +27,7 @@
                     <el-tab-pane label="图标库" name="icon" lazy>
                         <div class="searchbar-wrapper">
                             <el-input
-                                placeholder="输入图标ID"
+                                placeholder="输入搜索条件，例如：3089、1-100、幽月乱花"
                                 v-model="searchIconInput"
                                 class="input-with-select"
                                 @keyup.enter.native="handleSearchIcon"
@@ -30,11 +38,7 @@
                                     @click="handleSearchIcon"
                                 ></el-button>
                             </el-input>
-                            <el-alert
-                                title="搜索条件"
-                                type="info"
-                                :closable="false"
-                            >
+                            <div class="m-icon-search-tip">
                                 <ul>
                                     <li>
                                         输入单个数字，例如1，返回IconID为1的图标；
@@ -48,21 +52,12 @@
                                     <li>
                                         可以同时输入多个数字和多个范围，例如2,3,11-14,17，返回IconID分别为2,3,11,12,13,14,17的7个图标；
                                     </li>
-                                    <li>每次上限500个；</li>
                                     <li>
-                                        输入单个图标名称，可以根据名称模糊搜索相关图标，例如：幽月。
+                                        输入单个图标名称，可以根据名称模糊搜索相关图标，例如：幽月、幽月乱花。
                                     </li>
-                                    <li>
-                                        批量图标下载：
-                                        <el-link
-                                            type="primary"
-                                            href="https://www.jx3box.com/tool/643/"
-                                            target="_blank"
-                                            >剑三图标下载器</el-link
-                                        >
-                                    </li>
+                                    <li>每次上限500个</li>
                                 </ul>
-                            </el-alert>
+                            </div>
                         </div>
                         <ul class="m-icon-list" v-loading="isSearchingByName">
                             <el-alert
@@ -126,7 +121,7 @@
                             class="m-icon-list"
                             v-if="activeTabName === 'favicon'"
                         >
-                            <el-alert
+                            <el-alert class="m-icons-sync"
                                 title="本地有收藏图标未同步到服务器"
                                 type="info"
                                 center
@@ -137,47 +132,58 @@
                                     >点此同步未登录收藏数据</el-button
                                 >
                             </el-alert>
-                            <transition-group name="el-fade-in">
-                                <li
-                                    v-for="(icon, index) in faviconsList"
-                                    :key="icon"
-                                >
-                                    <i class="u-pic">
-                                        <el-image
-                                            :src="
-                                                `${JX3BOXIconPath}${icon}.png`
-                                            "
-                                            class="u-img"
-                                            lazy
-                                        >
-                                            <div
-                                                slot="placeholder"
-                                                class="image-slot"
+                            <ul v-if="faviconsList.length">
+                                <transition-group name="el-fade-in">
+                                    <li
+                                        v-for="(icon, index) in faviconsList"
+                                        :key="icon"
+                                    >
+                                        <i class="u-pic">
+                                            <el-image
+                                                :src="
+                                                    `${JX3BOXIconPath}${icon}.png`
+                                                "
+                                                class="u-img"
+                                                lazy
                                             >
-                                                <i class="el-icon-loading"></i>
-                                            </div>
-                                            <div
-                                                slot="error"
-                                                class="image-slot"
-                                            >
-                                                <i
-                                                    class="el-icon-warning-outline"
-                                                ></i>
-                                            </div>
-                                        </el-image>
-                                        <span
-                                            class="u-remove"
-                                            @click="
-                                                handleRemoveFavorite(
-                                                    index,
-                                                    icon
-                                                )
-                                            "
-                                        ></span>
-                                    </i>
-                                    <span class="u-iconid">{{ icon }}</span>
-                                </li>
-                            </transition-group>
+                                                <div
+                                                    slot="placeholder"
+                                                    class="image-slot"
+                                                >
+                                                    <i
+                                                        class="el-icon-loading"
+                                                    ></i>
+                                                </div>
+                                                <div
+                                                    slot="error"
+                                                    class="image-slot"
+                                                >
+                                                    <i
+                                                        class="el-icon-warning-outline"
+                                                    ></i>
+                                                </div>
+                                            </el-image>
+                                            <span
+                                                class="u-remove"
+                                                @click="
+                                                    handleRemoveFavorite(
+                                                        index,
+                                                        icon
+                                                    )
+                                                "
+                                            ></span>
+                                        </i>
+                                        <span class="u-iconid">{{ icon }}</span>
+                                    </li>
+                                </transition-group>
+                            </ul>
+                            <el-alert
+                                v-else
+                                title="没有收藏的图标"
+                                type="info"
+                                show-icon
+                            >
+                            </el-alert>
                         </ul>
                     </el-tab-pane>
                     <el-tab-pane label="表情包" name="emoji" lazy>
@@ -248,24 +254,25 @@
 
                             <el-button
                                 :loading="isDownloadingEmoji"
+                                type="primary"
                                 plain
                                 @click.native.stop="handleDownloadEmoji"
                                 icon="el-icon-download"
                                 class="btn-download-emoji"
                             >
                                 <div class="m-emotion-down">
-                                    <b>下载</b>
-                                    <span>Download</span>
+                                    <b>立即下载</b>
+                                    <!-- <span>Download</span> -->
                                 </div>
                             </el-button>
                         </template>
                     </el-tab-pane>
                 </el-tabs>
             </div>
-            <RightSidebar
-                ><div class="m-icons-aside"></div>
-                <Extend
-            /></RightSidebar>
+            <RightSidebar>
+                <div class="m-icons-aside"></div>
+                <Extend />
+            </RightSidebar>
             <Footer></Footer>
         </Main>
     </div>
@@ -286,7 +293,7 @@ export default {
             searchIconInput: "",
             iconsList: [],
             clickedIndex: -1,
-            JX3BOXIconPath: JX3BOX.__iconPath + "icon/",
+            JX3BOXIconPath: JX3BOX.__ossMirror + "icon/",
             JX3BOXEmojiPath: JX3BOX.__iconPath + "emotion/official_mini/",
             faviconsList: null,
             localFaviconsList: [],
@@ -711,250 +718,5 @@ export default {
 </script>
 
 <style lang="less">
-ul,
-ul li {
-    margin: 0;
-    padding: 0;
-}
-.el-tabs--top {
-    .mt(10px);
-}
-.searchbar-wrapper {
-    .el-alert--info {
-        margin: 10px auto;
-    }
-}
-.loading-placeholder {
-    height: 50px;
-}
-.m-icon-list {
-    .mt(10px);
-    .clearfix;
-    .el-alert--warning {
-        margin: 20px auto;
-    }
-    li {
-        list-style: none;
-        .fl;
-        margin: 0 10px 5px 0;
-
-        .u-pic {
-            .pr;
-            .size(50px);
-            .db;
-            border: 1px solid #eee;
-            .r(6px);
-        }
-        .u-img {
-            .ml(1px);
-            .mt(1px);
-            .size(48px);
-            .db;
-            .r(6px);
-            .image-slot {
-                display: flex;
-                .full;
-                justify-content: center;
-                align-items: center;
-                .ml(-1px);
-                .mt(-1px);
-            }
-        }
-        .u-love {
-            .pa;
-            .lt(0);
-            .size(50px);
-            background-color: rgba(255, 255, 255, 0.8);
-            .r(6px);
-            .pointer;
-            i {
-                .db;
-            }
-            .none;
-        }
-        .u-remove {
-            .pa;
-            .rt(0);
-            .u-icon;
-            .u-icon-close;
-            .size(16px);
-            .pointer;
-        }
-        &:hover {
-            .u-love {
-                .db;
-            }
-        }
-        .u-iconid {
-            .db;
-            .x;
-            padding: 5px 0;
-        }
-    }
-}
-
-// emoji
-.m-emotion-nav {
-    .mt(10px);
-    list-style: none;
-    .clearfix;
-    li {
-        border: 1px solid #eee;
-        .r(4px);
-        .fz(15px, 30px);
-        padding: 0 20px;
-        .fl;
-        .w(140px);
-        .x;
-        span {
-            color: #777;
-            .fz(13px);
-            .ml(5px);
-        }
-        .pointer;
-        .mr(10px);
-        .mb(10px);
-
-        &.active,
-        &:hover {
-            background-color: #fafafa;
-        }
-    }
-}
-@media screen and (max-width: @ipad) {
-    .m-emotion-nav {
-        .none;
-    }
-}
-.m-emotion-selection {
-    .mt(10px);
-    .none;
-}
-@media screen and (max-width: @ipad) {
-    .m-emotion-selection {
-        .db;
-    }
-}
-.m-emotion-list {
-    list-style: none;
-    .clearfix;
-    li {
-        padding: 10px;
-        .fl;
-    }
-}
-.btn-download-emoji {
-    .pr;
-    .db;
-    .auto(x);
-    i {
-        .pa;
-        .fz(22px);
-        top: 50%;
-        transform: translateY(-50%);
-    }
-    .el-icon-loading {
-        top: 30%;
-    }
-}
-.btn-download-emoji:hover {
-    b,
-    span {
-        color: rgb(64, 158, 255);
-    }
-}
-.m-emotion-down {
-    .dbi;
-    .x;
-    .ml(28px);
-    .el-icon-cownload {
-        font-size: 22px;
-    }
-    b,
-    span {
-        .db;
-    }
-    b {
-        .fz(18px);
-        color: #444;
-    }
-    span {
-        .fz(14px);
-        color: #888;
-    }
-}
-
-// 分割线
-// 公共
-.el-link {
-    font-size: 12px;
-    vertical-align: top;
-}
-.el-button--text {
-    padding: 0;
-    font-size: 12px;
-}
-.u-icon {
-    .dbi;
-    .y;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: 0 0;
-}
-.u-icon-close {
-    background-image: url(../../assets/img/icons/close.svg);
-}
-/* 爆炸心心-------------------------- */
-.w-heart {
-    background: url(../../assets/img/icons/web_heart_animation.png);
-    background-position: left;
-    background-repeat: no-repeat;
-    height: 50px;
-    width: 50px;
-    cursor: pointer;
-    background-size: 1450px; //实际背景图片尺寸2900px
-}
-.w-heart:hover {
-    background-position: left; //显示最后一个红心帧
-    // background-position: right; //显示第一个红心帧
-}
-@-webkit-keyframes heartBlast {
-    0% {
-        background-position: left;
-    }
-    100% {
-        background-position: right;
-    }
-}
-@keyframes heartBlast {
-    0% {
-        background-position: left;
-    }
-    100% {
-        background-position: right;
-    }
-}
-.w-heart-animation {
-    -webkit-animation-name: heartBlast; //webkit内核浏览器
-    animation-name: heartBlast;
-    -webkit-animation-duration: 0.8s;
-    animation-duration: 0.8s;
-    -webkit-animation-iteration-count: 1;
-    animation-iteration-count: 1;
-    -webkit-animation-timing-function: steps(28); //共28个背景图片帧
-    animation-timing-function: steps(28);
-    -webkit-animation-fill-mode: forwards;
-    animation-fill-mode: forwards;
-    background-position: right;
-}
-
-//  分割线
-.m-icons {
-    padding: 10px;
-}
-.m-icons::after {
-    content: "";
-    display: table;
-    clear: both;
-}
+@import "../../assets/css/icons.less";
 </style>
