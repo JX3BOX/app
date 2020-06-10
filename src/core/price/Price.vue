@@ -325,9 +325,9 @@
                                                 建议成交价
                                             </div>
                                             <div class="price-summary-price">
-                                                {{
+                                                <b>{{
                                                     singleServerPrice.recommend
-                                                }}
+                                                }}</b>
                                                 金 / ￥100
                                             </div>
                                             <div class="price-summary-server">
