@@ -129,7 +129,7 @@
                                 ><i class="u-icon"
                                     ><img
                                         svg-inline
-                                        src="./assets/img/logos/price.svg"/></i
+                                        src="./assets/img/price/price.svg"/></i
                                 ><span class="u-name">金价走势</span></span
                             ><span class="u-features"
                                 ><span class="u-desc">✔️ 基三理财好帮手</span

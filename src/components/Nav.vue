@@ -48,7 +48,7 @@
                 ><span>开服监控</span></a
             >
             <a class="u-app" href="./price" :class="{on:isActive('price')}"
-                ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/price.svg"/></i
+                ><i class="u-app-icon"><img svg-inline src="../assets/img/price/price.svg"/></i
                 ><span>金价走势</span></a
             >
             <a class="u-app" href="https://v2.jx3box.com/house/#/flower" target="_blank"
