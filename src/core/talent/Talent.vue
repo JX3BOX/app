@@ -18,7 +18,7 @@
         <LeftSidebar>
             <Nav />
         </LeftSidebar>
-        <Main :withoutRight="false">
+        <Main :withoutRight="true">
             <div class="m-talent">
                 <h1 class="m-talent-title">奇穴模拟器</h1>
                 <div class="m-talent-panel">
@@ -98,7 +98,6 @@ export default {
             version: "v20200522",
             xf: "其它",
             sq: "1,1,1,1,1,1,1,1,1,1,1,1",
-
             driver: "",
             code: "",
 
@@ -175,13 +174,13 @@ export default {
             __data.xf = ins.xf;
             __data.sq = ins.sq.join(",");
             vm.code = JSON.stringify(__data);
-            console.log(ins)
+            // console.log(ins)
         });
     },
     components: {
         // Info,
         Nav,
-        Extend,
+        // Extend,
     },
 };
 </script>

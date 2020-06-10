@@ -1,0 +1,207 @@
+.m-price {
+    padding: 20px 30px;
+}
+.m-price-title{
+    font-weight:400;
+    .x;
+    margin:0 0 20px 0;
+    padding:0;
+}
+.m-price-nav{
+    .is-active{
+        .bold;
+    }
+    .el-tabs__header{
+        .mb(0);
+    }
+}
+
+.m-price-notice{
+    background-color: #fafbfc;
+    border-radius: 4px;
+    padding: 5px 10px;
+    border: 1px solid #eee;
+    margin: 10px 0;
+    font-size: 13px;
+    line-height: 2;
+}
+.m-price-overview{
+    .card-price-summary{
+        .price-summary-title,.price-summary-price,.price-summary-server{color:#fff;}
+        em{
+            font-style: normal;
+            font-weight: normal;
+            color:#fff;
+            font-size:14px;
+        }
+    }
+    .u-lowest{
+        background:#337ab7;
+        b{color:#0ef342;}
+    }
+    .u-highest{
+        background-color:#fd9b13;
+        b{color:#ff0}
+    }
+    .u-total {
+        background-color:#333;
+    }
+}
+
+
+
+
+// .m-price::after {
+//     content: "";
+//     display: table;
+//     clear: both;
+// }
+// .server-wrapper {
+//     margin-top: 60px;
+//     margin-left: 10px;
+//     background: rgba(239, 239, 239, 1);
+//     border-radius: 8px;
+//     border: 1px solid rgba(222, 222, 222, 1);
+//     padding: 20px 10px;
+//     min-height: 500px;
+// }
+// .server-node {
+//     margin-bottom: 0;
+// }
+// .server-wrapper::after {
+//     content: "";
+//     display: table;
+//     clear: both;
+// }
+// /deep/.server-button:hover::after {
+//     visibility: hidden;
+//     filter: none;
+// }
+// /deep/.server-pinned:hover::after {
+//     filter: url(../../assets/img/servers/pin.svg#change);
+//     opacity: 1;
+//     visibility: visible;
+// }
+
+.title-wrapper {
+    position: relative;
+    .title-server-name {
+        float: left;
+        font-size: 24px;
+        line-height: 46px;
+        font-weight: 500;
+    }
+    .el-checkbox {
+        float: left;
+        margin-top: 6px;
+        margin-left: 20px;
+    }
+    .title-origin {
+        .fz(13px);
+        color:#555;
+        float: right;
+        .el-link {
+            font-size: 1em;
+            padding-bottom: 5px;
+        }
+        margin-bottom: 0;
+    }
+}
+.title-wrapper::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+// .el-divider--horizontal {
+//     margin: 8px 0;
+// }
+.card-wrapper {
+    margin-top: 20px;
+    /deep/.el-card__body {
+        padding: 0;
+    }
+    .card-price-summary {
+        height: 112px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+    .price-summary-title,
+    .price-summary-server {
+        font-size: 14px;
+        // color: #91949a;
+    }
+    .price-summary-price {
+        font-size: 18px;
+        // color: #303133;
+        // font-weight: bolder;
+        .x;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        .price-summary-detail {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+            align-content: center;
+        }
+    }
+    .price-summary-mini {
+        font-size: 12px;
+        color: #eee;
+    }
+    .el-col-md-24 {
+        margin-top: 20px;
+    }
+
+    .card-price-recommend{
+        background-color:#0dc3c3;
+    }
+    .price-summary-number{
+        .bold;
+    }
+
+    
+}
+// .card-wrapper-single-server.card-wrapper {
+//     .card-price-summary {
+//         height: 150px;
+//     }
+//     .price-summary-price {
+//         height: 40%;
+//     }
+// }
+.chart-wrapper {
+    margin-top: 20px;
+}
+.chart-div {
+    height: 500px;
+    width: 100%;
+}
+.chart-boxplot {
+    height: 150px;
+}
+.echarts {
+    width: 100%;
+    height: 100%;
+}
+@media only screen and (max-width: 991px) {
+    .card-wrapper > .el-col-24 {
+        margin-top: 10px;
+    }
+}
+@media only screen and (max-width: 767px) {
+    .el-col-xs-24 > .server-wrapper {
+        margin-left: auto;
+        margin-top: 10px;
+    }
+    .el-col-xs-24 > .board-wrapper {
+        margin-top: 30px;
+    }
+    .card-wrapper {
+        margin-top: 0;
+    }
+}

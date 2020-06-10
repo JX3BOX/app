@@ -22,7 +22,7 @@
         <LeftSidebar>
             <Nav />
         </LeftSidebar>
-        <Main :withoutRight="false">
+        <Main :withoutRight="true">
             <div class="m-app-servers">
                 <!-- 标题 -->
                 <h1 class="m-app-servers-title">剑三服务器实时监控面板</h1>
@@ -84,12 +84,12 @@
                     </template>
                 </el-row>
             </div>
-            <RightSidebar>
+            <!-- <RightSidebar>
                 <div class="m-app-servers-aside">
                     <Github_REPO REPO="app" coder="172,8"></Github_REPO>
                 </div>
                 <Extend/>
-            </RightSidebar>
+            </RightSidebar> -->
             <Footer></Footer>
         </Main>
     </div>
@@ -292,7 +292,7 @@ export default {
     components: {
         Nav,
         FServerNode,
-        Extend
+        // Extend
     },
 };
 </script>

@@ -124,7 +124,7 @@
                 >
                 <el-col :span="12"
                     ><div class="u-item">
-                        <a href="https://www.jx3box.com/app/jx3-price" target="_blank"
+                        <a href="/app/jx3-price"
                             ><span class="u-pic"
                                 ><i class="u-icon"
                                     ><img

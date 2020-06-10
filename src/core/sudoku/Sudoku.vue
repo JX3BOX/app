@@ -13,7 +13,7 @@
         <LeftSidebar>
             <Nav />
         </LeftSidebar>
-        <Main :withoutRight="false">
+        <Main :withoutRight="true">
             <div class="m-sudoku">
                 <h1 class="m-sudoku-title">九宫格计算器</h1>
                 <!-- 填入数字 -->
@@ -70,10 +70,10 @@
                     </el-tabs>
                 </div>
             </div>
-            <RightSidebar>
+            <!-- <RightSidebar>
                 <Github_REPO REPO="app" coder="383"></Github_REPO>
                 <Extend />
-            </RightSidebar>
+            </RightSidebar> -->
             <Footer></Footer>
         </Main>
     </div>
@@ -231,7 +231,7 @@ export default {
     },
     mounted: function() {},
     components: {
-        Extend,
+        // Extend,
         Nav
     },
 };

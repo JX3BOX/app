@@ -8,7 +8,7 @@
                 src="../../assets/img/translator/translator.svg"
         /></Breadcrumb>
         <LeftSidebar><Nav /></LeftSidebar>
-        <Main :withoutRight="false">
+        <Main :withoutRight="true">
             <div class="m-translator">
                 <h1 class="title">簡繁轉換工具</h1>
                 <h3 class="title">將宏或插件數據等轉為劍網三國際服專用繁體</h3>
@@ -122,12 +122,12 @@
                     
                 </div> -->
             </div>
-            <RightSidebar
+            <!-- <RightSidebar
                 ><div class="m-translator-aside">
                     <Github_REPO REPO="app" coder="172"></Github_REPO>
                 </div>
                 <Extend
-            /></RightSidebar>
+            /></RightSidebar> -->
             <Footer></Footer>
         </Main>
     </div>
@@ -138,7 +138,7 @@ import Info from "@/components/Info.vue";
 import Nav from "@/components/Nav.vue";
 import { axios } from "@/service/api.js";
 import { JX3BOX, User } from "@jx3box/jx3box-common";
-import Extend from "@/components/Extend.vue";
+// import Extend from "@/components/Extend.vue";
 var blob = new Blob([document.querySelector("#worker").textContent]);
 var url = window.URL.createObjectURL(blob);
 var worker = new Worker(url);
@@ -369,7 +369,7 @@ export default {
     },
     components: {
         Nav,
-        Extend,
+        // Extend,
     },
 };
 </script>

@@ -9,62 +9,69 @@
             ><img slot="logo" svg-inline src="../../assets/img/price/price.svg"
         /></Breadcrumb>
         <LeftSidebar><Nav /></LeftSidebar>
-        <Main :withoutRight="false">
-            <div class="m-price" v-loading="currentGate === ''">
-                <el-row :gutter="10">
-                    <el-col :xs="24" :sm="7" :md="6" :xl="4">
-                        <div class="server-wrapper">
-                            <f-server-node
-                                v-for="(server, key) in serverList"
-                                :key="key"
-                                :server="server"
-                                :pinned="pinnedServerName === server.gate"
-                                :focused="currentServer === server.serverName"
-                                @toogle-server="clickServer"
-                            />
-                        </div>
-                    </el-col>
-                    <el-col :xs="24" :sm="17" :md="18" :xl="20">
-                        <div class="board-wrapper">
-                            <div class="title-wrapper">
-                                <span class="title-server-name">{{
-                                    currentServer !== ""
-                                        ? currentServer
-                                        : "请选择一个服务器"
-                                }}</span>
-                                <el-checkbox
-                                    v-model="pinnedChecked"
-                                    label="主页显示此服务器"
-                                    border
-                                    size="medium"
-                                    @change="changePinnedServer"
-                                ></el-checkbox>
-                                <p class="title-origin">
-                                    数据来源：
-                                    <el-link
-                                        type="primary"
-                                        href="https://jx3.seasunwbl.com/"
-                                        target="_blank"
-                                        >万宝楼</el-link
-                                    >
-                                </p>
-                            </div>
-                            <div class="hint">
-                                <el-divider></el-divider>
-                                <el-alert
-                                    title="♥ 友情提示"
-                                    type="info"
-                                    :closable="false"
+        <Main :withoutRight="true">
+
+            <div class="m-price">
+
+                <!-- 标题 -->
+                <h1 class="m-price-title">剑三全区服金价走势</h1>
+
+                <!-- 内容 -->
+                <div class="m-price-box" v-loading="currentGate === ''">
+                    <div class="m-price-board board-wrapper">
+
+                        <!-- 头部 -->
+                        <div class="m-price-header title-wrapper">
+                            <span class="title-server-name">{{
+                                currentServer !== ""
+                                    ? currentServer
+                                    : "请选择一个服务器"
+                            }}</span>
+                            <el-checkbox
+                                v-model="pinnedChecked"
+                                label="主页显示此服务器"
+                                border
+                                size="medium"
+                                @change="changePinnedServer"
+                            ></el-checkbox>
+                            <p class="title-origin">
+                                数据来源：
+                                <el-link
+                                    type="primary"
+                                    href="https://jx3.seasunwbl.com/"
+                                    target="_blank"
+                                    >万宝楼</el-link
                                 >
-                                    <span>
-                                        请选择正规平台！警惕交易陷阱！部分虚假交易平台会用低价骗取您购买，但充值后又提示该订单已被出售或无货，导致你的钱在一段时间无法及时提现，而且你提现时又要再次收取手续费。
-                                        <span
-                                            style="color: red; font-weight: bolder;"
-                                            >单价越高，表示1元能买到更多的金，也就说明金价越便宜喔！</span
-                                        >
-                                    </span>
-                                </el-alert>
-                            </div>
+                            </p>
+                        </div>
+
+                        <!-- 服务器导航 -->
+                        <div class="m-price-nav">
+                            <el-tabs
+                                tab-position="top"
+                                v-model="currentGate"
+                                @tab-click="changeServer"
+                            >
+                                <el-tab-pane
+                                    v-for="(server, key) in serverList"
+                                    :key="key"
+                                    :label="server.serverName"
+                                    :name="key"
+                                ></el-tab-pane>
+                            </el-tabs>
+                        </div>
+
+                        <!-- 警告 -->
+                        <div class="m-price-notice hint">
+                            ♥
+                            请选择正规平台！警惕交易陷阱！部分虚假交易平台会用低价骗取您购买，但充值后又提示该订单已被出售或无货，导致你的钱在一段时间无法及时提现，而且你提现时又要再次收取手续费。
+                            <span style="color: #c00; font-weight: bold;"
+                                >单价越高，表示1元能买到更多的金，也就说明金价越便宜喔！</span
+                            >
+                        </div>
+
+                        <!-- 概览 -->
+                        <div class="m-price-overview">
                             <el-row
                                 :gutter="20"
                                 class="card-wrapper card-wrapper-all-servers"
@@ -72,13 +79,16 @@
                             >
                                 <el-col :xs="24" :md="8">
                                     <el-card>
-                                        <div class="card-price-summary">
+                                        <div
+                                            class="card-price-summary u-lowest"
+                                        >
                                             <div class="price-summary-title">
                                                 当前最低
                                             </div>
                                             <div class="price-summary-price">
-                                                {{ allServersPrice.lowest }} 金
-                                                / ￥
+                                                <b>{{
+                                                    allServersPrice.lowest
+                                                }} <em>金/￥</em></b>
                                             </div>
                                             <div class="price-summary-server">
                                                 {{
@@ -90,13 +100,16 @@
                                 </el-col>
                                 <el-col :xs="24" :md="8">
                                     <el-card>
-                                        <div class="card-price-summary">
+                                        <div
+                                            class="card-price-summary u-highest"
+                                        >
                                             <div class="price-summary-title">
                                                 当前最高
                                             </div>
                                             <div class="price-summary-price">
-                                                {{ allServersPrice.highest }} 金
-                                                / ￥
+                                                <b>{{
+                                                    allServersPrice.highest
+                                                }} <em>金/￥</em></b>
                                             </div>
                                             <div class="price-summary-server">
                                                 {{
@@ -108,13 +121,14 @@
                                 </el-col>
                                 <el-col :xs="24" :md="8">
                                     <el-card>
-                                        <div class="card-price-summary">
+                                        <div class="card-price-summary u-total">
                                             <div class="price-summary-title">
                                                 当前均价
                                             </div>
                                             <div class="price-summary-price">
-                                                {{ allServersPrice.median }} 金
-                                                / ￥
+                                                <b>{{
+                                                    allServersPrice.median
+                                                }} <em>金/￥</em></b>
                                             </div>
                                             <div class="price-summary-server">
                                                 全区全服
@@ -130,7 +144,7 @@
                             >
                                 <el-col :xs="24" :md="8">
                                     <el-card>
-                                        <div class="card-price-summary">
+                                        <div class="card-price-summary u-lowest">
                                             <div class="price-summary-title">
                                                 昨日统计 （金/￥）
                                             </div>
@@ -197,7 +211,7 @@
                                 </el-col>
                                 <el-col :xs="24" :md="8">
                                     <el-card>
-                                        <div class="card-price-summary">
+                                        <div class="card-price-summary u-highest">
                                             <div class="price-summary-title">
                                                 今日数据 （金/￥）
                                             </div>
@@ -264,7 +278,7 @@
                                 </el-col>
                                 <el-col :xs="24" :md="8">
                                     <el-card>
-                                        <div class="card-price-summary">
+                                        <div class="card-price-summary u-total">
                                             <div class="price-summary-title">
                                                 当前待售
                                             </div>
@@ -324,71 +338,73 @@
                                     </el-card>
                                 </el-col>
                             </el-row>
-                            <div class="chart-wrapper">
-                                <div
-                                    class="chart-div chart-scatter"
-                                    v-show="currentGate === 'gate0000'"
-                                >
-                                    <v-chart
-                                        :options="scatterOption"
-                                        :autoresize="true"
-                                    />
-                                </div>
-                                <div
-                                    class="chart-div chart-bar"
-                                    v-show="currentGate === 'gate0000'"
-                                >
-                                    <v-chart
-                                        :options="barOption"
-                                        :autoresize="true"
-                                    />
-                                </div>
-                                <div
-                                    class="chart-div chart-boxplot"
-                                    v-show="
-                                        currentGate !== '' &&
-                                            currentGate !== 'gate0000'
-                                    "
-                                >
-                                    <v-chart
-                                        :options="boxplotOption"
-                                        :autoresize="true"
-                                    />
-                                </div>
-                                <div
-                                    class="chart-div chart-line"
-                                    v-show="
-                                        currentGate !== '' &&
-                                            currentGate !== 'gate0000'
-                                    "
-                                >
-                                    <v-chart
-                                        :options="lineOption"
-                                        :autoresize="true"
-                                    />
-                                </div>
+                        </div>
+
+                        <!-- 图表 -->
+                        <div class="m-price-chart chart-wrapper">
+                            <div
+                                class="chart-div chart-scatter"
+                                v-show="currentGate === 'gate0000'"
+                            >
+                                <v-chart
+                                    :options="scatterOption"
+                                    :autoresize="true"
+                                />
+                            </div>
+                            <div
+                                class="chart-div chart-bar"
+                                v-show="currentGate === 'gate0000'"
+                            >
+                                <v-chart
+                                    :options="barOption"
+                                    :autoresize="true"
+                                />
+                            </div>
+                            <div
+                                class="chart-div chart-boxplot"
+                                v-show="
+                                    currentGate !== '' &&
+                                        currentGate !== 'gate0000'
+                                "
+                            >
+                                <v-chart
+                                    :options="boxplotOption"
+                                    :autoresize="true"
+                                />
+                            </div>
+                            <div
+                                class="chart-div chart-line"
+                                v-show="
+                                    currentGate !== '' &&
+                                        currentGate !== 'gate0000'
+                                "
+                            >
+                                <v-chart
+                                    :options="lineOption"
+                                    :autoresize="true"
+                                />
                             </div>
                         </div>
-                    </el-col>
-                </el-row>
+                    </div>
+                </div>
             </div>
-            <RightSidebar
+            <!-- <RightSidebar
                 ><div class="m-price-aside"></div>
                 <Extend
-            /></RightSidebar>
+            /></RightSidebar> -->
             <Footer />
         </Main>
     </div>
 </template>
 
 <script>
-import Info from "@/components/Info.vue";
+// import Info from "@/components/Info.vue";
 import Nav from "@/components/Nav.vue";
-import FServerNode from "../servers/FServerNode.vue";
+// import FServerNode from "../servers/FServerNode.vue";
 import { axios } from "@/service/api.js";
 import { JX3BOX, User } from "@jx3box/jx3box-common";
 import { prepareBoxplotData } from "echarts/extension/dataTool";
-import Extend from "@/components/Extend.vue";
+// import Extend from "@/components/Extend.vue";
 import serverData from "@jx3box/jx3box-data/data/server/server.json";
 export default {
     name: "Price",
@@ -822,6 +838,12 @@ export default {
             this.showServer();
             this.parsePriceData();
         },
+        changeServer: function(tab, event) {
+            // this.currentGate = gate;
+            this.pinnedChecked = this.currentGate === this.pinnedServerName;
+            this.showServer();
+            this.parsePriceData();
+        },
         showServer() {
             this.currentServer = this.serverList[this.currentGate].serverName;
         },
@@ -1076,156 +1098,11 @@ export default {
     },
     components: {
         Nav,
-        FServerNode,
-        Extend,
+        // Extend,
     },
 };
 </script>
 
-<style lang="less" scoped>
-.m-price {
-    padding: 10px;
-}
-.m-price::after {
-    content: "";
-    display: table;
-    clear: both;
-}
-.server-wrapper {
-    margin-top: 60px;
-    margin-left: 10px;
-    background: rgba(239, 239, 239, 1);
-    border-radius: 8px;
-    border: 1px solid rgba(222, 222, 222, 1);
-    padding: 20px 10px;
-    min-height: 500px;
-}
-.server-node {
-    margin-bottom: 0;
-}
-.server-wrapper::after {
-    content: "";
-    display: table;
-    clear: both;
-}
-/deep/.server-button:hover::after {
-    visibility: hidden;
-    filter: none;
-}
-/deep/.server-pinned:hover::after {
-    filter: url(../../assets/img/servers/pin.svg#change);
-    opacity: 1;
-    visibility: visible;
-}
-
-.title-wrapper {
-    position: relative;
-    .title-server-name {
-        float: left;
-        font-size: 24px;
-        line-height: 46px;
-        font-weight: 500;
-    }
-    .el-checkbox {
-        float: left;
-        margin-top: 6px;
-        margin-left: 20px;
-    }
-    .title-origin {
-        float: right;
-        .el-link {
-            font-size: 1em;
-            padding-bottom: 5px;
-        }
-        margin-bottom: 0;
-    }
-}
-.title-wrapper::after {
-    content: "";
-    display: table;
-    clear: both;
-}
-
-.el-divider--horizontal {
-    margin: 8px 0;
-}
-.card-wrapper {
-    margin-top: 20px;
-    /deep/.el-card__body {
-        padding: 0;
-    }
-    .card-price-summary {
-        height: 112px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-evenly;
-        align-items: center;
-    }
-    .price-summary-title,
-    .price-summary-server {
-        font-size: 14px;
-        color: #91949a;
-    }
-    .price-summary-price {
-        font-size: 18px;
-        color: #303133;
-        font-weight: bolder;
-        width: 100%;
-        display: flex;
-        justify-content: space-around;
-        .price-summary-detail {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-evenly;
-            align-items: center;
-            align-content: center;
-        }
-    }
-    .price-summary-mini {
-        font-size: 12px;
-        color: #999999;
-    }
-    .el-col-md-24 {
-        margin-top: 20px;
-    }
-}
-// .card-wrapper-single-server.card-wrapper {
-//     .card-price-summary {
-//         height: 150px;
-//     }
-//     .price-summary-price {
-//         height: 40%;
-//     }
-// }
-.chart-wrapper {
-    margin-top: 20px;
-}
-.chart-div {
-    height: 500px;
-    width: 100%;
-}
-.chart-boxplot {
-    height: 150px;
-}
-.echarts {
-    width: 100%;
-    height: 100%;
-}
-@media only screen and (max-width: 991px) {
-    .card-wrapper > .el-col-24 {
-        margin-top: 10px;
-    }
-}
-@media only screen and (max-width: 767px) {
-    .el-col-xs-24 > .server-wrapper {
-        margin-left: auto;
-        margin-top: 10px;
-    }
-    .el-col-xs-24 > .board-wrapper {
-        margin-top: 30px;
-    }
-    .card-wrapper {
-        margin-top: 0;
-    }
-}
+<style lang="less">
+@import "../../assets/css/price.less";
 </style>

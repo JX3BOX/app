@@ -16,7 +16,7 @@
         <LeftSidebar>
             <Nav />
         </LeftSidebar>
-        <Main class="m-icons-page" :withoutRight="false">
+        <Main class="m-icons-page" :withoutRight="true">
             <h1 class="m-icons-title">剑三图标大全</h1>
             <div class="m-icons-box">
                 <el-tabs
@@ -283,7 +283,7 @@ import Info from "@/components/Info.vue";
 import Nav from "@/components/Nav.vue";
 import { axios } from "@/service/api.js";
 import { JX3BOX, User } from "@jx3box/jx3box-common";
-import Extend from "@/components/Extend.vue";
+// import Extend from "@/components/Extend.vue";
 
 export default {
     name: "Icons",
@@ -712,7 +712,7 @@ export default {
     },
     components: {
         Nav,
-        Extend,
+        // Extend,
     },
 };
 </script>
