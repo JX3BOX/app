@@ -53,3 +53,23 @@
     display: table;
     clear: both;
 }
+
+@media screen and (max-width:@phone){
+    .m-translator{
+        padding:20px 10px;
+    }
+    .m-translator .title{
+        .none;
+    }
+    .m-translator .translate-wrapper .translate-content .textarea-translate{
+        float:none;
+        .w(100%);
+        .mb(10px);
+    }
+    .m-translator .translate-wrapper .translate-content{
+        .h(auto);
+    }
+    .m-translator .translate-wrapper .translate-content .textarea-translate .el-textarea__inner{
+        min-height:200px !important;
+    }
+}
