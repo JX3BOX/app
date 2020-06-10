@@ -1,12 +1,14 @@
 @import "./components/info.less";
-.w-qixue-box .w-qixue-olist{
-    .z(1000);
-}
 
 .m-talent {
     padding: 20px 30px;
     // max-width:1000px;
     .auto(x);
+}
+@media screen and (max-width:@phone){
+    .m-talent {
+        padding: 20px 10px;
+    }
 }
 
 .m-talent-header{
@@ -18,6 +20,11 @@
     // .x;
     margin: 0 0 20px 0;
 }
+@media screen and (max-width:@phone){
+    .m-talent-title{
+        .none;
+    }
+}
 
 .m-talent-panel {
     // .x;
@@ -25,8 +32,9 @@
 }
 
 .m-talent-version {
-    .dbi;
-    .x;
+    .db;
+    // .x;
+    white-space: nowrap;
     .u-label {
         background-color: #f5f7fa;
         color: #909399;
@@ -47,6 +55,11 @@
         border-bottom-left-radius: 0;
     }
 }
+@media screen and (max-width:@phone){
+    .m-talent-version{
+        display: flex;
+    }
+}
 
 .m-talent-wrapper{
     // max-width:1440px;
@@ -56,10 +69,23 @@
     box-sizing: border-box;
     background-color:@bg-light;
     .r(4px);
-    .mb(100px);
 }
 .m-talent-left{
     margin-top:8px;
+}
+@media screen and (max-width:1900px){
+    .m-talent-wrapper{
+        .el-col{
+            .db;
+            float:none;
+            .w(auto);
+        }
+    }
+}
+@media screen and (max-width:1239px){
+    .m-talent-wrapper{
+        overflow-x: auto;
+    }
 }
 
 .m-talent-xf {
@@ -117,3 +143,15 @@
     .pointer;
     font-family: Consolas;
 }
+
+.m-talent-shortcut{
+    ul,li{
+        list-style:none;
+        padding:0;
+        margin:0;
+    }
+    li{
+        .mb(10px);
+    }
+}
+

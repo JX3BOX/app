@@ -1,6 +1,11 @@
 @import './components/info.less';
-.m-icons-page{
+.m-icons{
     padding: 20px 30px;
+}
+@media screen and (max-width:@phone){
+    .m-icons{
+        padding: 10px;
+    }
 }
 .m-icons-title{
     font-size: 24px;
@@ -9,6 +14,12 @@
     margin:0 0 20px 0;
     padding:0;
 }
+@media screen and (max-width:@phone){
+    .m-icons-title{
+        .none;
+    }
+}
+
 .el-tabs__item{
     background-color:@bg-light;
     border-bottom:1px solid #E4E7ED !important;

@@ -82,6 +82,14 @@
                         </div></el-col
                     >
                 </el-row>
+                <div class="m-talent-shortcut">
+                    <el-divider content-position="left">常用配置</el-divider>
+                    <ul>
+                        <li v-for="(item,i) in schema_group" :key="i">
+                            <schema :config="item" :version="version" :xf="xf"/>
+                        </li>
+                    </ul>
+                </div>
             </div>
 
             <!-- <RightSidebar>
@@ -101,6 +109,8 @@ import xfmap from "@jx3box/jx3box-data/data/xf/xf.json";
 import { __ossMirror } from "@jx3box/jx3box-common/js/jx3box.json";
 import JX3_QIXUE from "@jx3box/jx3box-talent";
 import $ from "jquery";
+import schema from './schema.vue'
+import schemas from './schemas.json'
 
 export default {
     name: "Talent",
@@ -144,9 +154,14 @@ export default {
                 },
             ],
             xfmap,
+            schemas,
         };
     },
-    computed: {},
+    computed: {
+        schema_group : function (){
+            return schemas[this.xf]
+        }
+    },
     methods: {
         reload: function() {
             this.driver.then((talent) => {
@@ -193,6 +208,7 @@ export default {
         // Info,
         Nav,
         // Extend,
+        schema
     },
 };
 </script>
