@@ -7,7 +7,11 @@
             root="/sudoku"
             :feedbackEnable="true"
         >
-            <img slot="logo" svg-inline src="../../assets/img/logos/sudoku.svg" />
+            <img
+                slot="logo"
+                svg-inline
+                src="../../assets/img/logos/sudoku.svg"
+            />
             <!-- <Info /> -->
         </Breadcrumb>
         <LeftSidebar>
@@ -17,16 +21,14 @@
             <div class="m-sudoku">
                 <h1 class="m-sudoku-title">九宫格计算器</h1>
                 <el-tabs v-model="activeName" @tab-click="handleClick">
-                    <el-tab-pane label="试炼之地" name="sudoku1">
-                    </el-tab-pane>
-                    <el-tab-pane label="荻花宫" name="sudoku2">
-                    </el-tab-pane>
+                    <el-tab-pane label="试炼之地" name="sudoku1"> </el-tab-pane>
+                    <el-tab-pane label="荻花宫" name="sudoku2"> </el-tab-pane>
                 </el-tabs>
 
                 <!-- 填入数字 -->
                 <div class="m-table">
-                    <ul>
-                        <li v-for="(n, i) in list" :key="i">
+                    <el-row class="u-list">
+                        <el-col class="u-item" :span="8" v-for="(n, i) in list" :key="i">
                             <input
                                 type="text"
                                 v-model="list[i]"
@@ -35,8 +37,8 @@
                                 @input="check(list[i], i)"
                                 :disabled="i == 4"
                             />
-                        </li>
-                    </ul>
+                        </el-col>
+                    </el-row>
                     <el-button type="primary" class="u-clear" @click="clear()"
                         >清空</el-button
                     >
@@ -58,14 +60,16 @@
                         <el-tab-pane label="荻花宫" name="sudoku2">
                             <h2 class="u-mode">{{ mode2 }}</h2>
                             <div class="u-imglist-2">
-                                <el-image v-for="(img,i) in srcList2" :key="'dh' + i"
+                                <el-image
+                                    v-for="(img, i) in srcList2"
+                                    :key="'dh' + i"
                                     :src="showpic(i)"
                                     :preview-src-list="srcList2"
                                 >
                                 </el-image>
                             </div>
                             <ul class="u-demolist">
-                                <h5>常见序列</h5>
+                                <el-divider content-position="left">常见序列</el-divider>
                                 <li>245361</li>
                                 <li>423516</li>
                                 <li>615324</li>
@@ -90,7 +94,7 @@
 // import Info from "@/components/Info.vue";
 import Nav from "@/components/Nav.vue";
 import Extend from "@/components/Extend.vue";
-import {__ossMirror} from '@jx3box/jx3box-common/js/jx3box.json'
+import { __ossMirror } from "@jx3box/jx3box-common/js/jx3box.json";
 export default {
     name: "Sudoku",
     data: function() {
@@ -229,17 +233,15 @@ export default {
             this.list = ["", "", "", "", "5", "", "", "", ""];
         },
         handleClick: function() {},
-        showpic : function (i){
-            return __ossMirror + 'image/app/sudoku/sudoku2/' + i + '.png'
-        }
+        showpic: function(i) {
+            return __ossMirror + "image/app/sudoku/sudoku2/" + i + ".png";
+        },
     },
-    filters: {
-        
-    },
+    filters: {},
     mounted: function() {},
     components: {
         // Extend,
-        Nav
+        Nav,
     },
 };
 </script>
