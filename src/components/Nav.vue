@@ -6,11 +6,11 @@
                 ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/db.svg"/></i
                 ><span>数据库</span></a
             >
-            <a class="u-app" href="./icons" :class="{on:isActive('icons')}"
+            <a class="u-app" href="/app/icons" :class="{on:isActive('icons')}"
                 ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/icons.svg"/></i
                 ><span>图标大全</span></a
             >
-            <a class="u-app" href="./talent" :class="{on:isActive('talent')}"
+            <a class="u-app" href="/app/talent" :class="{on:isActive('talent')}"
                 ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/talent.svg"/></i
                 ><span>奇穴模拟</span></a
             >
@@ -36,18 +36,18 @@
                 ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/minami.svg"/></i
                 ><span>DPS模拟</span
                 ></a>
-            <a class="u-app" href="./translator" :class="{on:isActive('translator')}"
+            <a class="u-app" href="/app/translator" :class="{on:isActive('translator')}"
                 ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/translator.svg"/></i
                 ><span>轉換繁體</span></a
             >
         </div>
         <h5 class="u-title">PVX</h5>
         <div class="m-app-box">
-            <a class="u-app" href="./servers" :class="{on:isActive('servers')}"
+            <a class="u-app" href="/app/servers" :class="{on:isActive('servers')}"
                 ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/servers.svg"/></i
                 ><span>开服监控</span></a
             >
-            <a class="u-app" href="./price" :class="{on:isActive('price')}"
+            <a class="u-app" href="/app/price" :class="{on:isActive('price')}"
                 ><i class="u-app-icon"><img svg-inline src="../assets/img/price/price.svg"/></i
                 ><span>金价走势</span></a
             >
@@ -71,7 +71,7 @@
                 ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/face.svg"/></i
                 ><span>脸型分析</span></a
             >
-            <a class="u-app" href="./sudoku"
+            <a class="u-app" href="/app/sudoku"
                 ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/sudoku.svg"/></i
                 ><span>九宫格</span></a
             >
