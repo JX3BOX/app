@@ -20,62 +20,74 @@
         </LeftSidebar>
         <Main :withoutRight="true">
             <div class="m-talent">
-                <h1 class="m-talent-title">奇穴模拟器</h1>
-                <div class="m-talent-panel">
-                    <div class="m-talent-version">
-                        <span class="u-label">版本</span>
-                        <el-select
-                            v-model="version"
-                            placeholder="请选择游戏版本"
-                            @change="reload"
-                        >
-                            <el-option
-                                v-for="item in talent_versions"
-                                :key="item.version"
-                                :label="item.name"
-                                :value="item.version"
+                <div class="m-talent-header">
+                    <h1 class="m-talent-title">奇穴模拟器</h1>
+                    <div class="m-talent-panel">
+                        <div class="m-talent-version">
+                            <span class="u-label">选择版本</span>
+                            <el-select
+                                v-model="version"
+                                placeholder="请选择游戏版本"
+                                @change="reload"
                             >
-                            </el-option>
-                        </el-select>
+                                <el-option
+                                    v-for="item in talent_versions"
+                                    :key="item.version"
+                                    :label="item.name"
+                                    :value="item.version"
+                                >
+                                </el-option>
+                            </el-select>
+                        </div>
                     </div>
                 </div>
-                <h2 class="m-talent-subtitle">1.选择心法</h2>
-                <div class="m-talent-xf">
-                    <el-radio
-                        v-for="(item, i) in xfmap"
-                        v-model="xf"
-                        :label="item.name"
-                        :key="i"
-                        @change="reload"
+                <el-row class="m-talent-wrapper">
+                    <el-col :span="8"
+                        ><div class="m-talent-left">
+                            <!-- <h2 class="m-talent-subtitle">1.选择心法</h2> -->
+                            <div class="m-talent-xf">
+                                <el-radio
+                                    v-for="(item, i) in xfmap"
+                                    v-model="xf"
+                                    :label="item.name"
+                                    :key="i"
+                                    @change="reload"
+                                >
+                                    <img
+                                        class="u-pic"
+                                        :src="item.id | xficon"
+                                        :alt="item.name"
+                                    />
+                                    <span class="u-txt">{{ item.name }}</span>
+                                </el-radio>
+                            </div>
+                        </div></el-col
                     >
-                        <img
-                            class="u-pic"
-                            :src="item.id | xficon"
-                            :alt="item.name"
-                        />
-                        <span class="u-txt">{{ item.name }}</span>
-                    </el-radio>
-                </div>
-                <h2 class="m-talent-subtitle">2.配置奇穴</h2>
-                <div class="qx-container"></div>
-                <h2 class="m-talent-subtitle">3.奇穴编码</h2>
-                <div class="m-talent-code">
-                    <el-input
-                        placeholder="请输入内容"
-                        v-model="code"
-                        v-clipboard:copy="code"
-                        v-clipboard:success="onCopy"
-                        v-clipboard:error="onError"
+                    <el-col :span="16"
+                        ><div class="m-talent-right">
+                            <h2 class="m-talent-subtitle">配置奇穴</h2>
+                            <div class="qx-container"></div>
+                            <h2 class="m-talent-subtitle">奇穴编码</h2>
+                            <div class="m-talent-code">
+                                <el-input
+                                    placeholder="自动生成编码，点击自动复制"
+                                    v-model="code"
+                                    v-clipboard:copy="code"
+                                    v-clipboard:success="onCopy"
+                                    v-clipboard:error="onError"
+                                >
+                                    <template slot="append">点击复制</template>
+                                </el-input>
+                            </div>
+                        </div></el-col
                     >
-                        <template slot="append">点击复制</template>
-                    </el-input>
-                </div>
+                </el-row>
             </div>
 
-            <RightSidebar>
+            <!-- <RightSidebar>
                 <Github_REPO REPO="jx3box-talent" coder="8"></Github_REPO>
                 <Extend />
-            </RightSidebar>
+            </RightSidebar> -->
             <Footer></Footer>
         </Main>
     </div>
@@ -167,7 +179,7 @@ export default {
     },
     mounted: function() {
         this.driver = new JX3_QIXUE({ editable: true });
-        const vm = this
+        const vm = this;
         $(document).on("JX3_QIXUE_Change", function(e, ins) {
             let __data = {};
             __data.version = ins.version;

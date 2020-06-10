@@ -77,11 +77,11 @@
         box-sizing: border-box;
 
         color:@bg-black;
-        transition:0.1s ease-in;
-        &:hover{
+        transition:border 0.1s ease-in;
+        &:hover,&.on{
             border-color:#39d45d;
-            // fill:@bg-black;
-            // color:@bg-black;
+            svg{fill:#49c10f;}
+            color:#49c10f;
         }
 
     }

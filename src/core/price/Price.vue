@@ -14,7 +14,7 @@
             <div class="m-price">
 
                 <!-- 标题 -->
-                <h1 class="m-price-title">剑三全区服金价走势</h1>
+                <!-- <h1 class="m-price-title">剑三全区服金价走势</h1> -->
 
                 <!-- 内容 -->
                 <div class="m-price-box" v-loading="currentGate === ''">

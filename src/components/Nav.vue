@@ -71,7 +71,7 @@
                 ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/face.svg"/></i
                 ><span>脸型分析</span></a
             >
-            <a class="u-app" href="/app/sudoku"
+            <a class="u-app" href="/app/sudoku"  :class="{on:isActive('sudoku')}"
                 ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/sudoku.svg"/></i
                 ><span>九宫格</span></a
             >
@@ -89,7 +89,7 @@ export default {
     computed: {},
     methods: {
         isActive : function (val){
-            return location.href.indexOf(val) > 0
+            return !!location.pathname.includes(val)
         }
     },
     mounted: function() {},

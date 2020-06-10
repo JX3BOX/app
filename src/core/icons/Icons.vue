@@ -269,10 +269,10 @@
                     </el-tab-pane>
                 </el-tabs>
             </div>
-            <RightSidebar>
+            <!-- <RightSidebar>
                 <Github_REPO REPO="app" coder="172,8"></Github_REPO>
                 <Extend />
-            </RightSidebar>
+            </RightSidebar> -->
             <Footer></Footer>
         </Main>
     </div>

@@ -16,6 +16,13 @@
         <Main :withoutRight="true">
             <div class="m-sudoku">
                 <h1 class="m-sudoku-title">九宫格计算器</h1>
+                <el-tabs v-model="activeName" @tab-click="handleClick">
+                    <el-tab-pane label="试炼之地" name="sudoku1">
+                    </el-tab-pane>
+                    <el-tab-pane label="荻花宫" name="sudoku2">
+                    </el-tab-pane>
+                </el-tabs>
+
                 <!-- 填入数字 -->
                 <div class="m-table">
                     <ul>
