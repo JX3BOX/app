@@ -81,7 +81,7 @@
                                             v-clipboard:success="onCopy"
                                             v-clipboard:error="onError"
                                         >
-                                            <i class="el-icon-s-order"></i>
+                                            <i class="el-icon-document-copy"></i>
                                             <span>点击复制</span>
                                         </span>
                                     </template>
