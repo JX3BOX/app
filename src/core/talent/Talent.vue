@@ -70,23 +70,39 @@
                             <h2 class="m-talent-subtitle">奇穴编码</h2>
                             <div class="m-talent-code">
                                 <el-input
-                                    placeholder="自动生成编码，点击自动复制"
+                                    placeholder="奇穴编码"
                                     v-model="code"
-                                    v-clipboard:copy="code"
-                                    v-clipboard:success="onCopy"
-                                    v-clipboard:error="onError"
+                                    @change="parseSchema"
                                 >
-                                    <template slot="append">点击复制</template>
+                                    <template slot="prepend">
+                                        <span
+                                            class="u-copy"
+                                            v-clipboard:copy="code"
+                                            v-clipboard:success="onCopy"
+                                            v-clipboard:error="onError"
+                                        >
+                                            <i class="el-icon-s-order"></i>
+                                            <span>点击复制</span>
+                                        </span>
+                                    </template>
                                 </el-input>
                             </div>
+                            <p class="m-talent-tip">
+                                <i class="el-icon-info"></i>
+                                粘贴编码亦可自动解析奇穴
+                            </p>
                         </div></el-col
                     >
                 </el-row>
                 <div class="m-talent-shortcut">
                     <el-divider content-position="left">常用配置</el-divider>
                     <ul>
-                        <li v-for="(item,i) in schema_group" :key="i">
-                            <schema :config="item" :version="version" :xf="xf"/>
+                        <li v-for="(item, i) in schema_group" :key="i">
+                            <schema
+                                :config="item"
+                                :version="version"
+                                :xf="xf"
+                            />
                         </li>
                     </ul>
                 </div>
@@ -109,8 +125,8 @@ import xfmap from "@jx3box/jx3box-data/data/xf/xf.json";
 import { __ossMirror } from "@jx3box/jx3box-common/js/jx3box.json";
 import JX3_QIXUE from "@jx3box/jx3box-talent";
 import $ from "jquery";
-import schema from './schema.vue'
-import schemas from './schemas.json'
+import schema from "./schema.vue";
+import schemas from "./schemas.json";
 
 export default {
     name: "Talent",
@@ -158,12 +174,30 @@ export default {
         };
     },
     computed: {
-        schema_group : function (){
-            return schemas[this.xf]
-        }
+        schema_group: function() {
+            return schemas[this.xf];
+        },
     },
     methods: {
-        reload: function() {
+        parseSchema: function() {
+            this.driver.then((talent) => {
+                // 为空不操作
+                if(!this.code) return
+
+                let _schema = {};
+                try {
+                    _schema = JSON.parse(this.code);
+                    talent.load(_schema);
+                    this.$message({
+                        message: "编码解析成功",
+                        type: "success",
+                    });
+                } catch (e) {
+                    this.$message.error("编码格式错误");
+                }
+            });
+        },
+        reload: function(schema) {
             this.driver.then((talent) => {
                 talent.load({
                     version: this.version,
@@ -208,7 +242,7 @@ export default {
         // Info,
         Nav,
         // Extend,
-        schema
+        schema,
     },
 };
 </script>
