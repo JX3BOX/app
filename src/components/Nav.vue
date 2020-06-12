@@ -67,7 +67,7 @@
                 ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/qiyu.svg"/></i
                 ><span>奇遇查询</span
                 ></a>
-            <a class="u-app" href="https://www.jx3box.com./facedat-analyzer" target="_blank"
+            <a class="u-app" href="https://www.jx3box.com/app/facedat-analyzer" target="_blank"
                 ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/face.svg"/></i
                 ><span>脸型分析</span></a
             >
