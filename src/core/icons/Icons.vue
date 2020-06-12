@@ -543,9 +543,9 @@ export default {
                 .then((response) => {
                     if (response) {
                         let tmpList = [];
-                        for (const [key, value] of Object.entries(response)) {
-                            value.forEach((value) => {
-                                let iconid = value.IconID + "";
+                        for (let key in response) {
+                            response[key].forEach((item) => {
+                                let iconid = item.iconID + "";
                                 if (!tmpList.includes(iconid)) {
                                     tmpList.push(iconid);
                                 }
