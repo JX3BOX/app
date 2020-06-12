@@ -8,7 +8,7 @@
             >
             <a class="u-app" href="/app/icons" :class="{on:isActive('icons')}"
                 ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/icons.svg"/></i
-                ><span>图标大全</span></a
+                ><span>图标库</span></a
             >
             <a class="u-app" href="/app/talent" :class="{on:isActive('talent')}"
                 ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/talent.svg"/></i

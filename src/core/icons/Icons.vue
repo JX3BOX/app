@@ -17,7 +17,7 @@
             <Nav />
         </LeftSidebar>
         <Main class="m-icons" :withoutRight="true">
-            <h1 class="m-icons-title">剑三图标大全</h1>
+            <h1 class="m-icons-title">剑三图标库</h1>
             <div class="m-icons-box">
                 <el-tabs
                     v-model="activeTabName"
