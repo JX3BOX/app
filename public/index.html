@@ -10,6 +10,12 @@
     </head>
     <body>
         <div id="app"></div>
+        <div id="c-ie-tips" style="display:none;background-color: #fef0f0;color: #f56c6c;padding:10px;font-weight:bold;text-align:center;width:60%;margin:200px auto;"><p>你的浏览器版本太低，可能无法正常使用本站，建议下载<a href="https://www.google.cn/intl/zh-CN/chrome/" target="_blank">Chrome</a>或其它极速浏览器</p><p>www.jx3box.com</p></div>
+        <script>
+            let ua = window.navigator.userAgent.toLocaleLowerCase();
+            let isIE = ua.indexOf("trident") > 0 || ua.indexOf("msie") > 0;
+            if (isIE) document.getElementById("c-ie-tips").style.display = "block";
+        </script>
         <div style="display:none;">
             <script type="text/javascript" 
                     src="https://s9.cnzz.com/z_stat.php?id=1277938200&web_id=1277938200">
