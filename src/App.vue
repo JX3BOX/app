@@ -337,27 +337,6 @@
                         >
                         <el-col :span="12"
                             ><div class="u-item">
-                                <a href="./sudoku"
-                                    ><span class="u-pic"
-                                        ><i class="u-icon"
-                                            ><img
-                                                svg-inline
-                                                src="./assets/img/logos/sudoku.svg"/></i
-                                        ><span class="u-name"
-                                            >九宫格计算器</span
-                                        ></span
-                                    ><span class="u-features"
-                                        ><span class="u-desc"
-                                            >✔️ 九宫格小助手</span
-                                        ><span>✔️ 试炼模式</span>
-                                        <span>✔️ 荻花前山模式</span>
-                                        <span>✔️ 附地图指南</span></span
-                                    ></a
-                                >
-                            </div></el-col
-                        >
-                        <el-col :span="12"
-                            ><div class="u-item">
                                 <a href="./translator"
                                     ><span class="u-pic"
                                         ><i class="u-icon"
@@ -373,6 +352,27 @@
                                         ><span>✔️ 標準簡繁轉換</span>
                                         <span>✔️ 劍網三特殊詞庫</span>
                                         <span>✔️ 歡迎貢獻詞表</span></span
+                                    ></a
+                                >
+                            </div></el-col
+                        >
+                        <el-col :span="12"
+                            ><div class="u-item">
+                                <a href="./sudoku"
+                                    ><span class="u-pic"
+                                        ><i class="u-icon"
+                                            ><img
+                                                svg-inline
+                                                src="./assets/img/logos/sudoku.svg"/></i
+                                        ><span class="u-name"
+                                            >九宫格计算器</span
+                                        ></span
+                                    ><span class="u-features"
+                                        ><span class="u-desc"
+                                            >✔️ 九宫格小助手</span
+                                        ><span>✔️ 试炼模式</span>
+                                        <span>✔️ 荻花前山模式</span>
+                                        <span>✔️ 附地图指南</span></span
                                     ></a
                                 >
                             </div></el-col
