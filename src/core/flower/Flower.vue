@@ -34,7 +34,7 @@
                 >
 
                 <div class="m-flower-search">
-                    <el-row :gutter="20">
+                    <el-row :gutter="20" type="flex">
                         <el-col :span="7">
                             <el-select
                                 class="u-server"

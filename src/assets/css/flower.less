@@ -3,6 +3,11 @@
 .m-flower {
     padding: 20px;
 }
+@media screen and (max-width:@phone){
+    .m-flower {
+        padding: 10px 15px 0 15px;
+    } 
+}
 .m-flower-container{
     max-width:@max-width;
     .auto(x);
@@ -10,6 +15,11 @@
 .m-flower-title {
     font-weight: 300;
     .x;
+}
+@media screen and (max-width:@ip5){
+    .m-flower-title{
+        .fz(20px);
+    }
 }
 .m-flower-desc {
     .x;
@@ -49,6 +59,17 @@
         .u-button{
             .db;
             .w(100%);
+        }
+    }
+}
+@media screen and (max-width:@ipad){
+    
+    .m-flower-search {
+        .el-col-3{
+            .none;
+        }
+        .el-col-7{
+            flex:1;
         }
     }
 }
@@ -151,8 +172,15 @@
     }
     overflow: hidden;
 }
-@media screen and (max-width:@phone){
+@media screen and (max-width:@ipad){
     .m-flower-all .u-flower{
+        .w(100%);
+    }
+}
+@media screen and (max-width:@phone){
+    .m-flower-all .u-price{
+        .db;
+        float:none;
         .w(100%);
     }
 }
