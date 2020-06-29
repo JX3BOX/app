@@ -82,6 +82,26 @@
                     </div></el-col
                 >
                 <!-- TODO:宏编辑器 -->
+                <el-col :span="12"
+                    ><div class="u-item">
+                        <a href="/app/macro"
+                            ><span class="u-pic"
+                                ><i class="u-icon"
+                                    ><img
+                                        svg-inline
+                                        src="./assets/img/logos/macro.svg"/></i
+                                ><span class="u-name">宏编辑器</span></span
+                            ><span class="u-features">
+                                <span class="u-desc"
+                                    >✔️️ 支持自动补全</span
+                                >
+                                <span>✔️️ 支持语法高亮</span>
+                                <span>✔️️ 支持中文式一键插入宏语句</span>
+                                <span>✔️️ 写不出来了emmmm</span></span
+                            ></a
+                        >
+                    </div></el-col
+                >
                 <!-- TODO:在线数据构建 -->
                 <!-- TODO:战斗分析 -->
                 <el-col :span="12"
