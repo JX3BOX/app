@@ -54,6 +54,12 @@ module.exports = {
             template: "public/index.html",
             filename: "flower/index.html",
         },
+        furniture: {
+            title: "家具大全 - JX3BOX",
+            entry: "src/core/furniture/furniture.js",
+            template: "public/index.html",
+            filename: "furniture/index.html",
+        },
         // flog: {
         //     title: "BOSS日志分析 - JX3BOX",
         //     entry: "src/core/flog/flog.js",
