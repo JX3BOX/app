@@ -66,6 +66,12 @@ module.exports = {
             template: "public/index.html",
             filename: "facedata/index.html",
         },
+        database: {
+            title: "剑三数据库 - JX3BOX",
+            entry: "src/core/database/database.js",
+            template: "public/index.html",
+            filename: "database/index.html",
+        },
         // flog: {
         //     title: "BOSS日志分析 - JX3BOX",
         //     entry: "src/core/flog/flog.js",
