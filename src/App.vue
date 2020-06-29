@@ -82,12 +82,12 @@
                         >
                         <el-col :span="12"
                             ><div class="u-item">
-                                <a href="./macro"
+                                <a href="./macroeditor"
                                     ><span class="u-pic"
                                         ><i class="u-icon"
                                             ><img
                                                 svg-inline
-                                                src="./assets/img/logos/macro.svg"/></i
+                                                src="./assets/img/logos/macroeditor.svg"/></i
                                         ><span class="u-name"
                                             >宏编辑器</span
                                         ></span

@@ -45,8 +45,14 @@ module.exports = {
         macro: {
             title: "宏编辑器 - JX3BOX",
             entry: "src/core/macro/macro.js",
-            template: "public/macro.html",
-            filename: "macro/index.html",
+            template: "public/index.html",
+            filename: "macroeditor/index.html",
+        },
+        flower: {
+            title: "花价查询 - JX3BOX",
+            entry: "src/core/flower/flower.js",
+            template: "public/index.html",
+            filename: "flower/index.html",
         },
         // flog: {
         //     title: "BOSS日志分析 - JX3BOX",

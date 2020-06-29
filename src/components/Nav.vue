@@ -2,7 +2,7 @@
     <nav class="m-nav">
         <h5 class="u-title">PVE/PVP</h5>
         <div class="m-app-box">
-            <a class="u-app" href="./database" target="_blank"
+            <a class="u-app" href="./database" :class="{on:isActive('database')}"
                 ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/db.svg"/></i
                 ><span>数据库</span></a
             >
@@ -14,7 +14,7 @@
                 ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/talent.svg"/></i
                 ><span>奇穴模拟</span></a
             >
-            <a class="u-app" href="./macro" :class="{on:isActive('macro')}"
+            <a class="u-app" href="./macroeditor" :class="{on:isActive('macroeditor')}"
                 ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/macroeditor.svg"/></i
                 ><span>宏编辑器</span></a
             >
@@ -55,15 +55,15 @@
                 ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/price.svg"/></i
                 ><span>金价走势</span></a
             >
-            <a class="u-app" href="./flower"
+            <a class="u-app" href="./flower" :class="{on:isActive('flower')}"
                 ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/flower2.svg"/></i
                 ><span>花价查询</span></a
             >
-            <a class="u-app" href="./furniture"
+            <a class="u-app" href="./furniture" :class="{on:isActive('furniture')}"
                 ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/f1.svg"/></i
                 ><span>家具图鉴</span></a
             >
-            <a class="u-app" href="./facedata"
+            <a class="u-app" href="./facedata" :class="{on:isActive('facedata')}"
                 ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/mirror.svg"/></i
                 ><span>妆容解析</span></a
             >

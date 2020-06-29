@@ -13,10 +13,10 @@
             />
             <div class="m-info">👒 新增支持中文搜索</div>
         </Breadcrumb>
-        <LeftSidebar>
+        <LeftSidebar :open="false">
             <Nav />
         </LeftSidebar>
-        <Main class="m-icons" :withoutRight="true">
+        <Main class="m-icons" :withoutRight="true" :withoutLeft="true">
             <h1 class="m-icons-title">剑三图标库</h1>
             <div class="m-icons-box">
                 <el-tabs

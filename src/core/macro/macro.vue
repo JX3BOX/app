@@ -1,13 +1,13 @@
 <template>
     <div id="app">
         <Header></Header>
-        <Breadcrumb name="宏编辑器" slug="macro" root="/app/macro" :feedbackEnable="true">
+        <Breadcrumb name="宏编辑器" slug="macro" root="/app/macroeditor" :feedbackEnable="true">
             <img slot="logo" svg-inline src="../../assets/img/logos/macroeditor.svg" />
         </Breadcrumb>
-        <LeftSidebar>
+        <LeftSidebar :open="false">
             <Nav />
         </LeftSidebar>
-        <Main class="m-macroeditor" :withoutRight="true">
+        <Main class="m-macroeditor" :withoutRight="true" :withoutLeft="true">
             <h1 class="m-macroeditor-title">智能宏编辑器</h1>
             <div class="m-editor">
                 <el-row>

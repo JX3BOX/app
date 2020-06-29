@@ -7,8 +7,8 @@
                 svg-inline
                 src="../../assets/img/translator/translator.svg"
         /></Breadcrumb>
-        <LeftSidebar><Nav /></LeftSidebar>
-        <Main :withoutRight="true">
+        <LeftSidebar :open="false"><Nav /></LeftSidebar>
+        <Main :withoutRight="true" :withoutLeft="true">
             <div class="m-translator">
                 <h1 class="title">簡繁轉換工具</h1>
                 <h3 class="title">將宏或插件數據等轉為劍網三國際服專用繁體</h3>

@@ -4,7 +4,7 @@
         <Breadcrumb
             name="奇穴模拟器"
             slug="talent"
-            root="/talent"
+            root="/app/talent"
             :feedbackEnable="true"
         >
             <img
@@ -15,10 +15,10 @@
             <!-- <Info /> -->
             <div class="m-info"></div>
         </Breadcrumb>
-        <LeftSidebar>
+        <LeftSidebar :open="false">
             <Nav />
         </LeftSidebar>
-        <Main :withoutRight="true">
+        <Main :withoutRight="true" :withoutLeft="true">
             <div class="m-talent">
                 <div class="m-talent-header">
                     <h1 class="m-talent-title">奇穴模拟器</h1>

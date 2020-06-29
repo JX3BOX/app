@@ -6,20 +6,17 @@
             slug="price"
             root="/app/price"
             :feedbackEnable="true"
-            ><img slot="logo" svg-inline src="../../assets/img/price/price.svg"
+            ><img slot="logo" svg-inline src="../../assets/img/logos/price.svg"
         /></Breadcrumb>
-        <LeftSidebar><Nav /></LeftSidebar>
-        <Main :withoutRight="true">
-
+        <LeftSidebar :open="false"><Nav /></LeftSidebar>
+        <Main :withoutRight="true" :withoutLeft="true">
             <div class="m-price">
-
                 <!-- 标题 -->
                 <!-- <h1 class="m-price-title">剑三全区服金价走势</h1> -->
 
                 <!-- 内容 -->
                 <div class="m-price-box" v-loading="currentGate === ''">
                     <div class="m-price-board board-wrapper">
-
                         <!-- 头部 -->
                         <div class="m-price-header title-wrapper">
                             <span class="title-server-name">{{
@@ -86,9 +83,12 @@
                                                 当前最低
                                             </div>
                                             <div class="price-summary-price">
-                                                <b>{{
-                                                    allServersPrice.lowest
-                                                }} <em>金/￥</em></b>
+                                                <b
+                                                    >{{
+                                                        allServersPrice.lowest
+                                                    }}
+                                                    <em>金/￥</em></b
+                                                >
                                             </div>
                                             <div class="price-summary-server">
                                                 {{
@@ -107,9 +107,12 @@
                                                 当前最高
                                             </div>
                                             <div class="price-summary-price">
-                                                <b>{{
-                                                    allServersPrice.highest
-                                                }} <em>金/￥</em></b>
+                                                <b
+                                                    >{{
+                                                        allServersPrice.highest
+                                                    }}
+                                                    <em>金/￥</em></b
+                                                >
                                             </div>
                                             <div class="price-summary-server">
                                                 {{
@@ -126,9 +129,12 @@
                                                 当前均价
                                             </div>
                                             <div class="price-summary-price">
-                                                <b>{{
-                                                    allServersPrice.median
-                                                }} <em>金/￥</em></b>
+                                                <b
+                                                    >{{
+                                                        allServersPrice.median
+                                                    }}
+                                                    <em>金/￥</em></b
+                                                >
                                             </div>
                                             <div class="price-summary-server">
                                                 全区全服
@@ -144,7 +150,9 @@
                             >
                                 <el-col :xs="24" :md="8">
                                     <el-card>
-                                        <div class="card-price-summary u-lowest">
+                                        <div
+                                            class="card-price-summary u-lowest"
+                                        >
                                             <div class="price-summary-title">
                                                 昨日统计 （金/￥）
                                             </div>
@@ -211,7 +219,9 @@
                                 </el-col>
                                 <el-col :xs="24" :md="8">
                                     <el-card>
-                                        <div class="card-price-summary u-highest">
+                                        <div
+                                            class="card-price-summary u-highest"
+                                        >
                                             <div class="price-summary-title">
                                                 今日数据 （金/￥）
                                             </div>

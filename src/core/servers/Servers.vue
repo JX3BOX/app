@@ -19,10 +19,10 @@
                 <a href="http://zt.xoyo.com/jx3/server/">合服查询</a>
             </div>
         </Breadcrumb>
-        <LeftSidebar>
+        <LeftSidebar :open="false">
             <Nav />
         </LeftSidebar>
-        <Main :withoutRight="true">
+        <Main :withoutRight="true" :withoutLeft="true">
             <div class="m-app-servers">
                 <!-- 标题 -->
                 <h1 class="m-app-servers-title">剑三服务器实时监控面板</h1>

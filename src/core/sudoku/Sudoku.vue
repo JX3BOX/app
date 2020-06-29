@@ -4,7 +4,7 @@
         <Breadcrumb
             name="九宫格计算器"
             slug="sudoku"
-            root="/sudoku"
+            root="/app/sudoku"
             :feedbackEnable="true"
         >
             <img
@@ -14,10 +14,10 @@
             />
             <!-- <Info /> -->
         </Breadcrumb>
-        <LeftSidebar>
+        <LeftSidebar :open="false">
             <Nav />
         </LeftSidebar>
-        <Main :withoutRight="true">
+        <Main :withoutRight="true" :withoutLeft="true">
             <div class="m-sudoku">
                 <h1 class="m-sudoku-title">九宫格计算器</h1>
                 <el-tabs v-model="activeName" @tab-click="handleClick">

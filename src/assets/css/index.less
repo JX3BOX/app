@@ -88,11 +88,36 @@
         .pa;.rt(10px);
     }
 }
-
-@media screen and (max-width:@phone){
+@media screen and (max-width:1279px){
     .m-app-index{
         .el-col{
             .w(100%);
+        }
+    }
+}
+@media screen and (max-width:@phone){
+    .m-app-index-title{
+        .none;
+    }
+    .m-app-index{
+        padding-top:0;
+        .el-col{
+            .w(100%);
+        }
+    }
+}
+
+@media screen and (max-width:@ip5){
+    .m-app-index {
+        .u-pic{
+            padding-top:10px;
+        }
+        .u-icon svg{
+            .size(40px);
+        }
+        .u-name{
+            .w(80px);
+            .fz(14px);
         }
     }
 }
