@@ -153,7 +153,7 @@
                                     </span>
                                 </span>
                                 <div class="u-desc">
-                                    当前最高分线 : 
+                                    当前最高分线 :
                                     <span
                                         class="u-line"
                                         v-for="(line, i) in item.line"
@@ -383,14 +383,18 @@ export default {
             return getFlowerRank(this.server, this).then((data) => {
                 let list = [];
                 for (let name in flowers) {
-                    let lines = data[name]["maxLine"].slice(0, 3);
+                    let lines = data[name]
+                        ? data[name]["maxLine"].slice(0, 3)
+                        : [];
                     lines.forEach((item, i) => {
-                        lines[i] = item.replace(" 线", "");
+                        lines[i] = item && item.replace(" 线", "");
                     });
+
+                    let max = data[name] ? ~~data[name]["max"] : "-";
                     list.push({
                         name,
                         line: lines,
-                        price: ~~data[name]["max"],
+                        price: max,
                     });
                 }
                 this.rank = list;
@@ -468,13 +472,15 @@ export default {
         },
     },
     mounted: function() {
-        getServer('flower_server').then((server) => {
-            if (server) {
-                this.server = server;
-            }
-        }).then(() => {
-            this.loadRank()
-        })
+        getServer("flower_server")
+            .then((server) => {
+                if (server) {
+                    this.server = server;
+                }
+            })
+            .then(() => {
+                this.loadRank();
+            });
     },
     components: {
         Nav,
