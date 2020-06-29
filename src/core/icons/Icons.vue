@@ -16,274 +16,289 @@
         <LeftSidebar :open="false">
             <Nav />
         </LeftSidebar>
-        <Main class="m-icons" :withoutRight="true" :withoutLeft="true">
-            <h1 class="m-icons-title">剑三图标库</h1>
-            <div class="m-icons-box">
-                <el-tabs
-                    v-model="activeTabName"
-                    type="card"
-                    @tab-click="handleClick"
-                >
-                    <el-tab-pane label="图标库" name="icon" lazy>
-                        <div class="searchbar-wrapper">
-                            <el-input
-                                placeholder="输入搜索条件，例如：3089、1-100、幽月乱花"
-                                v-model="searchIconInput"
-                                class="input-with-select"
-                                @keyup.enter.native="handleSearchIcon"
-                            >
-                                <el-button
-                                    slot="append"
-                                    icon="el-icon-search"
-                                    @click="handleSearchIcon"
-                                ></el-button>
-                            </el-input>
-                            <div class="m-icon-search-tip">
-                                <ul>
-                                    <li>
-                                        输入单个数字，例如1，返回IconID为1的图标；
-                                    </li>
-                                    <li>
-                                        输入多个数字，例如2,4,6（支持中英文逗号“,”,顿号“、”,斜杠“/”,竖杠“|”），返回IconID分别为2,4,6的三个图标；
-                                    </li>
-                                    <li>
-                                        输入范围区间，例如1~100或1-100，返回IconID从1至100的100个图标；
-                                    </li>
-                                    <li>
-                                        可以同时输入多个数字和多个范围，例如2,3,11-14,17，返回IconID分别为2,3,11,12,13,14,17的7个图标；
-                                    </li>
-                                    <li>
-                                        输入单个图标名称，可以根据名称模糊搜索相关图标，例如：幽月、幽月乱花。
-                                    </li>
-                                    <li>每次上限500个</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <ul class="m-icon-list" v-loading="isSearchingByName">
-                            <el-alert
-                                title="以下为部分图标展示，请在上方自定义搜索范围。点击图标即可收藏。"
-                                type="warning"
-                                close-text="知道了"
-                                center
-                                show-icon
-                            ></el-alert>
-                            <li
-                                v-for="(icon, index) in iconsList"
-                                :key="index"
-                                @mouseleave="handleMouseLeaveIcon"
-                            >
-                                <i
-                                    class="u-pic"
-                                    @click="handleAddFavorite(index, icon)"
-                                >
-                                    <el-image
-                                        :src="`${JX3BOXIconPath}${icon}.png`"
-                                        class="u-img"
-                                        lazy
-                                    >
-                                        <div
-                                            slot="placeholder"
-                                            class="image-slot"
-                                        >
-                                            <i class="el-icon-loading"></i>
-                                        </div>
-                                        <div slot="error" class="image-slot">
-                                            <i
-                                                class="el-icon-warning-outline"
-                                            ></i>
-                                        </div>
-                                    </el-image>
-                                    <span class="u-love"
-                                        ><i
-                                            class="w-heart"
-                                            :class="{
-                                                'w-heart-animation':
-                                                    index == clickedIndex,
-                                            }"
-                                        ></i
-                                    ></span>
-                                </i>
-                                <span
-                                    class="u-iconid"
-                                    v-clipboard:copy="icon"
-                                    v-clipboard:success="onCopy"
-                                    v-clipboard:error="onError"
-                                    title="点击快速复制"
-                                    >{{ icon }}</span
-                                >
-                            </li>
-                            <div
-                                class="loading-placeholder"
-                                v-if="
-                                    isSearchingByName && iconsList.length === 0
-                                "
-                            ></div>
-                        </ul>
-                    </el-tab-pane>
-                    <el-tab-pane
-                        label="收藏图标"
-                        name="favicon"
-                        lazy
-                        :loading="isSynchronizing"
+        <Main :withoutRight="true" :withoutLeft="true">
+            <div class="m-icons">
+                <h1 class="m-icons-title">剑三图标库</h1>
+                <div class="m-icons-box">
+                    <el-tabs
+                        v-model="activeTabName"
+                        type="card"
+                        @tab-click="handleClick"
                     >
-                        <ul
-                            class="m-icon-list"
-                            v-if="activeTabName === 'favicon'"
-                        >
-                            <el-alert
-                                class="m-icons-sync"
-                                title="本地有收藏图标未同步到服务器"
-                                type="info"
-                                center
-                                show-icon
-                                v-if="faviconNeedsSync"
-                            >
-                                <el-button type="text" @click="syncFavicon"
-                                    >点此同步未登录收藏数据</el-button
+                        <el-tab-pane label="图标库" name="icon" lazy>
+                            <div class="searchbar-wrapper">
+                                <el-input
+                                    placeholder="输入搜索条件，例如：3089、1-100、幽月乱花"
+                                    v-model="searchIconInput"
+                                    class="input-with-select"
+                                    @keyup.enter.native="handleSearchIcon"
                                 >
-                            </el-alert>
-                            <ul v-if="faviconsList.length">
-                                <transition-group name="el-fade-in">
-                                    <li
-                                        v-for="(icon, index) in faviconsList"
-                                        :key="icon"
-                                    >
-                                        <i class="u-pic">
-                                            <el-image
-                                                :src="
-                                                    `${JX3BOXIconPath}${icon}.png`
-                                                "
-                                                class="u-img"
-                                                lazy
-                                            >
-                                                <div
-                                                    slot="placeholder"
-                                                    class="image-slot"
-                                                >
-                                                    <i
-                                                        class="el-icon-loading"
-                                                    ></i>
-                                                </div>
-                                                <div
-                                                    slot="error"
-                                                    class="image-slot"
-                                                >
-                                                    <i
-                                                        class="el-icon-warning-outline"
-                                                    ></i>
-                                                </div>
-                                            </el-image>
-                                            <span
-                                                class="u-remove"
-                                                @click="
-                                                    handleRemoveFavorite(
-                                                        index,
-                                                        icon
-                                                    )
-                                                "
-                                            ></span>
-                                        </i>
-                                        <span class="u-iconid">{{ icon }}</span>
-                                    </li>
-                                </transition-group>
-                            </ul>
-                            <el-alert
-                                v-else
-                                title="没有收藏的图标"
-                                type="info"
-                                show-icon
+                                    <el-button
+                                        slot="append"
+                                        icon="el-icon-search"
+                                        @click="handleSearchIcon"
+                                    ></el-button>
+                                </el-input>
+                                <div class="m-icon-search-tip">
+                                    <ul>
+                                        <li>
+                                            输入单个数字，例如1，返回IconID为1的图标；
+                                        </li>
+                                        <li>
+                                            输入多个数字，例如2,4,6（支持中英文逗号“,”,顿号“、”,斜杠“/”,竖杠“|”），返回IconID分别为2,4,6的三个图标；
+                                        </li>
+                                        <li>
+                                            输入范围区间，例如1~100或1-100，返回IconID从1至100的100个图标；
+                                        </li>
+                                        <li>
+                                            可以同时输入多个数字和多个范围，例如2,3,11-14,17，返回IconID分别为2,3,11,12,13,14,17的7个图标；
+                                        </li>
+                                        <li>
+                                            输入单个图标名称，可以根据名称模糊搜索相关图标，例如：幽月、幽月乱花。
+                                        </li>
+                                        <li>每次上限500个</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <ul
+                                class="m-icon-list"
+                                v-loading="isSearchingByName"
                             >
-                            </el-alert>
-                        </ul>
-                    </el-tab-pane>
-                    <el-tab-pane label="表情包" name="emoji" lazy>
-                        <ul class="m-emotion-nav">
-                            <li
-                                v-for="(category,
-                                index) in emojiCategoryOptions"
-                                :key="category.name"
-                                :class="{ active: index === emojiSelection }"
-                                @click="handleSelectEmojiCategory(index)"
-                            >
-                                {{ category.name }}
-                                <span>({{ category.total }})</span>
-                            </li>
-                        </ul>
-                        <el-select
-                            v-model="emojiSelection"
-                            placeholder="请选择"
-                            class="m-emotion-selection"
-                        >
-                            <el-option
-                                v-for="(category,
-                                index) in emojiCategoryOptions"
-                                :key="category.name"
-                                :value="index"
-                                :label="category.name"
-                            >
-                                <span style="float: left">{{
-                                    category.name
-                                }}</span>
-                                <span
-                                    style="float: right; color: #8492a6; font-size: 13px"
-                                    >共{{ category.total }}个</span
-                                >
-                            </el-option>
-                        </el-select>
-                        <template v-if="emojiCategoryOptions.length > 0">
-                            <ul class="m-emotion-list">
+                                <el-alert
+                                    title="以下为部分图标展示，请在上方自定义搜索范围。点击图标即可收藏。"
+                                    type="warning"
+                                    close-text="知道了"
+                                    center
+                                    show-icon
+                                ></el-alert>
                                 <li
-                                    v-for="(emoji,
-                                    index) in emojiCategoryOptions[
-                                        emojiSelection
-                                    ].total"
-                                    :key="emoji"
+                                    v-for="(icon, index) in iconsList"
+                                    :key="index"
+                                    @mouseleave="handleMouseLeaveIcon"
                                 >
-                                    <el-image
-                                        :src="
-                                            `${JX3BOXEmojiPath}${emojiCategoryOptions[emojiSelection].name}/${index}.gif`
-                                        "
-                                        lazy
+                                    <i
+                                        class="u-pic"
+                                        @click="handleAddFavorite(index, icon)"
                                     >
-                                        <!-- 这里要用index, 因为这里for遍历的是数字，emoji值会从1开始，而index还是从0开始 -->
-                                        <div
-                                            slot="placeholder"
-                                            class="image-slot"
+                                        <el-image
+                                            :src="
+                                                `${JX3BOXIconPath}${icon}.png`
+                                            "
+                                            class="u-img"
+                                            lazy
                                         >
-                                            <i class="el-icon-loading"></i>
-                                        </div>
-                                        <div slot="error" class="image-slot">
-                                            <i
-                                                class="el-icon-warning-outline"
-                                            ></i>
-                                        </div>
-                                    </el-image>
+                                            <div
+                                                slot="placeholder"
+                                                class="image-slot"
+                                            >
+                                                <i class="el-icon-loading"></i>
+                                            </div>
+                                            <div
+                                                slot="error"
+                                                class="image-slot"
+                                            >
+                                                <i
+                                                    class="el-icon-warning-outline"
+                                                ></i>
+                                            </div>
+                                        </el-image>
+                                        <span class="u-love"
+                                            ><i
+                                                class="w-heart"
+                                                :class="{
+                                                    'w-heart-animation':
+                                                        index == clickedIndex,
+                                                }"
+                                            ></i
+                                        ></span>
+                                    </i>
+                                    <span
+                                        class="u-iconid"
+                                        v-clipboard:copy="icon"
+                                        v-clipboard:success="onCopy"
+                                        v-clipboard:error="onError"
+                                        title="点击快速复制"
+                                        >{{ icon }}</span
+                                    >
+                                </li>
+                                <div
+                                    class="loading-placeholder"
+                                    v-if="
+                                        isSearchingByName &&
+                                            iconsList.length === 0
+                                    "
+                                ></div>
+                            </ul>
+                        </el-tab-pane>
+                        <el-tab-pane
+                            label="收藏图标"
+                            name="favicon"
+                            lazy
+                            :loading="isSynchronizing"
+                        >
+                            <ul
+                                class="m-icon-list"
+                                v-if="activeTabName === 'favicon'"
+                            >
+                                <el-alert
+                                    class="m-icons-sync"
+                                    title="本地有收藏图标未同步到服务器"
+                                    type="info"
+                                    center
+                                    show-icon
+                                    v-if="faviconNeedsSync"
+                                >
+                                    <el-button type="text" @click="syncFavicon"
+                                        >点此同步未登录收藏数据</el-button
+                                    >
+                                </el-alert>
+                                <ul v-if="faviconsList.length">
+                                    <transition-group name="el-fade-in">
+                                        <li
+                                            v-for="(icon,
+                                            index) in faviconsList"
+                                            :key="icon"
+                                        >
+                                            <i class="u-pic">
+                                                <el-image
+                                                    :src="
+                                                        `${JX3BOXIconPath}${icon}.png`
+                                                    "
+                                                    class="u-img"
+                                                    lazy
+                                                >
+                                                    <div
+                                                        slot="placeholder"
+                                                        class="image-slot"
+                                                    >
+                                                        <i
+                                                            class="el-icon-loading"
+                                                        ></i>
+                                                    </div>
+                                                    <div
+                                                        slot="error"
+                                                        class="image-slot"
+                                                    >
+                                                        <i
+                                                            class="el-icon-warning-outline"
+                                                        ></i>
+                                                    </div>
+                                                </el-image>
+                                                <span
+                                                    class="u-remove"
+                                                    @click="
+                                                        handleRemoveFavorite(
+                                                            index,
+                                                            icon
+                                                        )
+                                                    "
+                                                ></span>
+                                            </i>
+                                            <span class="u-iconid">{{
+                                                icon
+                                            }}</span>
+                                        </li>
+                                    </transition-group>
+                                </ul>
+                                <el-alert
+                                    v-else
+                                    title="没有收藏的图标"
+                                    type="info"
+                                    show-icon
+                                >
+                                </el-alert>
+                            </ul>
+                        </el-tab-pane>
+                        <el-tab-pane label="表情包" name="emoji" lazy>
+                            <ul class="m-emotion-nav">
+                                <li
+                                    v-for="(category,
+                                    index) in emojiCategoryOptions"
+                                    :key="category.name"
+                                    :class="{
+                                        active: index === emojiSelection,
+                                    }"
+                                    @click="handleSelectEmojiCategory(index)"
+                                >
+                                    {{ category.name }}
+                                    <span>({{ category.total }})</span>
                                 </li>
                             </ul>
-                            <!-- <a class="m-emotion-down" href="" download=""></a> -->
-
-                            <el-button
-                                :loading="isDownloadingEmoji"
-                                type="primary"
-                                plain
-                                @click.native.stop="handleDownloadEmoji"
-                                icon="el-icon-download"
-                                class="btn-download-emoji"
+                            <el-select
+                                v-model="emojiSelection"
+                                placeholder="请选择"
+                                class="m-emotion-selection"
                             >
-                                <div class="m-emotion-down">
-                                    <b>立即下载</b>
-                                    <!-- <span>Download</span> -->
-                                </div>
-                            </el-button>
-                        </template>
-                    </el-tab-pane>
-                </el-tabs>
+                                <el-option
+                                    v-for="(category,
+                                    index) in emojiCategoryOptions"
+                                    :key="category.name"
+                                    :value="index"
+                                    :label="category.name"
+                                >
+                                    <span style="float: left">{{
+                                        category.name
+                                    }}</span>
+                                    <span
+                                        style="float: right; color: #8492a6; font-size: 13px"
+                                        >共{{ category.total }}个</span
+                                    >
+                                </el-option>
+                            </el-select>
+                            <template v-if="emojiCategoryOptions.length > 0">
+                                <ul class="m-emotion-list">
+                                    <li
+                                        v-for="(emoji,
+                                        index) in emojiCategoryOptions[
+                                            emojiSelection
+                                        ].total"
+                                        :key="emoji"
+                                    >
+                                        <el-image
+                                            :src="
+                                                `${JX3BOXEmojiPath}${emojiCategoryOptions[emojiSelection].name}/${index}.gif`
+                                            "
+                                            lazy
+                                        >
+                                            <!-- 这里要用index, 因为这里for遍历的是数字，emoji值会从1开始，而index还是从0开始 -->
+                                            <div
+                                                slot="placeholder"
+                                                class="image-slot"
+                                            >
+                                                <i class="el-icon-loading"></i>
+                                            </div>
+                                            <div
+                                                slot="error"
+                                                class="image-slot"
+                                            >
+                                                <i
+                                                    class="el-icon-warning-outline"
+                                                ></i>
+                                            </div>
+                                        </el-image>
+                                    </li>
+                                </ul>
+                                <!-- <a class="m-emotion-down" href="" download=""></a> -->
+
+                                <el-button
+                                    :loading="isDownloadingEmoji"
+                                    type="primary"
+                                    plain
+                                    @click.native.stop="handleDownloadEmoji"
+                                    icon="el-icon-download"
+                                    class="btn-download-emoji"
+                                >
+                                    <div class="m-emotion-down">
+                                        <b>立即下载</b>
+                                        <!-- <span>Download</span> -->
+                                    </div>
+                                </el-button>
+                            </template>
+                        </el-tab-pane>
+                    </el-tabs>
+                </div>
+                <Footer></Footer>
             </div>
-            <!-- <RightSidebar>
-                <Github_REPO REPO="app" coder="172,8"></Github_REPO>
-                <Extend />
-            </RightSidebar> -->
-            <Footer></Footer>
         </Main>
     </div>
 </template>

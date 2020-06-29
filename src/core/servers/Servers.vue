@@ -75,7 +75,6 @@
                     <template v-for="(server, index) in serverList">
                         <f-server-node
                             :key="index"
-                            width="200px"
                             :server="server"
                             :pinned="false"
                             @toogle-server="clickServer"

@@ -1,5 +1,5 @@
 <template>
-    <el-col class="server-node" :span="4">
+    <el-col class="server-node" :span="3">
         <div class="button-wrapper">
 
             <el-tooltip class="item" effect="dark" :content="`${server.ipAddress}:${server.ipPort}`" placement="bottom" popper-class="tooltip-ipaddress" :disabled="!server.ipAddress || server.ipAddress === ''">

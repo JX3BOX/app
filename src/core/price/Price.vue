@@ -12,7 +12,7 @@
         <Main :withoutRight="true" :withoutLeft="true">
             <div class="m-price">
                 <!-- 标题 -->
-                <!-- <h1 class="m-price-title">剑三全区服金价走势</h1> -->
+                <h1 class="m-price-title">剑三全区服金价走势</h1>
 
                 <!-- 内容 -->
                 <div class="m-price-box" v-loading="currentGate === ''">
@@ -26,7 +26,7 @@
                             }}</span>
                             <el-checkbox
                                 v-model="pinnedChecked"
-                                label="主页显示此服务器"
+                                label="默认显示此服务器"
                                 border
                                 size="medium"
                                 @change="changePinnedServer"
