@@ -2,18 +2,19 @@
     <div id="app">
         <Header></Header>
         <Breadcrumb name="宏编辑器" slug="macro" root="/app/macro" :feedbackEnable="true">
-            <img slot="logo" svg-inline src="../../assets/img/macro/macro.svg" />
+            <img slot="logo" svg-inline src="../../assets/img/logos/macroeditor.svg" />
         </Breadcrumb>
         <LeftSidebar>
             <Nav />
         </LeftSidebar>
-        <Main :withoutRight="false">
+        <Main class="m-macroeditor" :withoutRight="true">
+            <h1 class="m-macroeditor-title">智能宏编辑器</h1>
             <div class="m-editor">
                 <el-row>
-                    <el-col :md="24" :lg="10">
+                    <el-col :span="12">
                         <div class="m-col m-col-left">
-                            <h2>快捷插入</h2>
-                            <el-form ref="form" :model="form" label-width="80px">
+                            <h2 class="u-subtitle"><img class="" svg-inline src="../../assets/img/macro/cube1.svg" />快捷插入</h2>
+                            <el-form class="u-cmds" ref="form" :model="form" label-width="80px">
                                 <el-form-item label="释放方式">
                                     <el-radio-group v-model="castType">
                                         <el-radio label="cast">释放(cast)</el-radio>
@@ -190,34 +191,26 @@
                                     </el-form-item>
                                 </template>
                             </el-form>
+                            <div class="u-submit">
+                                <el-button type="primary" icon="el-icon-right" class="u-btn" @click="insertLine">插入</el-button>
+                            </div>
                         </div>
                     </el-col>
-                    <el-col :md="24" :lg="4">
-                        <div class="m-col m-col-mid">
-                            <el-button type="primary" class="m-mid-button" @click="insertLine">插入</el-button>
-                        </div>
-                    </el-col>
-                    <el-col :md="24" :lg="10">
+                    <el-col :span="12">
                         <div class="m-col m-col-right">
-                            <h2>宏编辑区</h2>
-                            <h5>按下Tab键即可自动联想补全</h5>
+                            <h2 class="u-subtitle"><img class="" svg-inline src="../../assets/img/macro/cube2.svg" />宏编辑区</h2>
+                            <p class="u-tips">按下Tab键即可自动联想补全</p>
                             <codemirror
                                 v-model="code"
                                 :options="cmOptions"
                                 @input="onCmCodeChange"
                                 ref="cmEditor"
                             />
-                            <h5
-                                style="text-align: right;"
-                            >{{code.length}} / 128 （还可写 {{128-code.length}} 字）</h5>
+                            <div class="u-count"><b :class="{warning:code.length > 128}">{{code.length}}</b> / 128 <em>（还可写 {{128-code.length}} 字）</em></div>
                         </div>
                     </el-col>
                 </el-row>
             </div>
-            <RightSidebar>
-                <div class="m-editor-aside"></div>
-                <Extend />
-            </RightSidebar>
             <Footer />
         </Main>
     </div>
@@ -226,7 +219,7 @@
 <script>
 import Info from "@/components/Info.vue";
 import Nav from "@/components/Nav.vue";
-import Extend from "@/components/Extend.vue";
+// import Extend from "@/components/Extend.vue";
 import { codemirror } from "vue-codemirror";
 import CodeMirror from "codemirror";
 // import base style
@@ -485,68 +478,11 @@ export default {
     components: {
         codemirror,
         Nav,
-        Extend
+        // Extend
     }
 };
 </script>
 
 <style lang="less">
-.m-editor {
-    padding: 10px;
-}
-.m-col {
-    height: calc(100vh - 290px);
-}
-.m-col-mid {
-    position: relative;
-}
-
-.m-mid-button {
-    display: inline-block;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-.btn-help {
-    .ml(10px);
-    .mr(10px);
-}
-.el-select {
-    width: 100%;
-    margin-bottom: 6px;
-}
-.el-form-item__content > .el-alert {
-    .mt(16px);
-    line-height: 24px;
-}
-.vue-codemirror {
-    color: #3d454d;
-    font-size: 15px;
-    line-height: 24px;
-    .cm-keyword {
-        color: #005cc5;
-    }
-    .cm-condition-name {
-        color: #6f42c1;
-    }
-    .cm-condition-operator {
-        color: #d73a49;
-    }
-    .cm-string-2 {
-        color: #d73a49;
-    }
-    .cm-condition-else {
-        color: #6f42c1;
-    }
-}
-
-@media screen and (max-width: @mininote) {
-    .m-col-left {
-        display: none;
-    }
-    .m-col-mid {
-        display: none;
-    }
-}
+@import "../../assets/css/macroeditor.less";
 </style>

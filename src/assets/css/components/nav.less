@@ -60,7 +60,7 @@
 }
 
 .m-app-box{
-    padding:10px;
+    padding:10px 10px 10px 20px;
     .clearfix;
 
     .u-app{
@@ -78,10 +78,15 @@
 
         color:@bg-black;
         transition:border 0.1s ease-in;
+
+        svg{
+            fill:@color;
+        }
         &:hover,&.on{
             border-color:#39d45d;
-            svg{fill:#49c10f;}
-            color:#49c10f;
+            box-shadow:0 0 3px rgba(0,0,0,.1);
+            // svg{fill:#49c10f;}
+            // color:#49c10f;
         }
 
     }

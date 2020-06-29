@@ -1,0 +1,129 @@
+.m-macroeditor {
+    padding: 20px 30px;
+}
+@media screen and (max-width: @phone) {
+    .m-macroeditor {
+        padding: 10px;
+    }
+}
+
+.m-macroeditor-title {
+    font-size: 24px;
+    font-weight: 500;
+    // .x;
+    margin: 0 0 20px 0;
+    padding: 0;
+}
+@media screen and (max-width: @phone) {
+    .m-macroeditor-title {
+        .none;
+    }
+}
+
+.m-editor {
+    .el-row {
+        .clearfix;
+    }
+    .u-subtitle {
+        margin: 0;
+        // font-weight:normal;
+        background-color: @bg-gray;
+        .fz(16px, 32px);
+        padding: 5px 10px;
+        svg {
+            .size(32px);
+            .y(top);
+            .mr(10px);
+        }
+    }
+    .u-cmds {
+        padding: 20px 20px 10px 10px;
+    }
+    .u-tips {
+        .fz(13px); //.bold;
+        padding: 5px 10px;
+        .r(4px);
+        background-color: #e9ffde;
+        color: #49c10f;
+    }
+    .u-submit {
+        .x(right);
+        padding-right: 20px;
+    }
+    .u-btn {
+        .w(120px);
+    }
+    .u-count{
+        .x(right);
+        em{
+            color:#888;
+            .fz(12px);
+        }
+        .warning{
+            color:#f00;
+        }
+    }
+}
+
+.m-col {
+    min-height: calc(100vh - 290px);
+}
+.m-col-mid {
+    position: relative;
+}
+
+.m-mid-button {
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.btn-help {
+    .ml(10px);
+    .mr(10px);
+}
+.el-select {
+    width: 100%;
+    margin-bottom: 6px;
+}
+.el-form-item__content > .el-alert {
+    .mt(16px);
+    line-height: 24px;
+}
+
+
+.vue-codemirror {
+    color: @color;
+    .fz(16px, 28px);
+    font-family: Consolas, -apple-system, "Microsoft YaHei", Trebuchet MS,
+        Calibri, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Helvetica,
+        sans-serif;
+
+    .cm-keyword {
+        color: #005cc5;
+    }
+    .cm-condition-name {
+        color: #6f42c1;
+    }
+    .cm-condition-operator {
+        color: #d73a49;
+    }
+    .cm-string-2 {
+        color: #d73a49;
+    }
+    .cm-condition-else {
+        color: #6f42c1;
+    }
+}
+
+.CodeMirror{
+    .h(400px);
+}
+
+@media screen and (max-width: 1279px) {
+    .el-col{
+        .w(100%);
+        .mb(10px);
+    }
+}
