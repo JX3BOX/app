@@ -60,6 +60,12 @@ module.exports = {
             template: "public/index.html",
             filename: "furniture/index.html",
         },
+        facedata: {
+            title: "妆容解析 - JX3BOX",
+            entry: "src/core/facedata/facedata.js",
+            template: "public/index.html",
+            filename: "facedata/index.html",
+        },
         // flog: {
         //     title: "BOSS日志分析 - JX3BOX",
         //     entry: "src/core/flog/flog.js",

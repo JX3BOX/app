@@ -16,7 +16,7 @@
         <Main :withoutRight="true" :withoutLeft="true">
             <div class="m-furniture">
                 <h1 class="m-furniture-title">家具大全</h1>
-                <el-divider class="m-furniture-desc">PV邑工具箱</el-divider>
+                <el-divider class="m-furniture-desc">PV邑好帮手</el-divider>
 
                 <div class="m-furniture-search">
                     <el-input placeholder="请输入家具名称" v-model="name">
