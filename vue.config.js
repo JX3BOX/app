@@ -72,6 +72,12 @@ module.exports = {
             template: "public/index.html",
             filename: "database/index.html",
         },
+        fbrank: {
+            title: "全服副本百强排行榜 - JX3BOX",
+            entry: "src/core/fbrank/fbrank.js",
+            template: "public/index.html",
+            filename: "fbrank/index.html",
+        },
         // flog: {
         //     title: "BOSS日志分析 - JX3BOX",
         //     entry: "src/core/flog/flog.js",

@@ -70,10 +70,12 @@
                             <li
                                 v-for="(icon, index) in iconsList"
                                 :key="index"
-                                @click="handleAddFavorite(index, icon)"
                                 @mouseleave="handleMouseLeaveIcon"
                             >
-                                <i class="u-pic">
+                                <i
+                                    class="u-pic"
+                                    @click="handleAddFavorite(index, icon)"
+                                >
                                     <el-image
                                         :src="`${JX3BOXIconPath}${icon}.png`"
                                         class="u-img"
@@ -101,7 +103,14 @@
                                         ></i
                                     ></span>
                                 </i>
-                                <span class="u-iconid">{{ icon }}</span>
+                                <span
+                                    class="u-iconid"
+                                    v-clipboard:copy="icon"
+                                    v-clipboard:success="onCopy"
+                                    v-clipboard:error="onError"
+                                    title="点击快速复制"
+                                    >{{ icon }}</span
+                                >
                             </li>
                             <div
                                 class="loading-placeholder"
@@ -121,7 +130,8 @@
                             class="m-icon-list"
                             v-if="activeTabName === 'favicon'"
                         >
-                            <el-alert class="m-icons-sync"
+                            <el-alert
+                                class="m-icons-sync"
                                 title="本地有收藏图标未同步到服务器"
                                 type="info"
                                 center
@@ -701,6 +711,19 @@ export default {
                 localStorage.setItem("favicons", names);
                 this.localFaviconsList = this.faviconsList;
             }
+        },
+        onCopy: function(val) {
+            this.$notify({
+                title: "复制成功",
+                message: "复制内容 : " + val.text,
+                type: "success",
+            });
+        },
+        onError: function() {
+            this.$notify.error({
+                title: "复制失败",
+                message: "请手动复制",
+            });
         },
     },
     filters: {},
