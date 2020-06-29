@@ -42,6 +42,12 @@ module.exports = {
             template: "public/translator.html",
             filename: "translator/index.html",
         },
+        macro: {
+            title: "宏编辑器 - JX3BOX",
+            entry: "src/core/macro/macro.js",
+            template: "public/macro.html",
+            filename: "macro/index.html",
+        },
         // flog: {
         //     title: "BOSS日志分析 - JX3BOX",
         //     entry: "src/core/flog/flog.js",

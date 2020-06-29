@@ -40,6 +40,10 @@
                 ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/translator.svg"/></i
                 ><span>轉換繁體</span></a
             >
+            <a class="u-app" href="/app/macro" :class="{on:isActive('macro')}"
+                ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/macro.svg"/></i
+                ><span>宏编辑器</span></a
+            >
         </div>
         <h5 class="u-title">PVX</h5>
         <div class="m-app-box">
