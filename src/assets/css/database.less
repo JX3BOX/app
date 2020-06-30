@@ -9,6 +9,11 @@
     font-weight: 300;
     margin:0 0 20px 0;
 }
+@media screen and (max-width:@phone){
+    .m-database-title{
+        .fz(1.5rem);
+    }
+}
 
 .m-database-search{
     .mb(10px);
@@ -41,8 +46,20 @@
         .mr(20px);
     }
 }
+@media screen and (max-width:@phone){
+    .m-databse-subtype{
+        .u-subtype{
+            float:none;
+            .mb(5px);
+            .el-input{
+                .w(100%);
+            }
+        }
+    }
+}
 
 .m-database-tabs{
+    user-select: none;
     .u-icon{
         .size(20px);
         .y(-3px);
@@ -183,14 +200,22 @@
         float:none;
     }
 }
+@media screen and (max-width:@phone){
+    .m-resource-list{
+        .u-raw{
+            .ps;
+            .mt(5px);
+        }
+    }
+}
 
 .m-database-tip{
-    // .x;
-    // // .fz(12px);
-    // color:#aaa;
-    // margin:40px auto;
-    // // font-weight:300;
-    // letter-spacing:1px;
+    .x;
+    // .fz(12px);
+    color:#aaa;
+    margin:80px auto;
+    // font-weight:300;
+    letter-spacing:1px;
 }
 
 .m-npc-list {

@@ -44,12 +44,13 @@
                             v-model="strict"
                             active-text="精确匹配"
                             @change="search"
+                            @keyup.enter.native="search"
                         >
                         </el-switch>
                     </div>
                     <div
                         class="u-subtype"
-                        v-if="type == 'skill' || type == 'buff'"
+                        v-show="type == 'skill' || type == 'buff'"
                     >
                         <el-input
                             size="medium"
@@ -60,7 +61,7 @@
                             <template slot="prepend">等级</template>
                         </el-input>
                     </div>
-                    <div class="u-subtype" v-if="type == 'npc'">
+                    <div class="u-subtype" v-show="type == 'npc'">
                         <el-input
                             size="medium"
                             placeholder="指定NPC所在地图"
@@ -70,7 +71,7 @@
                             <template slot="prepend">地图</template>
                         </el-input>
                     </div>
-                    <div class="u-subtype" v-if="type == 'npc'">
+                    <div class="u-subtype" v-show="type == 'npc'">
                         <el-input
                             size="medium"
                             placeholder="指定NPC等级"
@@ -82,7 +83,12 @@
                     </div>
                 </div>
 
-                <el-tabs class="m-database-tabs" v-model="type" type="card">
+                <el-tabs
+                    class="m-database-tabs"
+                    v-model="type"
+                    type="card"
+                    @tab-click="search"
+                >
                     <el-tab-pane label="技能" name="skill">
                         <span slot="label">
                             <img
@@ -137,7 +143,7 @@
                                         plain
                                         size="mini"
                                         @click="toggleProps(o)"
-                                        >详细属性</el-button
+                                        >{{o.isopen ? '收起详情' : '展开详情'}}</el-button
                                     >
                                 </div>
                                 <div class="u-props" :class="{ on: o.isopen }">
@@ -280,7 +286,7 @@
                                         plain
                                         size="mini"
                                         @click="toggleProps(o)"
-                                        >详细属性</el-button
+                                        >{{o.isopen ? '收起详情' : '展开详情'}}</el-button
                                     >
                                 </div>
                                 <div class="u-props" :class="{ on: o.isopen }">
@@ -788,14 +794,9 @@
                     </el-tab-pane>
                 </el-tabs>
 
-                <el-alert
-                    class="m-database-tip"
-                    v-show="isBlank"
-                    title="请指定搜索条件回车"
-                    type="info"
-                    show-icon
-                >
-                </el-alert>
+                <div class="m-database-tip" v-show="isBlank">
+                    ❤ 请指定搜索条件回车
+                </div>
             </div>
             <Footer></Footer>
         </Main>
