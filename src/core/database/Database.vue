@@ -43,10 +43,19 @@
                         <el-switch
                             v-model="strict"
                             active-text="精确匹配"
-                            @change="search"
                             @keyup.enter.native="search"
                         >
                         </el-switch>
+                    </div>
+                    <div class="u-subtype" v-show="type == 'skill'">
+                        <el-select v-model="school" placeholder="门派" size="medium" @change="search"> 
+                            <el-option
+                                v-for="(item,key) in schools"
+                                :key="key"
+                                :label="key"
+                                :value="item">
+                            </el-option>
+                        </el-select>
                     </div>
                     <div
                         class="u-subtype"
@@ -99,7 +108,10 @@
                             <b>技能</b>
                             <em class="u-count">{{ stat.skill }}</em>
                         </span>
-                        <p v-if="skill.length && done" class="m-resource-count"><i class="el-icon-s-data"></i> 共找到 <b>{{skill.length}}</b> 条记录</p>
+                        <p v-if="skill.length && done" class="m-resource-count">
+                            <i class="el-icon-s-data"></i> 共找到
+                            <b>{{ skill.length }}</b> 条记录
+                        </p>
                         <ul class="m-resource-list">
                             <li v-for="(o, i) in skill" class="u-item" :key="i">
                                 <span class="u-id">ID:{{ o.SkillID }}</span>
@@ -109,9 +121,10 @@
                                     :src="o.IconID | iconURL"
                                 />
                                 <div class="u-primary">
-                                    <span class="u-name">{{
-                                        o.SkillName
-                                    }}</span>
+                                    <span class="u-name"
+                                        >{{ o.Name }}
+                                        <em>({{ o.SkillName }})</em>
+                                    </span>
                                     <span class="u-content">{{
                                         o.Desc | filterRaw
                                     }}</span>
@@ -144,7 +157,9 @@
                                         plain
                                         size="mini"
                                         @click="toggleProps(o)"
-                                        >{{o.isopen ? '收起详情' : '展开详情'}}</el-button
+                                        >{{
+                                            o.isopen ? "收起详情" : "展开详情"
+                                        }}</el-button
                                     >
                                 </div>
                                 <div class="u-props" :class="{ on: o.isopen }">
@@ -262,7 +277,9 @@
                             <b>Buff</b>
                             <em class="u-count">{{ stat.buff }}</em>
                         </span>
-                        <p v-if="buff.length && done" class="m-resource-count">共找到 <b>{{buff.length}}</b> 条记录</p>
+                        <p v-if="buff.length && done" class="m-resource-count">
+                            共找到 <b>{{ buff.length }}</b> 条记录
+                        </p>
                         <ul class="m-resource-list">
                             <li v-for="(o, i) in buff" class="u-item" :key="i">
                                 <span class="u-id">ID:{{ o.BuffID }}</span>
@@ -288,7 +305,9 @@
                                         plain
                                         size="mini"
                                         @click="toggleProps(o)"
-                                        >{{o.isopen ? '收起详情' : '展开详情'}}</el-button
+                                        >{{
+                                            o.isopen ? "收起详情" : "展开详情"
+                                        }}</el-button
                                     >
                                 </div>
                                 <div class="u-props" :class="{ on: o.isopen }">
@@ -469,7 +488,9 @@
                             <b>NPC</b>
                             <em class="u-count">{{ stat.npc }}</em>
                         </span>
-                        <p v-if="npc.length && done" class="m-resource-count">共找到 <b>{{npc.length}}</b> 条记录</p>
+                        <p v-if="npc.length && done" class="m-resource-count">
+                            共找到 <b>{{ npc.length }}</b> 条记录
+                        </p>
                         <ul class="m-npc-list" v-if="npc.length">
                             <li
                                 v-for="(o, i) in npc"
@@ -766,7 +787,9 @@
                             <b>物品</b>
                             <em class="u-count">{{ stat.item }}</em>
                         </span>
-                        <p v-if="item.length && done" class="m-resource-count">共找到 <b>{{item.length}}</b> 条记录</p>
+                        <p v-if="item.length && done" class="m-resource-count">
+                            共找到 <b>{{ item.length }}</b> 条记录
+                        </p>
                         <ul class="m-resource-list" v-if="item.length">
                             <li v-for="(o, i) in item" :key="i" class="u-item">
                                 <span class="u-id">ID:{{ o.ItemID }}</span>
@@ -806,6 +829,7 @@ import Nav from "@/components/Nav.vue";
 import { loadResource, loadStat } from "../../service/database";
 import { __iconPath } from "@jx3box/jx3box-common/js/jx3box.json";
 import User from "@jx3box/jx3box-common/js/user";
+import {school} from '@jx3box/jx3box-data/data/xf/school.json'
 export default {
     name: "Database",
     props: [],
@@ -817,6 +841,7 @@ export default {
             npc_level: "",
             strict: false,
             level: "",
+            school: "",
 
             skill: [],
             advskill: [],
@@ -835,6 +860,7 @@ export default {
             loading: false,
 
             isSuper: false,
+            schools : school
         };
     },
     computed: {
@@ -859,6 +885,9 @@ export default {
             }
             if (this.type == "skill" || this.type == "buff") {
                 if (this.level) params.level = this.level;
+            }
+            if (this.type == "skill") {
+                if (this.school || this.school == 0) params.school = this.school;
             }
 
             if (isNaN(query)) {
