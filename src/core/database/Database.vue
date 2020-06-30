@@ -99,6 +99,7 @@
                             <b>技能</b>
                             <em class="u-count">{{ stat.skill }}</em>
                         </span>
+                        <p v-if="skill.length && done" class="m-resource-count"><i class="el-icon-s-data"></i> 共找到 <b>{{skill.length}}</b> 条记录</p>
                         <ul class="m-resource-list">
                             <li v-for="(o, i) in skill" class="u-item" :key="i">
                                 <span class="u-id">ID:{{ o.SkillID }}</span>
@@ -261,6 +262,7 @@
                             <b>Buff</b>
                             <em class="u-count">{{ stat.buff }}</em>
                         </span>
+                        <p v-if="buff.length && done" class="m-resource-count">共找到 <b>{{buff.length}}</b> 条记录</p>
                         <ul class="m-resource-list">
                             <li v-for="(o, i) in buff" class="u-item" :key="i">
                                 <span class="u-id">ID:{{ o.BuffID }}</span>
@@ -467,6 +469,7 @@
                             <b>NPC</b>
                             <em class="u-count">{{ stat.npc }}</em>
                         </span>
+                        <p v-if="npc.length && done" class="m-resource-count">共找到 <b>{{npc.length}}</b> 条记录</p>
                         <ul class="m-npc-list" v-if="npc.length">
                             <li
                                 v-for="(o, i) in npc"
@@ -763,12 +766,7 @@
                             <b>物品</b>
                             <em class="u-count">{{ stat.item }}</em>
                         </span>
-                        <el-alert
-                            title="此处仅为简易搜索,详细属性请关注即将登陆的新栏目 => 物品百科"
-                            type="warning"
-                            show-icon
-                        >
-                        </el-alert>
+                        <p v-if="item.length && done" class="m-resource-count">共找到 <b>{{item.length}}</b> 条记录</p>
                         <ul class="m-resource-list" v-if="item.length">
                             <li v-for="(o, i) in item" :key="i" class="u-item">
                                 <span class="u-id">ID:{{ o.ItemID }}</span>
