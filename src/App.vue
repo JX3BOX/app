@@ -127,6 +127,27 @@
                         >
                         <el-col :span="12"
                             ><div class="u-item">
+                                <a href="/bps/#/lua" target="_blank"
+                                    ><span class="u-pic"
+                                        ><i class="u-icon"
+                                            ><img
+                                                svg-inline
+                                                src="./assets/img/logos/role.svg"/></i
+                                        ><span class="u-name"
+                                            >职业解包</span
+                                        ></span
+                                    ><span class="u-features"
+                                        ><span class="u-desc"
+                                            >✔️ 职业技能源码</span
+                                        ><span>✔️ 搭配原始数据阅读</span>
+                                        <span>✔️ 数据帝王者必备</span>
+                                        <span>✔️ 高玩宝典</span></span
+                                    ></a
+                                >
+                            </div></el-col
+                        >
+                        <el-col :span="12"
+                            ><div class="u-item">
                                 <a href="https://www.j3pz.com/" target="_blank"
                                     ><span class="u-pic"
                                         ><i class="u-icon"

@@ -26,6 +26,10 @@
                 ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/skull.svg"/></i
                 ><span>副本解包</span></a
             >
+            <a class="u-app" href="/bps/#/lua" target="_blank"
+                ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/role.svg"/></i
+                ><span>职业解包</span></a
+            >
             <a class="u-app" href="https://www.j3pz.com/" target="_blank"
                 ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/j3pz.svg"/></i
                 ><span>在线配装</span
