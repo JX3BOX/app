@@ -3,12 +3,13 @@
         <Header></Header>
         <Breadcrumb name="宏编辑器" slug="macro" root="/app/macroeditor" :feedbackEnable="true">
             <img slot="logo" svg-inline src="../../assets/img/logos/macroeditor.svg" />
+            <div class="m-info"></div>
         </Breadcrumb>
         <LeftSidebar :open="false">
             <Nav />
         </LeftSidebar>
         <Main class="m-macroeditor" :withoutRight="true" :withoutLeft="true">
-            <h1 class="m-macroeditor-title">智能宏编辑器</h1>
+            <h1 class="m-macroeditor-title">智能宏编辑器 <a href="/tool/?pid=265" target="_blank" class="u-help el-button el-button--success is-plain el-button--mini"><i class="el-icon-s-management"></i> 宏语法参考手册</a></h1>
             <div class="m-editor">
                 <el-row>
                     <el-col :span="12">
