@@ -355,8 +355,8 @@ export default {
             // tableMaxHeight: window.innerHeight - 371,
 
             // 图片
-            // imgurl: __ossMirror + "pic/furniture/",
-            imgurl: __iconPath + "furniture/",
+            imgurl: __ossMirror + "pic/furniture/",
+            // imgurl: __iconPath + "furniture/",
             showViewer: false,
             srcList: [],
 
