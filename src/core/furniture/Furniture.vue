@@ -186,8 +186,10 @@
                 >
                     <el-table-column fixed prop="icon" label="预览">
                         <template slot-scope="prop">
-                            <el-image
+                            <!-- <el-image -->
+                            <img
                                 class="u-img"
+                                v-photoswipe:single
                                 :images="{
                                     url: getUrl(prop.row.attributes.img),
                                 }"
@@ -195,9 +197,8 @@
                                 :src="getUrl(prop.row.attributes.img)"
                                 fit="contain"
                                 v-if="prop.row.attributes.img"
-                                @click="onPreview(prop.row.attributes.img)"
-                            >
-                            </el-image>
+                            />
+                            <!-- </el-image> -->
                             <div class="u-img-null" v-else>无</div>
                         </template>
                     </el-table-column>

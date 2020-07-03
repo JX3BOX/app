@@ -93,7 +93,7 @@
                                                     <el-option label="生命值和最大血量的比值" value="life"></el-option>
                                                     <el-option label="内力值和最大内力值的比值" value="mana"></el-option>
                                                     <el-option label="剑气/尘身刀气/战意/怒气值" value="rage"></el-option>
-                                                    <el-option label="纯阳气点" value="qidian"></el-option>
+                                                    <el-option label="纯阳气点/少林禅那/七秀剑舞值" value="qidian"></el-option>
                                                     <el-option label="神机/竹雾刀气/格挡值" value="energy"></el-option>
                                                     <el-option label="日灵/金屏刀气值" value="sun"></el-option>
                                                     <el-option label="月魂值" value="moon"></el-option>
