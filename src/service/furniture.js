@@ -13,8 +13,8 @@ import { axios } from "./axios";
 // order=1 表示按升序排列，0表示降序排列
 
 
-// const furnitureApi = 'https://apis.j3pz.com/furniture';//TODO:
-const furnitureApi = 'http://localhost:1024/house'; 
+const furnitureApi = 'https://apis.j3pz.com/furniture';//TODO:
+// const furnitureApi = 'http://localhost:1024/house'; 
 
 function getFurnitures(query) {
     return axios.get(furnitureApi, {
