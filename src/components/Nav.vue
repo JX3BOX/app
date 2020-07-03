@@ -71,6 +71,10 @@
                 ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/mirror.svg"/></i
                 ><span>妆容解析</span></a
             >
+            <a class="u-app" href="/exam" target="_blank"
+                ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/100.svg"/></i
+                ><span>趣味题库</span
+                ></a>
             <a class="u-app" href="https://j3cx.com/exam/" target="_blank"
                 ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/keju.svg"/></i
                 ><span>科举题库</span

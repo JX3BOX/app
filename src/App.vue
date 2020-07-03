@@ -127,6 +127,27 @@
                         >
                         <el-col :span="12"
                             ><div class="u-item">
+                                <a href="/fb/#/drop" target="_blank"
+                                    ><span class="u-pic"
+                                        ><i class="u-icon"
+                                            ><img
+                                                svg-inline
+                                                src="./assets/img/logos/drop.svg"/></i
+                                        ><span class="u-name"
+                                            >副本掉落</span
+                                        ></span
+                                    ><span class="u-features"
+                                        ><span class="u-desc"
+                                            >✔️ 副本掉落一览</span
+                                        ><span>✔️ 不同难度区分</span>
+                                        <span>✔️ 同步推栏最新</span>
+                                        <span>✔️ 包含家具掉落</span></span
+                                    ></a
+                                >
+                            </div></el-col
+                        >
+                        <!-- <el-col :span="12"
+                            ><div class="u-item">
                                 <a href="/bps/#/lua" target="_blank"
                                     ><span class="u-pic"
                                         ><i class="u-icon"
@@ -145,7 +166,7 @@
                                     ></a
                                 >
                             </div></el-col
-                        >
+                        > -->
                         <el-col :span="12"
                             ><div class="u-item">
                                 <a href="https://www.j3pz.com/" target="_blank"
@@ -394,6 +415,27 @@
                                         ><span>✔️ 试炼模式</span>
                                         <span>✔️ 荻花前山模式</span>
                                         <span>✔️ 附地图指南</span></span
+                                    ></a
+                                >
+                            </div></el-col
+                        >
+                        <el-col :span="12"
+                            ><div class="u-item">
+                                <a href="/exam" target="_blank"
+                                    ><span class="u-pic"
+                                        ><i class="u-icon"
+                                            ><img
+                                                svg-inline
+                                                src="./assets/img/logos/100.svg"/></i
+                                        ><span class="u-name"
+                                            >趣味题库</span
+                                        ></span
+                                    ><span class="u-features"
+                                        ><span class="u-desc"
+                                            >✔️ 剑三趣味题库大全</span
+                                        ><span>✔️ 支持玩家自拟录入</span>
+                                        <span>✔️ 涵盖各个玩法行业</span>
+                                        <span>✔️ 蹭热点利器……</span></span
                                     ></a
                                 >
                             </div></el-col
