@@ -792,7 +792,7 @@
                         </p>
                         <ul class="m-resource-list" v-if="item.length">
                             <li v-for="(o, i) in item" :key="i" class="u-item">
-                                <a class="u-link" :href="o.ItemID | itemURL">
+                                <a class="u-link" :href="o.ItemID | itemURL" target="_blank">
                                     <span class="u-id">ID:{{ o.ItemID }}</span>
                                 <img
                                     class="u-pic"
