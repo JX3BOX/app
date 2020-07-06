@@ -113,7 +113,7 @@
                                                 svg-inline
                                                 src="./assets/img/logos/skull.svg"/></i
                                         ><span class="u-name"
-                                            >副本解包</span
+                                            >副本数据</span
                                         ></span
                                     ><span class="u-features"
                                         ><span class="u-desc"
@@ -146,27 +146,27 @@
                                 >
                             </div></el-col
                         >
-                        <!-- <el-col :span="12"
+                        <el-col :span="12"
                             ><div class="u-item">
-                                <a href="/bps/#/lua" target="_blank"
+                                <a href="/fb/#/gem" target="_blank"
                                     ><span class="u-pic"
                                         ><i class="u-icon"
                                             ><img
                                                 svg-inline
-                                                src="./assets/img/logos/role.svg"/></i
+                                                src="./assets/img/logos/gem.svg"/></i
                                         ><span class="u-name"
-                                            >职业解包</span
+                                            >瑰石大全</span
                                         ></span
                                     ><span class="u-features"
                                         ><span class="u-desc"
-                                            >✔️ 职业技能源码</span
-                                        ><span>✔️ 搭配原始数据阅读</span>
-                                        <span>✔️ 数据帝王者必备</span>
-                                        <span>✔️ 高玩宝典</span></span
+                                            >✔️ 瑰石掉落一览</span
+                                        ><span>✔️ 不同难度区分</span>
+                                        <span>✔️ 同步最新副本</span>
+                                        <span>✔️ 物品完整详情</span></span
                                     ></a
                                 >
                             </div></el-col
-                        > -->
+                        >
                         <el-col :span="12"
                             ><div class="u-item">
                                 <a href="https://www.j3pz.com/" target="_blank"
@@ -212,33 +212,6 @@
                                             >✔️ 精确计算加速</span
                                         ><span>✔️ 同步游戏最新版本</span>
                                         <span>✔️ DPS狂魔必备</span>
-                                        <span>✔️ 深度合作伙伴</span></span
-                                    ></a
-                                >
-                            </div></el-col
-                        >
-                        <el-col :span="12"
-                            ><div class="u-item">
-                                <a
-                                    href="https://www.j3pz.com/tools/prediction/"
-                                    target="_blank"
-                                    ><span class="u-pic"
-                                        ><i class="u-icon"
-                                            ><img
-                                                svg-inline
-                                                src="./assets/img/logos/guishi.svg"/></i
-                                        ><span class="u-name"
-                                            >瑰石查询</span
-                                        ></span
-                                    ><img
-                                        class="u-blank"
-                                        svg-inline
-                                        src="./assets/img/logos/blank.svg"
-                                    /><span class="u-features"
-                                        ><span class="u-desc"
-                                            >✔️ Boss掉落全知晓</span
-                                        ><span>✔️ 瑰石列表大全</span>
-                                        <span>✔️ 轻松包团不用愁</span>
                                         <span>✔️ 深度合作伙伴</span></span
                                     ></a
                                 >
@@ -400,27 +373,6 @@
                         >
                         <el-col :span="12"
                             ><div class="u-item">
-                                <a href="./sudoku"
-                                    ><span class="u-pic"
-                                        ><i class="u-icon"
-                                            ><img
-                                                svg-inline
-                                                src="./assets/img/logos/sudoku.svg"/></i
-                                        ><span class="u-name"
-                                            >九宫格计算器</span
-                                        ></span
-                                    ><span class="u-features"
-                                        ><span class="u-desc"
-                                            >✔️ 九宫格小助手</span
-                                        ><span>✔️ 试炼模式</span>
-                                        <span>✔️ 荻花前山模式</span>
-                                        <span>✔️ 附地图指南</span></span
-                                    ></a
-                                >
-                            </div></el-col
-                        >
-                        <el-col :span="12"
-                            ><div class="u-item">
                                 <a href="/exam" target="_blank"
                                     ><span class="u-pic"
                                         ><i class="u-icon"
@@ -436,6 +388,27 @@
                                         ><span>✔️ 支持玩家自拟录入</span>
                                         <span>✔️ 涵盖各个玩法行业</span>
                                         <span>✔️ 蹭热点利器……</span></span
+                                    ></a
+                                >
+                            </div></el-col
+                        >
+                        <el-col :span="12"
+                            ><div class="u-item">
+                                <a href="./sudoku"
+                                    ><span class="u-pic"
+                                        ><i class="u-icon"
+                                            ><img
+                                                svg-inline
+                                                src="./assets/img/logos/sudoku.svg"/></i
+                                        ><span class="u-name"
+                                            >九宫格计算器</span
+                                        ></span
+                                    ><span class="u-features"
+                                        ><span class="u-desc"
+                                            >✔️ 九宫格小助手</span
+                                        ><span>✔️ 试炼模式</span>
+                                        <span>✔️ 荻花前山模式</span>
+                                        <span>✔️ 附地图指南</span></span
                                     ></a
                                 >
                             </div></el-col

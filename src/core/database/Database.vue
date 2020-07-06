@@ -792,7 +792,8 @@
                         </p>
                         <ul class="m-resource-list" v-if="item.length">
                             <li v-for="(o, i) in item" :key="i" class="u-item">
-                                <span class="u-id">ID:{{ o.ItemID }}</span>
+                                <a class="u-link" :href="o.ItemID | itemURL">
+                                    <span class="u-id">ID:{{ o.ItemID }}</span>
                                 <img
                                     class="u-pic"
                                     :title="'IconID:' + o.IconID"
@@ -803,6 +804,7 @@
                                 <span class="u-remark">{{
                                     o.Requirement
                                 }}</span>
+                                </a>
                             </li>
                         </ul>
                         <el-alert
@@ -944,6 +946,9 @@ export default {
         iconURL: function(id) {
             return __iconPath + "icon/" + id + ".png";
         },
+        itemURL : function (id){
+            return '/item/#/view/' + id
+        }
     },
     created: function() {
         loadStat().then((data) => {
