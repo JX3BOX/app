@@ -829,7 +829,7 @@
 <script>
 import Nav from "@/components/Nav.vue";
 import { loadResource, loadStat } from "../../service/database";
-import { __iconPath } from "@jx3box/jx3box-common/js/jx3box.json";
+import { __iconPath,__ossRoot } from "@jx3box/jx3box-common/js/jx3box.json";
 import User from "@jx3box/jx3box-common/js/user";
 import {school} from '@jx3box/jx3box-data/data/xf/school.json'
 export default {
@@ -944,7 +944,7 @@ export default {
             return str && str.replace(/\\n/g, "\n");
         },
         iconURL: function(id) {
-            return __iconPath + "icon/" + id + ".png";
+            return __ossRoot + "icon/" + id + ".png";
         },
         itemURL : function (id){
             return '/item/#/view/' + id

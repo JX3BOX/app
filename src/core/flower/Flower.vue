@@ -293,7 +293,7 @@ import dateFormat from "../../utils/moment";
 import servers from "@jx3box/jx3box-data/data/server/server_list.json";
 import colors from "./colors.json";
 import flowers from "./flowers.json";
-import { __iconPath } from "@jx3box/jx3box-common/js/jx3box.json";
+import { __iconPath,__ossRoot } from "@jx3box/jx3box-common/js/jx3box.json";
 
 export default {
     name: "Flower",
@@ -468,7 +468,7 @@ export default {
     },
     filters: {
         iconURL: function(id) {
-            return __iconPath + "icon/" + id + ".png";
+            return __ossRoot + "icon/" + id + ".png";
         },
     },
     mounted: function() {

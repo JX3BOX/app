@@ -318,7 +318,7 @@ export default {
             searchIconInput: "",
             iconsList: [],
             clickedIndex: -1,
-            JX3BOXIconPath: JX3BOX.__ossMirror + "icon/",
+            JX3BOXIconPath: JX3BOX.__ossRoot + "icon/",
             JX3BOXEmojiPath: JX3BOX.__iconPath + "emotion/official_mini/",
             faviconsList: null,
             localFaviconsList: [],

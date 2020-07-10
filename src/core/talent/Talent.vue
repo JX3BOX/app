@@ -114,7 +114,7 @@
 import Nav from "@/components/Nav.vue";
 import Extend from "@/components/Extend.vue";
 import xfmap from "@jx3box/jx3box-data/data/xf/xf.json";
-import { __ossMirror,__imgPath } from "@jx3box/jx3box-common/js/jx3box.json";
+import { __ossMirror,__imgPath,__ossRoot } from "@jx3box/jx3box-common/js/jx3box.json";
 import JX3_QIXUE from "@jx3box/jx3box-talent";
 import $ from "jquery";
 import schema from "./schema.vue";
@@ -215,7 +215,7 @@ export default {
     },
     filters: {
         xficon: function(id) {
-            return __ossMirror + "image/xf/" + id + ".png";
+            return __ossRoot + "image/xf/" + id + ".png";
         },
     },
     mounted: function() {
