@@ -54,7 +54,7 @@ function getFlowerPrices(query, vm) {
             //     message: "数据加载成功",
             //     type: "success",
             // });
-            return res;
+            return res.data;
         })
         .catch((err) => {
             console.log(err);
@@ -76,7 +76,7 @@ function getFlowerPrice(query, vm) {
             //     message: "数据加载成功",
             //     type: "success",
             // });
-            return res;
+            return res.data;
         })
         .catch((err) => {
             console.log(err);

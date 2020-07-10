@@ -294,6 +294,9 @@ import servers from "@jx3box/jx3box-data/data/server/server_list.json";
 import colors from "./colors.json";
 import flowers from "./flowers.json";
 import { __iconPath,__ossRoot } from "@jx3box/jx3box-common/js/jx3box.json";
+// 繁體
+import traditional_servers from "@jx3box/jx3box-data/data/server/server_international.json";
+import dict from './dict.json'
 
 export default {
     name: "Flower",
@@ -344,6 +347,9 @@ export default {
             }
             return 0;
         },
+        isTraditional : function (){
+            return traditional_servers.includes(this.server)
+        }
     },
     methods: {
         color: function(level) {
@@ -381,6 +387,11 @@ export default {
         loadRank: function() {
             this.loading = true;
             return getFlowerRank(this.server, this).then((data) => {
+
+                if(this.isTraditional){
+                    data = this.transformData(data)
+                }
+
                 let list = [];
                 for (let name in flowers) {
                     let lines = data[name]
@@ -402,19 +413,30 @@ export default {
         },
         loadOverview: function() {
             this.loading = true;
+
+            let qs = this.type
+            if(this.isTraditional){
+                qs = this.transformRequest(qs)
+            }
+
             return getFlowerPrices(
                 {
                     server: this.server,
-                    flower: this.type,
+                    flower: qs,
                 },
                 this
-            ).then((res) => {
+            ).then((data) => {
+
+                if(this.isTraditional){
+                    data = this.transformData(data)
+                }
+
                 let overview = [];
-                for (let name in res.data) {
+                for (let name in data) {
                     overview.push({
                         name: name,
-                        price: res.data[name]["max"] + "园宅币",
-                        map: res.data[name]["maxLine"].slice(0, 5),
+                        price: data[name]["max"] + "园宅币",
+                        map: data[name]["maxLine"].slice(0, 5),
                     });
                 }
                 this.overview = overview;
@@ -422,21 +444,32 @@ export default {
         },
         loadData: function(i, append = false) {
             this.loading = true;
+
+            let qs = this.level + this.type
+            if(this.isTraditional){
+                qs = this.transformRequest(qs)
+            }
+
             return getFlowerPrice(
                 {
                     server: this.server,
-                    flower: this.level + this.type,
+                    flower: qs,
                     pageIndex: i,
                 },
                 this
-            ).then((res) => {
-                if (append) {
-                    this.data = this.data.concat(res.data.data);
-                } else {
-                    this.data = res.data.data;
+            ).then((data) => {
+
+                if(this.isTraditional){
+                    data = this.transformData(data)
                 }
-                this.total = res.data.page.total;
-                this.pages = res.data.page.pageTotal;
+
+                if (append) {
+                    this.data = this.data.concat(data.data);
+                } else {
+                    this.data = data.data;
+                }
+                this.total = data.page.total;
+                this.pages = data.page.pageTotal;
             });
         },
         appendPage: function(i) {
@@ -465,6 +498,22 @@ export default {
         onlyLineNumber: function(val) {
             return val.replace("线", "");
         },
+        transformData : function (data){
+            let _data = JSON.stringify(data)
+            dict.tr.forEach((key,i) => {
+                let re = new RegExp(key,'g')
+                _data = _data.replace(re,dict.cn[i])
+            })
+            return JSON.parse(_data)
+        },
+        transformRequest : function (str){
+            let _data = str
+            dict.cn.forEach((key,i) => {
+                let re = new RegExp(key,'g')
+                _data = _data.replace(re,dict.tr[i])
+            })
+            return _data
+        }
     },
     filters: {
         iconURL: function(id) {
