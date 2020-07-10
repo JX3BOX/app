@@ -11,9 +11,9 @@
     "dependencies": {
         "@jx3box/jx3box-article-ui": "^0.2.2",
         "@jx3box/jx3box-common": "^5.0.1",
-        "@jx3box/jx3box-common-ui": "^2.1.6",
+        "@jx3box/jx3box-common-ui": "^2.2.3",
         "@jx3box/jx3box-data": "^0.2.7",
-        "@jx3box/jx3box-talent": "^1.0.1",
+        "@jx3box/jx3box-talent": "^1.0.2",
         "axios": "^0.19.2",
         "codemirror": "^5.55.0",
         "core-js": "^3.4.3",

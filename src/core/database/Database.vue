@@ -278,7 +278,7 @@
                             <em class="u-count">{{ stat.buff }}</em>
                         </span>
                         <p v-if="buff.length && done" class="m-resource-count">
-                            共找到 <b>{{ buff.length }}</b> 条记录
+                            <i class="el-icon-s-data"></i> 共找到 <b>{{ buff.length }}</b> 条记录
                         </p>
                         <ul class="m-resource-list">
                             <li v-for="(o, i) in buff" class="u-item" :key="i">
@@ -489,7 +489,7 @@
                             <em class="u-count">{{ stat.npc }}</em>
                         </span>
                         <p v-if="npc.length && done" class="m-resource-count">
-                            共找到 <b>{{ npc.length }}</b> 条记录
+                            <i class="el-icon-s-data"></i> 共找到 <b>{{ npc.length }}</b> 条记录
                         </p>
                         <ul class="m-npc-list" v-if="npc.length">
                             <li
@@ -788,7 +788,7 @@
                             <em class="u-count">{{ stat.item }}</em>
                         </span>
                         <p v-if="item.length && done" class="m-resource-count">
-                            共找到 <b>{{ item.length }}</b> 条记录
+                            <i class="el-icon-s-data"></i> 共找到 <b>{{ item.length }}</b> 条记录
                         </p>
                         <ul class="m-resource-list" v-if="item.length">
                             <li v-for="(o, i) in item" :key="i" class="u-item">

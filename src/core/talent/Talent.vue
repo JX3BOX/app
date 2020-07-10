@@ -215,7 +215,7 @@ export default {
     },
     filters: {
         xficon: function(id) {
-            return __imgPath + "image/xf/" + id + ".png";
+            return __ossMirror + "image/xf/" + id + ".png";
         },
     },
     mounted: function() {
