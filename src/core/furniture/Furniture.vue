@@ -190,9 +190,6 @@
                             <img
                                 class="u-img"
                                 v-photoswipe:single
-                                :images="{
-                                    url: getUrl(prop.row.attributes.img),
-                                }"
                                 style="height: 80px"
                                 :src="getUrl(prop.row.attributes.img)"
                                 fit="contain"
@@ -338,7 +335,7 @@
 <script>
 import Nav from "@/components/Nav.vue";
 import { __ossMirror ,__iconPath,__ossRoot} from "@jx3box/jx3box-common/js/jx3box.json";
-import ElImageViewer from "element-ui/packages/image/src/image-viewer";
+// import ElImageViewer from "element-ui/packages/image/src/image-viewer";
 import typedata from "./furniture_types.json";
 import { getFurnitures } from "../../service/furniture";
 
@@ -542,7 +539,7 @@ export default {
         this.loadData();
     },
     components: {
-        ElImageViewer,
+        // ElImageViewer,
         Nav,
     },
 };
