@@ -94,7 +94,7 @@
                           <el-option label="自身有增减益效果层数" value="buff_level"></el-option>
                           <el-option label="目标有增减益效果" value="tbuff"></el-option>
                           <el-option label="目标有增减益效果层数" value="tbuff_level"></el-option>
-                          <el-option label="自身存在增减益效果持续时间" value="bufftime"></el-option>
+                          <el-option label="自身增减益效果持续时间" value="bufftime"></el-option>
                           <el-option label="目标增减益效果持续时间" value="tbufftime"></el-option>
                           <el-option label="自身不存在某增减益效果" value="nobuff"></el-option>
                           <el-option label="目标不存在某增减益效果" value="tnobuff"></el-option>
