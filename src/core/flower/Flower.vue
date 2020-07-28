@@ -305,7 +305,7 @@ export default {
         return {
             servers,
             server: "梦江南",
-            types: ["绣球花", "郁金香", "牵牛花", "玫瑰", "百合", "荧光菌"],
+            types: ["绣球花", "郁金香", "牵牛花", "玫瑰", "百合", "荧光菌","羽扇豆花"],
             type: "",
             level: "",
             colors,
