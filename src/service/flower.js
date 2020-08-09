@@ -14,22 +14,13 @@ const detail = __next + "api/flower/price/query";        //TODO:
 
 // https://github.com/JX3BOX/jx3box-api/blob/master/DOCS/flower-price.md
 
-function getFlowerRank(server, vm) {
+function getFlowerRank(query, vm) {
     return axios
         .get(rank, {
-            params: {
-                server: server,
-            },
+            params: query,
             withCredentials: true,
         })
         .then((res) => {
-            if (vm) {
-                // vm.$notify({
-                //     title: "加载成功",
-                //     message: "数据加载成功",
-                //     type: "success",
-                // });
-            }
             return res.data;
         })
         .catch((err) => {
@@ -49,11 +40,6 @@ function getFlowerPrices(query, vm) {
             withCredentials: true,
         })
         .then((res) => {
-            // vm.$notify({
-            //     title: "加载成功",
-            //     message: "数据加载成功",
-            //     type: "success",
-            // });
             return res.data;
         })
         .catch((err) => {
@@ -71,11 +57,6 @@ function getFlowerPrice(query, vm) {
             withCredentials: true,
         })
         .then((res) => {
-            // vm.$notify({
-            //     title: "加载成功",
-            //     message: "数据加载成功",
-            //     type: "success",
-            // });
             return res.data;
         })
         .catch((err) => {

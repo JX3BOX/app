@@ -35,13 +35,13 @@
 
                 <div class="m-flower-search">
                     <el-row :gutter="20" type="flex">
-                        <el-col :span="7">
+                        <el-col :span="5">
                             <el-select
                                 class="u-server"
                                 v-model="server"
                                 filterable
-                                placeholder="请输入服务器"
-                                @change="search"
+                                placeholder="请选择服务器"
+                                @change="changeServer"
                             >
                                 <el-option
                                     v-for="item in servers"
@@ -52,7 +52,24 @@
                                 </el-option>
                             </el-select>
                         </el-col>
-                        <el-col :span="7">
+                        <el-col :span="5">
+                            <el-select
+                                class="u-server"
+                                v-model="map"
+                                filterable
+                                placeholder="请选择小区"
+                                @change="search"
+                            >
+                                <el-option
+                                    v-for="item in maps"
+                                    :key="item"
+                                    :label="item"
+                                    :value="item"
+                                >
+                                </el-option>
+                            </el-select>
+                        </el-col>
+                        <el-col :span="5">
                             <el-select
                                 class="u-type"
                                 v-model="type"
@@ -69,7 +86,7 @@
                                 </el-option>
                             </el-select>
                         </el-col>
-                        <el-col :span="7">
+                        <el-col :span="5">
                             <el-select
                                 class="u-level"
                                 v-model="level"
@@ -89,7 +106,7 @@
                                 </el-option>
                             </el-select>
                         </el-col>
-                        <el-col :span="3">
+                        <el-col :span="4">
                             <el-button
                                 class="u-button"
                                 type="primary"
@@ -297,6 +314,7 @@ import { __iconPath,__ossRoot } from "@jx3box/jx3box-common/js/jx3box.json";
 // 繁體
 import traditional_servers from "@jx3box/jx3box-data/data/server/server_international.json";
 import dict from './dict.json'
+import maps from './maps.json'
 
 export default {
     name: "Flower",
@@ -305,6 +323,7 @@ export default {
         return {
             servers,
             server: "梦江南",
+            map : '',
             types: ["绣球花", "郁金香", "牵牛花", "玫瑰", "百合", "荧光菌","羽扇豆花"],
             type: "",
             level: "",
@@ -349,7 +368,13 @@ export default {
         },
         isTraditional : function (){
             return traditional_servers.includes(this.server)
-        }
+        },
+        maps : function (){
+            if(this.isTraditional){
+                return maps['tr']
+            }
+            return maps['cn']
+        },
     },
     methods: {
         color: function(level) {
@@ -373,6 +398,10 @@ export default {
             }
             setFlowerServer(this.server);
         },
+        changeServer : function (){
+            this.map = this.maps[0]
+            this.search()
+        },
         dateFormat: function(row, column) {
             return dateFormat(row.time * 1000);
         },
@@ -386,7 +415,10 @@ export default {
         },
         loadRank: function() {
             this.loading = true;
-            return getFlowerRank(this.server, this).then((data) => {
+            return getFlowerRank({
+                server : this.server,
+                map : this.map
+            }, this).then((data) => {
 
                 if(this.isTraditional){
                     data = this.transformData(data)
@@ -423,6 +455,7 @@ export default {
                 {
                     server: this.server,
                     flower: qs,
+                    map : this.map
                 },
                 this
             ).then((data) => {
@@ -453,6 +486,7 @@ export default {
             return getFlowerPrice(
                 {
                     server: this.server,
+                    map : this.map,
                     flower: qs,
                     pageIndex: i,
                 },
@@ -515,6 +549,8 @@ export default {
             return _data
         }
     },
+    watch : {
+    },
     filters: {
         iconURL: function(id) {
             return __ossRoot + "icon/" + id + ".png";
@@ -526,6 +562,7 @@ export default {
                 if (server) {
                     this.server = server;
                 }
+                this.map = this.maps[0]
             })
             .then(() => {
                 this.loadRank();
