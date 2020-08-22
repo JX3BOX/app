@@ -26,3 +26,4 @@ pages:{
 + js : `src/core/$app`增加项目名称和相关逻辑文件,包括子逻辑(除非公共逻辑放置在components)
 + css : 样式文件请写在`src/assets/css/$app.less`下按项目名统一
 + img : 图片请统一使用行内svg放置在`src/assets/img/$app/*`,png小图会内嵌base64,大图请转存至jx3box-oss项目/image目录统一上oss+cdn
+.
