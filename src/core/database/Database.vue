@@ -289,7 +289,7 @@
                                     :src="o.IconID | iconURL"
                                 />
                                 <div class="u-primary">
-                                    <span class="u-name">{{ o.Name }}</span>
+                                    <span class="u-name">{{ o.Name }}<em>({{ o.BuffName }})</em></span>
                                     <span class="u-content">{{ o.Desc }}</span>
                                     <div class="u-remarks">
                                         <span class="u-remark"
