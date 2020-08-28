@@ -127,6 +127,27 @@
                         >
                         <el-col :span="12"
                             ><div class="u-item">
+                                <a href="/dbm" target="_blank"
+                                    ><span class="u-pic"
+                                        ><i class="u-icon"
+                                            ><img
+                                                svg-inline
+                                                src="./assets/img/logos/jx3datbuilder.svg"/></i
+                                        ><span class="u-name"
+                                            >数据构建</span
+                                        ></span
+                                    ><span class="u-features"
+                                        ><span class="u-desc"
+                                            >✔️ 自定义未来数据</span
+                                        ><span>✔️ 在线DIY数据</span>
+                                        <span>✔️ 自动分析旧数据</span>
+                                        <span>✔️ 一键云端数据</span></span
+                                    ></a
+                                >
+                            </div></el-col
+                        >
+                        <el-col :span="12"
+                            ><div class="u-item">
                                 <a href="/fb/#/drop" target="_blank"
                                     ><span class="u-pic"
                                         ><i class="u-icon"
@@ -244,6 +265,33 @@
                                 >
                             </div></el-col
                         >
+                        <el-col :span="12"
+                            ><div class="u-item">
+                                <a
+                                    href="http://j3dps.com/fightlog"
+                                    target="_blank"
+                                    ><span class="u-pic"
+                                        ><i class="u-icon"
+                                            ><img
+                                                svg-inline
+                                                src="./assets/img/logos/flog.svg"/></i
+                                        ><span class="u-name"
+                                            >战斗复盘</span
+                                        ></span
+                                    ><img
+                                        class="u-blank"
+                                        svg-inline
+                                        src="./assets/img/logos/blank.svg"
+                                    /><span class="u-features"
+                                        ><span class="u-desc"
+                                            >✔️ 战斗日志分析</span
+                                        ><span>✔️ DPS排行榜</span>
+                                        <span>✔️ 公开隐藏可控</span>
+                                        <span>✔️ 深度合作伙伴</span></span
+                                    ></a
+                                >
+                            </div></el-col
+                        >
                     </el-row>
                 </el-col>
                 <el-col :span="12">
@@ -298,7 +346,7 @@
                                         <i class="u-icon"
                                             ><img
                                                 svg-inline
-                                                src="./assets/img/logos/flower2.svg"/></i
+                                                src="./assets/img/logos/flower.svg"/></i
                                         ><span class="u-name">花价查询</span>
                                     </span>
                                     <span class="u-features">

@@ -22,6 +22,10 @@
                 ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/translator.svg"/></i
                 ><span>轉換繁體</span></a
             >
+            <a class="u-app" href="/dbm" target="_blank"
+                ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/jx3datbuilder.svg"/></i
+                ><span>数据构建</span></a
+            >
             <a class="u-app" href="/fb/#/skill" target="_blank"
                 ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/skull.svg"/></i
                 ><span>副本数据</span></a
@@ -52,6 +56,12 @@
                 ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/minami.svg"/></i
                 ><span>DPS模拟</span
                 ></a>
+            <a class="u-app" 
+                href="http://j3dps.com/fightlog"
+                target="_blank"
+                ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/flog.svg"/></i
+                ><span>战斗复盘</span
+                ></a>
         </div>
         <h5 class="u-title">PVX</h5>
         <div class="m-app-box">
@@ -64,7 +74,7 @@
                 ><span>金价走势</span></a
             >
             <a class="u-app" href="/app/flower" :class="{on:isActive('flower')}"
-                ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/flower2.svg"/></i
+                ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/flower.svg"/></i
                 ><span>花价查询</span></a
             >
             <a class="u-app" href="/app/furniture" :class="{on:isActive('furniture')}"
