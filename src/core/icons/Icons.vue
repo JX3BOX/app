@@ -619,11 +619,17 @@ export default {
                             let serverValue = response.data.value;
                             if (serverValue) {
                                 // 判断是否是旧版数据
+                                // like -> '["345", "332", "  303"]'
                                 if (serverValue.includes("[")) {
-                                    this.faviconsList = JSON.parse(serverValue);
-                                } else {
-                                    this.faviconsList = serverValue.split(",");
+                                    serverValue = serverValue.replace(/[\[\]"\ ]/g,'')
                                 }
+                                // // 判断是否是旧版数据
+                                // if (serverValue.includes("[")) {
+                                //     this.faviconsList = JSON.parse(serverValue);
+                                // } else {
+                                //     this.faviconsList = serverValue.split(",");
+                                // }
+                                this.faviconsList = serverValue.split(",");
                             } else {
                                 this.faviconsList = [];
                             }
@@ -660,6 +666,11 @@ export default {
             if (window.localStorage) {
                 let current = localStorage.getItem("favicons");
                 if (current) {
+                    // 判断是否是旧版数据
+                    // like -> '["345", "332", "  303"]'
+                    if (current.includes("[")) {
+                        current = current.replace(/[\[\]"\ ]/g,'')
+                    }
                     this.localFaviconsList = current.split(",");
                 }
             }
