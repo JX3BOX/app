@@ -26,7 +26,7 @@
                         placeholder="请输入 ID 或 名称"
                         v-model="query"
                         @change="search"
-                        @keyup.enter="search"
+                        @keyup.enter.native="search"
                     >
                         <template slot="prepend">ID ／名称</template>
                         <el-button
@@ -43,17 +43,23 @@
                         <el-switch
                             v-model="strict"
                             active-text="精确匹配"
-                            @keyup.enter.native="search"
+                            @change="search"
                         >
                         </el-switch>
                     </div>
                     <div class="u-subtype" v-show="type == 'skill'">
-                        <el-select v-model="school" placeholder="门派" size="medium" @change="search"> 
+                        <el-select
+                            v-model="school"
+                            placeholder="门派"
+                            size="medium"
+                            @change="search"
+                        >
                             <el-option
-                                v-for="(item,key) in schools"
+                                v-for="(item, key) in schools"
                                 :key="key"
                                 :label="key"
-                                :value="item">
+                                :value="item"
+                            >
                             </el-option>
                         </el-select>
                     </div>
@@ -98,175 +104,6 @@
                     type="card"
                     @tab-click="search"
                 >
-                    <el-tab-pane label="技能" name="skill">
-                        <span slot="label">
-                            <img
-                                class="u-icon"
-                                svg-inline
-                                src="../../assets/img/database/skill4.svg"
-                            />
-                            <b>技能</b>
-                            <em class="u-count">{{ stat.skill }}</em>
-                        </span>
-                        <p v-if="skill.length && done" class="m-resource-count">
-                            <i class="el-icon-s-data"></i> 共找到
-                            <b>{{ skill.length }}</b> 条记录
-                        </p>
-                        <ul class="m-resource-list">
-                            <li v-for="(o, i) in skill" class="u-item" :key="i">
-                                <span class="u-id">ID:{{ o.SkillID }}</span>
-                                <img
-                                    class="u-pic"
-                                    :title="'IconID:' + o.IconID"
-                                    :src="o.IconID | iconURL"
-                                />
-                                <div class="u-primary">
-                                    <span class="u-name"
-                                        >{{ o.Name }}
-                                        <em>({{ o.SkillName }})</em>
-                                    </span>
-                                    <span class="u-content">{{
-                                        o.Desc | filterRaw
-                                    }}</span>
-                                    <div class="u-remarks">
-                                        <span class="u-remark"
-                                            >Level : {{ o.Level }}</span
-                                        >
-                                        <span class="u-remark"
-                                            >Remark : {{ o.Remark }}</span
-                                        >
-                                        <span v-if="o.HelpDesc" class="u-remark"
-                                            >HelpDesc : {{ o.HelpDesc }}</span
-                                        >
-                                        <span
-                                            v-if="o.SimpleDesc"
-                                            class="u-remark"
-                                            >SimpleDesc :
-                                            {{ o.SimpleDesc }}</span
-                                        >
-                                        <span
-                                            v-if="o.SpecialDesc"
-                                            class="u-remark"
-                                            >SpecialDesc :
-                                            {{ o.SpecialDesc }}</span
-                                        >
-                                    </div>
-                                    <el-button
-                                        class="u-raw"
-                                        icon="el-icon-view"
-                                        plain
-                                        size="mini"
-                                        @click="toggleProps(o)"
-                                        >{{
-                                            o.isopen ? "收起详情" : "展开详情"
-                                        }}</el-button
-                                    >
-                                </div>
-                                <div class="u-props" :class="{ on: o.isopen }">
-                                    <span
-                                        class="u-desc"
-                                        title="区分物理或魔法等"
-                                        ><em>类型</em>{{ o.KindType }}</span
-                                    >
-                                    <span
-                                        class="u-desc"
-                                        title="区分眩晕或伤害等"
-                                        ><em>功能</em>{{ o.FunctionType }}</span
-                                    >
-                                    <span class="u-desc"
-                                        ><em>效果</em
-                                        >{{ o.Design_Effect }}</span
-                                    >
-                                    <span
-                                        class="u-desc"
-                                        title="范围或指定目标等"
-                                        ><em>释放方式</em>{{ o.CastMode }}</span
-                                    >
-                                    <span class="u-desc" title="是否为被动"
-                                        ><em>被动</em
-                                        >{{ o.IsPassiveSkill }}</span
-                                    >
-                                    <span
-                                        class="u-desc"
-                                        title="是否为通道/引导技能"
-                                        ><em>通道</em
-                                        >{{ o.IsChannelSkill }}</span
-                                    >
-                                    <span class="u-desc"
-                                        ><em>可否打断</em
-                                        >{{ o.CauseBeatBreak }}</span
-                                    >
-                                    <span class="u-desc"
-                                        ><em>可否打退</em
-                                        >{{ o.CauseBeatBack }}</span
-                                    >
-                                    <span class="u-desc" title="是否受障碍影响"
-                                        ><em>3D碰撞</em
-                                        >{{ o.Use3DObstacle }}</span
-                                    >
-                                    <span class="u-desc"
-                                        ><em>对玩家生效</em
-                                        >{{ o.TargetTypePlayer }}</span
-                                    >
-                                    <span class="u-desc"
-                                        ><em>对NPC生效</em
-                                        >{{ o.TargetTypeNpc }}</span
-                                    >
-                                    <span class="u-desc"
-                                        ><em>小队生效</em
-                                        >{{ o.TargetRelationParty }}</span
-                                    >
-                                    <span class="u-desc"
-                                        ><em>团队生效</em
-                                        >{{ o.TargetRelationRaid }}</span
-                                    >
-                                    <span class="u-desc"
-                                        ><em>无视增益</em
-                                        >{{ o.IgnorePositiveShield }}</span
-                                    >
-                                    <span class="u-desc"
-                                        ><em>无视减益</em
-                                        >{{ o.IgnoreNegativeShield }}</span
-                                    >
-
-                                    <span class="u-desc"
-                                        ><em>所属门派</em
-                                        >{{ o.BelongSchool }}</span
-                                    >
-                                    <span class="u-desc"
-                                        ><em>所属套路</em
-                                        >{{ o.BelongKungfu }}</span
-                                    >
-                                    <span class="u-desc"
-                                        ><em>最高等级</em>{{ o.MaxLevel }}</span
-                                    >
-                                    <span class="u-desc"
-                                        ><em>是否需求武器</em
-                                        >{{ o.WeaponRequest }}</span
-                                    >
-                                    <span class="u-desc"
-                                        ><em>是否需要上马</em
-                                        >{{ o.SelfHorseStateRequest }}</span
-                                    >
-                                    <span class="u-desc"
-                                        ><em>需要脱战释放</em
-                                        >{{ o.NeedOutOfFight }}</span
-                                    >
-                                    <span class="u-desc"
-                                        ><em>ScriptFile</em
-                                        >{{ o.ScriptFile }}</span
-                                    >
-                                </div>
-                            </li>
-                        </ul>
-                        <el-alert
-                            v-if="!skill.length && done"
-                            title="没有找到相关条目"
-                            type="info"
-                            show-icon
-                        >
-                        </el-alert>
-                    </el-tab-pane>
                     <el-tab-pane label="Buff" name="buff">
                         <span slot="label">
                             <img
@@ -278,7 +115,8 @@
                             <em class="u-count">{{ stat.buff }}</em>
                         </span>
                         <p v-if="buff.length && done" class="m-resource-count">
-                            <i class="el-icon-s-data"></i> 共找到 <b>{{ buff.length }}</b> 条记录
+                            <i class="el-icon-s-data"></i> 共找到
+                            <b>{{ buff.length }}</b> 条记录
                         </p>
                         <ul class="m-resource-list">
                             <li v-for="(o, i) in buff" class="u-item" :key="i">
@@ -289,7 +127,10 @@
                                     :src="o.IconID | iconURL"
                                 />
                                 <div class="u-primary">
-                                    <span class="u-name">{{ o.Name }}<em>({{ o.BuffName }})</em></span>
+                                    <span class="u-name"
+                                        >{{ o.Name
+                                        }}<em>({{ o.BuffName }})</em></span
+                                    >
                                     <span class="u-content">{{ o.Desc }}</span>
                                     <div class="u-remarks">
                                         <span class="u-remark"
@@ -478,6 +319,175 @@
                         >
                         </el-alert>
                     </el-tab-pane>
+                    <el-tab-pane label="技能" name="skill">
+                        <span slot="label">
+                            <img
+                                class="u-icon"
+                                svg-inline
+                                src="../../assets/img/database/skill4.svg"
+                            />
+                            <b>技能</b>
+                            <em class="u-count">{{ stat.skill }}</em>
+                        </span>
+                        <p v-if="skill.length && done" class="m-resource-count">
+                            <i class="el-icon-s-data"></i> 共找到
+                            <b>{{ skill.length }}</b> 条记录
+                        </p>
+                        <ul class="m-resource-list">
+                            <li v-for="(o, i) in skill" class="u-item" :key="i">
+                                <span class="u-id">ID:{{ o.SkillID }}</span>
+                                <img
+                                    class="u-pic"
+                                    :title="'IconID:' + o.IconID"
+                                    :src="o.IconID | iconURL"
+                                />
+                                <div class="u-primary">
+                                    <span class="u-name"
+                                        >{{ o.Name }}
+                                        <em>({{ o.SkillName }})</em>
+                                    </span>
+                                    <span class="u-content">{{
+                                        o.Desc | filterRaw
+                                    }}</span>
+                                    <div class="u-remarks">
+                                        <span class="u-remark"
+                                            >Level : {{ o.Level }}</span
+                                        >
+                                        <span class="u-remark"
+                                            >Remark : {{ o.Remark }}</span
+                                        >
+                                        <span v-if="o.HelpDesc" class="u-remark"
+                                            >HelpDesc : {{ o.HelpDesc }}</span
+                                        >
+                                        <span
+                                            v-if="o.SimpleDesc"
+                                            class="u-remark"
+                                            >SimpleDesc :
+                                            {{ o.SimpleDesc }}</span
+                                        >
+                                        <span
+                                            v-if="o.SpecialDesc"
+                                            class="u-remark"
+                                            >SpecialDesc :
+                                            {{ o.SpecialDesc }}</span
+                                        >
+                                    </div>
+                                    <el-button
+                                        class="u-raw"
+                                        icon="el-icon-view"
+                                        plain
+                                        size="mini"
+                                        @click="toggleProps(o)"
+                                        >{{
+                                            o.isopen ? "收起详情" : "展开详情"
+                                        }}</el-button
+                                    >
+                                </div>
+                                <div class="u-props" :class="{ on: o.isopen }">
+                                    <span
+                                        class="u-desc"
+                                        title="区分物理或魔法等"
+                                        ><em>类型</em>{{ o.KindType }}</span
+                                    >
+                                    <span
+                                        class="u-desc"
+                                        title="区分眩晕或伤害等"
+                                        ><em>功能</em>{{ o.FunctionType }}</span
+                                    >
+                                    <span class="u-desc"
+                                        ><em>效果</em
+                                        >{{ o.Design_Effect }}</span
+                                    >
+                                    <span
+                                        class="u-desc"
+                                        title="范围或指定目标等"
+                                        ><em>释放方式</em>{{ o.CastMode }}</span
+                                    >
+                                    <span class="u-desc" title="是否为被动"
+                                        ><em>被动</em
+                                        >{{ o.IsPassiveSkill }}</span
+                                    >
+                                    <span
+                                        class="u-desc"
+                                        title="是否为通道/引导技能"
+                                        ><em>通道</em
+                                        >{{ o.IsChannelSkill }}</span
+                                    >
+                                    <span class="u-desc"
+                                        ><em>可否打断</em
+                                        >{{ o.CauseBeatBreak }}</span
+                                    >
+                                    <span class="u-desc"
+                                        ><em>可否打退</em
+                                        >{{ o.CauseBeatBack }}</span
+                                    >
+                                    <span class="u-desc" title="是否受障碍影响"
+                                        ><em>3D碰撞</em
+                                        >{{ o.Use3DObstacle }}</span
+                                    >
+                                    <span class="u-desc"
+                                        ><em>对玩家生效</em
+                                        >{{ o.TargetTypePlayer }}</span
+                                    >
+                                    <span class="u-desc"
+                                        ><em>对NPC生效</em
+                                        >{{ o.TargetTypeNpc }}</span
+                                    >
+                                    <span class="u-desc"
+                                        ><em>小队生效</em
+                                        >{{ o.TargetRelationParty }}</span
+                                    >
+                                    <span class="u-desc"
+                                        ><em>团队生效</em
+                                        >{{ o.TargetRelationRaid }}</span
+                                    >
+                                    <span class="u-desc"
+                                        ><em>无视增益</em
+                                        >{{ o.IgnorePositiveShield }}</span
+                                    >
+                                    <span class="u-desc"
+                                        ><em>无视减益</em
+                                        >{{ o.IgnoreNegativeShield }}</span
+                                    >
+
+                                    <span class="u-desc"
+                                        ><em>所属门派</em
+                                        >{{ o.BelongSchool }}</span
+                                    >
+                                    <span class="u-desc"
+                                        ><em>所属套路</em
+                                        >{{ o.BelongKungfu }}</span
+                                    >
+                                    <span class="u-desc"
+                                        ><em>最高等级</em>{{ o.MaxLevel }}</span
+                                    >
+                                    <span class="u-desc"
+                                        ><em>是否需求武器</em
+                                        >{{ o.WeaponRequest }}</span
+                                    >
+                                    <span class="u-desc"
+                                        ><em>是否需要上马</em
+                                        >{{ o.SelfHorseStateRequest }}</span
+                                    >
+                                    <span class="u-desc"
+                                        ><em>需要脱战释放</em
+                                        >{{ o.NeedOutOfFight }}</span
+                                    >
+                                    <span class="u-desc"
+                                        ><em>ScriptFile</em
+                                        >{{ o.ScriptFile }}</span
+                                    >
+                                </div>
+                            </li>
+                        </ul>
+                        <el-alert
+                            v-if="!skill.length && done"
+                            title="没有找到相关条目"
+                            type="info"
+                            show-icon
+                        >
+                        </el-alert>
+                    </el-tab-pane>
                     <el-tab-pane label="NPC" name="npc">
                         <span slot="label">
                             <img
@@ -489,7 +499,8 @@
                             <em class="u-count">{{ stat.npc }}</em>
                         </span>
                         <p v-if="npc.length && done" class="m-resource-count">
-                            <i class="el-icon-s-data"></i> 共找到 <b>{{ npc.length }}</b> 条记录
+                            <i class="el-icon-s-data"></i> 共找到
+                            <b>{{ npc.length }}</b> 条记录
                         </p>
                         <ul class="m-npc-list" v-if="npc.length">
                             <li
@@ -777,6 +788,54 @@
                         >
                         </el-alert>
                     </el-tab-pane>
+                    <el-tab-pane label="交互物件" name="doodad">
+                        <span slot="label">
+                            <img
+                                class="u-icon"
+                                svg-inline
+                                src="../../assets/img/database/doodad.svg"
+                            />
+                            <b>交互物件</b>
+                            <em class="u-count">{{ stat.doodad }}</em>
+                        </span>
+                        <p
+                            v-if="doodad.length && done"
+                            class="m-resource-count"
+                        >
+                            <i class="el-icon-s-data"></i> 共找到
+                            <b>{{ doodad.length }}</b> 条记录
+                        </p>
+                        <ul class="m-resource-list" v-if="doodad.length">
+                            <li
+                                v-for="(o, i) in doodad"
+                                :key="i"
+                                class="u-item"
+                            >
+                                <span class="u-id">ID:{{ o.ID }}</span>
+                                <img
+                                    class="u-pic"
+                                    :title="'IconID:' + 10909"
+                                    :src="10909 | iconURL"
+                                />
+                                <span class="u-name">{{ o.Name }}</span>
+                                <span class="u-desc"
+                                    >
+                                    <em>地图</em>{{ o.MapName }} 
+                                    <em>说明</em> {{ o.BarText }}
+                                    <em>类型</em> {{ o.Kind }}
+                                    </span
+                                >
+                                <span class="u-remark">{{ o.Script }}</span>
+                            </li>
+                        </ul>
+                        <el-alert
+                            v-if="!doodad.length && done"
+                            title="没有找到相关条目"
+                            type="info"
+                            show-icon
+                        >
+                        </el-alert>
+                    </el-tab-pane>
                     <el-tab-pane label="物品" name="item">
                         <span slot="label">
                             <img
@@ -788,22 +847,27 @@
                             <em class="u-count">{{ stat.item }}</em>
                         </span>
                         <p v-if="item.length && done" class="m-resource-count">
-                            <i class="el-icon-s-data"></i> 共找到 <b>{{ item.length }}</b> 条记录
+                            <i class="el-icon-s-data"></i> 共找到
+                            <b>{{ item.length }}</b> 条记录
                         </p>
                         <ul class="m-resource-list" v-if="item.length">
                             <li v-for="(o, i) in item" :key="i" class="u-item">
-                                <a class="u-link" :href="o.ItemID | itemURL" target="_blank">
+                                <a
+                                    class="u-link"
+                                    :href="o.ItemID | itemURL"
+                                    target="_blank"
+                                >
                                     <span class="u-id">ID:{{ o.ItemID }}</span>
-                                <img
-                                    class="u-pic"
-                                    :title="'IconID:' + o.IconID"
-                                    :src="o.IconID | iconURL"
-                                />
-                                <span class="u-name">{{ o.Name }}</span>
-                                <span class="u-desc">{{ o.Desc }}</span>
-                                <span class="u-remark">{{
-                                    o.Requirement
-                                }}</span>
+                                    <img
+                                        class="u-pic"
+                                        :title="'IconID:' + o.IconID"
+                                        :src="o.IconID | iconURL"
+                                    />
+                                    <span class="u-name">{{ o.Name }}</span>
+                                    <span class="u-desc">{{ o.Desc }}</span>
+                                    <span class="u-remark">{{
+                                        o.Requirement
+                                    }}</span>
                                 </a>
                             </li>
                         </ul>
@@ -829,15 +893,15 @@
 <script>
 import Nav from "@/components/Nav.vue";
 import { loadResource, loadStat } from "../../service/database";
-import { __iconPath,__ossRoot } from "@jx3box/jx3box-common/js/jx3box.json";
+import { __iconPath, __ossRoot } from "@jx3box/jx3box-common/js/jx3box.json";
 import User from "@jx3box/jx3box-common/js/user";
-import {school} from '@jx3box/jx3box-data/data/xf/school.json'
+import { school } from "@jx3box/jx3box-data/data/xf/school.json";
 export default {
     name: "Database",
     props: [],
     data: function() {
         return {
-            type: "skill",
+            type: "buff",
             query: "",
             npc_map: "",
             npc_level: "",
@@ -851,18 +915,20 @@ export default {
             advbuff: [],
             npc: [],
             item: [],
+            doodad: [],
 
             stat: {
                 skill: 0,
                 buff: 0,
                 item: 0,
                 npc: 0,
+                doodad: 0,
             },
             done: false,
             loading: false,
 
             isSuper: false,
-            schools : school
+            schools: school,
         };
     },
     computed: {
@@ -889,7 +955,8 @@ export default {
                 if (this.level) params.level = this.level;
             }
             if (this.type == "skill") {
-                if (this.school || this.school == 0) params.school = this.school;
+                if (this.school || this.school == 0)
+                    params.school = this.school;
             }
 
             if (isNaN(query)) {
@@ -946,9 +1013,9 @@ export default {
         iconURL: function(id) {
             return __ossRoot + "icon/" + id + ".png";
         },
-        itemURL : function (id){
-            return '/item/#/view/' + id
-        }
+        itemURL: function(id) {
+            return "/item/#/view/" + id;
+        },
     },
     created: function() {
         loadStat().then((data) => {
@@ -956,7 +1023,18 @@ export default {
         });
         this.isSuper = User.getInfo().group > 8;
     },
-    mounted: function() {},
+    // watch : {
+    //     query : function (newval){
+    //         this.search()
+    //     }  
+    // },
+    mounted: function() {
+        let params = new URLSearchParams(location.search);
+        this.type = params.get("type") || 'buff';
+        this.query = params.get('query') || ''
+        this.level = params.get('level') || ''
+        this.search()
+    },
     components: {
         Nav,
     },
