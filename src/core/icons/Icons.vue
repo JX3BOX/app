@@ -162,7 +162,7 @@
                                             <i class="u-pic">
                                                 <el-image
                                                     :src="
-                                                        `${JX3BOXIconPath}${icon}.png`
+                                                        `${JX3BOX}${icon}.png`
                                                     "
                                                     class="u-img"
                                                     lazy
@@ -319,7 +319,7 @@ export default {
             iconsList: [],
             clickedIndex: -1,
             JX3BOXIconPath: JX3BOX.__ossMirror + "icon/",
-            JX3BOXEmojiPath: JX3BOX.__iconPath + "emotion/official_mini/",
+            JX3BOXEmojiPath: JX3BOX.__ossMirror + "emotion/official_mini/",
             faviconsList: null,
             localFaviconsList: [],
             isSynchronizing: false,

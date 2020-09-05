@@ -96,6 +96,16 @@
                             <template slot="prepend">等级</template>
                         </el-input>
                     </div>
+                    <div class="u-subtype" v-show="type == 'doodad'">
+                        <el-input
+                            size="medium"
+                            placeholder="指定等级"
+                            v-model="doodad_level"
+                            @change="search"
+                        >
+                            <template slot="prepend">等级</template>
+                        </el-input>
+                    </div>
                 </div>
 
                 <el-tabs
@@ -119,7 +129,7 @@
                             <b>{{ buff.length }}</b> 条记录
                         </p>
                         <ul class="m-resource-list">
-                            <li v-for="(o, i) in buff" class="u-item" :key="i">
+                            <li v-for="(o, i) in buff" class="u-item u-cantoggle" :key="i" @click="toggleProps(o)">
                                 <span class="u-id">ID:{{ o.BuffID }}</span>
                                 <img
                                     class="u-pic"
@@ -142,6 +152,7 @@
                                     </div>
                                     <el-button
                                         class="u-raw"
+                                        :class="{on : o.isopen}"
                                         icon="el-icon-view"
                                         plain
                                         size="mini"
@@ -334,7 +345,7 @@
                             <b>{{ skill.length }}</b> 条记录
                         </p>
                         <ul class="m-resource-list">
-                            <li v-for="(o, i) in skill" class="u-item" :key="i">
+                            <li v-for="(o, i) in skill" class="u-item u-cantoggle" :key="i" @click="toggleProps(o)">
                                 <span class="u-id">ID:{{ o.SkillID }}</span>
                                 <img
                                     class="u-pic"
@@ -374,6 +385,7 @@
                                     </div>
                                     <el-button
                                         class="u-raw"
+                                        :class="{on : o.isopen}"
                                         icon="el-icon-view"
                                         plain
                                         size="mini"
@@ -905,6 +917,7 @@ export default {
             query: "",
             npc_map: "",
             npc_level: "",
+            doodad_level: "",
             strict: false,
             level: "",
             school: "",
@@ -957,6 +970,9 @@ export default {
             if (this.type == "skill") {
                 if (this.school || this.school == 0)
                     params.school = this.school;
+            }
+            if(this.type == 'doodad'){
+                if(this.doodad_level) params.level = this.doodad_level
             }
 
             if (isNaN(query)) {
