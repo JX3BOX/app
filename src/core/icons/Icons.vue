@@ -82,7 +82,7 @@
                                     >
                                         <el-image
                                             :src="
-                                                `${JX3BOXIconPath}${icon}.png`
+                                                `${IconPath}${icon}.png`
                                             "
                                             class="u-img"
                                             lazy
@@ -162,7 +162,7 @@
                                             <i class="u-pic">
                                                 <el-image
                                                     :src="
-                                                        `${JX3BOX}${icon}.png`
+                                                        `${IconPath}${icon}.png`
                                                     "
                                                     class="u-img"
                                                     lazy
@@ -256,7 +256,7 @@
                                     >
                                         <el-image
                                             :src="
-                                                `${JX3BOXEmojiPath}${emojiCategoryOptions[emojiSelection].name}/${index}.gif`
+                                                `${EmojiPath}${emojiCategoryOptions[emojiSelection].name}/${index}.gif`
                                             "
                                             lazy
                                         >
@@ -318,8 +318,8 @@ export default {
             searchIconInput: "",
             iconsList: [],
             clickedIndex: -1,
-            JX3BOXIconPath: JX3BOX.__ossMirror + "icon/",
-            JX3BOXEmojiPath: JX3BOX.__ossMirror + "emotion/official_mini/",
+            IconPath: JX3BOX.__ossMirror + "icon/",
+            EmojiPath: JX3BOX.__ossMirror + "emotion/official_mini/",
             faviconsList: null,
             localFaviconsList: [],
             isSynchronizing: false,
@@ -459,7 +459,7 @@ export default {
         handleDownloadEmoji() {
             this.isDownloadingEmoji = true;
             let link = document.createElement("a");
-            link.href = `${this.JX3BOXEmojiPath}${
+            link.href = `${this.EmojiPath}${
                 this.emojiCategoryOptions[this.emojiSelection].name
             }.zip`;
             link.download = `${
