@@ -69,7 +69,8 @@
 <script>
 import Nav from "@/components/Nav.vue";
 import { uploadData, parseData } from "../../service/facedata.js";
-import result from "./result.vue";
+import result from "@jx3box/jx3box-facedat/src/Facedat.vue"
+const { parse } = require("lua-json");
 
 export default {
     name: "Facedata",
@@ -92,14 +93,6 @@ export default {
             // let formdata = new FormData();
             let file = e.target.files[0];
             this.data = file;
-            // formdata.append("file", file);
-            // uploadData(formdata, this).then((res) => {
-            //     this.data = res.data.data.list[0];
-            //     this.$message({
-            //         message: res.data.msg,
-            //         type: "success",
-            //     });
-            // });
             this.parseData(file);
         },
         // 解析数据
@@ -110,25 +103,23 @@ export default {
             fr.readAsText(facedata);
             fr.onload = function(e) {
                 console.log("读取成功...开始执行分析...");
-                parseData(e.target.result, vm)
-                    .then((res) => {
-                        vm.facedata = JSON.stringify(res.data.data);
-                        return res.data.status;
-                    })
-                    .then((status) => {
-                        if (status) {
-                            vm.$notify({
-                                title: "成功",
-                                message: "脸型数据解析成功",
-                                type: "success",
-                            });
-                        } else {
-                            vm.$notify.error({
-                                title: "错误",
-                                message: "无法解析脸型数据",
-                            });
-                        }
+
+                let data = e.target.result;
+                data = "return" + data.slice(data.indexOf("{"));
+
+                try {
+                    vm.facedata = JSON.stringify(parse(data));
+                    vm.$notify({
+                        title: "成功",
+                        message: "脸型数据解析成功",
+                        type: "success",
                     });
+                } catch (e) {
+                    vm.$notify.error({
+                        title: "错误",
+                        message: "无法解析脸型数据",
+                    });
+                }
             };
             fr.onerror = function(e) {
                 vm.$notify.error({
