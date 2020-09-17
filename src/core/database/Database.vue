@@ -1027,7 +1027,7 @@ export default {
             return str && str.replace(/\\n/g, "\n");
         },
         iconURL: function(id) {
-            return __ossRoot + "icon/" + id + ".png";
+            return __iconPath + "icon/" + id + ".png";
         },
         itemURL: function(id) {
             return "/item/#/view/" + id;

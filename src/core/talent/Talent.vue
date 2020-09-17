@@ -123,36 +123,20 @@ import JX3_QIXUE from "@jx3box/jx3box-talent";
 import $ from "jquery";
 import schema from "./schema.vue";
 import schemas from "./schemas.json";
+import talent_versions from "@/assets/data/talent_versions.json";
 
 export default {
     name: "Talent",
     props: [],
     data: function() {
         return {
-            version: "v20200805",
+            version: "v20200915",
             xf: "其它",
             sq: "1,1,1,1,1,1,1,1,1,1,1,1",
             driver: "",
             code: "",
 
-            talent_versions: [
-                {
-                    version: "v20200805",
-                    name: "同筑山水居",
-                },
-                {
-                    version: "v20200522",
-                    name: "结庐在江湖",
-                },
-                {
-                    version: "v20191128",
-                    name: "凌雪藏锋",
-                },
-                {
-                    version: "v20190926",
-                    name: "怒海争锋",
-                },
-            ],
+            talent_versions,
             xfmap,
             schemas,
         };
@@ -207,7 +191,7 @@ export default {
     },
     filters: {
         xficon: function(id) {
-            return __ossRoot + "image/xf/" + id + ".png";
+            return __imgPath + "image/xf/" + id + ".png";
         },
     },
     mounted: function() {
