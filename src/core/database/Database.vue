@@ -129,7 +129,7 @@
                             <b>{{ buff.length }}</b> 条记录
                         </p>
                         <ul class="m-resource-list">
-                            <li v-for="(o, i) in buff" class="u-item u-cantoggle" :key="i" @click="toggleProps(o)">
+                            <li v-for="(o, i) in buff" class="u-item u-cantoggle" :key="i">
                                 <span class="u-id">ID:{{ o.BuffID }}</span>
                                 <img
                                     class="u-pic"
@@ -345,7 +345,7 @@
                             <b>{{ skill.length }}</b> 条记录
                         </p>
                         <ul class="m-resource-list">
-                            <li v-for="(o, i) in skill" class="u-item u-cantoggle" :key="i" @click="toggleProps(o)">
+                            <li v-for="(o, i) in skill" class="u-item u-cantoggle" :key="i" >
                                 <span class="u-id">ID:{{ o.SkillID }}</span>
                                 <img
                                     class="u-pic"
@@ -832,8 +832,8 @@
                                 <span class="u-name">{{ o.Name }}</span>
                                 <span class="u-desc"
                                     >
-                                    <em>地图</em>{{ o.MapName }} 
-                                    <em>说明</em> {{ o.BarText }}
+                                    <em>地图</em> {{ o.MapName }} 
+                                    <em>说明</em> {{ o.BarText }} 
                                     <em>类型</em> {{ o.Kind }}
                                     </span
                                 >
