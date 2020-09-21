@@ -13,9 +13,8 @@
                 src="../../assets/img/logos/flower.svg"
             />
             <div class="m-info">
-                前往个人中心<a href="/dashboard/#/profile" target="_blank"
-                    >资料修改</a
-                >可绑定默认区服，否则默认将使用上一次搜索区服
+                <a href="/dashboard/#/profile" target="_blank">设置默认区服</a> | 
+                <a href="/tool/?pid=17667#/" target="_blank">自助上报</a>
             </div>
         </Breadcrumb>
         <LeftSidebar :open="false">
