@@ -767,7 +767,7 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div class="u-misc" v-if="isSuper">
+                                <div class="u-misc" v-if="isSuperAuthor">
                                     <span class="u-remark">
                                         CanSeeLifeBar:
                                         <strong>{{ o.CanSeeLifeBar }}</strong>
@@ -832,9 +832,9 @@
                                 <span class="u-name">{{ o.Name }}</span>
                                 <span class="u-desc"
                                     >
-                                    <em>地图</em> {{ o.MapName }} 
-                                    <em>说明</em> {{ o.BarText }} 
-                                    <em>类型</em> {{ o.Kind }}
+                                    <span class="u-doodad-prop"><em>地图</em> {{ o.MapName }}</span>
+                                    <span class="u-doodad-prop"><em>说明</em> {{ o.BarText }}</span>
+                                    <span class="u-doodad-prop"><em>类型</em> {{ o.Kind }}</span>
                                     </span
                                 >
                                 <span class="u-remark">{{ o.Script }}</span>
@@ -940,7 +940,7 @@ export default {
             done: false,
             loading: false,
 
-            isSuper: false,
+            isSuperAuthor: User.isSuperAuthor(),
             schools: school,
         };
     },
@@ -1037,7 +1037,6 @@ export default {
         loadStat().then((data) => {
             this.stat = data;
         });
-        this.isSuper = User.getInfo().group > 8;
     },
     // watch : {
     //     query : function (newval){
