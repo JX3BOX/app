@@ -22,6 +22,10 @@
                 ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/translator.svg"/></i
                 ><span>轉換繁體</span></a
             >
+            <a class="u-app" href="/team" target="_blank"
+                ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/oa.svg"/></i
+                ><span>团队管理</span></a
+            >
             <a class="u-app" href="/dbm" target="_blank"
                 ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/jx3datbuilder.svg"/></i
                 ><span>数据构建</span></a

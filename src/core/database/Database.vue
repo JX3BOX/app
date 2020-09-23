@@ -112,7 +112,7 @@
                     class="m-database-tabs"
                     v-model="type"
                     type="card"
-                    @tab-click="search"
+                    @tab-click="changeType"
                 >
                     <el-tab-pane label="Buff" name="buff">
                         <span slot="label">
@@ -129,7 +129,11 @@
                             <b>{{ buff.length }}</b> 条记录
                         </p>
                         <ul class="m-resource-list">
-                            <li v-for="(o, i) in buff" class="u-item u-cantoggle" :key="i">
+                            <li
+                                v-for="(o, i) in buff"
+                                class="u-item u-cantoggle"
+                                :key="i"
+                            >
                                 <span class="u-id">ID:{{ o.BuffID }}</span>
                                 <img
                                     class="u-pic"
@@ -139,7 +143,9 @@
                                 <div class="u-primary">
                                     <span class="u-name"
                                         >{{ o.Name
-                                        }}<em v-if="o.BuffName">({{ o.BuffName }})</em></span
+                                        }}<em v-if="o.BuffName"
+                                            >({{ o.BuffName }})</em
+                                        ></span
                                     >
                                     <span class="u-content">{{ o.Desc }}</span>
                                     <div class="u-remarks">
@@ -152,7 +158,7 @@
                                     </div>
                                     <el-button
                                         class="u-raw"
-                                        :class="{on : o.isopen}"
+                                        :class="{ on: o.isopen }"
                                         icon="el-icon-view"
                                         plain
                                         size="mini"
@@ -345,7 +351,11 @@
                             <b>{{ skill.length }}</b> 条记录
                         </p>
                         <ul class="m-resource-list">
-                            <li v-for="(o, i) in skill" class="u-item u-cantoggle" :key="i" >
+                            <li
+                                v-for="(o, i) in skill"
+                                class="u-item u-cantoggle"
+                                :key="i"
+                            >
                                 <span class="u-id">ID:{{ o.SkillID }}</span>
                                 <img
                                     class="u-pic"
@@ -355,7 +365,9 @@
                                 <div class="u-primary">
                                     <span class="u-name"
                                         >{{ o.Name }}
-                                        <em v-if="o.SkillName">({{ o.SkillName }})</em>
+                                        <em v-if="o.SkillName"
+                                            >({{ o.SkillName }})</em
+                                        >
                                     </span>
                                     <span class="u-content">{{
                                         o.Desc | filterRaw
@@ -385,7 +397,7 @@
                                     </div>
                                     <el-button
                                         class="u-raw"
-                                        :class="{on : o.isopen}"
+                                        :class="{ on: o.isopen }"
                                         icon="el-icon-view"
                                         plain
                                         size="mini"
@@ -830,13 +842,17 @@
                                     :src="10909 | iconURL"
                                 />
                                 <span class="u-name">{{ o.Name }}</span>
-                                <span class="u-desc"
+                                <span class="u-desc">
+                                    <span class="u-doodad-prop"
+                                        ><em>地图</em> {{ o.MapName }}</span
                                     >
-                                    <span class="u-doodad-prop"><em>地图</em> {{ o.MapName }}</span>
-                                    <span class="u-doodad-prop"><em>说明</em> {{ o.BarText }}</span>
-                                    <span class="u-doodad-prop"><em>类型</em> {{ o.Kind }}</span>
-                                    </span
-                                >
+                                    <span class="u-doodad-prop"
+                                        ><em>说明</em> {{ o.BarText }}</span
+                                    >
+                                    <span class="u-doodad-prop"
+                                        ><em>类型</em> {{ o.Kind }}</span
+                                    >
+                                </span>
                                 <span class="u-remark">{{ o.Script }}</span>
                             </li>
                         </ul>
@@ -864,7 +880,7 @@
                         </p>
                         <ul class="m-resource-list" v-if="item.length">
                             <li v-for="(o, i) in item" :key="i" class="u-item">
-                                <a
+                                <span
                                     class="u-link"
                                     :href="o.ItemID | itemURL"
                                     target="_blank"
@@ -880,7 +896,7 @@
                                     <span class="u-remark">{{
                                         o.Requirement
                                     }}</span>
-                                </a>
+                                </span>
                             </li>
                         </ul>
                         <el-alert
@@ -892,6 +908,30 @@
                         </el-alert>
                     </el-tab-pane>
                 </el-tabs>
+
+                <template v-if="multipage">
+                    <!-- 下一页 -->
+                    <el-button
+                        class="m-archive-more"
+                        :class="{ show: hasNextPage }"
+                        type="primary"
+                        icon="el-icon-arrow-down"
+                        @click="appendPage"
+                        >加载更多</el-button
+                    >
+                    <!-- 分页 -->
+                    <el-pagination
+                        class="m-archive-pages"
+                        background
+                        layout="total, prev, pager, next,jumper"
+                        :hide-on-single-page="true"
+                        :page-size="per"
+                        :total="total"
+                        :current-page.sync="page"
+                        @current-change="changePage"
+                    >
+                    </el-pagination>
+                </template>
 
                 <div class="m-database-tip" v-show="isBlank">
                     ❤ 请指定搜索条件回车
@@ -942,15 +982,26 @@ export default {
 
             isSuperAuthor: User.isSuperAuthor(),
             schools: school,
+
+            per: 10,
+            page: 1,
+            total: 1,
+            pages: 1,
         };
     },
     computed: {
         isBlank: function() {
             return !this.query && !this[this.type]["length"];
         },
+        hasNextPage: function() {
+            return this.total > 1 && this.page < this.pages;
+        },
+        multipage: function() {
+            return this.done && this.pages > 1;
+        },
     },
     methods: {
-        getData: function(type) {
+        getData: function(page = 1, append = false) {
             if (!this.query) return;
 
             this.loading = true;
@@ -959,6 +1010,8 @@ export default {
 
             let params = {
                 strict: ~~this.strict,
+                per: this.per,
+                page: page,
             };
             if (this.type == "npc") {
                 if (this.npc_map) params.map = this.npc_map;
@@ -971,33 +1024,31 @@ export default {
                 if (this.school || this.school == 0)
                     params.school = this.school;
             }
-            if(this.type == 'doodad'){
-                if(this.doodad_level) params.level = this.doodad_level
+            if (this.type == "doodad") {
+                if (this.doodad_level) params.level = this.doodad_level;
             }
 
-            if (isNaN(query)) {
-                loadResource(type, "name", query, params)
-                    .then((data) => {
-                        this[type] = this.transformData(data);
-                    })
-                    .finally(() => {
-                        this.done = true;
-                        this.loading = false;
-                    });
-            } else {
-                query = parseInt(query);
-                loadResource(type, "id", query, params)
-                    .then((data) => {
-                        this[type] = this.transformData(data);
-                    })
-                    .finally(() => {
-                        this.done = true;
-                        this.loading = false;
-                    });
-            }
+            let mode = isNaN(query) ? "name" : "id";
+            loadResource(this.type, mode, query, params)
+                .then((data) => {
+                    if (append) {
+                        this[this.type] = this[this.type].concat(
+                            this.transformData(data.list)
+                        );
+                    } else {
+                        window.scroll(0, 0);
+                        this[this.type] = this.transformData(data.list);
+                    }
+                    this.pages = data.pages;
+                    this.total = data.total;
+                })
+                .finally(() => {
+                    this.done = true;
+                    this.loading = false;
+                });
         },
         search: function() {
-            this.getData(this.type);
+            this.getData();
         },
         onCopy: function(val) {
             this.$notify({
@@ -1021,6 +1072,16 @@ export default {
             });
             return data;
         },
+        appendPage: function() {
+            this.getData(++this.page, true);
+        },
+        changePage: function(i) {
+            this.getData(i);
+        },
+        changeType : function (){
+            this.page = 1
+            this.getData()
+        }
     },
     filters: {
         filterRaw: function(str) {
@@ -1029,9 +1090,9 @@ export default {
         iconURL: function(id) {
             return __iconPath + "icon/" + id + ".png";
         },
-        itemURL: function(id) {
-            return "/item/#/view/" + id;
-        },
+        // itemURL: function(id) {
+        //     return "/item/#/view/" + id;
+        // },
     },
     created: function() {
         loadStat().then((data) => {
@@ -1041,14 +1102,14 @@ export default {
     // watch : {
     //     query : function (newval){
     //         this.search()
-    //     }  
+    //     }
     // },
     mounted: function() {
         let params = new URLSearchParams(location.search);
-        this.type = params.get("type") || 'buff';
-        this.query = params.get('query') || ''
-        this.level = params.get('level') || ''
-        this.search()
+        this.type = params.get("type") || "buff";
+        this.query = params.get("query") || "";
+        this.level = params.get("level") || "";
+        this.search();
     },
     components: {
         Nav,

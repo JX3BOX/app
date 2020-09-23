@@ -106,21 +106,21 @@
                         >
                         <el-col :span="12"
                             ><div class="u-item">
-                                <a href="/fb/#/skill" target="_blank"
+                                <a href="/team" target="_blank"
                                     ><span class="u-pic"
                                         ><i class="u-icon"
                                             ><img
                                                 svg-inline
-                                                src="./assets/img/logos/skull.svg"/></i
+                                                src="./assets/img/logos/oa.svg"/></i
                                         ><span class="u-name"
-                                            >副本数据</span
+                                            >团队管理</span
                                         ></span
                                     ><span class="u-features"
                                         ><span class="u-desc"
-                                            >✔️ 副本技能元数据</span
-                                        ><span>✔️ 血量防御全数值一览</span>
-                                        <span>✔️ 开荒进度团必备</span>
-                                        <span>✔️ 冲击五甲</span></span
+                                            >✔️ 一键排表</span
+                                        ><span>✔️ 微信报名</span>
+                                        <span>✔️ 游戏内一键加团</span>
+                                        <span>✔️ DKP考勤</span></span
                                     ></a
                                 >
                             </div></el-col
@@ -142,6 +142,27 @@
                                         ><span>✔️ 在线DIY数据</span>
                                         <span>✔️ 自动分析旧数据</span>
                                         <span>✔️ 一键云端数据</span></span
+                                    ></a
+                                >
+                            </div></el-col
+                        >
+                        <el-col :span="12"
+                            ><div class="u-item">
+                                <a href="/fb/#/skill" target="_blank"
+                                    ><span class="u-pic"
+                                        ><i class="u-icon"
+                                            ><img
+                                                svg-inline
+                                                src="./assets/img/logos/skull.svg"/></i
+                                        ><span class="u-name"
+                                            >副本数据</span
+                                        ></span
+                                    ><span class="u-features"
+                                        ><span class="u-desc"
+                                            >✔️ 副本技能元数据</span
+                                        ><span>✔️ 血量防御全数值一览</span>
+                                        <span>✔️ 开荒进度团必备</span>
+                                        <span>✔️ 冲击五甲</span></span
                                     ></a
                                 >
                             </div></el-col

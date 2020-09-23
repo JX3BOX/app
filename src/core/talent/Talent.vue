@@ -130,7 +130,7 @@ export default {
     props: [],
     data: function() {
         return {
-            version: "v20200915",
+            version: "v20200923",
             xf: "其它",
             sq: "1,1,1,1,1,1,1,1,1,1,1,1",
             driver: "",
