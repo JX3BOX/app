@@ -27,3 +27,5 @@ pages:{
 + css : 样式文件请写在`src/assets/css/$app.less`下按项目名统一
 + img : 图片请统一使用行内svg放置在`src/assets/img/$app/*`,png小图会内嵌base64,大图请转存至jx3box-oss项目/image目录统一上oss+cdn
 .
+
+?
