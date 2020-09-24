@@ -127,6 +127,27 @@
                         >
                         <el-col :span="12"
                             ><div class="u-item">
+                                <a href="/rank" target="_blank"
+                                    ><span class="u-pic"
+                                        ><i class="u-icon"
+                                            ><img
+                                                svg-inline
+                                                src="./assets/img/logos/rank.svg"/></i
+                                        ><span class="u-name"
+                                            >百强排行</span
+                                        ></span
+                                    ><span class="u-features"
+                                        ><span class="u-desc"
+                                            >✔️ JDT赛事专题</span
+                                        ><span>✔️ 副本挑战最高荣誉</span>
+                                        <span>✔️ 每年两届</span>
+                                        <span>✔️ 丰富奖池</span></span
+                                    ></a
+                                >
+                            </div></el-col
+                        >
+                        <el-col :span="12"
+                            ><div class="u-item">
                                 <a href="/dbm" target="_blank"
                                     ><span class="u-pic"
                                         ><i class="u-icon"

@@ -31,7 +31,7 @@
                                 @change="reload"
                             >
                                 <el-option
-                                    v-for="item in talent_versions"
+                                    v-for="item in versions"
                                     :key="item.version"
                                     :label="item.name"
                                     :value="item.version"
@@ -123,20 +123,20 @@ import JX3_QIXUE from "@jx3box/jx3box-talent";
 import $ from "jquery";
 import schema from "./schema.vue";
 import schemas from "./schemas.json";
-import talent_versions from "@/assets/data/talent_versions.json";
+import versions from "./versions.json";
 
 export default {
     name: "Talent",
     props: [],
     data: function() {
         return {
-            version: "v20200923",
+            version: versions[0]['version'],
             xf: "其它",
             sq: "1,1,1,1,1,1,1,1,1,1,1,1",
             driver: "",
             code: "",
 
-            talent_versions,
+            versions,
             xfmap,
             schemas,
         };
