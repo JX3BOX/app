@@ -864,7 +864,7 @@
                         >
                         </el-alert>
                     </el-tab-pane>
-                    <el-tab-pane label="物品" name="item">
+                    <!-- <el-tab-pane label="物品" name="item">
                         <span slot="label">
                             <img
                                 class="u-icon"
@@ -906,7 +906,7 @@
                             show-icon
                         >
                         </el-alert>
-                    </el-tab-pane>
+                    </el-tab-pane> -->
                 </el-tabs>
 
                 <template v-if="multipage">
