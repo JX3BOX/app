@@ -101,7 +101,8 @@ module.exports = {
                     request.setHeader("origin", "https://www.jx3box.com");
                 }
             }
-        }
+        },
+        disableHostCheck: true
     },
 
     //❤️ define path for static files ~

@@ -5,12 +5,15 @@ function setFlowerServer(server) {
     localStorage && localStorage.setItem("flower_server", server);
 }
 
+const profile = "user/me";
 function getProfile() {
-    return $.get("user/profile", {
-        withCredentials: true,
-    }).then((res) => {
-        return res.data.data;
-    });
+    return $.get(profile)
+        .then((res) => {
+            return res.data.data;
+        })
+        .catch((err) => {
+            console.log(err);
+        });
 }
 
 function getTempServer(type) {
@@ -40,4 +43,4 @@ async function getServer(type) {
     }
 }
 
-export { setFlowerServer, getServer, getProfile };
+export { setFlowerServer, getServer, getProfile,getTempServer };
