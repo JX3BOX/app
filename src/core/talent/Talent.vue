@@ -123,20 +123,19 @@ import JX3_QIXUE from "@jx3box/jx3box-talent";
 import $ from "jquery";
 import schema from "./schema.vue";
 import schemas from "./schemas.json";
-import versions from "./versions.json";
+import { getTalentVersions } from "@/service/talent.js";
 
 export default {
     name: "Talent",
     props: [],
     data: function() {
         return {
-            version: versions[0]['version'],
             xf: "其它",
             sq: "1,1,1,1,1,1,1,1,1,1,1,1",
             driver: "",
             code: "",
 
-            versions,
+            versions: [],
             xfmap,
             schemas,
         };
@@ -145,6 +144,9 @@ export default {
         schema_group: function() {
             return schemas[this.xf];
         },
+        version : function (){
+            return this.versions && this.versions.length && this.versions[0]["version"]
+        }
     },
     methods: {
         parseSchema: function() {
@@ -195,15 +197,22 @@ export default {
         },
     },
     mounted: function() {
-        this.driver = new JX3_QIXUE({ version: this.version, editable: true });
-        const vm = this;
-        $(document).on("JX3_QIXUE_Change", function(e, ins) {
-            let __data = {};
-            __data.version = ins.version;
-            __data.xf = ins.xf;
-            __data.sq = ins.sq.join(",");
-            vm.code = JSON.stringify(__data);
-            // console.log(ins)
+        getTalentVersions().then((res) => {
+            this.versions = res.data;
+
+            this.driver = new JX3_QIXUE({
+                version: this.version,
+                editable: true,
+            });
+            const vm = this;
+            $(document).on("JX3_QIXUE_Change", function(e, ins) {
+                let __data = {};
+                __data.version = ins.version;
+                __data.xf = ins.xf;
+                __data.sq = ins.sq.join(",");
+                vm.code = JSON.stringify(__data);
+                // console.log(ins)
+            });
         });
     },
     components: {
