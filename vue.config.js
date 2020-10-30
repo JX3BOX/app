@@ -89,17 +89,11 @@ module.exports = {
     //❤️ Porxy ~
     devServer: {
         proxy: {
-            "/api": {
-                "target": process.env["DEV_SERVER"] == "true" ? "http://localhost:51818" : "https://next.jx3box.com",
+            "/api":{
+                "target": "https://www.j3pz.com",
                 "onProxyReq": function (request) {
-                    request.setHeader("origin", "");
-                }
-            },
-            "/furniture":{
-                "target": "https://apis.j3pz.com",
-                "onProxyReq": function (request) {
-                    request.setHeader("Referer", "https://www.jx3box.com");
-                }
+                    request.setHeader("origin", "www.jx3box.com");
+                },
             },
             "/user": {
                 "target": "https://server.jx3box.com",
