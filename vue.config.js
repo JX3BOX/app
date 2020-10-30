@@ -98,9 +98,12 @@ module.exports = {
             "/furniture":{
                 "target": "https://apis.j3pz.com",
                 "onProxyReq": function (request) {
-                    request.setHeader("origin", "https://www.jx3box.com");
+                    request.setHeader("Referer", "https://www.jx3box.com");
                 }
-            }
+            },
+            "/user": {
+                "target": "https://server.jx3box.com",
+            },
         },
         disableHostCheck: true
     },

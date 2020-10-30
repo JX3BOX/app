@@ -1,22 +1,10 @@
-import { axios, $ } from "../service/axios";
-import { __next } from "@jx3box/jx3box-common/js/jx3box.json";
-// 排行榜
-const rank = __next + 'api/flower/price/rank';   //TODO:
-// const rank = "/api/flower/price/rank";
-
-// 类型
-const kind = __next + 'api/flower/price/rank'    //TODO:
-// const kind = "/api/flower/price/rank";
-
-// 详情
-const detail = __next + "api/flower/price/query";        //TODO:
-// const detail = "/api/flower/price/query";
+import { $next } from "@jx3box/jx3box-common/js/axios";
 
 // https://github.com/JX3BOX/jx3box-api/blob/master/DOCS/flower-price.md
 
 function getFlowerRank(query, vm) {
-    return axios
-        .get(rank, {
+    return $next
+        .get("api/flower/price/rank", {
             params: query,
             withCredentials: true,
         })
@@ -34,8 +22,8 @@ function getFlowerRank(query, vm) {
 }
 
 function getFlowerPrices(query, vm) {
-    return axios
-        .get(kind, {
+    return $next
+        .get("api/flower/price/rank", {
             params: query,
             withCredentials: true,
         })
@@ -51,8 +39,8 @@ function getFlowerPrices(query, vm) {
 }
 
 function getFlowerPrice(query, vm) {
-    return axios
-        .get(detail, {
+    return $next
+        .get("api/flower/price/query", {
             params: query,
             withCredentials: true,
         })
