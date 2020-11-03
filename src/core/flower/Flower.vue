@@ -262,6 +262,7 @@
                     >
                     </el-pagination>
                 </div>
+
             </div>
             <Footer></Footer>
         </Main>
@@ -303,7 +304,7 @@ export default {
                 "百合",
                 "荧光菌",
                 "羽扇豆花",
-                "葫芦","麦子","青菜","芜菁"
+                // "葫芦","麦子","青菜","芜菁"
             ],
             type: "",
             level: "",

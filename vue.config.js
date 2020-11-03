@@ -90,9 +90,9 @@ module.exports = {
     devServer: {
         proxy: {
             "/api":{
-                "target": "https://www.j3pz.com",
+                "target": "https://next.jx3box.com",
                 "onProxyReq": function (request) {
-                    request.setHeader("origin", "www.jx3box.com");
+                    request.setHeader("origin", "");
                 },
             },
             "/user": {
