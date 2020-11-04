@@ -118,6 +118,13 @@
         }
         .pr;
     }
+    // .u-cantoggle{
+    //     .pointer;
+    // }
+    .u-link{
+        .db;
+        color:@color;
+    }
     .u-pic{
         .db;
         .pa;.lt(10px);
@@ -135,6 +142,10 @@
     }
     .u-raw{
         .pa;.rb(0);
+        &.on{
+            color:@color-link;
+            border-color:@color-link;
+        }
     }
     .u-name{
         .fz(14px,2);
@@ -183,6 +194,10 @@
         sub{
             font-size:100%;
             .ps;
+        }
+
+        .u-doodad-prop{
+            .mr(10px);
         }
     }
     .u-props{

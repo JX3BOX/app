@@ -89,8 +89,8 @@ module.exports = {
     //❤️ Porxy ~
     devServer: {
         proxy: {
-            "/api": {
-                "target": process.env["DEV_SERVER"] == "true" ? "http://localhost:51818" : "https://next.jx3box.com",
+            "/api":{
+                "target": "https://next.jx3box.com",
                 "onProxyReq": function (request) {
                     request.setHeader("origin", "");
                 }
@@ -101,7 +101,8 @@ module.exports = {
                     request.setHeader("origin", "");
                 }
             },
-        }
+        },
+        disableHostCheck: true
     },
 
     //❤️ define path for static files ~

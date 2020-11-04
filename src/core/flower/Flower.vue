@@ -13,9 +13,9 @@
                 src="../../assets/img/logos/flower.svg"
             />
             <div class="m-info">
-                前往个人中心<a href="/dashboard/#/profile" target="_blank"
-                    >资料修改</a
-                >可绑定默认区服，否则默认将使用上一次搜索区服
+                <a href="/dashboard/#/profile" target="_blank">设置默认区服</a>
+                |
+                <a href="/tool/?pid=17667#/" target="_blank">自助上报</a>
             </div>
         </Breadcrumb>
         <LeftSidebar :open="false">
@@ -34,14 +34,13 @@
                 >
 
                 <div class="m-flower-search">
-                    <el-row :gutter="20" type="flex">
-                        <el-col :span="7">
+                    <el-row :gutter="20">
+                        <el-col :span="5">
                             <el-select
                                 class="u-server"
-                                v-model="server"
+                                v-model="current_server"
                                 filterable
-                                placeholder="请输入服务器"
-                                @change="search"
+                                placeholder="请选择服务器"
                             >
                                 <el-option
                                     v-for="item in servers"
@@ -52,12 +51,27 @@
                                 </el-option>
                             </el-select>
                         </el-col>
-                        <el-col :span="7">
+                        <el-col :span="5">
+                            <el-select
+                                class="u-server"
+                                v-model="current_map"
+                                filterable
+                                placeholder="请选择小区"
+                            >
+                                <el-option
+                                    v-for="item in maps"
+                                    :key="item"
+                                    :label="item"
+                                    :value="item"
+                                >
+                                </el-option>
+                            </el-select>
+                        </el-col>
+                        <el-col :span="5">
                             <el-select
                                 class="u-type"
                                 v-model="type"
                                 placeholder="请选择花型"
-                                @change="search"
                             >
                                 <el-option label="全部" value=""> </el-option>
                                 <el-option
@@ -69,12 +83,11 @@
                                 </el-option>
                             </el-select>
                         </el-col>
-                        <el-col :span="7">
+                        <el-col :span="5">
                             <el-select
                                 class="u-level"
                                 v-model="level"
                                 placeholder="请选择等级"
-                                @change="search"
                             >
                                 <el-option label="全部" value=""> </el-option>
                                 <el-option
@@ -89,36 +102,18 @@
                                 </el-option>
                             </el-select>
                         </el-col>
-                        <el-col :span="3">
+                        <el-col :span="4">
                             <el-button
                                 class="u-button"
                                 type="primary"
                                 icon="el-icon-search"
                                 :disabled="isGuest"
-                                @click="search"
+                                @click="loadData"
                                 >查询</el-button
                             >
                         </el-col>
                     </el-row>
                 </div>
-
-                <div class="m-flower-submit">
-                    <el-alert
-                        class="u-tip"
-                        v-if="isGuest"
-                        title="请先登录"
-                        type="info"
-                        show-icon
-                    ></el-alert>
-                </div>
-
-                <!-- <div class="m-flower-tip el-alert el-alert--info is-light">
-                前往个人中心<a
-                    href="/dashboard/#/profile"
-                    target="_blank"
-                    >资料修改</a
-                >可绑定默认区服，否则默认将使用上一次搜索区服
-            </div> -->
 
                 <div class="m-flower-all" v-if="mode == 0">
                     <div class="m-flower-result" v-if="rank">
@@ -229,7 +224,7 @@
                             }"
                         >
                             <el-table-column prop="server" label="服务器"
-                                >{{ server }}
+                                >{{ current_server }}
                             </el-table-column>
                             <el-table-column prop="map" label="地图分线">
                             </el-table-column>
@@ -255,14 +250,6 @@
                         show-icon
                     >
                     </el-alert>
-                    <el-button
-                        class="m-archive-more"
-                        :class="{ show: hasNextPage }"
-                        type="primary"
-                        :loading="loading"
-                        @click="appendPage(++page)"
-                        >加载更多</el-button
-                    >
                     <el-pagination
                         class="m-archive-pages"
                         :page-size="15"
@@ -275,6 +262,7 @@
                     >
                     </el-pagination>
                 </div>
+
             </div>
             <Footer></Footer>
         </Main>
@@ -282,18 +270,23 @@
 </template>
 
 <script>
+import User from '@jx3box/jx3box-common/js/user'
 import Nav from "@/components/Nav.vue";
 import {
     getFlowerPrice,
     getFlowerPrices,
     getFlowerRank,
-} from "../../service/flower";
-import { setFlowerServer, getServer } from "../../service/server";
-import dateFormat from "../../utils/moment";
+} from "@/service/flower";
+import { setFlowerServer, getProfile } from "@/service/server";
+import dateFormat from "@/utils/moment";
 import servers from "@jx3box/jx3box-data/data/server/server_list.json";
 import colors from "./colors.json";
 import flowers from "./flowers.json";
-import { __iconPath } from "@jx3box/jx3box-common/js/jx3box.json";
+import { __iconPath, __ossRoot } from "@jx3box/jx3box-common/js/jx3box.json";
+// 繁體
+import traditional_servers from "@jx3box/jx3box-data/data/server/server_international.json";
+import dict from "./dict.json";
+import maps from "./maps.json";
 
 export default {
     name: "Flower",
@@ -301,8 +294,18 @@ export default {
     data: function() {
         return {
             servers,
-            server: "梦江南",
-            types: ["绣球花", "郁金香", "牵牛花", "玫瑰", "百合", "荧光菌"],
+            current_server: "",
+            current_map: "广陵邑",
+            types: [
+                "绣球花",
+                "郁金香",
+                "牵牛花",
+                "玫瑰",
+                "百合",
+                "荧光菌",
+                "羽扇豆花",
+                // "葫芦","麦子","青菜","芜菁"
+            ],
             type: "",
             level: "",
             colors,
@@ -317,6 +320,7 @@ export default {
             page: 1,
             loading: false,
             done: false,
+            isLogin : User.isLogin()
         };
     },
     computed: {
@@ -344,6 +348,36 @@ export default {
             }
             return 0;
         },
+        isTraditional: function() {
+            return traditional_servers.includes(this.current_server);
+        },
+        maps: function() {
+            if (this.isTraditional) {
+                return maps["tr"];
+            }
+            return maps["cn"];
+        },
+        map: function() {
+            return this.maps[0] || "广陵邑";
+        },
+        params: function() {
+            console.log('2.查询参数更新')
+            return {
+                server: this.current_server,
+                map: this.current_map,
+                type: this.type,
+                level: this.level,
+                page: this.page,
+            };
+        },
+        primary_params : function (){
+            return {
+                server: this.current_server,
+                map: this.current_map,
+                type: this.type,
+                level: this.level,
+            }
+        }
     },
     methods: {
         color: function(level) {
@@ -351,21 +385,6 @@ export default {
                 return this.colors[this.type][level];
             }
             return "";
-        },
-        search: function() {
-            this.page = 1; //复位
-
-            // 概览模式
-            if (this.mode == 0) {
-                this.loadRank();
-                // 简略模式
-            } else if (this.mode == 1) {
-                this.loadOverview();
-                // 完整模式
-            } else {
-                this.loadData(1);
-            }
-            setFlowerServer(this.server);
         },
         dateFormat: function(row, column) {
             return dateFormat(row.time * 1000);
@@ -378,76 +397,122 @@ export default {
             colors = colors.join("/");
             return row.name + " ( " + colors + " ) ";
         },
+        loadData: function() {
+
+            // 概览模式
+            if (this.mode == 0) {
+                this.loadRank();
+                // 简略模式
+            } else if (this.mode == 1) {
+                this.loadOverview();
+                // 完整模式
+            } else {
+                this.loadAll();
+            }
+            setFlowerServer(this.current_server);
+        },
         loadRank: function() {
             this.loading = true;
-            return getFlowerRank(this.server, this).then((data) => {
-                let list = [];
-                for (let name in flowers) {
-                    let lines = data[name]
-                        ? data[name]["maxLine"].slice(0, 3)
-                        : [];
-                    lines.forEach((item, i) => {
-                        lines[i] = item && item.replace(" 线", "");
-                    });
+            return getFlowerRank(
+                {
+                    server: this.current_server,
+                    map: this.current_map,
+                },
+                this
+            )
+                .then((data) => {
+                    if (this.isTraditional) {
+                        data = this.transformData(data);
+                    }
 
-                    let max = data[name] ? ~~data[name]["max"] : "-";
-                    list.push({
-                        name,
-                        line: lines,
-                        price: max,
-                    });
-                }
-                this.rank = list;
-            });
+                    let list = [];
+                    for (let name in flowers) {
+                        let lines = data[name]
+                            ? data[name]["maxLine"].slice(0, 3)
+                            : [];
+                        lines.forEach((item, i) => {
+                            lines[i] = item && item.replace(" 线", "");
+                        });
+
+                        let max = data[name] ? ~~data[name]["max"] : "-";
+                        list.push({
+                            name,
+                            line: lines,
+                            price: max,
+                        });
+                    }
+                    this.rank = list;
+                })
+                .finally(() => {
+                    this.loading = false;
+                });
         },
         loadOverview: function() {
             this.loading = true;
+
+            let qs = this.type;
+            if (this.isTraditional) {
+                qs = this.transformRequest(qs);
+            }
+
             return getFlowerPrices(
                 {
-                    server: this.server,
-                    flower: this.type,
+                    server: this.current_server,
+                    flower: qs,
+                    map: this.current_map,
                 },
                 this
-            ).then((res) => {
-                let overview = [];
-                for (let name in res.data) {
-                    overview.push({
-                        name: name,
-                        price: res.data[name]["max"] + "园宅币",
-                        map: res.data[name]["maxLine"].slice(0, 5),
-                    });
-                }
-                this.overview = overview;
-            });
+            )
+                .then((data) => {
+                    if (this.isTraditional) {
+                        data = this.transformData(data);
+                    }
+
+                    let overview = [];
+                    for (let name in data) {
+                        overview.push({
+                            name: name,
+                            price: data[name]["max"] + "园宅币",
+                            map: data[name]["maxLine"].slice(0, 5),
+                        });
+                    }
+                    this.overview = overview;
+                })
+                .finally(() => {
+                    this.loading = false;
+                });
         },
-        loadData: function(i, append = false) {
+        loadAll: function() {
             this.loading = true;
+
+            let qs = this.level + this.type;
+            if (this.isTraditional) {
+                qs = this.transformRequest(qs);
+            }
+
             return getFlowerPrice(
                 {
-                    server: this.server,
-                    flower: this.level + this.type,
-                    pageIndex: i,
+                    server: this.current_server,
+                    map: this.current_map,
+                    flower: qs,
+                    pageIndex: this.page,
                 },
                 this
-            ).then((res) => {
-                if (append) {
-                    this.data = this.data.concat(res.data.data);
-                } else {
-                    this.data = res.data.data;
-                }
-                this.total = res.data.page.total;
-                this.pages = res.data.page.pageTotal;
-            });
+            )
+                .then((data) => {
+                    if (this.isTraditional) {
+                        data = this.transformData(data);
+                    }
+                    this.data = data.data;
+                    this.total = data.page.total;
+                    this.pages = data.page.pageTotal;
+                })
+                .finally(() => {
+                    this.loading = false;
+                });
         },
-        appendPage: function(i) {
-            this.loading = true;
-            this.loadData(i, true);
-        },
-        changePage: function(i) {
-            this.loading = true;
-            this.loadData(i).then(() => {
-                window.scrollTo(0, 0);
-            });
+        changePage: function() {
+            window.scrollTo(0, 0);
         },
         onCopy: function(val) {
             this.$notify({
@@ -465,6 +530,41 @@ export default {
         onlyLineNumber: function(val) {
             return val.replace("线", "");
         },
+        transformData: function(data) {
+            let _data = JSON.stringify(data);
+            dict.tr.forEach((key, i) => {
+                let re = new RegExp(key, "g");
+                _data = _data.replace(re, dict.cn[i]);
+            });
+            return JSON.parse(_data);
+        },
+        transformRequest: function(str) {
+            let _data = str;
+            dict.cn.forEach((key, i) => {
+                let re = new RegExp(key, "g");
+                _data = _data.replace(re, dict.tr[i]);
+            });
+            return _data;
+        },
+    },
+    watch: {
+        map: function(newdata) {
+            this.current_map = newdata;
+        },
+        params: {
+            deep:true,
+            handler : function() {
+                console.log('3.数据加载')
+                this.loadData();
+            },
+        },
+        primary_params : {
+            deep:true,
+            handler : function() {
+                // 复位翻页
+                this.page = 1
+            },
+        }
     },
     filters: {
         iconURL: function(id) {
@@ -472,15 +572,15 @@ export default {
         },
     },
     mounted: function() {
-        getServer("flower_server")
-            .then((server) => {
-                if (server) {
-                    this.server = server;
-                }
-            })
-            .then(() => {
-                this.loadRank();
+        if (this.isLogin) {
+            getProfile().then((data) => {
+                console.log('1.a.已登录,加载profile_server')
+                this.current_server = data.jx3_server || "蝶恋花";
             });
+        } else {
+            console.log('1.b.未登录,加载最后一次服务器')
+            this.current_server = localStorage.getItem("flower_server") || "蝶恋花";
+        }
     },
     components: {
         Nav,

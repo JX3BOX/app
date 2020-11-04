@@ -31,7 +31,7 @@
                                 @change="reload"
                             >
                                 <el-option
-                                    v-for="item in talent_versions"
+                                    v-for="item in versions"
                                     :key="item.version"
                                     :label="item.name"
                                     :value="item.version"
@@ -114,53 +114,28 @@
 import Nav from "@/components/Nav.vue";
 import Extend from "@/components/Extend.vue";
 import xfmap from "@jx3box/jx3box-data/data/xf/xf.json";
-import { __ossMirror,__imgPath } from "@jx3box/jx3box-common/js/jx3box.json";
+import {
+    __ossMirror,
+    __imgPath,
+    __ossRoot,
+} from "@jx3box/jx3box-common/js/jx3box.json";
 import JX3_QIXUE from "@jx3box/jx3box-talent";
 import $ from "jquery";
 import schema from "./schema.vue";
 import schemas from "./schemas.json";
+import { getTalentVersions } from "@/service/talent.js";
 
 export default {
     name: "Talent",
     props: [],
     data: function() {
         return {
-            version: "v20200522",
             xf: "其它",
             sq: "1,1,1,1,1,1,1,1,1,1,1,1",
             driver: "",
             code: "",
 
-            talent_versions: [
-                {
-                    version: "v20200522",
-                    name: "结庐在江湖",
-                },
-                {
-                    version: "v20200521",
-                    name: "结庐江湖(5.21测试服)",
-                },
-                {
-                    version: "v20200309",
-                    name: "凌雪藏锋(3.9技改)",
-                },
-                {
-                    version: "v20200217",
-                    name: "凌雪藏锋(2.17技改)",
-                },
-                {
-                    version: "v20200113",
-                    name: "凌雪藏锋(1.13技改)",
-                },
-                {
-                    version: "v20191128",
-                    name: "凌雪藏锋",
-                },
-                {
-                    version: "v20190926",
-                    name: "怒海争锋",
-                },
-            ],
+            versions: [],
             xfmap,
             schemas,
         };
@@ -169,6 +144,9 @@ export default {
         schema_group: function() {
             return schemas[this.xf];
         },
+        version : function (){
+            return this.versions && this.versions.length && this.versions[0]["version"]
+        }
     },
     methods: {
         parseSchema: function() {
@@ -219,15 +197,22 @@ export default {
         },
     },
     mounted: function() {
-        this.driver = new JX3_QIXUE({ editable: true });
-        const vm = this;
-        $(document).on("JX3_QIXUE_Change", function(e, ins) {
-            let __data = {};
-            __data.version = ins.version;
-            __data.xf = ins.xf;
-            __data.sq = ins.sq.join(",");
-            vm.code = JSON.stringify(__data);
-            // console.log(ins)
+        getTalentVersions().then((res) => {
+            this.versions = res.data;
+
+            this.driver = new JX3_QIXUE({
+                version: this.version,
+                editable: true,
+            });
+            const vm = this;
+            $(document).on("JX3_QIXUE_Change", function(e, ins) {
+                let __data = {};
+                __data.version = ins.version;
+                __data.xf = ins.xf;
+                __data.sq = ins.sq.join(",");
+                vm.code = JSON.stringify(__data);
+                // console.log(ins)
+            });
         });
     },
     components: {
