@@ -2,17 +2,19 @@
     "name": "app",
     "private": true,
     "scripts": {
+        "dev": "env DEV_SERVER=true vue-cli-service serve",
         "serve": "vue-cli-service serve",
         "build": "vue-cli-service build",
         "lint": "vue-cli-service lint",
         "inspect": "vue inspect > output.js",
-        "update": "npm --registry https://registry.npmjs.org install @jx3box/jx3box-common-ui@latest @jx3box/jx3box-common@latest"
+        "update": "npm --registry https://registry.npmjs.org install @jx3box/jx3box-common-ui@latest @jx3box/jx3box-common@latest @jx3box/jx3box-page@latest @jx3box/jx3box-data@latest"
     },
     "dependencies": {
         "@jx3box/jx3box-article-ui": "^0.2.2",
-        "@jx3box/jx3box-common": "^5.0.1",
-        "@jx3box/jx3box-common-ui": "^2.1.4",
-        "@jx3box/jx3box-data": "^0.2.7",
+        "@jx3box/jx3box-common": "^5.3.5",
+        "@jx3box/jx3box-common-ui": "^2.7.3",
+        "@jx3box/jx3box-data": "^0.5.4",
+        "@jx3box/jx3box-page": "^0.2.3",
         "@jx3box/jx3box-talent": "^1.0.1",
         "axios": "^0.19.2",
         "codemirror": "^5.55.0",
@@ -21,6 +23,7 @@
         "echarts": "^4.7.0",
         "element-ui": "^2.13.0",
         "jquery": "^3.5.1",
+        "js-md5": "^0.7.3",
         "localforage": "^1.7.3",
         "lodash": "^4.17.15",
         "lua4fe": "0.0.2",
