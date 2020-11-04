@@ -21,3 +21,11 @@ export function axios(url,method,withCredentials,data,headers,params) {
     }
     return req(options);
 }
+
+export function realUrl(domain, uri) {
+    if (process.env.NODE_ENV === 'production') {
+        return domain+uri
+    } else {
+        return "/"+uri
+    }
+}

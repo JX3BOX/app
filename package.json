@@ -2,11 +2,12 @@
     "name": "app",
     "private": true,
     "scripts": {
+        "dev": "env DEV_SERVER=true vue-cli-service serve",
         "serve": "vue-cli-service serve",
         "build": "vue-cli-service build",
         "lint": "vue-cli-service lint",
         "inspect": "vue inspect > output.js",
-        "update": "npm --registry https://registry.npmjs.org install @jx3box/jx3box-common-ui@latest @jx3box/jx3box-common@latest @jx3box/jx3box-data@latest @jx3box/jx3box-facedat@latest @jx3box/jx3box-talent@latest"
+        "update": "npm --registry https://registry.npmjs.org install @jx3box/jx3box-common-ui@latest @jx3box/jx3box-common@latest @jx3box/jx3box-data@latest @jx3box/jx3box-facedat@latest @jx3box/jx3box-talent@latest @jx3box/jx3box-page@latest"
     },
     "dependencies": {
         "@jx3box/jx3box-common": "^5.3.5",
@@ -21,6 +22,7 @@
         "echarts": "^4.7.0",
         "element-ui": "^2.13.0",
         "jquery": "^3.5.1",
+        "js-md5": "^0.7.3",
         "localforage": "^1.7.3",
         "lodash": "^4.17.15",
         "lua-json": "^1.0.0",
