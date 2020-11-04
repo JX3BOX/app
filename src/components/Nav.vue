@@ -22,14 +22,30 @@
                 ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/translator.svg"/></i
                 ><span>轉換繁體</span></a
             >
+            <a class="u-app" href="/team" target="_blank"
+                ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/oa.svg"/></i
+                ><span>团队管理</span></a
+            >
+            <a class="u-app" href="/dbm" target="_blank"
+                ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/jx3datbuilder.svg"/></i
+                ><span>数据构建</span></a
+            >
             <a class="u-app" href="/fb/#/skill" target="_blank"
                 ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/skull.svg"/></i
-                ><span>副本解包</span></a
+                ><span>副本数据</span></a
             >
-            <a class="u-app" href="/bps/#/lua" target="_blank"
+            <a class="u-app" href="/fb/#/drop" target="_blank"
+                ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/drop.svg"/></i
+                ><span>副本掉落</span></a
+            >
+            <a class="u-app" href="/fb/#/gem" target="_blank"
+                ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/gem.svg"/></i
+                ><span>瑰石查询</span></a
+            >
+            <!-- <a class="u-app" href="/bps/#/lua" target="_blank"
                 ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/role.svg"/></i
                 ><span>职业解包</span></a
-            >
+            > -->
             <a class="u-app" href="https://www.j3pz.com/" target="_blank"
                 ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/j3pz.svg"/></i
                 ><span>在线配装</span
@@ -38,15 +54,17 @@
                 ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/speed.svg"/></i
                 ><span>急速阈值</span
                 ></a>
-            <a class="u-app" href="https://www.j3pz.com/tools/prediction/" target="_blank"
-                ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/guishi.svg"/></i
-                ><span>瑰石查询</span
-                ></a>
             <a class="u-app" 
                 href="http://minamistudio.online/jx3simulator/index.html"
                 target="_blank"
                 ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/minami.svg"/></i
                 ><span>DPS模拟</span
+                ></a>
+            <a class="u-app" 
+                href="http://j3dps.com/fightlog"
+                target="_blank"
+                ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/flog.svg"/></i
+                ><span>战斗复盘</span
                 ></a>
         </div>
         <h5 class="u-title">PVX</h5>
@@ -60,7 +78,7 @@
                 ><span>金价走势</span></a
             >
             <a class="u-app" href="/app/flower" :class="{on:isActive('flower')}"
-                ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/flower2.svg"/></i
+                ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/flower.svg"/></i
                 ><span>花价查询</span></a
             >
             <a class="u-app" href="/app/furniture" :class="{on:isActive('furniture')}"
@@ -71,13 +89,17 @@
                 ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/mirror.svg"/></i
                 ><span>妆容解析</span></a
             >
-            <a class="u-app" href="https://j3cx.com/exam/" target="_blank"
-                ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/keju.svg"/></i
-                ><span>科举题库</span
-                ></a>
             <a class="u-app" href="https://j3cx.com/serendipity" target="_blank"
                 ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/qiyu.svg"/></i
                 ><span>奇遇查询</span
+                ></a>
+            <a class="u-app" href="/exam" target="_blank"
+                ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/100.svg"/></i
+                ><span>趣味题库</span
+                ></a>
+            <a class="u-app" href="https://j3cx.com/exam/" target="_blank"
+                ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/keju.svg"/></i
+                ><span>科举题库</span
                 ></a>
             <a class="u-app" href="/app/sudoku"  :class="{on:isActive('sudoku')}"
                 ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/sudoku.svg"/></i

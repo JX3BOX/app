@@ -28,6 +28,7 @@
         font-weight: 300;
         color: #888;
     }
+    white-space: nowrap;
 }
 .m-flower-search {
     .x;
@@ -45,10 +46,20 @@
     }
 }
 
+@media screen and (max-width:@ipad){
+    
+    .m-flower-search {
+        .el-col-5{
+            flex:1;
+        }
+    }
+}
+
 @media screen and (max-width:@phone){
     .m-flower-search{
         .el-col{
-            float:none;
+            // float:none;
+            // .w(50%);
             .w(100%);
         }
         .el-select{
@@ -59,17 +70,6 @@
         .u-button{
             .db;
             .w(100%);
-        }
-    }
-}
-@media screen and (max-width:@ipad){
-    
-    .m-flower-search {
-        .el-col-3{
-            .none;
-        }
-        .el-col-7{
-            flex:1;
         }
     }
 }
@@ -109,13 +109,6 @@
         .mb(12px);
         border-bottom:1px solid @border;
         padding-bottom:10px;
-
-        &:last-child{
-            .mb(0);
-            border-bottom:none;
-        }
-        // .w(50%);
-        // .fl;
     }
 
     .u-title{
@@ -222,8 +215,18 @@
                 .bold;
             }
         }
-        th{
-            border:none !important;
+
+        thead {
+            tr{
+                display: flex;
+            }
+            th{
+                border:none !important;
+                min-width:25%;
+            }
+            th:last-child{
+                flex:1;
+            }
         }
     }
 }

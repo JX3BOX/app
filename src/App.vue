@@ -106,6 +106,69 @@
                         >
                         <el-col :span="12"
                             ><div class="u-item">
+                                <a href="/team" target="_blank"
+                                    ><span class="u-pic"
+                                        ><i class="u-icon"
+                                            ><img
+                                                svg-inline
+                                                src="./assets/img/logos/oa.svg"/></i
+                                        ><span class="u-name"
+                                            >团队管理</span
+                                        ></span
+                                    ><span class="u-features"
+                                        ><span class="u-desc"
+                                            >✔️ 一键排表</span
+                                        ><span>✔️ 微信报名</span>
+                                        <span>✔️ 游戏内一键加团</span>
+                                        <span>✔️ DKP考勤</span></span
+                                    ></a
+                                >
+                            </div></el-col
+                        >
+                        <el-col :span="12"
+                            ><div class="u-item">
+                                <a href="/rank" target="_blank"
+                                    ><span class="u-pic"
+                                        ><i class="u-icon"
+                                            ><img
+                                                svg-inline
+                                                src="./assets/img/logos/rank.svg"/></i
+                                        ><span class="u-name"
+                                            >百强排行</span
+                                        ></span
+                                    ><span class="u-features"
+                                        ><span class="u-desc"
+                                            >✔️ JDT赛事专题</span
+                                        ><span>✔️ 副本挑战最高荣誉</span>
+                                        <span>✔️ 每年两届</span>
+                                        <span>✔️ 丰富奖池</span></span
+                                    ></a
+                                >
+                            </div></el-col
+                        >
+                        <el-col :span="12"
+                            ><div class="u-item">
+                                <a href="/dbm" target="_blank"
+                                    ><span class="u-pic"
+                                        ><i class="u-icon"
+                                            ><img
+                                                svg-inline
+                                                src="./assets/img/logos/jx3datbuilder.svg"/></i
+                                        ><span class="u-name"
+                                            >数据构建</span
+                                        ></span
+                                    ><span class="u-features"
+                                        ><span class="u-desc"
+                                            >✔️ 自定义未来数据</span
+                                        ><span>✔️ 在线DIY数据</span>
+                                        <span>✔️ 自动分析旧数据</span>
+                                        <span>✔️ 一键云端数据</span></span
+                                    ></a
+                                >
+                            </div></el-col
+                        >
+                        <el-col :span="12"
+                            ><div class="u-item">
                                 <a href="/fb/#/skill" target="_blank"
                                     ><span class="u-pic"
                                         ><i class="u-icon"
@@ -113,7 +176,7 @@
                                                 svg-inline
                                                 src="./assets/img/logos/skull.svg"/></i
                                         ><span class="u-name"
-                                            >副本解包</span
+                                            >副本数据</span
                                         ></span
                                     ><span class="u-features"
                                         ><span class="u-desc"
@@ -127,21 +190,42 @@
                         >
                         <el-col :span="12"
                             ><div class="u-item">
-                                <a href="/bps/#/lua" target="_blank"
+                                <a href="/fb/#/drop" target="_blank"
                                     ><span class="u-pic"
                                         ><i class="u-icon"
                                             ><img
                                                 svg-inline
-                                                src="./assets/img/logos/role.svg"/></i
+                                                src="./assets/img/logos/drop.svg"/></i
                                         ><span class="u-name"
-                                            >职业解包</span
+                                            >副本掉落</span
                                         ></span
                                     ><span class="u-features"
                                         ><span class="u-desc"
-                                            >✔️ 职业技能源码</span
-                                        ><span>✔️ 搭配原始数据阅读</span>
-                                        <span>✔️ 数据帝王者必备</span>
-                                        <span>✔️ 高玩宝典</span></span
+                                            >✔️ 副本掉落一览</span
+                                        ><span>✔️ 不同难度区分</span>
+                                        <span>✔️ 同步推栏最新</span>
+                                        <span>✔️ 包含家具掉落</span></span
+                                    ></a
+                                >
+                            </div></el-col
+                        >
+                        <el-col :span="12"
+                            ><div class="u-item">
+                                <a href="/fb/#/gem" target="_blank"
+                                    ><span class="u-pic"
+                                        ><i class="u-icon"
+                                            ><img
+                                                svg-inline
+                                                src="./assets/img/logos/gem.svg"/></i
+                                        ><span class="u-name"
+                                            >瑰石大全</span
+                                        ></span
+                                    ><span class="u-features"
+                                        ><span class="u-desc"
+                                            >✔️ 瑰石掉落一览</span
+                                        ><span>✔️ 不同难度区分</span>
+                                        <span>✔️ 同步最新副本</span>
+                                        <span>✔️ 物品完整详情</span></span
                                     ></a
                                 >
                             </div></el-col
@@ -199,33 +283,6 @@
                         <el-col :span="12"
                             ><div class="u-item">
                                 <a
-                                    href="https://www.j3pz.com/tools/prediction/"
-                                    target="_blank"
-                                    ><span class="u-pic"
-                                        ><i class="u-icon"
-                                            ><img
-                                                svg-inline
-                                                src="./assets/img/logos/guishi.svg"/></i
-                                        ><span class="u-name"
-                                            >瑰石查询</span
-                                        ></span
-                                    ><img
-                                        class="u-blank"
-                                        svg-inline
-                                        src="./assets/img/logos/blank.svg"
-                                    /><span class="u-features"
-                                        ><span class="u-desc"
-                                            >✔️ Boss掉落全知晓</span
-                                        ><span>✔️ 瑰石列表大全</span>
-                                        <span>✔️ 轻松包团不用愁</span>
-                                        <span>✔️ 深度合作伙伴</span></span
-                                    ></a
-                                >
-                            </div></el-col
-                        >
-                        <el-col :span="12"
-                            ><div class="u-item">
-                                <a
                                     href="http://minamistudio.online/jx3simulator/index.html"
                                     target="_blank"
                                     ><span class="u-pic"
@@ -245,6 +302,33 @@
                                             >✔️ Minami版模拟器</span
                                         ><span>✔️ 模拟战斗记录</span>
                                         <span>✔️ 自定义属性数据</span>
+                                        <span>✔️ 深度合作伙伴</span></span
+                                    ></a
+                                >
+                            </div></el-col
+                        >
+                        <el-col :span="12"
+                            ><div class="u-item">
+                                <a
+                                    href="http://j3dps.com/fightlog"
+                                    target="_blank"
+                                    ><span class="u-pic"
+                                        ><i class="u-icon"
+                                            ><img
+                                                svg-inline
+                                                src="./assets/img/logos/flog.svg"/></i
+                                        ><span class="u-name"
+                                            >战斗复盘</span
+                                        ></span
+                                    ><img
+                                        class="u-blank"
+                                        svg-inline
+                                        src="./assets/img/logos/blank.svg"
+                                    /><span class="u-features"
+                                        ><span class="u-desc"
+                                            >✔️ 战斗日志分析</span
+                                        ><span>✔️ DPS排行榜</span>
+                                        <span>✔️ 公开隐藏可控</span>
                                         <span>✔️ 深度合作伙伴</span></span
                                     ></a
                                 >
@@ -304,7 +388,7 @@
                                         <i class="u-icon"
                                             ><img
                                                 svg-inline
-                                                src="./assets/img/logos/flower2.svg"/></i
+                                                src="./assets/img/logos/flower.svg"/></i
                                         ><span class="u-name">花价查询</span>
                                     </span>
                                     <span class="u-features">
@@ -373,6 +457,27 @@
                                         ><span>✔️ 標準簡繁轉換</span>
                                         <span>✔️ 劍網三特殊詞庫</span>
                                         <span>✔️ 歡迎貢獻詞表</span></span
+                                    ></a
+                                >
+                            </div></el-col
+                        >
+                        <el-col :span="12"
+                            ><div class="u-item">
+                                <a href="/exam" target="_blank"
+                                    ><span class="u-pic"
+                                        ><i class="u-icon"
+                                            ><img
+                                                svg-inline
+                                                src="./assets/img/logos/100.svg"/></i
+                                        ><span class="u-name"
+                                            >趣味题库</span
+                                        ></span
+                                    ><span class="u-features"
+                                        ><span class="u-desc"
+                                            >✔️ 剑三趣味题库大全</span
+                                        ><span>✔️ 支持玩家自拟录入</span>
+                                        <span>✔️ 涵盖各个玩法行业</span>
+                                        <span>✔️ 蹭热点利器……</span></span
                                     ></a
                                 >
                             </div></el-col
