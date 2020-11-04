@@ -24,20 +24,13 @@
                                     ? currentServer
                                     : "请选择一个服务器"
                             }}</span>
-                            <!-- <el-checkbox
-                                v-model="pinnedChecked"
-                                label="默认显示此服务器"
-                                border
-                                size="medium"
-                                @change="changePinnedServer"
-                            ></el-checkbox> -->
                             <p class="title-origin">
                                 数据来源：
                                 <el-link
                                     type="primary"
-                                    href="https://orange.arkwish.com/login"
+                                    href="https://jx3.seasunwbl.com/"
                                     target="_blank"
-                                    >小橙排表系统</el-link
+                                    >万宝楼</el-link
                                 >
                             </p>
                         </div>
