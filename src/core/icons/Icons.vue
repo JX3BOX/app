@@ -306,7 +306,7 @@
 <script>
 import Info from "@/components/Info.vue";
 import Nav from "@/components/Nav.vue";
-import { axios } from "@/service/api.js";
+import { axios, realUrl } from "@/service/api.js";
 import { JX3BOX, User } from "@jx3box/jx3box-common";
 // import Extend from "@/components/Extend.vue";
 
@@ -602,7 +602,7 @@ export default {
         },
         getSavedIcons() {
             // 获取用户储存的服务器列表
-            let url = JX3BOX.__server + "user/meta";
+            let url = realUrl(JX3BOX.__server, "user/meta");
             if (this.uid) {
                 // 从服务器读取
                 // 旧版数据格式 ’["109","3118","3119","13","316","2179","245","889","2178","5389"]‘
@@ -615,7 +615,7 @@ export default {
                     { uid: this.uid, key: "favicons" }
                 )
                     .then((response) => {
-                        if (response.code == 10050) {
+                        if (response.code == 0) {
                             let serverValue = response.data.value;
                             if (serverValue) {
                                 // 判断是否是旧版数据
@@ -678,14 +678,14 @@ export default {
         setSavedIcons() {
             if (this.uid) {
                 // 保存到服务器
-                let url = JX3BOX.__server + "user/meta";
+                let url = realUrl(JX3BOX.__server, "user/meta");
                 axios(url, "POST", true, {
                     uid: this.uid,
                     key: "favicons",
                     value: this.faviconsList.join(","),
                 })
                     .then((response) => {
-                        if (response.code == 10052) {
+                        if (response.code == 0) {
                             //
                         }
                     })
