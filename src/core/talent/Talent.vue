@@ -135,6 +135,7 @@ export default {
             driver: "",
             code: "",
 
+            version : '',
             versions: [],
             xfmap,
             schemas,
@@ -144,9 +145,6 @@ export default {
         schema_group: function() {
             return schemas[this.xf];
         },
-        version : function (){
-            return this.versions && this.versions.length && this.versions[0]["version"]
-        }
     },
     methods: {
         parseSchema: function() {
@@ -199,6 +197,7 @@ export default {
     mounted: function() {
         getTalentVersions().then((res) => {
             this.versions = res.data;
+            this.version = this.versions && this.versions.length && this.versions[0]["version"]
 
             this.driver = new JX3_QIXUE({
                 version: this.version,
