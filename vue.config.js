@@ -93,10 +93,13 @@ module.exports = {
                 "target": "https://next.jx3box.com",
                 "onProxyReq": function (request) {
                     request.setHeader("origin", "");
-                },
+                }
             },
             "/user": {
                 "target": "https://server.jx3box.com",
+                "onProxyReq": function (request) {
+                    request.setHeader("origin", "");
+                }
             },
         },
         disableHostCheck: true

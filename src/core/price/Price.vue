@@ -24,20 +24,20 @@
                                     ? currentServer
                                     : "请选择一个服务器"
                             }}</span>
-                            <el-checkbox
+                            <!-- <el-checkbox
                                 v-model="pinnedChecked"
                                 label="默认显示此服务器"
                                 border
                                 size="medium"
                                 @change="changePinnedServer"
-                            ></el-checkbox>
+                            ></el-checkbox> -->
                             <p class="title-origin">
                                 数据来源：
                                 <el-link
                                     type="primary"
-                                    href="https://jx3.seasunwbl.com/"
+                                    href="https://orange.arkwish.com/login"
                                     target="_blank"
-                                    >万宝楼</el-link
+                                    >小橙排表系统</el-link
                                 >
                             </p>
                         </div>
@@ -53,7 +53,7 @@
                                     v-for="(server, key) in serverList"
                                     :key="key"
                                     :label="server.serverName"
-                                    :name="key"
+                                    :name="server.serverName"
                                 ></el-tab-pane>
                             </el-tabs>
                         </div>
@@ -62,91 +62,16 @@
                         <div class="m-price-notice hint">
                             ♥
                             请选择正规平台！警惕交易陷阱！部分虚假交易平台会用低价骗取您购买，但充值后又提示该订单已被出售或无货，导致你的钱在一段时间无法及时提现，而且你提现时又要再次收取手续费。
-                            <span style="color: #c00; font-weight: bold;"
+                            <span style="color: #c00; font-weight: bold"
                                 >单价越高，表示1元能买到更多的金，也就说明金价越便宜喔！</span
                             >
                         </div>
 
                         <!-- 概览 -->
-                        <div class="m-price-overview">
-                            <el-row
-                                :gutter="20"
-                                class="card-wrapper card-wrapper-all-servers"
-                                v-if="currentGate === 'gate0000'"
-                            >
-                                <el-col :xs="24" :md="8">
-                                    <el-card>
-                                        <div
-                                            class="card-price-summary u-lowest"
-                                        >
-                                            <div class="price-summary-title">
-                                                当前最低
-                                            </div>
-                                            <div class="price-summary-price">
-                                                <b
-                                                    >{{
-                                                        allServersPrice.lowest
-                                                    }}
-                                                    <em>金/￥</em></b
-                                                >
-                                            </div>
-                                            <div class="price-summary-server">
-                                                {{
-                                                    allServersPrice.lowest_server
-                                                }}
-                                            </div>
-                                        </div>
-                                    </el-card>
-                                </el-col>
-                                <el-col :xs="24" :md="8">
-                                    <el-card>
-                                        <div
-                                            class="card-price-summary u-highest"
-                                        >
-                                            <div class="price-summary-title">
-                                                当前最高
-                                            </div>
-                                            <div class="price-summary-price">
-                                                <b
-                                                    >{{
-                                                        allServersPrice.highest
-                                                    }}
-                                                    <em>金/￥</em></b
-                                                >
-                                            </div>
-                                            <div class="price-summary-server">
-                                                {{
-                                                    allServersPrice.highest_server
-                                                }}
-                                            </div>
-                                        </div>
-                                    </el-card>
-                                </el-col>
-                                <el-col :xs="24" :md="8">
-                                    <el-card>
-                                        <div class="card-price-summary u-total">
-                                            <div class="price-summary-title">
-                                                当前均价
-                                            </div>
-                                            <div class="price-summary-price">
-                                                <b
-                                                    >{{
-                                                        allServersPrice.median
-                                                    }}
-                                                    <em>金/￥</em></b
-                                                >
-                                            </div>
-                                            <div class="price-summary-server">
-                                                全区全服
-                                            </div>
-                                        </div>
-                                    </el-card>
-                                </el-col>
-                            </el-row>
+                        <div class="m-price-overview" v-if="singleServerPrice.today">
                             <el-row
                                 :gutter="20"
                                 class="card-wrapper card-wrapper-single-server"
-                                v-else-if="currentGate !== ''"
                             >
                                 <el-col :xs="24" :md="8">
                                     <el-card>
@@ -163,7 +88,7 @@
                                                     <span
                                                         class="price-summary-number"
                                                         >{{
-                                                            singleServerPrice.yesterday_lowest
+                                                            singleServerPrice.yesterday["official"]
                                                         }}</span
                                                     >
                                                 </div>
@@ -173,7 +98,7 @@
                                                     <span
                                                         class="price-summary-number"
                                                         >{{
-                                                            singleServerPrice.yesterday_average
+                                                            singleServerPrice.yesterday["5173"]
                                                         }}</span
                                                     >
                                                 </div>
@@ -183,7 +108,7 @@
                                                     <span
                                                         class="price-summary-number"
                                                         >{{
-                                                            singleServerPrice.yesterday_highest
+                                                            singleServerPrice.yesterday["post"]
                                                         }}</span
                                                     >
                                                 </div>
@@ -194,7 +119,7 @@
                                                 >
                                                     <span
                                                         class="price-summary-mini"
-                                                        >最低价</span
+                                                        >万宝楼</span
                                                     >
                                                 </div>
                                                 <div
@@ -202,7 +127,7 @@
                                                 >
                                                     <span
                                                         class="price-summary-mini"
-                                                        >均价</span
+                                                        >5173</span
                                                     >
                                                 </div>
                                                 <div
@@ -210,7 +135,7 @@
                                                 >
                                                     <span
                                                         class="price-summary-mini"
-                                                        >最高价</span
+                                                        >贴吧</span
                                                     >
                                                 </div>
                                             </div>
@@ -232,7 +157,7 @@
                                                     <span
                                                         class="price-summary-number"
                                                         >{{
-                                                            singleServerPrice.lowest
+                                                            mean(singleServerPrice.today["official"])
                                                         }}</span
                                                     >
                                                 </div>
@@ -242,7 +167,7 @@
                                                     <span
                                                         class="price-summary-number"
                                                         >{{
-                                                            singleServerPrice.average
+                                                            mean(singleServerPrice.today["5173"])
                                                         }}</span
                                                     >
                                                 </div>
@@ -252,7 +177,7 @@
                                                     <span
                                                         class="price-summary-number"
                                                         >{{
-                                                            singleServerPrice.highest
+                                                            mean(singleServerPrice.today["post"])
                                                         }}</span
                                                     >
                                                 </div>
@@ -263,7 +188,7 @@
                                                 >
                                                     <span
                                                         class="price-summary-mini"
-                                                        >最低价</span
+                                                        >万宝楼</span
                                                     >
                                                 </div>
                                                 <div
@@ -271,7 +196,7 @@
                                                 >
                                                     <span
                                                         class="price-summary-mini"
-                                                        >均价</span
+                                                        >5173</span
                                                     >
                                                 </div>
                                                 <div
@@ -279,7 +204,7 @@
                                                 >
                                                     <span
                                                         class="price-summary-mini"
-                                                        >最高价</span
+                                                        >贴吧</span
                                                     >
                                                 </div>
                                             </div>
@@ -287,46 +212,6 @@
                                     </el-card>
                                 </el-col>
                                 <el-col :xs="24" :md="8">
-                                    <el-card>
-                                        <div class="card-price-summary u-total">
-                                            <div class="price-summary-title">
-                                                当前待售
-                                            </div>
-                                            <div class="price-summary-price">
-                                                <div
-                                                    class="price-summary-detail"
-                                                >
-                                                    <span
-                                                        class="price-summary-number"
-                                                        @mouseenter="
-                                                            singleServerDisplayTotalFull = true
-                                                        "
-                                                        @mouseleave="
-                                                            singleServerDisplayTotalFull = false
-                                                        "
-                                                    >
-                                                        {{
-                                                            singleServerTotalDisplay
-                                                        }}金
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <div class="price-summary-price">
-                                                <div
-                                                    class="price-summary-detail"
-                                                >
-                                                    <span
-                                                        class="price-summary-mini"
-                                                        >共{{
-                                                            singleServerPrice.count
-                                                        }}笔</span
-                                                    >
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </el-card>
-                                </el-col>
-                                <el-col :xs="24" :md="24">
                                     <el-card>
                                         <div
                                             class="card-price-summary card-price-recommend"
@@ -341,7 +226,7 @@
                                                 金 / ￥100
                                             </div>
                                             <div class="price-summary-server">
-                                                建议成交价为近三天平均成交价
+                                                近三天平均成交价
                                                 在扣除手续费及提现费之前的价格
                                             </div>
                                         </div>
@@ -352,46 +237,27 @@
 
                         <!-- 图表 -->
                         <div class="m-price-chart chart-wrapper">
-                            <div
-                                class="chart-div chart-scatter"
-                                v-show="currentGate === 'gate0000'"
-                            >
-                                <v-chart
-                                    :options="scatterOption"
-                                    :autoresize="true"
-                                />
-                            </div>
-                            <div
-                                class="chart-div chart-bar"
-                                v-show="currentGate === 'gate0000'"
-                            >
-                                <v-chart
-                                    :options="barOption"
-                                    :autoresize="true"
-                                />
-                            </div>
-                            <div
+                            <!-- <div
                                 class="chart-div chart-boxplot"
                                 v-show="
-                                    currentGate !== '' &&
-                                        currentGate !== 'gate0000'
+                                    currentGate !== ''
                                 "
                             >
                                 <v-chart
                                     :options="boxplotOption"
                                     :autoresize="true"
                                 />
-                            </div>
+                            </div> -->
                             <div
                                 class="chart-div chart-line"
                                 v-show="
-                                    currentGate !== '' &&
-                                        currentGate !== 'gate0000'
+                                    currentGate !== ''
                                 "
                             >
                                 <v-chart
                                     :options="lineOption"
                                     :autoresize="true"
+                                    @legendselectchanged="onLineChartLegendselectchanged"
                                 />
                             </div>
                         </div>
@@ -409,16 +275,17 @@
 
 <script>
 // import Info from "@/components/Info.vue";
+import md5 from "js-md5";
 import Nav from "@/components/Nav.vue";
 // import FServerNode from "../servers/FServerNode.vue";
-import { axios } from "@/service/api.js";
+import { axios, realUrl } from "@/service/api.js";
 import { JX3BOX, User } from "@jx3box/jx3box-common";
 import { prepareBoxplotData } from "echarts/extension/dataTool";
 // import Extend from "@/components/Extend.vue";
 import serverData from "@jx3box/jx3box-data/data/server/server.json";
 export default {
     name: "Price",
-    data: function() {
+    data: function () {
         return {
             searchServerName: "",
             isShowMainServer: true,
@@ -426,7 +293,7 @@ export default {
             pinnedServerName: "gate0000",
             currentServer: "",
             currentGate: "",
-            pinnedChecked: false,
+            // pinnedChecked: false,
             allPriceDataRaw: {},
             allServersPrice: {},
             singleServerPrice: {},
@@ -601,23 +468,32 @@ export default {
                 ],
             },
             lineOption: {
+                legend: {
+                    show: true,
+                    top: 0
+                },
                 tooltip: {
                     trigger: "item",
                     axisPointer: {
                         type: "cross",
                     },
                     formatter: (param) => {
-                        if (param.name === "均价") {
-                            return `均价：${param.data.value}`;
+                        // if (param.name === "均价") {
+                        //     return `均价：${param.data.value}金/￥`;
+                        // }
+                        // return `${param.name}<br />金价：${param.data}金/￥`;
+                        if (!param.seriesName) {
+                            // 给标记点和标记线用
+                            return `${param.name}<br />${param.value}金/￥`;
                         }
-                        return `${param.name}<br />金价：${param.data}金/￥`;
+                        return `[${param.seriesName}]<br />${param.name}<br />${param.value}金/￥`
                     },
                 },
                 grid: {
                     bottom: 60,
                     top: 50,
                     left: 38,
-                    right: 38,
+                    right: 50,
                 },
                 xAxis: {
                     type: "category",
@@ -646,20 +522,23 @@ export default {
                     },
                 ],
                 series: [
+                    // 5173
                     {
                         type: "line",
+                        name: "5173",
+                        animationDuration: 300,
                         smooth: false,
                         symbol: "circle",
                         symbolSize: 10,
                         sampling: "average",
                         itemStyle: {
-                            color: "rgb(64,158,255)",
+                            color: "rgb(255, 70, 131)",
                         },
                         data: [], // data
                         markPoint: {
                             data: [
-                                { type: "max", name: "最大值" },
-                                { type: "min", name: "最小值" },
+                                { type: "max", name: "[5173]最大值" },
+                                { type: "min", name: "[5173]最小值" },
                             ],
                             itemStyle: {
                                 color: "rgb(255, 70, 131)",
@@ -672,9 +551,9 @@ export default {
                                     type: "median",
                                     label: {
                                         position: "start",
-                                        formatter: "均价\n{c}",
+                                        formatter: "[5173]\n均价\n{c}",
                                     },
-                                    name: "均价",
+                                    name: "[5173]均价",
                                 },
                             ],
                             lineStyle: {
@@ -687,6 +566,66 @@ export default {
                     },
                     {
                         type: "line",
+                        animationDuration: 300,
+                        smooth: false,
+                        symbol: "none",
+                        symbolSize: 0,
+                        sampling: "average",
+                        itemStyle: {
+                            color: "rgb(255, 70, 131)",
+                        },
+                        data: [],
+                        connectNulls: true,
+                        lineStyle: {
+                            type: "dashed",
+                        },
+                        silent: true,
+                    },
+                    // 官方
+                    {
+                        type: "line",
+                        name: "万宝楼",
+                        animationDuration: 300,
+                        smooth: false,
+                        symbol: "circle",
+                        symbolSize: 10,
+                        sampling: "average",
+                        itemStyle: {
+                            color: "rgb(64,158,255)",
+                        },
+                        data: [], // data
+                        markPoint: {
+                            data: [
+                                { type: "max", name: "[万宝楼]最大值" },
+                                { type: "min", name: "[万宝楼]最小值" },
+                            ],
+                            itemStyle: {
+                                color: "rgb(64,158,255)",
+                            },
+                            symbolOffset: [0, "-10%"],
+                        },
+                        markLine: {
+                            data: [
+                                {
+                                    type: "median",
+                                    label: {
+                                        position: "start",
+                                        formatter: "[万宝楼]\n均价\n{c}",
+                                    },
+                                    name: "[万宝楼]均价",
+                                },
+                            ],
+                            lineStyle: {
+                                color: "rgb(64,158,255)",
+                                width: 3,
+                                type: "dotted",
+                            },
+                            symbol: "none",
+                        },
+                    },
+                    {
+                        type: "line",
+                        animationDuration: 300,
                         smooth: false,
                         symbol: "none",
                         symbolSize: 0,
@@ -701,53 +640,95 @@ export default {
                         },
                         silent: true,
                     },
+                    // 贴吧
+                    {
+                        type: "line",
+                        name: "贴吧",
+                        animationDuration: 300,
+                        smooth: false,
+                        symbol: "circle",
+                        symbolSize: 10,
+                        sampling: "average",
+                        itemStyle: {
+                            color: "#22c3aa",
+                        },
+                        data: [], // data
+                        markPoint: {
+                            data: [
+                                { type: "max", name: "[贴吧]最大值" },
+                                { type: "min", name: "[贴吧]最小值" },
+                            ],
+                            itemStyle: {
+                                color: "#22c3aa",
+                            },
+                            symbolOffset: [0, "-10%"],
+                        },
+                        markLine: {
+                            data: [
+                                {
+                                    type: "median",
+                                    label: {
+                                        position: "start",
+                                        formatter: "[贴吧]\n均价\n{c}",
+                                    },
+                                    name: "[贴吧]均价",
+                                },
+                            ],
+                            lineStyle: {
+                                color: "#22c3aa",
+                                width: 3,
+                                type: "dotted",
+                            },
+                            symbol: "none",
+                        },
+                    },
+                    {
+                        type: "line",
+                        animationDuration: 300,
+                        smooth: false,
+                        symbol: "none",
+                        symbolSize: 0,
+                        sampling: "average",
+                        itemStyle: {
+                            color: "#22c3aa",
+                        },
+                        data: [],
+                        connectNulls: true,
+                        lineStyle: {
+                            type: "dashed",
+                        },
+                        silent: true,
+                    },
                 ],
             },
         };
     },
-    computed: {
-        singleServerTotalDisplay() {
-            let total = this.singleServerPrice.total;
-            if (
-                total &&
-                parseInt(total) >= 10000 &&
-                !this.singleServerDisplayTotalFull
-            ) {
-                return Math.floor(total / 10000) + "万";
-            } else {
-                return total;
-            }
-        },
-    },
+    computed: {},
     methods: {
         async prepareMounted() {
-            let tmpdict = {
-                gate0000: {
-                    serverName: "全区全服",
-                    isPinned: false,
-                    gate: "gate0000",
-                },
-            };
+            let tmpdict = {};
             // let serverUrl = dataPath('server/server.json');
             // let getAllServers = axios(serverUrl, 'GET');
 
-            let priceUrl = JX3BOX.__spider + "jx3price";
-            let getAllPriceData = axios(priceUrl, "GET");
+            let priceUrl = "https://box.arkwish.com/api/gold";
+            // 准备参数
+            let ts = Math.round(new Date().getTime() / 1000);
+            let access_token = md5(`${ts}secret`);
+            let params = {
+                ts: ts,
+                access_token: access_token,
+            };
+            let getAllPriceData = axios(priceUrl, "GET", false, {}, {}, params);
 
             let getUserServerSaved = null;
             if (this.uid) {
-                let userUrl = JX3BOX.__server + "user/meta";
-                getUserServerSaved = axios(
-                    userUrl,
-                    "GET",
-                    true,
-                    {},
-                    {},
-                    { uid: this.uid, key: "jx3price" }
-                );
+                let userUrl = realUrl(JX3BOX.__server, "user/me");
+                getUserServerSaved = axios(userUrl, "GET", true);
             } else {
                 getUserServerSaved = this.getFromLocal();
             }
+            // 默认蝶恋花
+            let serverName = "蝶恋花"
             let axiosSuccess = false;
             Promise.all([getUserServerSaved, getAllPriceData])
                 .then((result) => {
@@ -762,20 +743,27 @@ export default {
                     }
                     this.serverList = tmpdict;
 
-                    if (result[0].code == 10050) {
-                        let serverValue = result[0].data.value;
-                        if (serverValue) {
-                            this.pinnedServerName = serverValue;
-                        } else {
-                            this.pinnedServerName = "gate0000";
-                        }
+                    if (result[0].code === 0) {
+                        serverName = result[0].data.jx3_server;
+                        // // 这个时候serverValue是区服的名字 比如”蝶恋花“
+                        // let serverValue = "gate0126"; // 默认
+                        // for (const [gate, value] of Object.entries(
+                        //     serverData.server_dict
+                        // )) {
+                        //     if (value === serverName) {
+                        //         serverValue = gate;
+                        //         break;
+                        //     }
+                        // }
+                        // // this.pinnedServerName = serverValue;
+                        // this.pinnedServerName = serverName;
                     }
 
                     let priceData = result[1];
-                    if ("gate0000" in priceData) {
-                        this.allPriceDataRaw = priceData;
+                    if (priceData.code !== undefined && priceData.code === 0) {
+                        this.allPriceDataRaw = priceData.data;
                     }
-                    this.currentGate = this.pinnedServerName;
+                    this.currentGate = serverName;
                     axiosSuccess = true;
                 })
                 .catch((e) => {
@@ -804,21 +792,11 @@ export default {
                 })
                 .then(() => {
                     if (axiosSuccess) {
-                        this.pinnedChecked =
-                            this.currentGate === this.pinnedServerName;
+                        // this.pinnedChecked = this.currentGate === this.pinnedServerName;
                         this.parsePriceData();
                         this.showServer();
                     }
                 });
-        },
-        changePinnedServer(value) {
-            if (value) {
-                this.pinnedServerName = this.currentGate;
-                this.setSavedServers();
-            } else {
-                this.pinnedServerName = null;
-                this.setSavedServers();
-            }
         },
         median(_arr) {
             const mid = Math.floor(_arr.length / 2),
@@ -827,35 +805,46 @@ export default {
                 ? nums[mid]
                 : (nums[mid - 1] + nums[mid]) / 2;
         },
-        calcRecommend() {
-            let threeDaysSum = parseInt(this.singleServerPrice.average);
-            let count = 1;
-            for (let price of this.singleServerPrice.trends.split(",")) {
-                threeDaysSum += parseInt(price);
-                count += 1;
-                if (count >= 3) {
-                    break;
+        mean(_arr) {
+            let sum = 0;
+            let valid_count = 0;
+            for (let index = 0; index < _arr.length; index++) {
+                const element = _arr[index];
+                if (!element || element == 0) {
+                    continue
+                } else {
+                    sum += element
+                    ++valid_count
                 }
             }
-            return Math.floor((threeDaysSum / count / 0.9405) * 100);
+            return valid_count === 0 ? "无数据" : (Math.floor(sum / valid_count * 100) / 100).toFixed(2)
+        },
+        calcRecommend() {
+            let threeDaysSum = 0;
+            for (let count = 0; count < 3; ++count) {
+                let singleDay = this.singleServerPrice.trend[count]
+                let maxPrice = Math.max(singleDay["5173"], singleDay["post"], singleDay["official"] / 0.9405)
+                threeDaysSum += maxPrice
+            }
+            return Math.floor((threeDaysSum / 3) * 100);
         },
         clickServer(serverName, gate) {
             if (this.currentGate === gate) {
                 return;
             }
             this.currentGate = gate;
-            this.pinnedChecked = this.currentGate === this.pinnedServerName;
+            // this.pinnedChecked = this.currentGate === this.pinnedServerName;
             this.showServer();
             this.parsePriceData();
         },
-        changeServer: function(tab, event) {
+        changeServer: function (tab, event) {
             // this.currentGate = gate;
-            this.pinnedChecked = this.currentGate === this.pinnedServerName;
+            // this.pinnedChecked = this.currentGate === this.pinnedServerName;
             this.showServer();
             this.parsePriceData();
         },
         showServer() {
-            this.currentServer = this.serverList[this.currentGate].serverName;
+            this.currentServer = this.currentGate
         },
         loadAllServers() {
             let url = JX3BOX.__spider + "jx3servers";
@@ -871,11 +860,12 @@ export default {
         },
         parsePriceData() {
             // 基于当前的服务器
-            if (this.currentGate === "gate0000") {
-                this.parseAllServersData();
-            } else {
-                this.parseSingleServerData();
-            }
+            // if (this.currentGate === "gate0000") {
+            //     this.parseAllServersData();
+            // } else {
+            //     this.parseSingleServerData();
+            // }
+            this.parseSingleServerData();
         },
         parseAllServersData() {
             let data = this.allPriceDataRaw["gate0000"];
@@ -930,19 +920,26 @@ export default {
                     continue;
                 }
                 serverArr.push(this.serverList[gate].serverName);
-                dataArr.push(parseInt(value.average));
+                dataArr.push(无parseInt(value.average));
             }
             this.barOption.xAxis.data = serverArr;
             this.barOption.series[0].data = dataArr;
         },
         parseSingleServerData() {
             this.singleServerPrice = this.allPriceDataRaw[this.currentGate];
-            this.drawBoxplotChart();
+            // this.drawBoxplotChart();
             this.drawLineChart();
             this.singleServerPrice.recommend = this.calcRecommend();
         },
         drawBoxplotChart() {
-            let currentRawArr = this.singleServerPrice.current.split(",");
+            let todayPrice = this.singleServerPrice.today;
+            let price5173 = todayPrice["5173"];
+            let priceOfficial = todayPrice["official"];
+            let priceTieba = todayPrice["post"];
+            // let currentRawArr = todayPrice["5173"].concat(todayPrice.official).concat(todayPrice.post).split(",");
+            let currentRawArr = todayPrice["5173"]
+                .concat(todayPrice.official)
+                .concat(todayPrice.post);
             let data = prepareBoxplotData([currentRawArr], {
                 layout: "vertical",
             });
@@ -955,22 +952,59 @@ export default {
             this.boxplotOption.series[2].data = scatterData;
         },
         drawLineChart() {
-            let hasNullValue = false;
-            let trendsRawArr = this.singleServerPrice.trends.split(",");
-            let trendsArr = trendsRawArr.map((value) => {
-                if (value == "0") {
-                    hasNullValue = true;
-                    return null;
+            let trendsRawArr = this.parseTrend(this.singleServerPrice.trend);
+            let trendsArr = {
+                5173: [],
+                official: [],
+                post: [],
+            };
+            let seriesConter = 0;
+            for (const [source, trends] of Object.entries(trendsRawArr)) {
+                let hasNullValue = false;
+                let trendsArr = trends.map((value) => {
+                    if (value == "0") {
+                        hasNullValue = true;
+                        return null;
+                    }
+                    return parseInt(value);
+                });
+                this.lineOption.series[seriesConter].data = trendsArr;
+                if (hasNullValue) {
+                    this.lineOption.series[seriesConter+1].data = trendsArr;
+                } else {
+                    this.lineOption.series[seriesConter+1].data = [];
                 }
-                return parseInt(value);
-            });
-            this.lineOption.series[0].data = trendsArr;
-            if (hasNullValue) {
-                this.lineOption.series[1].data = trendsArr;
-            } else {
-                this.lineOption.series[1].data = [];
+                seriesConter += 2
             }
+
             this.lineOption.xAxis.data = this.getThirtyDaysArr();
+        },
+        parseTrend(trend) {
+            let trends = {
+                5173: [],
+                official: [],
+                post: [],
+            };
+            var compareTrend = () => {
+                return (a, b) => {
+                    return a["date"] < b["date"] ? 1 : -1;
+                };
+            };
+            let sortedTrend = trend.sort(compareTrend());
+            for (let singleDay of sortedTrend) {
+                trends["5173"].push(singleDay["5173"]);
+                trends["official"].push(singleDay["official"]);
+                trends["post"].push(singleDay["post"]);
+            }
+
+            // 放置昨天的数据
+            this.singleServerPrice.yesterday = {
+                "official": sortedTrend[0]["official"] && sortedTrend[0]["official"] != 0 ? sortedTrend[0]["official"].toFixed(2) : "无数据",
+                "5173": sortedTrend[0]["5173"] && sortedTrend[0]["5173"] != 0 ? sortedTrend[0]["5173"].toFixed(2) : "无数据",
+                "post": sortedTrend[0]["post"] && sortedTrend[0]["post"] != 0 ? sortedTrend[0]["post"].toFixed(2): "无数据"
+            }
+
+            return trends;
         },
         getThirtyDaysArr() {
             let date = new Date();
@@ -985,6 +1019,33 @@ export default {
         getUserId() {
             if (User.isLogin()) {
                 this.uid = User.getInfo().uid;
+            }
+        },
+        onLineChartLegendselectchanged(e) {
+            switch (e.name) {
+                case "5173":
+                    if (e.selected["5173"] === false) {
+                        this.lineOption.series[1].data = []
+                    } else {
+                        this.lineOption.series[1].data = this.lineOption.series[0].data
+                    }
+                    break;
+                case "万宝楼":
+                    if (e.selected["万宝楼"] === false) {
+                        this.lineOption.series[3].data = []
+                    } else {
+                        this.lineOption.series[3].data = this.lineOption.series[2].data
+                    }
+                    break;
+                case "贴吧":
+                    if (e.selected["贴吧"] === false) {
+                        this.lineOption.series[5].data = []
+                    } else {
+                        this.lineOption.series[5].data = this.lineOption.series[4].data
+                    }
+                    break;
+                default:
+                    break;
             }
         },
         // getSavedServers() {
@@ -1036,75 +1097,19 @@ export default {
         // },
         getFromLocal() {
             return new Promise((resolve, reject) => {
-                if (window.localStorage) {
-                    let current = localStorage.getItem("jx3_price");
-                    if (current && current !== "null") {
-                        resolve({ code: 10050, data: { value: current } });
-                    }
-                }
-                resolve({ code: 10050, data: { value: "gate0000" } });
+                resolve({ code: 0, data: { jx3_server: "蝶恋花" } });
             });
-        },
-        setSavedServers() {
-            if (this.uid) {
-                // 保存到服务器
-                let url = JX3BOX.__server + "user/meta";
-                axios(url, "POST", true, {
-                    uid: this.uid,
-                    key: "jx3price",
-                    value: this.pinnedServerName,
-                })
-                    .then((response) => {
-                        if (response.code == 10052) {
-                            // 成功
-                        }
-                    })
-                    .catch((e) => {
-                        switch (e.code) {
-                            case -1:
-                                // 网络异常
-                                this.$message.error(e.msg);
-                                this.setToLocal();
-                                break;
-                            case 9999:
-                                this.$message.error("登录失效, 请重新登录");
-                                //1.注销
-                                User.destroy();
-                                //2.保存未提交成功的信息
-                                //请保存至IndexedDB,勿占用localstorage
-                                //3.跳转至登录页携带redirect
-                                setTimeout(() => {
-                                    User.toLogin();
-                                }, 2000);
-                                //不指定url时则自动跳回当前所在页面
-                                break;
-                            default:
-                                // 服务器错误
-                                this.$message.error(`[${e.code}]${e.msg}`);
-                                this.setToLocal();
-                        }
-                    })
-                    .then(() => {});
-            } else {
-                // 储存在本地
-                this.setToLocal();
-            }
-        },
-        setToLocal() {
-            if (window.localStorage) {
-                let names = this.pinnedServerName;
-                localStorage.setItem("jx3_price", names);
-            }
         },
     },
     filters: {},
-    mounted: function() {
+    mounted: function () {
         this.getUserId();
         this.prepareMounted();
         // this.loadPriceData();
         // this.getUserId();
         // this.getSavedServers();
         // this.loadAllServers();
+        // this.line
     },
     components: {
         Nav,
