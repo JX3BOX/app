@@ -35,7 +35,7 @@
 
                 <div class="m-flower-search">
                     <el-row :gutter="20">
-                        <el-col :span="5">
+                        <el-col :span="7">
                             <el-select
                                 class="u-server"
                                 v-model="current_server"
@@ -51,7 +51,7 @@
                                 </el-option>
                             </el-select>
                         </el-col>
-                        <el-col :span="5">
+                        <el-col :span="7">
                             <el-select
                                 class="u-server"
                                 v-model="current_map"
@@ -67,42 +67,23 @@
                                 </el-option>
                             </el-select>
                         </el-col>
-                        <el-col :span="5">
+                        <el-col :span="7">
                             <el-select
                                 class="u-type"
                                 v-model="type"
                                 placeholder="请选择花型"
                             >
-                                <el-option label="全部" value=""> </el-option>
+                                <el-option label="全部" value=""></el-option>
                                 <el-option
                                     v-for="item in types"
-                                    :key="item"
-                                    :label="item"
-                                    :value="item"
+                                    :key="item.name"
+                                    :label="item.name"
+                                    :value="item.key"
                                 >
                                 </el-option>
                             </el-select>
                         </el-col>
-                        <el-col :span="5">
-                            <el-select
-                                class="u-level"
-                                v-model="level"
-                                placeholder="请选择等级"
-                            >
-                                <el-option label="全部" value=""> </el-option>
-                                <el-option
-                                    v-for="item in levels"
-                                    :key="item"
-                                    :label="item"
-                                    :value="item"
-                                >
-                                    <span v-if="item"
-                                        >{{ item }} · {{ color(item) }}</span
-                                    >
-                                </el-option>
-                            </el-select>
-                        </el-col>
-                        <el-col :span="4">
+                        <el-col :span="3">
                             <el-button
                                 class="u-button"
                                 type="primary"
@@ -115,7 +96,7 @@
                     </el-row>
                 </div>
 
-                <div class="m-flower-all" v-if="mode == 0">
+                <div class="m-flower-all">
                     <div class="m-flower-result" v-if="rank">
                         <el-row :gutter="40">
                             <el-col
@@ -123,6 +104,7 @@
                                 class="u-flower"
                                 v-for="(item, i) in rank"
                                 :key="i"
+                                :class="{isHidden:item.isHidden}"
                             >
                                 <span class="u-title">
                                     <span class="u-name">{{ item.name }}</span>
@@ -169,100 +151,6 @@
                     </div>
                 </div>
 
-                <div class="m-flower-overview" v-if="mode == 1">
-                    <el-table
-                        v-if="overview && overview.length"
-                        :data="overview"
-                        :default-sort="{ prop: 'name', order: 'ascending' }"
-                    >
-                        <el-table-column
-                            prop="name"
-                            label="品种"
-                            width="200px"
-                            :formatter="nameFormat"
-                        >
-                        </el-table-column>
-                        <el-table-column
-                            prop="map"
-                            label="地图分线"
-                            min-width="300px"
-                            ><template slot-scope="scope">
-                                <el-tooltip
-                                    class="u-line-wrapper"
-                                    effect="dark"
-                                    content="点击复制"
-                                    placement="top"
-                                    v-for="line in scope.row.map"
-                                    :key="line"
-                                >
-                                    <span
-                                        class="u-line"
-                                        v-clipboard:copy="onlyLineNumber(line)"
-                                        v-clipboard:success="onCopy"
-                                        v-clipboard:error="onError"
-                                        >{{ line.replace(" ", "") }}</span
-                                    >
-                                </el-tooltip>
-                            </template></el-table-column
-                        >
-                        <el-table-column
-                            prop="price"
-                            label="当前价格（最高）"
-                            width="160px"
-                        >
-                        </el-table-column>
-                    </el-table>
-                </div>
-
-                <div class="m-flower-box" v-if="mode == 2">
-                    <div class="m-flower-result" v-if="data && data.length">
-                        <el-table
-                            :data="data"
-                            :default-sort="{
-                                prop: 'date',
-                                order: 'descending',
-                            }"
-                        >
-                            <el-table-column prop="server" label="服务器"
-                                >{{ current_server }}
-                            </el-table-column>
-                            <el-table-column prop="map" label="地图分线">
-                            </el-table-column>
-                            <el-table-column prop="unit" label="数量" sortable>
-                            </el-table-column>
-                            <el-table-column prop="price" label="价格" sortable>
-                            </el-table-column>
-                            <el-table-column
-                                prop="time"
-                                label="时间"
-                                sortable
-                                :formatter="dateFormat"
-                            >
-                            </el-table-column>
-                        </el-table>
-                    </div>
-                    <el-alert
-                        v-if="!data.length && done"
-                        class="m-archive-null"
-                        title="没有找到相关条目"
-                        type="info"
-                        center
-                        show-icon
-                    >
-                    </el-alert>
-                    <el-pagination
-                        class="m-archive-pages"
-                        :page-size="15"
-                        background
-                        :hide-on-single-page="true"
-                        @current-change="changePage"
-                        :current-page.sync="page"
-                        layout="total, prev, pager, next, jumper"
-                        :total="total"
-                    >
-                    </el-pagination>
-                </div>
-
             </div>
             <Footer></Footer>
         </Main>
@@ -297,14 +185,50 @@ export default {
             current_server: "",
             current_map: "广陵邑",
             types: [
-                "绣球花",
-                "郁金香",
-                "牵牛花",
-                "玫瑰",
-                "百合",
-                "荧光菌",
-                "羽扇豆花",
-                // "葫芦","麦子","青菜","芜菁"
+                {
+                    name :'绣球花',
+                    key:'绣球花'
+                },
+                {
+                    name :'郁金香',
+                    key:'郁金香'
+                },
+                {
+                    name :'牵牛花',
+                    key:'牵牛花'
+                },
+                {
+                    name :'玫瑰',
+                    key:'玫瑰'
+                },
+                {
+                    name :'百合',
+                    key:'百合'
+                },
+                {
+                    name :'荧光菌',
+                    key:'荧光菌'
+                },
+                {
+                    name :'羽扇豆花',
+                    key:'羽扇豆花'
+                },
+                {
+                    name :'葫芦',
+                    key:'葫芦'
+                },
+                {
+                    name :'麦子',
+                    key:'麦'
+                },
+                {
+                    name :'青菜',
+                    key:'青菜'
+                },
+                {
+                    name :'芜菁',
+                    key:'芜菁'
+                },
             ],
             type: "",
             level: "",
@@ -365,9 +289,9 @@ export default {
             return {
                 server: this.current_server,
                 map: this.current_map,
-                type: this.type,
-                level: this.level,
-                page: this.page,
+                // type: this.type,
+                // level: this.level,
+                // page: this.page,
             };
         },
         primary_params : function (){
@@ -398,17 +322,7 @@ export default {
             return row.name + " ( " + colors + " ) ";
         },
         loadData: function() {
-
-            // 概览模式
-            if (this.mode == 0) {
-                this.loadRank();
-                // 简略模式
-            } else if (this.mode == 1) {
-                this.loadOverview();
-                // 完整模式
-            } else {
-                this.loadAll();
-            }
+            this.loadRank();
             setFlowerServer(this.current_server);
         },
         loadRank: function() {
@@ -442,70 +356,6 @@ export default {
                         });
                     }
                     this.rank = list;
-                })
-                .finally(() => {
-                    this.loading = false;
-                });
-        },
-        loadOverview: function() {
-            this.loading = true;
-
-            let qs = this.type;
-            if (this.isTraditional) {
-                qs = this.transformRequest(qs);
-            }
-
-            return getFlowerPrices(
-                {
-                    server: this.current_server,
-                    flower: qs,
-                    map: this.current_map,
-                },
-                this
-            )
-                .then((data) => {
-                    if (this.isTraditional) {
-                        data = this.transformData(data);
-                    }
-
-                    let overview = [];
-                    for (let name in data) {
-                        overview.push({
-                            name: name,
-                            price: data[name]["max"] + "园宅币",
-                            map: data[name]["maxLine"].slice(0, 5),
-                        });
-                    }
-                    this.overview = overview;
-                })
-                .finally(() => {
-                    this.loading = false;
-                });
-        },
-        loadAll: function() {
-            this.loading = true;
-
-            let qs = this.level + this.type;
-            if (this.isTraditional) {
-                qs = this.transformRequest(qs);
-            }
-
-            return getFlowerPrice(
-                {
-                    server: this.current_server,
-                    map: this.current_map,
-                    flower: qs,
-                    pageIndex: this.page,
-                },
-                this
-            )
-                .then((data) => {
-                    if (this.isTraditional) {
-                        data = this.transformData(data);
-                    }
-                    this.data = data.data;
-                    this.total = data.page.total;
-                    this.pages = data.page.pageTotal;
                 })
                 .finally(() => {
                     this.loading = false;
@@ -558,12 +408,18 @@ export default {
                 this.loadData();
             },
         },
-        primary_params : {
-            deep:true,
-            handler : function() {
-                // 复位翻页
-                this.page = 1
-            },
+        type : function (val){
+            this.rank.forEach((item) => {
+                if(val){
+                    if(!item.name.includes(val)){
+                        item.isHidden = true
+                    }else{
+                        item.isHidden = false
+                    }
+                }else{
+                    item.isHidden = false
+                }
+            })
         }
     },
     filters: {

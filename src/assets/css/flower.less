@@ -11,6 +11,7 @@
 .m-flower-container{
     max-width:@max-width;
     .auto(x);
+    min-height:calc(100vh - 250px);
 }
 .m-flower-title {
     font-weight: 300;
@@ -163,6 +164,10 @@
         .fr;
     }
     overflow: hidden;
+
+    .isHidden{
+        .none;
+    }
 }
 @media screen and (max-width:@ipad){
     .m-flower-all .u-flower{
