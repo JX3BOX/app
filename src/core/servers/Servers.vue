@@ -182,7 +182,7 @@ export default {
                     { uid: this.uid, key: "jx3_servers" }
                 )
                     .then((response) => {
-                        if (response.code == 10050) {
+                        if (response.code == 0) {
                             let serverValue = response.data.value;
                             if (serverValue) {
                                 this.pinnedServerName = serverValue.split(",");
@@ -240,7 +240,7 @@ export default {
                     value: this.pinnedServerName.join(","),
                 })
                     .then((response) => {
-                        if (response.code == 10052) {
+                        if (response.code == 0) {
                             // 成功
                         }
                     })
