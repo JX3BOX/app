@@ -167,7 +167,7 @@ import {
 } from "@/service/flower";
 import { setFlowerServer, getProfile } from "@/service/server";
 import dateFormat from "@/utils/moment";
-import servers from "@jx3box/jx3box-data/data/server/server_list.json";
+import servers from "@jx3box/jx3box-data/data/server/flower_server.json";
 import colors from "./colors.json";
 import flowers from "./flowers.json";
 import { __iconPath, __ossRoot } from "@jx3box/jx3box-common/js/jx3box.json";
