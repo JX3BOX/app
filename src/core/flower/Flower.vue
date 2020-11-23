@@ -41,6 +41,7 @@
                                 v-model="current_server"
                                 filterable
                                 placeholder="请选择服务器"
+                                @change="changeServer"
                             >
                                 <el-option
                                     v-for="item in servers"
@@ -104,7 +105,7 @@
                                 class="u-flower"
                                 v-for="(item, i) in rank"
                                 :key="i"
-                                :class="{isHidden:item.isHidden}"
+                                :class="{ isHidden: item.isHidden }"
                             >
                                 <span class="u-title">
                                     <span class="u-name">{{ item.name }}</span>
@@ -150,7 +151,6 @@
                         </el-row>
                     </div>
                 </div>
-
             </div>
             <Footer></Footer>
         </Main>
@@ -158,7 +158,7 @@
 </template>
 
 <script>
-import User from '@jx3box/jx3box-common/js/user'
+import User from "@jx3box/jx3box-common/js/user";
 import Nav from "@/components/Nav.vue";
 import {
     getFlowerPrice,
@@ -170,6 +170,7 @@ import dateFormat from "@/utils/moment";
 import servers from "@jx3box/jx3box-data/data/server/flower_server.json";
 import colors from "./colors.json";
 import flowers from "./flowers.json";
+import items from "./items.json";
 import { __iconPath, __ossRoot } from "@jx3box/jx3box-common/js/jx3box.json";
 // 繁體
 import traditional_servers from "@jx3box/jx3box-data/data/server/server_international.json";
@@ -186,54 +187,55 @@ export default {
             current_map: "广陵邑",
             types: [
                 {
-                    name :'绣球花',
-                    key:'绣球花'
+                    name: "绣球花",
+                    key: "绣球花",
                 },
                 {
-                    name :'郁金香',
-                    key:'郁金香'
+                    name: "郁金香",
+                    key: "郁金香",
                 },
                 {
-                    name :'牵牛花',
-                    key:'牵牛花'
+                    name: "牵牛花",
+                    key: "牵牛花",
                 },
                 {
-                    name :'玫瑰',
-                    key:'玫瑰'
+                    name: "玫瑰",
+                    key: "玫瑰",
                 },
                 {
-                    name :'百合',
-                    key:'百合'
+                    name: "百合",
+                    key: "百合",
                 },
                 {
-                    name :'荧光菌',
-                    key:'荧光菌'
+                    name: "荧光菌",
+                    key: "荧光菌",
                 },
                 {
-                    name :'羽扇豆花',
-                    key:'羽扇豆花'
+                    name: "羽扇豆花",
+                    key: "羽扇豆花",
                 },
                 {
-                    name :'葫芦',
-                    key:'葫芦'
+                    name: "葫芦",
+                    key: "葫芦",
                 },
                 {
-                    name :'麦子',
-                    key:'麦'
+                    name: "麦子",
+                    key: "麦",
                 },
                 {
-                    name :'青菜',
-                    key:'青菜'
+                    name: "青菜",
+                    key: "青菜",
                 },
                 {
-                    name :'芜菁',
-                    key:'芜菁'
+                    name: "芜菁",
+                    key: "芜菁",
                 },
             ],
             type: "",
             level: "",
             colors,
             flowers,
+            items,
 
             rank: "",
             overview: "",
@@ -244,7 +246,7 @@ export default {
             page: 1,
             loading: false,
             done: false,
-            isLogin : User.isLogin()
+            isLogin: User.isLogin(),
         };
     },
     computed: {
@@ -285,7 +287,7 @@ export default {
             return this.maps[0] || "广陵邑";
         },
         params: function() {
-            console.log('2.查询参数更新')
+            console.log("2.查询参数更新");
             return {
                 server: this.current_server,
                 map: this.current_map,
@@ -294,14 +296,6 @@ export default {
                 // page: this.page,
             };
         },
-        primary_params : function (){
-            return {
-                server: this.current_server,
-                map: this.current_map,
-                type: this.type,
-                level: this.level,
-            }
-        }
     },
     methods: {
         color: function(level) {
@@ -322,8 +316,8 @@ export default {
             return row.name + " ( " + colors + " ) ";
         },
         loadData: function() {
-            this.loadRank();
             setFlowerServer(this.current_server);
+            return this.loadRank();
         },
         loadRank: function() {
             this.loading = true;
@@ -396,31 +390,34 @@ export default {
             });
             return _data;
         },
+        changeServer : function (){
+            this.type = ''
+        }
     },
     watch: {
         map: function(newdata) {
             this.current_map = newdata;
         },
         params: {
-            deep:true,
-            handler : function() {
-                console.log('3.数据加载')
-                this.loadData();
+            deep: true,
+            handler: function() {
+                console.log("3.数据加载");
+                this.loadData()
             },
         },
-        type : function (val){
-            this.rank.forEach((item) => {
-                if(val){
-                    if(!item.name.includes(val)){
-                        item.isHidden = true
-                    }else{
-                        item.isHidden = false
+        type: function(val) {
+            this.rank && this.rank.forEach((item) => {
+                if (val) {
+                    if (!item.name.includes(val)) {
+                        item.isHidden = true;
+                    } else {
+                        item.isHidden = false;
                     }
-                }else{
-                    item.isHidden = false
+                } else {
+                    item.isHidden = false;
                 }
-            })
-        }
+            });
+        },
     },
     filters: {
         iconURL: function(id) {
@@ -428,14 +425,24 @@ export default {
         },
     },
     mounted: function() {
-        if (this.isLogin) {
-            getProfile().then((data) => {
-                console.log('1.a.已登录,加载profile_server')
-                this.current_server = data.jx3_server || "蝶恋花";
-            });
+        let game_params = new URLSearchParams(location.search);
+        let game_server = game_params.get("server");
+        let game_flower = game_params.get("item");
+
+        if (game_server && game_flower) {
+            this.current_server = game_server
+            this.type = items[game_flower]
         } else {
-            console.log('1.b.未登录,加载最后一次服务器')
-            this.current_server = localStorage.getItem("flower_server") || "蝶恋花";
+            if (this.isLogin) {
+                getProfile().then((data) => {
+                    console.log("1.a.已登录,加载profile_server");
+                    this.current_server = data.jx3_server || "蝶恋花";
+                });
+            } else {
+                console.log("1.b.未登录,加载最后一次服务器");
+                this.current_server =
+                    localStorage.getItem("flower_server") || "蝶恋花";
+            }
         }
     },
     components: {
