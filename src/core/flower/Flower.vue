@@ -41,7 +41,6 @@
                                 v-model="current_server"
                                 filterable
                                 placeholder="请选择服务器"
-                                @change="changeServer"
                             >
                                 <el-option
                                     v-for="item in servers"
@@ -390,8 +389,22 @@ export default {
             });
             return _data;
         },
-        changeServer : function (){
-            this.type = ''
+        // changeServer : function (){
+        //     this.type = ''
+        // }
+        filterTypes : function (){
+            this.rank && this.rank.forEach((item) => {
+                if (this.type) {
+                    if (!item.name.includes(this.type)) {
+                        item.isHidden = true;
+                    } else {
+                        item.isHidden = false;
+                    }
+                } else {
+                    item.isHidden = false;
+                }
+                this.$forceUpdate()
+            });
         }
     },
     watch: {
@@ -402,21 +415,13 @@ export default {
             deep: true,
             handler: function() {
                 console.log("3.数据加载");
-                this.loadData()
+                this.loadData().then(() => {
+                    this.filterTypes()
+                })
             },
         },
         type: function(val) {
-            this.rank && this.rank.forEach((item) => {
-                if (val) {
-                    if (!item.name.includes(val)) {
-                        item.isHidden = true;
-                    } else {
-                        item.isHidden = false;
-                    }
-                } else {
-                    item.isHidden = false;
-                }
-            });
+            this.filterTypes()
         },
     },
     filters: {
