@@ -142,6 +142,7 @@ import { JX3BOX, User } from "@jx3box/jx3box-common";
 var blob = new Blob([document.querySelector("#worker").textContent]);
 var url = window.URL.createObjectURL(blob);
 var worker = new Worker(url);
+import dict from '@jx3box/jx3box-dict/dict.json'
 
 export default {
     name: "Translator",
@@ -151,9 +152,10 @@ export default {
             activeTabName: "translate-str",
             preTranslateText: "",
             postTranslateText: "",
-            isLoading: true,
+            isLoading: false,
             percentage: -1,
             downloadFileUrl: "",
+            dict
         };
     },
     computed: {},
@@ -209,43 +211,44 @@ export default {
                 );
             });
         },
-        getDict() {
-            let url = `https://cdn.jsdelivr.net/npm/@jx3box/jx3box-dict/dict.json?v=${Date.now()}`;
-            axios(url)
-                .then((response) => {
-                    this.dict = response;
-                    this.isLoading = false;
-                })
-                .catch((e) => {
-                    switch (e.code) {
-                        case -1:
-                            // 网络异常
-                            this.$message.error(e.msg);
-                            break;
-                        default:
-                            // 服务器错误
-                            console.log(e);
-                            this.$message.error(`[${e.code}]${e.msg}`);
-                    }
-                });
-        },
+        // getDict() {
+        //     let url = `https://cdn.jsdelivr.net/npm/@jx3box/jx3box-dict/dict.json?v=${Date.now()}`;
+        //     axios(url)
+        //         .then((response) => {
+        //             this.dict = response;
+        //             this.isLoading = false;
+        //         })
+        //         .catch((e) => {
+        //             switch (e.code) {
+        //                 case -1:
+        //                     // 网络异常
+        //                     this.$message.error(e.msg);
+        //                     break;
+        //                 default:
+        //                     // 服务器错误
+        //                     console.log(e);
+        //                     this.$message.error(`[${e.code}]${e.msg}`);
+        //             }
+        //         });
+        // },
         async convertText() {
             let preText = this.preTranslateText;
             if (preText.replace(/\ /g, "") === "") {
                 return;
             }
-            let isLogin = true;
+            // let isLogin = true;
             this.isLoading = true;
-            if (preText.length > 1000) {
-                isLogin = await this.checkLogin();
-                if (!isLogin) {
-                    this.$message.warning(
-                        "转换的字符超过1000个需要先登录再尝试转换~"
-                    );
-                    this.isLoading = false;
-                    return;
-                }
-            }
+            // if (preText.length > 1000) {
+            //     // isLogin = await this.checkLogin();
+            //     isLogin = User.isLogin()
+            //     if (!isLogin) {
+            //         this.$message.warning(
+            //             "转换的字符超过1000个需要先登录再尝试转换~"
+            //         );
+            //         this.isLoading = false;
+            //         return;
+            //     }
+            // }
             this.percentage = 0;
             worker.postMessage({
                 cmd: "translate-str",
@@ -359,7 +362,7 @@ export default {
     filters: {},
     created() {
         this.initWorker();
-        this.getDict();
+        // this.getDict();
     },
     mounted: function() {
         this.getUserId();

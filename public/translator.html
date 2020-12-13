@@ -46,8 +46,8 @@
                 let lastProgress = 0;
 
                 for (let char of str) {
-                    i = dict["zh-cn"].indexOf(char);
-                    i > -1 ? arr.push(dict["zh-tr"][i]) : arr.push(char);
+                    i = dict["cn"].indexOf(char);
+                    i > -1 ? arr.push(dict["tr"][i]) : arr.push(char);
                     currentIndexInStr += 1;
                     progress =
                         Math.floor(
@@ -70,13 +70,13 @@
                 let x = -1; //匹配位置
                 let progress = 0;
                 let lastProgress = 99.5;
-                let dictLength = dict["jx3box-cn"].length;
+                let dictLength = dict["jx3cn"].length;
                 let currentIndexInDict = 0;
-                dict["jx3box-cn"].forEach((word, i) => {
+                dict["jx3cn"].forEach((word, i) => {
                     x = str.indexOf(word);
                     if (x > -1) {
                         let re = new RegExp(word, "g");
-                        str = str.replace(re, dict["jx3box-tr"][i]);
+                        str = str.replace(re, dict["jx3tr"][i]);
                     } else {
                     }
                     currentIndexInDict += 1;
