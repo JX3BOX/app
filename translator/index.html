@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang=zh-CN><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=renderer content=webkit><title>簡繁轉換 - JX3BOX</title><link rel=icon href=https://oss.jx3box.com/static/app/favicon.ico><link href=https://oss.jx3box.com/static/app/css/chunk-common.fa54fc1e.css rel=preload as=style><link href=https://oss.jx3box.com/static/app/css/chunk-vendors.7bc58ebd.css rel=preload as=style><link href=https://oss.jx3box.com/static/app/css/translator.0d9e16dc.css rel=preload as=style><link href=https://oss.jx3box.com/static/app/js/chunk-common.96d9f2b1.js rel=preload as=script><link href=https://oss.jx3box.com/static/app/js/chunk-vendors.8d676530.js rel=preload as=script><link href=https://oss.jx3box.com/static/app/js/translator.333246b8.js rel=preload as=script><link href=https://oss.jx3box.com/static/app/css/chunk-vendors.7bc58ebd.css rel=stylesheet><link href=https://oss.jx3box.com/static/app/css/chunk-common.fa54fc1e.css rel=stylesheet><link href=https://oss.jx3box.com/static/app/css/translator.0d9e16dc.css rel=stylesheet></head><body><div id=app></div><script type=app/worker id=worker>self.addEventListener("message", (event) => {
+<!DOCTYPE html><html lang=zh-CN><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=renderer content=webkit><title>簡繁轉換 - JX3BOX</title><link rel=icon href=https://oss.jx3box.com/static/app/favicon.ico><link href=https://oss.jx3box.com/static/app/css/chunk-common.fa54fc1e.css rel=preload as=style><link href=https://oss.jx3box.com/static/app/css/chunk-vendors.20911c31.css rel=preload as=style><link href=https://oss.jx3box.com/static/app/css/translator.0d9e16dc.css rel=preload as=style><link href=https://oss.jx3box.com/static/app/js/chunk-common.372c8df9.js rel=preload as=script><link href=https://oss.jx3box.com/static/app/js/chunk-vendors.adc06507.js rel=preload as=script><link href=https://oss.jx3box.com/static/app/js/translator.6636f0ae.js rel=preload as=script><link href=https://oss.jx3box.com/static/app/css/chunk-vendors.20911c31.css rel=stylesheet><link href=https://oss.jx3box.com/static/app/css/chunk-common.fa54fc1e.css rel=stylesheet><link href=https://oss.jx3box.com/static/app/css/translator.0d9e16dc.css rel=stylesheet></head><body><div id=app></div><script type=app/worker id=worker>self.addEventListener("message", (event) => {
                 let data = event.data;
                 let cmd = data.cmd;
                 let dict = data.dict;
@@ -33,8 +33,8 @@
                 let lastProgress = 0;
 
                 for (let char of str) {
-                    i = dict["zh-cn"].indexOf(char);
-                    i > -1 ? arr.push(dict["zh-tr"][i]) : arr.push(char);
+                    i = dict["cn"].indexOf(char);
+                    i > -1 ? arr.push(dict["tr"][i]) : arr.push(char);
                     currentIndexInStr += 1;
                     progress =
                         Math.floor(
@@ -57,13 +57,13 @@
                 let x = -1; //匹配位置
                 let progress = 0;
                 let lastProgress = 99.5;
-                let dictLength = dict["jx3box-cn"].length;
+                let dictLength = dict["jx3cn"].length;
                 let currentIndexInDict = 0;
-                dict["jx3box-cn"].forEach((word, i) => {
+                dict["jx3cn"].forEach((word, i) => {
                     x = str.indexOf(word);
                     if (x > -1) {
                         let re = new RegExp(word, "g");
-                        str = str.replace(re, dict["jx3box-tr"][i]);
+                        str = str.replace(re, dict["jx3tr"][i]);
                     } else {
                     }
                     currentIndexInDict += 1;
@@ -85,4 +85,4 @@
                 return str;
             }</script><div id=c-ie-tips style="display:none;background-color: #fef0f0;color: #f56c6c;padding:10px;font-weight:bold;text-align:center;width:60%;margin:200px auto;"><p>你的浏览器版本太低，可能无法正常使用本站，建议下载<a href=https://www.google.cn/intl/zh-CN/chrome/ target=_blank>Chrome</a>或其它极速浏览器</p><p>www.jx3box.com</p></div><script>let ua = window.navigator.userAgent.toLocaleLowerCase();
             let isIE = ua.indexOf("trident") > 0 || ua.indexOf("msie") > 0;
-            if (isIE) document.getElementById("c-ie-tips").style.display = "block";</script><div style=display:none;><script src="https://s9.cnzz.com/z_stat.php?id=1277938200&web_id=1277938200"></script></div><script src=https://oss.jx3box.com/static/app/js/chunk-vendors.8d676530.js></script><script src=https://oss.jx3box.com/static/app/js/chunk-common.96d9f2b1.js></script><script src=https://oss.jx3box.com/static/app/js/translator.333246b8.js></script></body></html>
+            if (isIE) document.getElementById("c-ie-tips").style.display = "block";</script><div style=display:none;><script src="https://s9.cnzz.com/z_stat.php?id=1277938200&web_id=1277938200"></script></div><script src=https://oss.jx3box.com/static/app/js/chunk-vendors.adc06507.js></script><script src=https://oss.jx3box.com/static/app/js/chunk-common.372c8df9.js></script><script src=https://oss.jx3box.com/static/app/js/translator.6636f0ae.js></script></body></html>
