@@ -143,7 +143,7 @@
                                         >线</span
                                     >
                                     <span class="u-price"
-                                        >价格 : {{ item.price }}园宅币</span
+                                        >价格 : 1.5倍率</span
                                     >
                                 </div>
                             </el-col>
