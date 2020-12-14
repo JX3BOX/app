@@ -1,7 +1,11 @@
 <template>
     <div id="app">
         <Header></Header>
-        <Breadcrumb name="簡繁轉換" slug="translator" root="/app/translator" :feedbackEnable="true"
+        <Breadcrumb
+            name="簡繁轉換"
+            slug="translator"
+            root="/app/translator"
+            :feedbackEnable="true"
             ><img
                 slot="logo"
                 svg-inline
@@ -82,7 +86,12 @@
                                 >
                             </el-alert>
                         </transition>
-
+                        <h4>上传的文件编码</h4>
+                        <el-radio-group v-model="fileEncoding">
+                            <el-radio label="gbk" border>GBK</el-radio>
+                            <el-radio label="utf-8" border>UTF-8</el-radio>
+                        </el-radio-group>
+                        <h5 class="hint-inline">如果你不知道这是什么，请不要修改此选项</h5>
                         <div class="translate-content">
                             <el-upload
                                 class="upload-file"
@@ -142,11 +151,11 @@ import { JX3BOX, User } from "@jx3box/jx3box-common";
 var blob = new Blob([document.querySelector("#worker").textContent]);
 var url = window.URL.createObjectURL(blob);
 var worker = new Worker(url);
-import dict from '@jx3box/jx3box-dict/dict.json'
+import dict from "@jx3box/jx3box-dict/dict.json";
 
 export default {
     name: "Translator",
-    data: function() {
+    data: function () {
         return {
             worker: null,
             activeTabName: "translate-str",
@@ -155,7 +164,8 @@ export default {
             isLoading: false,
             percentage: -1,
             downloadFileUrl: "",
-            dict
+            dict,
+            fileEncoding: "gbk",
         };
     },
     computed: {},
@@ -166,6 +176,7 @@ export default {
                 aTag.href = "https://github.com/JX3BOX/jx3box-dict/issues";
                 aTag.target = "_blank";
                 aTag.click();
+                return false;
             } else {
                 return true;
             }
@@ -277,6 +288,7 @@ export default {
                     cmd: "translate-file",
                     file: file.file,
                     dict: this.dict,
+                    encoding: this.fileEncoding,
                 });
             }
         },
@@ -364,7 +376,7 @@ export default {
         this.initWorker();
         // this.getDict();
     },
-    mounted: function() {
+    mounted: function () {
         this.getUserId();
     },
     beforeDestroy() {
