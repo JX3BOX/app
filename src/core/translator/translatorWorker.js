@@ -1,14 +1,16 @@
+// 这个文件不用啦！worker在html里
 self.addEventListener('message', (event) => {
     let data = event.data
     let cmd = data.cmd
     let dict = data.dict
+    let encoding = data.encoding
     switch (cmd){
         case 'translate-str':
             postResult(tr2j3(cn2tr(data.str,dict),dict), 'str')
             break;
         case 'translate-file':
             let reader = new FileReaderSync();
-            let preText = reader.readAsText(data.file, 'gbk')
+            let preText = reader.readAsText(data.file, encoding)
             let jx3str = tr2j3(cn2tr(preText,dict),dict)
             // 创建文件
             let blob = new Blob([jx3str]);
