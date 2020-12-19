@@ -6,13 +6,13 @@
             slug="facedata"
             root="/app/facedata"
             :feedbackEnable="true"
+            :crumbEnable="true"
         >
             <img
                 slot="logo"
                 svg-inline
                 src="../../assets/img/logos/mirror.svg"
             />
-            <div class="m-info"></div>
         </Breadcrumb>
         <LeftSidebar :open="false">
             <Nav />

@@ -6,6 +6,7 @@
             slug="translator"
             root="/app/translator"
             :feedbackEnable="true"
+            :crumbEnable="true"
             ><img
                 slot="logo"
                 svg-inline

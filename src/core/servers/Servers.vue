@@ -7,6 +7,7 @@
             root="/app/servers"
             class="m-app-servers-bread"
             :feedbackEnable="true"
+            :crumbEnable="true"
         >
             <img
                 slot="logo"
@@ -14,10 +15,6 @@
                 svg-inline
                 src="../../assets/img/logos/servers.svg"
             />
-            <div class="u-misc">
-                常用链接 :
-                <a href="http://zt.xoyo.com/jx3/server/">合服查询</a>
-            </div>
         </Breadcrumb>
         <LeftSidebar :open="false">
             <Nav />

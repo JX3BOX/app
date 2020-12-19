@@ -6,6 +6,7 @@
             slug="furniture"
             root="/app/furniture"
             :feedbackEnable="true"
+            :crumbEnable="true"
         >
             <img slot="logo" svg-inline src="../../assets/img/logos/f1.svg" />
             <div class="m-info"></div>

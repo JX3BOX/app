@@ -6,6 +6,7 @@
             slug="talent"
             root="/app/talent"
             :feedbackEnable="true"
+            :crumbEnable="true"
         >
             <img
                 slot="logo"

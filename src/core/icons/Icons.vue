@@ -6,12 +6,12 @@
             slug="icons"
             root="/app/icons"
             :feedbackEnable="true"
+            :crumbEnable="true"
             ><img
                 slot="logo"
                 svg-inline
                 src="../../assets/img/logos/icons.svg"
             />
-            <div class="m-info">👒 新增支持中文搜索</div>
         </Breadcrumb>
         <LeftSidebar :open="false">
             <Nav />

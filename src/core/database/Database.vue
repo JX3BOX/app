@@ -6,6 +6,7 @@
             slug="database"
             root="/app/database"
             :feedbackEnable="true"
+            :crumbEnable="true"
         >
             <img
                 slot="logo"

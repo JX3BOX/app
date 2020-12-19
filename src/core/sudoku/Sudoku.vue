@@ -6,13 +6,13 @@
             slug="sudoku"
             root="/app/sudoku"
             :feedbackEnable="true"
+            :crumbEnable="true"
         >
             <img
                 slot="logo"
                 svg-inline
                 src="../../assets/img/logos/sudoku.svg"
             />
-            <!-- <Info /> -->
         </Breadcrumb>
         <LeftSidebar :open="false">
             <Nav />
@@ -28,7 +28,12 @@
                 <!-- 填入数字 -->
                 <div class="m-table">
                     <el-row class="u-list">
-                        <el-col class="u-item" :span="8" v-for="(n, i) in list" :key="i">
+                        <el-col
+                            class="u-item"
+                            :span="8"
+                            v-for="(n, i) in list"
+                            :key="i"
+                        >
                             <input
                                 type="text"
                                 v-model="list[i]"
@@ -69,7 +74,9 @@
                                 </el-image>
                             </div>
                             <ul class="u-demolist">
-                                <el-divider content-position="left">常见序列</el-divider>
+                                <el-divider content-position="left"
+                                    >常见序列</el-divider
+                                >
                                 <li>245361</li>
                                 <li>423516</li>
                                 <li>615324</li>

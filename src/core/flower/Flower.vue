@@ -6,17 +6,13 @@
             slug="flower"
             root="/app/flower"
             :feedbackEnable="true"
+            :crumbEnable="true"
         >
             <img
                 slot="logo"
                 svg-inline
                 src="../../assets/img/logos/flower.svg"
             />
-            <div class="m-info">
-                <a href="/dashboard/#/profile" target="_blank">设置默认区服</a>
-                |
-                <a href="/tool/?pid=17667#/" target="_blank">自助上报</a>
-            </div>
         </Breadcrumb>
         <LeftSidebar :open="false">
             <Nav />
