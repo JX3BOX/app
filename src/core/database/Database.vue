@@ -1049,6 +1049,7 @@ export default {
                 });
         },
         search: function() {
+            this.page = 1
             this.getData();
         },
         onCopy: function(val) {
