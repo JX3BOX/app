@@ -84,6 +84,12 @@ module.exports = {
             template: "public/index.html",
             filename: "sudoku/index.html",
         },
+        dps: {
+            title: "DPS模拟器 - JX3BOX",
+            entry: "src/core/dps/dps.js",
+            template: "public/index.html",
+            filename: "dps/index.html",
+        },
     },
 
     //❤️ Porxy ~
