@@ -17,7 +17,7 @@
         "@jx3box/jx3box-facedat": "^1.0.1",
         "@jx3box/jx3box-page": "^0.2.13",
         "@jx3box/jx3box-talent": "^1.0.5",
-        "axios": "^0.19.2",
+        "axios": "^0.21.1",
         "codemirror": "^5.55.0",
         "core-js": "^3.4.3",
         "csslab": "^4.0.3",
