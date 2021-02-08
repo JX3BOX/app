@@ -93,8 +93,8 @@
                 </div>
 
                 <div class="m-flower-all">
-                    <div class="m-flower-result" v-if="isTraditional">
-                        <el-row :gutter="40" v-if="rank && rank.length">
+                    <div class="m-flower-result" v-if="rank">
+                        <el-row :gutter="40">
                             <el-col
                                 :span="12"
                                 class="u-flower"
@@ -138,57 +138,9 @@
                                         ><b>{{ line }}</b
                                         >线</span
                                     >
-                                    <span class="u-price">价格 : 1.5倍率</span>
-                                </div>
-                            </el-col>
-                        </el-row>
-                    </div>
-                    <div class="m-flower-result" v-else>
-                        <el-row :gutter="40" v-if="data && data.length">
-                            <el-col
-                                :span="12"
-                                class="u-flower"
-                                v-for="(item, i) in data"
-                                :key="i"
-                                :class="{ isHidden: item.isHidden }"
-                            >
-                                <span class="u-title">
-                                    <span class="u-name">{{ item.name }}</span>
-                                    <span class="u-icons">
-                                        <i
-                                            class="u-icon"
-                                            v-for="(icon, key) in flowers[
-                                                item._name
-                                            ]"
-                                            :key="key"
-                                        >
-                                            <el-tooltip
-                                                effect="dark"
-                                                :content="icon.color"
-                                                placement="top"
-                                            >
-                                                <img
-                                                    :src="icon.icon | iconURL"
-                                                    :alt="icon.color"
-                                                />
-                                            </el-tooltip>
-                                        </i>
-                                    </span>
-                                </span>
-                                <div class="u-desc">
-                                    当前最高分线 :
-                                    <span
-                                        class="u-line"
-                                        v-for="(branch, i) in item.branch"
-                                        :key="branch + i"
-                                        title="点击快速复制"
-                                        v-clipboard:copy="branch.number"
-                                        v-clipboard:success="onCopy"
-                                        v-clipboard:error="onError"
-                                        ><b>{{ branch.number }}</b
-                                        >线</span
+                                    <span class="u-price"
+                                        >价格 : 1.5倍率</span
                                     >
-                                    <span class="u-price">价格 : 1.5倍率</span>
                                 </div>
                             </el-col>
                         </el-row>
@@ -203,7 +155,11 @@
 <script>
 import User from "@jx3box/jx3box-common/js/user";
 import Nav from "@/components/Nav.vue";
-import { getFlower,getFlowerRank } from "@/service/flower";
+import {
+    getFlowerPrice,
+    getFlowerPrices,
+    getFlowerRank,
+} from "@/service/flower";
 import { setFlowerServer, getProfile } from "@/service/server";
 import dateFormat from "@/utils/moment";
 import servers from "@jx3box/jx3box-data/data/server/flower_server.json";
@@ -276,10 +232,9 @@ export default {
             flowers,
             items,
 
-            // rank: "",
-            // overview: "",
+            rank: "",
+            overview: "",
             data: [],
-            rank: [],
 
             total: 1,
             pages: 1,
@@ -331,7 +286,7 @@ export default {
             return {
                 server: this.current_server,
                 map: this.current_map,
-                type: this.type,
+                // type: this.type,
                 // level: this.level,
                 // page: this.page,
             };
@@ -361,57 +316,39 @@ export default {
         },
         loadRank: function() {
             this.loading = true;
-
-            if (this.isTraditional) {
-                return getFlowerRank(
-                    {
-                        server: this.current_server,
-                        map: this.current_map,
-                    },
-                    this
-                )
-                    .then((data) => {
+            return getFlowerRank(
+                {
+                    server: this.current_server,
+                    map: this.current_map,
+                },
+                this
+            )
+                .then((data) => {
+                    if (this.isTraditional) {
                         data = this.transformData(data);
+                    }
 
-                        let list = [];
-                        for (let name in flowers) {
-                            let lines = data[name]
-                                ? data[name]["maxLine"].slice(0, 3)
-                                : [];
-                            lines.forEach((item, i) => {
-                                lines[i] = item && item.replace(" 线", "");
-                            });
-
-                            let max = data[name] ? ~~data[name]["max"] : "-";
-                            list.push({
-                                name,
-                                line: lines,
-                                price: max,
-                            });
-                        }
-                        this.rank = list;
-                    })
-                    .finally(() => {
-                        this.loading = false;
-                    });
-            } else {
-                return getFlower(this.params)
-                    .then((res) => {
-                        let data = res.data.data;
-                        data.forEach((item) => {
-                            let hasColor = item.name.indexOf("(");
-                            if (hasColor >= 0) {
-                                item["_name"] = item.name.slice(0, hasColor);
-                            } else {
-                                item._name = item.name;
-                            }
+                    let list = [];
+                    for (let name in flowers) {
+                        let lines = data[name]
+                            ? data[name]["maxLine"].slice(0, 3)
+                            : [];
+                        lines.forEach((item, i) => {
+                            lines[i] = item && item.replace(" 线", "");
                         });
-                        this.data = data;
-                    })
-                    .finally(() => {
-                        this.loading = false;
-                    });
-            }
+
+                        let max = data[name] ? ~~data[name]["max"] : "-";
+                        list.push({
+                            name,
+                            line: lines,
+                            price: max,
+                        });
+                    }
+                    this.rank = list;
+                })
+                .finally(() => {
+                    this.loading = false;
+                });
         },
         changePage: function() {
             window.scrollTo(0, 0);
@@ -451,21 +388,20 @@ export default {
         // changeServer : function (){
         //     this.type = ''
         // }
-        filterTypes: function() {
-            this.rank &&
-                this.rank.forEach((item) => {
-                    if (this.type) {
-                        if (!item.name.includes(this.type)) {
-                            item.isHidden = true;
-                        } else {
-                            item.isHidden = false;
-                        }
+        filterTypes : function (){
+            this.rank && this.rank.forEach((item) => {
+                if (this.type) {
+                    if (!item.name.includes(this.type)) {
+                        item.isHidden = true;
                     } else {
                         item.isHidden = false;
                     }
-                    this.$forceUpdate();
-                });
-        },
+                } else {
+                    item.isHidden = false;
+                }
+                this.$forceUpdate()
+            });
+        }
     },
     watch: {
         map: function(newdata) {
@@ -476,12 +412,12 @@ export default {
             handler: function() {
                 console.log("3.数据加载");
                 this.loadData().then(() => {
-                    this.filterTypes();
-                });
+                    this.filterTypes()
+                })
             },
         },
         type: function(val) {
-            this.filterTypes();
+            this.filterTypes()
         },
     },
     filters: {
@@ -495,13 +431,13 @@ export default {
         let game_flower = game_params.get("item");
 
         if (game_server && game_flower) {
-            this.current_server = game_server;
-            this.type = items[game_flower];
+            this.current_server = game_server
+            this.type = items[game_flower]
         } else {
             if (this.isLogin) {
                 getProfile().then((data) => {
                     console.log("1.a.已登录,加载profile_server");
-                    this.current_server = (data && data.jx3_server) || "蝶恋花";
+                    this.current_server = data && data.jx3_server || "蝶恋花";
                 });
             } else {
                 console.log("1.b.未登录,加载最后一次服务器");
