@@ -411,11 +411,9 @@ export default {
             this.update();
         },
         name: function() {
-            if (this.name) {
-                this.type = "0";
-                this.subCtg = undefined;
-                this.update();
-            }
+            this.type = "0";
+            this.subCtg = undefined;
+            this.update();
         },
     },
     computed: {
