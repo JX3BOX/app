@@ -355,6 +355,7 @@ export default {
 
             // 图片
             imgurl: __ossMirror + "pic/furniture/",
+            origin_img_url : 'https://dl.pvp.xoyo.com/prod/icons/ui/image/homeland/data/source/',
             // imgurl: __iconPath + "furniture/",
             showViewer: false,
             srcList: [],
@@ -514,7 +515,8 @@ export default {
             this.loadData();
         },
         getUrl(rawUrl) {
-            return this.imgurl + rawUrl.replace("home/", "");
+            return this.origin_img_url + rawUrl
+            // return this.imgurl + rawUrl.replace("home/", "");
         },
         appendPage() {
             this.page += 1;
