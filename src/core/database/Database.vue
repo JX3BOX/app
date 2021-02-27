@@ -1114,7 +1114,7 @@ export default {
             this.stat = data;
         });
 
-        User.isVIP().then((data) => {
+        User.isLogin() && User.isVIP().then((data) => {
             this.hasRight = data
         })
     },
