@@ -1000,7 +1000,7 @@ export default {
             total: 1,
             pages: 1,
 
-            hasRight : false
+            hasRight : true //TODO:
         };
     },
     computed: {
@@ -1114,9 +1114,10 @@ export default {
             this.stat = data;
         });
 
-        User.isLogin() && User.isVIP().then((data) => {
-            this.hasRight = data
-        })
+        // TODO:
+        // User.isLogin() && User.isVIP().then((data) => {
+        //     this.hasRight = data
+        // })
     },
     // watch : {
     //     query : function (newval){
