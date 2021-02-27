@@ -147,7 +147,8 @@
 import Info from "@/components/Info.vue";
 import Nav from "@/components/Nav.vue";
 import { axios } from "@/service/api.js";
-import { JX3BOX, User } from "@jx3box/jx3box-common";
+import { JX3BOX } from "@jx3box/jx3box-common";
+import User from "@jx3box/jx3box-common/js/user";
 // import Extend from "@/components/Extend.vue";
 var blob = new Blob([document.querySelector("#worker").textContent]);
 var url = window.URL.createObjectURL(blob);

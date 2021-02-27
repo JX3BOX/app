@@ -67,7 +67,6 @@
                                 <el-alert
                                     title="以下为部分图标展示，请在上方自定义搜索范围。点击图标即可收藏。"
                                     type="warning"
-                                    close-text="知道了"
                                     center
                                     show-icon
                                 ></el-alert>
@@ -81,9 +80,7 @@
                                         @click="handleAddFavorite(index, icon)"
                                     >
                                         <el-image
-                                            :src="
-                                                `${IconPath}${icon}.png`
-                                            "
+                                            :src="`${IconPath}${icon}.png`"
                                             class="u-img"
                                             lazy
                                         >
@@ -307,7 +304,8 @@
 import Info from "@/components/Info.vue";
 import Nav from "@/components/Nav.vue";
 import { axios, realUrl } from "@/service/api.js";
-import { JX3BOX, User } from "@jx3box/jx3box-common";
+import { JX3BOX } from "@jx3box/jx3box-common";
+import User from "@jx3box/jx3box-common/js/user.js";
 // import Extend from "@/components/Extend.vue";
 
 export default {
@@ -621,7 +619,10 @@ export default {
                                 // 判断是否是旧版数据
                                 // like -> '["345", "332", "  303"]'
                                 if (serverValue.includes("[")) {
-                                    serverValue = serverValue.replace(/[\[\]"\ ]/g,'')
+                                    serverValue = serverValue.replace(
+                                        /[\[\]"\ ]/g,
+                                        ""
+                                    );
                                 }
                                 // // 判断是否是旧版数据
                                 // if (serverValue.includes("[")) {
@@ -669,7 +670,7 @@ export default {
                     // 判断是否是旧版数据
                     // like -> '["345", "332", "  303"]'
                     if (current.includes("[")) {
-                        current = current.replace(/[\[\]"\ ]/g,'')
+                        current = current.replace(/[\[\]"\ ]/g, "");
                     }
                     this.localFaviconsList = current.split(",");
                 }

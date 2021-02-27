@@ -95,8 +95,9 @@
 import Nav from "@/components/Nav.vue";
 import FServerNode from "./FServerNode.vue";
 import { axios } from "@/service/api.js";
-import { JX3BOX, User } from "@jx3box/jx3box-common";
+import { JX3BOX } from "@jx3box/jx3box-common";
 import Extend from '@/components/Extend.vue';
+import User from "@jx3box/jx3box-common/js/user";
 
 export default {
     name: "Servers",

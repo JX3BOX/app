@@ -3,102 +3,91 @@
         <h5 class="u-title">PVE/PVP</h5>
         <div class="m-app-box">
             <a class="u-app" href="/app/database" :class="{on:isActive('database')}"
-                ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/db.svg"/></i
+                ><i class="u-app-icon"><img svg-inline :src="getIcon('database')"/></i
                 ><span>数据库</span></a
             >
             <a class="u-app" href="/app/icons" :class="{on:isActive('icons')}"
-                ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/icons.svg"/></i
+                ><i class="u-app-icon"><img svg-inline :src="getIcon('icons')"/></i
                 ><span>图标库</span></a
             >
             <a class="u-app" href="/app/talent" :class="{on:isActive('talent')}"
-                ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/talent.svg"/></i
+                ><i class="u-app-icon"><img svg-inline :src="getIcon('talent')"/></i
                 ><span>奇穴模拟</span></a
             >
-            <a class="u-app" href="/app/macroeditor" :class="{on:isActive('macroeditor')}"
-                ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/macroeditor.svg"/></i
-                ><span>宏编辑器</span></a
-            >
-            <a class="u-app" href="/app/translator" :class="{on:isActive('translator')}"
-                ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/translator.svg"/></i
-                ><span>轉換繁體</span></a
-            >
+
             <a class="u-app" href="/team" target="_blank"
-                ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/oa.svg"/></i
+                ><i class="u-app-icon"><img svg-inline :src="getIcon('team')"/></i
                 ><span>团队管理</span></a
             >
             <a class="u-app" href="/dbm" target="_blank"
-                ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/jx3datbuilder.svg"/></i
+                ><i class="u-app-icon"><img svg-inline :src="getIcon('dbm')"/></i
                 ><span>数据构建</span></a
             >
+            <!-- DPS -->
+            <a class="u-app" href="/app/macroeditor" :class="{on:isActive('macroeditor')}"
+                ><i class="u-app-icon"><img svg-inline :src="getIcon('macroeditor')"/></i
+                ><span>宏编辑器</span></a
+            >
+
             <a class="u-app" href="/fb/#/skill" target="_blank"
-                ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/skull.svg"/></i
+                ><i class="u-app-icon"><img svg-inline :src="getIcon('fbdata')"/></i
                 ><span>副本数据</span></a
             >
             <a class="u-app" href="/fb/#/drop" target="_blank"
-                ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/drop.svg"/></i
+                ><i class="u-app-icon"><img svg-inline :src="getIcon('fbdrop')"/></i
                 ><span>副本掉落</span></a
             >
             <a class="u-app" href="/fb/#/gem" target="_blank"
-                ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/gem.svg"/></i
+                ><i class="u-app-icon"><img svg-inline :src="getIcon('fbgem')"/></i
                 ><span>瑰石查询</span></a
             >
-            <!-- <a class="u-app" href="/bps/#/lua" target="_blank"
-                ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/role.svg"/></i
-                ><span>职业解包</span></a
-            > -->
             <a class="u-app" href="https://www.j3pz.com/" target="_blank"
-                ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/j3pz.svg"/></i
+                ><i class="u-app-icon"><img svg-inline :src="getIcon('j3pz')"/></i
                 ><span>在线配装</span
                 ></a>
             <a class="u-app" href="https://www.j3pz.com/tools/haste/" target="_blank"
-                ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/speed.svg"/></i
+                ><i class="u-app-icon"><img svg-inline :src="getIcon('haste')"/></i
                 ><span>急速阈值</span
                 ></a>
-            <a class="u-app" 
-                href="http://minamistudio.online/jx3simulator/index.html"
-                target="_blank"
-                ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/minami.svg"/></i
-                ><span>DPS模拟</span
-                ></a>
-            <a class="u-app" 
-                href="http://j3dps.com/fightlog"
-                target="_blank"
-                ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/flog.svg"/></i
-                ><span>战斗复盘</span
-                ></a>
+            <a class="u-app" href="/app/translator" :class="{on:isActive('translator')}"
+                ><i class="u-app-icon"><img svg-inline :src="getIcon('translator')"/></i
+                ><span>轉換繁體</span></a
+            >
         </div>
         <h5 class="u-title">PVX</h5>
         <div class="m-app-box">
             <a class="u-app" href="/app/servers" :class="{on:isActive('servers')}"
-                ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/servers.svg"/></i
+                ><i class="u-app-icon"><img svg-inline :src="getIcon('servers')"/></i
                 ><span>开服监控</span></a
             >
             <a class="u-app" href="/app/price" :class="{on:isActive('price')}"
-                ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/price.svg"/></i
+                ><i class="u-app-icon"><img svg-inline :src="getIcon('price')"/></i
                 ><span>金价走势</span></a
             >
+            <a class="u-app" href="/exam" target="_blank"
+                ><i class="u-app-icon"><img svg-inline :src="getIcon('exam')"/></i
+                ><span>趣味题库</span
+                ></a>
+
             <a class="u-app" href="/app/flower" :class="{on:isActive('flower')}"
-                ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/flower.svg"/></i
+                ><i class="u-app-icon"><img svg-inline :src="getIcon('flower')"/></i
                 ><span>花价查询</span></a
             >
             <a class="u-app" href="/app/furniture" :class="{on:isActive('furniture')}"
-                ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/f1.svg"/></i
+                ><i class="u-app-icon"><img svg-inline :src="getIcon('furniture')"/></i
                 ><span>家具图鉴</span></a
             >
             <a class="u-app" href="/app/facedata" :class="{on:isActive('facedata')}"
-                ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/mirror.svg"/></i
+                ><i class="u-app-icon"><img svg-inline :src="getIcon('facedata')"/></i
                 ><span>妆容解析</span></a
             >
+
             <a class="u-app" href="https://j3cx.com/serendipity" target="_blank"
-                ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/qiyu.svg"/></i
+                ><i class="u-app-icon"><img svg-inline :src="getIcon('qiyu')"/></i
                 ><span>奇遇查询</span
                 ></a>
-            <a class="u-app" href="/exam" target="_blank"
-                ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/100.svg"/></i
-                ><span>趣味题库</span
-                ></a>
             <a class="u-app" href="https://j3cx.com/exam/" target="_blank"
-                ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/keju.svg"/></i
+                ><i class="u-app-icon"><img svg-inline :src="getIcon('keju')"/></i
                 ><span>科举题库</span
                 ></a>
             <a class="u-app" href="/app/sudoku"  :class="{on:isActive('sudoku')}"
@@ -110,6 +99,7 @@
 </template>
 
 <script>
+import {__imgPath} from '@jx3box/jx3box-common/js/jx3box.json'
 export default {
     name: "Nav",
     data: function() {
@@ -120,7 +110,10 @@ export default {
     methods: {
         isActive : function (val){
             return !!location.pathname.includes(val)
-        }
+        },
+        getIcon: function(key) {
+            return __imgPath + "image/box/" + key + ".svg";
+        },
     },
     mounted: function() {},
 };

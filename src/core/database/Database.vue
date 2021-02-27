@@ -129,7 +129,7 @@
                             <i class="el-icon-s-data"></i> 共找到
                             <b>{{ buff.length }}</b> 条记录
                         </p>
-                        <ul class="m-resource-list">
+                        <ul class="m-resource-list m-buff-list">
                             <li
                                 v-for="(o, i) in buff"
                                 class="u-item u-cantoggle"
@@ -324,7 +324,12 @@
                                     >
                                     <span class="u-desc" v-if="o.ScriptFile"
                                         ><em>ScriptFile</em
-                                        >{{ o.ScriptFile }}</span
+                                        >
+                                        <span v-if="hasRight">{{ o.ScriptFile }}</span>
+                                        <span v-else>
+                                            <i class="el-icon-lock"></i> 仅<a href="/vip/premium?from=database_buff" target="_blank">高级版会员</a>可见
+                                        </span>
+                                        </span
                                     >
                                 </div>
                             </li>
@@ -351,7 +356,7 @@
                             <i class="el-icon-s-data"></i> 共找到
                             <b>{{ skill.length }}</b> 条记录
                         </p>
-                        <ul class="m-resource-list">
+                        <ul class="m-resource-list m-skill-list">
                             <li
                                 v-for="(o, i) in skill"
                                 class="u-item u-cantoggle"
@@ -500,7 +505,10 @@
                                     >
                                     <span class="u-desc"
                                         ><em>ScriptFile</em
-                                        >{{ o.ScriptFile }}</span
+                                        ><span v-if="hasRight">{{ o.ScriptFile }}</span>
+                                        <span v-else>
+                                            <i class="el-icon-lock"></i> 仅<a href="/vip/premium?from=database_skill" target="_blank">高级版会员</a>可见
+                                        </span></span
                                     >
                                 </div>
                             </li>
@@ -780,7 +788,7 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div class="u-misc" v-if="isSuperAuthor">
+                                <div class="u-misc" v-if="hasRight">
                                     <span class="u-remark">
                                         CanSeeLifeBar:
                                         <strong>{{ o.CanSeeLifeBar }}</strong>
@@ -802,6 +810,9 @@
                                         ScriptName:
                                         <strong>{{ o.ScriptName }}</strong>
                                     </span>
+                                </div>
+                                <div class="u-misc-tip" v-else>
+                                    <i class="el-icon-lock"></i> 更多词条仅<a href="/vip/premium?from=database_npc" target="_blank">高级版会员</a>可见
                                 </div>
                             </li>
                         </ul>
@@ -830,7 +841,7 @@
                             <i class="el-icon-s-data"></i> 共找到
                             <b>{{ doodad.length }}</b> 条记录
                         </p>
-                        <ul class="m-resource-list" v-if="doodad.length">
+                        <ul class="m-resource-list m-doodad-list" v-if="doodad.length">
                             <li
                                 v-for="(o, i) in doodad"
                                 :key="i"
@@ -988,6 +999,8 @@ export default {
             page: 1,
             total: 1,
             pages: 1,
+
+            hasRight : false
         };
     },
     computed: {
@@ -1100,6 +1113,10 @@ export default {
         loadStat().then((data) => {
             this.stat = data;
         });
+
+        User.isVIP().then((data) => {
+            this.hasRight = data
+        })
     },
     // watch : {
     //     query : function (newval){
