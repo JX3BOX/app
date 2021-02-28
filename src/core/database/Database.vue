@@ -472,11 +472,11 @@
                                         >{{ o.TargetRelationRaid }}</span
                                     >
                                     <span class="u-desc"
-                                        ><em>无视增益</em
+                                        ><em>免疫无视增益</em
                                         >{{ o.IgnorePositiveShield }}</span
                                     >
                                     <span class="u-desc"
-                                        ><em>无视减益</em
+                                        ><em>免疫无视减益</em
                                         >{{ o.IgnoreNegativeShield }}</span
                                     >
 
