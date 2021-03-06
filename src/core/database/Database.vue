@@ -248,7 +248,7 @@ export default {
             total: 1,
             pages: 1,
 
-            hasRight: true, //TODO:
+            hasRight: false,
         };
     },
     computed: {
@@ -340,10 +340,9 @@ export default {
             this.stat = data;
         });
 
-        // TODO:
-        // User.isLogin() && User.isVIP().then((data) => {
-        //     this.hasRight = data
-        // })
+        User.isLogin() && User.isVIP().then((data) => {
+            this.hasRight = data
+        })
     },
     mounted: function() {
         let params = new URLSearchParams(location.search);
