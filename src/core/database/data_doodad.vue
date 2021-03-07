@@ -25,7 +25,9 @@
                             ><em>类型</em> {{ o.Kind }}</span
                         >
                     </span>
-                    <span class="u-remark" v-if="hasRight">{{ o.Script }}</span>
+                    <span class="u-desc u-adv" v-if="hasRight">
+                        <em>script</em>{{ o.Script }}
+                    </span>
                     <template v-else>
                         <div class="u-tip">
                             <i class="el-icon-lock"></i>

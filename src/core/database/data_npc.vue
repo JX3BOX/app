@@ -237,25 +237,25 @@
                         </div>
                     </div>
                     <div class="u-misc" v-if="hasRight">
-                        <span class="u-remark">
-                            CanSeeLifeBar:
+                        <span class="u-remark u-adv">
+                            <span>CanSeeLifeBar:</span>
                             <strong>{{ o.CanSeeLifeBar }}</strong>
                         </span>
-                        <span class="u-remark">
-                            IsSelectable:
+                        <span class="u-remark u-adv">
+                            <span>IsSelectable:</span>
                             <strong>{{ o.IsSelectable }}</strong>
                         </span>
 
-                        <span class="u-remark">
-                            ReviveTime:
+                        <span class="u-remark u-adv">
+                            <span>ReviveTime:</span>
                             <strong>{{ o.ReviveTime }}</strong>
                         </span>
-                        <span class="u-remark">
-                            ImmunityMask:
+                        <span class="u-remark u-adv">
+                            <span>ImmunityMask:</span>
                             <strong>{{ o.ImmunityMask }}</strong>
                         </span>
-                        <span class="u-remark">
-                            ScriptName:
+                        <span class="u-remark u-adv">
+                            <span>ScriptName:</span>
                             <strong>{{ o.ScriptName }}</strong>
                         </span>
                     </div>

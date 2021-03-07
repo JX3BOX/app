@@ -125,30 +125,30 @@
                         >
 
                         <template v-if="hasRight">
-                            <span class="u-desc"
+                            <span class="u-desc u-adv"
                                 ><em>可否会心</em
                                 >{{ ~~o.hasCriticalStrike ? "是" : "否" }}</span
                             >
-                            <span class="u-desc"
+                            <span class="u-desc u-adv"
                                 ><em>是否使用技能系数</em
                                 >{{
                                     ~~o.UseSkillCoefficient ? "是" : "否"
                                 }}</span
                             >
-                            <span class="u-desc"
+                            <span class="u-desc u-adv"
                                 ><em>无视「免疫增益效果」</em
                                 >{{
                                     ~~o.IgnorePositiveShield ? "是" : "否"
                                 }}</span
                             >
-                            <span class="u-desc"
+                            <span class="u-desc u-adv"
                                 ><em>无视「免疫减益效果」</em
                                 >{{
                                     ~~o.IgnoreNegativeShield ? "是" : "否"
                                 }}</span
                             >
 
-                            <span class="u-desc"
+                            <span class="u-desc u-adv"
                                 ><em>ScriptFile</em
                                 ><span>{{ o.ScriptFile }}</span>
                             </span>

@@ -78,104 +78,104 @@
                         >
 
                         <template v-if="hasRight">
-                            <span class="u-desc" v-if="o.BeginAttrib1"
+                            <span class="u-desc u-adv" v-if="o.BeginAttrib1"
                                 ><em>{{ o.BeginAttrib1 }}</em
                                 >{{ o.BeginValue1A }} ／
                                 {{ o.BeginValue1B }}</span
                             >
-                            <span class="u-desc" v-if="o.BeginAttrib2"
+                            <span class="u-desc u-adv" v-if="o.BeginAttrib2"
                                 ><em>{{ o.BeginAttrib2 }}</em
                                 >{{ o.BeginValue2A }} ／
                                 {{ o.BeginValue2B }}</span
                             >
-                            <span class="u-desc" v-if="o.BeginAttrib3"
+                            <span class="u-desc u-adv" v-if="o.BeginAttrib3"
                                 ><em>{{ o.BeginAttrib3 }}</em
                                 >{{ o.BeginValue3A }} ／
                                 {{ o.BeginValue3B }}</span
                             >
-                            <span class="u-desc" v-if="o.BeginAttrib4"
+                            <span class="u-desc u-adv" v-if="o.BeginAttrib4"
                                 ><em>{{ o.BeginAttrib4 }}</em
                                 >{{ o.BeginValue4A }} ／
                                 {{ o.BeginValue4B }}</span
                             >
-                            <span class="u-desc" v-if="o.BeginAttrib5"
+                            <span class="u-desc u-adv" v-if="o.BeginAttrib5"
                                 ><em>{{ o.BeginAttrib5 }}</em
                                 >{{ o.BeginValue5A }} ／
                                 {{ o.BeginValue5B }}</span
                             >
-                            <span class="u-desc" v-if="o.BeginAttrib6"
+                            <span class="u-desc u-adv" v-if="o.BeginAttrib6"
                                 ><em>{{ o.BeginAttrib6 }}</em
                                 >{{ o.BeginValue6A }} ／
                                 {{ o.BeginValue6B }}</span
                             >
-                            <span class="u-desc" v-if="o.BeginAttrib7"
+                            <span class="u-desc u-adv" v-if="o.BeginAttrib7"
                                 ><em>{{ o.BeginAttrib7 }}</em
                                 >{{ o.BeginValue7A }} ／
                                 {{ o.BeginValue7B }}</span
                             >
-                            <span class="u-desc" v-if="o.BeginAttrib8"
+                            <span class="u-desc u-adv" v-if="o.BeginAttrib8"
                                 ><em>{{ o.BeginAttrib8 }}</em
                                 >{{ o.BeginValue8A }} ／
                                 {{ o.BeginValue8B }}</span
                             >
-                            <span class="u-desc" v-if="o.BeginAttrib9"
+                            <span class="u-desc u-adv" v-if="o.BeginAttrib9"
                                 ><em>{{ o.BeginAttrib9 }}</em
                                 >{{ o.BeginValue9A }} ／
                                 {{ o.BeginValue9B }}</span
                             >
-                            <span class="u-desc" v-if="o.BeginAttrib10"
+                            <span class="u-desc u-adv" v-if="o.BeginAttrib10"
                                 ><em>{{ o.BeginAttrib10 }}</em
                                 >{{ o.BeginValue10A }} ／
                                 {{ o.BeginValue10B }}</span
                             >
-                            <span class="u-desc" v-if="o.BeginAttrib11"
+                            <span class="u-desc u-adv" v-if="o.BeginAttrib11"
                                 ><em>{{ o.BeginAttrib11 }}</em
                                 >{{ o.BeginValue11A }} ／
                                 {{ o.BeginValue11B }}</span
                             >
-                            <span class="u-desc" v-if="o.BeginAttrib12"
+                            <span class="u-desc u-adv" v-if="o.BeginAttrib12"
                                 ><em>{{ o.BeginAttrib12 }}</em
                                 >{{ o.BeginValue12A }} ／
                                 {{ o.BeginValue12B }}</span
                             >
-                            <span class="u-desc" v-if="o.BeginAttrib13"
+                            <span class="u-desc u-adv" v-if="o.BeginAttrib13"
                                 ><em>{{ o.BeginAttrib13 }}</em
                                 >{{ o.BeginValue13A }} ／
                                 {{ o.BeginValue13B }}</span
                             >
-                            <span class="u-desc" v-if="o.BeginAttrib14"
+                            <span class="u-desc u-adv" v-if="o.BeginAttrib14"
                                 ><em>{{ o.BeginAttrib14 }}</em
                                 >{{ o.BeginValue14A }} ／
                                 {{ o.BeginValue14B }}</span
                             >
-                            <span class="u-desc" v-if="o.BeginAttrib15"
+                            <span class="u-desc u-adv" v-if="o.BeginAttrib15"
                                 ><em>{{ o.BeginAttrib15 }}</em
                                 >{{ o.BeginValue15A }} ／
                                 {{ o.BeginValue15B }}</span
                             >
 
-                            <span class="u-desc" v-if="o.ActiveAttrib1"
+                            <span class="u-desc u-adv" v-if="o.ActiveAttrib1"
                                 ><em>{{ o.ActiveAttrib1 }}</em
                                 >{{ o.ActiveValue1A }} ／
                                 {{ o.ActiveValue1B }}</span
                             >
-                            <span class="u-desc" v-if="o.ActiveAttrib2"
+                            <span class="u-desc u-adv" v-if="o.ActiveAttrib2"
                                 ><em>{{ o.ActiveAttrib2 }}</em
                                 >{{ o.ActiveValue2A }} ／
                                 {{ o.ActiveValue2B }}</span
                             >
 
-                            <span class="u-desc" v-if="o.EndTimeAttrib1"
+                            <span class="u-desc u-adv" v-if="o.EndTimeAttrib1"
                                 ><em>{{ o.EndTimeAttrib1 }}</em
                                 >{{ o.EndTimeValue1A }} ／
                                 {{ o.EndTimeValue1B }}</span
                             >
-                            <span class="u-desc" v-if="o.EndTimeAttrib2"
+                            <span class="u-desc u-adv" v-if="o.EndTimeAttrib2"
                                 ><em>{{ o.EndTimeAttrib2 }}</em
                                 >{{ o.EndTimeValue2A }} ／
                                 {{ o.EndTimeValue2B }}</span
                             >
-                            <span class="u-desc" v-if="o.ScriptFile"
+                            <span class="u-desc u-adv" v-if="o.ScriptFile"
                                 ><em>ScriptFile</em>
                                 <span>{{ o.ScriptFile }}</span>
                             </span>
