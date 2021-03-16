@@ -101,7 +101,7 @@
 // import Info from "@/components/Info.vue";
 import Nav from "@/components/Nav.vue";
 import Extend from "@/components/Extend.vue";
-import { __ossMirror } from "@jx3box/jx3box-common/js/jx3box.json";
+import { __ossMirror } from "@jx3box/jx3box-common/data/jx3box.json";
 export default {
     name: "Sudoku",
     data: function() {

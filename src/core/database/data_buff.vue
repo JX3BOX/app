@@ -186,7 +186,7 @@
                                 部分词条仅<a
                                     href="/vip/premium?from=database_buff"
                                     target="_blank"
-                                    >高级版会员</a
+                                    >高级/专业版会员</a
                                 >可见
                             </div>
                         </template>
@@ -205,7 +205,7 @@
 </template>
 
 <script>
-import { __iconPath, __ossRoot } from "@jx3box/jx3box-common/js/jx3box.json";
+import { __iconPath, __ossRoot } from "@jx3box/jx3box-common/data/jx3box.json";
 export default {
     name: "data_buff",
     props: ["data", "vip",'status'],

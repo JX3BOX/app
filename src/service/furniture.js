@@ -18,7 +18,7 @@ const $ = axios.create({
 });
 
 function getFurnitures(query) {
-    return $.get("api/furniture", {
+    return $.get("/api/furniture", {
         params: query,
     });
 }

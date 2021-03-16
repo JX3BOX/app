@@ -1,5 +1,5 @@
 import { $, axios } from "./axios";
-import { __node, __Root } from "@jx3box/jx3box-common/js/jx3box.json";
+import { __node, __Root } from "@jx3box/jx3box-common/data/jx3box.json";
 const parse = __node + "facedat";
 // const parse = 'http://localhost:3001/' + "facedat";
 

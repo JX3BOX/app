@@ -101,13 +101,13 @@ module.exports = {
                     request.setHeader("origin", "");
                 }
             },
-            "/api/summary": {
-                "target": "https://next.jx3box.com",
+            "/api/furniture":{
+                "target": "https://www.j3pz.com",
                 "onProxyReq": function (request) {
                     request.setHeader("origin", "");
                 }
             },
-            "/api/comment": {
+            "/api": {
                 "target": "https://next.jx3box.com",
                 "onProxyReq": function (request) {
                     request.setHeader("origin", "");

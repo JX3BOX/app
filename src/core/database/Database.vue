@@ -201,7 +201,7 @@
 <script>
 import Nav from "@/components/Nav.vue";
 import { loadResource, loadStat } from "../../service/database";
-import { __iconPath, __ossRoot } from "@jx3box/jx3box-common/js/jx3box.json";
+import { __iconPath, __ossRoot } from "@jx3box/jx3box-common/data/jx3box.json";
 import User from "@jx3box/jx3box-common/js/user";
 import { school } from "@jx3box/jx3box-data/data/xf/school.json";
 import data_buff from './data_buff.vue'

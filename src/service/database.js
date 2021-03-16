@@ -1,5 +1,5 @@
 import axios from "axios";
-import { __node } from "@jx3box/jx3box-common/js/jx3box.json";
+import { __node } from "@jx3box/jx3box-common/data/jx3box.json";
 const API = __node
 // const API = "http://localhost:3001/";
 

@@ -335,7 +335,7 @@
 
 <script>
 import Nav from "@/components/Nav.vue";
-import { __ossMirror ,__iconPath,__ossRoot} from "@jx3box/jx3box-common/js/jx3box.json";
+import { __ossMirror ,__iconPath,__ossRoot} from "@jx3box/jx3box-common/data/jx3box.json";
 // import ElImageViewer from "element-ui/packages/image/src/image-viewer";
 import typedata from "./furniture_types.json";
 import { getFurnitures } from "../../service/furniture";

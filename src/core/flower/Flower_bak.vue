@@ -166,7 +166,7 @@ import servers from "@jx3box/jx3box-data/data/server/flower_server.json";
 import colors from "./colors.json";
 import flowers from "./flowers.json";
 import items from "./items.json";
-import { __iconPath, __ossRoot } from "@jx3box/jx3box-common/js/jx3box.json";
+import { __iconPath, __ossRoot } from "@jx3box/jx3box-common/data/jx3box.json";
 // 繁體
 import traditional_servers from "@jx3box/jx3box-data/data/server/server_international.json";
 import dict from "./dict.json";

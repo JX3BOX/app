@@ -10,7 +10,7 @@
                         class="u-id"
                         BGL="#333"
                         :value="'ID:' + o.ID"
-                        :key="o + ''"
+                        :key="o.ID"
                         v-clipboard:copy="o.ID"
                         v-clipboard:success="onCopy"
                         v-clipboard:error="onError"
@@ -264,7 +264,7 @@
                         部分词条仅<a
                             href="/vip/premium?from=database_skill"
                             target="_blank"
-                            >高级版会员</a
+                            >高级/专业版会员</a
                         >可见
                     </div>
                 </div>

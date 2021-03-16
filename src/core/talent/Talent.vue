@@ -119,7 +119,7 @@ import {
     __ossMirror,
     __imgPath,
     __ossRoot,
-} from "@jx3box/jx3box-common/js/jx3box.json";
+} from "@jx3box/jx3box-common/data/jx3box.json";
 import JX3_QIXUE from "@jx3box/jx3box-talent";
 import $ from "jquery";
 import schema from "./schema.vue";

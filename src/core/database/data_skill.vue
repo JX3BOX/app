@@ -150,7 +150,7 @@
 
                             <span class="u-desc u-adv"
                                 ><em>ScriptFile</em
-                                ><span>{{ o.ScriptFile }}</span>
+                                ><span v-html="scriptAssociate(o.ScriptFile)"></span>
                             </span>
                         </template>
                         <template v-else>
@@ -159,7 +159,7 @@
                                 部分词条仅<a
                                     href="/vip/premium?from=database_skill"
                                     target="_blank"
-                                    >高级版会员</a
+                                    >高级/专业版会员</a
                                 >可见
                             </div>
                         </template>
@@ -178,10 +178,10 @@
 </template>
 
 <script>
-import { __iconPath, __ossRoot } from "@jx3box/jx3box-common/js/jx3box.json";
+import { __iconPath, __ossRoot,__Root } from "@jx3box/jx3box-common/data/jx3box.json";
 export default {
     name: "data_skill",
-    props: ["data", "vip",'status'],
+    props: ["data", "vip", "status"],
     data: function() {
         return {
             list: this.data || [],
@@ -191,9 +191,9 @@ export default {
         hasRight: function() {
             return this.vip;
         },
-        done : function (){
-            return this.status
-        }
+        done: function() {
+            return this.status;
+        },
     },
     watch: {
         data: {
@@ -215,6 +215,16 @@ export default {
         toggleProps: function(o) {
             o.isopen = !o.isopen;
         },
+        scriptAssociate : function (val){
+            if(val.includes('副本BOSS')){
+                let path_arr = val.split('/')
+                let start = path_arr.indexOf('副本BOSS')
+                let fb_name = path_arr[start + 1] || ''
+                return `<a href="${__Root}fb/?fb_name=${fb_name}#/skill" target="_blank">${val}</a>`
+            }else{
+                return val
+            }
+        }
     },
     mounted: function() {},
     components: {},
