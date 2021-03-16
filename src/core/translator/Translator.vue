@@ -224,26 +224,26 @@ export default {
                 );
             });
         },
-        // getDict() {
-        //     let url = `https://cdn.jsdelivr.net/npm/@jx3box/jx3box-dict/dict.json?v=${Date.now()}`;
-        //     axios(url)
-        //         .then((response) => {
-        //             this.dict = response;
-        //             this.isLoading = false;
-        //         })
-        //         .catch((e) => {
-        //             switch (e.code) {
-        //                 case -1:
-        //                     // 网络异常
-        //                     this.$message.error(e.msg);
-        //                     break;
-        //                 default:
-        //                     // 服务器错误
-        //                     console.log(e);
-        //                     this.$message.error(`[${e.code}]${e.msg}`);
-        //             }
-        //         });
-        // },
+        getDict() {
+            let url = `https://cdn.jsdelivr.net/gh/JX3BOX/jx3box-dict@master/dict.json?v=${Date.now()}`;
+            axios(url)
+                .then((response) => {
+                    this.dict = response;
+                    this.isLoading = false;
+                })
+                .catch((e) => {
+                    switch (e.code) {
+                        case -1:
+                            // 网络异常
+                            this.$message.error(e.msg);
+                            break;
+                        default:
+                            // 服务器错误
+                            console.log(e);
+                            this.$message.error(`[${e.code}]${e.msg}`);
+                    }
+                });
+        },
         async convertText() {
             let preText = this.preTranslateText;
             if (preText.replace(/\ /g, "") === "") {
@@ -376,7 +376,7 @@ export default {
     filters: {},
     created() {
         this.initWorker();
-        // this.getDict();
+        this.getDict();
     },
     mounted: function () {
         this.getUserId();
