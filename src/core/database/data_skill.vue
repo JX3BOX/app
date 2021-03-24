@@ -130,10 +130,18 @@
                                 >{{ ~~o.hasCriticalStrike ? "是" : "否" }}</span
                             >
                             <span class="u-desc u-adv"
+                                ><em>穿透</em
+                                >{{ ~~o.Penetration ? "是" : "否" }}</span
+                            >
+                            <span class="u-desc u-adv"
                                 ><em>是否使用技能系数</em
                                 >{{
                                     ~~o.UseSkillCoefficient ? "是" : "否"
                                 }}</span
+                            >
+                            <span class="u-desc u-adv"
+                                ><em>AOE</em
+                                >{{ o.AOE }}</span
                             >
                             <span class="u-desc u-adv"
                                 ><em>无视「免疫增益效果」</em
@@ -147,7 +155,14 @@
                                     ~~o.IgnoreNegativeShield ? "是" : "否"
                                 }}</span
                             >
-
+                            <span class="u-desc u-adv"
+                                ><em>AbradeEquipRate</em
+                                >{{ o.AbradeEquipRate }}</span
+                            >
+                            <span class="u-desc u-adv"
+                                ><em>IsMentalPassiveSkill</em
+                                >{{ o.IsMentalPassiveSkill }}</span
+                            >
                             <span class="u-desc u-adv"
                                 ><em>ScriptFile</em
                                 ><span v-html="scriptAssociate(o.ScriptFile)"></span>

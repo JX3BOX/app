@@ -175,6 +175,10 @@
                                 >{{ o.EndTimeValue2A }} ／
                                 {{ o.EndTimeValue2B }}</span
                             >
+                            <span class="u-desc u-adv" v-if="o.IsAddPeriod"
+                                ><em>IsAddPeriod</em>
+                                <span>{{ o.IsAddPeriod }}</span>
+                            </span>
                             <span class="u-desc u-adv" v-if="o.ScriptFile"
                                 ><em>ScriptFile</em>
                                 <span>{{ o.ScriptFile }}</span>
