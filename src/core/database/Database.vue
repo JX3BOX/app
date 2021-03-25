@@ -163,6 +163,18 @@
                         </span>
                         <data-doodad :data="doodad" :vip="hasRight" :status="done" />
                     </el-tab-pane>
+                    <el-tab-pane label="物品" name="item">
+                        <a slot="label" href="/item" target="_blank">
+                            <img
+                                class="u-icon"
+                                svg-inline
+                                src="../../assets/img/database/item.svg"
+                            />
+                            <b>物品</b>
+                            <em class="u-count">{{ stat.item }}</em>
+                        </a>
+                        <div class="u-tip"><i class="el-icon-warning-outline"></i> 物品请前往独立「<a href="">物品百科</a>」栏目</div>
+                    </el-tab-pane>
                 </el-tabs>
 
                 <template v-if="multipage">

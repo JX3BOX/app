@@ -63,6 +63,9 @@
     .el-tabs__item{
         user-select: none;
     }
+    a{
+        color:@color;
+    }
     .u-icon{
         .size(20px);
         .y(-3px);
@@ -83,7 +86,7 @@
         }
     }
     .is-active{
-        // color:@pink;
+        color:@primary;
         svg{
             fill :@primary;
         }
@@ -95,6 +98,11 @@
         svg{
             fill :@primary;
         }
+        color:@primary;
+        a{color:@primary;}
+    }
+    .u-tip{
+        a{color:@primary;.underline(@primary);}
     }
 }
 
