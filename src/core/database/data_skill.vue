@@ -111,6 +111,9 @@
                         <span class="u-desc"
                             ><em>最高等级</em>{{ o.MaxLevel }}</span
                         >
+                        <span class="u-desc" title="用于例如凌雪阁技能斩无常是否能反弹"
+                            ><em>视为弹道技能</em>{{ o.LongRange }}</span
+                        >
                         <span class="u-desc"
                             ><em>是否需求武器</em
                             >{{ ~~o.WeaponRequest ? "是" : "否" }}</span
@@ -123,6 +126,10 @@
                             ><em>需要脱战释放</em
                             >{{ ~~o.NeedOutOfFight ? "是" : "否" }}</span
                         >
+                        <span class="u-desc" title="技能消耗武器耐久的比例"
+                            ><em>武器耐久消耗</em
+                            >{{ ~~o.AbradeEquipRate && ~~(o.AbradeEquipRate/1024) }}</span
+                        >
 
                         <template v-if="hasRight">
                             <span class="u-desc u-adv"
@@ -130,10 +137,22 @@
                                 >{{ ~~o.hasCriticalStrike ? "是" : "否" }}</span
                             >
                             <span class="u-desc u-adv"
+                                ><em>必定命中</em
+                                >{{ ~~o.IsExactHit ? "是" : "否" }}</span
+                            >
+                            <span class="u-desc u-adv"
+                                ><em>穿透</em
+                                >{{ ~~o.Penetration ? "是" : "否" }}</span
+                            >
+                            <span class="u-desc u-adv"
                                 ><em>是否使用技能系数</em
                                 >{{
                                     ~~o.UseSkillCoefficient ? "是" : "否"
                                 }}</span
+                            >
+                            <span class="u-desc u-adv" title="受到的范围伤害降低"
+                                ><em>AOE</em
+                                >{{ ~~o.AOE ? "是" : "否" }}</span
                             >
                             <span class="u-desc u-adv"
                                 ><em>无视「免疫增益效果」</em
@@ -147,7 +166,16 @@
                                     ~~o.IgnoreNegativeShield ? "是" : "否"
                                 }}</span
                             >
-
+                            <span class="u-desc u-adv" title="包括沉默、任意属性封内"
+                                ><em>无视「无法释放技能效果」</em
+                                >{{
+                                    ~~o.IgnoreSilence ? "是" : "否"
+                                }}</span
+                            >
+                            <!-- <span class="u-desc u-adv" title="一个被动附加属性（这是之前做日常奖励属性的那个机制，但是被玩家给推翻了，西山居就废弃了这个东西，目前没有别的东西在用这个属性）"
+                                ><em>IsMentalPassiveSkill</em
+                                >{{ o.IsMentalPassiveSkill }}</span
+                            > -->
                             <span class="u-desc u-adv"
                                 ><em>ScriptFile</em
                                 ><span v-html="scriptAssociate(o.ScriptFile)"></span>
