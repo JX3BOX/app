@@ -1,7 +1,7 @@
 import axios from "axios";
 import { __node } from "@jx3box/jx3box-common/data/jx3box.json";
 const API = __node
-// const API = "http://localhost:3001/";
+// const API = "http://localhost:7002/";
 
 function loadResource(type, condition, query, params) {
     return axios

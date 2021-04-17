@@ -27,7 +27,6 @@
                         placeholder="请输入 ID 或 名称"
                         v-model="query"
                         @change="search"
-                        @keyup.enter.native="search"
                     >
                         <template slot="prepend">ID ／名称</template>
                         <el-button
