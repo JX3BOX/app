@@ -8,11 +8,7 @@
             :feedbackEnable="true"
             :crumbEnable="true"
         >
-            <img
-                slot="logo"
-                svg-inline
-                src="../../assets/img/logos/price.svg"
-            />
+            <img slot="logo" svg-inline src="../../assets/img/logos/price.svg" />
         </Breadcrumb>
         <LeftSidebar :open="false">
             <Nav />
@@ -29,9 +25,9 @@
                         <div class="m-price-header title-wrapper">
                             <span class="title-server-name">
                                 {{
-                                    currentServer !== ""
-                                        ? currentServer
-                                        : "请选择一个服务器"
+                                currentServer !== ""
+                                ? currentServer
+                                : "请选择一个服务器"
                                 }}
                             </span>
                             <p class="title-origin">
@@ -40,8 +36,7 @@
                                     type="primary"
                                     href="https://jx3.seasunwbl.com/"
                                     target="_blank"
-                                    >万宝楼</el-link
-                                >
+                                >万宝楼</el-link>
                             </p>
                         </div>
 
@@ -65,96 +60,59 @@
                         <div class="m-price-notice hint">
                             ♥
                             请选择正规平台！警惕交易陷阱！部分虚假交易平台会用低价骗取您购买，但充值后又提示该订单已被出售或无货，导致你的钱在一段时间无法及时提现，而且你提现时又要再次收取手续费。
-                            <span style="color: #c00; font-weight: bold"
-                                >单价越高，表示1元能买到更多的金，也就说明金价越便宜喔！</span
-                            >
+                            <span
+                                style="color: #c00; font-weight: bold"
+                            >单价越高，表示1元能买到更多的金，也就说明金价越便宜喔！</span>
                         </div>
 
                         <!-- 概览 -->
-                        <div
-                            class="m-price-overview"
-                            v-if="singleServerPrice.today"
-                        >
-                            <el-row
-                                :gutter="20"
-                                class="card-wrapper card-wrapper-single-server"
-                            >
+                        <div class="m-price-overview" v-if="singleServerPrice.today">
+                            <el-row :gutter="20" class="card-wrapper card-wrapper-single-server">
                                 <el-col :xs="24" :md="8">
                                     <el-card>
-                                        <div
-                                            class="card-price-summary u-lowest"
-                                        >
-                                            <div class="price-summary-title">
-                                                昨日统计 （金/￥）
-                                            </div>
+                                        <div class="card-price-summary u-lowest">
+                                            <div class="price-summary-title">昨日统计 （金/￥）</div>
                                             <div class="price-summary-price">
-                                                <div
-                                                    class="price-summary-detail"
-                                                >
-                                                    <span
-                                                        class="price-summary-number"
-                                                    >
+                                                <div class="price-summary-detail">
+                                                    <span class="price-summary-number">
                                                         {{
-                                                            singleServerPrice
-                                                                .yesterday[
-                                                                "official"
-                                                            ]
+                                                        singleServerPrice
+                                                        .yesterday[
+                                                        "official"
+                                                        ]
                                                         }}
                                                     </span>
                                                 </div>
-                                                <div
-                                                    class="price-summary-detail"
-                                                >
-                                                    <span
-                                                        class="price-summary-number"
-                                                    >
+                                                <div class="price-summary-detail">
+                                                    <span class="price-summary-number">
                                                         {{
-                                                            singleServerPrice
-                                                                .yesterday[
-                                                                "5173"
-                                                            ]
+                                                        singleServerPrice
+                                                        .yesterday[
+                                                        "5173"
+                                                        ]
                                                         }}
                                                     </span>
                                                 </div>
-                                                <div
-                                                    class="price-summary-detail"
-                                                >
-                                                    <span
-                                                        class="price-summary-number"
-                                                    >
+                                                <div class="price-summary-detail">
+                                                    <span class="price-summary-number">
                                                         {{
-                                                            singleServerPrice
-                                                                .yesterday[
-                                                                "post"
-                                                            ]
+                                                        singleServerPrice
+                                                        .yesterday[
+                                                        "post"
+                                                        ]
                                                         }}
                                                     </span>
                                                 </div>
                                             </div>
                                             <div class="price-summary-price">
-                                                <div
-                                                    class="price-summary-detail"
-                                                >
-                                                    <span
-                                                        class="price-summary-mini"
-                                                        >万宝楼</span
-                                                    >
+                                                <div class="price-summary-detail">
+                                                    <span class="price-summary-mini">万宝楼</span>
                                                 </div>
-                                                <div
-                                                    class="price-summary-detail"
-                                                >
-                                                    <span
-                                                        class="price-summary-mini"
-                                                        >5173</span
-                                                    >
+                                                <div class="price-summary-detail">
+                                                    <span class="price-summary-mini">5173</span>
                                                 </div>
-                                                <div
-                                                    class="price-summary-detail"
-                                                >
-                                                    <span
-                                                        class="price-summary-mini"
-                                                        >贴吧</span
-                                                    >
+                                                <div class="price-summary-detail">
+                                                    <span class="price-summary-mini">贴吧</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -162,86 +120,55 @@
                                 </el-col>
                                 <el-col :xs="24" :md="8">
                                     <el-card>
-                                        <div
-                                            class="card-price-summary u-highest"
-                                        >
-                                            <div class="price-summary-title">
-                                                今日数据 （金/￥）
-                                            </div>
+                                        <div class="card-price-summary u-highest">
+                                            <div class="price-summary-title">今日数据 （金/￥）</div>
                                             <div class="price-summary-price">
-                                                <div
-                                                    class="price-summary-detail"
-                                                >
-                                                    <span
-                                                        class="price-summary-number"
-                                                    >
+                                                <div class="price-summary-detail">
+                                                    <span class="price-summary-number">
                                                         {{
-                                                            mean(
-                                                                singleServerPrice
-                                                                    .today[
-                                                                    "official"
-                                                                ]
-                                                            )
+                                                        mean(
+                                                        singleServerPrice
+                                                        .today[
+                                                        "official"
+                                                        ]
+                                                        )
                                                         }}
                                                     </span>
                                                 </div>
-                                                <div
-                                                    class="price-summary-detail"
-                                                >
-                                                    <span
-                                                        class="price-summary-number"
-                                                    >
+                                                <div class="price-summary-detail">
+                                                    <span class="price-summary-number">
                                                         {{
-                                                            mean(
-                                                                singleServerPrice
-                                                                    .today[
-                                                                    "5173"
-                                                                ]
-                                                            )
+                                                        mean(
+                                                        singleServerPrice
+                                                        .today[
+                                                        "5173"
+                                                        ]
+                                                        )
                                                         }}
                                                     </span>
                                                 </div>
-                                                <div
-                                                    class="price-summary-detail"
-                                                >
-                                                    <span
-                                                        class="price-summary-number"
-                                                    >
+                                                <div class="price-summary-detail">
+                                                    <span class="price-summary-number">
                                                         {{
-                                                            mean(
-                                                                singleServerPrice
-                                                                    .today[
-                                                                    "post"
-                                                                ]
-                                                            )
+                                                        mean(
+                                                        singleServerPrice
+                                                        .today[
+                                                        "post"
+                                                        ]
+                                                        )
                                                         }}
                                                     </span>
                                                 </div>
                                             </div>
                                             <div class="price-summary-price">
-                                                <div
-                                                    class="price-summary-detail"
-                                                >
-                                                    <span
-                                                        class="price-summary-mini"
-                                                        >万宝楼</span
-                                                    >
+                                                <div class="price-summary-detail">
+                                                    <span class="price-summary-mini">万宝楼</span>
                                                 </div>
-                                                <div
-                                                    class="price-summary-detail"
-                                                >
-                                                    <span
-                                                        class="price-summary-mini"
-                                                        >5173</span
-                                                    >
+                                                <div class="price-summary-detail">
+                                                    <span class="price-summary-mini">5173</span>
                                                 </div>
-                                                <div
-                                                    class="price-summary-detail"
-                                                >
-                                                    <span
-                                                        class="price-summary-mini"
-                                                        >贴吧</span
-                                                    >
+                                                <div class="price-summary-detail">
+                                                    <span class="price-summary-mini">贴吧</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -249,16 +176,12 @@
                                 </el-col>
                                 <el-col :xs="24" :md="8">
                                     <el-card>
-                                        <div
-                                            class="card-price-summary card-price-recommend"
-                                        >
-                                            <div class="price-summary-title">
-                                                建议成交价
-                                            </div>
+                                        <div class="card-price-summary card-price-recommend">
+                                            <div class="price-summary-title">建议成交价</div>
                                             <div class="price-summary-price">
                                                 <b>
                                                     {{
-                                                        singleServerPrice.recommend
+                                                    singleServerPrice.recommend
                                                     }}
                                                 </b>
                                                 金 / ￥100
@@ -285,11 +208,8 @@
                                     :options="boxplotOption"
                                     :autoresize="true"
                                 />
-              </div>-->
-                            <div
-                                class="chart-div chart-line"
-                                v-show="currentGate !== ''"
-                            >
+                            </div>-->
+                            <div class="chart-div chart-line" v-show="currentGate !== ''">
                                 <v-chart
                                     :options="lineOption"
                                     :autoresize="true"
@@ -305,7 +225,7 @@
             <!-- <RightSidebar
                 ><div class="m-price-aside"></div>
                 <Extend
-      /></RightSidebar>-->
+            /></RightSidebar>-->
             <Footer />
         </Main>
     </div>
@@ -324,7 +244,7 @@ import { prepareBoxplotData } from "echarts/extension/dataTool";
 import serverData from "@jx3box/jx3box-data/data/server/server.json";
 export default {
     name: "Price",
-    data: function() {
+    data: function () {
         return {
             searchServerName: "",
             isShowMainServer: true,
@@ -740,6 +660,7 @@ export default {
                     },
                 ],
             },
+            defaultServer:'蝶恋花'
         };
     },
     computed: {},
@@ -760,15 +681,15 @@ export default {
             };
             let getAllPriceData = axios(priceUrl, "GET", false, {}, {}, params);
 
-            let getUserServerSaved = null;
+            let getUserServerSaved = this.defaultServer;
             if (this.uid) {
-                let userUrl = realUrl(JX3BOX.__server, "user/me");
+                let userUrl = realUrl(JX3BOX.__cms, "api/cms/user/my/profile");
                 getUserServerSaved = axios(userUrl, "GET", true);
             } else {
                 getUserServerSaved = this.getFromLocal();
             }
             // 默认蝶恋花
-            let serverName = "蝶恋花";
+            let serverName = this.defaultServer;
             let axiosSuccess = false;
             Promise.all([getUserServerSaved, getAllPriceData])
                 .then((result) => {
@@ -782,22 +703,7 @@ export default {
                         }
                     }
                     this.serverList = tmpdict;
-
-                    if (result[0].code === 0) {
-                        serverName = result[0].data.jx3_server;
-                        // // 这个时候serverValue是区服的名字 比如”蝶恋花“
-                        // let serverValue = "gate0126"; // 默认
-                        // for (const [gate, value] of Object.entries(
-                        //     serverData.server_dict
-                        // )) {
-                        //     if (value === serverName) {
-                        //         serverValue = gate;
-                        //         break;
-                        //     }
-                        // }
-                        // // this.pinnedServerName = serverValue;
-                        // this.pinnedServerName = serverName;
-                    }
+                    serverName = result[0].data.jx3_server || this.defaultServer;
 
                     let priceData = result[1];
                     if (priceData.code !== undefined && priceData.code === 0) {
@@ -806,36 +712,15 @@ export default {
                     this.currentGate = serverName;
                     axiosSuccess = true;
                 })
-                .catch((e) => {
-                    switch (e.code) {
-                        case -1:
-                            // 网络异常
-                            this.$message.error(e.msg);
-                            break;
-                        case 9999:
-                            this.$message.error("登录失效, 请重新登录");
-                            //1.注销
-                            User.destroy();
-                            //2.保存未提交成功的信息
-                            //请保存至IndexedDB,勿占用localstorage
-                            //3.跳转至登录页携带redirect
-                            setTimeout(() => {
-                                User.toLogin();
-                            }, 2000);
-                            //不指定url时则自动跳回当前所在页面
-                            break;
-                        default:
-                            // 服务器错误
-                            console.log(e);
-                            this.$message.error(`[${e.code}]${e.msg}`);
-                    }
-                })
                 .then(() => {
                     if (axiosSuccess) {
                         // this.pinnedChecked = this.currentGate === this.pinnedServerName;
                         this.parsePriceData();
                         this.showServer();
                     }
+                })
+                .catch((e) => {
+                    console.log(e);
                 });
         },
         median(_arr) {
@@ -883,7 +768,7 @@ export default {
             this.showServer();
             this.parsePriceData();
         },
-        changeServer: function(tab, event) {
+        changeServer: function (tab, event) {
             // this.currentGate = gate;
             // this.pinnedChecked = this.currentGate === this.pinnedServerName;
             this.showServer();
@@ -1158,7 +1043,7 @@ export default {
         },
     },
     filters: {},
-    mounted: function() {
+    mounted: function () {
         this.getUserId();
         this.prepareMounted();
         // this.loadPriceData();
