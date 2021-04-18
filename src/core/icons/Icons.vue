@@ -443,8 +443,8 @@ export default {
             getIconsByName(name)
                 .then((res) => {
                     let tmpList = [];
-                    for (let key in response) {
-                        response[key].forEach((item) => {
+                    for (let key in res) {
+                        res[key].forEach((item) => {
                             let iconid = item.iconID + "";
                             if (!tmpList.includes(iconid)) {
                                 tmpList.push(iconid);

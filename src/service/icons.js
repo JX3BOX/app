@@ -4,7 +4,7 @@ import { __node } from "@jx3box/jx3box-common/data/jx3box.json";
 
 function getIconsByName(str) {
     return axios.get(`${__node}icon/name/${str}`).then((res) => {
-        return res.data.data;
+        return res.data;
     });
 }
 
