@@ -1,5 +1,5 @@
 import { __spider } from "@jx3box/jx3box-common/data/jx3box.json";
-import { $https } from "@jx3box/jx3box-common/js/https";
+import { $next } from "@jx3box/jx3box-common/js/https";
 import axios from "axios";
 
 function getFlower(params) {
@@ -9,13 +9,9 @@ function getFlower(params) {
 }
 
 function getFlowerRank(query, vm) {
-    return $https("next", {
-        proxy: true,
-        interceptor: "next",
-    })
-        .get("api/flower/price/rank", {
+    return $next()
+        .get("/api/flower/price/rank", {
             params: query,
-            withCredentials: true,
         })
         .then((res) => {
             return res.data;

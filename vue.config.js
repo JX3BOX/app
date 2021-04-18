@@ -101,6 +101,9 @@ module.exports = {
     //❤️ Porxy ~
     devServer: {
         proxy: {
+            "/api/cms": {
+                target: process.env["DEV_SERVER"] == "true" ? "http://localhost:5120" : "https://cms.jx3box.com"
+            },
             "/api/vip": {
                 "target": "https://pay.jx3box.com",
                 "onProxyReq": function (request) {

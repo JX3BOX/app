@@ -68,7 +68,6 @@
 
 <script>
 import Nav from "@/components/Nav.vue";
-import { uploadData, parseData } from "../../service/facedata.js";
 import result from "@jx3box/jx3box-facedat/src/Facedat.vue"
 const { parse } = require("lua-json");
 
