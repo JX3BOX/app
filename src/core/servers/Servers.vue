@@ -65,10 +65,7 @@
                 </el-row>
 
                 <!-- 全部列表 -->
-                <el-row
-                    :gutter="20"
-                    class="server-wrapper server-group-unpinned"
-                >
+                <el-row :gutter="20" class="server-wrapper server-group-unpinned">
                     <template v-for="(server, index) in serverList">
                         <f-server-node
                             :key="index"
@@ -85,7 +82,7 @@
                     <Github_REPO REPO="app" coder="172,8"></Github_REPO>
                 </div>
                 <Extend/>
-            </RightSidebar> -->
+            </RightSidebar>-->
             <Footer></Footer>
         </Main>
     </div>
@@ -96,17 +93,18 @@ import Nav from "@/components/Nav.vue";
 import FServerNode from "./FServerNode.vue";
 import { axios } from "@/service/api.js";
 import { JX3BOX } from "@jx3box/jx3box-common";
-import Extend from '@/components/Extend.vue';
+import Extend from "@/components/Extend.vue";
 import User from "@jx3box/jx3box-common/js/user";
-
+import { getMyFocusServers, setMyFocusServers } from "@/service/server.js";
 export default {
     name: "Servers",
-    data: function() {
+    data: function () {
         return {
             searchServerName: "",
             isShowMainServer: true,
             serverList: [],
             pinnedServerName: [],
+            uid:0
         };
     },
     computed: {},
@@ -128,7 +126,7 @@ export default {
             );
         },
         clickServer(serverName) {
-            let index = this.pinnedServerName.indexOf(serverName)
+            let index = this.pinnedServerName.indexOf(serverName);
             if (index === -1) {
                 this.pinnedServerName.push(serverName);
             } else {
@@ -168,55 +166,20 @@ export default {
         },
         getSavedServers() {
             // 获取用户储存的服务器列表
-            let url = JX3BOX.__server + "user/meta";
             if (this.uid) {
-                // 从服务器读取
-                axios(
-                    url,
-                    "GET",
-                    true,
-                    {},
-                    {},
-                    { uid: this.uid, key: "jx3_servers" }
-                )
-                    .then((response) => {
-                        if (response.code == 0) {
-                            let serverValue = response.data.value;
-                            if (serverValue) {
-                                this.pinnedServerName = serverValue.split(",");
-                            } else {
-                                this.pinnedServerName = [];
-                            }
+                getMyFocusServers()
+                    .then((data) => {
+                        let serverValue = data;
+                        if (serverValue) {
+                            this.pinnedServerName = serverValue.split(",");
+                        } else {
+                            this.pinnedServerName = [];
                         }
                     })
                     .catch((e) => {
-                        switch (e.code) {
-                            case -1:
-                                // 网络异常
-                                this.$message.error(e.msg);
-                                this.getFromLocal();
-                                break;
-                            case 9999:
-                                this.$message.error("登录失效, 请重新登录");
-                                //1.注销
-                                User.destroy();
-                                //2.保存未提交成功的信息
-                                //请保存至IndexedDB,勿占用localstorage
-                                //3.跳转至登录页携带redirect
-                                setTimeout(() => {
-                                    User.toLogin();
-                                }, 2000);
-                                //不指定url时则自动跳回当前所在页面
-                                break;
-                            default:
-                                // 服务器错误
-                                this.$message.error(`[${e.code}]${e.msg}`);
-                                this.getFromLocal();
-                        }
-                    })
-                    .then(() => {});
+                        this.getFromLocal();
+                    });
             } else {
-                // 本地读取
                 this.getFromLocal();
             }
         },
@@ -230,44 +193,11 @@ export default {
         },
         setSavedServers() {
             if (this.uid) {
-                // 保存到服务器
-                let url = JX3BOX.__server + "user/meta";
-                axios(url, "POST", true, {
-                    uid: this.uid,
-                    key: "jx3_servers",
-                    value: this.pinnedServerName.join(","),
-                })
-                    .then((response) => {
-                        if (response.code == 0) {
-                            // 成功
-                        }
-                    })
+                setMyFocusServers(this.pinnedServerName.join(","))
+                    .then((data) => {})
                     .catch((e) => {
-                        switch (e.code) {
-                            case -1:
-                                // 网络异常
-                                this.$message.error(e.msg);
-                                this.setToLocal();
-                                break;
-                            case 9999:
-                                this.$message.error("登录失效, 请重新登录");
-                                //1.注销
-                                User.destroy();
-                                //2.保存未提交成功的信息
-                                //请保存至IndexedDB,勿占用localstorage
-                                //3.跳转至登录页携带redirect
-                                setTimeout(() => {
-                                    User.toLogin();
-                                }, 2000);
-                                //不指定url时则自动跳回当前所在页面
-                                break;
-                            default:
-                                // 服务器错误
-                                this.$message.error(`[${e.code}]${e.msg}`);
-                                this.setToLocal();
-                        }
-                    })
-                    .then(() => {});
+                        this.setToLocal();
+                    });
             } else {
                 // 储存在本地
                 this.setToLocal();
@@ -281,7 +211,7 @@ export default {
         },
     },
     filters: {},
-    mounted: function() {
+    mounted: function () {
         this.getUserId();
         this.getSavedServers();
         this.loadAllServers();

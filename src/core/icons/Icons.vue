@@ -267,6 +267,7 @@ export default {
             emojiSelection: 0,
             isDownloadingEmoji: false,
             isSearchingByName: false,
+            uid:0,
         };
     },
     computed: {
@@ -566,7 +567,6 @@ export default {
         this.getUserId();
         this.prepareMounted();
         this.getSavedIcons();
-        // this.loadAllServers();
     },
     components: {
         Nav,

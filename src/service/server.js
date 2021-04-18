@@ -1,12 +1,13 @@
 import User from "@jx3box/jx3box-common/js/user";
-import {$cms} from '@jx3box/jx3box-common/js/https'
+import { $cms } from "@jx3box/jx3box-common/js/https";
 
 function setFlowerServer(server) {
     localStorage && localStorage.setItem("flower_server", server);
 }
 
 function getProfile() {
-    return $cms().get('/api/cms/user/my/profile')
+    return $cms()
+        .get("/api/cms/user/my/profile")
         .then((res) => {
             return res.data.data;
         })
@@ -42,4 +43,41 @@ async function getServer(type) {
     }
 }
 
-export { setFlowerServer, getServer, getProfile,getTempServer };
+function getMyFocusServers() {
+    return $cms()
+        .get(`api/cms/user/my/meta`, {
+            params: {
+                key: "jx3_servers",
+            },
+        })
+        .then((res) => {
+            return res.data.data;
+        });
+}
+
+function setMyFocusServers(data) {
+    return $cms()
+        .post(
+            `api/cms/user/my/meta`,
+            {
+                val: data,
+            },
+            {
+                params: {
+                    key: "jx3_servers",
+                },
+            }
+        )
+        .then((res) => {
+            return res.data.data;
+        });
+}
+
+export {
+    setFlowerServer,
+    getServer,
+    getProfile,
+    getTempServer,
+    getMyFocusServers,
+    setMyFocusServers,
+};
