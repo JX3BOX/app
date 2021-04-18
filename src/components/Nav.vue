@@ -24,6 +24,10 @@
                 ><span>数据构建</span></a
             >
             <!-- DPS -->
+            <a class="u-app" href="/app/meridians" :class="{on:isActive('meridians')}"
+                ><i class="u-app-icon"><img svg-inline :src="getIcon('meridians')"/></i
+                ><span>经脉模拟</span></a
+            >
             <a class="u-app" href="/app/macroeditor" :class="{on:isActive('macroeditor')}"
                 ><i class="u-app-icon"><img svg-inline :src="getIcon('macroeditor')"/></i
                 ><span>宏编辑器</span></a

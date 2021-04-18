@@ -175,7 +175,7 @@ export default {
         tabClick(activeName, oldName) {
             if (activeName === "add-dict") {
                 var aTag = document.createElement("a");
-                aTag.href = "https://github.com/JX3BOX/jx3box-dict/issues";
+                aTag.href = "https://github.com/JX3BOX/jx3box-dict";
                 aTag.target = "_blank";
                 aTag.click();
                 return false;

@@ -1,5 +1,9 @@
 <template>
-    <div :class="detail.maxLevel ? 'detail' : 'detail detailMai'" :style="'position: absolute; left: ' + detail.left + 'px; top: ' + detail.top +'px'"  v-if="showType">
+    <div
+        :class="detail.maxLevel ? 'detail' : 'detail detailMai'"
+        :style="'position: absolute; left: ' + detail.left + 'px; top: ' + detail.top +'px'"
+        v-if="showType"
+    >
         <div class="title">
             <h3>{{detail.name}}</h3>
             <span v-if="detail.maxLevel">第{{detail.nowLevel}}/{{detail.maxLevel}}重</span>
@@ -22,13 +26,15 @@
             </div>
             <div class="probability">
                 <!-- <p>成功率：{{detail.data[detail.nowLevel].probability}}</p>
-                <span v-if="detail.data[detail.nowLevel].probability != '100%'">失败后返还修为：{{detail.data[detail.nowLevel].fail}}</span> -->
+                <span v-if="detail.data[detail.nowLevel].probability != '100%'">失败后返还修为：{{detail.data[detail.nowLevel].fail}}</span>-->
             </div>
             <div class="premise" v-if="detail.requireNode.length > 0">
                 需要需要已经打通：
-                <span v-for="(item, index) in detail.requireNode" :key="index" :style="item.state ? 'color: #fff' : 'color: red'">
-                    {{item.name}}第{{item.level}}重
-                </span>
+                <span
+                    v-for="(item, index) in detail.requireNode"
+                    :key="index"
+                    :style="item.state ? 'color: #fff' : 'color: red'"
+                >{{item.name}}第{{item.level}}重</span>
             </div>
             <div class="describe">{{detail.desc[detail.nowLevel]}}</div>
         </template>
@@ -37,40 +43,36 @@
 
 <script>
 import store from "../../../store";
-import define from '../1'
+import define from "../data/v1";
 export default {
-    name: 'detail',
-    props:["detailData"],
-    data(){
+    name: "detail",
+    props: ["detailData"],
+    data() {
         return {
             define: define,
             selectedView: {},
             showType: false,
             detail: {},
-        }
+        };
     },
-    computed: {
-    },
+    computed: {},
     watch: {
         detailData: {
             handler(newValue) {
-                if (newValue.name != '') {
-                    this.showType = true
-                    this.detail = newValue
+                if (newValue.name != "") {
+                    this.showType = true;
+                    this.detail = newValue;
                 } else {
-                    this.showType = false
+                    this.showType = false;
                 }
             },
             deep: true,
         },
     },
-    created() {
-    },
-    medhods: {
-    }
-}
+    created() {},
+    medhods: {},
+};
 </script>
 
 <style>
-
 </style>
