@@ -3,15 +3,22 @@ import Vuex from "vuex";
 
 Vue.use(Vuex);
 
-let store = {
+let store = new Vuex.Store({
     state: {
+        selectMeridians: [],
+        defineMeridians: [],
     },
     mutations: {
+        setSelect(state, select){
+            state.selectMeridians = select
+        },
+        setDefine(state, define){
+            state.defineMeridians = define
+        }
     },
     getters: {
     },
     actions: {},
     modules: {}
-};
-
-export default new Vuex.Store(store);
+});
+export default store;

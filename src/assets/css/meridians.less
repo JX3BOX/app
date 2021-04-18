@@ -1,0 +1,1868 @@
+h3, h4, h5, h6, p{ margin: 0}
+.m-meridians{
+    max-width: 1260px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.m-meridians-title{
+    font-weight: 300;
+    text-align: center;
+    margin: 0;
+    border-bottom: 1px solid #DCDFE6;
+    padding-bottom: 20px;
+}
+.m-meridians-content{
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+.m-meridians-operation{
+    background: url(../../assets/img/meridians/book.jpg);
+    width: 780px;
+    height: 500px;
+    display: flex;
+    padding-top: 40px;
+    box-sizing: border-box;
+    position: relative;
+    .detail{
+        z-index: 10000;
+        width: 280px;
+        padding: 12px;
+        box-sizing: border-box;
+        background: linear-gradient(#354c45, #3a524b 20%, #3a524b 80%, #354c45 100%);
+        border: 1px solid #709c98;
+        border-radius: 3px;
+        box-shadow: 0 0 1px #000;
+        font-size: 12px;
+        color: #fff;
+        line-height: 18px;
+        .title{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            line-height: 20px;
+            h3{
+                color: #ff0;
+                font-size: 14px;
+            }
+            span{
+                color: #ccc;
+                font-weight: 400;
+                font-size: 12px;
+            }
+        }
+        .now span{
+            color: #ff0;
+        }
+        .require{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .probability{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .premise span{
+            color: #f00;
+        }
+        .describe{
+            color: #ff0;
+        }
+    }
+    .detailMai{
+        width: auto;
+        max-width: 280px;
+    }
+    .left{
+        position: relative;
+        z-index: 10;
+        width: 396px;
+        height: 460px;
+        .ap{
+            h5{
+                position: absolute;
+                z-index: 16;
+                background: url("../../assets/img/meridians/ap-h5.gif") no-repeat 0 0;
+                width: 32px;
+                height: 18px;
+                text-indent: -9999px;
+                overflow: hidden;
+            }
+            em{
+                position: absolute;
+                z-index: 16;
+                display: block;
+                width: 12px;
+                height: 15px;
+                background-image: url("../../assets/img/meridians/level.gif");
+                background-repeat: no-repeat;
+                text-indent: -9999px;
+                visibility: visible;
+            }
+            a{
+                position: absolute;
+                z-index: 15;
+                display: block;
+                background: url("../../assets/img/meridians/idx-apst.gif") no-repeat 0 0;
+                width: 43px;
+                height: 43px;
+                cursor: pointer;
+                outline: 0;
+            }
+            .jm_mouse{
+                background-position: -86px 0;
+            }
+            a.jm_opened{
+                background-position: -43px 0;
+            }
+            a.jm_full{
+                background-position: -129px 0;
+                cursor: default;
+            }
+        }
+        .qixue-bg{
+            position: absolute;
+            z-index: 9;
+            left: 180px;
+            top: 175px;
+            background: url("../../assets/img/meridians/idx-qixue-bg.gif") no-repeat -500px 0;
+            width: 73px;
+            height: 73px;
+        }
+        .renmai {
+            position: absolute;
+            left: 94px;
+            top: 48px;
+            background: url("../../assets/img/meridians/idx-renmai.gif") no-repeat -500px 0;
+            width: 132px;
+            height: 212px;
+            .ap{
+                h5{
+                    background-position: -1px 0;
+                    left: 92px;
+                    top: 16px;
+                }
+                em{
+                    left: 75px;
+                    top: 40px;
+                }
+                a{
+                    left: 46px;
+                    top: 6px;
+                }
+            }
+        }
+        .dumai{
+            position: absolute;
+            left: 189px;
+            top: 96px;
+            background: url("../../assets/img/meridians/idx-dumai.gif") no-repeat -500px 0;
+            width: 172px;
+            height: 100px;
+            .ap{
+                h5{
+                    left: -3px;
+                    top: 68px;
+                    background-position: -37px 0;
+                }
+                em{
+                    // background-position: -12px 0;
+                    left: 43px;
+                    top: 72px;
+                }
+                a{
+                    left: 14px;
+                    top: 35px;
+                }
+            }
+        }
+        .daimai{
+            position: absolute;
+            left: 79px;
+            top: 199px;
+            background: url("../../assets/img/meridians/idx-daimai.gif") no-repeat -500px 0;
+            width: 164px;
+            height: 188px;
+            z-index: 10;
+            .ap{
+                h5{
+                    left: 120px;
+                    top: 126px;
+                    background-position: -73px 0;
+                }
+                em{
+                    // background-position: -12px 0;
+                    left: 120px;
+                    top: 169px;
+                }
+                a{
+                    left: 91px;
+                    top: 136px;
+                }
+            }
+        }
+        .chongmai{
+            position: absolute;
+            left: 196px;
+            top: 193px;
+            background: url("../../assets/img/meridians/idx-chongmai.gif") no-repeat -500px 0;
+            width: 124px;
+            height: 192px;
+            .ap{
+                h5{
+                    left: 54px;
+                    top: 165px;
+                    background-position: -108px 0;
+                }
+                em{
+                    left: 100px;
+                    top: 162px;
+                }
+                a{
+                    left: 74px;
+                    top: 130px;
+                }
+            }
+        }
+        .mai_act {
+            background-position: 0 0;
+        }
+        .idx-ap{
+            position: absolute;
+            z-index: 18;
+            display: block;
+            overflow: hidden;
+            font-weight: 700;
+            color: #000;
+            text-decoration: none;
+            letter-spacing: 2px;
+            outline: 0;
+            font-size: 14px;
+            line-height: 14px;
+        }
+        
+        .idx-ap:hover{
+            background-position: center top;
+        }
+        .idx-ap.state2{
+            background-position: right top;
+        }
+        .idx-ap.state3{
+            background-position: left bottom;
+        }
+        .idx-ap.state3:hover{
+            background-position: center bottom;
+        }
+        .idx-ap.state4{
+            background-position: right bottom;
+        }
+        .idx-ap1{
+            background: url("../../assets/img/meridians/idx-ap1.gif") no-repeat left top;
+            padding: 9px 0 0 33px;
+            width: 39px;
+            height: 18px;
+        }
+        .idx-ap2 {
+            background: url("../../assets/img/meridians/idx-ap2.gif") no-repeat left top;
+            padding: 4px 0 0 8px;
+            width: 64px;
+            height: 23px;
+        }
+        .idx-ap3 {
+            background: url("../../assets/img/meridians/idx-ap3.gif") no-repeat left top;
+            padding: 39px 0 0 8px;
+            width: 55px;
+            height: 18px;
+        }
+        .idx-yutang{
+            left: 110px;
+            top: 120px;
+        }
+        .idx-qugu {
+            left: 60px;
+            top: 180px;
+        }
+        .idx-xuanshu {
+            left: 220px;
+            top: 90px;
+        }
+        .idx-mingmen {
+            left: 242px;
+            top: 125px;
+        }
+        .idx-yaoshu {
+            left: 291px;
+            top: 150px;
+        }
+        .idx-tianchong {
+            left: 112px;
+            top: 285px;
+        }
+        .idx-weidao {
+            left: 100px;
+            top: 334px;
+        }
+        .idx-dahe {
+            left: 250px;
+            top: 264px;
+        }
+        .idx-henggu {
+            left: 280px;
+            top: 228px;
+        }
+        .idx-qixue {
+            left: 157px;
+            top: 210px;
+        }
+    }
+    
+    .right{
+        .jinmai{
+            position: relative;
+            z-index: 10;
+            margin: 0 0 0 10px;
+            width: 340px;
+            height: 428px;
+            h3 {
+                position: absolute;
+                z-index: 11;
+                width: 24px;
+                height: 112px;
+                text-indent: -9999px;
+                right: 19px;
+                top: 28px;
+            }
+            .ap{
+                h6 {
+                    position: absolute;
+                    z-index: 16;
+                    width: 30px;
+                    height: 16px;
+                    text-indent: -9999px;
+                    overflow: hidden;
+                }
+                em {
+                    position: absolute;
+                    z-index: 16;
+                    display: block;
+                    width: 12px;
+                    height: 15px;
+                    background-image: url("../../assets/img/meridians/level.gif");
+                    background-repeat: no-repeat;
+                    text-indent: -9999px;
+                }
+                a {
+                    position: absolute;
+                    z-index: 15;
+                    display: block;
+                    background: url("../../assets/img/meridians/apst.gif") no-repeat 0 0;
+                    width: 30px;
+                    height: 30px;
+                    cursor: pointer;
+                    outline: 0;
+                }
+                .ln{
+                    position: absolute;
+                    z-index: 12;
+                }
+                // a:hover{
+                //     background-position: -60px 0;
+                // }
+                a.jm_mouse{
+                    background-position: -60px 0;
+                }
+                a.jm_opened{
+                    background-position: -30px 0;
+                }
+                a.jm_full{
+                    background-position: -90px 0;
+                    cursor: default;
+                }
+            }
+            .ln{
+                position: absolute;
+                z-index: 12;
+                text-indent: -9999px;
+            }
+        }
+        .home{
+            background: url("../../assets/img/meridians/home.jpg") no-repeat 0 0;
+        }
+        .yutang{
+            background: url("../../assets/img/meridians/yutang.jpg") no-repeat 0 0;
+            .ap77{
+                h6{
+                    left: 153px;
+                    top: 53px;
+                }
+                em{
+                    left: 203px;
+                    top: 71px;
+                }
+                a{
+                    left: 183px;
+                    top: 53px;
+                }
+                .ln77{
+                    width: 12px;
+                    height: 44px;
+                    left: 189px;
+                    top: 69px;
+                    background: url("../../assets/img/meridians/ln077.gif") no-repeat 0 0;
+                }
+            }
+            .ap78 {
+                h6 {
+                    left: 207px;
+                    top: 99px;
+                }
+                em{
+                    left: 175px;
+                    top: 112px;
+                }
+                a{
+                    left: 180px;
+                    top: 95px;
+                }
+                .ln78{
+                    width: 120px;
+                    height: 88px;
+                    left: 117px;
+                    top: 99px;
+                    background: url("../../assets/img/meridians/ln078.gif") no-repeat 0 0;
+                }
+            }
+            .ap79 {
+                h6 {
+                    left: 68px;
+                    top: 100px;
+                }
+                em{
+                    left: 122px;
+                    top: 113px;
+                }
+                a{
+                    left: 104px;
+                    top: 94px;
+                }
+                .ln79{
+                    width: 60px;
+                    height: 80px;
+                    left: 61px;
+                    top: 107px;
+                    background: url("../../assets/img/meridians/ln079.gif") no-repeat 0 0;
+                }
+            }
+            .ap80 {
+                h6 {
+                    left: 150px;
+                    top: 161px;
+                }
+                em{
+                    left: 190px;
+                    top: 193px;
+                }
+                a{
+                    left: 173px;
+                    top: 170px;
+                }
+                .ln80{
+                    width: 64px;
+                    height: 36px;
+                    left: 126px;
+                    top: 183px;
+                    background: url("../../assets/img/meridians/ln080.gif") no-repeat 0 0;
+                }
+            }
+            .ap81 {
+                h6 {
+                    left: 251px;
+                    top: 151px;
+                }
+                em{
+                    left: 231px;
+                    top: 130px;
+                }
+                a{
+                    left: 219px;
+                    top: 138px;
+                }
+                .ln81{
+                    width: 20px;
+                    height: 44px;
+                    left: 232px;
+                    top: 152px;
+                    background: url("../../assets/img/meridians/ln081.gif") no-repeat 0 0;
+                }
+            }
+            .ap82 {
+                h6 {
+                    left: 71px;
+                    top: 169px;
+                }
+                em{
+                    left: 47px;
+                    top: 193px;
+                }
+                a{
+                    left: 47px;
+                    top: 171px;
+                }
+                .ln82{
+                    width: 32px;
+                    height: 96px;
+                    left: 59px;
+                    top: 185px;
+                    background: url("../../assets/img/meridians/ln082.gif") no-repeat 0 0;
+                }
+            }
+            .ap83 {
+                h6 {
+                    left: 142px;
+                    top: 212px;
+                }
+                em{
+                    left: 126px;
+                    top: 226px;
+                }
+                a{
+                    left: 113px;
+                    top: 203px;
+                }
+                .ln83{
+                    width: 44px;
+                    height: 68px;
+                    left: 86px;
+                    top: 215px;
+                    background: url("../../assets/img/meridians/ln083.gif") no-repeat 0 0;
+                }
+            }
+            .ap84 {
+                h6 {
+                    left: 268px;
+                    top: 199px;
+                }
+                em{
+                    left: 258px;
+                    top: 195px;
+                }
+                a{
+                    left: 236px;
+                    top: 181px;
+                }
+                .ln84{
+                    width: 8px;
+                    height: 44px;
+                    left: 247px;
+                    top: 193px;
+                    background: url("../../assets/img/meridians/ln084.gif") no-repeat 0 0;
+                }
+            }
+            .ap85 {
+                h6 {
+                    left: 49px;
+                    top: 260px;
+                }
+                em{
+                    left: 80px;
+                    top: 290px;
+                }
+                a{
+                    left: 73px;
+                    top: 265px;
+                }
+            }
+            .ap86 {
+                h6 {
+                    left: 210px;
+                    top: 217px;
+                }
+                em{
+                    left: 240px;
+                    top: 245px;
+                }
+                a{
+                    left: 236px;
+                    top: 222px;
+                }
+                .ln86{
+                    width: 140px;
+                    height: 92px;
+                    left: 164px;
+                    top: 235px;
+                    background: url("../../assets/img/meridians/ln086.gif") no-repeat 0 0;
+                }
+            }
+            .ap87 {
+                h6 {
+                    left: 133px;
+                    top: 299px;
+                }
+                em{
+                    left: 154px;
+                    top: 333px;
+                }
+                a{
+                    left: 154px;
+                    top: 309px;
+                }
+                .ln87{
+                    width: 76px;
+                    height: 56px;
+                    left: 166px;
+                    top: 322px;
+                    background: url("../../assets/img/meridians/ln087.gif") no-repeat 0 0;
+                }
+            }
+            .ap88 {
+                h6 {
+                    left: 291px;
+                    top: 250px;
+                }
+                em{
+                    left: 311px;
+                    top: 286px;
+                }
+                a{
+                    left: 287px;
+                    top: 265px;
+                }
+                .ln88{
+                    width: 68px;
+                    height: 100px;
+                    left: 240px;
+                    top: 279px;
+                    background: url("../../assets/img/meridians/ln088.gif") no-repeat 0 0;
+                }
+            }
+            .ap89 {
+                h6 {
+                    left: 250px;
+                    top: 376px;
+                }
+                em{
+                    left: 231px;
+                    top: 384px;
+                }
+                a{
+                    left: 223px;
+                    top: 360px;
+                }
+                .ln89{
+                    width: 8px;
+                    height: 64px;
+                    left: 235px;
+                    top: 311px;
+                    background: url("../../assets/img/meridians/ln089.gif") no-repeat 0 0;
+                }
+            }
+            .ap90 {
+                h6 {
+                    left: 199px;
+                    top: 283px;
+                }
+                em{
+                    left: 218px;
+                    top: 314px;
+                }
+                a{
+                    left: 223px;
+                    top: 291px;
+                }
+            }
+        }
+        .qugu{
+            background: url("../../assets/img/meridians/qugu.jpg") no-repeat 0 0;
+            .ap62 {
+                h6 {
+                    left: 229px;
+                    top: 56px;
+                }
+                em{
+                    left: 208px;
+                    top: 67px;
+                }
+                a{
+                    left: 196px;
+                    top: 42px;
+                }
+                .ln62{
+                    width: 68px;
+                    height: 24px;
+                    left: 145px;
+                    top: 57px;
+                    background: url("../../assets/img/meridians/ln062.gif") no-repeat 0 0;
+                }
+            }
+            .ap63 {
+                h6 {
+                    left: 105px;
+                    top: 54px;
+                }
+                em{
+                    left: 142px;
+                    top: 87px;
+                }
+                a{
+                    left: 129px;
+                    top: 64px;
+                }
+                .ln63{
+                    width: 148px;
+                    height: 72px;
+                    left: 75px;
+                    top: 74px;
+                    background: url("../../assets/img/meridians/ln063.gif") no-repeat 0 0;
+                }
+            }
+            .ap64 {
+                h6 {
+                    left: 32px;
+                    top: 123px;
+                }
+                em{
+                    left: 80px;
+                    top: 126px;
+                }
+                a{
+                    left: 62px;
+                    top: 104px;
+                }
+                .ln64{
+                    width: 12px;
+                    height: 64px;
+                    left: 68px;
+                    top: 117px;
+                    background: url("../../assets/img/meridians/ln064.gif") no-repeat 0 0;
+                }
+            }
+            .ap65 {
+                h6 {
+                    left: 137px;
+                    top: 118px;
+                }
+                em{
+                    left: 126px;
+                    top: 128px;
+                }
+                a{
+                    left: 105px;
+                    top: 127px;
+                }
+                .ln65{
+                    width: 28px;
+                    height: 40px;
+                    left: 119px;
+                    top: 141px;
+                    background: url("../../assets/img/meridians/ln065.gif") no-repeat 0 0;
+                }
+            }
+            .ap66 {
+                h6 {
+                    left: 235px;
+                    top: 110px;
+                }
+                em{
+                    left: 230px;
+                    top: 130px;
+                }
+                a{
+                    left: 205px;
+                    top: 113px;
+                }
+                .ln66{
+                    width: 8px;
+                    height: 56px;
+                    left: 217px;
+                    top: 125px;
+                    background: url("../../assets/img/meridians/ln066.gif") no-repeat 0 0;
+                }
+            }
+            .ap67 {
+                h6 {
+                    left: 80px;
+                    top: 179px;
+                }
+                em{
+                    left: 58px;
+                    top: 185px;
+                }
+                a{
+                    left: 55px;
+                    top: 163px;
+                }
+                .ln67{
+                    width: 100px;
+                    height: 60px;
+                    left: 70px;
+                    top: 177px;
+                    background: url("../../assets/img/meridians/ln067.gif") no-repeat 0 0;
+                }
+            }
+            .ap68 {
+                h6 {
+                    left: 154px;
+                    top: 162px;
+                }
+                em{
+                    left: 129px;
+                    top: 187px;
+                }
+                a{
+                    left: 130px;
+                    top: 166px;
+                }
+                .ln68{
+                    width: 28px;
+                    height: 52px;
+                    left: 144px;
+                    top: 179px;
+                    background: url("../../assets/img/meridians/ln068.gif") no-repeat 0 0;
+                }
+            }
+            .ap69 {
+                h6 {
+                    left: 231px;
+                    top: 169px;
+                }
+                em{
+                    left: 220px;
+                    top: 188px;
+                }
+                a{
+                    left: 204px;
+                    top: 165px;
+                }
+                .ln69{
+                    width: 56px;
+                    height: 56px;
+                    left: 167px;
+                    top: 178px;
+                    background: url("../../assets/img/meridians/ln069.gif") no-repeat 0 0;
+                }
+            }
+            .ap70 {
+                h6 {
+                    left: 126px;
+                    top: 210px;
+                }
+                em{
+                    left: 160px;
+                    top: 240px;
+                }
+                a{
+                    left: 152px;
+                    top: 215px;
+                }
+                .ln70{
+                    width: 56px;
+                    height: 44px;
+                    left: 144px;
+                    top: 228px;
+                    background: url("../../assets/img/meridians/ln070.gif") no-repeat 0 0;
+                }
+            }
+            .ap71 {
+                h6 {
+                    left: 130px;
+                    top: 291px;
+                }
+                em{
+                    left: 136px;
+                    top: 276px;
+                }
+                a{
+                    left: 135px;
+                    top: 257px;
+                }
+                .ln71{
+                    width: 32px;
+                    height: 96px;
+                    left: 142px;
+                    top: 269px;
+                    background: url("../../assets/img/meridians/ln071.gif") no-repeat 0 0;
+                }
+            }
+            .ap72 {
+                h6 {
+                    left: 199px;
+                    top: 235px;
+                }
+                em{
+                    left: 204px;
+                    top: 258px;
+                }
+                a{
+                    left: 179px;
+                    top: 243px;
+                }
+                .ln72{
+                    width: 48px;
+                    height: 64px;
+                    left: 195px;
+                    top: 255px;
+                    background: url("../../assets/img/meridians/ln072.gif") no-repeat 0 0;
+                }
+            }
+            .ap73 {
+                h6 {
+                    left: 107px;
+                    top: 352px;
+                }
+                em{
+                    left: 140px;
+                    top: 340px;
+                }
+                a{
+                    left: 144px;
+                    top: 347px;
+                }
+                .ln73{
+                    width: 116px;
+                    height: 128px;
+                    left: 45px;
+                    top: 259px;
+                    background: url("../../assets/img/meridians/ln073.gif") no-repeat 0 0;
+                }
+            }
+            .ap74 {
+                em{
+                    left: 236px;
+                    top: 324px;
+                }
+                a{
+                    left: 228px;
+                    top: 299px;
+                }
+                .ln74{
+                    width: 54px;
+                    height: 92px;
+                    left: 244px;
+                    top: 227px;
+                    background: url("../../assets/img/meridians/ln074.gif") no-repeat 0 0;
+                }
+            }
+            .ap75 {
+                em{
+                    left: 80px;
+                    top: 275px;
+                }
+                a{
+                    left: 62px;
+                    top: 253px;
+                }
+            }
+            .ap76 {
+                em{
+                    left: 270px;
+                    top: 242px;
+                }
+                a{
+                    left: 270px;
+                    top: 221px;
+                }
+            }
+        }
+        .xuanshu{
+            background: url("../../assets/img/meridians/xuanshu.jpg") no-repeat 0 0;
+            .ap94 {
+                em{
+                    left: 88px;
+                    top: 155px;
+                }
+                a{
+                    left: 73px;
+                    top: 132px;
+                }
+                .ln94{
+                    width: 64px;
+                    height: 36px;
+                    left: 90px;
+                    top: 108px;
+                    background: url("../../assets/img/meridians/ln094_163.gif") no-repeat 0 0;
+                }
+            }
+            .ap98 {
+                em{
+                    left: 158px;
+                    top: 90px;
+                }
+                a{
+                    left: 142px;
+                    top: 96px;
+                }
+                .ln98{
+                    width: 68px;
+                    height: 32px;
+                    left: 159px;
+                    top: 108px;
+                    background: url("../../assets/img/meridians/ln098_158.gif") no-repeat 0 0;
+                }
+            }
+            .ap111 {
+                em{
+                    left: 210px;
+                    top: 148px;
+                }
+                a{
+                    left: 208px;
+                    top: 124px;
+                }
+                .ln111{
+                    width: 44px;
+                    height: 112px;
+                    left: 220px;
+                    top: 136px;
+                    background: url("../../assets/img/meridians/ln111_165.gif") no-repeat 0 0;
+                }
+            }
+            .ap114 {
+                em{
+                    left: 240px;
+                    top: 242px;
+                }
+                a{
+                    left: 246px;
+                    top: 233px;
+                }
+                .ln114{
+                    width: 96px;
+                    height: 60px;
+                    left: 170px;
+                    top: 246px;
+                    background: url("../../assets/img/meridians/ln114_167.gif") no-repeat 0 0;
+                }
+            }
+            .ap117 {
+                em{
+                    left: 183px;
+                    top: 310px;
+                }
+                a{
+                    left: 160px;
+                    top: 289px;
+                }
+            }
+        }
+        .mingmen {
+            background: url("../../assets/img/meridians/mingmen.jpg") no-repeat 0 0;
+            .ap93 {
+                em{
+                    left: 160px;
+                    top: 233px;
+                }
+                a{
+                    left: 154px;
+                    top: 242px;
+                }
+                .ln93{
+                    width: 144px;
+                    height: 104px;
+                    left: 93px;
+                    top: 156px;
+                    background: url("../../assets/img/meridians/ln093.gif") no-repeat 0 0;
+                }
+            }
+            .ap96 {
+                em{
+                    left: 210px;
+                    top: 188px;
+                }
+                a{
+                    left: 219px;
+                    top: 190px;
+                }
+                .ln96{
+                    width: 68px;
+                    height: 100px;
+                    left: 171px;
+                    top: 112px;
+                    background: url("../../assets/img/meridians/ln096.gif") no-repeat 0 0;
+                }
+            }
+            .ap97 {
+                em{
+                    left: 80px;
+                    top: 140px;
+                }
+                a{
+                    left: 85px;
+                    top: 142px;
+                }
+                .ln97{
+                    width: 76px;
+                    height: 48px;
+                    left: 100px;
+                    top: 113px;
+                    background: url("../../assets/img/meridians/ln097.gif") no-repeat 0 0;
+                }
+            }
+            .ap110 {
+                em{
+                    left: 167px;
+                    top: 126px;
+                }
+                a{
+                    left: 159px;
+                    top: 100px;
+                }
+                .ln110{
+                    width: 116px;
+                    height: 192px;
+                    left: 172px;
+                    top: 114px;
+                    background: url("../../assets/img/meridians/ln110.gif") no-repeat 0 0;
+                }
+            }
+            .ap113 {
+                em{
+                    left: 265px;
+                    top: 310px;
+                }
+                a{
+                    left: 245px;
+                    top: 289px;
+                }
+                .ln113 {
+                    width: 200px;
+                    height: 88px;
+                    left: 61px;
+                    top: 257px;
+                    background: url("../../assets/img/meridians/ln113.gif") no-repeat 0 0;
+                }
+            }
+            .ap116 {
+                em{
+                    left: 74px;
+                    top: 243px;
+                }
+                a{
+                    left: 49px;
+                    top: 245px;
+                }
+            }
+        }
+        .yaoshu {
+            background: url("../../assets/img/meridians/yaoshu.jpg") no-repeat 0 0;
+            .ap92 {
+                em{
+                    left: 185px;
+                    top: 76px;
+                }
+                a{
+                    left: 160px;
+                    top: 64px;
+                }
+                .ln92 {
+                    width: 44px;
+                    height: 84px;
+                    left: 172px;
+                    top: 77px;
+                    background: url("../../assets/img/meridians/ln092_126.gif") no-repeat 0 0;
+                }
+            }
+            .ap95 {
+                em{
+                    left: 215px;
+                    top: 166px;
+                }
+                a{
+                    left: 198px;
+                    top: 142px;
+                }
+                .ln95 {
+                    width: 92px;
+                    height: 40px;
+                    left: 121px;
+                    top: 155px;
+                    background: url("../../assets/img/meridians/ln095_120.gif") no-repeat 0 0;
+                }
+            }
+            .ap99 {
+                em{
+                    left: 100px;
+                    top: 195px;
+                }
+                a{
+                    left: 106px;
+                    top: 175px;
+                }
+                .ln99 {
+                    width: 76px;
+                    height: 88px;
+                    left: 119px;
+                    top: 189px;
+                    background: url("../../assets/img/meridians/ln099_128.gif") no-repeat 0 0;
+                }
+            }
+            .ap112 {
+                em{
+                    left: 200px;
+                    top: 270px;
+                }
+                a{
+                    left: 173px;
+                    top: 259px;
+                }
+                .ln112 {
+                    width: 72px;
+                    height: 80px;
+                    left: 122px;
+                    top: 271px;
+                    background: url("../../assets/img/meridians/ln112_153.gif") no-repeat 0 0;
+                }
+            }
+            .ap115 {
+                em{
+                    left: 98px;
+                    top: 330px;
+                }
+                a{
+                    left: 108px;
+                    top: 336px;
+                }
+            }
+        }
+        .tianchong {
+            background: url("../../assets/img/meridians/tianchong.jpg") no-repeat 0 0;
+            .ap126 {
+                em{
+                    left: 185px;
+                    top: 78px;
+                }
+                a{
+                    left: 160px;
+                    top: 64px;
+                }
+                .ln126 {
+                    width: 44px;
+                    height: 84px;
+                    left: 172px;
+                    top: 77px;
+                    background: url("../../assets/img/meridians/ln092_126.gif") no-repeat 0 0;
+                }
+            }
+            .ap120 {
+                em{
+                    left: 218px;
+                    top: 160px;
+                }
+                a{
+                    left: 198px;
+                    top: 139px;
+                }
+                .ln120 {
+                    width: 92px;
+                    height: 40px;
+                    left: 121px;
+                    top: 155px;
+                    background: url("../../assets/img/meridians/ln095_120.gif") no-repeat 0 0;
+                }
+            }
+            .ap128 {
+                em{
+                    left: 105px;
+                    top: 200px;
+                }
+                a{
+                    left: 106px;
+                    top: 177px;
+                }
+                .ln128 {
+                    width: 76px;
+                    height: 88px;
+                    left: 119px;
+                    top: 189px;
+                    background: url("../../assets/img/meridians/ln099_128.gif") no-repeat 0 0;
+                }
+            }
+            .ap153 {
+                em{
+                    left: 198px;
+                    top: 270px;
+                }
+                a{
+                    left: 175px;
+                    top: 259px;
+                }
+                .ln153 {
+                    width: 72px;
+                    height: 80px;
+                    left: 122px;
+                    top: 271px;
+                    background: url("../../assets/img/meridians/ln112_153.gif") no-repeat 0 0;
+                }
+            }
+            .ap155 {
+                em{
+                    left: 105px;
+                    top: 333px;
+                }
+                a{
+                    left: 106px;
+                    top: 342px;
+                }
+            }
+
+        }
+        .weidao {
+            background: url("../../assets/img/meridians/weidao.jpg") no-repeat 0 0;
+            .ap127 {
+                em{
+                    left: 150px;
+                    top: 80px;
+                }
+                a{
+                    left: 153px;
+                    top: 58px;
+                }
+                .ln127 {
+                    width: 188px;
+                    height: 140px;
+                    left: 68px;
+                    top: 74px;
+                    background: url("../../assets/img/meridians/ln127.gif") no-repeat 0 0;
+                }
+            }
+            .ap121 {
+                em{
+                    left: 85px;
+                    top: 190px;
+                }
+                a{
+                    left: 62px;
+                    top: 196px;
+                }
+                .ln121 {
+                    width: 92px;
+                    height: 60px;
+                    left: 77px;
+                    top: 209px;
+                    background: url("../../assets/img/meridians/ln121.gif") no-repeat 0 0;
+                }
+            }
+            .ap124 {
+                em{
+                    left: 265px;
+                    top: 130px;
+                }
+                a{
+                    left: 239px;
+                    top: 118px;
+                }
+                .ln124 {
+                    width: 96px;
+                    height: 140px;
+                    left: 167px;
+                    top: 131px;
+                    background: url("../../assets/img/meridians/ln124.gif") no-repeat 0 0;
+                }
+            }
+            .ap122 {
+                em{
+                    left: 122px;
+                    top: 162px;
+                }
+                a{
+                    left: 97px;
+                    top: 153px;
+                }
+                .ln122 {
+                    width: 60px;
+                    height: 104px;
+                    left: 110px;
+                    top: 167px;
+                    background: url("../../assets/img/meridians/ln122.gif") no-repeat 0 0;
+                }
+            }
+            .ap123 {
+                em{
+                    left: 200px;
+                    top: 150px;
+                }
+                a{
+                    left: 203px;
+                    top: 135px;
+                }
+                .ln123 {
+                    width: 60px;
+                    height: 120px;
+                    left: 166px;
+                    top: 148px;
+                    background: url("../../assets/img/meridians/ln123.gif") no-repeat 0 0;
+                }
+            }
+            .ap119 {
+                em{
+                    left: 175px;
+                    top: 275px;
+                }
+                a{
+                    left: 153px;
+                    top: 252px;
+                }
+                .ln119 {
+                    width: 4px;
+                    height: 52px;
+                    left: 166px;
+                    top: 266px;
+                    background: url("../../assets/img/meridians/ln119.gif") no-repeat 0 0;
+                }
+            }
+            .ap129 {
+                em{
+                    left: 175px;
+                    top: 320px;
+                }
+                a{
+                    left: 154px;
+                    top: 301px;
+                }
+                .ln129 {
+                    width: 4px;
+                    height: 68px;
+                    left: 166px;
+                    top: 317px;
+                    background: url("../../assets/img/meridians/ln129.gif") no-repeat 0 0;
+                }
+            }
+            .ap154 {
+                em{
+                    left: 175px;
+                    top: 385px;
+                }
+                a{
+                    left: 151px;
+                    top: 373px;
+                }
+            }
+        }
+        .dahe {
+            background: url("../../assets/img/meridians/dahe.jpg") no-repeat 0 0;
+            .ap163 {
+                em{
+                    left: 95px;
+                    top: 164px;
+                }
+                a{
+                    left: 80px;
+                    top: 140px;
+                }
+                .ln163 {
+                    width: 64px;
+                    height: 36px;
+                    left: 98px;
+                    top: 117px;
+                    background: url("../../assets/img/meridians/ln094_163.gif") no-repeat 0 0;
+                }
+            }
+            .ap158 {
+                em{
+                    left: 165px;
+                    top: 95px;
+                }
+                a{
+                    left: 149px;
+                    top: 105px;
+                }
+                .ln158 {
+                    width: 68px;
+                    height: 32px;
+                    left: 167px;
+                    top: 117px;
+                    background: url("../../assets/img/meridians/ln098_158.gif") no-repeat 0 0;
+                }
+            }
+            .ap165 {
+                em{
+                    left: 217px;
+                    top: 155px;
+                }
+                a{
+                    left: 217px;
+                    top: 132px;
+                }
+                .ln165 {
+                    width: 44px;
+                    height: 112px;
+                    left: 228px;
+                    top: 145px;
+                    background: url("../../assets/img/meridians/ln111_165.gif") no-repeat 0 0;
+                }
+            }
+            .ap167 {
+                em{
+                    left: 279px;
+                    top: 250px;
+                }
+                a{
+                    left: 253px;
+                    top: 241px;
+                }
+                .ln167 {
+                    width: 96px;
+                    height: 60px;
+                    left: 178px;
+                    top: 255px;
+                    background: url("../../assets/img/meridians/ln114_167.gif") no-repeat 0 0;
+                }
+            }
+            .ap169 {
+                em{
+                    left: 187px;
+                    top: 320px;
+                }
+                a{
+                    left: 167px;
+                    top: 296px;
+                }
+            }
+        }
+        .henggu {
+            background: url("../../assets/img/meridians/henggu.jpg") no-repeat 0 0;
+            .ap164 {
+                em{
+                    left: 157px;
+                    top: 80px;
+                }
+                a{
+                    left: 160px;
+                    top: 60px;
+                }
+                .ln164 {
+                    width: 160px;
+                    height: 132px;
+                    left: 98px;
+                    top: 74px;
+                    background: url("../../assets/img/meridians/ln164.gif") no-repeat 0 0;
+                }
+            }
+            .ap159 {
+                em{
+                    left: 100px;
+                    top: 115px;
+                }
+                a{
+                    left: 85px;
+                    top: 93px;
+                }
+                .ln159 {
+                    width: 100px;
+                    height: 160px;
+                    left: 75px;
+                    top: 107px;
+                    background: url("../../assets/img/meridians/ln159.gif") no-repeat 0 0;
+                }
+            }
+            .ap162 {
+                em{
+                    left: 267px;
+                    top: 125px;
+                }
+                a{
+                    left: 241px;
+                    top: 108px;
+                }
+                .ln162 {
+                    width: 92px;
+                    height: 148px;
+                    left: 176px;
+                    top: 121px;
+                    background: url("../../assets/img/meridians/ln162.gif") no-repeat 0 0;
+                }
+            }
+            .ap160 {
+                em{
+                    left: 132px;
+                    top: 178px;
+                }
+                a{
+                    left: 112px;
+                    top: 182px;
+                }
+                .ln160 {
+                    width: 52px;
+                    height: 72px;
+                    left: 124px;
+                    top: 196px;
+                    background: url("../../assets/img/meridians/ln160.gif") no-repeat 0 0;
+                }
+            }
+            .ap161 {
+                em{
+                    left: 205px;
+                    top: 180px;
+                }
+                a{
+                    left: 205px;
+                    top: 188px;
+                }
+                .ln161 {
+                    width: 48px;
+                    height: 68px;
+                    left: 174px;
+                    top: 200px;
+                    background: url("../../assets/img/meridians/ln161.gif") no-repeat 0 0;
+                }
+            }
+            .ap157 {
+                em{
+                    left: 155px;
+                    top: 270px;
+                }
+                a{
+                    left: 161px;
+                    top: 251px;
+                }
+                .ln157 {
+                    width: 4px;
+                    height: 52px;
+                    left: 173px;
+                    top: 264px;
+                    background: url("../../assets/img/meridians/ln157.gif") no-repeat 0 0;
+                }
+            }
+            .ap166 {
+                em{
+                    left: 155px;
+                    top: 315px;
+                }
+                a{
+                    left: 161px;
+                    top: 301px;
+                }
+                .ln166 {
+                    width: 4px;
+                    height: 60px;
+                    left: 173px;
+                    top: 316px;
+                    background: url("../../assets/img/meridians/ln166.gif") no-repeat 0 0;
+                }
+            }
+            .ap168 {
+                em{
+                    left: 155px;
+                    top: 360px;
+                }
+                a{
+                    left: 162px;
+                    top: 360px;
+                }
+            }
+        }
+        .qixue {
+            background: url("../../assets/img/meridians/qixue.jpg") no-repeat 0 0;
+            .ap43 {
+                em{
+                    left: 130px;
+                    top: 115px;
+                }
+                a{
+                    left: 105px;
+                    top: 102px;
+                }
+            }
+            .ap45 {
+                em{
+                    left: 83px;
+                    top: 82px;
+                }
+                a{
+                    left: 60px;
+                    top: 64px;
+                }
+            }
+            .ap42 {
+                em{
+                    left: 81px;
+                    top: 120px;
+                }
+                a{
+                    left: 88px;
+                    top: 117px;
+                }
+            }
+            .ap46 {
+                em{
+                    left: 86px;
+                    top: 155px;
+                }
+                a{
+                    left: 92px;
+                    top: 142px;
+                }
+            }
+            .ap35 {
+                em{
+                    left: 138px;
+                    top: 156px;
+                }
+                a{
+                    left: 114px;
+                    top: 143px;
+                }
+            }
+            .ap9 {
+                em{
+                    left: 116px;
+                    top: 202px;
+                }
+                a{
+                    left: 122px;
+                    top: 187px;
+                }
+            }
+            .ap41 {
+                em{
+                    left: 160px;
+                    top: 220px;
+                }
+                a{
+                    left: 135px;
+                    top: 204px;
+                }
+            }
+            .ap44 {
+                em{
+                    left: 80px;
+                    top: 245px;
+                }
+                a{
+                    left: 54px;
+                    top: 228px;
+                }
+            }
+            .ap170 {
+                em{
+                    left: 215px;
+                    top: 315px;
+                }
+                a{
+                    left: 190px;
+                    top: 297px;
+                }
+            }
+            .ap40 {
+                em{
+                    left: 275px;
+                    top: 397px;
+                }
+                a{
+                    left: 251px;
+                    top: 376px;
+                }
+            }
+        }
+    }
+}
+.level1{
+    background-position: -12px -15px;
+}
+.level2{
+    background-position: -12px -30px;
+}
+.level3{
+    background-position: -12px -45px;
+}
+.level4{
+    background-position: -12px -60px;
+}
+.level5{
+    background-position: -12px -75px;
+}
+.dantian{
+    position: absolute;
+    right: 100px;
+    bottom: 8px;
+    font-size: 14px;
+}
+.m-meridians-preview{
+    width: 460px;
+    height: 500px;
+    background: url("../../assets/img/meridians/ds-top.jpg") no-repeat, linear-gradient(to bottom, #48726e, #2a4137, #1e3229);
+    border-radius: 5px;
+    overflow: hidden;
+    box-sizing: border-box;
+    padding: 57px 10px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .content{
+        height: 360px;
+        width: 100%;
+        background: #0c1900;
+        border: 1px solid #12222d;
+        color: #49716d;
+        line-height: 20px;
+        box-sizing: border-box;
+        padding: 10px;
+        border-radius: 5px;
+        font-size: 12px;
+        overflow: auto;
+        p{
+            padding-left: 14px;
+            position: relative;
+        }
+        p:before{
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 7px;
+            height: 5px;
+            width: 5px;
+            border: 1px solid #3a524b;
+            border-radius: 50%;
+        }
+    }
+    .content::-webkit-scrollbar {
+        /*滚动条整体样式*/
+        width : 10px;  /*高宽分别对应横竖滚动条的尺寸*/
+        height: 1px;
+    }
+    .content::-webkit-scrollbar-thumb {
+        /*滚动条里面小方块*/
+        border-radius   : 10px;
+        background-color: #6a918c;
+        background-image: -webkit-linear-gradient(
+                45deg,
+                rgba(255, 255, 255, 0.2) 25%,
+                transparent 25%,
+                transparent 50%,
+                rgba(255, 255, 255, 0.2) 50%,
+                rgba(255, 255, 255, 0.2) 75%,
+                transparent 75%,
+                transparent
+        );
+    }
+    .content::-webkit-scrollbar-track {
+        /*滚动条里面轨道*/
+        box-shadow   : inset 0 0 5px rgba(0, 0, 0, 0.2);
+        background   : #ededed;
+        border-radius: 10px;
+    }
+    .reset{
+        margin-top: 20px;
+        width: 180px;
+        height: 34px;
+        background: linear-gradient(to bottom, #114a1f, #125623 15%, #186d36 50%, #125623 85%, #114a1f 100%);
+        border-radius: 8px;
+        box-shadow: 0 0 4px 1px #001402;
+        cursor: pointer;
+        color: #e7eded;
+        text-align: center;
+        line-height: 34px;
+    }
+}
+.meridians_footer{
+    bottom: 0;
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    width: 1260px;
+}
+.meridians_footer.c-footer:after{
+    display: none;
+ }
