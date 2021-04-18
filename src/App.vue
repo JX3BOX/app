@@ -334,6 +334,25 @@
                                 >
                             </div></el-col
                         >
+
+                        <el-col :span="12">
+                            <div class="u-item">
+                                <a href="./meridians" target="_blank">
+                                    <span class="u-pic">
+                                        <i class="u-icon">
+    <!--                                <img svg-inline src="./assets/img/logos/qiyu.svg"/>-->
+                                        </i>
+                                        <span class="u-name">经脉模拟器</span>
+                                    </span>
+                                    <span class="u-features">
+                                        <span class="u-desc">✔️ 经脉模拟器</span>
+                                        <span>✔️ 经脉模拟器</span>
+                                        <span>✔️ 经脉模拟器</span>
+                                        <span>✔️ 经脉模拟器</span>
+                                    </span>
+                                </a>
+                            </div>
+                        </el-col>
                     </el-row>
                 </el-col>
                 <el-col :span="12">

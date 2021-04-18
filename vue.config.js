@@ -90,6 +90,12 @@ module.exports = {
             template: "public/index.html",
             filename: "dps/index.html",
         },
+        meridians: {
+            title: "经脉模拟器 - JX3BOX",
+            entry: "src/core/meridians/meridians.js",
+            template: "public/index.html",
+            filename: "meridians/index.html",
+        },
     },
 
     //❤️ Porxy ~
