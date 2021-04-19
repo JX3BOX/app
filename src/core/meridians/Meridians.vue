@@ -19,8 +19,8 @@
                     <h1 class="m-meridians-title">经脉模拟器</h1>
                     <div class="m-meridians-desc">
                         <span class="u-meta">
-                            <em>当前版本</em>
-                            <b>v1.0 Beta</b>
+                            <em>❤️ 使用小贴士</em>
+                            <b>左键点通节点、右键回退</b>
                         </span>
                         <a class="u-link" href="https://jq.qq.com/?_wv=1027&k=s6eiK59S" target="_blank"><span>【怀旧服交流群】</span><b>590349918</b></a>
                     </div>
@@ -162,6 +162,9 @@
                         <div class="reset" @click="reset">重置经脉点数</div>
                     </div>
                 </div>
+                <footer class="m-meridians-footer">
+                    <el-checkbox v-model="isEfficient">下极俞<span>(消耗修为减少10%)</span></el-checkbox>
+                </footer>
                 <Footer class="meridians_footer"></Footer>
             </div>
         </Main>
@@ -290,6 +293,7 @@ export default {
             define: constDefine,
             mouseCoor: {},
             hover: "",
+            isEfficient:false
         };
     },
     components: {
