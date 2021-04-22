@@ -238,14 +238,14 @@
                             </span>
                         </template>
                     </div>
-                    <div class="u-misc-tip" v-else>
+                    <!-- <div class="u-misc-tip" v-else>
                         <i class="el-icon-lock"></i>
                         部分词条仅
                         <a
                             href="/vip/premium?from=database_npc"
                             target="_blank"
                         >高级/专业版会员</a>可见
-                    </div>
+                    </div> -->
                 </div>
             </li>
         </ul>

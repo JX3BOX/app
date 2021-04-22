@@ -57,7 +57,7 @@
                                 :src="item.id | xficon"
                                 :alt="item.name"
                             />
-                            <span class="u-txt">{{item.id}}{{ item.name }}</span>
+                            <span class="u-txt">{{ item.name }}</span>
                         </el-radio>
                     </div>
                     <h2 class="m-talent-subtitle">配置奇穴</h2>
