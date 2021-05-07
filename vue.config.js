@@ -96,6 +96,12 @@ module.exports = {
             template: "public/index.html",
             filename: "meridians/index.html",
         },
+        sandtable: {
+            title: "沙盘查询 - JX3BOX",
+            entry: "src/core/sandtable/sandtable.js",
+            template: "public/index.html",
+            filename: "sandtable/index.html",
+        },
     },
 
     //❤️ Porxy ~

@@ -504,6 +504,28 @@
                                 </a>
                             </div>
                         </el-col>
+                        <el-col :span="12">
+                            <div class="u-item">
+                                <a href="./sandtable" target="_blank">
+                                    <span class="u-pic">
+                                        <i class="u-icon">
+                                            <img svg-inline src="./assets/img/logos/price.svg" />
+                                        </i>
+                                        <span class="u-name">沙盘查询</span>
+                                    </span>
+                                    <img
+                                        class="u-blank"
+                                        svg-inline
+                                        src="./assets/img/logos/blank.svg"
+                                    />
+                                    <span class="u-features">
+                                        <span class="u-desc">✔️ 查询全服情况</span>
+                                        <span>✔️ 据点历史信息</span>
+                                        <span>✔️ 深度合作伙伴</span>
+                                    </span>
+                                </a>
+                            </div>
+                        </el-col>
                     </el-row>
                 </el-col>
             </el-row>
