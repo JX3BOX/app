@@ -14,7 +14,7 @@
             <Nav/>
         </LeftSidebar>
         <Main :withoutRight="true" :withoutLeft="true">
-
+            <h1 class="m-sandtable-title">沙盘查询</h1>
         </Main>
     </div>
 </template>
@@ -22,11 +22,30 @@
 <script>
 import Nav from "@/components/Nav.vue";
 import serverData from "@jx3box/jx3box-data/data/server/server.json";
+import User from "@jx3box/jx3box-common/js/user";
 
 
 export default {
     name: "SandTable.vue",
-
+    data: function () {
+        return {
+            serverList: {},
+        };
+    },
+    methods:{
+        async initMethod(){
+            console.log(serverData);
+        },
+        getUserId() {
+            if (User.isLogin()) {
+                this.uid = User.getInfo().uid;
+            }
+        },
+    },
+    created(){
+        this.getUserId();
+        this.initMethod();
+    },
     components: {
         Nav,
         // Extend,
@@ -34,6 +53,6 @@ export default {
 };
 </script>
 
-<style scoped>
-
+<style lang="less">
+@import "../../assets/css/sandtable.less";
 </style>
