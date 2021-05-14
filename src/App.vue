@@ -309,6 +309,29 @@
                                 </a>
                             </div>
                         </el-col>
+                        <el-col :span="12">
+                            <div class="u-item">
+                                <a href="./sandbox" target="_blank">
+                                    <span class="u-pic">
+                                        <i class="u-icon">
+                                            <img svg-inline src="./assets/img/logos/flog.svg" />
+                                        </i>
+                                        <span class="u-name">阵营沙盘</span>
+                                    </span>
+                                    <img
+                                        class="u-blank"
+                                        svg-inline
+                                        src="./assets/img/logos/blank.svg"
+                                    />
+                                    <span class="u-features">
+                                        <span class="u-desc">✔️ 全服沙盘查询</span>
+                                        <span>✔️ 攻防路线</span>
+                                        <span>✔️ 据点回溯</span>
+                                        <span>✔️ 深度合作伙伴</span>
+                                    </span>
+                                </a>
+                            </div>
+                        </el-col>
                     </el-row>
                 </el-col>
                 <el-col :span="12">
@@ -442,7 +465,7 @@
                         </el-col>
                         <el-col :span="12">
                             <div class="u-item">
-                                <a href="./sudoku">
+                                <a href="./sudoku" target="_blank">
                                     <span class="u-pic">
                                         <i class="u-icon">
                                             <img svg-inline src="./assets/img/logos/sudoku.svg" />
