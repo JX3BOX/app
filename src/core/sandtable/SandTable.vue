@@ -51,46 +51,50 @@
                     </div>
                     <!-- 搜索 -->
                     <div class="m-sandtable-search">
-                        <!-- 阵营选择-->
-                        <div class="m-sandtable-search-camp">
-                            <el-col :span="7">
-                                <el-select
-                                    class="u-camp"
-                                    v-model="currentCamp"
-                                    filterable
-                                    placeholder="阵营选择"
-                                >
-                                    <el-option
-                                        v-for="item in campList"
-                                        :key="item"
-                                        :label="item"
-                                        :value="item"
+                        <el-row :gutter="20">
+                            <!-- 阵营选择-->
+                            <el-col :span="8">
+                                <div class="m-sandtable-search-camp">
+                                    <el-select
+                                        class="camp"
+                                        v-model="currentCamp"
+                                        filterable
+                                        placeholder="阵营选择"
                                     >
-                                    </el-option>
-                                </el-select>
+                                        <el-option
+                                            v-for="item in campList"
+                                            :key="item"
+                                            :label="item"
+                                            :value="item"
+                                        >
+                                        </el-option>
+                                    </el-select>
+                                </div>
                             </el-col>
-                        </div>
-                        <!--  路线开关-->
-                        <div class="m-sandtable-search-route">
-                            <el-switch class="route-switch"
-                                       v-model="route"
-                            >
-                            </el-switch>
-                            <p class="route-origin">
-                                显示进攻路线</p>
-                        </div>
-                        <!-- 日期选择-->
-                        <div class="m-sandtable-search-date">
-                            <el-date-picker
-                                v-model="currentDate"
-                                type="date"
-                                placeholder="选择日期">
-                            </el-date-picker>
-                        </div>
+                            <!--  路线开关-->
+                            <el-col :span="8">
+                                <div class="m-sandtable-search-route">
+                                    <el-switch class="route-switch"
+                                               v-model="route"
+                                               active-color="#13ce66"
+                                               active-text="显示进攻路线"
+                                    >
+                                    </el-switch>
+                                </div>
+                            </el-col>
+                            <!-- 日期选择-->
+                            <el-col :span="8">
+                                <div class="m-sandtable-search-date">
+                                    <el-date-picker class="date"
+                                                    v-model="currentDate"
+                                                    type="date"
+                                                    placeholder="选择日期">
+                                    </el-date-picker>
+                                </div>
+                            </el-col>
+                        </el-row>
                     </div>
                 </div>
-
-
             </div>
             <Footer/>
         </Main>
