@@ -11,6 +11,11 @@
     .x;
     padding-bottom: 20px;
   }
+  .m-maintain {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px 20px 0;
+  }
 
   .m-sandbox-change {
     display: flex;
@@ -234,20 +239,29 @@
       .z(9);
       .rt(160px, 180px);
       .size(300px, 520px);
-      padding: 20px;
+      padding: 30px 20px 20px 20px;
       .r(10px);
       background-color: #fff;
-      .u-title {
-        .x;
-        .fz(20px, 2);
+      .m-box-info {
+        display: flex; 
+        .u-img {
+          .size(78px);
+          .mr(10px);
+        }
+        .u-box {
+          .full;
+          box-sizing: border-box;
+          .u-title {
+            .x;
+            .fz(20px, 2);
+          }
+        }
       }
-      .u-img {
-        .size(300px, 160px);
-      }
+
       .u-cont {
-        height: 240px;
+        height: 360px;
         list-style: none;
-        padding: 10px 0;
+        padding: 10px 0; 
         border: 1px solid #ddd;
         .r(3px);
         li {
@@ -260,6 +274,51 @@
           &:last-child {
             border-bottom: 0;
           }
+          .u-time {
+            display: flex;
+            justify-content: space-between;
+            .mb(5px);
+            .eren {
+              .color(#ff0000);
+            }
+            .haoqi {
+              .color(#1e9fff);
+            }
+          }
+          .u-gang {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+        }
+      }
+    }
+  }
+}
+.el-popover {
+  .u-box {
+    .full(x);
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    img {
+      .size(78px);
+      .mr(10px);
+    }
+    .u-txt {
+      width: 100%;
+      min-height: 78px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      .u-name {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        .u-camp {
+          .fz(16px);
+          .bold;
         }
       }
     }

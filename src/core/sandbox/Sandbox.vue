@@ -13,11 +13,16 @@
         <h1 class="m-sandbox-title">阵营沙盘</h1>
         <!-- 服务器 -->
         <el-tabs v-model="activeName" type="card" @tab-click="handleClick">
-          <el-tab-pane v-for="item in servers" :key="item" :label="item" :name="item"></el-tab-pane>
+          <el-tab-pane v-for="item in servers" :key="item.id" :label="item.server" :name="item.id">
+            <div class="m-maintain">
+              <div class="m-title">维护人员：</div>
+              <div>{{ item.maintainer_name }}</div>
+            </div></el-tab-pane
+          >
         </el-tabs>
         <!-- 选择 -->
         <div class="m-sandbox-change">
-          <div class="m-item">
+          <!-- <div class="m-item">
             <div class="m-title">选择阵营：</div>
             <el-radio-group v-model="camp">
               <el-radio-button label="恶人谷"></el-radio-button>
@@ -31,7 +36,7 @@
           <div class="m-item">
             <div class="m-title">选择日期：</div>
             <el-date-picker v-model="time" type="date" placeholder="选择日期"> </el-date-picker>
-          </div>
+          </div> -->
         </div>
 
         <!-- 地图 -->
@@ -42,9 +47,8 @@
               <span class="u-img eren"> <img :src="27 | eImgPath"/></span>
               <span class="u-img haoqi"> <img :src="25 | hImgPath"/></span>
               <span v-for="camp in maplist" :key="camp.id" :class="camp.name_pinyin" class="u-img">
-                <img v-if="camp.camp == 'haoqi'" :src="camp.id | hImgPath" />
-                <img v-else-if="camp.camp == 'eren'" :src="camp.id | eImgPath" />
-                <img v-else :src="camp.id | eImgPath" />
+                <img :src="camp.camp | campmap(camp.id)" />
+                <!-- <img v-else-if="camp.camp == 'eren'" :src="camp.id | eImgPath" /> -->
               </span>
             </div>
             <!-- 据点名称&历史记录 -->
@@ -57,17 +61,17 @@
                 <img :src="`${imgPath}/image/camp/haoqimeng.png`" />
                 <span>浩气盟</span>
               </div>
-              <el-popover v-for="(item, o) in maplist" :key="o" placement="top-start" width="120" trigger="hover">
-                <div>
-                  <div>{{ item.name }}</div>
-                  <div style=" width: 100%;height: 60px;overflow: hidden;">
-                    <img :src="item.name_pinyin | campimg" />
+              <el-popover v-for="(item, o) in maplist" :key="o" placement="top-start" width="240" trigger="hover">
+                <div class="u-box">
+                  <img :src="item.name_pinyin | campimg" />
+                  <div class="u-txt">
+                    <div class="u-name">
+                      <span class="u-camp">{{ item.name }}</span> <span>【{{ item.camp | campname }}】</span>
+                    </div>
+                    <el-button @click="showlog(item.id, item.name, item.name_pinyin)">查看据点数据</el-button>
                   </div>
-                  <div>当前阵营：{{ item.camp | campname }}</div>
-                  <div>当前所属帮会</div>
-                  <div>据点占领时长</div>
                 </div>
-                <div slot="reference" :class="item.name_pinyin" class="u-img" @click="showlog">
+                <div slot="reference" :class="item.name_pinyin" class="u-img" @click="showlog(item.id, item.name, item.name_pinyin)">
                   <img :src="item.camp | camptype(item.id) | iconImg(item.id)" />
                   <span>{{ item.name }}</span>
                 </div>
@@ -75,10 +79,20 @@
             </div>
           </div>
           <div v-if="show" class="m-box-txt">
-            <h2 class="u-title">据点名</h2>
-            <img class="u-img" :src="imgbg" alt="" />
+            <div class="m-box-info">
+              <img class="u-img" :src="camplist.img | campimg" />
+              <div class="u-box">
+                <span class="u-title">{{ camplist.name }}</span>
+              </div>
+            </div>
             <ul class="u-cont" style="overflow:auto">
-              <li v-for="i in 10" class="infinite-list-item" :key="i">{{ i }}：2020-02-20 恶人谷XXXXXXX</li>
+              <li v-for="(item, i) in camplist.list" :key="i">
+                <div class="u-time">
+                  <span>{{ item.date }}</span
+                  ><span :class="item.camp">[{{ item.camp | campname }}]</span>
+                </div>
+                <div class="u-gang">[占领帮会] {{ item.gang }}</div>
+              </li>
             </ul>
           </div>
         </div>
@@ -91,56 +105,75 @@
 <script>
 import Nav from '@/components/Nav.vue'
 import { __imgPath } from '@jx3box/jx3box-common/data/jx3box.json'
-import { getCamplist } from '@/service/camp'
-import servers from '@jx3box/jx3box-data/data/server/server_cn.json'
+import { getCamplist, getCampServers, getCampLog } from '@/service/camp'
 
 export default {
   name: 'Sandbox',
   props: [],
   data: function() {
     return {
-      servers,
+      servers: [],
       camp: '恶人谷',
+      campId: 2,
+      campName: '破阵子',
       route: false,
       time: '',
       show: false,
-      activeName: '斗转星移',
+      activeName: '1',
       maplist: [],
+      maintain: '',
       imgPath: __imgPath,
+      camplist: {
+        namme: '',
+        img: '',
+        list: [],
+      },
     }
   },
   computed: {
     imgbg() {
       return __imgPath + 'image/camp/backgroud.png'
     },
-    imglist() {
-      let arr = []
-      // if(){
-
-      // }
-      return arr
+    camps() {
+      if (this.camp == '恶人谷') {
+        return 'eren'
+      } else {
+        return 'haoqi'
+      }
     },
   },
   methods: {
     getcamp() {
-      let data = {
-        server: this.activeName,
+      const data = {
+        sandmap_id: this.campId,
+        camp: this.camps,
       }
       getCamplist(data)
         .then((res) => {
           if (res.data.code == 200) {
             this.maplist = res.data.data.sandmap.castles
-            console.log(list, '....')
           }
         })
         .catch((err) => {})
     },
 
-    handleClick(e) {
-      console.log(e)
+    handleClick(tab) {
+      this.campId = ~~tab.index + 1
+      for (let i = 0; i < this.servers.length; i++) {
+        if (this.servers[i].id == this.campId) {
+          this.campName = this.servers[i].server
+        }
+      }
+      this.getcamp()
     },
-    showlog() {
+    showlog(id, name, img) {
       this.show = true
+      this.camplist.name = name
+      this.camplist.img = img
+      getCampLog(this.campId, id).then((res) => {
+        this.camplist.list = res.data.data.data
+        console.log(res)
+      })
     },
     offshow() {
       this.show = false
@@ -148,6 +181,12 @@ export default {
   },
   mounted: function() {
     this.getcamp()
+    getCampServers().then((res) => {
+      for (let i = 0; i < res.data.data.sandmaps.length; i++) {
+        res.data.data.sandmaps[i].id = res.data.data.sandmaps[i].id + ''
+      }
+      this.servers = res.data.data.sandmaps
+    })
   },
   filters: {
     hImgPath: function(val) {
@@ -171,6 +210,23 @@ export default {
         } else {
           return __imgPath + 'image/camp/z01.png'
         }
+      }
+    },
+    campmap: function(camp, id) {
+      if (camp !== 'neutral') {
+        if (camp == 'eren') {
+          return __imgPath + 'image/camp/e' + id + '.png'
+        } else {
+          return __imgPath + 'image/camp/h' + id + '.png'
+        }
+      } else {
+        if (id == 301) {
+          return __imgPath + 'image/camp/e' + id + '.png'
+        }
+        if (id == 221) {
+          return __imgPath + 'image/camp/h' + id + '.png'
+        }
+        return __imgPath + 'image/camp/tm.png'
       }
     },
     iconImg: function(val, id) {
