@@ -66,6 +66,24 @@
                         </el-col>
                         <el-col :span="12">
                             <div class="u-item">
+                                <a href="./meridians">
+                                    <span class="u-pic">
+                                        <i class="u-icon">
+                                            <img svg-inline src="./assets/img/logos/meridians.svg" />
+                                        </i>
+                                        <span class="u-name">经脉模拟器</span>
+                                    </span>
+                                    <span class="u-features">
+                                        <span class="u-desc">✔️ 原汁原味</span>
+                                        <span>✔️ 经典怀旧</span>
+                                        <span>✔️ 模拟加点</span>
+                                        <span>✔️ 属性日志</span>
+                                    </span>
+                                </a>
+                            </div>
+                        </el-col>
+                        <el-col :span="12">
+                            <div class="u-item">
                                 <a href="./macroeditor">
                                     <span class="u-pic">
                                         <i class="u-icon">
@@ -105,24 +123,6 @@
                         </el-col>
                         <el-col :span="12">
                             <div class="u-item">
-                                <a href="/rank" target="_blank">
-                                    <span class="u-pic">
-                                        <i class="u-icon">
-                                            <img svg-inline src="./assets/img/logos/rank.svg" />
-                                        </i>
-                                        <span class="u-name">百强排行</span>
-                                    </span>
-                                    <span class="u-features">
-                                        <span class="u-desc">✔️ JDT赛事专题</span>
-                                        <span>✔️ 副本挑战最高荣誉</span>
-                                        <span>✔️ 每年两届</span>
-                                        <span>✔️ 丰富奖池</span>
-                                    </span>
-                                </a>
-                            </div>
-                        </el-col>
-                        <el-col :span="12">
-                            <div class="u-item">
                                 <a href="/dbm" target="_blank">
                                     <span class="u-pic">
                                         <i class="u-icon">
@@ -144,18 +144,54 @@
                         </el-col>
                         <el-col :span="12">
                             <div class="u-item">
-                                <a href="./meridians">
+                                <a href="/battle" target="_blank">
                                     <span class="u-pic">
                                         <i class="u-icon">
-                                            <img svg-inline src="./assets/img/logos/meridians.svg" />
+                                            <img svg-inline src="./assets/img/logos/flog.svg" />
                                         </i>
-                                        <span class="u-name">经脉模拟器</span>
+                                        <span class="u-name">战斗复盘</span>
                                     </span>
                                     <span class="u-features">
-                                        <span class="u-desc">✔️ 原汁原味</span>
-                                        <span>✔️ 经典怀旧</span>
-                                        <span>✔️ 模拟加点</span>
-                                        <span>✔️ 属性日志</span>
+                                        <span class="u-desc">✔️ 战斗日志分析</span>
+                                        <span>✔️ PVE/PVP多维度</span>
+                                        <span>✔️ 云端存储</span>
+                                        <span>✔️ 自定义权限</span>
+                                    </span>
+                                </a>
+                            </div>
+                        </el-col>
+                        <el-col :span="12">
+                            <div class="u-item">
+                                <a href="./sandbox">
+                                    <span class="u-pic">
+                                        <i class="u-icon">
+                                            <img svg-inline src="./assets/img/logos/sandbox.svg" />
+                                        </i>
+                                        <span class="u-name">阵营沙盘</span>
+                                    </span>
+                                    <span class="u-features">
+                                        <span class="u-desc">✔️ 全服沙盘查询</span>
+                                        <span>✔️ 攻防路线</span>
+                                        <span>✔️ 据点回溯</span>
+                                        <span>✔️ PVP党必备</span>
+                                    </span>
+                                </a>
+                            </div>
+                        </el-col>
+                        <el-col :span="12">
+                            <div class="u-item">
+                                <a href="/rank" target="_blank">
+                                    <span class="u-pic">
+                                        <i class="u-icon">
+                                            <img svg-inline src="./assets/img/logos/rank.svg" />
+                                        </i>
+                                        <span class="u-name">百强排行</span>
+                                    </span>
+                                    <span class="u-features">
+                                        <span class="u-desc">✔️ JDT赛事专题</span>
+                                        <span>✔️ 副本挑战最高荣誉</span>
+                                        <span>✔️ 每年两届</span>
+                                        <span>✔️ 丰富奖池</span>
                                     </span>
                                 </a>
                             </div>
@@ -281,52 +317,6 @@
                                         <span class="u-desc">✔️ Minami版模拟器</span>
                                         <span>✔️ 模拟战斗记录</span>
                                         <span>✔️ 自定义属性数据</span>
-                                        <span>✔️ 深度合作伙伴</span>
-                                    </span>
-                                </a>
-                            </div>
-                        </el-col>
-                        <el-col :span="12">
-                            <div class="u-item">
-                                <a href="http://j3dps.com/fightlog" target="_blank">
-                                    <span class="u-pic">
-                                        <i class="u-icon">
-                                            <img svg-inline src="./assets/img/logos/flog.svg" />
-                                        </i>
-                                        <span class="u-name">战斗复盘</span>
-                                    </span>
-                                    <img
-                                        class="u-blank"
-                                        svg-inline
-                                        src="./assets/img/logos/blank.svg"
-                                    />
-                                    <span class="u-features">
-                                        <span class="u-desc">✔️ 战斗日志分析</span>
-                                        <span>✔️ DPS排行榜</span>
-                                        <span>✔️ 公开隐藏可控</span>
-                                        <span>✔️ 深度合作伙伴</span>
-                                    </span>
-                                </a>
-                            </div>
-                        </el-col>
-                        <el-col :span="12">
-                            <div class="u-item">
-                                <a href="./sandbox" target="_blank">
-                                    <span class="u-pic">
-                                        <i class="u-icon">
-                                            <img svg-inline src="./assets/img/logos/flog.svg" />
-                                        </i>
-                                        <span class="u-name">阵营沙盘</span>
-                                    </span>
-                                    <img
-                                        class="u-blank"
-                                        svg-inline
-                                        src="./assets/img/logos/blank.svg"
-                                    />
-                                    <span class="u-features">
-                                        <span class="u-desc">✔️ 全服沙盘查询</span>
-                                        <span>✔️ 攻防路线</span>
-                                        <span>✔️ 据点回溯</span>
                                         <span>✔️ 深度合作伙伴</span>
                                     </span>
                                 </a>
