@@ -61,13 +61,13 @@
                 <div>
                   <div>{{ item.name }}</div>
                   <div style=" width: 100%;height: 60px;overflow: hidden;">
-                    <!-- <img :src="item | imgPath" /> -->
+                    <img :src="item.name_pinyin | campimg" />
                   </div>
-                  <div>当前阵营：{{ item.camp }}</div>
+                  <div>当前阵营：{{ item.camp | campname }}</div>
                   <div>当前所属帮会</div>
                   <div>据点占领时长</div>
                 </div>
-                <div slot="reference" :class="item.name_pinyin" class="u-img">
+                <div slot="reference" :class="item.name_pinyin" class="u-img" @click="showlog">
                   <img :src="item.camp | camptype(item.id) | iconImg(item.id)" />
                   <span>{{ item.name }}</span>
                 </div>
@@ -139,6 +139,9 @@ export default {
     handleClick(e) {
       console.log(e)
     },
+    showlog() {
+      this.show = true
+    },
     offshow() {
       this.show = false
     },
@@ -185,6 +188,14 @@ export default {
       } else {
         return str.join('5')
       }
+    },
+    campimg: function(val) {
+      return __imgPath + 'image/camp/' + val + '.png'
+    },
+    campname: function(val) {
+      if (val == 'eren') return '恶人谷'
+      if (val == 'haoqi') return '浩气盟'
+      return '中立'
     },
   },
   components: {
