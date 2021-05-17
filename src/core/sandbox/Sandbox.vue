@@ -119,7 +119,7 @@ export default {
       servers: [],
       camp: '恶人谷',
       campId: 1,
-      campName: '斗转星移',
+      campName: '',
       route: false,
       time: '',
       show: false,
@@ -190,6 +190,7 @@ export default {
     getCampServers().then((res) => {
       for (let i = 0; i < res.data.sandmaps.length; i++) {
         res.data.sandmaps[i].id = res.data.sandmaps[i].id + ''
+        this.campName = res.data.sandmaps[0].server
       }
       this.servers = res.data.sandmaps
     })
