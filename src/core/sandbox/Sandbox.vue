@@ -12,15 +12,17 @@
         <h1 class="m-sandbox-title">阵营沙盘</h1>
         <!-- 服务器 -->
         <el-tabs v-model="activeName" type="card" @tab-click="changeServers">
-          <el-tab-pane v-for="item in servers" :key="item.id" :label="item.server" :name="item.id">
-            <div class="m-maintain">
-              <div class="m-title">维护人员：</div>
-              <div class="u-name">{{ item.maintainer_name }}</div>
-            </div></el-tab-pane
-          >
+          <el-tab-pane v-for="item in servers" :key="item.id" :label="item.server" :name="item.server"> </el-tab-pane>
         </el-tabs>
         <!-- 选择 -->
         <div class="m-sandbox-change">
+          <div class="m-alert el-alert el-alert--info is-light">
+            <span><i class="el-icon-star-on"></i>测试版本欢迎反馈<i class="el-icon-star-on"></i>招募各个区服维护沙盘数据的小伙伴 </span><span>问题反馈&区服维护申请：QQ1416956452</span>
+          </div>
+          <div class="m-maintain">
+            <div class="m-title">维护人员：</div>
+            <div class="u-name">{{ this.maintain }}</div>
+          </div>
           <!-- <div class="m-item">
             <div class="m-title">选择阵营：</div>
             <el-radio-group v-model="camp">
@@ -120,12 +122,12 @@ export default {
       camp: '恶人谷',
       campId: 1,
       campName: '',
+      maintain: '',
       route: false,
       time: '',
       show: false,
-      activeName: '1',
+      activeName: '斗转星移',
       maplist: [],
-      maintain: '',
       imgPath: __imgPath,
       camplist: {
         namme: '',
@@ -162,11 +164,13 @@ export default {
       })
     },
 
-    changeServers(tab) {
-      this.campId = ~~tab.index + 1
+    changeServers(tab, event) {
+      let name = event.target.getAttribute('id').slice(4)
       for (let i = 0; i < this.servers.length; i++) {
-        if (this.servers[i].id == this.campId) {
+        if (this.servers[i].server == name) {
+          this.campId = this.servers[i].id
           this.campName = this.servers[i].server
+          this.maintain = this.servers[i].maintainer_name
         }
       }
       this.getcamp()
@@ -191,6 +195,7 @@ export default {
       for (let i = 0; i < res.data.sandmaps.length; i++) {
         res.data.sandmaps[i].id = res.data.sandmaps[i].id + ''
         this.campName = res.data.sandmaps[0].server
+        this.maintain =  res.data.sandmaps[0].maintainer_name
       }
       this.servers = res.data.sandmaps
     })
