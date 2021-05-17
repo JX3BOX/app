@@ -118,8 +118,8 @@ export default {
     return {
       servers: [],
       camp: '恶人谷',
-      campId: 2,
-      campName: '破阵子',
+      campId: 1,
+      campName: '斗转星移',
       route: false,
       time: '',
       show: false,
