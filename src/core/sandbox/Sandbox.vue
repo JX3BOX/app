@@ -66,12 +66,12 @@
                   <img :src="item.name_pinyin | campimg" />
                   <div class="u-txt">
                     <div class="u-name">
-                      <span class="u-camp">{{ item.name }}</span> <span>【{{ item.camp | campname }}】</span>
+                      <span class="u-camp">{{ item.name }}</span> <span :class="item.camp">【{{ item.camp | campname }}】</span>
                     </div>
-                    <el-button @click="showlog(item.id, item.name, item.name_pinyin)">查看据点数据</el-button>
+                    <el-button @click="showlog(item.id, item.name, item.name_pinyin, item.description, item.link)">查看据点数据</el-button>
                   </div>
                 </div>
-                <div slot="reference" :class="item.name_pinyin" class="u-img" @click="showlog(item.id, item.name, item.name_pinyin)">
+                <div slot="reference" :class="item.name_pinyin" class="u-img" @click="showlog(item.id, item.name, item.name_pinyin, item.description, item.link)">
                   <img :src="item.camp | camptype(item.id) | iconImg(item.id)" />
                   <span>{{ item.name }}</span>
                 </div>
@@ -83,9 +83,11 @@
               <img class="u-img" :src="camplist.img | campimg" />
               <div class="u-box">
                 <span class="u-title">{{ camplist.name }}</span>
+                <span class="u-desc">{{ camplist.desc | campdesc }} </span>
+                <a class="u-baike" :href="camplist.link | camplink" target="_blank">查看百科 >></a>
               </div>
             </div>
-            <ul class="u-cont" style="overflow:auto">
+            <ul class="u-cont" style="overflow:auto" v-if="camplist.list.length > 0">
               <li v-for="(item, i) in camplist.list" :key="i">
                 <div class="u-time">
                   <span>{{ item.date }}</span
@@ -94,6 +96,7 @@
                 <div class="u-gang">[占领帮会] {{ item.gang }}</div>
               </li>
             </ul>
+            <div class="u-cont" v-else><div class="u-nonedata">暂无数据</div></div>
           </div>
         </div>
         <div v-if="show" class="m-bgmark" @click="offshow"></div>
@@ -126,6 +129,8 @@ export default {
       camplist: {
         namme: '',
         img: '',
+        desc: '',
+        link: '',
         list: [],
       },
     }
@@ -148,13 +153,9 @@ export default {
         sandmap_id: this.campId,
         camp: this.camps,
       }
-      getCamplist(data)
-        .then((res) => {
-          if (res.data.code == 200) {
-            this.maplist = res.data.data.sandmap.castles
-          }
-        })
-        .catch((err) => {})
+      getCamplist(data).then((res) => {
+        this.maplist = res.data.sandmap.castles
+      })
     },
 
     handleClick(tab) {
@@ -166,13 +167,14 @@ export default {
       }
       this.getcamp()
     },
-    showlog(id, name, img) {
+    showlog(id, name, img, desc, link) {
       this.show = true
       this.camplist.name = name
       this.camplist.img = img
+      this.camplist.desc = desc
+      this.camplist.link = link
       getCampLog(this.campId, id).then((res) => {
-        this.camplist.list = res.data.data.data
-        console.log(res)
+        this.camplist.list = res.data.data
       })
     },
     offshow() {
@@ -182,10 +184,10 @@ export default {
   mounted: function() {
     this.getcamp()
     getCampServers().then((res) => {
-      for (let i = 0; i < res.data.data.sandmaps.length; i++) {
-        res.data.data.sandmaps[i].id = res.data.data.sandmaps[i].id + ''
+      for (let i = 0; i < res.data.sandmaps.length; i++) {
+        res.data.sandmaps[i].id = res.data.sandmaps[i].id + ''
       }
-      this.servers = res.data.data.sandmaps
+      this.servers = res.data.sandmaps
     })
   },
   filters: {
@@ -204,7 +206,7 @@ export default {
         return __imgPath + 'image/camp/h_1.png'
       } else {
         if (camp == 'eren') {
-          return __imgPath + 'image/camp/z01.png'
+          return __imgPath + 'image/camp/e01.png'
         } else if (camp == 'haoqi') {
           return __imgPath + 'image/camp/h01.png'
         } else {
@@ -252,6 +254,20 @@ export default {
       if (val == 'eren') return '恶人谷'
       if (val == 'haoqi') return '浩气盟'
       return '中立'
+    },
+    camplink: function(val) {
+      if (val) {
+        return val
+      } else {
+        return 'https://www.jx3box.com/search/'
+      }
+    },
+    campdesc: function(val) {
+      if (val) {
+        return val
+      } else {
+        return '暂无介绍'
+      }
     },
   },
   components: {

@@ -142,17 +142,27 @@
           }
           span {
             .db;
+            .pa;
+            .rt(3px, -5px);
             .fz(14px, 18px);
+            .w(1em);
             user-select: none;
+            text-shadow: 1px 1px 1px #000;
           }
         }
         .eren {
           .lt(149px, 49px);
           cursor: default;
+          span {
+            .rt(-14px, -10px);
+          }
         }
         .haoqi {
           .lt(762px, 622px);
           cursor: default;
+          span {
+            .rt(-10px);
+          }
         }
         .QiuYuBao {
           .lt(654px, 370px);
@@ -174,6 +184,9 @@
         }
         .WuWangCheng {
           .lt(686px, 560px);
+          span {
+            .rt(-8px, -15px);
+          }
         }
         .LongMenZhen {
           .lt(434px, 162px);
@@ -183,6 +196,9 @@
         }
         .LinFengBao {
           .lt(264px, 132px);
+          span {
+            .rt(-5px);
+          }
         }
         .BuKongGuan {
           .lt(460px, 392px);
@@ -238,32 +254,59 @@
       .pa;
       .z(9);
       .rt(160px, 180px);
-      .size(300px, 520px);
+      .size(300px, 480px);
       padding: 30px 20px 20px 20px;
       .r(10px);
       background-color: #fff;
       .m-box-info {
-        display: flex; 
+        display: flex;
+        align-items: center;
+        .mb(24px);
+
         .u-img {
           .size(78px);
           .mr(10px);
         }
         .u-box {
-          .full;
+          min-height: 80px;
           box-sizing: border-box;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          .fz(14px);
           .u-title {
-            .x;
-            .fz(20px, 2);
+            .fz(18px);
+            .bold;
+            .color(#555);
+          }
+          .u-desc {
+            .color(#777);
+            .fz(13px);
+            min-height: 30px;
+            text-overflow: -o-ellipsis-lastline;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            -webkit-box-orient: vertical;
+          }
+          .u-baike {
+            .color(#f39);
           }
         }
       }
 
       .u-cont {
-        height: 360px;
+        height: 320px;
         list-style: none;
-        padding: 10px 0; 
+        padding: 10px 0;
         border: 1px solid #ddd;
         .r(3px);
+        .u-nonedata {
+          .x;
+          padding: 10px;
+        }
         li {
           margin: 0 10px;
           border-bottom: 1px solid #ddd;
@@ -278,12 +321,6 @@
             display: flex;
             justify-content: space-between;
             .mb(5px);
-            .eren {
-              .color(#ff0000);
-            }
-            .haoqi {
-              .color(#1e9fff);
-            }
           }
           .u-gang {
             overflow: hidden;
@@ -323,4 +360,10 @@
       }
     }
   }
+}
+.eren {
+  .color(#ff0000);
+}
+.haoqi {
+  .color(#1e9fff);
 }
