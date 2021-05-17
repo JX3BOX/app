@@ -2,8 +2,7 @@
   <div id="app">
     <Header></Header>
     <Breadcrumb name="阵营沙盘" slug="sandbox" root="/app/sandbox" :feedbackEnable="true" :crumbEnable="true">
-      <!-- <img slot="logo" svg-inline src="../../assets/img/logos/sudoku.svg" /> -->
-      <i class="el-icon-c-scale-to-original" svg-inline slot="logo"></i>
+      <img slot="logo" svg-inline src="../../assets/img/logos/sandbox.svg" />
     </Breadcrumb>
     <LeftSidebar :open="false">
       <Nav />
@@ -12,11 +11,11 @@
       <div class="m-sandbox">
         <h1 class="m-sandbox-title">阵营沙盘</h1>
         <!-- 服务器 -->
-        <el-tabs v-model="activeName" type="card" @tab-click="handleClick">
+        <el-tabs v-model="activeName" type="card" @tab-click="changeServers">
           <el-tab-pane v-for="item in servers" :key="item.id" :label="item.server" :name="item.id">
             <div class="m-maintain">
               <div class="m-title">维护人员：</div>
-              <div>{{ item.maintainer_name }}</div>
+              <div class="u-name">{{ item.maintainer_name }}</div>
             </div></el-tab-pane
           >
         </el-tabs>
@@ -41,6 +40,7 @@
 
         <!-- 地图 -->
         <div class="m-sandbox-box" :style="{ background: `url(${imgbg})` }">
+          <div class="m-line" :style="{ background: `url(${imgline})` }"></div>
           <div class="m-box">
             <!-- 据点分割&图 -->
             <div class="m-box-img">
@@ -76,6 +76,7 @@
                   <span>{{ item.name }}</span>
                 </div>
               </el-popover>
+              <div v-if="show" class="m-bgmark" @click="offshow"></div>
             </div>
           </div>
           <div v-if="show" class="m-box-txt">
@@ -139,6 +140,9 @@ export default {
     imgbg() {
       return __imgPath + 'image/camp/backgroud.png'
     },
+    imgline() {
+      return __imgPath + 'image/camp/line.png'
+    },
     camps() {
       if (this.camp == '恶人谷') {
         return 'eren'
@@ -158,7 +162,7 @@ export default {
       })
     },
 
-    handleClick(tab) {
+    changeServers(tab) {
       this.campId = ~~tab.index + 1
       for (let i = 0; i < this.servers.length; i++) {
         if (this.servers[i].id == this.campId) {
@@ -275,6 +279,7 @@ export default {
   },
 }
 </script>
+
 <style scoped lang="less">
 @import '../../assets/css/sandbox.less';
 .el-icon-c-scale-to-original {

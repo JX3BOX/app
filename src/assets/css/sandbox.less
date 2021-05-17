@@ -1,20 +1,31 @@
 .m-sandbox {
   .pr;
+  max-width: 1280px;
+  margin: 0 auto;
   padding: 20px;
+  .m-line {
+    .pa;
+    .size(727px, 491px);
+    .lt(132px, 198px);
+    .z(1);
+  }
   .m-bgmark {
     .pa;
     .z(8);
     .lt(0, 0);
     .full;
   }
-  .m-sandbox-title {
-    .x;
-    padding-bottom: 20px;
-  }
   .m-maintain {
     display: flex;
     justify-content: flex-end;
     padding: 10px 20px 0;
+    .u-name {
+      .color(#f39);
+    }
+  }
+  .m-sandbox-title {
+    .x;
+    padding-bottom: 20px;
   }
 
   .m-sandbox-change {
@@ -37,8 +48,7 @@
       .m-box-img {
         .pr;
         .u-img {
-          .pa;
-          .rt(0, 0);
+          .pa; 
           img {
             -webkit-user-drag: none;
           }
@@ -132,7 +142,7 @@
         .pr;
         .u-img {
           .pa;
-          .rt(0, 0);
+          .z(2);
           .color(#fffcd0);
           .size(80px);
           .x;
@@ -332,6 +342,7 @@
     }
   }
 }
+
 .el-popover {
   .u-box {
     .full(x);
