@@ -70,7 +70,10 @@
                     <div class="u-name">
                       <span class="u-camp">{{ item.name }}</span> <span :class="item.camp">【{{ item.camp | campname }}】</span>
                     </div>
-                    <el-button @click="showlog(item.id, item.name, item.name_pinyin, item.description, item.link)">查看据点数据</el-button>
+                    <div class="u-gang">
+                      <span>占领帮会：</span><span>{{ item.gang }}</span>
+                    </div>
+                    <div class="u-btn" @click="showlog(item.id, item.name, item.name_pinyin, item.description, item.link)">更多据点数据</div>
                   </div>
                 </div>
                 <div slot="reference" :class="item.name_pinyin" class="u-img" @click="showlog(item.id, item.name, item.name_pinyin, item.description, item.link)">
@@ -155,11 +158,19 @@ export default {
   },
   methods: {
     getcamp() {
-      const data = {
-        sandmap_id: this.campId,
-        camp: this.camps,
+      let data = this.$route.query
+
+      let parms = {
+        sandmap_id: '',
+        camp: '',
       }
-      getCamplist(data).then((res) => {
+      if (data.id) {
+        this.campId = data.id
+        this.activeName = data.name
+      }
+      parms.sandmap_id = this.campId
+      parms.camp = this.camps
+      getCamplist(parms).then((res) => {
         this.maplist = res.data.sandmap.castles
       })
     },
@@ -173,6 +184,8 @@ export default {
           this.maintain = this.servers[i].maintainer_name
         }
       }
+      this.$router.push({ name: 'Sandbox', query: { id: this.campId, name: this.campName } })
+
       this.getcamp()
     },
     showlog(id, name, img, desc, link) {
@@ -195,7 +208,7 @@ export default {
       for (let i = 0; i < res.data.sandmaps.length; i++) {
         res.data.sandmaps[i].id = res.data.sandmaps[i].id + ''
         this.campName = res.data.sandmaps[0].server
-        this.maintain =  res.data.sandmaps[0].maintainer_name
+        this.maintain = res.data.sandmaps[0].maintainer_name
       }
       this.servers = res.data.sandmaps
     })

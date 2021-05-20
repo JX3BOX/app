@@ -116,6 +116,12 @@ module.exports = {
                     request.setHeader("origin", "");
                 }
             },
+            "/api/vip/i": {
+                "target": "https://pay.jx3box.com",
+                "onProxyReq": function (request) {
+                    request.setHeader("origin", "");
+                }
+            },
             "/api/furniture":{
                 "target": "https://www.j3pz.com",
                 "onProxyReq": function (request) {
