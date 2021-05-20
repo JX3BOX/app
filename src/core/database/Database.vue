@@ -8,11 +8,7 @@
             :feedbackEnable="true"
             :crumbEnable="true"
         >
-            <img
-                slot="logo"
-                svg-inline
-                src="../../assets/img/logos/database.svg"
-            />
+            <img slot="logo" svg-inline src="../../assets/img/logos/database.svg" />
             <div class="m-info"></div>
         </Breadcrumb>
         <LeftSidebar :open="false">
@@ -23,50 +19,29 @@
                 <h1 class="m-database-title">剑三数据库</h1>
 
                 <div class="m-database-search">
-                    <el-input
-                        placeholder="请输入 ID 或 名称"
-                        v-model="query"
-                        @change="search"
-                    >
+                    <el-input placeholder="请输入 ID 或 名称" v-model="query" @change="search">
                         <template slot="prepend">ID ／名称</template>
-                        <el-button
-                            slot="append"
-                            icon="el-icon-search"
-                        ></el-button>
+                        <el-button slot="append" icon="el-icon-search"></el-button>
                     </el-input>
                 </div>
                 <div class="m-databse-subtype">
                     <!-- <div class="u-label">
                         <i class="el-icon-s-operation"></i>追加条件
-                    </div> -->
+                    </div>-->
                     <div class="u-subtype u-strict">
-                        <el-switch
-                            v-model="strict"
-                            active-text="精确匹配"
-                            @change="search"
-                        >
-                        </el-switch>
+                        <el-switch v-model="strict" active-text="精确匹配" @change="search"></el-switch>
                     </div>
                     <div class="u-subtype" v-show="type == 'skill'">
-                        <el-select
-                            v-model="school"
-                            placeholder="门派"
-                            size="medium"
-                            @change="search"
-                        >
+                        <el-select v-model="school" placeholder="门派" size="medium" @change="search">
                             <el-option
                                 v-for="(item, key) in schools"
                                 :key="key"
                                 :label="key"
                                 :value="item"
-                            >
-                            </el-option>
+                            ></el-option>
                         </el-select>
                     </div>
-                    <div
-                        class="u-subtype"
-                        v-show="type == 'skill' || type == 'buff'"
-                    >
+                    <div class="u-subtype" v-show="type == 'skill' || type == 'buff'">
                         <el-input
                             size="medium"
                             placeholder="指定技能/Buff等级"
@@ -108,12 +83,7 @@
                     </div>
                 </div>
 
-                <el-tabs
-                    class="m-database-tabs"
-                    v-model="type"
-                    type="card"
-                    @tab-click="changeType"
-                >
+                <el-tabs class="m-database-tabs" v-model="type" type="card" @tab-click="changeType">
                     <el-tab-pane label="Buff" name="buff">
                         <span slot="label">
                             <img
@@ -140,11 +110,7 @@
                     </el-tab-pane>
                     <el-tab-pane label="NPC" name="npc">
                         <span slot="label">
-                            <img
-                                class="u-icon"
-                                svg-inline
-                                src="../../assets/img/logos/skull.svg"
-                            />
+                            <img class="u-icon" svg-inline src="../../assets/img/logos/skull.svg" />
                             <b>NPC</b>
                             <em class="u-count">{{ stat.npc }}</em>
                         </span>
@@ -163,16 +129,15 @@
                         <data-doodad :data="doodad" :vip="hasRight" :status="done" />
                     </el-tab-pane>
                     <el-tab-pane label="物品" name="item">
-                        <a slot="label" href="/item" target="_blank">
-                            <img
-                                class="u-icon"
-                                svg-inline
-                                src="../../assets/img/database/item.svg"
-                            />
+                        <span slot="label" href="/item" target="_blank">
+                            <img class="u-icon" svg-inline src="../../assets/img/database/item.svg" />
                             <b>物品</b>
                             <em class="u-count">{{ stat.item }}</em>
-                        </a>
-                        <div class="u-tip"><i class="el-icon-warning-outline"></i> 物品请前往独立「<a href="">物品百科</a>」栏目</div>
+                        </span>
+                        <div class="u-tip">
+                            <i class="el-icon-warning-outline"></i> 物品请前往独立「
+                            <a class="u-item-link" href="/item" target="_blank">物品百科</a>」栏目
+                        </div>
                     </el-tab-pane>
                 </el-tabs>
 
@@ -184,8 +149,7 @@
                         type="primary"
                         icon="el-icon-arrow-down"
                         @click="appendPage"
-                        >加载更多</el-button
-                    >
+                    >加载更多</el-button>
                     <!-- 分页 -->
                     <el-pagination
                         class="m-archive-pages"
@@ -196,13 +160,10 @@
                         :total="total"
                         :current-page.sync="page"
                         @current-change="changePage"
-                    >
-                    </el-pagination>
+                    ></el-pagination>
                 </template>
 
-                <div class="m-database-tip" v-show="isBlank">
-                    ❤ 请指定搜索条件回车
-                </div>
+                <div class="m-database-tip" v-show="isBlank">❤ 请指定搜索条件回车</div>
             </div>
             <Footer></Footer>
         </Main>
@@ -215,14 +176,14 @@ import { loadResource, loadStat } from "../../service/database";
 import { __iconPath, __ossRoot } from "@jx3box/jx3box-common/data/jx3box.json";
 import User from "@jx3box/jx3box-common/js/user";
 import { school } from "@jx3box/jx3box-data/data/xf/school.json";
-import data_buff from './data_buff.vue'
-import data_skill from './data_skill.vue'
-import data_npc from './data_npc.vue'
-import data_doodad from './data_doodad.vue'
+import data_buff from "./data_buff.vue";
+import data_skill from "./data_skill.vue";
+import data_npc from "./data_npc.vue";
+import data_doodad from "./data_doodad.vue";
 export default {
     name: "Database",
     props: [],
-    data: function() {
+    data: function () {
         return {
             type: "buff",
             query: "",
@@ -263,18 +224,18 @@ export default {
         };
     },
     computed: {
-        isBlank: function() {
+        isBlank: function () {
             return !this.query && !this[this.type]["length"];
         },
-        hasNextPage: function() {
+        hasNextPage: function () {
             return this.total > 1 && this.page < this.pages;
         },
-        multipage: function() {
+        multipage: function () {
             return this.done && this.pages > 1;
         },
     },
     methods: {
-        getData: function(page = 1, append = false) {
+        getData: function (page = 1, append = false) {
             if (!this.query) return;
 
             this.loading = true;
@@ -320,42 +281,42 @@ export default {
                     this.loading = false;
                 });
         },
-        search: function() {
+        search: function () {
             this.page = 1;
             this.getData();
         },
-        toggleProps: function(o) {
+        toggleProps: function (o) {
             o.isopen = !o.isopen;
         },
-        transformData: function(data) {
+        transformData: function (data) {
             data.forEach((item) => {
                 item.isopen = false;
             });
             return data;
         },
-        appendPage: function() {
+        appendPage: function () {
             this.getData(++this.page, true);
         },
-        changePage: function(i) {
+        changePage: function (i) {
             this.getData(i);
         },
-        changeType: function() {
+        changeType: function () {
             this.page = 1;
             this.getData();
         },
     },
-    filters: {
-    },
-    created: function() {
+    filters: {},
+    created: function () {
         loadStat().then((data) => {
             this.stat = data;
         });
 
-        User.isLogin() && User.isVIP().then((data) => {
-            this.hasRight = data
-        })
+        User.isLogin() &&
+            User.isVIP().then((data) => {
+                this.hasRight = data;
+            });
     },
-    mounted: function() {
+    mounted: function () {
         let params = new URLSearchParams(location.search);
         this.type = params.get("type") || "buff";
         this.query = params.get("query") || "";
@@ -364,10 +325,10 @@ export default {
     },
     components: {
         Nav,
-        'data-buff':data_buff,
-        'data-skill':data_skill,
-        'data-npc':data_npc,
-        'data-doodad':data_doodad
+        "data-buff": data_buff,
+        "data-skill": data_skill,
+        "data-npc": data_npc,
+        "data-doodad": data_doodad,
     },
 };
 </script>

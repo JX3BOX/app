@@ -1,11 +1,12 @@
 <template>
-  <div class="jinmai xuanshu" style="">
+    <div class="jinmai xuanshu" style>
         <h3>督脉</h3>
         <div v-for="(item, index) in jingmai" :key="index" :class="'ap ap' + item.id">
             <em :class="'level' + item.nowLevel"></em>
-            <a href="javascript:void(0)" 
-                ref="detail" 
-                @mouseover="showDetail(item, index)" 
+            <a
+                href="javascript:void(0)"
+                ref="detail"
+                @mouseover="showDetail(item, index)"
                 @mouseout="outDetail"
                 @click="action(item)"
                 @contextmenu.prevent="reduce(item)"
@@ -19,65 +20,64 @@
 <script>
 import store from "../../../store";
 export default {
-    name: 'xuanshu',
-    data(){
+    name: "xuanshu",
+    data() {
         return {
             jingmai: [
-                {name: '督脉·悬枢', id: 94, lnLevel: 2},
-                {name: '督脉·至阳', id: 98, lnLevel: 2},
-                {name: '督脉·身柱', id: 111, lnLevel: 1},
-                {name: '督脉·风府', id: 114, lnLevel: 3},
-                {name: '督脉·百会', id: 117, lnLevel: 0},
+                { name: "督脉·悬枢", id: 94, lnLevel: 2 },
+                { name: "督脉·至阳", id: 98, lnLevel: 2 },
+                { name: "督脉·身柱", id: 111, lnLevel: 1 },
+                { name: "督脉·风府", id: 114, lnLevel: 3 },
+                { name: "督脉·百会", id: 117, lnLevel: 0 },
             ],
             mouseData: {},
-            hover: ''
-        }
+            hover: "",
+        };
     },
-    computed: {
-    },
+    computed: {},
     created() {
-        this.init()
+        this.init();
     },
     methods: {
         init() {
-            let define = store.state.defineMeridians
-            let jingmai = JSON.parse(JSON.stringify(this.jingmai))
-            jingmai.forEach(item => {
+            let define = store.state.defineMeridians;
+            let jingmai = JSON.parse(JSON.stringify(this.jingmai));
+            jingmai.forEach((item) => {
                 for (let def of define) {
                     if (item.name == def.name) {
-                        item = Object.assign(item, def)
+                        item = Object.assign(item, def);
                     }
                 }
-            })
-            this.jingmai = jingmai
+            });
+            this.jingmai = jingmai;
         },
         showDetail(item, index) {
             if (item.requireSuccess && item.nowLevel < item.maxLevel) {
-                this.hover = item.id
+                this.hover = item.id;
             }
-            let style = window.getComputedStyle(this.$refs.detail[index], null)
-            let data = {}
-            data.left = parseInt(style.left) + 430
-            data.top = parseInt(style.top) + 60
-            data = Object.assign(data, item)
-            this.mouseData = data
-            this.$emit('showDetail', data)
+            let style = window.getComputedStyle(this.$refs.detail[index], null);
+            let data = {};
+            data.left = parseInt(style.left) + 430;
+            data.top = parseInt(style.top) + 60;
+            data = Object.assign(data, item);
+            this.mouseData = data;
+            this.$emit("showDetail", data);
         },
         outDetail() {
-            this.hover = ''
-            this.$emit('outDetail',  {})
+            this.hover = "";
+            this.$emit("outDetail", {});
         },
         action() {
-            this.$emit('action', this.mouseData)
+            this.$emit("action", this.mouseData);
         },
         setHover() {
-            this.hover = ''
+            this.hover = "";
         },
         reduce(item) {
-            this.$emit('reduce', item)
+            this.$emit("reduce", item);
         },
-    }
-}
+    },
+};
 </script>
 
 <style lang='less'>

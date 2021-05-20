@@ -7,11 +7,8 @@
             root="/app/icons"
             :feedbackEnable="true"
             :crumbEnable="true"
-            ><img
-                slot="logo"
-                svg-inline
-                src="../../assets/img/logos/icons.svg"
-            />
+        >
+            <img slot="logo" svg-inline src="../../assets/img/logos/icons.svg" />
         </Breadcrumb>
         <LeftSidebar :open="false">
             <Nav />
@@ -20,11 +17,7 @@
             <div class="m-icons">
                 <h1 class="m-icons-title">剑三图标库</h1>
                 <div class="m-icons-box">
-                    <el-tabs
-                        v-model="activeTabName"
-                        type="card"
-                        @tab-click="handleClick"
-                    >
+                    <el-tabs v-model="activeTabName" type="card" @tab-click="handleClick">
                         <el-tab-pane label="图标库" name="icon" lazy>
                             <div class="searchbar-wrapper">
                                 <el-input
@@ -41,29 +34,16 @@
                                 </el-input>
                                 <div class="m-icon-search-tip">
                                     <ul>
-                                        <li>
-                                            输入单个数字，例如1，返回IconID为1的图标；
-                                        </li>
-                                        <li>
-                                            输入多个数字，例如2,4,6（支持中英文逗号“,”,顿号“、”,斜杠“/”,竖杠“|”），返回IconID分别为2,4,6的三个图标；
-                                        </li>
-                                        <li>
-                                            输入范围区间，例如1~100或1-100，返回IconID从1至100的100个图标；
-                                        </li>
-                                        <li>
-                                            可以同时输入多个数字和多个范围，例如2,3,11-14,17，返回IconID分别为2,3,11,12,13,14,17的7个图标；
-                                        </li>
-                                        <li>
-                                            输入单个图标名称，可以根据名称模糊搜索相关图标，例如：幽月、幽月乱花。
-                                        </li>
+                                        <li>输入单个数字，例如1，返回IconID为1的图标；</li>
+                                        <li>输入多个数字，例如2,4,6（支持中英文逗号“,”,顿号“、”,斜杠“/”,竖杠“|”），返回IconID分别为2,4,6的三个图标；</li>
+                                        <li>输入范围区间，例如1~100或1-100，返回IconID从1至100的100个图标；</li>
+                                        <li>可以同时输入多个数字和多个范围，例如2,3,11-14,17，返回IconID分别为2,3,11,12,13,14,17的7个图标；</li>
+                                        <li>输入单个图标名称，可以根据名称模糊搜索相关图标，例如：幽月、幽月乱花。</li>
                                         <li>每次上限500个</li>
                                     </ul>
                                 </div>
                             </div>
-                            <ul
-                                class="m-icon-list"
-                                v-loading="isSearchingByName"
-                            >
+                            <ul class="m-icon-list" v-loading="isSearchingByName">
                                 <el-alert
                                     title="以下为部分图标展示，请在上方自定义搜索范围。点击图标即可收藏。"
                                     type="warning"
@@ -75,39 +55,28 @@
                                     :key="index"
                                     @mouseleave="handleMouseLeaveIcon"
                                 >
-                                    <i
-                                        class="u-pic"
-                                        @click="handleAddFavorite(index, icon)"
-                                    >
+                                    <i class="u-pic" @click="handleAddFavorite(index, icon)">
                                         <el-image
                                             :src="`${IconPath}${icon}.png`"
                                             class="u-img"
                                             lazy
                                         >
-                                            <div
-                                                slot="placeholder"
-                                                class="image-slot"
-                                            >
+                                            <div slot="placeholder" class="image-slot">
                                                 <i class="el-icon-loading"></i>
                                             </div>
-                                            <div
-                                                slot="error"
-                                                class="image-slot"
-                                            >
-                                                <i
-                                                    class="el-icon-warning-outline"
-                                                ></i>
+                                            <div slot="error" class="image-slot">
+                                                <i class="el-icon-warning-outline"></i>
                                             </div>
                                         </el-image>
-                                        <span class="u-love"
-                                            ><i
+                                        <span class="u-love">
+                                            <i
                                                 class="w-heart"
                                                 :class="{
                                                     'w-heart-animation':
                                                         index == clickedIndex,
                                                 }"
-                                            ></i
-                                        ></span>
+                                            ></i>
+                                        </span>
                                     </i>
                                     <span
                                         class="u-iconid"
@@ -115,8 +84,7 @@
                                         v-clipboard:success="onCopy"
                                         v-clipboard:error="onError"
                                         title="点击快速复制"
-                                        >{{ icon }}</span
-                                    >
+                                    >{{ icon }}</span>
                                 </li>
                                 <div
                                     class="loading-placeholder"
@@ -127,16 +95,8 @@
                                 ></div>
                             </ul>
                         </el-tab-pane>
-                        <el-tab-pane
-                            label="收藏图标"
-                            name="favicon"
-                            lazy
-                            :loading="isSynchronizing"
-                        >
-                            <ul
-                                class="m-icon-list"
-                                v-if="activeTabName === 'favicon'"
-                            >
+                        <el-tab-pane label="收藏图标" name="favicon" lazy :loading="isSynchronizing">
+                            <ul class="m-icon-list" v-if="activeTabName === 'favicon'">
                                 <el-alert
                                     class="m-icons-sync"
                                     title="本地有收藏图标未同步到服务器"
@@ -145,9 +105,7 @@
                                     show-icon
                                     v-if="faviconNeedsSync"
                                 >
-                                    <el-button type="text" @click="syncFavicon"
-                                        >点此同步未登录收藏数据</el-button
-                                    >
+                                    <el-button type="text" @click="syncFavicon">点此同步未登录收藏数据</el-button>
                                 </el-alert>
                                 <ul v-if="faviconsList.length">
                                     <transition-group name="el-fade-in">
@@ -164,21 +122,11 @@
                                                     class="u-img"
                                                     lazy
                                                 >
-                                                    <div
-                                                        slot="placeholder"
-                                                        class="image-slot"
-                                                    >
-                                                        <i
-                                                            class="el-icon-loading"
-                                                        ></i>
+                                                    <div slot="placeholder" class="image-slot">
+                                                        <i class="el-icon-loading"></i>
                                                     </div>
-                                                    <div
-                                                        slot="error"
-                                                        class="image-slot"
-                                                    >
-                                                        <i
-                                                            class="el-icon-warning-outline"
-                                                        ></i>
+                                                    <div slot="error" class="image-slot">
+                                                        <i class="el-icon-warning-outline"></i>
                                                     </div>
                                                 </el-image>
                                                 <span
@@ -191,19 +139,15 @@
                                                     "
                                                 ></span>
                                             </i>
-                                            <span class="u-iconid">{{
+                                            <span class="u-iconid">
+                                                {{
                                                 icon
-                                            }}</span>
+                                                }}
+                                            </span>
                                         </li>
                                     </transition-group>
                                 </ul>
-                                <el-alert
-                                    v-else
-                                    title="没有收藏的图标"
-                                    type="info"
-                                    show-icon
-                                >
-                                </el-alert>
+                                <el-alert v-else title="没有收藏的图标" type="info" show-icon></el-alert>
                             </ul>
                         </el-tab-pane>
                         <el-tab-pane label="表情包" name="emoji" lazy>
@@ -233,13 +177,14 @@
                                     :value="index"
                                     :label="category.name"
                                 >
-                                    <span style="float: left">{{
+                                    <span style="float: left">
+                                        {{
                                         category.name
-                                    }}</span>
+                                        }}
+                                    </span>
                                     <span
                                         style="float: right; color: #8492a6; font-size: 13px"
-                                        >共{{ category.total }}个</span
-                                    >
+                                    >共{{ category.total }}个</span>
                                 </el-option>
                             </el-select>
                             <template v-if="emojiCategoryOptions.length > 0">
@@ -258,19 +203,11 @@
                                             lazy
                                         >
                                             <!-- 这里要用index, 因为这里for遍历的是数字，emoji值会从1开始，而index还是从0开始 -->
-                                            <div
-                                                slot="placeholder"
-                                                class="image-slot"
-                                            >
+                                            <div slot="placeholder" class="image-slot">
                                                 <i class="el-icon-loading"></i>
                                             </div>
-                                            <div
-                                                slot="error"
-                                                class="image-slot"
-                                            >
-                                                <i
-                                                    class="el-icon-warning-outline"
-                                                ></i>
+                                            <div slot="error" class="image-slot">
+                                                <i class="el-icon-warning-outline"></i>
                                             </div>
                                         </el-image>
                                     </li>
@@ -306,11 +243,15 @@ import Nav from "@/components/Nav.vue";
 import { axios, realUrl } from "@/service/api.js";
 import { JX3BOX } from "@jx3box/jx3box-common";
 import User from "@jx3box/jx3box-common/js/user.js";
-// import Extend from "@/components/Extend.vue";
-
+import {
+    getIconsByName,
+    getMyFavIcons,
+    setMyFavIcons,
+} from "@/service/icons.js";
+import default_list from "./default.json";
 export default {
     name: "Icons",
-    data: function() {
+    data: function () {
         return {
             activeTabName: "icon",
             searchIconInput: "",
@@ -326,6 +267,7 @@ export default {
             emojiSelection: 0,
             isDownloadingEmoji: false,
             isSearchingByName: false,
+            uid:0,
         };
     },
     computed: {
@@ -350,54 +292,7 @@ export default {
     },
     methods: {
         async prepareMounted() {
-            let defaultList = [
-                13,
-                316,
-                109,
-                245,
-                889,
-                2178,
-                2179,
-                2180,
-                2588,
-                2589,
-                2646,
-                2647,
-                2648,
-                2789,
-                3089,
-                3111,
-                3112,
-                3113,
-                3114,
-                3115,
-                3116,
-                3117,
-                3118,
-                3119,
-                3120,
-                3121,
-                3122,
-                3123,
-                3137,
-                3138,
-                3139,
-                3140,
-                3321,
-                4704,
-                4707,
-                4708,
-                4709,
-                4710,
-                4835,
-                4853,
-                5389,
-                8848,
-                10451,
-                10452,
-                10909,
-            ];
-            this.iconsList = defaultList;
+            this.iconsList = default_list;
 
             // 这里先读取一次存在本地的收藏图标
             this.getFromLocal();
@@ -423,23 +318,7 @@ export default {
                     this.emojiCategoryOptions = result[1];
                 })
                 .catch((e) => {
-                    switch (e.code) {
-                        case -1:
-                            // 网络异常
-                            this.$message.error(e.msg);
-                            break;
-                        case 9999:
-                            this.$message.error("登录失效, 请重新登录");
-                            User.destroy();
-                            setTimeout(() => {
-                                User.toLogin();
-                            }, 2000);
-                            break;
-                        default:
-                            // 服务器错误
-                            console.log(e);
-                            this.$message.error(`[${e.code}]${e.msg}`);
-                    }
+                    console.log(e);
                 });
         },
         syncFavicon() {
@@ -561,37 +440,23 @@ export default {
             this.iconsList = searchList.slice(0, 500);
         },
         async searchIconByName(name) {
-            let url = JX3BOX.__node + "icon/name/" + name;
-            return axios(url, "GET")
-                .then((response) => {
-                    if (response) {
-                        let tmpList = [];
-                        for (let key in response) {
-                            response[key].forEach((item) => {
-                                let iconid = item.iconID + "";
-                                if (!tmpList.includes(iconid)) {
-                                    tmpList.push(iconid);
-                                }
-                            });
-                        }
-                        this.iconsList = tmpList;
+            getIconsByName(name)
+                .then((res) => {
+                    let tmpList = [];
+                    for (let key in res) {
+                        res[key].forEach((item) => {
+                            let iconid = item.iconID + "";
+                            if (!tmpList.includes(iconid)) {
+                                tmpList.push(iconid);
+                            }
+                        });
                     }
+                    this.iconsList = tmpList;
                 })
                 .catch((e) => {
-                    switch (e.code) {
-                        case -1:
-                            // 网络异常
-                            this.$message.error(e.msg);
-                            this.getFromLocal();
-                            break;
-                        default:
-                            // 服务器错误
-                            this.$message.error(`[${e.code}]${e.msg}`);
-                            this.getFromLocal();
-                    }
+                    this.getFromLocal();
                 });
         },
-
         // 分割线
         getUserId() {
             if (User.isLogin()) {
@@ -599,65 +464,35 @@ export default {
             }
         },
         getSavedIcons() {
-            // 获取用户储存的服务器列表
-            let url = realUrl(JX3BOX.__server, "user/meta");
             if (this.uid) {
                 // 从服务器读取
                 // 旧版数据格式 ’["109","3118","3119","13","316","2179","245","889","2178","5389"]‘
-                axios(
-                    url,
-                    "GET",
-                    true,
-                    {},
-                    {},
-                    { uid: this.uid, key: "favicons" }
-                )
-                    .then((response) => {
-                        if (response.code == 0) {
-                            let serverValue = response.data.value;
-                            if (serverValue) {
-                                // 判断是否是旧版数据
-                                // like -> '["345", "332", "  303"]'
-                                if (serverValue.includes("[")) {
-                                    serverValue = serverValue.replace(
-                                        /[\[\]"\ ]/g,
-                                        ""
-                                    );
-                                }
-                                // // 判断是否是旧版数据
-                                // if (serverValue.includes("[")) {
-                                //     this.faviconsList = JSON.parse(serverValue);
-                                // } else {
-                                //     this.faviconsList = serverValue.split(",");
-                                // }
-                                this.faviconsList = serverValue.split(",");
-                            } else {
-                                this.faviconsList = [];
+                getMyFavIcons()
+                    .then((data) => {
+                        let serverValue = data;
+                        if (serverValue) {
+                            // 判断是否是旧版数据
+                            // like -> '["345", "332", "  303"]'
+                            if (serverValue.includes("[")) {
+                                serverValue = serverValue.replace(
+                                    /[\[\]"\ ]/g,
+                                    ""
+                                );
                             }
+                            // // 判断是否是旧版数据
+                            // if (serverValue.includes("[")) {
+                            //     this.faviconsList = JSON.parse(serverValue);
+                            // } else {
+                            //     this.faviconsList = serverValue.split(",");
+                            // }
+                            this.faviconsList = serverValue.split(",");
+                        } else {
+                            this.faviconsList = [];
                         }
                     })
                     .catch((e) => {
-                        switch (e.code) {
-                            case -1:
-                                // 网络异常
-                                this.$message.error(e.msg);
-                                this.faviconsList = this.localFaviconsList;
-                                break;
-                            case 9999:
-                                this.$message.error("登录失效, 请重新登录");
-                                User.destroy();
-                                setTimeout(() => {
-                                    User.toLogin();
-                                }, 2000);
-                                //不指定url时则自动跳回当前所在页面
-                                break;
-                            default:
-                                // 服务器错误
-                                this.$message.error(`[${e.code}]${e.msg}`);
-                                this.faviconsList = this.localFaviconsList;
-                        }
-                    })
-                    .then(() => {});
+                        this.faviconsList = this.localFaviconsList;
+                    });
             } else {
                 // 本地读取
                 this.faviconsList = this.localFaviconsList;
@@ -679,17 +514,8 @@ export default {
         setSavedIcons() {
             if (this.uid) {
                 // 保存到服务器
-                let url = realUrl(JX3BOX.__server, "user/meta");
-                axios(url, "POST", true, {
-                    uid: this.uid,
-                    key: "favicons",
-                    value: this.faviconsList.join(","),
-                })
-                    .then((response) => {
-                        if (response.code == 0) {
-                            //
-                        }
-                    })
+                setMyFavIcons(this.faviconsList.join(","))
+                    .then((res) => {})
                     .catch((e) => {
                         // 如果出问题，先存本地
                         //创建一个并集
@@ -705,25 +531,8 @@ export default {
                         union = new Set(union);
                         this.faviconsList = Array.from(union);
                         this.setToLocal();
-                        switch (e.code) {
-                            case -1:
-                                // 网络异常
-                                this.$message.error(e.msg);
-                                break;
-                            case 9999:
-                                this.$message.error("登录失效, 请重新登录");
-                                User.destroy();
-                                setTimeout(() => {
-                                    User.toLogin();
-                                }, 2000);
-                                //不指定url时则自动跳回当前所在页面
-                                break;
-                            default:
-                                // 服务器错误
-                                this.$message.error(`[${e.code}]${e.msg}`);
-                        }
                     })
-                    .then(() => {
+                    .finally(() => {
                         this.isSynchronizing = false;
                     });
             } else {
@@ -739,14 +548,14 @@ export default {
                 this.localFaviconsList = this.faviconsList;
             }
         },
-        onCopy: function(val) {
+        onCopy: function (val) {
             this.$notify({
                 title: "复制成功",
                 message: "复制内容 : " + val.text,
                 type: "success",
             });
         },
-        onError: function() {
+        onError: function () {
             this.$notify.error({
                 title: "复制失败",
                 message: "请手动复制",
@@ -754,11 +563,10 @@ export default {
         },
     },
     filters: {},
-    mounted: function() {
+    mounted: function () {
         this.getUserId();
         this.prepareMounted();
         this.getSavedIcons();
-        // this.loadAllServers();
     },
     components: {
         Nav,

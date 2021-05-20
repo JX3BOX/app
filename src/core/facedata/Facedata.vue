@@ -30,7 +30,7 @@
                         />
                         <p class="u-status" v-if="!data">
                             请上传脸型数据，如何导出数据请查看<a
-                                href="/tool/?pid=746"
+                                href="/tool/746"
                                 target="_blank"
                                 >《捏脸数据导入导出方法》</a
                             >
@@ -68,7 +68,6 @@
 
 <script>
 import Nav from "@/components/Nav.vue";
-import { uploadData, parseData } from "../../service/facedata.js";
 import result from "@jx3box/jx3box-facedat/src/Facedat.vue"
 const { parse } = require("lua-json");
 

@@ -84,6 +84,12 @@ module.exports = {
             template: "public/index.html",
             filename: "sudoku/index.html",
         },
+        sandbox: {
+            title: "阵营沙盘- JX3BOX",
+            entry: "src/core/sandbox/sandbox.js",
+            template: "public/index.html",
+            filename: "sandbox/index.html",
+        },
         dps: {
             title: "DPS模拟器 - JX3BOX",
             entry: "src/core/dps/dps.js",
@@ -101,7 +107,16 @@ module.exports = {
     //❤️ Porxy ~
     devServer: {
         proxy: {
+            "/api/cms": {
+                target: process.env["DEV_SERVER"] == "true" ? "http://localhost:5120" : "https://cms.jx3box.com"
+            },
             "/api/vip": {
+                "target": "https://pay.jx3box.com",
+                "onProxyReq": function (request) {
+                    request.setHeader("origin", "");
+                }
+            },
+            "/api/vip/i": {
                 "target": "https://pay.jx3box.com",
                 "onProxyReq": function (request) {
                     request.setHeader("origin", "");

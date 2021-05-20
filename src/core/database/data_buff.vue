@@ -39,14 +39,14 @@
                                 {{ val }}
                             </span>
                         </template>
-                        <div class="u-tip" v-if="!hasRight">
+                        <!-- <div class="u-tip" v-if="!hasRight">
                             <i class="el-icon-lock"></i>
                             部分词条仅
                             <a
                                 href="/vip/premium?from=database_buff"
                                 target="_blank"
                             >高级/专业版会员</a>可见
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </li>
