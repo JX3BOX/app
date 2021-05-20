@@ -9,6 +9,7 @@ export default new Router({
   routes: [
     {
       path: '/Sandbox',
+      name: 'Sandbox',
       component: Sandbox,
     },
   ],
