@@ -29,7 +29,7 @@
                 <span v-if="detail.data[detail.nowLevel].probability != '100%'">失败后返还修为：{{detail.data[detail.nowLevel].fail}}</span>-->
             </div>
             <div class="premise" v-if="detail.requireNode.length > 0">
-                需要需要已经打通：
+                需要已经打通：
                 <span
                     v-for="(item, index) in detail.requireNode"
                     :key="index"

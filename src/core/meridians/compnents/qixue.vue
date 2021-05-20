@@ -24,16 +24,16 @@ export default {
     data() {
         return {
             jingmai: [
-                { name: "督脉·睛中", id: 43 },
-                { name: "带脉·龙玄", id: 45 },
-                { name: "督脉·抬肩", id: 42 },
-                { name: "冲脉·极泉", id: 46 },
-                { name: "任脉·崇骨", id: 35 },
-                { name: "任脉·下极俞", id: 9 },
-                { name: "督脉·腰眼", id: 41 },
-                { name: "带脉·曲泉", id: 44 },
-                { name: "冲脉·合阳", id: 170 },
-                { name: "任脉·气端", id: 40 },
+                { name: "督脉·睛中", id: 43, lnLevel: 0 },
+                { name: "带脉·龙玄", id: 45, lnLevel: 0 },
+                { name: "督脉·抬肩", id: 42, lnLevel: 0 },
+                { name: "冲脉·极泉", id: 46, lnLevel: 0 },
+                { name: "任脉·崇骨", id: 35, lnLevel: 0 },
+                { name: "任脉·下极俞", id: 9, lnLevel: 0 },
+                { name: "督脉·腰眼", id: 41, lnLevel: 0},
+                { name: "带脉·曲泉", id: 44, lnLevel: 0},
+                { name: "冲脉·合阳", id: 170, lnLevel: 0},
+                { name: "任脉·气端", id: 40, lnLevel: 0},
             ],
             mouseData: {},
             hover: "",
@@ -46,12 +46,17 @@ export default {
     methods: {
         init() {
             let define = store.state.defineMeridians;
+            let select = store.state.selectMeridians
             let jingmai = JSON.parse(JSON.stringify(this.jingmai));
-            jingmai.forEach((item) => {
-                for (let def of define) {
-                    if (item.name == def.name) {
-                        item = Object.assign(item, def);
-                    }
+            jingmai = jingmai.map((item) => {
+                let defItem = define.find(def => def.name === item.name)
+                let selItem = select.find(sel => sel.name === item.name)
+                if (selItem) {
+                    return item = Object.assign(item, selItem);
+                } else {
+                    item = Object.assign(item, defItem);
+                    item.nowLevel = 0
+                    return item
                 }
             });
             this.jingmai = jingmai;

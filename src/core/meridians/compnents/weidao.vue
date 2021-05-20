@@ -44,12 +44,17 @@ export default {
     methods: {
         init() {
             let define = store.state.defineMeridians;
+            let select = store.state.selectMeridians
             let jingmai = JSON.parse(JSON.stringify(this.jingmai));
-            jingmai.forEach((item) => {
-                for (let def of define) {
-                    if (item.name == def.name) {
-                        item = Object.assign(item, def);
-                    }
+            jingmai = jingmai.map((item) => {
+                let defItem = define.find(def => def.name === item.name)
+                let selItem = select.find(sel => sel.name === item.name)
+                if (selItem) {
+                    return item = Object.assign(item, selItem);
+                } else {
+                    item = Object.assign(item, defItem);
+                    item.nowLevel = 0
+                    return item
                 }
             });
             this.jingmai = jingmai;
