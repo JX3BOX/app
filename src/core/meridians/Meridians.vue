@@ -412,7 +412,7 @@ export default {
                         type = 4
                     }
                     arr.push({type: type, desc: item.desc[item.nowLevel - 1]})
-                    // desc.push(item.desc[item.nowLevel - 1]);
+                    // desc.push(item.desc[item.nowLevel - 1])  ;
                 });
                 this.preview = arr
             },
