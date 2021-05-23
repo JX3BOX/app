@@ -196,9 +196,9 @@
                     </div>
                 </div>
                 <footer class="m-meridians-footer">
-                    <el-checkbox v-model="isEfficient">下极俞<span>(消耗修为减少10%)</span></el-checkbox>
+                    <el-checkbox class="u-extend" v-model="isEfficient">下极俞<span>(消耗修为减少10%)</span></el-checkbox>
+                    <el-button type="warning" @click="generate" class="u-save" size="mini"><img svg-inline src="../../assets/img/meridians/save.svg" />保存方案</el-button>
                 </footer>
-                <el-button type="text" icon="el-icon-edit-outline" @click="generate">保存方案</el-button>
                 <h2 class="m_meridians_share_title">分享经脉</h2>
                 <div class="m_meridians_share">
                     <el-input v-model="share" placeholder="经脉编码"></el-input>
@@ -208,7 +208,7 @@
                 <Footer class="meridians_footer"></Footer>
                 <div class="diglogShow" @click="myMeridians">我的经脉</div>
                 <el-dialog
-                    title=""
+                    title="我的方案"
                     :visible.sync="dialogVisible"
                     width="40%">
                     <el-table
