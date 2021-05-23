@@ -426,7 +426,7 @@ export default {
         this.getList()
     },
     methods: {
-        // 初始化
+        // 初始化听不懂  哈哈哈
         init() {
             let define = JSON.parse(JSON.stringify(this.define));
             define.forEach((item) => {
