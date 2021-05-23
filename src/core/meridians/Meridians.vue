@@ -197,14 +197,15 @@
                 </div>
                 <footer class="m-meridians-footer">
                     <el-checkbox class="u-extend" v-model="isEfficient">下极俞<span>(消耗修为减少10%)</span></el-checkbox>
+                    <el-button type="primary" @click="readBox" class="u-save" style="right: 110px" size="mini"><i class="el-icon-download"></i>导入方案</el-button>
                     <el-button type="warning" @click="generate" class="u-save" size="mini"><img svg-inline src="../../assets/img/meridians/save.svg" />保存方案</el-button>
                 </footer>
-                <h2 class="m_meridians_share_title">分享经脉</h2>
-                <div class="m_meridians_share">
-                    <el-input v-model="share" placeholder="经脉编码"></el-input>
-                    <el-button type="text" icon="el-icon-document-checked" @click="read">解析编码</el-button>
-                    <el-button type="text" icon="el-icon-document-copy" @click="copy">点击复制</el-button>
-                </div>
+<!--                <h2 class="m_meridians_share_title">分享经脉</h2>-->
+<!--                <div class="m_meridians_share">-->
+<!--                    <el-input v-model="share" placeholder="经脉编码"></el-input>-->
+<!--                    <el-button type="text" icon="el-icon-document-checked" @click="read">解析编码</el-button>-->
+<!--                    <el-button type="text" icon="el-icon-document-copy" @click="copy">点击复制</el-button>-->
+<!--                </div>-->
                 <Footer class="meridians_footer"></Footer>
                 <div class="diglogShow" @click="myMeridians">我的经脉</div>
                 <el-dialog
@@ -215,8 +216,17 @@
                         :data="list"
                         style="width: 100%">
                         <el-table-column
+                            prop="id"
+                            width="70"
+                            align="center"
+                            label="方案ID">
+                            <template slot-scope="scope">
+                                <b style="color: #4caf50">{{scope.row.id}}</b>
+                            </template>
+                        </el-table-column>
+                        <el-table-column
                             prop="name"
-                            label="经脉名称">
+                            label="方案名称">
                         </el-table-column>
                         <el-table-column
                             label="操作"
@@ -228,6 +238,12 @@
                         </el-table-column>
                     </el-table>
                 </el-dialog>
+                <el-alert
+                    :title="`经脉方案保存成功，方案ID：${tempId}`"
+                    type="success"
+                    v-show="tempId"
+                    show-icon>
+                </el-alert>
             </div>
         </Main>
     </div>
@@ -256,6 +272,7 @@ export default {
     name: "Meridians",
     data: function () {
         return {
+            tempId: 0,
             dialogVisible: false,
             zhumai: [
                 {
@@ -957,10 +974,7 @@ export default {
                 })
                 let res = await createMeridians({data: data, version: 1, name: value})
                 if (res.data.msg === "Success") {
-                    this.$message({
-                        message: '生成经脉编码成功',
-                        type: 'success'
-                    });
+                    this.tempId = res.data.data.id
                 }
             }).catch(() => {
                 this.$message({
@@ -1001,13 +1015,22 @@ export default {
             });
         },
         // 解析编码
+        readBox () {
+            this.$prompt('请输入方案ID', '提示', {
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+            }).then(({ value }) => {
+                this.restore(value)
+            }).catch(() => {
+            });
+        },
         read() {
             this.restore(this.share)
         },
 
         async restore(id) {
             let res = await getMeridians(id)
-            if (res.data.msg === 'Success') {
+            if (res.data.msg === 'Success' && res.data.data !== null) {
                 let data = res.data.data.data
                 let define = store.state.defineMeridians;
                 let select = []
@@ -1032,7 +1055,7 @@ export default {
                 });
                 this.dialogVisible = false
             } else {
-                this.$message.error('解析失败！');
+                this.$message.error('请求方案不存在');
             }
         },
         // 复制

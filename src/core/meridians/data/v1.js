@@ -741,7 +741,8 @@
 			requireLevel: 70,
 			requirePower: [400, 400, 400, 400, 400, 400, 400, 400, 400, 400],
 			maxLevel: 10,
-			requireNode: [[{ name: '督脉·长强', level: 5 }, { name: '督脉·命门', level: 5 }, { name: '督脉·中枢', level: 5 }, { name: '督脉·筋缩', level: 5 }, { name: '督脉·神道', level: 5 }, { name: '督脉·哑门', level: 5 }, { name: '督脉·后顶', level: 5 }]],
+			// todo: 最大要求 { name: '督脉·中枢', level: 5 } { name: '督脉·筋缩', level: 5 }
+			requireNode: [[{ name: '督脉·长强', level: 5 }, { name: '督脉·命门', level: 5 }, { name: '督脉·中枢', level: 3 }, { name: '督脉·筋缩', level: 3 }, { name: '督脉·神道', level: 5 }, { name: '督脉·哑门', level: 5 }, { name: '督脉·后顶', level: 5 }]],
 			isQixue: true,
 		}, {
 			name: '督脉·睛中',
@@ -760,7 +761,8 @@
 			requireLevel: 70,
 			requirePower: [400, 400, 400, 400, 400, 400, 400, 400, 400, 400],
 			maxLevel: 10,
-			requireNode: [[{ name: '督脉·长强', level: 5 }, { name: '督脉·悬枢', level: 5 }, { name: '督脉·至阳', level: 5 }, { name: '督脉·身柱', level: 5 }, { name: '督脉·风府', level: 5 }, { name: '督脉·百会', level: 5 }]],
+			// todo { name: '督脉·风府', level: 5 } 最大层数有BUG
+			requireNode: [[{ name: '督脉·长强', level: 5 }, { name: '督脉·悬枢', level: 5 }, { name: '督脉·至阳', level: 5 }, { name: '督脉·身柱', level: 5 }, { name: '督脉·风府', level: 3 }, { name: '督脉·百会', level: 5 }]],
 			isQixue: true,
 		},
 		//带脉
