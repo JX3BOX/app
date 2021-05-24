@@ -56,7 +56,7 @@
                                 href="/vip/premium?from=database_skill"
                                 target="_blank"
                             >高级/专业版会员</a>可见
-                        </div> -->
+                        </div>-->
                     </div>
                 </div>
             </li>
@@ -79,7 +79,7 @@ export default {
     data: function () {
         return {
             list: this.data || [],
-            skillmap
+            skillmap,
         };
     },
     computed: {
@@ -103,7 +103,9 @@ export default {
             return __iconPath + "icon/" + id + ".png";
         },
         filterRaw: function (str) {
-            return str && str.replace(/\\n/g, "\n");
+            str = str && str.replace(/\\n/g, "\n");
+            str = str && str.replace(/(\<TALENT.*?\>)/g, "\n$1");
+            return str;
         },
     },
     methods: {
@@ -117,7 +119,7 @@ export default {
                 let fb_name = path_arr[start + 1] || "";
                 return `<a class="u-script" href="${__Root}fb/?fb_name=${fb_name}#/skill" target="_blank">${val}</a>`;
             } else {
-                return '';
+                return "";
             }
         },
         cansee: function (o, key) {
@@ -147,3 +149,9 @@ export default {
     components: {},
 };
 </script>
+
+<style scoped lang="less">
+.u-content {
+    white-space: pre-wrap;
+}
+</style>
