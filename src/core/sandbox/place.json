@@ -1,0 +1,18 @@
+{
+  "list": [
+    { "id": 9, "name": "洛道", "name_pinyin": "LuoDao" },
+    { "id": 13, "name": "金水镇", "name_pinyin": "JinShuiZhen" },
+    { "id": 21, "name": "巴陵县", "name_pinyin": "BaLingXian" },
+    { "id": 22, "name": "南屏山", "name_pinyin": "NanPingShan" },
+    { "id": 23, "name": "龙门荒漠", "name_pinyin": "LongMenHuangMo" },
+    { "id": 30, "name": "昆仑", "name_pinyin": "KunLun" },
+    { "id": 35, "name": "瞿塘峡", "name_pinyin": "QuTangXia" },
+    { "id": 100, "name": "白龙口", "name_pinyin": "BaiLongKou" },
+    { "id": 101, "name": "无量山", "name_pinyin": "WuLiangShan" },
+    { "id": 103, "name": "融天岭", "name_pinyin": "RongTianLing" },
+    { "id": 104, "name": "黑龙沼", "name_pinyin": "HeiLongZhao" },
+    { "id": 105, "name": "苍山洱海", "name_pinyin": "CangShanErHai" },
+    { "id": 139, "name": "枫华谷·战乱", "name_pinyin": "FengHuaGuZhanLuan" },
+    { "id": 153, "name": "马嵬驿", "name_pinyin": "MaWeiYi" }
+  ]
+}

@@ -20,25 +20,23 @@
             <span> <i class="el-icon-star-on"></i>测试版本欢迎反馈 <i class="el-icon-star-on"></i>招募各个区服维护沙盘数据的小伙伴 </span>
             <span>问题反馈&区服维护申请：QQ1416956452</span>
           </div>
-          <div class="m-maintain">
-            <div class="m-title">维护人员：</div>
-            <div class="u-name">{{ this.maintain }}</div>
+          <div class="m-change">
+            <div class="m-item">
+              <div class="m-title">选择阵营：</div>
+              <el-radio-group v-model="camp" @change="changeCamp">
+                <el-radio-button label="恶人谷"></el-radio-button>
+                <el-radio-button label="浩气盟"></el-radio-button>
+              </el-radio-group>
+            </div>
+            <div class="m-item">
+              <div class="m-title">查看进攻路线：</div>
+              <el-switch v-model="route"> </el-switch>
+            </div>
+            <div class="m-item">
+              <span class="m-title">维护人员：</span>
+              <span class="u-name">{{ this.maintain }}</span>
+            </div>
           </div>
-          <!-- <div class="m-item">
-                        <div class="m-title">选择阵营：</div>
-                        <el-radio-group v-model="camp">
-                        <el-radio-button label="恶人谷"></el-radio-button>
-                        <el-radio-button label="浩气盟"></el-radio-button>
-                        </el-radio-group>
-                    </div>
-                    <div class="m-item">
-                        <div class="m-title">查看进攻路线：</div>
-                        <el-switch v-model="route"> </el-switch>
-                    </div>
-                    <div class="m-item">
-                        <div class="m-title">选择日期：</div>
-                        <el-date-picker v-model="time" type="date" placeholder="选择日期"> </el-date-picker>
-                    </div>-->
         </div>
 
         <!-- 地图 -->
@@ -55,7 +53,12 @@
               </span>
               <span v-for="camp in maplist" :key="camp.id" :class="camp.name_pinyin" class="u-img">
                 <img :src="camp.camp | campmap(camp.id)" />
-                <!-- <img v-else-if="camp.camp == 'eren'" :src="camp.id | eImgPath" /> -->
+              </span>
+            </div>
+            <!-- 进攻路线 -->
+            <div class="m-box-camp">
+              <span v-for="item in place.list" :key="item.id" class="u-img" :class="item.name_pinyin">
+                <img :src="item.name_pinyin | campimg" />
               </span>
             </div>
             <!-- 据点名称&历史记录 -->
@@ -129,8 +132,9 @@
 </template>
 <script>
 import Nav from '@/components/Nav.vue'
+import place from './place.json'
 import { __imgPath } from '@jx3box/jx3box-common/data/jx3box.json'
-import { getCamplist, getCampServers, getCampLog } from '@/service/camp'
+import { getCamplist, getCampServers, getCampLog, getCampDetail } from '@/service/camp'
 
 export default {
   name: 'Sandbox',
@@ -144,6 +148,7 @@ export default {
       maintain: '',
       route: false,
       time: '',
+      place,
       show: false,
       activeName: '斗转星移',
       maplist: [],
@@ -155,6 +160,9 @@ export default {
         link: '',
         list: [],
       },
+      elist: [],
+      hlist: [],
+      dlist: [],
     }
   },
   computed: {
@@ -175,7 +183,6 @@ export default {
   methods: {
     getcamp() {
       let data = this.$route.query
-
       let parms = {
         sandmap_id: '',
         camp: '',
@@ -184,15 +191,44 @@ export default {
         this.campId = data.id
         this.activeName = data.name
       }
+      this.getservername(this.activeName)
       parms.sandmap_id = this.campId
       parms.camp = this.camps
       getCamplist(parms).then((res) => {
         this.maplist = res.data.sandmap.castles
       })
     },
-
+    getcampdetail() {
+      let parms = {
+        sandmap_id: this.campId,
+        camp: this.camps,
+      }
+      getCampDetail(parms).then((res) => {
+        if (this.camps == 'eren') {
+          this.elist.push({ id: res.sandmap.id, list: res.sandmap.maps })
+        } else {
+          this.hlist.push({ id: res.sandmap.id, list: res.sandmap.maps })
+        }
+      })
+    },
+    getdetaillist(camp) {
+      for (let i = 0; i < camp.length; i++) {
+        console.log(camp)
+      }
+    },
+    changeCamp() {},
     changeServers(tab, event) {
       let name = event.target.getAttribute('id').slice(4)
+      this.getservername(name)
+      this.$router.push({
+        name: 'index',
+        query: { id: this.campId, name: this.campName },
+      })
+      this.route = false
+      this.camp = '恶人谷'
+      this.getcamp()
+    },
+    getservername(name) {
       for (let i = 0; i < this.servers.length; i++) {
         if (this.servers[i].server == name) {
           this.campId = this.servers[i].id
@@ -200,12 +236,6 @@ export default {
           this.maintain = this.servers[i].maintainer_name
         }
       }
-      this.$router.push({
-        name: 'Sandbox',
-        query: { id: this.campId, name: this.campName },
-      })
-
-      this.getcamp()
     },
     showlog(id, name, img, desc, link) {
       this.show = true
@@ -222,7 +252,6 @@ export default {
     },
   },
   mounted: function() {
-    this.getcamp()
     getCampServers().then((res) => {
       for (let i = 0; i < res.data.sandmaps.length; i++) {
         res.data.sandmaps[i].id = res.data.sandmaps[i].id + ''
@@ -230,6 +259,9 @@ export default {
         this.maintain = res.data.sandmaps[0].maintainer_name
       }
       this.servers = res.data.sandmaps
+      //   let data = this.$route.query
+
+      this.getcamp()
     })
   },
   filters: {
@@ -310,6 +342,20 @@ export default {
       } else {
         return '暂无介绍'
       }
+    },
+  },
+  watch: {
+    route: {
+      handler: function(val) {
+        if (val == true) {
+          this.getcampdetail()
+          if (this.camps == 'eren') {
+            this.getdetaillist(this.elist)
+          } else {
+            this.getdetaillist(this.hlist)
+          }
+        }
+      },
     },
   },
   components: {

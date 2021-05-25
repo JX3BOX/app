@@ -23,23 +23,29 @@
     display: flex;
     flex-direction: column;
     padding: 0 20px 40px 20px;
-    .m-item {
+    .m-change {
       display: flex;
-      align-items: center;
-      .mr(30px);
+      padding: 20px 0 10px 0;
+      .pr;
+      .m-item {
+        height: 40px;
+        display: flex;
+        align-items: center;
+        .mr(30px);
+        &:last-child {
+          height: 70px;
+          .pa;
+          .rt(0, 0);
+          .u-name {
+            .color(#f39);
+          }
+        }
+      }
     }
     .m-alert {
       .fz(12px);
       display: flex;
       justify-content: space-between;
-    }
-    .m-maintain {
-      display: flex;
-      justify-content: flex-end;
-      padding: 10px 20px 0;
-      .u-name {
-        .color(#f39);
-      }
     }
   }
 
@@ -50,8 +56,10 @@
     .size(898px, 797px);
     .m-box {
       .full;
+      .pr;
       .m-box-img {
-        .pr;
+        .pa;
+        .full;
         .u-img {
           .pa;
           img {
@@ -144,7 +152,8 @@
         }
       }
       .m-box-name {
-        .pr;
+        .pa;
+        .full;
         .u-img {
           .pa;
           .z(2);
@@ -262,6 +271,55 @@
         }
         .FuFengJun {
           .lt(306px, 222px);
+        }
+      }
+      .m-box-camp {
+        .pa;
+        .full;
+        .u-img {
+          .pa; 
+        }
+        .LuoDao {
+          .lt(724px, 326px);
+        }
+        .JinShuiZhen {
+          .lt(730px, 150px);
+        }
+        .BaLingXian {
+          .lt(644px, 486px);
+        }
+        .NanPingShan {
+          .lt(670px, 560px);
+        }
+        .LongMenHuangMo {
+          .lt(432px, 124px);
+        }
+        .KunLun {
+          .lt(252px, 142px);
+        }
+        .QuTangXia {
+          .lt(522px, 438px);
+        }
+        .BaiLongKou {
+          .lt(380px, 476px);
+        }
+        .WuLiangShan {
+          .lt(216px, 636px);
+        }
+        .RongTianLing {
+          .lt(170px, 290px);
+        }
+        .HeiLongZhao {
+          .lt(80px, 444px);
+        }
+        .CangShanErHai {
+          .lt(466px, 654px);
+        }
+        .FengHuaGuZhanLuan {
+          .lt(526px, 204px);
+        }
+        .MaWeiYi {
+          .lt(278px, 238px);
         }
       }
     }
