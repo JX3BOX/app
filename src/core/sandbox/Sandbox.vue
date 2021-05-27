@@ -21,7 +21,7 @@
             <span>问题反馈&区服维护申请：QQ1416956452</span>
           </div>
           <div class="m-change">
-            <div class="m-item">
+            <!-- <div class="m-item">
               <div class="m-title">选择阵营：</div>
               <el-radio-group v-model="camp" @change="changeCamp">
                 <el-radio-button label="恶人谷"></el-radio-button>
@@ -31,7 +31,7 @@
             <div class="m-item">
               <div class="m-title">查看进攻路线：</div>
               <el-switch v-model="route"> </el-switch>
-            </div>
+            </div> -->
             <div class="m-item">
               <span class="m-title">维护人员：</span>
               <span class="u-name">{{ this.maintain }}</span>
