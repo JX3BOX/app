@@ -232,6 +232,7 @@ export default {
         }
       }
       if (a == true) {
+        this.maplist = []
         for (let i = 0; i < camp.length; i++) {
           if (camp[i].id == this.campId) {
             this.maplist = camp[i].list
@@ -266,6 +267,7 @@ export default {
         }
       }
       if (a == true) {
+        this.attacks = []
         for (let i = 0; i < camp.length; i++) {
           if (camp[i].id == this.campId) {
             this.attacks = camp[i].list
@@ -342,6 +344,7 @@ export default {
       this.servers = res.data.sandmaps
       this.route = false
       this.camp = '恶人谷'
+      this.maplist = []
       //获取沙盘数据
       this.getcamp()
     })
