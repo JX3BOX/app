@@ -105,6 +105,24 @@
                         </el-col>
                         <el-col :span="12">
                             <div class="u-item">
+                                <a href="./sandbox">
+                                    <span class="u-pic">
+                                        <i class="u-icon">
+                                            <img svg-inline src="./assets/img/logos/sandbox.svg" />
+                                        </i>
+                                        <span class="u-name">阵营沙盘</span>
+                                    </span>
+                                    <span class="u-features">
+                                        <span class="u-desc">✔️ 全服沙盘查询</span>
+                                        <span>✔️ 攻防路线</span>
+                                        <span>✔️ 据点回溯</span>
+                                        <span>✔️ PVP党必备</span>
+                                    </span>
+                                </a>
+                            </div>
+                        </el-col>
+                        <el-col :span="12">
+                            <div class="u-item">
                                 <a href="/team" target="_blank">
                                     <span class="u-pic">
                                         <i class="u-icon">
@@ -156,24 +174,6 @@
                                         <span>✔️ PVE/PVP多维度</span>
                                         <span>✔️ 云端存储</span>
                                         <span>✔️ 自定义权限</span>
-                                    </span>
-                                </a>
-                            </div>
-                        </el-col>
-                        <el-col :span="12">
-                            <div class="u-item">
-                                <a href="./sandbox">
-                                    <span class="u-pic">
-                                        <i class="u-icon">
-                                            <img svg-inline src="./assets/img/logos/sandbox.svg" />
-                                        </i>
-                                        <span class="u-name">阵营沙盘</span>
-                                    </span>
-                                    <span class="u-features">
-                                        <span class="u-desc">✔️ 全服沙盘查询</span>
-                                        <span>✔️ 攻防路线</span>
-                                        <span>✔️ 据点回溯</span>
-                                        <span>✔️ PVP党必备</span>
                                     </span>
                                 </a>
                             </div>

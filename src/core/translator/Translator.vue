@@ -326,44 +326,7 @@ export default {
         },
         // 用于验证是否真的登录了
         testCheckIsLogin() {
-            let url = JX3BOX.__server + "user/meta";
-            return axios(
-                url,
-                "GET",
-                true,
-                {},
-                {},
-                { uid: this.uid, key: "jx3_servers" }
-            )
-                .then((response) => {
-                    if (response.code == 10050) {
-                        return true;
-                    } else {
-                        return false;
-                    }
-                })
-                .catch((e) => {
-                    switch (e.code) {
-                        case -1:
-                            // 网络异常
-                            this.$message.error(e.msg);
-                            this.getFromLocal();
-                            break;
-                        case 9999:
-                            this.$message.error("登录失效, 请重新登录");
-                            User.destroy();
-                            setTimeout(() => {
-                                User.toLogin();
-                            }, 2000);
-                            return false;
-                            break;
-                        default:
-                            // 服务器错误
-                            this.$message.error(`[${e.code}]${e.msg}`);
-                            this.getFromLocal();
-                    }
-                    return false;
-                });
+            return User.isLogin()
         },
 
         // 分割线
