@@ -55,7 +55,7 @@
                 <img :src="camp.camp | campmap(camp.id)" />
               </span>
             </div>
-           
+
             <!-- 进攻路线 -->
             <div class="m-box-arr">
               <span v-for="item in attacks" :key="item.name" :class="item.name_pinyin">
@@ -69,7 +69,7 @@
                 </i>
               </span>
             </div>
-             <!-- 地区名称 -->
+            <!-- 地区名称 -->
             <div class="m-box-camp">
               <span v-for="item in place.list" :key="item.id" class="u-img" :style="item.name_pinyin | placeCamp">
                 <img :src="item.name_pinyin | campimg" />
@@ -278,10 +278,12 @@ export default {
     //切换势力
     changeCamp(val) {
       this.camp = val
-      if (this.camps == 'eren') {
-        this.getdetaillist(this.elist)
-      } else {
-        this.getdetaillist(this.hlist)
+      if (this.route == true) {
+        if (this.camps == 'eren') {
+          this.getdetaillist(this.elist)
+        } else {
+          this.getdetaillist(this.hlist)
+        }
       }
     },
     //切换服务器
