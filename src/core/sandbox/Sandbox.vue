@@ -21,7 +21,7 @@
             <span>问题反馈&区服维护申请：QQ1416956452</span>
           </div>
           <div class="m-change">
-            <!-- <div class="m-item">
+            <div class="m-item">
               <div class="m-title">选择阵营：</div>
               <el-radio-group v-model="camp" @change="changeCamp">
                 <el-radio-button label="恶人谷"></el-radio-button>
@@ -31,7 +31,7 @@
             <div class="m-item">
               <div class="m-title">查看进攻路线：</div>
               <el-switch v-model="route"> </el-switch>
-            </div> -->
+            </div>
             <div class="m-item">
               <span class="m-title">维护人员：</span>
               <span class="u-name">{{ this.maintain }}</span>
@@ -45,29 +45,43 @@
           <div class="m-box">
             <!-- 据点分割&图 -->
             <div class="m-box-img">
-              <span class="u-img eren">
+              <span class="u-img" :style="'eren' | placeImg">
                 <img :src="27 | eImgPath" />
               </span>
-              <span class="u-img haoqi">
+              <span class="u-img" :style="'haoqi' | placeImg">
                 <img :src="25 | hImgPath" />
               </span>
-              <span v-for="camp in maplist" :key="camp.id" :class="camp.name_pinyin" class="u-img">
+              <span v-for="camp in maplist" :key="camp.id" :style="camp.name_pinyin | placeImg" class="u-img">
                 <img :src="camp.camp | campmap(camp.id)" />
               </span>
             </div>
+           
             <!-- 进攻路线 -->
+            <div class="m-box-arr">
+              <span v-for="item in attacks" :key="item.name" :class="item.name_pinyin">
+                <template v-if="item.attacks.length > 0">
+                  <img class="u-img" v-for="c in item.attacks" :key="c.id" :class="c.name_pinyin" :style="item.name_pinyin | placeAttacks(c.name_pinyin)" :src="camparr" />
+                </template>
+                <i v-for="a in item.castles" :key="a.name" :class="a.name_pinyin">
+                  <template v-if="a.attacks.length > 0">
+                    <img class="u-img" v-for="c in a.attacks" :key="c.id" :class="c.name_pinyin" :style="a.name_pinyin | placeArr(c.name_pinyin)" :src="camparr" />
+                  </template>
+                </i>
+              </span>
+            </div>
+             <!-- 地区名称 -->
             <div class="m-box-camp">
-              <span v-for="item in place.list" :key="item.id" class="u-img" :class="item.name_pinyin">
+              <span v-for="item in place.list" :key="item.id" class="u-img" :style="item.name_pinyin | placeCamp">
                 <img :src="item.name_pinyin | campimg" />
               </span>
             </div>
             <!-- 据点名称&历史记录 -->
             <div class="m-box-name">
-              <div class="u-img eren">
+              <div class="u-img eren" :style="'eren' | placeName">
                 <img :src="`${imgPath}/image/camp/erengu.png`" />
                 <span>恶人谷</span>
               </div>
-              <div class="u-img haoqi">
+              <div class="u-img haoqi" :style="'haoqi' | placeName">
                 <img :src="`${imgPath}/image/camp/haoqimeng.png`" />
                 <span>浩气盟</span>
               </div>
@@ -89,7 +103,7 @@
                   </div>
                   <div class="u-log" @click="showlog(item.id, item.name, item.name_pinyin, item.description, item.link)"><i class="el-icon-date"></i></div>
                 </div>
-                <div slot="reference" :class="item.name_pinyin" class="u-img" @click="showlog(item.id, item.name, item.name_pinyin, item.description, item.link)">
+                <div slot="reference" :class="item.name_pinyin" :style="item.name_pinyin | placeName" class="u-img" @click="showlog(item.id, item.name, item.name_pinyin, item.description, item.link)">
                   <img :src="item.camp | camptype(item.id) | iconImg(item.id)" />
                   <span>{{ item.name }}</span>
                 </div>
@@ -103,7 +117,7 @@
               <div class="u-box">
                 <span class="u-title">{{ camplist.name }}</span>
                 <span class="u-desc">{{ camplist.desc | campdesc }}</span>
-                <a class="u-baike" :href="camplist.link | camplink" target="_blank">查看百科 &raquo;</a>
+                <a class="u-baike" :href="camplist.link" target="_blank">查看百科 &raquo;</a>
               </div>
             </div>
             <ul class="u-cont" style="overflow:auto" v-if="camplist.list.length > 0">
@@ -133,6 +147,7 @@
 <script>
 import Nav from '@/components/Nav.vue'
 import place from './place.json'
+import { placeimg, placename, placecamp, placeattacks, placearr } from './place'
 import { __imgPath } from '@jx3box/jx3box-common/data/jx3box.json'
 import { getCamplist, getCampServers, getCampLog, getCampDetail } from '@/service/camp'
 
@@ -152,6 +167,7 @@ export default {
       show: false,
       activeName: '斗转星移',
       maplist: [],
+      maplists: [],
       imgPath: __imgPath,
       camplist: {
         namme: '',
@@ -162,7 +178,7 @@ export default {
       },
       elist: [],
       hlist: [],
-      dlist: [],
+      attacks: [],
     }
   },
   computed: {
@@ -179,8 +195,16 @@ export default {
         return 'haoqi'
       }
     },
+    camparr() {
+      if (this.camp == '恶人谷') {
+        return __imgPath + 'image/camp/cearr.png'
+      } else {
+        return __imgPath + 'image/camp/charr.png'
+      }
+    },
   },
   methods: {
+    //获取沙盘数据（无线路）
     getcamp() {
       let data = this.$route.query
       let parms = {
@@ -196,27 +220,71 @@ export default {
       parms.camp = this.camps
       getCamplist(parms).then((res) => {
         this.maplist = res.data.sandmap.castles
+        this.maplists.push({ id: this.campId, camp: this.camps, list: res.data.sandmap.castles })
       })
     },
+    //沙盘数据缓存
+    getcamps(camp = this.maplists) {
+      let a = false
+      for (let i = 0; i < camp.length; i++) {
+        if (camp[i].id == this.campId && camp[i].camp == this.camps) {
+          a = true
+        }
+      }
+      if (a == true) {
+        for (let i = 0; i < camp.length; i++) {
+          if (camp[i].id == this.campId) {
+            this.maplist = camp[i].list
+          }
+        }
+      } else {
+        this.getcamp()
+      }
+    },
+    //获取沙盘数据（有线路）
     getcampdetail() {
       let parms = {
         sandmap_id: this.campId,
         camp: this.camps,
       }
+      this.attacks = []
       getCampDetail(parms).then((res) => {
         if (this.camps == 'eren') {
           this.elist.push({ id: res.sandmap.id, list: res.sandmap.maps })
         } else {
           this.hlist.push({ id: res.sandmap.id, list: res.sandmap.maps })
         }
+        this.attacks.push(...res.sandmap.maps)
       })
     },
+    //沙盘线路缓存
     getdetaillist(camp) {
+      let a = false
       for (let i = 0; i < camp.length; i++) {
-        console.log(camp)
+        if (camp[i].id == this.campId) {
+          a = true
+        }
+      }
+      if (a == true) {
+        for (let i = 0; i < camp.length; i++) {
+          if (camp[i].id == this.campId) {
+            this.attacks = camp[i].list
+          }
+        }
+      } else {
+        this.getcampdetail()
       }
     },
-    changeCamp() {},
+    //切换势力
+    changeCamp(val) {
+      this.camp = val
+      if (this.camps == 'eren') {
+        this.getdetaillist(this.elist)
+      } else {
+        this.getdetaillist(this.hlist)
+      }
+    },
+    //切换服务器
     changeServers(tab, event) {
       let name = event.target.getAttribute('id').slice(4)
       this.getservername(name)
@@ -224,10 +292,18 @@ export default {
         name: 'index',
         query: { id: this.campId, name: this.campName },
       })
-      this.route = false
-      this.camp = '恶人谷'
-      this.getcamp()
+      this.getcamps()
+      if (this.route == true) {
+        if (this.camps == 'eren') {
+          this.getdetaillist(this.elist)
+        } else {
+          this.getdetaillist(this.hlist)
+        }
+      } else {
+        this.attacks = []
+      }
     },
+    //服务id,名字和维护人员
     getservername(name) {
       for (let i = 0; i < this.servers.length; i++) {
         if (this.servers[i].server == name) {
@@ -237,6 +313,7 @@ export default {
         }
       }
     },
+    //展示据点日志
     showlog(id, name, img, desc, link) {
       this.show = true
       this.camplist.name = name
@@ -247,11 +324,13 @@ export default {
         this.camplist.list = res.data.data
       })
     },
+    //关闭据点日志
     offshow() {
       this.show = false
     },
   },
   mounted: function() {
+    //获取服务器
     getCampServers().then((res) => {
       for (let i = 0; i < res.data.sandmaps.length; i++) {
         res.data.sandmaps[i].id = res.data.sandmaps[i].id + ''
@@ -259,8 +338,9 @@ export default {
         this.maintain = res.data.sandmaps[0].maintainer_name
       }
       this.servers = res.data.sandmaps
-      //   let data = this.$route.query
-
+      this.route = false
+      this.camp = '恶人谷'
+      //获取沙盘数据
       this.getcamp()
     })
   },
@@ -271,6 +351,7 @@ export default {
     eImgPath: function(val) {
       return __imgPath + 'image/camp/e' + val + '.png'
     },
+    //初始势力色块
     camptype: function(camp, id) {
       if (id == 301) {
         if (camp == 'haoqi') return __imgPath + 'image/camp/h_1.png'
@@ -288,6 +369,7 @@ export default {
         }
       }
     },
+    //过滤势力色块 img
     campmap: function(camp, id) {
       if (camp !== 'neutral') {
         if (camp == 'eren') {
@@ -305,6 +387,7 @@ export default {
         return __imgPath + 'image/camp/tm.png'
       }
     },
+    //过滤势力据点图片 img
     iconImg: function(val, id) {
       let str = val.split('1')
       if (id == 301) return str.join('lingfengbao')
@@ -329,13 +412,6 @@ export default {
       if (val == 'haoqi') return '浩气盟'
       return '中立'
     },
-    camplink: function(val) {
-      if (val) {
-        return val
-      } else {
-        return 'https://www.jx3box.com/search/'
-      }
-    },
     campdesc: function(val) {
       if (val) {
         return val
@@ -343,17 +419,38 @@ export default {
         return '暂无介绍'
       }
     },
+    //势力色块绝对定位
+    placeImg: function(val) {
+      return placeimg()[val]
+    },
+    //据点名绝对定位
+    placeName: function(val) {
+      return placename()[val]
+    },
+    //地名绝对定位
+    placeCamp: function(val) {
+      return placecamp()[val]
+    },
+    //地区箭头指向绝对定位
+    placeAttacks: function(val1, val2) {
+      return placeattacks()[val1][val2]
+    },
+    //区域内箭头指向绝对定位
+    placeArr: function(val1, val2) {
+      return placearr()[val1][val2]
+    },
   },
   watch: {
     route: {
       handler: function(val) {
         if (val == true) {
-          this.getcampdetail()
           if (this.camps == 'eren') {
             this.getdetaillist(this.elist)
           } else {
             this.getdetaillist(this.hlist)
           }
+        } else {
+          this.attacks = []
         }
       },
     },
