@@ -390,7 +390,7 @@ function placearr() {
     RiYueYa: {
       WoLongPo: {
         left: '312px',
-        top: '4804px',
+        top: '480px',
         transform: 'rotate(200deg)',
       },
     },
