@@ -28,8 +28,7 @@
 
 <script>
 import Nav from "@/components/Nav.vue";
-import axios from 'axios'
-import {__server} from '@jx3box/jx3box-common/data/jx3box.json'
+import {$cms} from '@jx3box/jx3box-common/js/https'
 
 export default {
     name: "Flower",
@@ -45,7 +44,7 @@ export default {
     filters: {
     },
     mounted: function() {
-        axios.get(__server + 'index/config').then((res) => {
+        $cms().get('/api/cms/config').then((res) => {
             res.data.data.forEach((item) => {
                 if(item.key == 'dps_url'){
                     location.href = item.val
