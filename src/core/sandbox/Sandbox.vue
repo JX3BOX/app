@@ -208,9 +208,9 @@ export default {
     attacks() {
       if (this.camp == '恶人谷') {
         return this.attack.eren
-      } else {
+      }   
         return this.attack.haoqi
-      }
+      
     },
   },
   methods: {
@@ -278,8 +278,7 @@ export default {
           a = true
         }
       }
-      if (a == true) {
-        this.attacks = []
+      if (a == true) { 
         for (let i = 0; i < camp.length; i++) {
           if (camp[i].id == this.campId) {
             if (this.camps == 'eren') {
