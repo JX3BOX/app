@@ -260,7 +260,7 @@ function placeattacks() {
     },
     JinShuiZhen: {
       LuoDao: { left: '704px', top: '246px', transform: 'rotate(200deg)' },
-      FengHuaGuZhanLuan: { left: '618px', top: '142px', transform: 'rotate(270eg)' },
+      FengHuaGuZhanLuan: { left: '618px', top: '142px', transform: 'rotate(270deg)' },
     },
     LuoDao: {
       JinShuiZhen: { left: '666px', top: '228px', transform: 'rotate(7deg)' },
