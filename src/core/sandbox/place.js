@@ -454,14 +454,14 @@ function placearr() {
       FengHuZhai: {
         left: '556px',
         top: '214px',
-        transform: 'rotate(320deg)',
+        transform: 'rotate(120deg)',
       },
     },
     FengHuZhai: {
       DanXingLin: {
         left: '558px',
         top: '218px',
-        transform: 'rotate(120deg)',
+        transform: 'rotate(320deg)',
       },
     },
     ShiWaiPo: {

@@ -178,7 +178,10 @@ export default {
       },
       elist: [],
       hlist: [],
-      attacks: [],
+      attack: {
+        eren: [],
+        haoqi: [],
+      },
     }
   },
   computed: {
@@ -202,6 +205,13 @@ export default {
         return __imgPath + 'image/camp/charr.png'
       }
     },
+    attacks() {
+      if (this.camp == '恶人谷') {
+        return this.attack.eren
+      } else {
+        return this.attack.haoqi
+      }
+    },
   },
   methods: {
     //获取沙盘数据（无线路）
@@ -218,6 +228,7 @@ export default {
       this.getservername(this.activeName)
       parms.sandmap_id = this.campId
       parms.camp = this.camps
+      this.maplist = []
       getCamplist(parms).then((res) => {
         this.maplist = res.data.sandmap.castles
         this.maplists.push({ id: this.campId, camp: this.camps, list: res.data.sandmap.castles })
@@ -248,14 +259,15 @@ export default {
         sandmap_id: this.campId,
         camp: this.camps,
       }
-      this.attacks = []
       getCampDetail(parms).then((res) => {
         if (this.camps == 'eren') {
           this.elist.push({ id: res.sandmap.id, list: res.sandmap.maps })
+          this.attack.eren = res.sandmap.maps
         } else {
+          this.hattack = []
           this.hlist.push({ id: res.sandmap.id, list: res.sandmap.maps })
+          this.attack.haoqi = res.sandmap.maps
         }
-        this.attacks.push(...res.sandmap.maps)
       })
     },
     //沙盘线路缓存
@@ -270,7 +282,11 @@ export default {
         this.attacks = []
         for (let i = 0; i < camp.length; i++) {
           if (camp[i].id == this.campId) {
-            this.attacks = camp[i].list
+            if (this.camps == 'eren') {
+              this.attack.eren = camp[i].list
+            } else {
+              this.attack.haoqi = camp[i].list
+            }
           }
         }
       } else {
@@ -297,14 +313,16 @@ export default {
         query: { id: this.campId, name: this.campName },
       })
       this.getcamps()
+      this.attack = {
+        eren: [],
+        haoqi: [],
+      }
       if (this.route == true) {
         if (this.camps == 'eren') {
           this.getdetaillist(this.elist)
         } else {
           this.getdetaillist(this.hlist)
         }
-      } else {
-        this.attacks = []
       }
     },
     //服务id,名字和维护人员
