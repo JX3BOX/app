@@ -22,7 +22,7 @@
             <h1 class="m-macroeditor-title">
                 智能宏编辑器
                 <a
-                    href="/tool/?pid=265"
+                    href="/tool/265"
                     target="_blank"
                     class="u-help el-button el-button--success is-plain el-button--mini"
                 >
