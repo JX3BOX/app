@@ -8,11 +8,7 @@
             :feedbackEnable="true"
             :crumbEnable="true"
         >
-            <img
-                slot="logo"
-                svg-inline
-                src="../../assets/img/logos/mirror.svg"
-            />
+            <img slot="logo" svg-inline src="../../assets/img/logos/mirror.svg" />
         </Breadcrumb>
         <LeftSidebar :open="false">
             <Nav />
@@ -21,85 +17,53 @@
             <div class="m-facedata">
                 <div class="m-face-parse">
                     <h1 class="m-face-parse-title">捏脸数据解析器</h1>
-                    
-
-                    <div class="m-face-parse-preview">
-                        <result v-if="facedata" :data="facedata" />
-                    </div>
+                    <Upload @success="handleSuccess" />
+                    <Facedat
+                        class="m-face-parse-preview"
+                        :data="json"
+                        :client="client"
+                        :clean="clean"
+                        :readOnly="false"
+                        :lock="false"
+                    />
                 </div>
             </div>
-            <Footer></Footer>
+            <!-- <Footer></Footer> -->
         </Main>
     </div>
 </template>
 
 <script>
 import Nav from "@/components/Nav.vue";
-import result from "@jx3box/jx3box-facedat/src/Facedat.vue"
-const { parse } = require("lua-json");
-
+import Facedat from "@jx3box/jx3box-facedat/src/Facedat";
+import Upload from "@jx3box/jx3box-facedat/src/Upload";
 export default {
     name: "Facedata",
     props: [],
-    data: function() {
+    data: function () {
         return {
             data: "",
-            support: !!FileReader,
-            facedata: "",
+            clean : false,
+            client : 'std',
+            done : false
         };
     },
-    computed: {},
+    computed: {
+        json : function (){
+            return this.data && this.data.json
+        }
+    },
     methods: {
-        // 上传数据
-        selectData: function(i) {
-            let fileInput = document.getElementById("face_file");
-            fileInput.dispatchEvent(new MouseEvent("click"));
-        },
-        uploadData: function(e) {
-            // let formdata = new FormData();
-            let file = e.target.files[0];
-            this.data = file;
-            this.parseData(file);
-        },
-        // 解析数据
-        parseData: function(facedata) {
-            const vm = this;
-
-            let fr = new FileReader();
-            fr.readAsText(facedata);
-            fr.onload = function(e) {
-                console.log("读取成功...开始执行分析...");
-
-                let data = e.target.result;
-                data = "return" + data.slice(data.indexOf("{"));
-
-                try {
-                    vm.facedata = JSON.stringify(parse(data));
-                    vm.$notify({
-                        title: "成功",
-                        message: "脸型数据解析成功",
-                        type: "success",
-                    });
-                } catch (e) {
-                    vm.$notify.error({
-                        title: "错误",
-                        message: "无法解析脸型数据",
-                    });
-                }
-            };
-            fr.onerror = function(e) {
-                vm.$notify.error({
-                    title: "错误",
-                    message: "无法解析脸型数据",
-                });
-            };
+        handleSuccess : function (data){
+            this.data = data
         },
     },
-    filters: {},
-    created: function() {},
+    mounted: function () {
+    },
     components: {
-        result,
-        Nav,
+        Facedat,
+        Upload,
+        Nav
     },
 };
 </script>

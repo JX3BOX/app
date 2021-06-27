@@ -410,9 +410,9 @@
                                     </span>
                                     <span class="u-features">
                                         <span class="u-desc">✔️ 捏脸数据提取分析</span>
-                                        <span>✔️ 提取局部设定</span>
-                                        <span>✔️ 选择部分参考</span>
-                                        <span>✔️ 轻松定制专属脸型</span>
+                                        <span>✔️ 怀旧服支持</span>
+                                        <span>✔️ 自定义修改导出</span>
+                                        <span>✔️ 支持过滤付费数据</span>
                                     </span>
                                 </a>
                             </div>
