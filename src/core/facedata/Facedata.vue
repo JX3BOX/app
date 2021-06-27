@@ -20,41 +20,8 @@
         <Main :withoutRight="true" :withoutLeft="true">
             <div class="m-facedata">
                 <div class="m-face-parse">
-                    <h1 class="m-face-parse-title">脸型妆容数据解析器</h1>
-                    <div class="m-face-parse-upload" v-if="support">
-                        <input
-                            class="u-input"
-                            type="file"
-                            id="face_file"
-                            @change="uploadData"
-                        />
-                        <p class="u-status" v-if="!data">
-                            请上传脸型数据，如何导出数据请查看<a
-                                href="/tool/746"
-                                target="_blank"
-                                >《捏脸数据导入导出方法》</a
-                            >
-                        </p>
-                        <p class="u-status" v-else>
-                            {{ data.name }}
-                        </p>
-                        <el-button
-                            class="u-btn"
-                            type="primary"
-                            @click="selectData"
-                            icon="el-icon-upload2"
-                            >上传脸型数据</el-button
-                        >
-                    </div>
-                    <el-alert
-                        v-else
-                        class="m-face-parse-notsupport"
-                        title="浏览器不支持"
-                        type="error"
-                        description="你的浏览器太老旧不支持本地解析,请更换chrome或其它现代浏览器"
-                        show-icon
-                    >
-                    </el-alert>
+                    <h1 class="m-face-parse-title">捏脸数据解析器</h1>
+                    
 
                     <div class="m-face-parse-preview">
                         <result v-if="facedata" :data="facedata" />
@@ -83,7 +50,7 @@ export default {
     },
     computed: {},
     methods: {
-        // 数据
+        // 上传数据
         selectData: function(i) {
             let fileInput = document.getElementById("face_file");
             fileInput.dispatchEvent(new MouseEvent("click"));
