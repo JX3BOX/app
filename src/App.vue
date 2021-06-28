@@ -409,8 +409,8 @@
                                         <span class="u-name">妆容解析</span>
                                     </span>
                                     <span class="u-features">
-                                        <span class="u-desc">✔️ 捏脸数据提取分析</span>
-                                        <span>✔️ 怀旧服支持</span>
+                                        <span class="u-desc">✔️ 怀旧服多端支持</span>
+                                        <span>✔️ 捏脸数据提取分析</span>
                                         <span>✔️ 自定义修改导出</span>
                                         <span>✔️ 支持过滤付费数据</span>
                                     </span>
