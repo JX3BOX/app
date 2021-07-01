@@ -15,10 +15,10 @@
         </LeftSidebar>
         <Main :withoutRight="true" :withoutLeft="true">
             <div class="m-facedata">
-                <div class="m-face-parse">
+                <div class="m-face-parse" :class="{on : done}" >
                     <h1 class="m-face-parse-title">捏脸数据解析器</h1>
                     <Upload @success="handleSuccess" />
-                    <Facedat class="m-face-parse-preview" :data="json" :lock="false" />
+                    <Facedat class="m-face-parse-preview" :data="json" :lock="false" v-show="done"/>
                 </div>
             </div>
             <!-- <Footer></Footer> -->
@@ -47,6 +47,11 @@ export default {
     methods: {
         handleSuccess: function (data) {
             this.data = data;
+            if(data?.json){
+                this.done = true
+            }else{
+                this.done = false
+            }
         },
     },
     mounted: function () {},
