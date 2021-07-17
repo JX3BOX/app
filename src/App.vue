@@ -84,6 +84,24 @@
                     </el-col>
                     <el-col :span="4">
                         <div class="u-item">
+                            <a href="./talent2/">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline src="./assets/img/logos/talent2.svg" />
+                                    </i>
+                                    <span class="u-name">镇派模拟器</span>
+                                </span>
+                                <span class="u-features">
+                                    <span>✔️️ 同步怀旧服</span>
+                                    <span>✔️️ 完全模拟游戏界面</span>
+                                    <span>✔️️ 支持方案分享</span>
+                                    <span>✔️️ 宏栏目联动</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col>
+                    <el-col :span="4">
+                        <div class="u-item">
                             <a href="./macroeditor">
                                 <span class="u-pic">
                                     <i class="u-icon">

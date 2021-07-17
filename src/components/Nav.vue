@@ -10,9 +10,22 @@
                 ><i class="u-app-icon"><img svg-inline :src="getIcon('icons')"/></i
                 ><span>图标库</span></a
             >
+            <a class="u-app" href="/app/macroeditor" :class="{on:isActive('macroeditor')}"
+                ><i class="u-app-icon"><img svg-inline :src="getIcon('macroeditor')"/></i
+                ><span>宏编辑器</span></a
+            >
+
             <a class="u-app" href="/app/talent" :class="{on:isActive('talent')}"
                 ><i class="u-app-icon"><img svg-inline :src="getIcon('talent')"/></i
                 ><span>奇穴模拟</span></a
+            >
+            <a class="u-app" href="/app/talent2" :class="{on:isActive('talent')}"
+                ><i class="u-app-icon"><img svg-inline :src="getIcon('talent2')"/></i
+                ><span>镇派模拟</span></a
+            >
+            <a class="u-app" href="/app/meridians" :class="{on:isActive('meridians')}"
+                ><i class="u-app-icon"><img svg-inline :src="getIcon('meridians')"/></i
+                ><span>经脉模拟</span></a
             >
 
             <a class="u-app" href="/team" target="_blank"
@@ -27,20 +40,7 @@
                 ><i class="u-app-icon"><img svg-inline :src="getIcon('battle')"/></i
                 ><span>战斗分析</span></a
             >
-
-            <a class="u-app" href="/app/meridians" :class="{on:isActive('meridians')}"
-                ><i class="u-app-icon"><img svg-inline :src="getIcon('meridians')"/></i
-                ><span>经脉模拟</span></a
-            >
-            <a class="u-app" href="/app/macroeditor" :class="{on:isActive('macroeditor')}"
-                ><i class="u-app-icon"><img svg-inline :src="getIcon('macroeditor')"/></i
-                ><span>宏编辑器</span></a
-            >
-            <a class="u-app" href="/app/sandbox" :class="{on:isActive('sandbox')}"
-                ><i class="u-app-icon"><img svg-inline :src="getIcon('sandbox')"/></i
-                ><span>阵营沙盘</span></a
-            >
-
+            
             <a class="u-app" href="/fb/#/skill" target="_blank"
                 ><i class="u-app-icon"><img svg-inline :src="getIcon('fbdata')"/></i
                 ><span>副本数据</span></a
@@ -53,6 +53,11 @@
                 ><i class="u-app-icon"><img svg-inline :src="getIcon('fbgem')"/></i
                 ><span>瑰石查询</span></a
             >
+
+            <a class="u-app" href="/app/sandbox" :class="{on:isActive('sandbox')}"
+                ><i class="u-app-icon"><img svg-inline :src="getIcon('sandbox')"/></i
+                ><span>阵营沙盘</span></a
+            >
             <a class="u-app" href="https://www.j3pz.com/" target="_blank"
                 ><i class="u-app-icon"><img svg-inline :src="getIcon('j3pz')"/></i
                 ><span>在线配装</span
@@ -61,6 +66,7 @@
                 ><i class="u-app-icon"><img svg-inline :src="getIcon('haste')"/></i
                 ><span>急速阈值</span
                 ></a>
+            
             <a class="u-app" href="/app/translator" :class="{on:isActive('translator')}"
                 ><i class="u-app-icon"><img svg-inline :src="getIcon('translator')"/></i
                 ><span>轉換繁體</span></a

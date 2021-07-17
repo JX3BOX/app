@@ -87,7 +87,7 @@ module.exports = {
         sandbox: {
             title: "阵营沙盘- JX3BOX",
             entry: "src/core/sandbox/sandbox.js",
-            template: "public/index.html",
+            template: "public/sandbox.html",
             filename: "sandbox/index.html",
         },
         dps: {
@@ -101,6 +101,12 @@ module.exports = {
             entry: "src/core/meridians/meridians.js",
             template: "public/index.html",
             filename: "meridians/index.html",
+        },
+        talent2: {
+            title: "镇派模拟器 - JX3BOX",
+            entry: "src/core/talent2/talent2.js",
+            template: "public/index.html",
+            filename: "talent2/index.html",
         },
     },
 
