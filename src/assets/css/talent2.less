@@ -1,3 +1,84 @@
 .m-talent2-box{
-    
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    /* .m-talent2-left {}
+    .m-talent2-right {} */
+
+    .m-talent2-title {
+      &-count {
+        font-size: 14px;
+        margin-right: 8px;
+      }
+      &-name {
+        font-weight: bold;
+      }
+    }
+    .m-talent2-content {
+      padding: 12px 48px;
+      
+      &-row {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+
+        &:not(:last-of-type) {
+          margin-bottom: 8px;
+        }
+        &-disabled {
+          cursor: not-allowed;
+        }
+      }
+
+      &-item {
+        display: flex;
+        position: relative;
+        justify-content: center;
+        align-items: center;
+        height: 48px;
+        width: 48px;
+        border: 2px solid #ececec;
+        border-radius: 50%;
+        cursor: pointer;
+
+        background: chocolate;
+
+        &:hover {
+          border-color: burlywood;
+        }
+
+        &-inactive {
+          filter: grayscale(100%);
+        }
+
+        &-disabled {
+          pointer-events: none;
+        }
+
+        img {
+          height: 48px;
+          width: 48px;
+        }
+
+        &-empty {
+          visibility: hidden;
+        }
+
+        &-count {
+          position: absolute;
+          right: 0;
+          bottom: 0;
+        }
+
+        &-relate {
+          position: absolute;
+          font-size: 24px;
+          bottom: -12px;
+        }
+
+        &-skill {
+          border-radius: 6px;
+        }
+      }
+
+    }
 }

@@ -1,0 +1,303 @@
+{
+  "left": [
+    [{
+        "name": "技能1",
+        "max": 3,
+        "type": "talent",
+        "children": []
+      },
+      null,
+      {
+        "name": "技能1",
+        "max": 3,
+        "type": "talent",
+        "children": []
+      },
+      null
+    ],
+    [{
+        "name": "技能1",
+        "max": 3,
+        "type": "talent",
+        "children": []
+      },
+      {
+        "name": "技能1",
+        "max": 3,
+        "type": "talent",
+        "children": []
+      },
+      {
+        "name": "技能1",
+        "max": 3,
+        "type": "talent",
+        "children": []
+      },
+      {
+        "name": "技能1",
+        "max": 3,
+        "type": "skill",
+        "children": []
+      }
+    ],
+    [{
+        "name": "技能1",
+        "max": 3,
+        "type": "talent",
+        "children": []
+      },
+      {
+        "name": "技能1",
+        "max": 3,
+        "type": "talent",
+        "children": []
+      },
+      {
+        "name": "技能1",
+        "max": 3,
+        "type": "talent",
+        "children": []
+      },
+      {
+        "name": "技能1",
+        "max": 3,
+        "type": "talent",
+        "children": []
+      }
+    ],
+    [{
+        "name": "技能1",
+        "max": 3,
+        "type": "talent",
+        "children": []
+      },
+      {
+        "name": "技能1",
+        "max": 3,
+        "type": "talent",
+        "children": []
+      },
+      {
+        "name": "技能1",
+        "max": 3,
+        "type": "talent",
+        "children": []
+      },
+      {
+        "name": "技能1",
+        "max": 3,
+        "type": "talent",
+        "children": []
+      }
+    ],
+    [{
+        "name": "技能1",
+        "max": 3,
+        "type": "talent",
+        "children": []
+      },
+      {
+        "name": "技能1",
+        "max": 3,
+        "type": "talent",
+        "children": []
+      },
+      {
+        "name": "技能1",
+        "max": 3,
+        "type": "talent",
+        "children": [{
+          "row": 5,
+          "index": 2
+        }]
+      },
+      {
+        "name": "技能1",
+        "max": 3,
+        "type": "talent",
+        "children": []
+      }
+    ],
+    [{
+        "name": "技能1",
+        "max": 3,
+        "type": "talent",
+        "children": []
+      },
+      {
+        "name": "技能1",
+        "max": 3,
+        "type": "talent",
+        "children": []
+      },
+      {
+        "name": "技能1",
+        "max": 3,
+        "type": "talent",
+        "children": [],
+        "parent": [{
+          "row": 4,
+          "index": 2
+        }]
+      },
+      {
+        "name": "技能1",
+        "max": 3,
+        "type": "talent",
+        "children": []
+      }
+    ]
+  ],
+  "right": [
+    [{
+        "name": "技能1",
+        "max": 3,
+        "type": "talent",
+        "children": []
+      },
+      {
+        "name": "技能1",
+        "max": 3,
+        "type": "talent",
+        "children": []
+      },
+      {
+        "name": "技能1",
+        "max": 3,
+        "type": "talent",
+        "children": []
+      },
+      {
+        "name": "技能1",
+        "max": 3,
+        "type": "talent",
+        "children": []
+      }
+    ],
+    [{
+        "name": "技能1",
+        "max": 3,
+        "type": "talent",
+        "children": []
+      },
+      {
+        "name": "技能1",
+        "max": 3,
+        "type": "talent",
+        "children": []
+      },
+      {
+        "name": "技能1",
+        "max": 3,
+        "type": "talent",
+        "children": []
+      },
+      {
+        "name": "技能1",
+        "max": 3,
+        "type": "talent",
+        "children": []
+      }
+    ],
+    [{
+        "name": "技能1",
+        "max": 3,
+        "type": "talent",
+        "children": []
+      },
+      {
+        "name": "技能1",
+        "max": 3,
+        "type": "talent",
+        "children": []
+      },
+      {
+        "name": "技能1",
+        "max": 3,
+        "type": "talent",
+        "children": []
+      },
+      {
+        "name": "技能1",
+        "max": 3,
+        "type": "talent",
+        "children": []
+      }
+    ],
+    [{
+        "name": "技能1",
+        "max": 3,
+        "type": "talent",
+        "children": []
+      },
+      {
+        "name": "技能1",
+        "max": 3,
+        "type": "talent",
+        "children": []
+      },
+      {
+        "name": "技能1",
+        "max": 3,
+        "type": "talent",
+        "children": []
+      },
+      {
+        "name": "技能1",
+        "max": 3,
+        "type": "talent",
+        "children": []
+      }
+    ],
+    [{
+        "name": "技能1",
+        "max": 3,
+        "type": "talent",
+        "children": []
+      },
+      {
+        "name": "技能1",
+        "max": 3,
+        "type": "talent",
+        "children": []
+      },
+      {
+        "name": "技能1",
+        "max": 3,
+        "type": "talent",
+        "children": []
+      },
+      {
+        "name": "技能1",
+        "max": 3,
+        "type": "talent",
+        "children": []
+      }
+    ],
+    [{
+        "name": "技能1",
+        "max": 3,
+        "type": "talent",
+        "children": []
+      },
+      {
+        "name": "技能1",
+        "max": 3,
+        "type": "talent",
+        "children": []
+      },
+      {
+        "name": "技能1",
+        "max": 3,
+        "type": "talent",
+        "children": []
+      },
+      {
+        "name": "技能1",
+        "max": 3,
+        "type": "talent",
+        "children": []
+      }
+    ]
+  ]
+}
