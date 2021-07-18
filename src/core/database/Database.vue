@@ -25,6 +25,12 @@
                     </el-input>
                 </div>
                 <div class="m-databse-subtype">
+                    <div class="u-subtype u-client">
+                        <el-radio-group v-model="client" size="medium" @change="search">
+                            <el-radio-button label="std">正式服</el-radio-button>
+                            <el-radio-button label="origin">怀旧服</el-radio-button>
+                        </el-radio-group>
+                    </div>
                     <!-- <div class="u-label">
                         <i class="el-icon-s-operation"></i>追加条件
                     </div>-->
@@ -221,6 +227,8 @@ export default {
             pages: 1,
 
             hasRight: false,
+
+            client : 'std'
         };
     },
     computed: {
@@ -246,6 +254,7 @@ export default {
                 strict: ~~this.strict,
                 per: this.per,
                 page: page,
+                client : this.client
             };
             if (this.type == "npc") {
                 if (this.npc_map) params.map = this.npc_map;
@@ -307,7 +316,9 @@ export default {
     },
     filters: {},
     created: function () {
-        loadStat().then((data) => {
+        this.client = this.$store.state.client;
+
+        loadStat(this.client).then((data) => {
             this.stat = data;
         });
 

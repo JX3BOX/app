@@ -13,8 +13,12 @@ function loadResource(type, condition, query, params) {
         });
 }
 
-function loadStat() {
-    return axios.get(__node).then((res) => {
+function loadStat(client) {
+    return axios.get(__node,{
+        params : {
+            client
+        }
+    }).then((res) => {
         return res.data;
     });
 }
