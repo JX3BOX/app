@@ -7,7 +7,10 @@
         <ul class="m-resource-list m-buff-list" v-if="list && list.length">
             <li v-for="(o, i) in list" class="u-item u-cantoggle" :key="i">
                 <div class="u-buff">
-                    <span class="u-id">ID:{{ o.BuffID }}</span>
+                    <span class="u-id">
+                        ID:{{ o.BuffID }}
+                        <span class="u-detach">{{o.DetachType | showDetachType}}</span>
+                    </span>
                     <img class="u-pic" :title="'IconID:' + o.IconID" :src="o.IconID | iconURL" />
                     <div class="u-primary">
                         <span class="u-name">
@@ -57,8 +60,10 @@
 
 <script>
 import { __iconPath, __ossRoot } from "@jx3box/jx3box-common/data/jx3box.json";
+import detach_types from "@jx3box/jx3box-data/data/bps/detach_type.json";
 import buffmap from "@jx3box/jx3box-data/data/app/buff.json";
 import { iconLink } from "@jx3box/jx3box-common/js/utils";
+
 export default {
     name: "data_buff",
     props: ["data", "vip", "status"],
@@ -89,6 +94,13 @@ export default {
         filterRaw: function (str) {
             return str && str.replace(/\\n/g, "\n");
         },
+        showDetachType : function (val){
+            if(val && detach_types[val]){
+                return detach_types[val]
+            }else{
+                return ''
+            }
+        }
     },
     methods: {
         toggleProps: function (o) {
