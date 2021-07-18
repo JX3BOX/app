@@ -5,16 +5,9 @@ Vue.use(Vuex);
 
 let store = new Vuex.Store({
     state: {
-        selectMeridians: [],
-        defineMeridians: [],
+        client: location.href.includes("origin") ? "origin" : "std",
     },
     mutations: {
-        setSelect(state, select){
-            state.selectMeridians = select
-        },
-        setDefine(state, define){
-            state.defineMeridians = define
-        }
     },
     getters: {
     },

@@ -14,9 +14,10 @@ import "@jx3box/jx3box-common/css/element.css";
 import "@jx3box/jx3box-common/css/normalize.css";
 Vue.use(JX3BOX_UI);
 
-
+import store from "../../store/meridians";
 import Meridians from "./Meridians.vue";
 new Vue({
+    store,
     render: h => h(Meridians),
 }).$mount("#app");
 

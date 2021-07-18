@@ -16,12 +16,12 @@ Vue.use(JX3BOX_UI);
 
 // 数据与路由
 // import router from "../router";
-// import store from "../store";
+import store from "../../store";
 
 import Database from "./Database.vue";
 new Vue({
     // router,
-    // store,
+    store,
     render: h => h(Database),
 }).$mount("#app");
 
