@@ -69,7 +69,9 @@
                                 <span class="m-talent2-title-count">{{ lCount }}</span>
                                 <span class="m-talent2-title-name">{{ l_name }}</span>
                             </div>
-                            <div class="m-talent2-content">
+                            <div class="m-talent2-content" :style="{
+                                'background-image': `url(${talentBg(0)})`
+                            }">
                                 <div
                                     class="m-talent2-content-row"
                                     :class="[
@@ -111,7 +113,9 @@
                                 <span class="m-talent2-title-count">{{ rCount }}</span>
                                 <span class="m-talent2-title-name">{{ r_name }}</span>
                             </div>
-                            <div class="m-talent2-content">
+                            <div class="m-talent2-content" :style="{
+                                'background-image': `url(${talentBg(1)})`
+                            }">
                                 <div
                                     class="m-talent2-content-row"
                                     :class="[
@@ -191,14 +195,15 @@ export default {
     props: [],
     data: function() {
         return {
-            xf: "其它",
+            xf: "10081",
             code:'',
             begin: 'right',
             l_name: '斩绝',
             r_name: '封魂',
 
             version : '不删档公测',
-            versions: [],
+            versions: [], // 版本列表
+            talents: [], // 镇派数据
             xfmap,
             total: 33,
             l_data: ["0000", "0000", "0000", "0000", "0000", "0000"],
@@ -483,18 +488,49 @@ export default {
 
             }
         },
+        
+        talentBg: function(num) {
+            return __imgPath + `image/talent/${this.xf}_${num}.png`
+        },
 
         //  区域逻辑
         // ----------------
+
+        // 请求逻辑
+        // ---------------------
+        // 获取版本列表
+        getVersions: function() {
+            fetch(__ossRoot + '/data/talent2/index.json')
+                .then(res => res.json())
+                .then(response => {
+                    this.versions = response
+                    this.version = this.versions[0]?.version
+                })
+        },
+        getTalents: function() {
+            fetch(__ossRoot + '/data/talent2/' + this.version + '.json')
+                .then(res => res.json())
+                .then(response => {
+                    this.talents = response
+                })
+        }
         
 
     },
     filters: {
         xficon: function(id) {
             return __imgPath + "image/xf/" + id + ".png";
-        },
+        }
+    },
+    watch: {
+        version: function(val) {
+            if (val) {
+                this.getTalents()
+            }
+        }
     },
     mounted: function() {
+        this.getVersions()
     },
     components: {
         Nav,
