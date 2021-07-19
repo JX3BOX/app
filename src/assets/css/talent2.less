@@ -1,7 +1,12 @@
 .m-talent2-box {
-    display: grid;
+    /* display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 35px;
+    gap: 35px; */
+
+    display: flex;
+    justify-content: space-between;
+    // margin: 0 auto;
+
 
     background-image: url('../img/talent2/bg.png');
     background-repeat: no-repeat;
@@ -9,18 +14,22 @@
     width: 67%;
 
     .m-talent2-left {
-        position: relative;
-        left: 10px
+        /* position: relative;
+        left: 10px */
+        // margin: 0 30px;
+        flex: auto;
     }
     .m-talent2-right {
-        position: relative;
-        right: 10px;
+        // position: relative;
+        // right: 10px;
+        // margin: 0 30px;
+        flex: auto;
     }
 }
 
 .m-talent2-title {
     padding: 40px 20px 0 50px;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 
 
     &-count {
