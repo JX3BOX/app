@@ -62,103 +62,116 @@
                     </div>
                     <h2 class="m-talent-subtitle">配置镇派</h2>
                     <div class="m-talent2-box">
-
-                        <!-- LEFT -->
-                        <div class="m-talent2-left">
-                            <div class="m-talent2-title">
-                                <img class="m-talent2-xf-icon" :src="xfContent[0] | xficon">
-                                <span class="m-talent2-title-count">{{ lCount }}</span>
-                                <span class="m-talent2-title-name">{{ l_name }}</span>
-                            </div>
-                            <div class="m-talent2-content" :style="{
-                                'background-image': xf ? (lCount ? `url(${talentBg('left', 1)})` : `url(${talentBg('left', 0)})`) : ''
-                            }">
-                                <div
-                                    class="m-talent2-content-row"
-                                    :class="[
-                                        !canOperate(index, 'left') ? 'm-talent2-content-row-disabled' : ''
-                                    ]"
-                                    v-for="(row, index) in talentContent.left"
-                                    :key="'l'+index"
-                                >
-                                    <template v-for="(item, i) in row">
-                                        <div
-                                            v-if="item"
-                                            class="m-talent2-content-item"
-                                            :class="[
-                                                {'m-talent2-content-item-skill': item.type === 'skill'},
-                                                {'m-talent2-content-item-inactive': !Number(l_data[index][i])},
-                                                !canOperate(index, 'left') ? 'm-talent2-content-item-disabled' : ''
-                                            ]"
-                                            :key="i"
-                                            @click="leftTalentAdd(item, index, i)"
-                                            @click.right.prevent="leftTalentDecrease(index, i)"
-                                        >
-                                            <div class="m-talent2-skill" :title="item.desc">
-                                                <img :src="item.icon | talentIcon" :alt="item.name">
-                                            </div>
-                                            <!-- COUNT -->
-                                            <span
-                                                v-if="Number(l_data[index][i])"
-                                                class="m-talent2-content-item-count"
-                                            >{{ l_data[index][i] }}</span>
-                                            <!-- CHILDREN -->
-                                            <i v-if="item.children.length" class="el-icon-bottom m-talent2-content-item-relate"></i>
+                        <template v-if="xf">
+                            <div class="m-talent2-surplus">剩余点数: {{ total - totalCount }}</div>
+                            <div class="m-talent2-main">
+                                <!-- LEFT -->
+                                <div class="m-talent2-left">
+                                    
+                                    <div class="m-talent2-content" :style="{
+                                        'background-image': xf ? (lCount ? `url(${talentBg('left', 1)})` : `url(${talentBg('left', 0)})`) : ''
+                                    }">
+                                        <div class="m-talent2-title">
+                                            <img class="m-talent2-xf-icon" :src="xfContent[0] | xficon">
+                                            <span class="m-talent2-title-count">{{ lCount }}</span>
+                                            <span class="m-talent2-title-name">{{ l_name }}</span>
                                         </div>
-                                        <div v-else class="m-talent2-content-item-empty" :key="i"></div>
-                                    </template>
+                                        <div
+                                            class="m-talent2-content-row"
+                                            :class="[
+                                                !canOperate(index, 'left') ? 'm-talent2-content-row-disabled' : ''
+                                            ]"
+                                            v-for="(row, index) in talentContent.left"
+                                            :key="'l'+index"
+                                        >
+                                            <template v-for="(item, i) in row">
+                                                <div
+                                                    v-if="item"
+                                                    class="m-talent2-content-item"
+                                                    :class="[
+                                                        {'m-talent2-content-item-skill': item.type === 'skill'},
+                                                        {'m-talent2-content-item-inactive': !Number(l_data[index][i])},
+                                                        !canOperate(index, 'left') ? 'm-talent2-content-item-disabled' : ''
+                                                    ]"
+                                                    :key="i"
+                                                    @click="leftTalentAdd(item, index, i)"
+                                                    @click.right.prevent="leftTalentDecrease(index, i)"
+                                                >
+                                                    <div class="m-talent2-skill" :title="item.desc">
+                                                        <img :src="item.icon | talentIcon" :alt="item.name">
+                                                    </div>
+                                                    <!-- COUNT -->
+                                                    <span
+                                                        v-if="Number(l_data[index][i])"
+                                                        class="m-talent2-content-item-count"
+                                                    >{{ l_data[index][i] }}</span>
+                                                    <!-- CHILDREN -->
+                                                    <i v-if="item.children.length" class="el-icon-bottom m-talent2-content-item-relate"></i>
+                                                </div>
+                                                <div v-else class="m-talent2-content-item-empty" :key="i"></div>
+                                            </template>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <!-- RIGHT -->
+                                <div class="m-talent2-right">
+                                    <div class="m-talent2-content" :style="{
+                                        'background-image': xf ? (rCount ? `url(${talentBg('right', 1)})` : `url(${talentBg('right', 0)})`) : ''
+                                    }">
+                                        <div class="m-talent2-title">
+                                            <img class="m-talent2-xf-icon" :src="xfContent[1] | xficon">
+                                            <span class="m-talent2-title-count">{{ rCount }}</span>
+                                            <span class="m-talent2-title-name">{{ r_name }}</span>
+                                        </div>
+                                        <div
+                                            class="m-talent2-content-row"
+                                            :class="[
+                                                !canOperate(index, 'right') ? 'm-talent2-content-row-disabled' : ''
+                                            ]"
+                                            v-for="(row, index) in talentContent.right"
+                                            :key="'l'+index"
+                                        >
+                                            <template v-for="(item, i) in row">
+                                                <div
+                                                    v-if="item"
+                                                    class="m-talent2-content-item"
+                                                    :class="[
+                                                        {'m-talent2-content-item-skill': item.type === 'skill'},
+                                                        {'m-talent2-content-item-inactive': !Number(r_data[index][i])},
+                                                        !canOperate(index, 'right') ? 'm-talent2-content-item-disabled' : ''
+                                                    ]"
+                                                    :key="i"
+                                                    @click="rightTalentAdd(item, index, i)"
+                                                    @click.right.prevent="rightTalentDecrease(index, i)"
+                                                >
+                                                    <div class="m-talent2-skill" :title="item.desc">
+                                                        <img :src="item.icon | talentIcon" :alt="item.name">
+                                                    </div>
+                                                    <!-- COUNT -->
+                                                    <span
+                                                        v-if="Number(r_data[index][i])"
+                                                        class="m-talent2-content-item-count"
+                                                    >{{ r_data[index][i] }}</span>
+                                                    <!-- CHILDREN -->
+                                                    <i v-if="item.children.length" class="el-icon-bottom m-talent2-content-item-relate"></i>
+                                                </div>
+                                                <div v-else class="m-talent2-content-item-empty" :key="i"></div>
+                                            </template>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-
-
-                        <!-- RIGHT -->
-                        <div class="m-talent2-right">
-                            <div class="m-talent2-title">
-                                <img class="m-talent2-xf-icon" :src="xfContent[1] | xficon">
-                                <span class="m-talent2-title-count">{{ rCount }}</span>
-                                <span class="m-talent2-title-name">{{ r_name }}</span>
+                            <!-- TODO: hover动画 -->
+                            <div class="m-talent2-actions">
+                                <el-button
+                                    class="m-talent2-actions-btn"
+                                    size="mini"
+                                    @click="reset"
+                                >重置</el-button>
                             </div>
-                            <div class="m-talent2-content" :style="{
-                                'background-image': xf ? (rCount ? `url(${talentBg('right', 1)})` : `url(${talentBg('right', 0)})`) : ''
-                            }">
-                                <div
-                                    class="m-talent2-content-row"
-                                    :class="[
-                                        !canOperate(index, 'right') ? 'm-talent2-content-row-disabled' : ''
-                                    ]"
-                                    v-for="(row, index) in talentContent.right"
-                                    :key="'l'+index"
-                                >
-                                    <template v-for="(item, i) in row">
-                                        <div
-                                            v-if="item"
-                                            class="m-talent2-content-item"
-                                            :class="[
-                                                {'m-talent2-content-item-skill': item.type === 'skill'},
-                                                {'m-talent2-content-item-inactive': !Number(r_data[index][i])},
-                                                !canOperate(index, 'right') ? 'm-talent2-content-item-disabled' : ''
-                                            ]"
-                                            :key="i"
-                                            @click="rightTalentAdd(item, index, i)"
-                                            @click.right.prevent="rightTalentDecrease(index, i)"
-                                        >
-                                             <div class="m-talent2-skill" :title="item.desc">
-                                                <img :src="item.icon | talentIcon" :alt="item.name">
-                                            </div>
-                                            <!-- COUNT -->
-                                            <span
-                                                v-if="Number(r_data[index][i])"
-                                                class="m-talent2-content-item-count"
-                                            >{{ r_data[index][i] }}</span>
-                                            <!-- CHILDREN -->
-                                            <i v-if="item.children.length" class="el-icon-bottom m-talent2-content-item-relate"></i>
-                                        </div>
-                                        <div v-else class="m-talent2-content-item-empty" :key="i"></div>
-                                    </template>
-                                </div>
-                            </div>
-                        </div>
+                        </template>
                     </div>
                     <h2 class="m-talent-subtitle">镇派编码</h2>
                     <div class="m-talent-code">
@@ -272,6 +285,10 @@ export default {
     },
     methods: {
         reload: function(schema) {
+        },
+        reset: function() {
+            this.l_data = ["0000", "0000", "0000", "0000", "0000", "0000"];
+            this.r_data = ["0000", "0000", "0000", "0000", "0000", "0000"];
         },
         onCopy: function(val) {
             this.$notify({
