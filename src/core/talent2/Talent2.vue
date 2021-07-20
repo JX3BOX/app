@@ -66,18 +66,19 @@
                         <!-- LEFT -->
                         <div class="m-talent2-left">
                             <div class="m-talent2-title">
+                                <img class="m-talent2-xf-icon" :src="xfContent[0] | xficon">
                                 <span class="m-talent2-title-count">{{ lCount }}</span>
                                 <span class="m-talent2-title-name">{{ l_name }}</span>
                             </div>
                             <div class="m-talent2-content" :style="{
-                                'background-image': lCount ? `url(${talentBg('left', 1)})` : `url(${talentBg('left', 0)})`
+                                'background-image': xf ? (lCount ? `url(${talentBg('left', 1)})` : `url(${talentBg('left', 0)})`) : ''
                             }">
                                 <div
                                     class="m-talent2-content-row"
                                     :class="[
                                         !canOperate(index, 'left') ? 'm-talent2-content-row-disabled' : ''
                                     ]"
-                                    v-for="(row, index) in example.left"
+                                    v-for="(row, index) in talentContent.left"
                                     :key="'l'+index"
                                 >
                                     <template v-for="(item, i) in row">
@@ -93,10 +94,14 @@
                                             @click="leftTalentAdd(item, index, i)"
                                             @click.right.prevent="leftTalentDecrease(index, i)"
                                         >
-                                            <!-- <img src="" :alt="item.name"> -->
-                                            <span>{{ item.name }}</span>
+                                            <div class="m-talent2-skill" :title="item.desc">
+                                                <img :src="item.icon | talentIcon" :alt="item.name">
+                                            </div>
                                             <!-- COUNT -->
-                                            <span class="m-talent2-content-item-count">{{ l_data[index][i] }}</span>
+                                            <span
+                                                v-if="Number(l_data[index][i])"
+                                                class="m-talent2-content-item-count"
+                                            >{{ l_data[index][i] }}</span>
                                             <!-- CHILDREN -->
                                             <i v-if="item.children.length" class="el-icon-bottom m-talent2-content-item-relate"></i>
                                         </div>
@@ -110,18 +115,19 @@
                         <!-- RIGHT -->
                         <div class="m-talent2-right">
                             <div class="m-talent2-title">
+                                <img class="m-talent2-xf-icon" :src="xfContent[1] | xficon">
                                 <span class="m-talent2-title-count">{{ rCount }}</span>
                                 <span class="m-talent2-title-name">{{ r_name }}</span>
                             </div>
                             <div class="m-talent2-content" :style="{
-                                'background-image': rCount ? `url(${talentBg('right', 1)})` : `url(${talentBg('right', 0)})`
+                                'background-image': xf ? (rCount ? `url(${talentBg('right', 1)})` : `url(${talentBg('right', 0)})`) : ''
                             }">
                                 <div
                                     class="m-talent2-content-row"
                                     :class="[
                                         !canOperate(index, 'right') ? 'm-talent2-content-row-disabled' : ''
                                     ]"
-                                    v-for="(row, index) in example.right"
+                                    v-for="(row, index) in talentContent.right"
                                     :key="'l'+index"
                                 >
                                     <template v-for="(item, i) in row">
@@ -137,10 +143,14 @@
                                             @click="rightTalentAdd(item, index, i)"
                                             @click.right.prevent="rightTalentDecrease(index, i)"
                                         >
-                                            <!-- <img src="" :alt="item.name"> -->
-                                            <span>{{ item.name }}</span>
+                                             <div class="m-talent2-skill" :title="item.desc">
+                                                <img :src="item.icon | talentIcon" :alt="item.name">
+                                            </div>
                                             <!-- COUNT -->
-                                            <span class="m-talent2-content-item-count">{{ r_data[index][i] }}</span>
+                                            <span
+                                                v-if="Number(r_data[index][i])"
+                                                class="m-talent2-content-item-count"
+                                            >{{ r_data[index][i] }}</span>
                                             <!-- CHILDREN -->
                                             <i v-if="item.children.length" class="el-icon-bottom m-talent2-content-item-relate"></i>
                                         </div>
@@ -188,15 +198,15 @@ import {
     __ossMirror,
     __imgPath,
     __ossRoot,
+    __iconPath
 } from "@jx3box/jx3box-common/data/jx3box.json";
-import example from './example.json';
 import { xfConfigs } from './talent2.json';
 export default {
     name: "Talent2",
     props: [],
     data: function() {
         return {
-            xf: "10081",
+            xf: '',
             code:'',
             begin: 'right',
             l_name: '斩绝',
@@ -211,9 +221,13 @@ export default {
             r_data: ["0000", "0000", "0000", "0000", "0000", "0000"],
             series_open_need: 26,
 
+            // 心法字符串对应的心法id，用于左右背景
             xfContent: [],
-
-            example
+            // 心法镇派或技能
+            talentContent: {
+                left: [],
+                right: []
+            },
         };
     },
     computed: {
@@ -249,6 +263,11 @@ export default {
         },
         totalCount: function() {
             return this.lCount + this.rCount;
+        },
+        talent2Data: function() {
+            return this.begin === 'left' ?
+                this.l_data.concat(this.r_data).join(',')
+                : this.r_data.concat(this.l_data).join(',')
         }
     },
     methods: {
@@ -497,6 +516,7 @@ export default {
          * @param {number|string} num 图片编号
          */
         talentBg: function(pos, num) {
+            if (!pos) return 
             if (pos === 'left') {
                 return __imgPath + `image/talent/${this.xfContent[0]}_${num}.png`
             }
@@ -530,6 +550,9 @@ export default {
     filters: {
         xficon: function(id) {
             return __imgPath + "image/xf/" + id + ".png";
+        },
+        talentIcon: function(id) {
+            return __iconPath + "icon/" + id + ".png";
         }
     },
     watch: {
@@ -542,7 +565,17 @@ export default {
             if (val) {
                 this.xfContent = xfConfigs[val]?.content;
                 this.begin = xfConfigs[val]?.begin;
+                this.talentContent.left = this.talents[xfConfigs[val].talent[0]];
+                this.talentContent.right = this.talents[xfConfigs[val].talent[1]];
             }
+        },
+        talent2Data: function(val) {
+            const _code = {
+                version: this.version,
+                xf: this.xf,
+                sq: val
+            }
+            this.code = JSON.stringify(_code)
         }
     },
     mounted: function() {
