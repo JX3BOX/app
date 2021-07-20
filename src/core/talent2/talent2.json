@@ -1,9 +1,44 @@
 {
-  "total": 33,
-  "begin": "left",
-  "l_name": "斩绝",
-  "r_name": "封魂",
-  "l_data": [],
-  "r_data": [],
-  "series_open_need" :26
+  "xfConfigs": {
+    "冰心诀": {
+      "begin": "left",
+      "content": [10081, 10080]
+    },
+    "云裳心经": {
+      "begin": "right",
+      "content": [10081, 10080]
+    },
+    "傲血战意": {
+      "begin": "left",
+      "content": [10026, 10062]
+    },
+    "铁牢律": {
+      "begin": "right",
+      "content": [10026, 10062]
+    },
+    "花间游": {
+      "begin": "left",
+      "content": [10021, 10028]
+    },
+    "离经易道": {
+      "begin": "right",
+      "content": [10021, 10028]
+    },
+    "太虚剑意": {
+      "begin": "left",
+      "content": [10015, 10014]
+    },
+    "紫霞功": {
+      "begin": "right",
+      "content": [10015, 10014]
+    },
+    "易筋经": {
+      "begin": "left",
+      "content": [10003, 10002]
+    },
+    "洗髓经": {
+      "begin": "right",
+      "content": [10003, 10002]
+    }
+  }
 }

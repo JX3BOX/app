@@ -70,7 +70,7 @@
                                 <span class="m-talent2-title-name">{{ l_name }}</span>
                             </div>
                             <div class="m-talent2-content" :style="{
-                                'background-image': `url(${talentBg(0)})`
+                                'background-image': lCount ? `url(${talentBg('left', 1)})` : `url(${talentBg('left', 0)})`
                             }">
                                 <div
                                     class="m-talent2-content-row"
@@ -114,7 +114,7 @@
                                 <span class="m-talent2-title-name">{{ r_name }}</span>
                             </div>
                             <div class="m-talent2-content" :style="{
-                                'background-image': `url(${talentBg(1)})`
+                                'background-image': rCount ? `url(${talentBg('right', 1)})` : `url(${talentBg('right', 0)})`
                             }">
                                 <div
                                     class="m-talent2-content-row"
@@ -189,7 +189,8 @@ import {
     __imgPath,
     __ossRoot,
 } from "@jx3box/jx3box-common/data/jx3box.json";
-import example from './example.json'
+import example from './example.json';
+import { xfConfigs } from './talent2.json';
 export default {
     name: "Talent2",
     props: [],
@@ -209,6 +210,8 @@ export default {
             l_data: ["0000", "0000", "0000", "0000", "0000", "0000"],
             r_data: ["0000", "0000", "0000", "0000", "0000", "0000"],
             series_open_need: 26,
+
+            xfContent: [],
 
             example
         };
@@ -488,9 +491,16 @@ export default {
 
             }
         },
-        
-        talentBg: function(num) {
-            return __imgPath + `image/talent/${this.xf}_${num}.png`
+        /**
+         * 心法背景图片
+         * @param {string} pos 位置信息
+         * @param {number|string} num 图片编号
+         */
+        talentBg: function(pos, num) {
+            if (pos === 'left') {
+                return __imgPath + `image/talent/${this.xfContent[0]}_${num}.png`
+            }
+            return __imgPath + `image/talent/${this.xfContent[1]}_${num}.png`
         },
 
         //  区域逻辑
@@ -525,7 +535,13 @@ export default {
     watch: {
         version: function(val) {
             if (val) {
-                this.getTalents()
+                this.getTalents();
+            }
+        },
+        xf: function(val) {
+            if (val) {
+                this.xfContent = xfConfigs[val]?.content;
+                this.begin = xfConfigs[val]?.begin;
             }
         }
     },
