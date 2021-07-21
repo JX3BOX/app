@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import store from "../../../store";
+import store from "@/store/meridians";
 import define from "../data/v1";
 export default {
     name: "detail",

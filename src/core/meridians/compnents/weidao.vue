@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import store from "../../../store";
+import store from "@/store/meridians";
 export default {
     name: "weidao",
     data() {

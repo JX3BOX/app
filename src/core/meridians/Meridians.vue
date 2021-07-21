@@ -842,7 +842,6 @@ export default {
         // 自动取消
         reduceRecursion(data) {
             let select = this.$store.state.selectMeridians;
-            // debugger
             for (let i = select.length - 1; i >= 0; i--) {
                 let item = select[i];
                 for (let node of item.requireNode) {
