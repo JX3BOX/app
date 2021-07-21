@@ -199,6 +199,9 @@
                     </p>
                 </div>
             </div>
+            <!-- <talent-render
+                :talentCode="code"
+            ></talent-render> -->
             <Footer></Footer>
         </Main>
     </div>
@@ -214,9 +217,10 @@ import {
     __iconPath
 } from "@jx3box/jx3box-common/data/jx3box.json";
 import { xfConfigs } from './talent2.json';
+
+// import TalentRender from './TalentRender.vue';
 export default {
     name: "Talent2",
-    props: [],
     data: function() {
         return {
             xf: '',
@@ -289,6 +293,15 @@ export default {
         reset: function() {
             this.l_data = ["0000", "0000", "0000", "0000", "0000", "0000"];
             this.r_data = ["0000", "0000", "0000", "0000", "0000", "0000"];
+        },
+        // 生成code
+        renderCode: function() {
+            const _code = {
+                version: this.version,
+                xf: this.xf,
+                sq: this.talent2Data
+            };
+            this.code = JSON.stringify(_code);
         },
         onCopy: function(val) {
             this.$notify({
@@ -394,6 +407,7 @@ export default {
          * @param {Array} target 操作对象
          */
         leftTalentDecrease: function(rowIndex, colIndex) {
+
             let current = Number(this.l_data[rowIndex][colIndex]);
 
             if (current > 0) {
@@ -495,6 +509,7 @@ export default {
          * @param {Array} target 操作对象
          */
         rightTalentDecrease: function(rowIndex, colIndex) {
+
             let current = Number(this.r_data[rowIndex][colIndex]);
 
             if (current > 0) {
@@ -547,7 +562,7 @@ export default {
         // ---------------------
         // 获取版本列表
         getVersions: function() {
-            fetch(__ossRoot + '/data/talent2/index.json')
+            fetch(__ossRoot + 'data/talent2/index.json')
                 .then(res => res.json())
                 .then(response => {
                     this.versions = response
@@ -555,14 +570,12 @@ export default {
                 })
         },
         getTalents: function() {
-            fetch(__ossRoot + '/data/talent2/' + this.version + '.json')
+            fetch(__ossRoot + 'data/talent2/' + this.version + '.json')
                 .then(res => res.json())
                 .then(response => {
                     this.talents = response
                 })
         }
-        
-
     },
     filters: {
         xficon: function(id) {
@@ -578,21 +591,23 @@ export default {
                 this.getTalents();
             }
         },
-        xf: function(val) {
+        xf: function(val, oVal) {
             if (val) {
                 this.xfContent = xfConfigs[val]?.content;
                 this.begin = xfConfigs[val]?.begin;
                 this.talentContent.left = this.talents[xfConfigs[val].talent[0]];
                 this.talentContent.right = this.talents[xfConfigs[val].talent[1]];
+
+                if (val !== oVal) {
+                    this.reset()
+                }
+
+                // 初始化code
+                this.renderCode()
             }
         },
-        talent2Data: function(val) {
-            const _code = {
-                version: this.version,
-                xf: this.xf,
-                sq: val
-            }
-            this.code = JSON.stringify(_code)
+        talent2Data: function() {
+            this.renderCode()
         }
     },
     mounted: function() {
@@ -600,6 +615,7 @@ export default {
     },
     components: {
         Nav,
+        // TalentRender,
     },
 };
 </script>
