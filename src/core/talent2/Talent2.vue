@@ -199,9 +199,6 @@
                     </p>
                 </div>
             </div>
-            <!-- <talent-render
-                :talentCode="code"
-            ></talent-render> -->
             <Footer></Footer>
         </Main>
     </div>
@@ -216,9 +213,7 @@ import {
     __ossRoot,
     __iconPath
 } from "@jx3box/jx3box-common/data/jx3box.json";
-import { xfConfigs } from './talent2.json';
-
-// import TalentRender from './TalentRender.vue';
+import { xfConfigs } from '@jx3box/jx3box-data/data/app/talent2.json';
 export default {
     name: "Talent2",
     data: function() {
@@ -615,7 +610,6 @@ export default {
     },
     components: {
         Nav,
-        // TalentRender,
     },
 };
 </script>
