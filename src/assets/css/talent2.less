@@ -3,7 +3,17 @@
     position: relative;
     .m-talent2-main {
         display: flex;
+        position: relative;
         justify-content: space-between;
+    }
+    .m-talent2-main-title {
+        position: absolute;
+        color: #fff;
+        width: 100%;
+        text-align: center;
+        top: 12px;
+        font-size: 1.2em;
+        text-shadow: 1px 1px 1px black;
     }
 
 
@@ -28,30 +38,23 @@
     .m-talent2-actions {
         position: absolute;
         right: 30px;
-        bottom: 18px;
-        // width: 100%;
+        bottom: 30px;
 
         &-btn {
             color: #fff;
             border: none;
             padding: 5px 25px;
             background-image: linear-gradient(to bottom, #898B8A 50%, #595B5A 50%);
-
-            // &:hover {
-                // background-color: lighten(#898B8A, 20%)
-            // }
         }
     }
 }
 
-.m-talent2-render-box {
-    width: 50.8%;
-}
-
 .m-talent2-title {
     display: flex;
+    position: relative;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 12px;
+    padding-left: 16px;
 
     background-image: url('../img/talent2/title_bg.png');
     background-repeat: no-repeat;
@@ -64,6 +67,9 @@
 
     &-count {
         display: inline-block;
+        position: absolute;
+        left: 48px;
+        bottom: -2px;
         text-align: center;
         width: 20px;
         font-size: 14px;
@@ -75,18 +81,18 @@
     }
 
     &-name {
-        // font-weight: bold;
         color: #F3F50A;
         font-size: 15px;
+        margin-left: 35px;
     }
 }
 
 .m-talent2-content {
     display: grid;
     padding: 12px 24px;
-    height: 77%;
+    height: 76%;
     margin: 0 15px;
-    margin-top: 90px;
+    margin-top: 82px;
 
     background-repeat: no-repeat;
     background-size: cover;
@@ -95,10 +101,7 @@
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         justify-items: center;
-
-        &:not(:last-of-type) {
-            margin-bottom: 8px;
-        }
+        padding: 0 12px;
 
         &-disabled {
             cursor: not-allowed;
@@ -106,21 +109,9 @@
     }
 
     &-item {
-        display: flex;
+        display: inline-block;
         position: relative;
-        justify-content: center;
-        align-items: center;
-        height: 40px;
-        width: 40px;
-        border: 2px solid #4E8370;
-        border-radius: 50%;
-        overflow: hidden;
         cursor: pointer;
-
-        background-image: url('../img/talent2/skill_bg.png');
-
-
-        // background: chocolate;
 
         &:hover {
             border-color: burlywood;
@@ -134,11 +125,35 @@
             pointer-events: none;
         }
         .m-talent2-skill {
-            transform: scale(1.2);
+            position: relative;
+
+            &::after {
+                content: '';
+                position: absolute;
+                width: 52px;
+                height: 52px;
+                background-image: url('../img/talent2/skill_bg.png');
+                z-index: 6;
+                left: -1px;
+                top: -2px;
+            }
+    
         }
         img {
-            height: 40px;
-            width: 40px;
+            border-radius: 48px;
+            transform: scale(0.95);
+        }
+
+        .m-talent2-unselected {
+            &::before {
+                content: '';
+                position: absolute;
+                height: 48px;
+                width: 48px;
+                border-radius: 48px;
+                background: rgba(0,0,0,0.5);
+                z-index: 10;
+            }
         }
 
         &-empty {
@@ -151,8 +166,9 @@
             background-image: url('../img/talent2/count_bg.png');
             background-repeat: no-repeat;
             text-align: center;
-            right: 0;
+            right: -6px;
             bottom: 0;
+            z-index: 9;
 
             color: #F89403;
         }

@@ -62,6 +62,7 @@
                     </div>
                     <h2 class="m-talent-subtitle">配置镇派</h2>
                     <div class="m-talent2-box">
+                        <div class="m-talent2-main-title">镇派经脉模拟器</div>
                         <template v-if="xf">
                             <div class="m-talent2-surplus">剩余点数: {{ total - totalCount }}</div>
                             <div class="m-talent2-main">
@@ -69,7 +70,7 @@
                                 <div class="m-talent2-left">
                                     
                                     <div class="m-talent2-content" :style="{
-                                        'background-image': xf ? (lCount ? `url(${talentBg('left', 1)})` : `url(${talentBg('left', 0)})`) : ''
+                                        'background-image': xf ? `url(${talentBg('left', 1)})` : ''
                                     }">
                                         <div class="m-talent2-title">
                                             <img class="m-talent2-xf-icon" :src="xfContent[0] | xficon">
@@ -90,14 +91,19 @@
                                                     class="m-talent2-content-item"
                                                     :class="[
                                                         {'m-talent2-content-item-skill': item.type === 'skill'},
-                                                        {'m-talent2-content-item-inactive': !Number(l_data[index][i])},
                                                         !canOperate(index, 'left') ? 'm-talent2-content-item-disabled' : ''
                                                     ]"
                                                     :key="i"
                                                     @click="leftTalentAdd(item, index, i)"
                                                     @click.right.prevent="leftTalentDecrease(index, i)"
                                                 >
-                                                    <div class="m-talent2-skill" :title="item.desc">
+                                                    <div
+                                                        class="m-talent2-skill"
+                                                        :title="item.desc"
+                                                        :class="[
+                                                            {'m-talent2-unselected': !Number(l_data[index][i])}
+                                                        ]"
+                                                    >
                                                         <img :src="item.icon | talentIcon" :alt="item.name">
                                                     </div>
                                                     <!-- COUNT -->
@@ -118,7 +124,7 @@
                                 <!-- RIGHT -->
                                 <div class="m-talent2-right">
                                     <div class="m-talent2-content" :style="{
-                                        'background-image': xf ? (rCount ? `url(${talentBg('right', 1)})` : `url(${talentBg('right', 0)})`) : ''
+                                        'background-image': xf ? `url(${talentBg('right', 1)})` : ''
                                     }">
                                         <div class="m-talent2-title">
                                             <img class="m-talent2-xf-icon" :src="xfContent[1] | xficon">
@@ -139,14 +145,19 @@
                                                     class="m-talent2-content-item"
                                                     :class="[
                                                         {'m-talent2-content-item-skill': item.type === 'skill'},
-                                                        {'m-talent2-content-item-inactive': !Number(r_data[index][i])},
                                                         !canOperate(index, 'right') ? 'm-talent2-content-item-disabled' : ''
                                                     ]"
                                                     :key="i"
                                                     @click="rightTalentAdd(item, index, i)"
                                                     @click.right.prevent="rightTalentDecrease(index, i)"
                                                 >
-                                                    <div class="m-talent2-skill" :title="item.desc">
+                                                    <div 
+                                                        class="m-talent2-skill"
+                                                        :title="item.desc"
+                                                        :class="[
+                                                            {'m-talent2-unselected': !Number(r_data[index][i])}
+                                                        ]"
+                                                    >
                                                         <img :src="item.icon | talentIcon" :alt="item.name">
                                                     </div>
                                                     <!-- COUNT -->
