@@ -23,17 +23,23 @@
     width: 66.6%;
 
     .m-talent2-left {
+        width: 50%;
         flex: auto;
     }
     .m-talent2-right {
+        width: 50%;
         flex: auto;
     }
 
     .m-talent2-surplus {
         position: absolute;
-        color: #fff;
+        color: #02FA02;
         right: 30px;
         top: 45px;
+
+        &-empty {
+            color: #FC5531;
+        }
     }
     .m-talent2-actions {
         position: absolute;
@@ -41,10 +47,15 @@
         bottom: 30px;
 
         &-btn {
-            color: #fff;
+            color: #D7E6DF;
+            background-image: url('../img/talent2/1-4.png');
+            background-position: center;
             border: none;
-            padding: 5px 25px;
-            background-image: linear-gradient(to bottom, #898B8A 50%, #595B5A 50%);
+            padding: 3px 16px;
+
+            &:hover {
+                background: 1px solid #ecec;
+            }
         }
     }
 }
@@ -102,6 +113,7 @@
         grid-template-columns: repeat(4, 1fr);
         justify-items: center;
         padding: 0 12px;
+        height: 52px;
 
         &-disabled {
             cursor: not-allowed;
@@ -117,17 +129,15 @@
             border-color: burlywood;
         }
 
-        &-inactive {
-            filter: grayscale(100%);
-        }
-
         &-disabled {
-            pointer-events: none;
+            cursor: not-allowed;
         }
         .m-talent2-skill {
             position: relative;
+            transition: background-color 5s linear;
 
             &::after {
+                transition: background-color 5s linear;
                 content: '';
                 position: absolute;
                 width: 52px;
@@ -137,24 +147,42 @@
                 left: -1px;
                 top: -2px;
             }
-    
         }
         img {
+            height: 48px;
+            width: 48px;
             border-radius: 48px;
             transform: scale(0.95);
         }
 
         .m-talent2-unselected {
             &::before {
+                transition: opacity 0.2s linear;
                 content: '';
                 position: absolute;
                 height: 48px;
                 width: 48px;
                 border-radius: 48px;
-                background: rgba(0,0,0,0.5);
+                background-color: rgba(0,0,0,0.5);
                 z-index: 10;
+                opacity: 1;
             }
         }
+
+        .m-talent2-selected {
+            &::before {
+                transition: opacity 0.2s linear;
+                content: '';
+                position: absolute;
+                height: 48px;
+                width: 48px;
+                border-radius: 48px;
+                background-color: rgba(0,0,0,0.5);
+                z-index: 10;
+                opacity: 0;
+            }
+        }
+
 
         &-empty {
             visibility: hidden;
@@ -168,9 +196,13 @@
             text-align: center;
             right: -6px;
             bottom: 0;
-            z-index: 9;
+            z-index: 11;
 
             color: #F89403;
+        }
+
+        &-count-under {
+            color: #02FA02;
         }
 
         &-relate {
@@ -185,5 +217,48 @@
     }
     .m-talent2-content-item {
         user-select: none;
+    }
+
+    // pop
+    @name: #ff0;
+    .m-talent2-pop {
+        position: absolute;
+        top: 0;
+        left: 100%;
+        background-color: rgba(0,0,0,.8);
+        margin-left: 4px;
+        border-radius: 3px;
+        padding: 10px;
+        width: 320px;
+        max-width: none;
+        z-index: 999;
+
+        display: none;
+
+        * {
+            display: block;
+            white-space: normal;
+            word-wrap: break-word;
+            word-break: break-all;
+        }
+
+        .m-talent2-name {
+            font-size: 14px;
+            line-height: 2;
+            color: @name;
+        }
+        .m-talent2-type {
+            color: #fff;
+            font-size: 13px;
+            line-height: 20px;
+        }
+        .m-talent2-desc {
+            font-size: 12px;
+            line-height: 20px;
+            color: @name;
+        }
+    }
+    .on {
+        display: block;
     }
 }

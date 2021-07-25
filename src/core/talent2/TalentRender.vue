@@ -100,7 +100,7 @@ import {
     __ossRoot,
     __iconPath
 } from "@jx3box/jx3box-common/data/jx3box.json";
-import { xfConfigs } from './talent2.json';
+import { xfConfigs } from '@jx3box/jx3box-data/data/app/talent2.json';
 export default {
     name: 'TalentRender',
     props: {
@@ -179,6 +179,7 @@ export default {
             return __imgPath + `image/talent/${this.xfContent[1]}_${num}.png`
         },
         async getTalents() {
+            console.log(1)
             fetch(__ossRoot + 'data/talent2/' + this.version + '.json')
                 .then(res => res.json())
                 .then(response => {
@@ -201,10 +202,13 @@ export default {
         }
     },
     watch: {
-        talentCode: function(val) {
-            if (val) {
-                this.renderTalents();
-            }
+        talentCode: {
+            handler(val) {
+                if (val) {
+                    this.renderTalents();
+                }
+            },
+            immediate: true
         }
     }
 }

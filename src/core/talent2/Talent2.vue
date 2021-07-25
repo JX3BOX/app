@@ -64,8 +64,14 @@
                     <div class="m-talent2-box">
                         <div class="m-talent2-main-title">镇派经脉模拟器</div>
                         <template v-if="xf">
-                            <div class="m-talent2-surplus">剩余点数: {{ total - totalCount }}</div>
+                            <div
+                                class="m-talent2-surplus"
+                                :class="[
+                                    total - totalCount > 0 ? '' : 'm-talent2-surplus-empty'
+                                ]"
+                            >剩余点数: {{ total - totalCount }}</div>
                             <div class="m-talent2-main">
+
                                 <!-- LEFT -->
                                 <div class="m-talent2-left">
                                     
@@ -79,9 +85,6 @@
                                         </div>
                                         <div
                                             class="m-talent2-content-row"
-                                            :class="[
-                                                !canOperate(index, 'left') ? 'm-talent2-content-row-disabled' : ''
-                                            ]"
                                             v-for="(row, index) in talentContent.left"
                                             :key="'l'+index"
                                         >
@@ -94,14 +97,15 @@
                                                         !canOperate(index, 'left') ? 'm-talent2-content-item-disabled' : ''
                                                     ]"
                                                     :key="i"
-                                                    @click="leftTalentAdd(item, index, i)"
-                                                    @click.right.prevent="leftTalentDecrease(index, i)"
+                                                    @mouseover="$set(item, 'on', true)"
+                                                    @mouseleave="$set(item, 'on', false)"
                                                 >
                                                     <div
+                                                        @click="leftTalentAdd(item, index, i)"
+                                                        @click.right.prevent="leftTalentDecrease(index, i)"
                                                         class="m-talent2-skill"
-                                                        :title="item.desc"
                                                         :class="[
-                                                            {'m-talent2-unselected': !Number(l_data[index][i])}
+                                                            !canLeftItemOperate(index, i) ? 'm-talent2-unselected': 'm-talent2-selected'
                                                         ]"
                                                     >
                                                         <img :src="item.icon | talentIcon" :alt="item.name">
@@ -110,9 +114,29 @@
                                                     <span
                                                         v-if="Number(l_data[index][i])"
                                                         class="m-talent2-content-item-count"
+                                                        :class="[
+                                                            Number(l_data[index][i]) < item.max
+                                                                ? 'm-talent2-content-item-count-under'
+                                                                : ''
+                                                        ]"
                                                     >{{ l_data[index][i] }}</span>
+
+                                                    <!-- DESC -->
+                                                    <span class="m-talent2-pop" :class="item.on ? 'on' : ''">
+                                                        <b class="m-talent2-name">{{ item.name }}</b>
+                                                        <b class="m-talent2-type">
+                                                            {{ item.type === 'talent' ? '被动招式': '主动招式' }}
+                                                        </b>
+                                                        <span class="m-talent2-desc">
+                                                            {{ item.desc }}
+                                                        </span>
+                                                    </span>
+
                                                     <!-- CHILDREN -->
-                                                    <i v-if="item.children.length" class="el-icon-bottom m-talent2-content-item-relate"></i>
+                                                    <i
+                                                        v-if="item.children && item.children.length"
+                                                        class="el-icon-bottom m-talent2-content-item-relate"
+                                                    ></i>
                                                 </div>
                                                 <div v-else class="m-talent2-content-item-empty" :key="i"></div>
                                             </template>
@@ -133,11 +157,8 @@
                                         </div>
                                         <div
                                             class="m-talent2-content-row"
-                                            :class="[
-                                                !canOperate(index, 'right') ? 'm-talent2-content-row-disabled' : ''
-                                            ]"
                                             v-for="(row, index) in talentContent.right"
-                                            :key="'l'+index"
+                                            :key="'r'+index"
                                         >
                                             <template v-for="(item, i) in row">
                                                 <div
@@ -148,14 +169,16 @@
                                                         !canOperate(index, 'right') ? 'm-talent2-content-item-disabled' : ''
                                                     ]"
                                                     :key="i"
-                                                    @click="rightTalentAdd(item, index, i)"
-                                                    @click.right.prevent="rightTalentDecrease(index, i)"
+                                                    @mouseover="$set(item, 'on', true)"
+                                                    @mouseleave="$set(item, 'on', false)"
                                                 >
                                                     <div 
+                                                        @click="rightTalentAdd(item, index, i)"
+                                                        @click.right.prevent="rightTalentDecrease(index, i)"
                                                         class="m-talent2-skill"
                                                         :title="item.desc"
                                                         :class="[
-                                                            {'m-talent2-unselected': !Number(r_data[index][i])}
+                                                            !canRightItemOperate(index, i) ? 'm-talent2-unselected': 'm-talent2-selected'
                                                         ]"
                                                     >
                                                         <img :src="item.icon | talentIcon" :alt="item.name">
@@ -164,9 +187,29 @@
                                                     <span
                                                         v-if="Number(r_data[index][i])"
                                                         class="m-talent2-content-item-count"
+                                                        :class="[
+                                                            Number(r_data[index][i]) < item.max
+                                                                ? 'm-talent2-content-item-count-under'
+                                                                : ''
+                                                        ]"
                                                     >{{ r_data[index][i] }}</span>
+
+                                                    <!-- DESC -->
+                                                    <span class="m-talent2-pop" :class="item.on ? 'on' : ''">
+                                                        <b class="m-talent2-name">{{ item.name }}</b>
+                                                        <b class="m-talent2-type">
+                                                            {{ item.type === 'talent' ? '被动招式': '主动招式' }}
+                                                        </b>
+                                                        <span class="m-talent2-desc">
+                                                            {{ item.desc }}
+                                                        </span>
+                                                    </span>
+
                                                     <!-- CHILDREN -->
-                                                    <i v-if="item.children.length" class="el-icon-bottom m-talent2-content-item-relate"></i>
+                                                    <i
+                                                        v-if="item.children && item.children.length"
+                                                        class="el-icon-bottom m-talent2-content-item-relate"
+                                                    ></i>
                                                 </div>
                                                 <div v-else class="m-talent2-content-item-empty" :key="i"></div>
                                             </template>
@@ -174,7 +217,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- TODO: hover动画 -->
+
                             <div class="m-talent2-actions">
                                 <el-button
                                     class="m-talent2-actions-btn"
@@ -225,6 +268,7 @@ import {
     __iconPath
 } from "@jx3box/jx3box-common/data/jx3box.json";
 import { xfConfigs } from '@jx3box/jx3box-data/data/app/talent2.json';
+import defaultXf from './default.json';
 export default {
     name: "Talent2",
     data: function() {
@@ -237,7 +281,7 @@ export default {
 
             version : '不删档公测',
             versions: [], // 版本列表
-            talents: [], // 镇派数据
+            talents: {}, // 镇派数据
             xfmap,
             total: 33,
             l_data: ["0000", "0000", "0000", "0000", "0000", "0000"],
@@ -310,14 +354,14 @@ export default {
             this.code = JSON.stringify(_code);
         },
         onCopy: function(val) {
-            this.$notify({
+            this.$message({
                 title: "复制成功",
                 message: "编码复制成功",
                 type: "success",
             });
         },
         onError: function() {
-            this.$notify.error({
+            this.$message.error({
                 title: "复制失败",
                 message: "请手动复制",
             });
@@ -326,7 +370,33 @@ export default {
             return item['client'].includes('origin')
         },
         parseSchema : function (){
-            
+            console.log(this.code);
+            try {
+                const _code = JSON.parse(this.code);
+                this.version = _code.version;
+                this.xf = _code.xf;
+
+                const val = this.xf;
+                this.xfContent = xfConfigs[val]?.content;
+                this.begin = xfConfigs[val]?.begin;
+                this.talentContent.left = this.talents[xfConfigs[val].talent[0]];
+                this.l_name = xfConfigs[val]?.talent[0];
+                this.talentContent.right = this.talents[xfConfigs[val].talent[1]];
+                this.r_name = xfConfigs[val]?.talent[1];
+
+                const _sq = _code.sq.split(',');
+
+                if (this.begin === 'left') {
+                    this.l_data = _sq.slice(0, 6);
+                    this.r_data = _sq.slice(6, _sq.length);
+                } else {
+                    this.r_data = _sq.slice(0, 6);
+                    this.l_data = _sq.slice(6, _sq.length);
+                }
+            } catch(e) {
+                this.$message.error("编码格式错误");
+            }
+
         },
         // talent 单项逻辑
         // -------------------
@@ -344,6 +414,31 @@ export default {
             }
         },
         /**
+         * 判断left该项是否可点
+         * @param {number} rowIndex 行号
+         * @param {number} index 列号
+         * @param {string} target 左右区域
+         * @returns {boolean} 是否可以修改
+         */
+        canLeftItemOperate: function(rowIndex, colIndex) {
+            let canOperate = false
+            // 初始为left的第一行点亮
+            if (this.begin === 'left') {
+                if (!rowIndex) {
+                    canOperate = true
+                } else if (this.lCount > 0 && this.lCount >= (rowIndex) * 5) {
+                    canOperate = true
+                }
+            } else if (this.begin === 'right') {
+                if (this.rCount >= this.series_open_need && this.lCount >= 0 && this.lCount >= (rowIndex) * 5) {
+                    canOperate = true
+                }
+            }
+            
+            return canOperate
+
+        },
+        /**
          * talent left 增加层数
          * @param {Object} item talent
          * @param {number} rowIndex 行号
@@ -352,13 +447,15 @@ export default {
          */
         leftTalentAdd: function(item, rowIndex, colIndex) {
 
+            if (!this.canOperate(rowIndex, 'left')) return 
+
             const { max, parent } = item;
 
             if (this.begin === 'right') {
                 if (this.rCount < this.series_open_need) {
-                    this.$notify.warning({
+                    this.$message.warning({
                         title: '提醒',
-                        message: `主talent需要先激活${this.series_open_need}点，才能激活本区域的talent`
+                        message: `主天赋需要先激活${this.series_open_need}点，才能激活本区域的天赋`
                     })
                     return
                 }
@@ -372,7 +469,7 @@ export default {
                 if (!pTalent) {
                     this.$message({
                         type: 'warning',
-                        message: '该talent存在前置talent，需先激活前置talent'
+                        message: '该天赋存在前置天赋，需先激活前置天赋'
                     })
                     return 
                 }
@@ -402,7 +499,7 @@ export default {
             } else {
                 this.$message({
                     type: 'warning',
-                    message: '该talent已达最高层数'
+                    message: '该天赋已达最高层数'
                 });
             }
         },
@@ -422,13 +519,15 @@ export default {
                     // 当前行之前的行
                     const currentArr = this.l_data.slice(0, rowIndex + 1);
                     // 左边或右边总共的点数
-                    const targetCount = this.l_data.map(l => l.split('')).flat().reduce((prev, current) => Number(prev) + Number(current));
+                    const targetCount = this.l_data.map(l => l.split('')).flat()
+                        .reduce((prev, current) => Number(prev) + Number(current));
 
                     // 当前行之前的行的点数
-                    currentCount = currentArr.map(l => l.split('')).flat().reduce((prev, current) => Number(prev) + Number(current));
+                    currentCount = currentArr.map(l => l.split('')).flat()
+                        .reduce((prev, current) => Number(prev) + Number(current));
 
                     if (currentCount <= (this.leftLastIndex + 1) * 5 && targetCount > currentCount) {
-                        this.$notify.warning({
+                        this.$message.warning({
                             title: '提醒',
                             message: '不能再减啦'
                         })
@@ -446,6 +545,31 @@ export default {
             }
         },
         /**
+         * 判断right该项是否可点
+         * @param {number} rowIndex 行号
+         * @param {number} index 列号
+         * @param {string} target 左右区域
+         * @returns {boolean} 是否可以修改
+         */
+        canRightItemOperate: function(rowIndex, colIndex) {
+            let canOperate = false
+            // 初始为left的第一行点亮
+            if (this.begin === 'right') {
+                if (!rowIndex) {
+                    canOperate = true
+                } else if (this.rCount > 0 && this.rCount >= (rowIndex) * 5) {
+                    canOperate = true
+                }
+            } else if (this.begin === 'left') {
+                if (this.lCount >= this.series_open_need && this.rCount >= 0 && this.rCount >= (rowIndex) * 5) {
+                    canOperate = true
+                }
+            }
+            
+            return canOperate
+
+        },
+        /**
          * talent right 增加层数
          * @param {Object} item talent
          * @param {number} rowIndex 行号
@@ -454,13 +578,15 @@ export default {
          */
         rightTalentAdd: function(item, rowIndex, colIndex) {
 
+            if (!this.canOperate(rowIndex, 'right')) return 
+
             const { max, parent } = item;
 
             if (this.begin === 'left') {
                 if (this.lCount < this.series_open_need) {
-                    this.$notify.warning({
+                    this.$message.warning({
                         title: '提醒',
-                        message: `主talent需要先激活${this.series_open_need}点，才能激活本区域的talent`
+                        message: `主天赋需要先激活${this.series_open_need}点，才能激活本区域的天赋`
                     })
                     return
                 }
@@ -474,7 +600,7 @@ export default {
                 if (!pTalent) {
                     this.$message({
                         type: 'warning',
-                        message: '该talent存在前置talent，需先激活前置talent'
+                        message: '该天赋存在前置天赋，需先激活前置天赋'
                     })
                     return 
                 }
@@ -504,7 +630,7 @@ export default {
             } else {
                 this.$message({
                     type: 'warning',
-                    message: '该talent已达最高层数'
+                    message: '该天赋已达最高层数'
                 });
             }
         },
@@ -531,7 +657,7 @@ export default {
                         .flat().reduce((prev, current) => Number(prev) + Number(current));
 
                     if (currentCount <= (this.rightLastIndex + 1) * 5 && targetCount > currentCount) {
-                        this.$notify.warning({
+                        this.$message.warning({
                             title: '提醒',
                             message: '不能再减啦'
                         })
@@ -579,7 +705,7 @@ export default {
             fetch(__ossRoot + 'data/talent2/' + this.version + '.json')
                 .then(res => res.json())
                 .then(response => {
-                    this.talents = response
+                    this.talents = {...response, ...defaultXf}
                 })
         }
     },
@@ -601,8 +727,21 @@ export default {
             if (val) {
                 this.xfContent = xfConfigs[val]?.content;
                 this.begin = xfConfigs[val]?.begin;
-                this.talentContent.left = this.talents[xfConfigs[val].talent[0]];
-                this.talentContent.right = this.talents[xfConfigs[val].talent[1]];
+                // 新增pop显示控制
+                this.talentContent.left = this.talents[xfConfigs[val].talent[0]]?.map(left => {
+                    const _left = left.map(l => {
+                        if (l) this.$set(l, 'on', false);
+                        return l
+                    })
+                    return _left
+                });
+                this.talentContent.right = this.talents[xfConfigs[val].talent[1]]?.map(right => {
+                     const _right = right.map(r => {
+                        if (r) this.$set(r, 'on', false);
+                        return r
+                    })
+                    return _right
+                });
 
                 if (val !== oVal) {
                     this.reset()
@@ -620,7 +759,7 @@ export default {
         this.getVersions()
     },
     components: {
-        Nav,
+        Nav
     },
 };
 </script>

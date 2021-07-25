@@ -1,0 +1,150 @@
+{
+    "山川": [
+        [
+            {
+                "name": "种花匠",
+                "type": "talent",
+                "icon": "",
+                "max": 2,
+                "desc": "我是一个种花匠，种花本领强。"
+            },
+            null,
+            null,
+            null
+        ],
+        [
+            {
+                "name": "种花匠",
+                "type": "talent",
+                "icon": "",
+                "max": 2,
+                "desc": "我是一个种花匠，种花本领强。"
+            },
+            null,
+            null,
+            null
+        ],
+        [
+            {
+                "name": "种花匠",
+                "type": "talent",
+                "icon": "",
+                "max": 2,
+                "desc": "我是一个种花匠，种花本领强。"
+            },
+            null,
+            null,
+            null
+        ],
+        [
+            {
+                "name": "种花匠",
+                "type": "talent",
+                "icon": "",
+                "max": 2,
+                "desc": "我是一个种花匠，种花本领强。"
+            },
+            null,
+            null,
+            null
+        ],
+        [
+            {
+                "name": "种花匠",
+                "type": "talent",
+                "icon": "",
+                "max": 2,
+                "desc": "我是一个种花匠，种花本领强。"
+            },
+            null,
+            null,
+            null
+        ],
+        [
+            {
+                "name": "种花匠",
+                "type": "talent",
+                "icon": "",
+                "max": 2,
+                "desc": "我是一个种花匠，种花本领强。"
+            },
+            null,
+            null,
+            null
+        ]
+    ],
+    "山河": [
+        [
+            {
+                "name": "阴阳使者",
+                "type": "talent",
+                "icon": "",
+                "max": 1,
+                "desc": "我这一转，保底两个阴阳。"
+            },
+            null,
+            null,
+            null
+        ],
+        [
+            {
+                "name": "阴阳使者",
+                "type": "talent",
+                "icon": "",
+                "max": 1,
+                "desc": "我这一转，保底两个阴阳。"
+            },
+            null,
+            null,
+            null
+        ],
+        [
+            {
+                "name": "阴阳使者",
+                "type": "talent",
+                "icon": "",
+                "max": 1,
+                "desc": "我这一转，保底两个阴阳。"
+            },
+            null,
+            null,
+            null
+        ],
+        [
+            {
+                "name": "阴阳使者",
+                "type": "talent",
+                "icon": "",
+                "max": 1,
+                "desc": "我这一转，保底两个阴阳。"
+            },
+            null,
+            null,
+            null
+        ],
+        [
+            {
+                "name": "阴阳使者",
+                "type": "talent",
+                "icon": "",
+                "max": 1,
+                "desc": "我这一转，保底两个阴阳。"
+            },
+            null,
+            null,
+            null
+        ],
+        [
+            {
+                "name": "阴阳使者",
+                "type": "talent",
+                "icon": "",
+                "max": 1,
+                "desc": "我这一转，保底两个阴阳。"
+            },
+            null,
+            null,
+            null
+        ]
+    ]
+}
