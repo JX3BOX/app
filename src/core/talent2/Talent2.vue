@@ -69,7 +69,7 @@
                                 :class="[
                                     total - totalCount > 0 ? '' : 'm-talent2-surplus-empty'
                                 ]"
-                            >剩余点数: {{ total - totalCount }}</div>
+                            >剩余点数: <span>{{ total - totalCount }}</span></div>
                             <div class="m-talent2-main">
 
                                 <!-- LEFT -->
@@ -220,7 +220,7 @@
 
                             <div class="m-talent2-actions">
                                 <el-button
-                                    class="m-talent2-actions-btn"
+                                    :class="!totalCount ? 'm-talent2-actions-btn-disabled' : 'm-talent2-actions-btn'"
                                     size="mini"
                                     @click="reset"
                                 >重置</el-button>
@@ -294,7 +294,7 @@ export default {
             talentContent: {
                 left: [],
                 right: []
-            },
+            }
         };
     },
     computed: {
@@ -735,6 +735,8 @@ export default {
                     })
                     return _left
                 });
+                this.l_name = xfConfigs[val]?.talent[0];
+
                 this.talentContent.right = this.talents[xfConfigs[val].talent[1]]?.map(right => {
                      const _right = right.map(r => {
                         if (r) this.$set(r, 'on', false);
@@ -742,6 +744,7 @@ export default {
                     })
                     return _right
                 });
+                this.r_name = xfConfigs[val]?.talent[1];
 
                 if (val !== oVal) {
                     this.reset()
@@ -757,6 +760,7 @@ export default {
     },
     mounted: function() {
         this.getVersions()
+        console.log(xfConfigs)
     },
     components: {
         Nav
