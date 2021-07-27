@@ -48,16 +48,23 @@
         }
     }
     .m-talent2-actions {
-        position: absolute;
-        right: 30px;
-        bottom: 30px;
-
-        &-btn {
+        padding: 6px 14px;
+        text-align: right;
+        .rest-btn {
+            display: inline-block;
+            cursor: pointer;
+            width: 92px;
+            height: 26px;
+            display: inline-block;
             color: #D7E6DF;
-            background-image: url('../img/talent2/1-1.png');
+            font-size: 14px;
+            text-align: center;
+            padding-top: 2px;
+            background-repeat: no-repeat;
             background-position: center;
-            border: none;
-            padding: 3px 16px;
+        }
+        &-btn {
+            background-image: url('../img/talent2/1-1.png');
 
             &:hover {
                 background-image: url('../img/talent2/1-2.png');
@@ -69,12 +76,8 @@
 
         }
         &-btn-disabled {
-            color: #D7E6DF;
-            background-position: center;
-            border: none;
-            padding: 3px 16px;
             background-image: url('../img/talent2/1-4.png');
-            cursor: not-allowed;
+            cursor: not-allowed!important;
         }
     }
 }
@@ -242,7 +245,7 @@
     @name: #ff0;
     .m-talent2-pop {
         position: absolute;
-        top: 0;
+        bottom: 100%;
         left: 0;
         background-color: rgba(0,0,0,.8);
         margin-left: 4px;

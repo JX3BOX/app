@@ -219,11 +219,11 @@
                             </div>
 
                             <div class="m-talent2-actions">
-                                <el-button
+                                <div
+                                    class="rest-btn"
                                     :class="!totalCount ? 'm-talent2-actions-btn-disabled' : 'm-talent2-actions-btn'"
-                                    size="mini"
                                     @click="reset"
-                                >重置</el-button>
+                                >重置</div>
                             </div>
                         </template>
                     </div>
