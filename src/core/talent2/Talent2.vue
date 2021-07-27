@@ -274,12 +274,12 @@ export default {
     data: function() {
         return {
             xf: '',
-            code:'',
-            begin: 'right',
-            l_name: '斩绝',
-            r_name: '封魂',
+            code: '0',
+            begin: 'left',
+            l_name: '山川',
+            r_name: '山河',
 
-            version : '不删档公测',
+            version : '',
             versions: [], // 版本列表
             talents: {}, // 镇派数据
             xfmap,
@@ -370,7 +370,6 @@ export default {
             return item['client'].includes('origin')
         },
         parseSchema : function (){
-            console.log(this.code);
             try {
                 const _code = JSON.parse(this.code);
                 this.version = _code.version;
@@ -379,8 +378,10 @@ export default {
                 const val = this.xf;
                 this.xfContent = xfConfigs[val]?.content;
                 this.begin = xfConfigs[val]?.begin;
+
                 this.talentContent.left = this.talents[xfConfigs[val].talent[0]];
                 this.l_name = xfConfigs[val]?.talent[0];
+
                 this.talentContent.right = this.talents[xfConfigs[val].talent[1]];
                 this.r_name = xfConfigs[val]?.talent[1];
 
@@ -698,14 +699,15 @@ export default {
                 .then(res => res.json())
                 .then(response => {
                     this.versions = response
-                    this.version = this.versions[0]?.version
+                    this.version = this.versions[0]?.version;
                 })
         },
         getTalents: function() {
             fetch(__ossRoot + 'data/talent2/' + this.version + '.json')
                 .then(res => res.json())
                 .then(response => {
-                    this.talents = {...response, ...defaultXf}
+                    this.talents = {...response, ...defaultXf};
+                    this.xf = '通用'
                 })
         }
     },
@@ -714,7 +716,10 @@ export default {
             return __imgPath + "image/xf/" + id + ".png";
         },
         talentIcon: function(id) {
-            return __iconPath + "icon/" + id + ".png";
+            if (id) {
+                return __iconPath + "icon/" + id + ".png";
+            }
+            return ''
         }
     },
     watch: {
@@ -723,35 +728,38 @@ export default {
                 this.getTalents();
             }
         },
-        xf: function(val, oVal) {
-            if (val) {
-                this.xfContent = xfConfigs[val]?.content;
-                this.begin = xfConfigs[val]?.begin;
-                // 新增pop显示控制
-                this.talentContent.left = this.talents[xfConfigs[val].talent[0]]?.map(left => {
-                    const _left = left.map(l => {
-                        if (l) this.$set(l, 'on', false);
-                        return l
-                    })
-                    return _left
-                });
-                this.l_name = xfConfigs[val]?.talent[0];
-
-                this.talentContent.right = this.talents[xfConfigs[val].talent[1]]?.map(right => {
-                     const _right = right.map(r => {
-                        if (r) this.$set(r, 'on', false);
-                        return r
-                    })
-                    return _right
-                });
-                this.r_name = xfConfigs[val]?.talent[1];
-
-                if (val !== oVal) {
-                    this.reset()
+        xf: {
+            immediate: true,
+            handler(val, oVal) {
+                if (val) {
+                    this.xfContent = xfConfigs[val]?.content;
+                    this.begin = xfConfigs[val]?.begin;
+                    // 新增pop显示控制
+                    this.talentContent.left = this.talents[xfConfigs[val].talent[0]]?.map(left => {
+                        const _left = left.map(l => {
+                            if (l) this.$set(l, 'on', false);
+                            return l
+                        })
+                        return _left
+                    });
+                    this.l_name = xfConfigs[val]?.talent[0];
+    
+                    this.talentContent.right = this.talents[xfConfigs[val].talent[1]]?.map(right => {
+                         const _right = right.map(r => {
+                            if (r) this.$set(r, 'on', false);
+                            return r
+                        })
+                        return _right
+                    });
+                    this.r_name = xfConfigs[val]?.talent[1];
+    
+                    if (val !== oVal) {
+                        this.reset()
+                    }
+    
+                    // 初始化code
+                    this.renderCode()
                 }
-
-                // 初始化code
-                this.renderCode()
             }
         },
         talent2Data: function() {
@@ -760,7 +768,6 @@ export default {
     },
     mounted: function() {
         this.getVersions()
-        console.log(xfConfigs)
     },
     components: {
         Nav
