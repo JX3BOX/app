@@ -69,7 +69,7 @@
                                 :class="[
                                     total - totalCount > 0 ? '' : 'm-talent2-surplus-empty'
                                 ]"
-                            >剩余点数: <span>{{ total - totalCount }}</span></div>
+                            >剩余点数 : <span>{{ total - totalCount }}</span></div>
                             <div class="m-talent2-main">
 
                                 <!-- LEFT -->

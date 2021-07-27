@@ -2,23 +2,41 @@
     "山川": [
         [
             {
-                "name": "种花匠",
+                "name": "踏云",
                 "type": "talent",
-                "icon": "",
-                "max": 2,
-                "desc": "我是一个种花匠，种花本领强。"
+                "icon": 22,
+                "max": 1,
+                "desc": "踏云稻香溪涧"
             },
-            null,
-            null,
-            null
+            {
+                "name": "蹑云",
+                "type": "talent",
+                "icon": 1490,
+                "max": 1,
+                "desc": "蹑云逐月摘星"
+            },
+            {
+                "name": "扶摇",
+                "type": "talent",
+                "icon": 1485,
+                "max": 1,
+                "desc": "扶摇直上九霄"
+            },
+            {
+                "name": "萍踪",
+                "type": "talent",
+                "icon": 622,
+                "max": 1,
+                "desc": "萍踪侠影"
+            }
         ],
         [
             {
-                "name": "种花匠",
+                "name": "莲华",
                 "type": "talent",
-                "icon": "",
+                "icon": 109,
                 "max": 2,
-                "desc": "我是一个种花匠，种花本领强。"
+                "desc": "逐莲升华"
             },
             null,
             null,
