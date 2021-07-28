@@ -94,7 +94,8 @@
                                                     class="m-talent2-content-item"
                                                     :class="[
                                                         {'m-talent2-content-item-skill': item.type === 'skill'},
-                                                        !canOperate(index, 'left') ? 'm-talent2-content-item-disabled' : ''
+                                                        canOperate(index, 'left') ? '' : 'm-talent2-content-item-disabled',
+                                                        item.pretab ? 'm-talent2-pretab' : ''
                                                     ]"
                                                     :key="i"
                                                     @mouseover="$set(item, 'on', true)"
@@ -108,6 +109,10 @@
                                                             !canLeftItemOperate(index, i) ? 'm-talent2-unselected': 'm-talent2-selected'
                                                         ]"
                                                     >
+                                                        <!-- HAS PARENT -->
+                                                        <span class="is-add" v-if="item.pretab && !isLeftParentAdd(index, i)"></span>
+                                                        <!-- TOTAL ZERO -->
+                                                        <span :class="!(total - totalCount) && !Number(l_data[index][i]) ? 'is-add' : ''"></span>
                                                         <img :src="item.icon | talentIcon" :alt="item.name">
                                                     </div>
                                                     <!-- COUNT -->
@@ -175,7 +180,8 @@
                                                     class="m-talent2-content-item"
                                                     :class="[
                                                         {'m-talent2-content-item-skill': item.type === 'skill'},
-                                                        !canOperate(index, 'right') ? 'm-talent2-content-item-disabled' : ''
+                                                        !canOperate(index, 'right') ? 'm-talent2-content-item-disabled' : '',
+                                                        item.pretab ? 'm-talent2-pretab' : ''
                                                     ]"
                                                     :key="i"
                                                     @mouseover="$set(item, 'on', true)"
@@ -190,6 +196,11 @@
                                                             !canRightItemOperate(index, i) ? 'm-talent2-unselected': 'm-talent2-selected'
                                                         ]"
                                                     >
+                                                    <!-- HAS PARENT -->
+                                                        <span class="is-add" v-if="item.pretab && !isRightParentAdd(index, i)"></span>
+                                                    <!-- TOTAL ZERO -->
+                                                        <span :class="!(total - totalCount) && !Number(r_data[index][i]) ? 'is-add' : ''"></span>
+
                                                         <img :src="item.icon | talentIcon" :alt="item.name">
                                                     </div>
                                                     <!-- COUNT -->
@@ -318,13 +329,15 @@ export default {
     computed: {
         lCount: function() {
             return this.l_data.length ?
-                this.l_data.map(l => l.split('')).flat().reduce((prev, current) => Number(prev) + Number(current))
-                : 0;
+                this.l_data.map(l => l.split('')).flat()
+                    .reduce((prev, current) => Number(prev) + Number(current))
+                        : 0;
         },
         rCount: function() {
             return this.r_data.length ?
-                this.r_data.map(l => l.split('')).flat().reduce((prev, current) => Number(prev) + Number(current))
-                : 0;
+                this.r_data.map(l => l.split('')).flat()
+                    .reduce((prev, current) => Number(prev) + Number(current))
+                        : 0;
         },
         leftLastIndex: function() {
             let index = 0;
@@ -458,6 +471,12 @@ export default {
 
         },
         /**
+         * 判断left该项父项是否加点
+         */
+        isLeftParentAdd: function(rowIndex, colIndex) {
+            return Number(this.l_data[rowIndex - 1][colIndex]);
+        },
+        /**
          * talent left 增加层数
          * @param {Object} item talent
          * @param {number} rowIndex 行号
@@ -466,14 +485,20 @@ export default {
          */
         leftTalentAdd: function(item, rowIndex, colIndex) {
 
-            if (!this.canOperate(rowIndex, 'left')) return 
+            if (!this.canOperate(rowIndex, 'left')) return
+            // 当父项有层数，才可以进行增加层数操作
+            if (item?.pretab && !this.isLeftParentAdd(rowIndex, colIndex)) {
+                this.$message.warning({
+                    message: '要激活该天赋需要先激活对应的上层天赋'
+                })
+                return
+            }
 
             const { max, parent } = item;
 
             if (this.begin === 'right') {
                 if (this.rCount < this.series_open_need) {
                     this.$message.warning({
-                        title: '提醒',
                         message: `主天赋需要先激活${this.series_open_need}点，才能激活本区域的天赋`
                     })
                     return
@@ -586,7 +611,12 @@ export default {
             }
             
             return canOperate
-
+        },
+        /**
+         * 判断right该项父项是否加点
+         */
+        isRightParentAdd: function(rowIndex, colIndex) {
+            return Number(this.r_data[rowIndex - 1][colIndex]);
         },
         /**
          * talent right 增加层数
@@ -598,6 +628,14 @@ export default {
         rightTalentAdd: function(item, rowIndex, colIndex) {
 
             if (!this.canOperate(rowIndex, 'right')) return 
+
+            // 当父项有层数，才可以进行增加层数操作
+            if (item?.pretab && !this.isRightParentAdd(rowIndex, colIndex)) {
+                this.$message.warning({
+                    message: '要激活该天赋需要先激活对应的上层天赋'
+                })
+                return
+            }
 
             const { max, parent } = item;
 
