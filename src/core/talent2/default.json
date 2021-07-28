@@ -27,65 +27,35 @@
                 "type": "talent",
                 "icon": 622,
                 "max": 1,
-                "desc": "萍踪侠影"
+                "desc": "萍踪林间侠影"
             }
         ],
         [
-            {
-                "name": "莲华",
-                "type": "talent",
-                "icon": 109,
-                "max": 2,
-                "desc": "逐莲升华"
-            },
+            null,
             null,
             null,
             null
         ],
         [
-            {
-                "name": "种花匠",
-                "type": "talent",
-                "icon": "",
-                "max": 2,
-                "desc": "我是一个种花匠，种花本领强。"
-            },
+            null,
             null,
             null,
             null
         ],
         [
-            {
-                "name": "种花匠",
-                "type": "talent",
-                "icon": "",
-                "max": 2,
-                "desc": "我是一个种花匠，种花本领强。"
-            },
+            null,
             null,
             null,
             null
         ],
         [
-            {
-                "name": "种花匠",
-                "type": "talent",
-                "icon": "",
-                "max": 2,
-                "desc": "我是一个种花匠，种花本领强。"
-            },
+            null,
             null,
             null,
             null
         ],
         [
-            {
-                "name": "种花匠",
-                "type": "talent",
-                "icon": "",
-                "max": 2,
-                "desc": "我是一个种花匠，种花本领强。"
-            },
+            null,
             null,
             null,
             null
