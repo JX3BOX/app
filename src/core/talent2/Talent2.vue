@@ -112,7 +112,7 @@
                                                     </div>
                                                     <!-- COUNT -->
                                                     <span
-                                                        v-if="Number(l_data[index][i])"
+                                                        v-if="Number(l_data[index][i]) || canLeftItemOperate(index, i)"
                                                         class="m-talent2-content-item-count"
                                                         :class="[
                                                             Number(l_data[index][i]) < item.max
@@ -123,13 +123,22 @@
 
                                                     <!-- DESC -->
                                                     <span class="m-talent2-pop" :class="item.on ? 'on' : ''">
-                                                        <b class="m-talent2-name">{{ item.name }}</b>
-                                                        <b class="m-talent2-type">
-                                                            {{ item.type === 'talent' ? '被动招式': '主动招式' }}
+                                                        <b class="m-talent2-name">
+                                                            <span>{{ item.name }}</span>
+                                                            <span class="m-talent2-number">
+                                                                第{{ Number(l_data[index][i]) + '/' + item.max }}重
+                                                            </span>
                                                         </b>
+                                                        <!-- <b class="m-talent2-type">
+                                                            {{ item.type === 'talent' ? '被动招式': '主动招式' }}
+                                                        </b> -->
                                                         <span class="m-talent2-desc">
                                                             {{ item.desc }}
                                                         </span>
+                                                        <span
+                                                            v-if="Number(l_data[index][i]) === item.max"
+                                                            class="m-max"
+                                                        >该招式已练至最高境界</span>
                                                     </span>
 
                                                     <!-- CHILDREN -->
@@ -185,7 +194,7 @@
                                                     </div>
                                                     <!-- COUNT -->
                                                     <span
-                                                        v-if="Number(r_data[index][i])"
+                                                        v-if="Number(r_data[index][i]) || canRightItemOperate(index, i)"
                                                         class="m-talent2-content-item-count"
                                                         :class="[
                                                             Number(r_data[index][i]) < item.max
@@ -196,13 +205,22 @@
 
                                                     <!-- DESC -->
                                                     <span class="m-talent2-pop" :class="item.on ? 'on' : ''">
-                                                        <b class="m-talent2-name">{{ item.name }}</b>
-                                                        <b class="m-talent2-type">
-                                                            {{ item.type === 'talent' ? '被动招式': '主动招式' }}
+                                                        <b class="m-talent2-name">
+                                                            <span>{{ item.name }}</span>
+                                                            <span class="m-talent2-number">
+                                                                第{{ Number(r_data[index][i]) + '/' + item.max }}重
+                                                            </span>
                                                         </b>
+                                                        <!-- <b class="m-talent2-type">
+                                                            {{ item.type === 'talent' ? '被动招式': '主动招式' }}
+                                                        </b> -->
                                                         <span class="m-talent2-desc">
                                                             {{ item.desc }}
                                                         </span>
+                                                        <span
+                                                            v-if="Number(r_data[index][i]) === item.max"
+                                                            class="m-max"
+                                                        >该招式已练至最高境界</span>
                                                     </span>
 
                                                     <!-- CHILDREN -->
@@ -268,7 +286,7 @@ import {
     __iconPath
 } from "@jx3box/jx3box-common/data/jx3box.json";
 import { xfConfigs } from '@jx3box/jx3box-data/data/app/talent2.json';
-import defaultXf from './default.json';
+import { defaultXf, defaultConfigs } from './default.json';
 export default {
     name: "Talent2",
     data: function() {
@@ -283,10 +301,10 @@ export default {
             versions: [], // 版本列表
             talents: {}, // 镇派数据
             xfmap,
-            total: 33,
+            total: 0,
             l_data: ["0000", "0000", "0000", "0000", "0000", "0000"],
             r_data: ["0000", "0000", "0000", "0000", "0000", "0000"],
-            series_open_need: 26,
+            series_open_need: 0,
 
             // 心法字符串对应的心法id，用于左右背景
             xfContent: [],
@@ -734,6 +752,7 @@ export default {
                 if (val) {
                     this.xfContent = xfConfigs[val]?.content;
                     this.begin = xfConfigs[val]?.begin;
+
                     // 新增pop显示控制
                     this.talentContent.left = this.talents[xfConfigs[val].talent[0]]?.map(left => {
                         const _left = left.map(l => {
@@ -767,7 +786,9 @@ export default {
         }
     },
     mounted: function() {
-        this.getVersions()
+        this.getVersions();
+        this.total = defaultConfigs.total;
+        this.series_open_need = defaultConfigs.series_open_need
     },
     components: {
         Nav
