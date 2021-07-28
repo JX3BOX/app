@@ -105,7 +105,9 @@
                                                         @click="leftTalentAdd(item, index, i)"
                                                         @click.right.prevent="leftTalentDecrease(index, i)"
                                                         :class="[
-                                                            !canLeftItemOperate(index, i) ? 'm-talent2-unselected': 'm-talent2-selected',
+                                                            !canLeftItemOperate(index, i) ? 
+                                                                (item.type === 'skill' ? 'm-talent2-skill-unselected' : 'm-talent2-unselected')
+                                                                    : 'm-talent2-selected',
                                                             item.type === 'skill' ? '' : 'm-talent2-talent'
                                                         ]"
                                                     >
@@ -192,7 +194,9 @@
                                                         @click.right.prevent="rightTalentDecrease(index, i)"
                                                         :title="item.desc"
                                                         :class="[
-                                                            !canRightItemOperate(index, i) ? 'm-talent2-unselected': 'm-talent2-selected',
+                                                            !canRightItemOperate(index, i) ?
+                                                                (item.type === 'skill' ? 'm-talent2-skill-unselected' : 'm-talent2-unselected')
+                                                                    : 'm-talent2-selected',
                                                             item.type === 'skill' ? '' : 'm-talent2-talent'
                                                         ]"
                                                     >
@@ -763,7 +767,8 @@ export default {
                 .then(res => res.json())
                 .then(response => {
                     this.talents = {...response, ...defaultXf};
-                    this.xf = '通用'
+                    this.xf = '通用';
+                    this.total = 66
                 })
         }
     },
@@ -809,6 +814,12 @@ export default {
                         return _right
                     });
                     this.r_name = xfConfigs[val]?.talent[1];
+
+                    if (val === '通用') {
+                        this.total = 66;
+                    } else {
+                        this.total = defaultConfigs.total;
+                    }
     
                     if (val !== oVal) {
                         this.reset()
@@ -825,7 +836,7 @@ export default {
     },
     mounted: function() {
         this.getVersions();
-        this.total = defaultConfigs.total;
+        // this.total = defaultConfigs.total;
         this.series_open_need = defaultConfigs.series_open_need
     },
     components: {

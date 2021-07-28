@@ -208,6 +208,19 @@
                 opacity: 1;
             }
         }
+        .m-talent2-skill-unselected {
+            &::before {
+                transition: opacity 0.2s linear;
+                content: '';
+                position: absolute;
+                height: 48px;
+                width: 48px;
+                border-radius: 6px;
+                background-color: rgba(0,0,0,0.5);
+                z-index: 10;
+                opacity: 1;
+            }
+        }
         .is-add {
             transition: opacity 0.2s linear;
             position: absolute;
