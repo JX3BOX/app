@@ -277,7 +277,7 @@ export default {
             code: '0',
             begin: 'left',
             l_name: '山川',
-            r_name: '山河',
+            r_name: '日月',
 
             version : '',
             versions: [], // 版本列表
