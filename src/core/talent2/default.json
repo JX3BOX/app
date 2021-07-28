@@ -1,246 +1,242 @@
 {
-    "山川": [
-        [
-            {
-                "name": "踏云",
-                "type": "talent",
-                "icon": 22,
-                "max": 1,
-                "desc": "踏云稻香溪涧"
-            },
-            {
-                "name": "蹑云",
-                "type": "talent",
-                "icon": 1490,
-                "max": 1,
-                "desc": "蹑云逐月摘星"
-            },
-            {
-                "name": "扶摇",
-                "type": "talent",
-                "icon": 1485,
-                "max": 4,
-                "desc": "扶摇直上九霄"
-            },
-            {
-                "name": "萍踪",
-                "type": "talent",
-                "icon": 622,
-                "max": 4,
-                "desc": "萍踪林间侠影"
-            }
+    "defaultXf": {
+        "山川": [
+            [
+                {
+                    "name": "踏云",
+                    "type": "talent",
+                    "icon": 22,
+                    "max": 1,
+                    "desc": "踏云稻香溪涧"
+                },
+                {
+                    "name": "蹑云",
+                    "type": "talent",
+                    "icon": 1490,
+                    "max": 1,
+                    "desc": "蹑云逐月摘星"
+                },
+                {
+                    "name": "扶摇",
+                    "type": "talent",
+                    "icon": 1485,
+                    "max": 4,
+                    "desc": "扶摇直上九霄"
+                },
+                {
+                    "name": "萍踪",
+                    "type": "talent",
+                    "icon": 622,
+                    "max": 4,
+                    "desc": "萍踪林间侠影"
+                }
+            ],
+            [
+                {
+                    "name": "花海",
+                    "type": "talent",
+                    "icon": 13417,
+                    "max": 1,
+                    "desc": "走过晴昼海的花海"
+                },
+                {
+                    "name": "望月",
+                    "type": "talent",
+                    "icon": 3138,
+                    "max": 1,
+                    "desc": "扶摇跳上摘星楼顶"
+                },
+                null,
+                null
+            ],
+            [null, null, null, null],
+            [
+                {
+                    "name": "小女儿",
+                    "type": "talent",
+                    "icon": 2789,
+                    "max": 1,
+                    "desc": "不爱华服爱裙装。"
+                },
+                {
+                    "name": "暮春寒",
+                    "type": "talent",
+                    "icon": 3089,
+                    "max": 1,
+                    "desc": "四月里，思念你。"
+                },
+                null,
+                null
+            ],
+            [null, null, null, null],
+            [
+                {
+                    "name": "采萝莉的小蘑菇",
+                    "type": "talent",
+                    "icon": 2178,
+                    "max": 1,
+                    "desc": "我的很大，你忍一下！"
+                },
+                {
+                    "name": "怀中抱妹杀",
+                    "type": "talent",
+                    "icon": 4835,
+                    "max": 1,
+                    "desc": "可甜可盐小姐姐我可以！"
+                },
+                {
+                    "name": "飒飒の爷",
+                    "type": "talent",
+                    "icon": 3111,
+                    "max": 1,
+                    "desc": "若为鲜肉腊肉故，三小只皆可抛！"
+                },
+                {
+                    "name": "寡王",
+                    "type": "talent",
+                    "icon": 433,
+                    "max": 1,
+                    "desc": "正道的光，母胎solo！"
+                }
+            ]
         ],
-        [
-            {
-                "name": "花海",
-                "type": "talent",
-                "icon": 13417,
-                "max": 1,
-                "desc": "走过晴昼海的花海"
-            },
-            {
-                "name": "望月",
-                "type": "talent",
-                "icon": 3138,
-                "max": 1,
-                "desc": "扶摇跳上摘星楼顶"
-            },
-            null,
-            null
-        ],
-        [
-            null,
-            null,
-            null,
-            null
-        ],
-        [
-            {
-                "name": "小女儿",
-                "type": "talent",
-                "icon": 2789,
-                "max": 1,
-                "desc": "不爱华服爱裙装。"
-            },
-            {
-                "name": "暮春寒",
-                "type": "talent",
-                "icon": 3089,
-                "max": 1,
-                "desc": "四月里，思念你。"
-            },
-            null,
-            null
-        ],
-        [
-            null,
-            null,
-            null,
-            null
-        ],
-        [
-            {
-                "name": "采萝莉的小蘑菇",
-                "type": "talent",
-                "icon": 2178,
-                "max": 1,
-                "desc": "我的很大，你忍一下！"
-            },
-            {
-                "name": "怀中抱妹杀",
-                "type": "talent",
-                "icon": 4835,
-                "max": 1,
-                "desc": "可甜可盐小姐姐我可以！"
-            },
-            {
-                "name": "飒飒の爷",
-                "type": "talent",
-                "icon": 3111,
-                "max": 1,
-                "desc": "若为鲜肉腊肉故，三小只皆可抛！"
-            },
-            {
-                "name": "寡王",
-                "type": "talent",
-                "icon": 433,
-                "max": 1,
-                "desc": "正道的光，母胎solo！"
-            }
+        "日月": [
+            [
+                {
+                    "name": "大战",
+                    "type": "talent",
+                    "icon": 3321,
+                    "max": 2,
+                    "desc": "少侠，大战随便来四等一！"
+                },
+                {
+                    "name": "茶馆",
+                    "type": "talent",
+                    "icon": 105,
+                    "max": 1,
+                    "desc": "官爷，辛苦了！"
+                },
+                null,
+                null
+            ],
+            [
+                {
+                    "name": "云使",
+                    "type": "talent",
+                    "icon": 2103,
+                    "max": 2,
+                    "desc": "疯狂舔屏腿毛gei gei！"
+                },
+                {
+                    "name": "莲华",
+                    "type": "talent",
+                    "icon": 336,
+                    "max": 2,
+                    "desc": "婉清……你听我说。"
+                },
+                null,
+                null
+            ],
+            [
+                {
+                    "name": "屌丝",
+                    "type": "talent",
+                    "icon": 8848,
+                    "max": 1,
+                    "desc": "我是一只快乐的小屌丝。"
+                },
+                {
+                    "name": "打工仔",
+                    "type": "talent",
+                    "icon": 10452,
+                    "max": 2,
+                    "desc": "我是一只快乐的打工仔。"
+                },
+                {
+                    "name": "高级打工仔",
+                    "type": "talent",
+                    "icon": 10451,
+                    "max": 3,
+                    "desc": "我是一只高级的打工仔。"
+                },
+                {
+                    "name": "壕",
+                    "type": "talent",
+                    "icon": 2589,
+                    "max": 4,
+                    "desc": "准备！3，2，1！手慢无。"
+                }
+            ],
+            [
+                {
+                    "name": "打桩机",
+                    "type": "talent",
+                    "icon": 5352,
+                    "max": 1,
+                    "desc": "精通圆桌理论。"
+                },
+                {
+                    "name": "神圣之光",
+                    "type": "talent",
+                    "icon": 413,
+                    "max": 1,
+                    "desc": "精通减伤规则。"
+                },
+                {
+                    "name": "我是MT",
+                    "type": "talent",
+                    "icon": 646,
+                    "max": 1,
+                    "desc": "精通嘲讽规则。"
+                },
+                {
+                    "name": "全职高手",
+                    "type": "talent",
+                    "icon": 245,
+                    "max": 3,
+                    "desc": "精通全职业。"
+                }
+            ],
+            [
+                null,
+                {
+                    "name": "号令三军",
+                    "type": "talent",
+                    "icon": 2588,
+                    "max": 1,
+                    "desc": "成为一名团长或指挥。"
+                },
+                {
+                    "name": "嘤嘤嘤",
+                    "type": "talent",
+                    "icon": 6738,
+                    "max": 1,
+                    "desc": "成为一名团员或团长夫人。"
+                },
+                null
+            ],
+            [
+                null,
+                {
+                    "name": "碧落",
+                    "type": "talent",
+                    "icon": 3120,
+                    "max": 1,
+                    "desc": "精通墨艺，成为门派大师兄。"
+                },
+                {
+                    "name": "幽月",
+                    "type": "talent",
+                    "icon": 3116,
+                    "max": 1,
+                    "desc": "精通墨艺，成为门派大师姐。"
+                },
+                null
+            ]
         ]
-    ],
-    "日月": [
-        [
-            {
-                "name": "大战",
-                "type": "talent",
-                "icon": 3321,
-                "max": 2,
-                "desc": "少侠，大战随便来四等一！"
-            },
-            {
-                "name": "茶馆",
-                "type": "talent",
-                "icon": 105,
-                "max": 1,
-                "desc": "官爷，辛苦了！"
-            },
-            null,
-            null
-        ],
-        [
-            {
-                "name": "云使",
-                "type": "talent",
-                "icon": 2103,
-                "max": 2,
-                "desc": "疯狂舔屏腿毛gei gei！"
-            },
-            {
-                "name": "莲华",
-                "type": "talent",
-                "icon": 336,
-                "max": 2,
-                "desc": "婉清……你听我说。"
-            },
-            null,
-            null
-        ],
-        [
-            {
-                "name": "屌丝",
-                "type": "talent",
-                "icon": 8848,
-                "max": 1,
-                "desc": "我是一只快乐的小屌丝。"
-            },
-            {
-                "name": "打工仔",
-                "type": "talent",
-                "icon": 10452,
-                "max": 2,
-                "desc": "我是一只快乐的打工仔。"
-            },
-            {
-                "name": "高级打工仔",
-                "type": "talent",
-                "icon":10451,
-                "max": 3,
-                "desc": "我是一只高级的打工仔。"
-            },
-            {
-                "name": "壕",
-                "type": "talent",
-                "icon":2589,
-                "max": 4,
-                "desc": "准备！3，2，1！手慢无。"
-            }
-        ],
-        [
-            {
-                "name": "打桩机",
-                "type": "talent",
-                "icon": 5352,
-                "max": 1,
-                "desc": "精通圆桌理论。"
-            },
-            {
-                "name": "神圣之光",
-                "type": "talent",
-                "icon": 413,
-                "max": 1,
-                "desc": "精通减伤规则。"
-            },
-            {
-                "name": "我是MT",
-                "type": "talent",
-                "icon": 646,
-                "max": 1,
-                "desc": "精通嘲讽规则。"
-            },
-            {
-                "name": "全职高手",
-                "type": "talent",
-                "icon": 245,
-                "max":3,
-                "desc": "精通全职业。"
-            }
-        ],
-        [
-            null,
-            {
-                "name": "号令三军",
-                "type": "talent",
-                "icon": 2588,
-                "max": 1,
-                "desc": "成为一名团长或指挥。"
-            },
-            {
-                "name": "嘤嘤嘤",
-                "type": "talent",
-                "icon": 6738,
-                "max": 1,
-                "desc": "成为一名团员或团长夫人。"
-            },
-            null
-        ],
-        [
-            null,
-            {
-                "name": "碧落",
-                "type": "talent",
-                "icon": 3120,
-                "max": 1,
-                "desc": "精通墨艺，成为门派大师兄。"
-            },
-            {
-                "name": "幽月",
-                "type": "talent",
-                "icon": 3116,
-                "max": 1,
-                "desc": "精通墨艺，成为门派大师姐。"
-            },
-            null
-        ]
-    ]
+    },
+    "defaultConfigs": {
+        "total": 33,
+        "series_open_need": 26
+    }
 }

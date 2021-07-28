@@ -265,9 +265,17 @@
         }
 
         .m-talent2-name {
+            display: flex;
+            justify-content: space-between;
             font-size: 14px;
             line-height: 2;
             color: @name;
+
+            .m-talent2-number {
+                color: #859293;
+                font-size: 14px;
+                font-weight: normal;
+            }
         }
         .m-talent2-type {
             color: #fff;
@@ -278,6 +286,10 @@
             font-size: 12px;
             line-height: 20px;
             color: @name;
+        }
+        .m-max {
+            color: #fff;
+            font-size: 13px;
         }
     }
     .on {
