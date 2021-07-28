@@ -90,28 +90,28 @@
                     "name": "小女儿",
                     "type": "talent",
                     "icon": 2789,
-                    "max": 1,
+                    "max": 2,
                     "desc": "不爱华服爱裙装。"
                 },
                 {
                     "name": "暮春寒",
                     "type": "talent",
                     "icon": 3089,
-                    "max": 1,
+                    "max": 2,
                     "desc": "四月里，思念你。"
                 },
                 {
                     "name": "团绒戏",
                     "type": "talent",
                     "icon": 14823,
-                    "max": 1,
+                    "max": 2,
                     "desc": "万家灯火，照亮你我。"
                 },
                 {
                     "name": "踏雪",
                     "type": "talent",
                     "icon": 276,
-                    "max": 1,
+                    "max": 2,
                     "desc": "鹿震专座。"
                 }
             ],
@@ -171,28 +171,28 @@
                     "name": "大战",
                     "type": "talent",
                     "icon": 812,
-                    "max": 1,
+                    "max": 2,
                     "desc": "霸王弩，大战随便来四等一！"
                 },
                 {
                     "name": "茶馆",
                     "type": "talent",
                     "icon": 105,
-                    "max": 1,
+                    "max": 2,
                     "desc": "官爷，辛苦了！"
                 },
                 {
                     "name": "美人图",
                     "type": "talent",
                     "icon": 293,
-                    "max": 1,
+                    "max": 2,
                     "desc": "壁咚一名少侠！"
                 },
                 {
                     "name": "南屏昆仑",
                     "type": "talent",
                     "icon": 8313,
-                    "max": 1,
+                    "max": 2,
                     "desc": "完成威望日常。"
                 }
             ],
@@ -215,14 +215,14 @@
                     "name": "云湖天池",
                     "type": "talent",
                     "icon": 9,
-                    "max": 1,
+                    "max": 2,
                     "desc": "参与战场或插旗。"
                 },
                 {
                     "name": "烟影",
                     "type": "talent",
                     "icon": 2375,
-                    "max": 1,
+                    "max": 2,
                     "desc": "参与一次千人攻防。",
                     "pretab": 1
                 }
