@@ -154,7 +154,7 @@
         &-disabled {
             cursor: not-allowed;
         }
-        .m-talent2-skill {
+        .m-talent2-talent {
             position: relative;
             transition: background-color 5s linear;
 
@@ -170,11 +170,15 @@
                 top: -2px;
             }
         }
-        img {
+        .talent-img {
             height: 48px;
             width: 48px;
             border-radius: 48px;
             transform: scale(0.95);
+        }
+
+        .skill-img {
+            border-radius: 0!important;
         }
 
         .m-talent2-selected {
@@ -257,7 +261,7 @@
             position: absolute;
             width: 34px;
             height: 26px;
-            top: -7px;
+            top: -16px;
             left: 7px;
             background-image: url('../img/talent2/next_bg.png');
             z-index: 203;

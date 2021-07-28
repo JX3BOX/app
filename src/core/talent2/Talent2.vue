@@ -104,16 +104,16 @@
                                                     <div
                                                         @click="leftTalentAdd(item, index, i)"
                                                         @click.right.prevent="leftTalentDecrease(index, i)"
-                                                        class="m-talent2-skill"
                                                         :class="[
-                                                            !canLeftItemOperate(index, i) ? 'm-talent2-unselected': 'm-talent2-selected'
+                                                            !canLeftItemOperate(index, i) ? 'm-talent2-unselected': 'm-talent2-selected',
+                                                            item.type === 'skill' ? '' : 'm-talent2-talent'
                                                         ]"
                                                     >
                                                         <!-- HAS PARENT -->
                                                         <span class="is-add" v-if="item.pretab && !isLeftParentAdd(index, i)"></span>
                                                         <!-- TOTAL ZERO -->
                                                         <span :class="!(total - totalCount) && !Number(l_data[index][i]) ? 'is-add' : ''"></span>
-                                                        <img :src="item.icon | talentIcon" :alt="item.name">
+                                                        <img class="talent-img" :class="{ 'skill-img': item.type === 'skill' }" :src="item.icon | talentIcon" :alt="item.name">
                                                     </div>
                                                     <!-- COUNT -->
                                                     <span
@@ -190,10 +190,10 @@
                                                     <div 
                                                         @click="rightTalentAdd(item, index, i)"
                                                         @click.right.prevent="rightTalentDecrease(index, i)"
-                                                        class="m-talent2-skill"
                                                         :title="item.desc"
                                                         :class="[
-                                                            !canRightItemOperate(index, i) ? 'm-talent2-unselected': 'm-talent2-selected'
+                                                            !canRightItemOperate(index, i) ? 'm-talent2-unselected': 'm-talent2-selected',
+                                                            item.type === 'skill' ? '' : 'm-talent2-talent'
                                                         ]"
                                                     >
                                                     <!-- HAS PARENT -->
@@ -201,7 +201,7 @@
                                                     <!-- TOTAL ZERO -->
                                                         <span :class="!(total - totalCount) && !Number(r_data[index][i]) ? 'is-add' : ''"></span>
 
-                                                        <img :src="item.icon | talentIcon" :alt="item.name">
+                                                        <img class="talent-img" :class="{ 'skill-img': item.type === 'skill' }" :src="item.icon | talentIcon" :alt="item.name">
                                                     </div>
                                                     <!-- COUNT -->
                                                     <span
