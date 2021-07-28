@@ -112,7 +112,10 @@
                                                         ]"
                                                     >
                                                         <!-- HAS PARENT -->
-                                                        <span class="is-add" v-if="item.pretab && !isLeftParentAdd(index, i)"></span>
+                                                        <span
+                                                            v-if="item.pretab && !isLeftParentAdd(index, i)"
+                                                            :class="item.type === 'skill' ? 'is-add-skill' : 'is-add'"
+                                                        ></span>
                                                         <!-- TOTAL ZERO -->
                                                         <span :class="!(total - totalCount) && !Number(l_data[index][i]) ? 'is-add' : ''"></span>
                                                         <img class="talent-img" :class="{ 'skill-img': item.type === 'skill' }" :src="item.icon | talentIcon" :alt="item.name">
@@ -201,7 +204,10 @@
                                                         ]"
                                                     >
                                                     <!-- HAS PARENT -->
-                                                        <span class="is-add" v-if="item.pretab && !isRightParentAdd(index, i)"></span>
+                                                        <span 
+                                                            v-if="item.pretab && !isRightParentAdd(index, i)"
+                                                            :class="item.type === 'skill' ? 'is-add-skill' : 'is-add'"
+                                                        ></span>
                                                     <!-- TOTAL ZERO -->
                                                         <span :class="!(total - totalCount) && !Number(r_data[index][i]) ? 'is-add' : ''"></span>
 
