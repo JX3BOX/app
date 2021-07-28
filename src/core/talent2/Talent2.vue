@@ -122,7 +122,7 @@
                                                     </div>
                                                     <!-- COUNT -->
                                                     <span
-                                                        v-if="Number(l_data[index][i]) || canLeftItemOperate(index, i)"
+                                                        v-if="Number(l_data[index][i])"
                                                         class="m-talent2-content-item-count"
                                                         :class="[
                                                             Number(l_data[index][i]) < item.max
@@ -150,12 +150,6 @@
                                                             class="m-max"
                                                         >该招式已练至最高境界</span>
                                                     </span>
-
-                                                    <!-- CHILDREN -->
-                                                    <i
-                                                        v-if="item.children && item.children.length"
-                                                        class="el-icon-bottom m-talent2-content-item-relate"
-                                                    ></i>
                                                 </div>
                                                 <div v-else class="m-talent2-content-item-empty" :key="i"></div>
                                             </template>
@@ -215,7 +209,7 @@
                                                     </div>
                                                     <!-- COUNT -->
                                                     <span
-                                                        v-if="Number(r_data[index][i]) || canRightItemOperate(index, i)"
+                                                        v-if="Number(r_data[index][i])"
                                                         class="m-talent2-content-item-count"
                                                         :class="[
                                                             Number(r_data[index][i]) < item.max
@@ -243,12 +237,6 @@
                                                             class="m-max"
                                                         >该招式已练至最高境界</span>
                                                     </span>
-
-                                                    <!-- CHILDREN -->
-                                                    <i
-                                                        v-if="item.children && item.children.length"
-                                                        class="el-icon-bottom m-talent2-content-item-relate"
-                                                    ></i>
                                                 </div>
                                                 <div v-else class="m-talent2-content-item-empty" :key="i"></div>
                                             </template>
