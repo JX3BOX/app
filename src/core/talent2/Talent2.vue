@@ -295,7 +295,7 @@ import {
     __iconPath
 } from "@jx3box/jx3box-common/data/jx3box.json";
 import { xfConfigs } from '@jx3box/jx3box-data/data/app/talent2.json';
-import { defaultXf, defaultConfigs } from './default.json';
+import { defaultXf, defaultConfigs } from '@jx3box/jx3box-talent2/src/default.json';
 export default {
     name: "Talent2",
     data: function() {
