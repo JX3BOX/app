@@ -568,7 +568,7 @@ export default {
                     currentCount = currentArr.map(l => l.split('')).flat()
                         .reduce((prev, current) => Number(prev) + Number(current));
 
-                    if (currentCount <= (this.leftLastIndex + 1) * 5 && targetCount > currentCount) {
+                    if (currentCount <= (this.leftLastIndex) * 5 && targetCount > currentCount) {
                         this.$message.warning({
                             title: '提醒',
                             message: '不能再减啦'
@@ -710,8 +710,10 @@ export default {
                     // 当前行之前的行的点数
                     currentCount = currentArr.map(l => l.split(''))
                         .flat().reduce((prev, current) => Number(prev) + Number(current));
+                    
+                    console.log(current , targetCount, currentCount)
 
-                    if (currentCount <= (this.rightLastIndex + 1) * 5 && targetCount > currentCount) {
+                    if (currentCount <= (this.rightLastIndex) * 5 && targetCount > currentCount) {
                         this.$message.warning({
                             title: '提醒',
                             message: '不能再减啦'
