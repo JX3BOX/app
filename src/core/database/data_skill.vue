@@ -105,6 +105,7 @@ export default {
         filterRaw: function (str) {
             str = str && str.replace(/\\n/g, "\n");
             str = str && str.replace(/(\<TALENT.*?\>)/g, "\n$1");
+            str = str && str.replace(/(\<EnchantID.*?\>)/g, "\n$1");
             return str;
         },
     },
