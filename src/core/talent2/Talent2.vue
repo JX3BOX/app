@@ -143,7 +143,21 @@
                                                             {{ item.type === 'talent' ? '被动招式': '主动招式' }}
                                                         </b> -->
                                                         <span class="m-talent2-desc">
-                                                            {{ item.desc }}
+                                                            {{ !Number(l_data[index][i])
+                                                                ? item.desc[0]
+                                                                : item.desc[l_data[index][i] - 1]
+                                                            }}
+                                                        </span>
+                                                        <span
+                                                            v-if="Number(l_data[index][i]) && Number(l_data[index][i]) < item.max"
+                                                            class="m-talent2-desc-next"
+                                                        >
+                                                            <span class="m-next-text">下一重：</span>
+                                                            <span>
+                                                                {{
+                                                                    item.desc[l_data[index][i]]
+                                                                }}
+                                                            </span>
                                                         </span>
                                                         <span
                                                             v-if="Number(l_data[index][i]) === item.max"
@@ -205,7 +219,11 @@
                                                     <!-- TOTAL ZERO -->
                                                         <span :class="!(total - totalCount) && !Number(r_data[index][i]) ? 'is-add' : ''"></span>
 
-                                                        <img class="talent-img" :class="{ 'skill-img': item.type === 'skill' }" :src="item.icon | talentIcon" :alt="item.name">
+                                                        <img class="talent-img"
+                                                            :class="{ 'skill-img': item.type === 'skill' }"
+                                                            :src="item.icon | talentIcon"
+                                                            :alt="item.name"
+                                                        >
                                                     </div>
                                                     <!-- COUNT -->
                                                     <span
@@ -230,7 +248,21 @@
                                                             {{ item.type === 'talent' ? '被动招式': '主动招式' }}
                                                         </b> -->
                                                         <span class="m-talent2-desc">
-                                                            {{ item.desc }}
+                                                             {{ !Number(r_data[index][i])
+                                                                ? item.desc[0]
+                                                                : item.desc[r_data[index][i] - 1]
+                                                            }}
+                                                        </span>
+                                                        <span
+                                                            v-if="Number(r_data[index][i]) && Number(r_data[index][i]) < item.max"
+                                                            class="m-talent2-desc-next"
+                                                        >
+                                                            <span class="m-next-text">下一重：</span>
+                                                            <span>
+                                                                {{
+                                                                    item.desc[r_data[index][i]]
+                                                                }}
+                                                            </span>
                                                         </span>
                                                         <span
                                                             v-if="Number(r_data[index][i]) === item.max"
@@ -832,7 +864,6 @@ export default {
     },
     mounted: function() {
         this.getVersions();
-        // this.total = defaultConfigs.total;
         this.series_open_need = defaultConfigs.series_open_need
     },
     components: {
