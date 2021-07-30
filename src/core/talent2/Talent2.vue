@@ -149,6 +149,7 @@
                                                             v-if="Number(l_data[index][i]) === item.max"
                                                             class="m-max"
                                                         >该招式已练至最高境界</span>
+                                                        <span class="m-talent-retrogress" v-if="Number(l_data[index][i])">右键点击遗忘</span>
                                                     </span>
                                                 </div>
                                                 <div v-else class="m-talent2-content-item-empty" :key="i"></div>
@@ -236,6 +237,7 @@
                                                             v-if="Number(r_data[index][i]) === item.max"
                                                             class="m-max"
                                                         >该招式已练至最高境界</span>
+                                                        <span class="m-talent-retrogress" v-if="Number(r_data[index][i])">右键点击遗忘</span>
                                                     </span>
                                                 </div>
                                                 <div v-else class="m-talent2-content-item-empty" :key="i"></div>
