@@ -204,7 +204,6 @@
                                                     <div 
                                                         @click="rightTalentAdd(item, index, i)"
                                                         @click.right.prevent="rightTalentDecrease(index, i)"
-                                                        :title="item.desc"
                                                         :class="[
                                                             !canRightItemOperate(index, i) ?
                                                                 (item.type === 'skill' ? 'm-talent2-skill-unselected' : 'm-talent2-unselected')
