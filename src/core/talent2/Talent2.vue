@@ -69,7 +69,7 @@
                                 :class="[
                                     total - totalCount > 0 ? '' : 'm-talent2-surplus-empty'
                                 ]"
-                            >剩余点数 : <span>{{ total - totalCount }}</span></div>
+                            >剩余点数 : <span>{{ surplus }}</span></div>
                             <div class="m-talent2-main">
 
                                 <!-- LEFT -->
@@ -108,7 +108,8 @@
                                                             !canLeftItemOperate(index, i) ? 
                                                                 (item.type === 'skill' ? 'm-talent2-skill-unselected' : 'm-talent2-unselected')
                                                                     : 'm-talent2-selected',
-                                                            item.type === 'skill' ? '' : 'm-talent2-talent'
+                                                            item.type === 'skill' ? '' : 'm-talent2-talent',
+                                                            !surplus && !Number(l_data[index][i]) ? 'm-talent2-unselected' : ''
                                                         ]"
                                                     >
                                                         <!-- HAS PARENT -->
@@ -208,7 +209,8 @@
                                                             !canRightItemOperate(index, i) ?
                                                                 (item.type === 'skill' ? 'm-talent2-skill-unselected' : 'm-talent2-unselected')
                                                                     : 'm-talent2-selected',
-                                                            item.type === 'skill' ? '' : 'm-talent2-talent'
+                                                            item.type === 'skill' ? '' : 'm-talent2-talent',
+                                                            !surplus && !Number(r_data[index][i]) ? 'm-talent2-unselected' : ''
                                                         ]"
                                                     >
                                                     <!-- HAS PARENT -->
@@ -397,6 +399,9 @@ export default {
             return this.begin === 'left' ?
                 this.l_data.concat(this.r_data).join(',')
                 : this.r_data.concat(this.l_data).join(',')
+        },
+        surplus: function (){
+            return this.total - this.totalCount
         }
     },
     methods: {
