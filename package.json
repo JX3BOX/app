@@ -14,7 +14,7 @@
         "@jx3box/jx3box-common-ui": "^4.9.8",
         "@jx3box/jx3box-data": "^1.4.1",
         "@jx3box/jx3box-dict": "^1.0.9",
-        "@jx3box/jx3box-facedat": "^2.2.3",
+        "@jx3box/jx3box-facedat": "^2.2.4",
         "@jx3box/jx3box-talent": "^1.1.0",
         "@jx3box/jx3box-talent2": "^1.2.3",
         "axios": "^0.21.1",
