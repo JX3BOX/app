@@ -109,16 +109,21 @@
                                                                 (item.type === 'skill' ? 'm-talent2-skill-unselected' : 'm-talent2-unselected')
                                                                     : 'm-talent2-selected',
                                                             item.type === 'skill' ? '' : 'm-talent2-talent',
-                                                            !surplus && !Number(l_data[index][i]) ? 'm-talent2-unselected' : ''
+                                                            !surplus && !Number(l_data[index][i]) ? 
+                                                                (item.type === 'skill' ? 'm-talent2-skill-unselected' : 'm-talent2-unselected') : ''
                                                         ]"
                                                     >
                                                         <!-- HAS PARENT -->
                                                         <span
-                                                            v-if="item.pretab && !isLeftParentAdd(index, i)"
+                                                            v-if="item.pretab && !isLeftParentAdd(index, i) && canLeftItemOperate(index, i)"
                                                             :class="item.type === 'skill' ? 'is-add-skill' : 'is-add'"
                                                         ></span>
                                                         <!-- TOTAL ZERO -->
-                                                        <span :class="!(total - totalCount) && !Number(l_data[index][i]) ? 'is-add' : ''"></span>
+                                                        <span
+                                                            v-if="!surplus && !Number(l_data[index][i])"
+                                                            :class="item.type === 'skill' ? 'is-add-skill' : 'is-add'"
+                                                        ></span>
+
                                                         <img class="talent-img" :class="{ 'skill-img': item.type === 'skill' }" :src="item.icon | talentIcon" :alt="item.name">
                                                     </div>
                                                     <!-- COUNT -->
@@ -210,16 +215,20 @@
                                                                 (item.type === 'skill' ? 'm-talent2-skill-unselected' : 'm-talent2-unselected')
                                                                     : 'm-talent2-selected',
                                                             item.type === 'skill' ? '' : 'm-talent2-talent',
-                                                            !surplus && !Number(r_data[index][i]) ? 'm-talent2-unselected' : ''
+                                                            !surplus && !Number(r_data[index][i]) ? 
+                                                                (item.type === 'skill' ? 'm-talent2-skill-unselected' : 'm-talent2-unselected') : ''
                                                         ]"
                                                     >
                                                     <!-- HAS PARENT -->
                                                         <span 
-                                                            v-if="item.pretab && !isRightParentAdd(index, i)"
+                                                            v-if="item.pretab && !isRightParentAdd(index, i) && canRightItemOperate(index, i)"
                                                             :class="item.type === 'skill' ? 'is-add-skill' : 'is-add'"
                                                         ></span>
                                                     <!-- TOTAL ZERO -->
-                                                        <span :class="!(total - totalCount) && !Number(r_data[index][i]) ? 'is-add' : ''"></span>
+                                                        <span
+                                                            v-if="!surplus && !Number(r_data[index][i])"
+                                                            :class="item.type === 'skill' ? 'is-add-skill' : 'is-add'"
+                                                        ></span>
 
                                                         <img class="talent-img"
                                                             :class="{ 'skill-img': item.type === 'skill' }"
@@ -748,8 +757,6 @@ export default {
                     // 当前行之前的行的点数
                     currentCount = currentArr.map(l => l.split(''))
                         .flat().reduce((prev, current) => Number(prev) + Number(current));
-                    
-                    console.log(current , targetCount, currentCount)
 
                     if (currentCount <= (this.rightLastIndex) * 5 && targetCount > currentCount) {
                         this.$message.warning({
