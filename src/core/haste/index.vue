@@ -97,6 +97,7 @@
                     </el-col>
                 </el-row>
             </div>
+            <div class="m-copyright"><i class="el-icon-info"></i> 本应用基于胖叔叔加速宝典应用拓展维护更新</div>
             <Footer></Footer>
         </Main>
     </div>
