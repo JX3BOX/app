@@ -108,7 +108,7 @@ module.exports = {
             template: "public/index.html",
             filename: "talent2/index.html",
         },
-        talent2: {
+        haste: {
             title: "急速阈值 - JX3BOX",
             entry: "src/core/haste/haste.js",
             template: "public/index.html",

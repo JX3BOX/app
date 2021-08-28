@@ -247,25 +247,6 @@
                     </el-col>
                     <el-col :span="4">
                         <div class="u-item">
-                            <a href="https://www.j3pz.com/tools/haste/" target="_blank">
-                                <span class="u-pic">
-                                    <i class="u-icon">
-                                        <img svg-inline src="./assets/img/logos/speed.svg" />
-                                    </i>
-                                    <span class="u-name">急速阈值</span>
-                                </span>
-                                <img class="u-blank" svg-inline src="./assets/img/logos/blank.svg" />
-                                <span class="u-features">
-                                    <span class="u-desc">✔️ 精确计算加速</span>
-                                    <span>✔️ 同步游戏最新版本</span>
-                                    <span>✔️ DPS狂魔必备</span>
-                                    <span>✔️ 深度合作伙伴</span>
-                                </span>
-                            </a>
-                        </div>
-                    </el-col>
-                    <el-col :span="4">
-                        <div class="u-item">
                             <a href="./haste/">
                                 <span class="u-pic">
                                     <i class="u-icon">
@@ -276,8 +257,8 @@
                                 <span class="u-features">
                                     <span class="u-desc">✔️ 精确计算加速</span>
                                     <span>✔️ 同步游戏最新版本</span>
+                                    <span>✔️ 支持门派自带</span>
                                     <span>✔️ DPS狂魔必备</span>
-                                    <span>✔️ 深度合作伙伴</span>
                                 </span>
                             </a>
                         </div>

@@ -62,7 +62,7 @@
                 ><i class="u-app-icon"><img svg-inline :src="getIcon('j3pz')"/></i
                 ><span>在线配装</span
                 ></a>
-            <a class="u-app" href="https://www.j3pz.com/tools/haste/" target="_blank"
+            <a class="u-app" href="/app/haste/" target="_blank"
                 ><i class="u-app-icon"><img svg-inline :src="getIcon('haste')"/></i
                 ><span>急速阈值</span
                 ></a>

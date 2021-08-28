@@ -103,9 +103,13 @@
 </template>
 
 <script>
+import Nav from "@/components/Nav.vue";
 import extraHasteList from './extraHaste';
 export default {
     name: 'haste',
+    components : {
+        Nav,
+    },
     data() {
         return {
 
