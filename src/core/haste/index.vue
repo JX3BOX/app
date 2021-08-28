@@ -2,7 +2,7 @@
     <div>
         <Header></Header>
         <Breadcrumb
-            name="加速阈值"
+            name="急速阈值"
             slug="haste"
             root="/app/haste"
             :feedbackEnable="true"
