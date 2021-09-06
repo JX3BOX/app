@@ -12,11 +12,12 @@ function getIconsByName(str,client = 'std') {
     });
 }
 
-function getMyFavIcons() {
+function getMyFavIcons(client = 'std') {
+    let key = client == 'origin' ? 'origin_favicons' : 'favicons'
     return $cms()
         .get(`/api/cms/user/my/meta`, {
             params: {
-                key: "favicons",
+                key: key,
             },
         })
         .then((res) => {
@@ -24,13 +25,14 @@ function getMyFavIcons() {
         });
 }
 
-function setMyFavIcons(data) {
+function setMyFavIcons(data,client = 'std') {
+    let key = client == 'origin' ? 'origin_favicons' : 'favicons'
     return $cms()
         .post(`/api/cms/user/my/meta`,{
             val : data,
         },{
             params: {
-                key: "favicons",
+                key: key,
             },
         })
         .then((res) => {

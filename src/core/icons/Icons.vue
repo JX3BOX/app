@@ -25,6 +25,7 @@
                                     v-model="searchIconInput"
                                     class="input-with-select"
                                     @keyup.enter.native="handleSearchIcon"
+                                    @change.once="useSearchIcon"
                                 >
                                     <el-button
                                         slot="append"
@@ -45,10 +46,11 @@
                             </div>
                             <ul class="m-icon-list" v-loading="isSearchingByName">
                                 <el-alert
-                                    title="以下为部分图标展示，请在上方自定义搜索范围。点击图标即可收藏。"
+                                    title="以下为部分图标展示，请在上方自定义搜索范围，点击图标即可收藏。"
                                     type="warning"
                                     center
                                     show-icon
+                                    v-if="isNewbie"
                                 ></el-alert>
                                 <li
                                     v-for="(icon, index) in iconsList"
@@ -267,6 +269,7 @@ export default {
             isDownloadingEmoji: false,
             isSearchingByName: false,
             uid:0,
+            isNewbie:true
         };
     },
     computed: {
@@ -476,7 +479,7 @@ export default {
             if (this.uid) {
                 // 从服务器读取
                 // 旧版数据格式 ’["109","3118","3119","13","316","2179","245","889","2178","5389"]‘
-                getMyFavIcons()
+                getMyFavIcons(this.client)
                     .then((data) => {
                         let serverValue = data;
                         if (serverValue) {
@@ -523,7 +526,7 @@ export default {
         setSavedIcons() {
             if (this.uid) {
                 // 保存到服务器
-                setMyFavIcons(this.faviconsList.join(","))
+                setMyFavIcons(this.faviconsList.join(","),this.client)
                     .then((res) => {})
                     .catch((e) => {
                         // 如果出问题，先存本地
@@ -570,6 +573,9 @@ export default {
                 message: "请手动复制",
             });
         },
+        useSearchIcon : function (){
+            this.isNewbie = false
+        }
     },
     filters: {},
     mounted: function () {
