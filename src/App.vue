@@ -156,6 +156,24 @@
                     </el-col>
                     <el-col :span="4">
                         <div class="u-item">
+                            <a href="/battle" target="_blank">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline src="./assets/img/logos/battle.svg" />
+                                    </i>
+                                    <span class="u-name">战斗分析</span>
+                                </span>
+                                <span class="u-features">
+                                    <span class="u-desc">✔️ 团队情况分析</span>
+                                    <span>✔️ BOSS时间轴推导</span>
+                                    <span>✔️ 云端存储</span>
+                                    <span>✔️ 自定义权限</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col>
+                    <el-col :span="4">
+                        <div class="u-item">
                             <a href="/rank" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
@@ -228,7 +246,7 @@
                     </el-col>
                     <el-col :span="4">
                         <div class="u-item">
-                            <a href="https://www.j3pz.com/" target="_blank">
+                            <a href="/j3pz" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
                                         <img svg-inline src="./assets/img/logos/j3pz.svg" />
@@ -237,11 +255,11 @@
                                 </span>
                                 <span class="u-features">
                                     <span class="u-desc">✔️ 在线配装分享</span>
-                                    <span>✔️ 同步游戏最新版本</span>
                                     <span>✔️ DPS狂魔必备</span>
-                                    <span>✔️ 深度合作伙伴</span>
+                                    <span>✔️ 支持多端</span>
+                                    <span>✔️ 同步游戏最新版本</span>
                                 </span>
-                                <img class="u-blank" svg-inline src="./assets/img/logos/blank.svg" />
+                                <!-- <img class="u-blank" svg-inline src="./assets/img/logos/blank.svg" /> -->
                             </a>
                         </div>
                     </el-col>

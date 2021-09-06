@@ -336,7 +336,7 @@ import {
     __ossMirror,
     __imgPath,
     __ossRoot,
-    __iconPath
+    __iconPath,
 } from "@jx3box/jx3box-common/data/jx3box.json";
 import { xfConfigs } from '@jx3box/jx3box-data/data/app/talent2.json';
 import { defaultXf, defaultConfigs } from '@jx3box/jx3box-talent2/src/default.json';
@@ -819,7 +819,7 @@ export default {
         },
         talentIcon: function(id) {
             if (id) {
-                return __iconPath + "icon/" + id + ".png";
+                return __iconPath + "origin_icon/" + id + ".png";
             }
             return ''
         }

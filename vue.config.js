@@ -141,13 +141,7 @@ module.exports = {
                 }
             },
             "/api": {
-                "target": "https://next.jx3box.com",
-                "onProxyReq": function (request) {
-                    request.setHeader("origin", "");
-                }
-            },
-            "/user": {
-                "target": "https://server.jx3box.com",
+                "target": "https://next2.jx3box.com",
                 "onProxyReq": function (request) {
                     request.setHeader("origin", "");
                 }

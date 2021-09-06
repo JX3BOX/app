@@ -257,7 +257,6 @@ export default {
             searchIconInput: "",
             iconsList: [],
             clickedIndex: -1,
-            IconPath: JX3BOX.__iconPath + "icon/",
             EmojiPath: JX3BOX.__ossMirror + "emotion/official_mini/",
             faviconsList: null,
             localFaviconsList: [],
@@ -271,6 +270,16 @@ export default {
         };
     },
     computed: {
+        client : function (){
+            return location.href.includes('origin') ? 'origin' : 'std'
+        },
+        IconPath:function (){
+            if(this.client == 'origin'){
+                return JX3BOX.__iconPath + "origin_icon/"
+            }else{
+                return JX3BOX.__iconPath + "icon/"
+            }
+        },
         faviconNeedsSync() {
             if (
                 !this.localFaviconsList ||
@@ -440,7 +449,7 @@ export default {
             this.iconsList = searchList.slice(0, 500);
         },
         async searchIconByName(name) {
-            getIconsByName(name)
+            getIconsByName(name,this.client)
                 .then((res) => {
                     let tmpList = [];
                     for (let key in res) {
