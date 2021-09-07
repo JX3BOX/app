@@ -238,8 +238,8 @@
                 <!--                    <el-button type="text" icon="el-icon-document-copy" @click="copy">点击复制</el-button>-->
                 <!--                </div>-->
                 <Footer class="meridians_footer"></Footer>
-                <div class="diglogShow" @click="myMeridians">我的经脉</div>
-                <el-dialog title="我的方案" :visible.sync="dialogVisible" width="40%">
+                <div class="diglogShow" @click="myMeridians" v-if="isLogin">我的经脉</div>
+                <el-dialog title="我的方案" :visible.sync="dialogVisible" width="40%" v-if="isLogin">
                     <el-table :data="list" style="width: 100%">
                         <el-table-column prop="id" width="70" align="center" label="方案ID">
                             <template slot-scope="scope">
@@ -477,7 +477,7 @@ export default {
         this.getList();
     },
     methods: {
-        // 初始化听不懂  哈哈哈
+        // 初始化
         init() {
             let define = JSON.parse(JSON.stringify(this.define));
             define.forEach((item) => {
