@@ -8,7 +8,7 @@
             :feedbackEnable="true"
             :crumbEnable="true"
         >
-            <img slot="logo" svg-inline src="../../assets/img/logos/icons.svg" />
+            <img slot="logo" svg-inline :src="getIcon('icons')" />
         </Breadcrumb>
         <LeftSidebar :open="false">
             <Nav />
@@ -251,6 +251,7 @@ import {
     setMyFavIcons,
 } from "@/service/icons.js";
 import default_list from "./default.json";
+import {__imgPath} from '@jx3box/jx3box-common/data/jx3box.json'
 export default {
     name: "Icons",
     data: function () {
@@ -303,6 +304,9 @@ export default {
         },
     },
     methods: {
+        getIcon(key){
+            return __imgPath + 'image/box/' + key + '.svg'
+        },
         async prepareMounted() {
             this.iconsList = default_list;
 

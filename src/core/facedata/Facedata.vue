@@ -8,7 +8,7 @@
             :feedbackEnable="true"
             :crumbEnable="true"
         >
-            <img slot="logo" svg-inline src="../../assets/img/logos/mirror.svg" />
+            <img slot="logo" svg-inline :src="getIcon('facedata')" />
         </Breadcrumb>
         <LeftSidebar :open="false">
             <Nav />
@@ -30,6 +30,7 @@
 import Nav from "@/components/Nav.vue";
 import Facedat from "@jx3box/jx3box-facedat/src/Facedat";
 import Upload from "@jx3box/jx3box-facedat/src/Upload";
+import {__imgPath} from '@jx3box/jx3box-common/data/jx3box.json'
 export default {
     name: "Facedata",
     props: [],
@@ -45,6 +46,9 @@ export default {
         },
     },
     methods: {
+        getIcon(key){
+            return __imgPath + 'image/box/' + key + '.svg'
+        },
         handleSuccess: function (data) {
             this.data = data;
             if(data?.json){

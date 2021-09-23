@@ -8,7 +8,7 @@
             :feedbackEnable="true"
             :crumbEnable="true"
         >
-            <img slot="logo" svg-inline src="../../assets/img/logos/f1.svg" />
+            <img slot="logo" svg-inline :src="getIcon('furniture')" />
             <div class="m-info"></div>
         </Breadcrumb>
         <LeftSidebar :open="false">
@@ -339,7 +339,7 @@ import { __ossMirror ,__iconPath,__ossRoot} from "@jx3box/jx3box-common/data/jx3
 // import ElImageViewer from "element-ui/packages/image/src/image-viewer";
 import typedata from "./furniture_types.json";
 import { getFurnitures } from "../../service/furniture";
-
+import {__imgPath} from '@jx3box/jx3box-common/data/jx3box.json'
 export default {
     name: "Furniture",
     props: [],
@@ -449,6 +449,9 @@ export default {
         },
     },
     methods: {
+        getIcon(key){
+            return __imgPath + 'image/box/' + key + '.svg'
+        },
         handleHoverSubCtg(e, subctg) {
             this.hover = +this.type * 10000 + subctg.id * 100;
         },

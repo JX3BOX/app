@@ -9,12 +9,7 @@
             :feedbackEnable="true"
             :crumbEnable="true"
         >
-            <img
-                slot="logo"
-                class="u-app-servers"
-                svg-inline
-                src="../../assets/img/logos/servers.svg"
-            />
+            <img class="u-app-servers" slot="logo" svg-inline :src="getIcon('servers')" />
         </Breadcrumb>
         <LeftSidebar :open="false">
             <Nav />
@@ -96,6 +91,7 @@ import { JX3BOX } from "@jx3box/jx3box-common";
 import Extend from "@/components/Extend.vue";
 import User from "@jx3box/jx3box-common/js/user";
 import { getMyFocusServers, setMyFocusServers } from "@/service/server.js";
+import { __imgPath } from "@jx3box/jx3box-common/data/jx3box.json";
 export default {
     name: "Servers",
     data: function () {
@@ -104,11 +100,14 @@ export default {
             isShowMainServer: true,
             serverList: [],
             pinnedServerName: [],
-            uid:0
+            uid: 0,
         };
     },
     computed: {},
     methods: {
+        getIcon(key) {
+            return __imgPath + "image/box/" + key + ".svg";
+        },
         showUnpinnedServerCondition(server) {
             let searchServerNameTrimed = this.searchServerName.replace(
                 /\ /g,

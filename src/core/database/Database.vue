@@ -8,7 +8,7 @@
             :feedbackEnable="true"
             :crumbEnable="true"
         >
-            <img slot="logo" svg-inline src="../../assets/img/logos/database.svg" />
+            <img slot="logo" svg-inline :src="getIcon('database')" />
             <div class="m-info"></div>
         </Breadcrumb>
         <LeftSidebar :open="false">
@@ -186,6 +186,7 @@ import data_buff from "./data_buff.vue";
 import data_skill from "./data_skill.vue";
 import data_npc from "./data_npc.vue";
 import data_doodad from "./data_doodad.vue";
+import {__imgPath} from '@jx3box/jx3box-common/data/jx3box.json'
 export default {
     name: "Database",
     props: [],
@@ -243,6 +244,9 @@ export default {
         },
     },
     methods: {
+        getIcon(key){
+            return __imgPath + 'image/box/' + key + '.svg'
+        },
         getData: function (page = 1, append = false) {
             if (!this.query) return;
 

@@ -7,12 +7,12 @@
             root="/app/translator"
             :feedbackEnable="true"
             :crumbEnable="true"
-            ><img
-                slot="logo"
-                svg-inline
-                src="../../assets/img/translator/translator.svg"
-        /></Breadcrumb>
-        <LeftSidebar :open="false"><Nav /></LeftSidebar>
+        >
+            <img slot="logo" svg-inline :src="getIcon('translator')" />
+        </Breadcrumb>
+        <LeftSidebar :open="false">
+            <Nav />
+        </LeftSidebar>
         <Main :withoutRight="true" :withoutLeft="true">
             <div class="m-translator">
                 <h1 class="title">簡繁轉換工具</h1>
@@ -23,11 +23,7 @@
                     :before-leave="tabClick"
                     v-model="activeTabName"
                 >
-                    <el-tab-pane
-                        label="文字轉換"
-                        :disabled="isLoading"
-                        name="translate-str"
-                    >
+                    <el-tab-pane label="文字轉換" :disabled="isLoading" name="translate-str">
                         <div class="translate-content">
                             <el-input
                                 type="textarea"
@@ -56,9 +52,7 @@
                             size="medium"
                             @click="convertText"
                             v-if="percentage < 0"
-                        >
-                            {{ isLoading ? "正在加載" : "轉換" }}
-                        </el-button>
+                        >{{ isLoading ? "正在加載" : "轉換" }}</el-button>
                         <el-progress
                             :text-inside="true"
                             :stroke-width="20"
@@ -66,11 +60,7 @@
                             v-if="isLoading && percentage >= 0"
                         ></el-progress>
                     </el-tab-pane>
-                    <el-tab-pane
-                        label="文件轉換"
-                        :disabled="isLoading"
-                        name="translate-file"
-                    >
+                    <el-tab-pane label="文件轉換" :disabled="isLoading" name="translate-file">
                         <transition name="el-zoom-in-top">
                             <el-alert
                                 title="转换成功!"
@@ -83,8 +73,7 @@
                                     type="text"
                                     class="btn-download"
                                     @click="downloadByUrl"
-                                    >點此下載</el-button
-                                >
+                                >點此下載</el-button>
                             </el-alert>
                         </transition>
                         <h4>上传的文件编码</h4>
@@ -110,9 +99,7 @@
                                     將文件拖到此處,或
                                     <em>點擊上傳</em>
                                 </div>
-                                <div class="el-upload__tip" slot="tip">
-                                    暫不支持word等帶樣式文檔
-                                </div>
+                                <div class="el-upload__tip" slot="tip">暫不支持word等帶樣式文檔</div>
                             </el-upload>
                             <el-progress
                                 type="circle"
@@ -122,22 +109,18 @@
                             ></el-progress>
                         </div>
                     </el-tab-pane>
-                    <el-tab-pane
-                        label="💖貢獻詞庫"
-                        :disabled="isLoading"
-                        name="add-dict"
-                    ></el-tab-pane>
+                    <el-tab-pane label="💖貢獻詞庫" :disabled="isLoading" name="add-dict"></el-tab-pane>
                 </el-tabs>
                 <!-- <div class="translate-wrapper">
                     
-                </div> -->
+                </div>-->
             </div>
             <!-- <RightSidebar
                 ><div class="m-translator-aside">
                     <Github_REPO REPO="app" coder="172"></Github_REPO>
                 </div>
                 <Extend
-            /></RightSidebar> -->
+            /></RightSidebar>-->
             <Footer></Footer>
         </Main>
     </div>
@@ -154,7 +137,7 @@ var blob = new Blob([document.querySelector("#worker").textContent]);
 var url = window.URL.createObjectURL(blob);
 var worker = new Worker(url);
 import dict from "@jx3box/jx3box-dict/dict.json";
-
+import { __imgPath } from "@jx3box/jx3box-common/data/jx3box.json";
 export default {
     name: "Translator",
     data: function () {
@@ -172,6 +155,9 @@ export default {
     },
     computed: {},
     methods: {
+        getIcon(key) {
+            return __imgPath + "image/box/" + key + ".svg";
+        },
         tabClick(activeName, oldName) {
             if (activeName === "add-dict") {
                 var aTag = document.createElement("a");
@@ -326,7 +312,7 @@ export default {
         },
         // 用于验证是否真的登录了
         testCheckIsLogin() {
-            return User.isLogin()
+            return User.isLogin();
         },
 
         // 分割线

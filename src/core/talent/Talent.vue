@@ -8,12 +8,7 @@
             :feedbackEnable="true"
             :crumbEnable="true"
         >
-            <img
-                slot="logo"
-                svg-inline
-                src="../../assets/img/logos/talent.svg"
-            />
-            <!-- <Info /> -->
+            <img slot="logo" svg-inline :src="getIcon('talent')" />
             <div class="m-info"></div>
         </Breadcrumb>
         <LeftSidebar :open="false">
@@ -125,7 +120,6 @@ import $ from "jquery";
 import schema from "./schema.vue";
 import schemas from "./schemas.json";
 import { getTalentVersions } from "@/service/talent.js";
-
 export default {
     name: "Talent",
     props: [],
@@ -148,6 +142,9 @@ export default {
         },
     },
     methods: {
+        getIcon(key){
+            return __imgPath + 'image/box/' + key + '.svg'
+        },
         parseSchema: function() {
             this.driver.then((talent) => {
                 // 为空不操作

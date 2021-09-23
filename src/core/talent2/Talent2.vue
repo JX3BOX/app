@@ -8,11 +8,7 @@
             :feedbackEnable="true"
             :crumbEnable="true"
         >
-            <img
-                slot="logo"
-                svg-inline
-                src="../../assets/img/logos/talent2.svg"
-            />
+            <img slot="logo" svg-inline :src="getIcon('talent2')" />
             <div class="m-info"></div>
         </Breadcrumb>
         <LeftSidebar :open="false">
@@ -414,6 +410,9 @@ export default {
         }
     },
     methods: {
+        getIcon(key){
+            return __imgPath + 'image/box/' + key + '.svg'
+        },
         reload: function(schema) {
         },
         reset: function() {

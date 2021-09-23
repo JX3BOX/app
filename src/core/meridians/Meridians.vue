@@ -8,7 +8,7 @@
             :feedbackEnable="true"
             :crumbEnable="false"
         >
-            <img slot="logo" svg-inline src="../../assets/img/logos/meridians.svg" />
+            <img slot="logo" svg-inline :src="getIcon('meridians')" />
         </Breadcrumb>
         <LeftSidebar :open="false">
             <Nav />
@@ -297,7 +297,7 @@ import {
     getMeridians,
     removeMeridians,
 } from "@/service/meridians";
-
+import {__imgPath} from '@jx3box/jx3box-common/data/jx3box.json'
 export default {
     name: "Meridians",
     data: function () {
@@ -477,6 +477,9 @@ export default {
         this.getList();
     },
     methods: {
+        getIcon(key){
+            return __imgPath + 'image/box/' + key + '.svg'
+        },
         // 初始化
         init() {
             let define = JSON.parse(JSON.stringify(this.define));

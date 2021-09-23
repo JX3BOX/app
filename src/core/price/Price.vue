@@ -8,7 +8,7 @@
             :feedbackEnable="true"
             :crumbEnable="true"
         >
-            <img slot="logo" svg-inline src="../../assets/img/logos/price.svg" />
+            <img slot="logo" svg-inline :src="getIcon('price')" />
         </Breadcrumb>
         <LeftSidebar :open="false">
             <Nav />
@@ -242,6 +242,7 @@ import User from "@jx3box/jx3box-common/js/user";
 import { prepareBoxplotData } from "echarts/extension/dataTool";
 // import Extend from "@/components/Extend.vue";
 import serverData from "@jx3box/jx3box-data/data/server/server.json";
+import {__imgPath} from '@jx3box/jx3box-common/data/jx3box.json'
 export default {
     name: "Price",
     data: function () {
@@ -665,6 +666,9 @@ export default {
     },
     computed: {},
     methods: {
+        getIcon(key){
+            return __imgPath + 'image/box/' + key + '.svg'
+        },
         async prepareMounted() {
             let tmpdict = {};
             // let serverUrl = dataPath('server/server.json');

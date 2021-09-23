@@ -8,11 +8,7 @@
             :feedbackEnable="true"
             :crumbEnable="true"
         >
-            <img
-                slot="logo"
-                svg-inline
-                src="../../assets/img/logos/speed.svg"
-            />
+            <img slot="logo" svg-inline :src="getIcon('haste')" />
             <div class="m-info"></div>
         </Breadcrumb>
         <LeftSidebar :open="false">
@@ -106,6 +102,7 @@
 <script>
 import Nav from "@/components/Nav.vue";
 import extraHasteList from './extraHaste';
+import {__imgPath} from '@jx3box/jx3box-common/data/jx3box.json'
 export default {
     name: 'haste',
     components : {
@@ -157,6 +154,9 @@ export default {
         this.renderHaste()
     },
     methods: {
+        getIcon(key){
+            return __imgPath + 'image/box/' + key + '.svg'
+        },
         handleSkillTimeChange: function (currentVal, OldVal){
             if (!currentVal) {
                 this.skillTime = 0.5

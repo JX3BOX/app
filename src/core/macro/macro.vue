@@ -8,11 +8,7 @@
             :feedbackEnable="true"
             :crumbEnable="true"
         >
-            <img
-                slot="logo"
-                svg-inline
-                src="../../assets/img/logos/macroeditor.svg"
-            />
+            <img slot="logo" svg-inline :src="getIcon('macroeditor')" />
             <div class="m-info"></div>
         </Breadcrumb>
         <LeftSidebar :open="false">
@@ -423,7 +419,7 @@ import "codemirror/addon/hint/show-hint.js";
 import "codemirror/addon/hint/show-hint.css";
 import "codemirror/addon/edit/matchbrackets.js";
 import "./z-macro.js";
-
+import {__imgPath} from '@jx3box/jx3box-common/data/jx3box.json'
 export default {
     name: "Macro",
     data: function() {
@@ -545,6 +541,9 @@ export default {
         },
     },
     methods: {
+        getIcon(key){
+            return __imgPath + 'image/box/' + key + '.svg'
+        },
         clickPlusCondition() {
             this.conditions.push({
                 name: "",

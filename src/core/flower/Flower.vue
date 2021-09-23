@@ -8,11 +8,7 @@
             :feedbackEnable="true"
             :crumbEnable="true"
         >
-            <img
-                slot="logo"
-                svg-inline
-                src="../../assets/img/logos/flower.svg"
-            />
+            <img slot="logo" svg-inline :src="getIcon('flower')" />
         </Breadcrumb>
         <LeftSidebar :open="false">
             <Nav />
@@ -215,7 +211,7 @@ import { __iconPath, __ossRoot } from "@jx3box/jx3box-common/data/jx3box.json";
 import traditional_servers from "@jx3box/jx3box-data/data/server/server_international.json";
 import dict from "./dict.json";
 import maps from "./maps.json";
-
+import {__imgPath} from '@jx3box/jx3box-common/data/jx3box.json'
 export default {
     name: "Flower",
     props: [],
@@ -338,6 +334,9 @@ export default {
         },
     },
     methods: {
+        getIcon(key){
+            return __imgPath + 'image/box/' + key + '.svg'
+        },
         color: function(level) {
             if (this.type) {
                 return this.colors[this.type][level];

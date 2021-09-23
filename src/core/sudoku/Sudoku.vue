@@ -101,7 +101,7 @@
 // import Info from "@/components/Info.vue";
 import Nav from "@/components/Nav.vue";
 import Extend from "@/components/Extend.vue";
-import { __ossMirror } from "@jx3box/jx3box-common/data/jx3box.json";
+import { __ossMirror,__imgPath } from "@jx3box/jx3box-common/data/jx3box.json";
 export default {
     name: "Sudoku",
     data: function() {
@@ -163,6 +163,9 @@ export default {
         },
     },
     methods: {
+        getIcon(key){
+            return __imgPath + 'image/box/' + key + '.svg'
+        },
         check: function(val, label) {
             // 长度检测
             if (val.length > 1) {
