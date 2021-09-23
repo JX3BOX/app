@@ -181,7 +181,7 @@ import Nav from "@/components/Nav.vue";
 import { loadResource, loadStat } from "../../service/database";
 import { __iconPath, __ossRoot } from "@jx3box/jx3box-common/data/jx3box.json";
 import User from "@jx3box/jx3box-common/js/user";
-import { school } from "@jx3box/jx3box-data/data/xf/school.json";
+import schools from "@jx3box/jx3box-data/data/xf/forceid.json";
 import data_buff from "./data_buff.vue";
 import data_skill from "./data_skill.vue";
 import data_npc from "./data_npc.vue";
@@ -219,7 +219,7 @@ export default {
             loading: false,
 
             isSuperAuthor: User.isSuperAuthor(),
-            schools: school,
+            schools,
 
             per: 10,
             page: 1,

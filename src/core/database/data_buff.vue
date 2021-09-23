@@ -60,7 +60,7 @@
 
 <script>
 import { __iconPath, __ossRoot } from "@jx3box/jx3box-common/data/jx3box.json";
-import detach_types from "@jx3box/jx3box-data/data/bps/detach_type.json";
+import detach_types from "@/assets/data/detach_type.json";
 import buffmap from "@jx3box/jx3box-data/data/app/buff.json";
 import { iconLink } from "@jx3box/jx3box-common/js/utils";
 

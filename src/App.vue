@@ -15,7 +15,7 @@
                             <a href="./database/">
                                 <span class="u-pic">
                                     <i class="u-icon">
-                                        <img svg-inline src="./assets/img/logos/db.svg" />
+                                        <img svg-inline :src="getIcon('database')" />
                                     </i>
                                     <span class="u-name">剑三数据库</span>
                                 </span>
@@ -33,7 +33,7 @@
                             <a href="./icons">
                                 <span class="u-pic">
                                     <i class="u-icon">
-                                        <img svg-inline src="./assets/img/logos/icons.svg" />
+                                        <img svg-inline :src="getIcon('icons')" />
                                     </i>
                                     <span class="u-name">图标大全</span>
                                 </span>
@@ -51,7 +51,7 @@
                             <a href="./talent">
                                 <span class="u-pic">
                                     <i class="u-icon">
-                                        <img svg-inline src="./assets/img/logos/talent.svg" />
+                                        <img svg-inline :src="getIcon('talent')" />
                                     </i>
                                     <span class="u-name">奇穴模拟器</span>
                                 </span>
@@ -69,7 +69,7 @@
                             <a href="./meridians">
                                 <span class="u-pic">
                                     <i class="u-icon">
-                                        <img svg-inline src="./assets/img/logos/meridians.svg" />
+                                        <img svg-inline :src="getIcon('meridians')" />
                                     </i>
                                     <span class="u-name">经脉模拟器</span>
                                 </span>
@@ -87,7 +87,7 @@
                             <a href="./talent2/">
                                 <span class="u-pic">
                                     <i class="u-icon">
-                                        <img svg-inline src="./assets/img/logos/talent2.svg" />
+                                        <img svg-inline :src="getIcon('talent2')" />
                                     </i>
                                     <span class="u-name">镇派模拟器</span>
                                 </span>
@@ -105,7 +105,7 @@
                             <a href="./macroeditor">
                                 <span class="u-pic">
                                     <i class="u-icon">
-                                        <img svg-inline src="./assets/img/logos/macroeditor.svg" />
+                                        <img svg-inline :src="getIcon('macroeditor')" />
                                     </i>
                                     <span class="u-name">宏编辑器</span>
                                 </span>
@@ -123,7 +123,7 @@
                             <a href="/team" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
-                                        <img svg-inline src="./assets/img/logos/oa.svg" />
+                                        <img svg-inline :src="getIcon('team')" />
                                     </i>
                                     <span class="u-name">团队管理</span>
                                 </span>
@@ -141,7 +141,7 @@
                             <a href="/dbm" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
-                                        <img svg-inline src="./assets/img/logos/jx3datbuilder.svg" />
+                                        <img svg-inline :src="getIcon('dbm')" />
                                     </i>
                                     <span class="u-name">数据构建</span>
                                 </span>
@@ -159,7 +159,7 @@
                             <a href="/battle" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
-                                        <img svg-inline src="./assets/img/logos/battle.svg" />
+                                        <img svg-inline :src="getIcon('battle')" />
                                     </i>
                                     <span class="u-name">战斗分析</span>
                                 </span>
@@ -177,7 +177,7 @@
                             <a href="/rank" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
-                                        <img svg-inline src="./assets/img/logos/rank.svg" />
+                                        <img svg-inline :src="getIcon('rank')" />
                                     </i>
                                     <span class="u-name">秘境百强</span>
                                 </span>
@@ -195,7 +195,7 @@
                             <a href="/fb/#/skill" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
-                                        <img svg-inline src="./assets/img/logos/skull.svg" />
+                                        <img svg-inline :src="getIcon('fbdata')" />
                                     </i>
                                     <span class="u-name">副本数据</span>
                                 </span>
@@ -213,7 +213,7 @@
                             <a href="/fb/#/drop" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
-                                        <img svg-inline src="./assets/img/logos/drop.svg" />
+                                        <img svg-inline :src="getIcon('fbdrop')" />
                                     </i>
                                     <span class="u-name">副本掉落</span>
                                 </span>
@@ -231,7 +231,7 @@
                             <a href="/fb/#/gem" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
-                                        <img svg-inline src="./assets/img/logos/gem.svg" />
+                                        <img svg-inline :src="getIcon('fbgem')" />
                                     </i>
                                     <span class="u-name">瑰石大全</span>
                                 </span>
@@ -246,10 +246,10 @@
                     </el-col>
                     <el-col :span="4">
                         <div class="u-item">
-                            <a href="/j3pz" target="_blank">
+                            <a href="/pz" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
-                                        <img svg-inline src="./assets/img/logos/j3pz.svg" />
+                                        <img svg-inline :src="getIcon('pz')" />
                                     </i>
                                     <span class="u-name">在线配装</span>
                                 </span>
@@ -268,7 +268,7 @@
                             <a href="./haste/">
                                 <span class="u-pic">
                                     <i class="u-icon">
-                                        <img svg-inline src="./assets/img/logos/speed.svg" />
+                                        <img svg-inline :src="getIcon('haste')" />
                                     </i>
                                     <span class="u-name">急速阈值</span>
                                 </span>
@@ -292,7 +292,7 @@
                             <a href="./sandbox">
                                 <span class="u-pic">
                                     <i class="u-icon">
-                                        <img svg-inline src="./assets/img/logos/sandbox.svg" />
+                                        <img svg-inline :src="getIcon('sandbox')" />
                                     </i>
                                     <span class="u-name">阵营沙盘</span>
                                 </span>
@@ -310,7 +310,7 @@
                             <a href="/battle" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
-                                        <img svg-inline src="./assets/img/logos/flog.svg" />
+                                        <img svg-inline :src="getIcon('battle')" />
                                     </i>
                                     <span class="u-name">战斗复盘</span>
                                 </span>
@@ -334,7 +334,7 @@
                             <a href="./servers">
                                 <span class="u-pic">
                                     <i class="u-icon">
-                                        <img svg-inline src="./assets/img/logos/servers.svg" />
+                                        <img svg-inline :src="getIcon('servers')" />
                                     </i>
                                     <span class="u-name">开服监控</span>
                                 </span>
@@ -352,7 +352,7 @@
                             <a href="./price">
                                 <span class="u-pic">
                                     <i class="u-icon">
-                                        <img svg-inline src="./assets/img/price/price.svg" />
+                                        <img svg-inline :src="getIcon('price')" />
                                     </i>
                                     <span class="u-name">金价走势</span>
                                 </span>
@@ -370,7 +370,7 @@
                             <a href="./flower">
                                 <span class="u-pic">
                                     <i class="u-icon">
-                                        <img svg-inline src="./assets/img/logos/flower.svg" />
+                                        <img svg-inline :src="getIcon('flower')" />
                                     </i>
                                     <span class="u-name">花价查询</span>
                                 </span>
@@ -388,7 +388,7 @@
                             <a href="./furniture">
                                 <span class="u-pic">
                                     <i class="u-icon">
-                                        <img svg-inline src="./assets/img/logos/f1.svg" />
+                                        <img svg-inline :src="getIcon('furniture')" />
                                     </i>
                                     <span class="u-name">家具图鉴</span>
                                 </span>
@@ -406,7 +406,7 @@
                             <a href="./facedata">
                                 <span class="u-pic">
                                     <i class="u-icon">
-                                        <img svg-inline src="./assets/img/logos/mirror.svg" />
+                                        <img svg-inline :src="getIcon('facedata')" />
                                     </i>
                                     <span class="u-name">妆容解析</span>
                                 </span>
@@ -424,7 +424,7 @@
                             <a href="./translator">
                                 <span class="u-pic">
                                     <i class="u-icon">
-                                        <img svg-inline src="./assets/img/logos/translator.svg" />
+                                        <img svg-inline :src="getIcon('translator')" />
                                     </i>
                                     <span class="u-name">繁体转换</span>
                                 </span>
@@ -442,7 +442,7 @@
                             <a href="/exam" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
-                                        <img svg-inline src="./assets/img/logos/100.svg" />
+                                        <img svg-inline :src="getIcon('exam')" />
                                     </i>
                                     <span class="u-name">趣味题库</span>
                                 </span>
@@ -478,7 +478,7 @@
                             <a href="https://j3cx.com/exam/" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
-                                        <img svg-inline src="./assets/img/logos/keju.svg" />
+                                        <img svg-inline :src="getIcon('keju')" />
                                     </i>
                                     <span class="u-name">科举题库</span>
                                 </span>
@@ -497,7 +497,7 @@
                             <a href="https://j3cx.com/serendipity" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
-                                        <img svg-inline src="./assets/img/logos/qiyu.svg" />
+                                        <img svg-inline :src="getIcon('qiyu')" />
                                     </i>
                                     <span class="u-name">奇遇查询</span>
                                 </span>
@@ -519,14 +519,18 @@
 
 <script>
 import Nav from "@/components/Nav.vue";
-
+import {__imgPath} from '@jx3box/jx3box-common/data/jx3box.json'
 export default {
     name: "App",
     data: function () {
         return {};
     },
     computed: {},
-    methods: {},
+    methods: {
+        getIcon(key){
+            return __imgPath + 'image/box/' + key + '.svg'
+        }
+    },
     filters: {},
     mounted: function () {},
     components: {

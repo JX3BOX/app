@@ -10,10 +10,10 @@
                 ><i class="u-app-icon"><img svg-inline :src="getIcon('icons')"/></i
                 ><span>图标库</span></a
             >
-            <a class="u-app" href="/app/macroeditor" :class="{on:isActive('macroeditor')}"
-                ><i class="u-app-icon"><img svg-inline :src="getIcon('macroeditor')"/></i
-                ><span>宏编辑器</span></a
-            >
+            <a class="u-app" href="/pz" target="_blank"
+                ><i class="u-app-icon"><img svg-inline :src="getIcon('j3pz')"/></i
+                ><span>在线配装</span
+                ></a>
 
             <a class="u-app" href="/app/talent" :class="{on:isActive('talent')}"
                 ><i class="u-app-icon"><img svg-inline :src="getIcon('talent')"/></i
@@ -58,15 +58,15 @@
                 ><i class="u-app-icon"><img svg-inline :src="getIcon('sandbox')"/></i
                 ><span>阵营沙盘</span></a
             >
-            <a class="u-app" href="https://www.j3pz.com/" target="_blank"
-                ><i class="u-app-icon"><img svg-inline :src="getIcon('j3pz')"/></i
-                ><span>在线配装</span
-                ></a>
-            <a class="u-app" href="/app/haste/" target="_blank"
+
+            <a class="u-app" href="/app/haste" target="_blank"
                 ><i class="u-app-icon"><img svg-inline :src="getIcon('haste')"/></i
                 ><span>急速阈值</span
                 ></a>
-            
+            <a class="u-app" href="/app/macroeditor" :class="{on:isActive('macroeditor')}"
+                ><i class="u-app-icon"><img svg-inline :src="getIcon('macroeditor')"/></i
+                ><span>宏编辑器</span></a
+            >
             <a class="u-app" href="/app/translator" :class="{on:isActive('translator')}"
                 ><i class="u-app-icon"><img svg-inline :src="getIcon('translator')"/></i
                 ><span>轉換繁體</span></a
