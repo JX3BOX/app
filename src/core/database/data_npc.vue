@@ -231,8 +231,8 @@
                     <div class="u-props" :class="{ on: o.isopen }" v-if="hasRight">
                         <template v-for="(val,key) in o">
                             <span class="u-desc" :key="key" v-if="cansee(o,key)">
-                                <el-tooltip effect="light" :content="key" placement="top">
-                                    <em>{{npcmap[key]['desc'] ? npcmap[key]['desc'] : key}}</em>
+                                <el-tooltip effect="light" :content="key | showKeyLabel" placement="top">
+                                    <em>{{key}}</em>
                                 </el-tooltip>
                                 {{ val }}
                             </span>
@@ -254,7 +254,7 @@
 </template>
 
 <script>
-import npcmap from "@jx3box/jx3box-data/data/app/npc.json";
+import npcmap from "@/assets/data/npc.json";
 export default {
     name: "npc",
     props: ["data", "vip", "status"],
@@ -313,10 +313,15 @@ export default {
             if (o[key] === null) return false;
 
             // 不包含基础类型
-            if (this.npcmap[key]["adv"]) return true;
+            if (npcmap?.[key]?.["basic"]) return false;
 
-            return false;
+            return true;
         },
     },
+    filters :{
+        showKeyLabel : function (key){
+            return npcmap[key]?.['desc'] || key            
+        }
+    }
 };
 </script>
