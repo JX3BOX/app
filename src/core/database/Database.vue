@@ -37,16 +37,16 @@
                     <div class="u-subtype u-strict">
                         <el-switch v-model="strict" active-text="精确匹配" @change="search"></el-switch>
                     </div>
-                    <div class="u-subtype" v-show="type == 'skill'">
+                    <!-- <div class="u-subtype" v-show="type == 'skill'">
                         <el-select v-model="school" placeholder="门派" size="medium" @change="search">
                             <el-option
-                                v-for="(item, key) in schools"
+                                v-for="(label, key) in schools"
                                 :key="key"
-                                :label="key"
-                                :value="item"
+                                :label="label"
+                                :value="key"
                             ></el-option>
                         </el-select>
-                    </div>
+                    </div> -->
                     <div class="u-subtype" v-show="type == 'skill' || type == 'buff'">
                         <el-input
                             size="medium"
