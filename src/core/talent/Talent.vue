@@ -21,7 +21,11 @@
                     <div class="m-talent-panel">
                         <div class="m-talent-version">
                             <span class="u-label">选择版本</span>
-                            <el-select v-model="version" placeholder="请选择游戏版本" @change="reload">
+                            <el-select
+                                v-model="version"
+                                placeholder="请选择游戏版本"
+                                @change="reload"
+                            >
                                 <el-option
                                     v-for="item in versions"
                                     :key="item.version"
@@ -46,7 +50,11 @@
                             :key="i"
                             @change="reload"
                         >
-                            <img class="u-pic" :src="item.id | xficon" :alt="item.name" />
+                            <img
+                                class="u-pic"
+                                :src="item.id | xficon"
+                                :alt="item.name"
+                            />
                             <span class="u-txt">{{ item.name }}</span>
                         </el-radio>
                     </div>
@@ -66,12 +74,13 @@
                                         <el-button
                                             type="primary"
                                             icon="el-icon-document-copy"
-                                            v-clipboard:copy="pzcode"
+                                            v-clipboard:copy="code"
                                             v-clipboard:success="onCopy"
                                             v-clipboard:error="onError"
                                             size="small"
                                             class="u-btn"
-                                        >点击复制</el-button>
+                                            >点击复制</el-button
+                                        >
                                         <el-button
                                             type="primary"
                                             icon="el-icon-document-add"
@@ -79,7 +88,8 @@
                                             class="u-btn"
                                             @click="save"
                                             v-if="isLogin"
-                                        >保存为预设</el-button>
+                                            >保存为预设</el-button
+                                        >
                                     </div>
                                 </div>
                             </el-tab-pane>
@@ -98,7 +108,8 @@
                                     v-clipboard:error="onError"
                                     size="small"
                                     class="u-btn"
-                                >点击复制</el-button>
+                                    >点击复制</el-button
+                                >
                                 <el-button
                                     type="primary"
                                     icon="el-icon-document-add"
@@ -106,7 +117,8 @@
                                     class="u-btn"
                                     @click="save"
                                     v-if="isLogin"
-                                >保存为预设</el-button>
+                                    >保存为预设</el-button
+                                >
                             </el-tab-pane>
                         </el-tabs>
                     </div>
@@ -115,16 +127,39 @@
                     <h2 class="m-talent-subtitle">预设方案</h2>
                     <div class="m-talent-list" v-loading="loading">
                         <ul v-if="list && list.length">
-                            <li v-for="(item,i) in list" :key="i">
-                                <span class="u-name">{{item.name}}</span>
+                            <li class="m-talent-list-item" v-for="(item, i) in list" :key="i">
+                                <span class="u-name">{{ item.name }}</span>
                                 <el-button-group>
-                                    <el-button type="primary" icon="el-icon-position" @click="use">使用</el-button>
-                                    <el-button type="primary" icon="el-icon-edit" @click="edit">改名</el-button>
-                                    <el-button type="primary" icon="el-icon-delete" @click="del">删除</el-button>
+                                    <el-button
+                                        type="primary"
+                                        size="mini"
+                                        icon="el-icon-position"
+                                        @click="use(item)"
+                                        >使用</el-button
+                                    >
+                                    <el-button
+                                        type="primary"
+                                        size="mini"
+                                        icon="el-icon-edit"
+                                        @click="edit(item)"
+                                        >改名</el-button
+                                    >
+                                    <el-button
+                                        type="primary"
+                                        size="mini"
+                                        icon="el-icon-delete"
+                                        @click="del(item)"
+                                        >删除</el-button
+                                    >
                                 </el-button-group>
                             </li>
                         </ul>
-                        <el-alert v-else title="当前没有任何预设方案" type="info" show-icon></el-alert>
+                        <el-alert
+                            v-else
+                            title="当前没有任何预设方案"
+                            type="info"
+                            show-icon
+                        ></el-alert>
                     </div>
                 </div>
             </div>
@@ -147,7 +182,14 @@ import JX3_QIXUE from "@jx3box/jx3box-talent";
 import $ from "jquery";
 import schema from "./schema.vue";
 import schemas from "./schemas.json";
-import { getTalentVersions } from "@/service/talent.js";
+import {
+    getTalentVersions,
+    getTalents,
+    addTalent,
+    putTalent,
+    removeTalent,
+    getTalent,
+} from "@/service/talent.js";
 import User from "@jx3box/jx3box-common/js/user";
 export default {
     name: "Talent",
@@ -169,12 +211,33 @@ export default {
             isLogin: User.isLogin(),
             showList: false,
             list: [],
+            per: 10,
+            page: 1,
+            total: 0,
             loading: false,
         };
     },
     computed: {
         schema_group: function () {
             return schemas[this.xf];
+        },
+        client: function () {
+            return location.href.includes("origin") ? "origin" : "std";
+        },
+        mount: function () {
+            return this.xfmap[this.xf]?.id;
+        },
+        params: function () {
+            const { client, mount, version, code, pzcode, xf } = this;
+            return {
+                client,
+                type: "talent",
+                mount,
+                version,
+                code,
+                pzcode,
+                xf
+            };
         },
     },
     methods: {
@@ -224,10 +287,97 @@ export default {
         },
 
         // 预设方案
-        save : function (){
+        save: function () {
+            if (!this.mount) {
+                this.$notify({
+                    type: "warning",
+                    title: "提醒",
+                    message: "暂未选择心法，请先选择心法",
+                });
+                return;
+            }
+            this.$prompt("请输入方案名称", "提示", {
+                confirmButtonText: "确定",
+                cancelButtonText: "取消",
+            }).then(({ value }) => {
+                addTalent({
+                    ...this.params,
+                    name: value,
+                }).then(() => {
+                    this.$notify({
+                        type: "success",
+                        title: "成功",
+                        message: "保存预设方案成功",
+                    });
+                    this.loadList();
+                });
+            });
+        },
+        loadList: function () {
+            this.loading = true
+            getTalents().then((res) => {
+                this.list = res.data.data.list;
+                this.page = res.data.data.page
+                this.per = res.data.data.per
+                this.total = res.data.data.total
+            }).finally(() => {
+                this.loading = false
+            })
+        },
+        use: function (item){
+            this.code = item.code;
+            this.pzcode = item.code;
+
+            this.parseSchema()
+        },
+        edit: function (item){
             
         },
+        del: function (item){
+            this.$confirm(`确认删除预设方案[${item.name}]？`, '提示', {
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                type: 'warning'
+            }).then(() => {
+                removeTalent(item.id).then(() => {
+                    this.$notify({
+                        type: 'success',
+                        title: '成功',
+                        message: '删除预设方案成功'
+                    })
 
+                    this.list = this.list.filter(li => li.id !== item.id)
+                })
+            })
+        },
+
+        init: function () {
+            getTalentVersions().then((res) => {
+                this.versions = res.data;
+                this.version =
+                    this.versions &&
+                    this.versions.length &&
+                    this.versions[0]["version"];
+
+                this.driver = new JX3_QIXUE({
+                    version: this.version,
+                    editable: true,
+                });
+                const vm = this;
+                $(document).on("JX3_QIXUE_Change", function (e, ins) {
+                    let __data = {};
+                    __data.version = ins.version;
+                    __data.xf = ins.xf;
+                    __data.sq = ins.sq.join(",");
+                    vm.code = JSON.stringify(__data);
+                    // console.log(ins)
+
+                    vm.pzcode = JSON.stringify(ins.overview);
+                });
+            });
+
+            this.loadList()
+        },
     },
     filters: {
         xficon: function (id) {
@@ -235,29 +385,7 @@ export default {
         },
     },
     mounted: function () {
-        getTalentVersions().then((res) => {
-            this.versions = res.data;
-            this.version =
-                this.versions &&
-                this.versions.length &&
-                this.versions[0]["version"];
-
-            this.driver = new JX3_QIXUE({
-                version: this.version,
-                editable: true,
-            });
-            const vm = this;
-            $(document).on("JX3_QIXUE_Change", function (e, ins) {
-                let __data = {};
-                __data.version = ins.version;
-                __data.xf = ins.xf;
-                __data.sq = ins.sq.join(",");
-                vm.code = JSON.stringify(__data);
-                // console.log(ins)
-
-                vm.pzcode = JSON.stringify(ins.overview);
-            });
-        });
+        this.init()
     },
     components: {
         // Info,
