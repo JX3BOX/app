@@ -21,11 +21,7 @@
                     <div class="m-talent-panel">
                         <div class="m-talent-version">
                             <span class="u-label">选择版本</span>
-                            <el-select
-                                v-model="version"
-                                placeholder="请选择游戏版本"
-                                @change="reload"
-                            >
+                            <el-select v-model="version" placeholder="请选择游戏版本" @change="reload">
                                 <el-option
                                     v-for="item in versions"
                                     :key="item.version"
@@ -50,11 +46,7 @@
                             :key="i"
                             @change="reload"
                         >
-                            <img
-                                class="u-pic"
-                                :src="item.id | xficon"
-                                :alt="item.name"
-                            />
+                            <img class="u-pic" :src="item.id | xficon" :alt="item.name" />
                             <span class="u-txt">{{ item.name }}</span>
                         </el-radio>
                     </div>
@@ -79,8 +71,7 @@
                                             v-clipboard:error="onError"
                                             size="small"
                                             class="u-btn"
-                                            >点击复制</el-button
-                                        >
+                                        >点击复制</el-button>
                                         <el-button
                                             type="primary"
                                             icon="el-icon-document-add"
@@ -88,8 +79,7 @@
                                             class="u-btn"
                                             @click="save"
                                             v-if="isLogin"
-                                            >保存为预设</el-button
-                                        >
+                                        >保存为预设</el-button>
                                     </div>
                                 </div>
                             </el-tab-pane>
@@ -108,8 +98,7 @@
                                     v-clipboard:error="onError"
                                     size="small"
                                     class="u-btn"
-                                    >点击复制</el-button
-                                >
+                                >点击复制</el-button>
                                 <el-button
                                     type="primary"
                                     icon="el-icon-document-add"
@@ -117,8 +106,7 @@
                                     class="u-btn"
                                     @click="save"
                                     v-if="isLogin"
-                                    >保存为预设</el-button
-                                >
+                                >保存为预设</el-button>
                             </el-tab-pane>
                         </el-tabs>
                     </div>
@@ -127,34 +115,42 @@
                     <h2 class="m-talent-subtitle">预设方案</h2>
                     <div class="m-talent-list" v-loading="loading">
                         <ul v-if="list && list.length">
-                            <li
-                                class="m-talent-list-item"
-                                v-for="(item, i) in list"
-                                :key="i"
-                            >
+                            <li class="m-talent-list-item" v-for="(item, i) in list" :key="i">
                                 <span class="u-name">{{ item.name }}</span>
                                 <el-button-group>
-                                    <el-button
-                                        type="primary"
-                                        size="mini"
-                                        icon="el-icon-position"
-                                        @click="use(item)"
-                                        >使用</el-button
+                                    <el-tooltip
+                                        effect="dark"
+                                        content="使用"
+                                        placement="top"
                                     >
-                                    <el-button
-                                        type="primary"
-                                        size="mini"
-                                        icon="el-icon-edit"
-                                        @click="edit(item)"
-                                        >改名</el-button
+                                        <el-button
+                                            size="mini"
+                                            icon="el-icon-position"
+                                            @click="use(item)"
+                                        ></el-button>
+                                    </el-tooltip>
+                                    <el-tooltip
+                                        effect="dark"
+                                        content="改名"
+                                        placement="top"
                                     >
-                                    <el-button
-                                        type="primary"
-                                        size="mini"
-                                        icon="el-icon-delete"
-                                        @click="del(item)"
-                                        >删除</el-button
+                                        <el-button
+                                            size="mini"
+                                            icon="el-icon-edit"
+                                            @click="edit(item)"
+                                        ></el-button>
+                                    </el-tooltip>
+                                    <el-tooltip
+                                        effect="dark"
+                                        content="删除"
+                                        placement="top"
                                     >
+                                        <el-button
+                                            size="mini"
+                                            icon="el-icon-delete"
+                                            @click="del(item)"
+                                        ></el-button>
+                                    </el-tooltip>
                                 </el-button-group>
                             </li>
 
@@ -168,12 +164,7 @@
                                 :current-page.sync="page"
                             ></el-pagination>
                         </ul>
-                        <el-alert
-                            v-else
-                            title="当前没有任何预设方案"
-                            type="info"
-                            show-icon
-                        ></el-alert>
+                        <el-alert v-else title="当前没有任何预设方案" type="info" show-icon></el-alert>
                     </div>
                 </div>
             </div>
@@ -313,10 +304,11 @@ export default {
             this.$prompt("请输入方案名称", "提示", {
                 confirmButtonText: "确定",
                 cancelButtonText: "取消",
-                inputErrorMessage: '输入不能为空',
-                inputValidator: (value) => {       // 点击按钮时，对文本框里面的值进行验证
-                    if(!value) {
-                        return '输入不能为空';
+                inputErrorMessage: "输入不能为空",
+                inputValidator: (value) => {
+                    // 点击按钮时，对文本框里面的值进行验证
+                    if (!value) {
+                        return "输入不能为空";
                     }
                 },
             }).then(({ value }) => {
@@ -336,7 +328,7 @@ export default {
         loadList: function () {
             this.loading = true;
             getTalents({
-                client: this.client
+                client: this.client,
             })
                 .then((res) => {
                     this.list = res.data.data.list;
@@ -359,27 +351,27 @@ export default {
             this.parseSchema();
         },
         edit: function (item) {
-            this.$prompt('请输入方案名称', '提示', {
+            this.$prompt("请输入方案名称", "提示", {
                 confirmButtonText: "确定",
                 cancelButtonText: "取消",
                 inputValue: item.name,
-                inputErrorMessage: '输入不能为空',
-                inputValidator: (value) => {       // 点击按钮时，对文本框里面的值进行验证
-                    if(!value) {
-                        return '输入不能为空';
+                inputErrorMessage: "输入不能为空",
+                inputValidator: (value) => {
+                    // 点击按钮时，对文本框里面的值进行验证
+                    if (!value) {
+                        return "输入不能为空";
                     }
                 },
             }).then(({ value }) => {
-                putTalent(item.id, { name: value })
-                    .then(() => {
-                        this.$notify({
-                            type: 'success',
-                            title: '成功',
-                            message: '方案名称修改成功'
-                        })
-                        item.name = value
-                    })
-            })
+                putTalent(item.id, { name: value }).then(() => {
+                    this.$notify({
+                        type: "success",
+                        title: "成功",
+                        message: "方案名称修改成功",
+                    });
+                    item.name = value;
+                });
+            });
         },
         del: function (item) {
             this.$confirm(`确认删除预设方案[${item.name}]？`, "提示", {

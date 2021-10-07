@@ -196,25 +196,28 @@
 }
 
 // 预设列表
+.m-talent-my{
+    .mt(20px);
+}
 .m-talent-list{
-    ul,li {
+    ul{
         margin: 0;
-        padding: 0;
+        padding:0;
         list-style: none;
-    }
-
-    .m-talent-list-item {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 6px;
-
-        &:hover {
-            background-color: #ececec;
-        }
     }
     .u-list-pagination {
         .mt(20px);
         text-align: center;
+    }
+}
+.m-talent-list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0;
+    .fz(12px,28px);
+    border-bottom:1px dashed #eee;
+
+    &:hover {
     }
 }
