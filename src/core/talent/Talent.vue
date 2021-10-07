@@ -248,8 +248,8 @@ export default {
                 type: "talent",
                 mount,
                 version,
-                code,
-                pzcode,
+                code: JSON.parse(code),
+                pzcode: JSON.parse(pzcode),
                 xf,
             };
         },
@@ -327,7 +327,7 @@ export default {
                     this.$notify({
                         type: "success",
                         title: "成功",
-                        message: "保存预设方案成功",
+                        message: "预设方案保存成功",
                     });
                     this.loadList();
                 });
@@ -335,7 +335,9 @@ export default {
         },
         loadList: function () {
             this.loading = true;
-            getTalents()
+            getTalents({
+                client: this.client
+            })
                 .then((res) => {
                     this.list = res.data.data.list;
                     this.page = res.data.data.page;
@@ -347,8 +349,8 @@ export default {
                 });
         },
         use: function (item) {
-            this.code = item.code;
-            this.pzcode = item.code;
+            this.code = JSON.stringify(item.code);
+            this.pzcode = JSON.stringify(item.pzcode);
 
             const parseCode = JSON.parse(this.code);
 
@@ -389,7 +391,7 @@ export default {
                     this.$notify({
                         type: "success",
                         title: "成功",
-                        message: "删除预设方案成功",
+                        message: "预设方案删除成功",
                     });
 
                     this.list = this.list.filter((li) => li.id !== item.id);

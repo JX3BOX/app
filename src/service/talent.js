@@ -7,7 +7,9 @@ function getTalentVersions() {
 }
 
 function getTalents(param) {
-    return $cms().get(`/api/cms/app/talents`, param)
+    return $cms().get(`/api/cms/app/talents`, {
+        params: param
+    })
 }
 
 function addTalent(data) {
