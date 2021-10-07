@@ -127,7 +127,11 @@
                     <h2 class="m-talent-subtitle">预设方案</h2>
                     <div class="m-talent-list" v-loading="loading">
                         <ul v-if="list && list.length">
-                            <li class="m-talent-list-item" v-for="(item, i) in list" :key="i">
+                            <li
+                                class="m-talent-list-item"
+                                v-for="(item, i) in list"
+                                :key="i"
+                            >
                                 <span class="u-name">{{ item.name }}</span>
                                 <el-button-group>
                                     <el-button
@@ -153,6 +157,16 @@
                                     >
                                 </el-button-group>
                             </li>
+
+                            <el-pagination
+                                class="u-list-pagination"
+                                background
+                                hide-on-single-page
+                                layout="prev,pager,next,->,total"
+                                :total="total"
+                                :page-size="per"
+                                :current-page.sync="page"
+                            ></el-pagination>
                         </ul>
                         <el-alert
                             v-else
@@ -236,7 +250,7 @@ export default {
                 version,
                 code,
                 pzcode,
-                xf
+                xf,
             };
         },
     },
@@ -299,6 +313,12 @@ export default {
             this.$prompt("请输入方案名称", "提示", {
                 confirmButtonText: "确定",
                 cancelButtonText: "取消",
+                inputErrorMessage: '输入不能为空',
+                inputValidator: (value) => {       // 点击按钮时，对文本框里面的值进行验证
+                    if(!value) {
+                        return '输入不能为空';
+                    }
+                },
             }).then(({ value }) => {
                 addTalent({
                     ...this.params,
@@ -314,41 +334,67 @@ export default {
             });
         },
         loadList: function () {
-            this.loading = true
-            getTalents().then((res) => {
-                this.list = res.data.data.list;
-                this.page = res.data.data.page
-                this.per = res.data.data.per
-                this.total = res.data.data.total
-            }).finally(() => {
-                this.loading = false
-            })
+            this.loading = true;
+            getTalents()
+                .then((res) => {
+                    this.list = res.data.data.list;
+                    this.page = res.data.data.page;
+                    this.per = res.data.data.per;
+                    this.total = res.data.data.total;
+                })
+                .finally(() => {
+                    this.loading = false;
+                });
         },
-        use: function (item){
+        use: function (item) {
             this.code = item.code;
             this.pzcode = item.code;
 
-            this.parseSchema()
+            const parseCode = JSON.parse(this.code);
+
+            this.xf = parseCode.xf;
+
+            this.parseSchema();
         },
-        edit: function (item){
-            
+        edit: function (item) {
+            this.$prompt('请输入方案名称', '提示', {
+                confirmButtonText: "确定",
+                cancelButtonText: "取消",
+                inputValue: item.name,
+                inputErrorMessage: '输入不能为空',
+                inputValidator: (value) => {       // 点击按钮时，对文本框里面的值进行验证
+                    if(!value) {
+                        return '输入不能为空';
+                    }
+                },
+            }).then(({ value }) => {
+                putTalent(item.id, { name: value })
+                    .then(() => {
+                        this.$notify({
+                            type: 'success',
+                            title: '成功',
+                            message: '方案名称修改成功'
+                        })
+                        item.name = value
+                    })
+            })
         },
-        del: function (item){
-            this.$confirm(`确认删除预设方案[${item.name}]？`, '提示', {
-                confirmButtonText: '确定',
-                cancelButtonText: '取消',
-                type: 'warning'
+        del: function (item) {
+            this.$confirm(`确认删除预设方案[${item.name}]？`, "提示", {
+                confirmButtonText: "确定",
+                cancelButtonText: "取消",
+                type: "warning",
             }).then(() => {
                 removeTalent(item.id).then(() => {
                     this.$notify({
-                        type: 'success',
-                        title: '成功',
-                        message: '删除预设方案成功'
-                    })
+                        type: "success",
+                        title: "成功",
+                        message: "删除预设方案成功",
+                    });
 
-                    this.list = this.list.filter(li => li.id !== item.id)
-                })
-            })
+                    this.list = this.list.filter((li) => li.id !== item.id);
+                });
+            });
         },
 
         init: function () {
@@ -376,7 +422,7 @@ export default {
                 });
             });
 
-            this.loadList()
+            this.loadList();
         },
     },
     filters: {
@@ -385,7 +431,7 @@ export default {
         },
     },
     mounted: function () {
-        this.init()
+        this.init();
     },
     components: {
         // Info,
