@@ -367,42 +367,6 @@
                     </el-col>
                     <el-col :span="4">
                         <div class="u-item">
-                            <a href="./flower">
-                                <span class="u-pic">
-                                    <i class="u-icon">
-                                        <img svg-inline :src="getIcon('flower')" />
-                                    </i>
-                                    <span class="u-name">花价查询</span>
-                                </span>
-                                <span class="u-features">
-                                    <span>✔️️ 全区服线路精准数据</span>
-                                    <span>✔️️ 每日更新</span>
-                                    <span>✔️️ 支持关注区服</span>
-                                    <span>✔️️ 支持多模式</span>
-                                </span>
-                            </a>
-                        </div>
-                    </el-col>
-                    <el-col :span="4">
-                        <div class="u-item">
-                            <a href="./furniture">
-                                <span class="u-pic">
-                                    <i class="u-icon">
-                                        <img svg-inline :src="getIcon('furniture')" />
-                                    </i>
-                                    <span class="u-name">家具图鉴</span>
-                                </span>
-                                <span class="u-features">
-                                    <span>✔️️ 全家具图谱</span>
-                                    <span>✔️️ 多模式筛选</span>
-                                    <span>✔️️ 高清原图</span>
-                                    <span>✔️️ 建筑师必备</span>
-                                </span>
-                            </a>
-                        </div>
-                    </el-col>
-                    <el-col :span="4">
-                        <div class="u-item">
                             <a href="./facedata">
                                 <span class="u-pic">
                                     <i class="u-icon">
@@ -421,6 +385,24 @@
                     </el-col>
                     <el-col :span="4">
                         <div class="u-item">
+                            <a href="./flower">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('flower')" />
+                                    </i>
+                                    <span class="u-name">花价查询</span>
+                                </span>
+                                <span class="u-features">
+                                    <span>✔️️ 全区服线路精准数据</span>
+                                    <span>✔️️ 每日更新</span>
+                                    <span>✔️️ 支持关注区服</span>
+                                    <span>✔️️ 支持多模式</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col>
+                    <el-col :span="4">
+                        <div class="u-item">
                             <a href="./translator">
                                 <span class="u-pic">
                                     <i class="u-icon">
@@ -433,24 +415,6 @@
                                     <span>✔️ 標準簡繁轉換</span>
                                     <span>✔️ 劍網三特殊詞庫</span>
                                     <span>✔️ 歡迎貢獻詞表</span>
-                                </span>
-                            </a>
-                        </div>
-                    </el-col>
-                    <el-col :span="4">
-                        <div class="u-item">
-                            <a href="/exam" target="_blank">
-                                <span class="u-pic">
-                                    <i class="u-icon">
-                                        <img svg-inline :src="getIcon('exam')" />
-                                    </i>
-                                    <span class="u-name">趣味题库</span>
-                                </span>
-                                <span class="u-features">
-                                    <span class="u-desc">✔️ 剑三趣味题库大全</span>
-                                    <span>✔️ 支持玩家自拟录入</span>
-                                    <span>✔️ 涵盖各个玩法行业</span>
-                                    <span>✔️ 蹭热点利器……</span>
                                 </span>
                             </a>
                         </div>

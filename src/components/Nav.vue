@@ -82,19 +82,6 @@
                 ><i class="u-app-icon"><img svg-inline :src="getIcon('price')"/></i
                 ><span>金价走势</span></a
             >
-            <a class="u-app" href="/exam" target="_blank"
-                ><i class="u-app-icon"><img svg-inline :src="getIcon('exam')"/></i
-                ><span>趣味题库</span
-                ></a>
-
-            <a class="u-app" href="/app/flower" :class="{on:isActive('flower')}"
-                ><i class="u-app-icon"><img svg-inline :src="getIcon('flower')"/></i
-                ><span>花价查询</span></a
-            >
-            <a class="u-app" href="/app/furniture" :class="{on:isActive('furniture')}"
-                ><i class="u-app-icon"><img svg-inline :src="getIcon('furniture')"/></i
-                ><span>家具图鉴</span></a
-            >
             <a class="u-app" href="/app/facedata" :class="{on:isActive('facedata')}"
                 ><i class="u-app-icon"><img svg-inline :src="getIcon('facedata')"/></i
                 ><span>妆容解析</span></a
@@ -108,10 +95,6 @@
                 ><i class="u-app-icon"><img svg-inline :src="getIcon('keju')"/></i
                 ><span>科举题库</span
                 ></a>
-            <a class="u-app" href="/app/sudoku"  :class="{on:isActive('sudoku')}"
-                ><i class="u-app-icon"><img svg-inline src="../assets/img/logos/sudoku.svg"/></i
-                ><span>九宫格</span></a
-            >
         </div>
     </nav>
 </template>

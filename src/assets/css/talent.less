@@ -4,6 +4,7 @@
     padding: 20px 30px;
     max-width:1200px;
     .auto(x);
+    min-height: calc(100vh - @header-height - @bread-height - 100px);
 }
 @media screen and (max-width:@phone){
     .m-talent {
@@ -11,6 +12,7 @@
     }
 }
 
+// 头部
 .m-talent-header{
     .clearfix;
 }
@@ -26,9 +28,14 @@
     }
 }
 
+// 工具栏
 .m-talent-panel {
     // .x;
     .mb(20px);
+    .pr;
+    .u-toolbar{
+        .pa;.rb(0);
+    }
 }
 
 .m-talent-version {
@@ -61,14 +68,15 @@
     }
 }
 
+// 包裹层
 .m-talent-wrapper{
     // max-width:1440px;
     // .auto(x);
-    border:1px solid #eee;
-    padding:10px 20px 20px 20px;
-    box-sizing: border-box;
-    background-color:@bg-light;
-    .r(4px);
+    // border:1px solid #eee;
+    // padding:10px 20px 20px 20px;
+    // box-sizing: border-box;
+    // background-color:@bg-light;
+    // .r(4px);
 }
 .m-talent-left{
     margin-top:8px;
@@ -88,6 +96,7 @@
     }
 }
 
+// 心法选择
 .m-talent-xf {
     .u-pic {
         .db;
@@ -131,14 +140,16 @@
     }
 }
 
+// 子标题
 .m-talent-subtitle {
     .fz(1.2rem, 2);
     border-bottom: 1px dotted #ddd;
     //.bold;
     margin:10px 0 10px 0;
-    font-weight: 300;
+    // font-weight: 300;
 }
 
+// 编码
 .m-talent-code{
     .pointer;
     font-family: Consolas;
@@ -151,6 +162,11 @@
         &:hover{
             color:@pink;
         }
+    }
+}
+.m-talent-extend{
+    .u-btn{
+        .mt(10px);
     }
 }
 
@@ -177,4 +193,9 @@
 .c-footer{
     max-width:1200px;
     .auto(x);
+}
+
+// 预设列表
+.m-talent-list{
+    
 }
