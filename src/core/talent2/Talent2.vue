@@ -295,29 +295,120 @@
                         </template>
                     </div>
                     <h2 class="m-talent-subtitle">镇派编码</h2>
-                    <div class="m-talent-code">
-                        <el-input
-                            placeholder="奇穴编码"
-                            v-model="code"
-                            @change="parseSchema"
-                        >
-                            <template slot="prepend">
-                                <span
-                                    class="u-copy"
-                                    v-clipboard:copy="code"
+                    <div class="m-talent-extend">
+                        <el-tabs v-model="activeName" type="card">
+                            <el-tab-pane label="通用编码" name="common">
+                                <div class="m-talent-code">
+                                    <el-input
+                                        placeholder="粘贴编码亦可自动解析奇穴"
+                                        v-model="code"
+                                        @change="parseSchema"
+                                    ></el-input>
+                                    <div class="m-talent-op">
+                                        <el-button
+                                            type="primary"
+                                            icon="el-icon-document-copy"
+                                            v-clipboard:copy="code"
+                                            v-clipboard:success="onCopy"
+                                            v-clipboard:error="onError"
+                                            size="small"
+                                            class="u-btn"
+                                            >点击复制</el-button
+                                        >
+                                        <el-button
+                                            type="primary"
+                                            icon="el-icon-document-add"
+                                            size="small"
+                                            class="u-btn"
+                                            @click="save"
+                                            v-if="isLogin"
+                                            >保存为预设</el-button
+                                        >
+                                    </div>
+                                </div>
+                            </el-tab-pane>
+                            <el-tab-pane label="配装器编码" name="pz">
+                                <el-input
+                                    placeholder="配装器编码"
+                                    v-model="pzcode"
+                                    type="textarea"
+                                    :rows="4"
+                                ></el-input>
+                                <el-button
+                                    type="primary"
+                                    icon="el-icon-document-copy"
+                                    v-clipboard:copy="pzcode"
                                     v-clipboard:success="onCopy"
                                     v-clipboard:error="onError"
+                                    size="small"
+                                    class="u-btn"
+                                    >点击复制</el-button
                                 >
-                                    <i class="el-icon-document-copy"></i>
-                                    <span>点击复制</span>
-                                </span>
-                            </template>
-                        </el-input>
+                                <el-button
+                                    type="primary"
+                                    icon="el-icon-document-add"
+                                    size="small"
+                                    class="u-btn"
+                                    @click="save"
+                                    v-if="isLogin"
+                                    >保存为预设</el-button
+                                >
+                            </el-tab-pane>
+                        </el-tabs>
                     </div>
-                    <p class="m-talent-tip">
-                        <i class="el-icon-info"></i>
-                        粘贴编码亦可自动解析镇派
-                    </p>
+                </div>
+                <div class="m-talent-my" v-if="isLogin">
+                    <h2 class="m-talent-subtitle">预设方案</h2>
+                    <div class="m-talent-list" v-loading="loading">
+                        <ul v-if="list && list.length">
+                            <li
+                                class="m-talent-list-item"
+                                v-for="(item, i) in list"
+                                :key="i"
+                            >
+                                <span class="u-name">{{ item.name }}</span>
+                                <el-button-group>
+                                    <el-button
+                                        type="primary"
+                                        size="mini"
+                                        icon="el-icon-position"
+                                        @click="use(item)"
+                                        >使用</el-button
+                                    >
+                                    <el-button
+                                        type="primary"
+                                        size="mini"
+                                        icon="el-icon-edit"
+                                        @click="edit(item)"
+                                        >改名</el-button
+                                    >
+                                    <el-button
+                                        type="primary"
+                                        size="mini"
+                                        icon="el-icon-delete"
+                                        @click="del(item)"
+                                        >删除</el-button
+                                    >
+                                </el-button-group>
+                            </li>
+
+                            <el-pagination
+                                class="u-list-pagination"
+                                background
+                                hide-on-single-page
+                                layout="prev,pager,next,->,total"
+                                :total="total"
+                                :page-size="per"
+                                :current-page.sync="page"
+                            ></el-pagination>
+                        </ul>
+                        <el-alert
+                            v-else
+                            title="当前没有任何预设方案"
+                            type="info"
+                            show-icon
+                        ></el-alert>
+                    </div>
                 </div>
             </div>
             <Footer></Footer>
@@ -336,12 +427,23 @@ import {
 } from "@jx3box/jx3box-common/data/jx3box.json";
 import { xfConfigs } from '@jx3box/jx3box-data/data/app/talent2.json';
 import { defaultXf, defaultConfigs } from '@jx3box/jx3box-talent2/src/default.json';
+import User from "@jx3box/jx3box-common/js/user";
+import {
+    getTalentVersions,
+    getTalents,
+    addTalent,
+    putTalent,
+    removeTalent,
+    getTalent,
+} from "@/service/talent.js";
 export default {
     name: "Talent2",
     data: function() {
         return {
+            activeName: "common",
             xf: '',
             code: '0',
+            pzcode: '',
             begin: 'left',
             l_name: '山川',
             r_name: '日月',
@@ -361,7 +463,15 @@ export default {
             talentContent: {
                 left: [],
                 right: []
-            }
+            },
+
+            isLogin: User.isLogin(),
+            showList: false,
+            list: [],
+            per: 10,
+            page: 1,
+            listTotal: 0,
+            loading: false,
         };
     },
     computed: {
@@ -407,7 +517,26 @@ export default {
         },
         surplus: function (){
             return this.total - this.totalCount
-        }
+        },
+
+        client: function () {
+            return location.href.includes("origin") ? "origin" : "std";
+        },
+        mount: function () {
+            return this.xfmap[this.xf]?.id;
+        },
+        params: function () {
+            const { client, mount, version, code, pzcode, xf } = this;
+            return {
+                client,
+                type: "talent",
+                mount,
+                version,
+                code: JSON.parse(code),
+                pzcode: JSON.parse(pzcode),
+                xf,
+            };
+        },
     },
     methods: {
         getIcon(key){
@@ -421,12 +550,52 @@ export default {
         },
         // 生成code
         renderCode: function() {
+            const {version, xf, talent2Data, l_data, r_data, talentContent} = this
             const _code = {
-                version: this.version,
-                xf: this.xf,
-                sq: this.talent2Data
+                version,
+                xf,
+                sq: talent2Data
             };
             this.code = JSON.stringify(_code);
+
+            const _pzcode = [];
+
+            l_data.forEach((l, lIndex) => {
+                const leftCode =  l.split('').map(c => parseInt(c));
+
+                leftCode.forEach((code, codeIndex) => {
+                    if (code) {
+                        const talent = talentContent.left[lIndex][codeIndex]
+                        const _talent = {
+                            id: talent.id,
+                            icon: talent.icon,
+                            level: code
+                        }
+
+                        _pzcode.push(_talent)
+                    }
+                })
+            })
+
+            r_data.forEach((r, rIndex) => {
+                const rightCode =  r.split('').map(c => parseInt(c));
+
+                rightCode.forEach((code, codeIndex) => {
+                    if (code) {
+                        const talent = talentContent.right[rIndex][codeIndex]
+                        const _talent = {
+                            id: talent.id,
+                            icon: talent.icon,
+                            level: code
+                        }
+
+                        _pzcode.push(_talent)
+                    }
+                })
+            })
+
+            this.pzcode = JSON.stringify(_pzcode)
+
         },
         onCopy: function(val) {
             this.$message({
@@ -463,12 +632,14 @@ export default {
                 const _sq = _code.sq.split(',');
 
                 if (this.begin === 'left') {
-                    this.l_data = _sq.slice(0, 6);
+                    this.l_data = [].concat(_sq.slice(0, 6));
                     this.r_data = _sq.slice(6, _sq.length);
                 } else {
                     this.r_data = _sq.slice(0, 6);
                     this.l_data = _sq.slice(6, _sq.length);
                 }
+
+                console.log(this.l_data, this.r_data)
             } catch(e) {
                 this.$message.error("编码格式错误");
             }
@@ -810,7 +981,108 @@ export default {
                     this.xf = '通用';
                     this.total = 66
                 })
-        }
+        },
+
+                // 预设方案
+        save: function () {
+            if (!this.mount) {
+                this.$notify({
+                    type: "warning",
+                    title: "提醒",
+                    message: "暂未选择心法，请先选择心法",
+                });
+                return;
+            }
+            this.$prompt("请输入方案名称", "提示", {
+                confirmButtonText: "确定",
+                cancelButtonText: "取消",
+                inputErrorMessage: '输入不能为空',
+                inputValidator: (value) => {       // 点击按钮时，对文本框里面的值进行验证
+                    if(!value) {
+                        return '输入不能为空';
+                    }
+                },
+            }).then(({ value }) => {
+                addTalent({
+                    ...this.params,
+                    name: value,
+                }).then(() => {
+                    this.$notify({
+                        type: "success",
+                        title: "成功",
+                        message: "预设方案保存成功",
+                    });
+                    this.loadList();
+                });
+            });
+        },
+        loadList: function () {
+            this.loading = true;
+            getTalents({
+                client: this.client
+            })
+                .then((res) => {
+                    this.list = res.data.data.list;
+                    this.page = res.data.data.page;
+                    this.per = res.data.data.per;
+                    this.total = res.data.data.total;
+                })
+                .finally(() => {
+                    this.loading = false;
+                });
+        },
+        use: function (item) {
+            const parseCode = JSON.parse(this.code);
+
+            this.xf = parseCode.xf;
+            setTimeout(() => {
+                this.code = JSON.stringify(item.code);
+                this.pzcode = JSON.stringify(item.pzcode);
+    
+    
+                this.parseSchema();
+            })
+        },
+        edit: function (item) {
+            this.$prompt('请输入方案名称', '提示', {
+                confirmButtonText: "确定",
+                cancelButtonText: "取消",
+                inputValue: item.name,
+                inputErrorMessage: '输入不能为空',
+                inputValidator: (value) => {       // 点击按钮时，对文本框里面的值进行验证
+                    if(!value) {
+                        return '输入不能为空';
+                    }
+                },
+            }).then(({ value }) => {
+                putTalent(item.id, { name: value })
+                    .then(() => {
+                        this.$notify({
+                            type: 'success',
+                            title: '成功',
+                            message: '方案名称修改成功'
+                        })
+                        item.name = value
+                    })
+            })
+        },
+        del: function (item) {
+            this.$confirm(`确认删除预设方案[${item.name}]？`, "提示", {
+                confirmButtonText: "确定",
+                cancelButtonText: "取消",
+                type: "warning",
+            }).then(() => {
+                removeTalent(item.id).then(() => {
+                    this.$notify({
+                        type: "success",
+                        title: "成功",
+                        message: "预设方案删除成功",
+                    });
+
+                    this.list = this.list.filter((li) => li.id !== item.id);
+                });
+            });
+        },
     },
     filters: {
         xficon: function(id) {
@@ -872,11 +1144,13 @@ export default {
         },
         talent2Data: function() {
             this.renderCode()
-        }
+        },
     },
     mounted: function() {
         this.getVersions();
-        this.series_open_need = defaultConfigs.series_open_need
+        this.series_open_need = defaultConfigs.series_open_need;
+
+        this.loadList()
     },
     components: {
         Nav
