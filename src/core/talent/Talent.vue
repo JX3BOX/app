@@ -66,7 +66,7 @@
                                         <el-button
                                             type="primary"
                                             icon="el-icon-document-copy"
-                                            v-clipboard:copy="pzcode"
+                                            v-clipboard:copy="code"
                                             v-clipboard:success="onCopy"
                                             v-clipboard:error="onError"
                                             size="small"
