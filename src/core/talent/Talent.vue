@@ -21,7 +21,11 @@
                     <div class="m-talent-panel">
                         <div class="m-talent-version">
                             <span class="u-label">选择版本</span>
-                            <el-select v-model="version" placeholder="请选择游戏版本" @change="reload">
+                            <el-select
+                                v-model="version"
+                                placeholder="请选择游戏版本"
+                                @change="reload"
+                            >
                                 <el-option
                                     v-for="item in versions"
                                     :key="item.version"
@@ -46,14 +50,46 @@
                             :key="i"
                             @change="reload"
                         >
-                            <img class="u-pic" :src="item.id | xficon" :alt="item.name" />
+                            <img
+                                class="u-pic"
+                                :src="item.id | xficon"
+                                :alt="item.name"
+                            />
                             <span class="u-txt">{{ item.name }}</span>
                         </el-radio>
                     </div>
                     <h2 class="m-talent-subtitle">配置奇穴</h2>
                     <div class="qx-container"></div>
                     <h2 class="m-talent-subtitle">奇穴编码</h2>
-                    <div class="m-talent-extend">
+                    <div class="m-talent-code">
+                        <el-input
+                            placeholder="粘贴编码亦可自动解析奇穴"
+                            v-model="code"
+                            @change="parseSchema"
+                        ></el-input>
+                        <div class="m-talent-op">
+                            <el-button
+                                type="primary"
+                                icon="el-icon-document-copy"
+                                v-clipboard:copy="code"
+                                v-clipboard:success="onCopy"
+                                v-clipboard:error="onError"
+                                size="small"
+                                class="u-btn"
+                                >点击复制</el-button
+                            >
+                            <el-button
+                                type="primary"
+                                icon="el-icon-document-add"
+                                size="small"
+                                class="u-btn"
+                                @click="save"
+                                v-if="isLogin"
+                                >保存为预设</el-button
+                            >
+                        </div>
+                    </div>
+                    <!-- <div class="m-talent-extend">
                         <el-tabs v-model="activeName" type="card">
                             <el-tab-pane label="通用编码" name="common">
                                 <div class="m-talent-code">
@@ -109,13 +145,17 @@
                                 >保存为预设</el-button>
                             </el-tab-pane>
                         </el-tabs>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="m-talent-my" v-if="isLogin">
                     <h2 class="m-talent-subtitle">预设方案</h2>
                     <div class="m-talent-list" v-loading="loading">
                         <ul v-if="list && list.length">
-                            <li class="m-talent-list-item" v-for="(item, i) in list" :key="i">
+                            <li
+                                class="m-talent-list-item"
+                                v-for="(item, i) in list"
+                                :key="i"
+                            >
                                 <span class="u-name">{{ item.name }}</span>
                                 <el-button-group>
                                     <el-tooltip
@@ -164,7 +204,12 @@
                                 :current-page.sync="page"
                             ></el-pagination>
                         </ul>
-                        <el-alert v-else title="当前没有任何预设方案" type="info" show-icon></el-alert>
+                        <el-alert
+                            v-else
+                            title="当前没有任何预设方案"
+                            type="info"
+                            show-icon
+                        ></el-alert>
                     </div>
                 </div>
             </div>
