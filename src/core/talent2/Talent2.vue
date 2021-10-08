@@ -289,7 +289,7 @@
                                 <div
                                     class="rest-btn"
                                     :class="!totalCount ? 'm-talent2-actions-btn-disabled' : 'm-talent2-actions-btn'"
-                                    @click="reset"
+                                    @click="reload"
                                 >重置</div>
                             </div>
                         </template>
@@ -368,27 +368,39 @@
                             >
                                 <span class="u-name">{{ item.name }}</span>
                                 <el-button-group>
-                                    <el-button
-                                        type="primary"
-                                        size="mini"
-                                        icon="el-icon-position"
-                                        @click="use(item)"
-                                        >使用</el-button
+                                   <el-tooltip
+                                        effect="dark"
+                                        content="使用"
+                                        placement="top"
                                     >
-                                    <el-button
-                                        type="primary"
-                                        size="mini"
-                                        icon="el-icon-edit"
-                                        @click="edit(item)"
-                                        >改名</el-button
+                                        <el-button
+                                            size="mini"
+                                            icon="el-icon-position"
+                                            @click="use(item)"
+                                        ></el-button>
+                                    </el-tooltip>
+                                    <el-tooltip
+                                        effect="dark"
+                                        content="改名"
+                                        placement="top"
                                     >
-                                    <el-button
-                                        type="primary"
-                                        size="mini"
-                                        icon="el-icon-delete"
-                                        @click="del(item)"
-                                        >删除</el-button
+                                        <el-button
+                                            size="mini"
+                                            icon="el-icon-edit"
+                                            @click="edit(item)"
+                                        ></el-button>
+                                    </el-tooltip>
+                                    <el-tooltip
+                                        effect="dark"
+                                        content="删除"
+                                        placement="top"
                                     >
+                                        <el-button
+                                            size="mini"
+                                            icon="el-icon-delete"
+                                            @click="del(item)"
+                                        ></el-button>
+                                    </el-tooltip>
                                 </el-button-group>
                             </li>
 
@@ -397,7 +409,7 @@
                                 background
                                 hide-on-single-page
                                 layout="prev,pager,next,->,total"
-                                :total="total"
+                                :total="listTotal"
                                 :page-size="per"
                                 :current-page.sync="page"
                             ></el-pagination>
@@ -529,7 +541,7 @@ export default {
             const { client, mount, version, code, pzcode, xf } = this;
             return {
                 client,
-                type: "talent",
+                type: "talent2",
                 mount,
                 version,
                 code: JSON.parse(code),
@@ -543,10 +555,10 @@ export default {
             return __imgPath + 'image/box/' + key + '.svg'
         },
         reload: function(schema) {
-        },
-        reset: function() {
             this.l_data = ["0000", "0000", "0000", "0000", "0000", "0000"];
             this.r_data = ["0000", "0000", "0000", "0000", "0000", "0000"];
+        },
+        reset: function() {
         },
         // 生成code
         renderCode: function() {
@@ -1025,7 +1037,7 @@ export default {
                     this.list = res.data.data.list;
                     this.page = res.data.data.page;
                     this.per = res.data.data.per;
-                    this.total = res.data.data.total;
+                    this.listTotal = res.data.data.total;
                 })
                 .finally(() => {
                     this.loading = false;
@@ -1131,10 +1143,6 @@ export default {
                         this.total = 66;
                     } else {
                         this.total = defaultConfigs.total;
-                    }
-    
-                    if (val !== oVal) {
-                        this.reset()
                     }
     
                     // 初始化code
