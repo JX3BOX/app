@@ -1186,7 +1186,7 @@ export default {
         this.getVersions();
         this.series_open_need = defaultConfigs.series_open_need;
 
-        this.loadList()
+        this.isLogin && this.loadList()
     },
     components: {
         Nav

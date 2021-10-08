@@ -461,7 +461,7 @@ export default {
                 });
             });
 
-            this.loadList();
+            this.isLogin && this.loadList();
         },
     },
     filters: {
