@@ -609,7 +609,8 @@ export default {
                         const _talent = {
                             id: talent.id,
                             icon: talent.icon,
-                            level: code
+                            level: code,
+                            name: talent.name
                         }
 
                         _pzcode.push(_talent)
@@ -626,7 +627,8 @@ export default {
                         const _talent = {
                             id: talent.id,
                             icon: talent.icon,
-                            level: code
+                            level: code,
+                            name: talent.name
                         }
 
                         _pzcode.push(_talent)
@@ -1059,7 +1061,8 @@ export default {
         loadList: function () {
             this.loading = true;
             getTalents({
-                client: this.client
+                client: this.client,
+                type: 'talent2'
             })
                 .then((res) => {
                     this.list = res.data.data.list;
