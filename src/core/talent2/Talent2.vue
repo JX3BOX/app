@@ -41,7 +41,7 @@
                     <h2 class="m-talent-subtitle">选择心法</h2>
                     <div class="m-talent-xf">
                         <el-radio
-                            v-for="(item, i) in xfmap"
+                            v-for="(item, i) in xfMaps"
                             v-model="xf"
                             :label="item.name"
                             :key="i"
@@ -312,7 +312,7 @@
                                 class="u-btn"
                                 >点击复制</el-button
                             >
-                            <el-button
+                            <!-- <el-button
                                 type="primary"
                                 icon="el-icon-document-add"
                                 size="small"
@@ -320,6 +320,15 @@
                                 @click="save"
                                 v-if="isLogin"
                                 >保存为预设</el-button
+                            > -->
+                            <el-button
+                                type="success"
+                                icon="el-icon-document-add"
+                                size="small"
+                                class="u-btn"
+                                @click="save"
+                                v-if="isLogin"
+                                >保存</el-button
                             >
                         </div>
                     </div>
@@ -394,7 +403,21 @@
                                 v-for="(item, i) in list"
                                 :key="i"
                             >
-                                <span class="u-name">{{ item.name }}</span>
+                                <span class="u-name" v-if="!item.edit">{{ item.name }}</span>
+                                <div v-else>
+                                    <el-input
+                                        v-model="currentShemaName"
+                                        size="mini"
+                                        class="u-shema-name"
+                                        :maxlength="12"
+                                        show-word-limit
+                                    ></el-input>
+                                    <el-button
+                                        type="text"
+                                        @click="item.edit = false"
+                                        >取消</el-button
+                                    >
+                                </div>
                                 <el-button-group>
                                    <el-tooltip
                                         effect="dark"
@@ -409,7 +432,7 @@
                                     </el-tooltip>
                                     <el-tooltip
                                         effect="dark"
-                                        content="改名"
+                                        content="修改"
                                         placement="top"
                                     >
                                         <el-button
@@ -468,6 +491,7 @@ import {
 import { xfConfigs } from '@jx3box/jx3box-data/data/app/talent2.json';
 import { defaultXf, defaultConfigs } from '@jx3box/jx3box-talent2/src/default.json';
 import User from "@jx3box/jx3box-common/js/user";
+import cloneDeep from "lodash/cloneDeep";
 import {
     getTalentVersions,
     getTalents,
@@ -491,7 +515,6 @@ export default {
             version : '',
             versions: [], // 版本列表
             talents: {}, // 镇派数据
-            xfmap,
             total: 0,
             l_data: ["0000", "0000", "0000", "0000", "0000", "0000"],
             r_data: ["0000", "0000", "0000", "0000", "0000", "0000"],
@@ -512,6 +535,9 @@ export default {
             page: 1,
             listTotal: 0,
             loading: false,
+
+            currentShemaName: "",
+            currentSchema: "",
         };
     },
     computed: {
@@ -563,7 +589,7 @@ export default {
             return location.href.includes("origin") ? "origin" : "std";
         },
         mount: function () {
-            return this.xfmap[this.xf]?.id;
+            return xfmap[this.xf]?.id;
         },
         params: function () {
             const { client, mount, version, code, pzcode, xf } = this;
@@ -576,6 +602,14 @@ export default {
                 pzcode: JSON.parse(pzcode),
                 xf,
             };
+        },
+        xfMaps: function () {
+            const xfMaps = cloneDeep(xfmap);
+            delete xfMaps["山居剑意"];
+            return xfMaps;
+        },
+        isEditing: function () {
+            return this.list.some((item) => item.edit);
         },
     },
     methods: {
@@ -1035,28 +1069,56 @@ export default {
                 });
                 return;
             }
-            this.$prompt("请输入方案名称", "提示", {
-                confirmButtonText: "确定",
-                cancelButtonText: "取消",
-                inputErrorMessage: '输入不能为空',
-                inputValidator: (value) => {       // 点击按钮时，对文本框里面的值进行验证
-                    if(!value) {
-                        return '输入不能为空';
-                    }
-                },
-            }).then(({ value }) => {
-                addTalent({
+
+            if (this.isEditing) {
+                 if (!this.currentShemaName) {
+                    this.$notify({
+                        type: "warning",
+                        title: "提示",
+                        message: "方案名称不能为空",
+                    });
+                    return;
+                }
+
+                putTalent(this.currentSchema.id, {
                     ...this.params,
-                    name: value,
+                    name: this.currentShemaName,
                 }).then(() => {
                     this.$notify({
                         type: "success",
                         title: "成功",
-                        message: "预设方案保存成功",
+                        message: "修改成功",
                     });
-                    this.loadList();
+                    this.currentSchema.name = this.currentShemaName
+                    this.currentSchema.edit = false
+
+                    this.currentShemaName = ''
+                    this.currentSchema = ''
                 });
-            });
+            } else {
+                this.$prompt("请输入方案名称", "提示", {
+                    confirmButtonText: "确定",
+                    cancelButtonText: "取消",
+                    inputErrorMessage: '输入不能为空',
+                    inputValidator: (value) => {       // 点击按钮时，对文本框里面的值进行验证
+                        if(!value) {
+                            return '输入不能为空';
+                        }
+                    },
+                }).then(({ value }) => {
+                    addTalent({
+                        ...this.params,
+                        name: value,
+                    }).then(() => {
+                        this.$notify({
+                            type: "success",
+                            title: "成功",
+                            message: "预设方案保存成功",
+                        });
+                        this.loadList();
+                    });
+                });
+            }
         },
         loadList: function () {
             this.loading = true;
@@ -1065,7 +1127,10 @@ export default {
                 type: 'talent2'
             })
                 .then((res) => {
-                    this.list = res.data.data.list;
+                    this.list = res.data.data.list.map((item) => {
+                        this.$set(item, "edit", false);
+                        return item;
+                    });
                     this.page = res.data.data.page;
                     this.per = res.data.data.per;
                     this.listTotal = res.data.data.total;
@@ -1087,27 +1152,10 @@ export default {
             })
         },
         edit: function (item) {
-            this.$prompt('请输入方案名称', '提示', {
-                confirmButtonText: "确定",
-                cancelButtonText: "取消",
-                inputValue: item.name,
-                inputErrorMessage: '输入不能为空',
-                inputValidator: (value) => {       // 点击按钮时，对文本框里面的值进行验证
-                    if(!value) {
-                        return '输入不能为空';
-                    }
-                },
-            }).then(({ value }) => {
-                putTalent(item.id, { name: value })
-                    .then(() => {
-                        this.$notify({
-                            type: 'success',
-                            title: '成功',
-                            message: '方案名称修改成功'
-                        })
-                        item.name = value
-                    })
-            })
+            this.use(item);
+            this.currentShemaName = item.name;
+            this.currentSchema = item;
+            item.edit = true;
         },
         del: function (item) {
             this.$confirm(`确认删除预设方案[${item.name}]？`, "提示", {
