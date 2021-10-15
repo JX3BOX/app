@@ -68,7 +68,7 @@
                             @change="parseSchema"
                         ></el-input>
                         <el-input
-                            placeholder="粘贴编码亦可自动解析奇穴"
+                            placeholder="配装器编码"
                             type="textarea"
                             v-model="pzcode"
                             style="margin-top:10px;"
