@@ -78,83 +78,17 @@
                                 class="u-btn"
                                 >点击复制</el-button
                             >
-                            <!-- <el-button
-                                type="primary"
-                                icon="el-icon-document-add"
-                                size="small"
-                                class="u-btn"
-                                @click="save"
-                                v-if="isLogin"
-                                >保存为预设</el-button
-                            > -->
                             <el-button
                                 type="success"
-                                icon="el-icon-document-add"
+                                :icon="isEditing ? 'el-icon-circle-check' : 'el-icon-document-add'"
                                 size="small"
                                 class="u-btn"
                                 @click="save"
                                 v-if="isLogin"
-                                >保存</el-button
+                                >{{isEditing ? '保存' : '另存为'}}</el-button
                             >
                         </div>
                     </div>
-                    <!-- <div class="m-talent-extend">
-                        <el-tabs v-model="activeName" type="card">
-                            <el-tab-pane label="通用编码" name="common">
-                                <div class="m-talent-code">
-                                    <el-input
-                                        placeholder="粘贴编码亦可自动解析奇穴"
-                                        v-model="code"
-                                        @change="parseSchema"
-                                    ></el-input>
-                                    <div class="m-talent-op">
-                                        <el-button
-                                            type="primary"
-                                            icon="el-icon-document-copy"
-                                            v-clipboard:copy="code"
-                                            v-clipboard:success="onCopy"
-                                            v-clipboard:error="onError"
-                                            size="small"
-                                            class="u-btn"
-                                        >点击复制</el-button>
-                                        <el-button
-                                            type="primary"
-                                            icon="el-icon-document-add"
-                                            size="small"
-                                            class="u-btn"
-                                            @click="save"
-                                            v-if="isLogin"
-                                        >保存为预设</el-button>
-                                    </div>
-                                </div>
-                            </el-tab-pane>
-                            <el-tab-pane label="配装器编码" name="pz">
-                                <el-input
-                                    placeholder="配装器编码"
-                                    v-model="pzcode"
-                                    type="textarea"
-                                    :rows="4"
-                                ></el-input>
-                                <el-button
-                                    type="primary"
-                                    icon="el-icon-document-copy"
-                                    v-clipboard:copy="pzcode"
-                                    v-clipboard:success="onCopy"
-                                    v-clipboard:error="onError"
-                                    size="small"
-                                    class="u-btn"
-                                >点击复制</el-button>
-                                <el-button
-                                    type="primary"
-                                    icon="el-icon-document-add"
-                                    size="small"
-                                    class="u-btn"
-                                    @click="save"
-                                    v-if="isLogin"
-                                >保存为预设</el-button>
-                            </el-tab-pane>
-                        </el-tabs>
-                    </div> -->
                 </div>
                 <div class="m-talent-my" v-if="isLogin">
                     <h2 class="m-talent-subtitle">预设方案</h2>
