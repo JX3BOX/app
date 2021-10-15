@@ -301,6 +301,13 @@
                             v-model="code"
                             @change="parseSchema"
                         ></el-input>
+                        <el-input
+                            placeholder="粘贴编码亦可自动解析奇穴"
+                            type="textarea"
+                            v-model="pzcode"
+                            style="margin-top:10px;"
+                            v-if="isAdmin"
+                        ></el-input>
                         <div class="m-talent-op">
                             <el-button
                                 type="primary"
@@ -459,6 +466,7 @@ export default {
             },
 
             isLogin: User.isLogin(),
+            isAdmin : false,
             showList: false,
             list: [],
             per: 10,
@@ -1168,6 +1176,7 @@ export default {
         this.series_open_need = defaultConfigs.series_open_need;
 
         this.isLogin && this.loadList()
+        this.isAdmin = User.isAdmin()
     },
     components: {
         Nav
