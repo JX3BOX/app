@@ -437,6 +437,7 @@ export default {
             this.loading = true;
             getTalents({
                 client: this.client,
+                type: 'talent'
             })
                 .then((res) => {
                     this.list = res.data.data.list.map((item) => {
