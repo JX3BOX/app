@@ -21,18 +21,13 @@
                     <div class="m-talent-panel">
                         <div class="m-talent-version">
                             <span class="u-label">选择版本</span>
-                            <el-select
-                                v-model="version"
-                                placeholder="请选择游戏版本"
-                                @change="reload"
-                            >
+                            <el-select v-model="version" placeholder="请选择游戏版本" @change="reload">
                                 <el-option
                                     v-for="item in versions"
                                     :key="item.version"
                                     :label="item.name"
                                     :value="item.version"
-                                >
-                                </el-option>
+                                ></el-option>
                             </el-select>
                         </div>
                     </div>
@@ -48,11 +43,7 @@
                             @change="reload"
                             v-show="isOrigin(item)"
                         >
-                            <img
-                                class="u-pic"
-                                :src="item.id | xficon"
-                                :alt="item.name"
-                            />
+                            <img class="u-pic" :src="item.id | xficon" :alt="item.name" />
                             <span class="u-txt">{{ item.name }}</span>
                         </el-radio>
                     </div>
@@ -65,17 +56,24 @@
                                 :class="[
                                     total - totalCount > 0 ? '' : 'm-talent2-surplus-empty'
                                 ]"
-                            >剩余点数 : <span>{{ surplus }}</span></div>
+                            >
+                                剩余点数 :
+                                <span>{{ surplus }}</span>
+                            </div>
                             <div class="m-talent2-main">
-
                                 <!-- LEFT -->
                                 <div class="m-talent2-left">
-                                    
-                                    <div class="m-talent2-content" :style="{
+                                    <div
+                                        class="m-talent2-content"
+                                        :style="{
                                         'background-image': xf ? `url(${talentBg('left', 1)})` : ''
-                                    }">
+                                    }"
+                                    >
                                         <div class="m-talent2-title">
-                                            <img class="m-talent2-xf-icon" :src="xfContent[0] | xficon">
+                                            <img
+                                                class="m-talent2-xf-icon"
+                                                :src="xfContent[0] | xficon"
+                                            />
                                             <span class="m-talent2-title-count">{{ lCount }}</span>
                                             <span class="m-talent2-title-name">{{ l_name }}</span>
                                         </div>
@@ -120,7 +118,12 @@
                                                             :class="item.type === 'skill' ? 'is-add-skill' : 'is-add'"
                                                         ></span>
 
-                                                        <img class="talent-img" :class="{ 'skill-img': item.type === 'skill' }" :src="item.icon | talentIcon" :alt="item.name">
+                                                        <img
+                                                            class="talent-img"
+                                                            :class="{ 'skill-img': item.type === 'skill' }"
+                                                            :src="item.icon | talentIcon"
+                                                            :alt="item.name"
+                                                        />
                                                     </div>
                                                     <!-- COUNT -->
                                                     <span
@@ -134,30 +137,36 @@
                                                     >{{ l_data[index][i] }}</span>
 
                                                     <!-- DESC -->
-                                                    <span class="m-talent2-pop" :class="item.on ? 'on' : ''">
+                                                    <span
+                                                        class="m-talent2-pop"
+                                                        :class="item.on ? 'on' : ''"
+                                                    >
                                                         <b class="m-talent2-name">
                                                             <span>{{ item.name }}</span>
-                                                            <span class="m-talent2-number">
-                                                                第{{ Number(l_data[index][i]) + '/' + item.max }}重
-                                                            </span>
+                                                            <span
+                                                                class="m-talent2-number"
+                                                            >第{{ Number(l_data[index][i]) + '/' + item.max }}重</span>
                                                         </b>
                                                         <!-- <b class="m-talent2-type">
                                                             {{ item.type === 'talent' ? '被动招式': '主动招式' }}
-                                                        </b> -->
+                                                        </b>-->
                                                         <span class="m-talent2-desc">
                                                             {{ !Number(l_data[index][i]) || xf === '通用'
-                                                                ? item.desc[0]
-                                                                : item.desc[l_data[index][i] - 1]
+                                                            ? item.desc[0]
+                                                            : item.desc[l_data[index][i] - 1]
                                                             }}
                                                         </span>
                                                         <span
                                                             v-if="Number(l_data[index][i]) && Number(l_data[index][i]) < item.max"
                                                             class="m-talent2-desc-next"
                                                         >
-                                                            <span v-if="xf !== '通用'" class="m-next-text">下一重：</span>
+                                                            <span
+                                                                v-if="xf !== '通用'"
+                                                                class="m-next-text"
+                                                            >下一重：</span>
                                                             <span>
                                                                 {{
-                                                                    item.desc[l_data[index][i]]
+                                                                item.desc[l_data[index][i]]
                                                                 }}
                                                             </span>
                                                         </span>
@@ -165,23 +174,35 @@
                                                             v-if="Number(l_data[index][i]) === item.max"
                                                             class="m-max"
                                                         >该招式已练至最高境界</span>
-                                                        <span class="m-talent-retrogress" v-if="Number(l_data[index][i])">右键点击遗忘</span>
+                                                        <span
+                                                            class="m-talent-retrogress"
+                                                            v-if="Number(l_data[index][i])"
+                                                        >右键点击遗忘</span>
                                                     </span>
                                                 </div>
-                                                <div v-else class="m-talent2-content-item-empty" :key="i"></div>
+                                                <div
+                                                    v-else
+                                                    class="m-talent2-content-item-empty"
+                                                    :key="i"
+                                                ></div>
                                             </template>
                                         </div>
                                     </div>
                                 </div>
 
-
                                 <!-- RIGHT -->
                                 <div class="m-talent2-right">
-                                    <div class="m-talent2-content" :style="{
+                                    <div
+                                        class="m-talent2-content"
+                                        :style="{
                                         'background-image': xf ? `url(${talentBg('right', 1)})` : ''
-                                    }">
+                                    }"
+                                    >
                                         <div class="m-talent2-title">
-                                            <img class="m-talent2-xf-icon" :src="xfContent[1] | xficon">
+                                            <img
+                                                class="m-talent2-xf-icon"
+                                                :src="xfContent[1] | xficon"
+                                            />
                                             <span class="m-talent2-title-count">{{ rCount }}</span>
                                             <span class="m-talent2-title-name">{{ r_name }}</span>
                                         </div>
@@ -203,7 +224,7 @@
                                                     @mouseover="$set(item, 'on', true)"
                                                     @mouseleave="$set(item, 'on', false)"
                                                 >
-                                                    <div 
+                                                    <div
                                                         @click="rightTalentAdd(item, index, i)"
                                                         @click.right.prevent="rightTalentDecrease(index, i)"
                                                         :class="[
@@ -215,22 +236,23 @@
                                                                 (item.type === 'skill' ? 'm-talent2-skill-unselected' : 'm-talent2-unselected') : ''
                                                         ]"
                                                     >
-                                                    <!-- HAS PARENT -->
-                                                        <span 
+                                                        <!-- HAS PARENT -->
+                                                        <span
                                                             v-if="item.pretab && !isRightParentAdd(index, i) && canRightItemOperate(index, i)"
                                                             :class="item.type === 'skill' ? 'is-add-skill' : 'is-add'"
                                                         ></span>
-                                                    <!-- TOTAL ZERO -->
+                                                        <!-- TOTAL ZERO -->
                                                         <span
                                                             v-if="!surplus && !Number(r_data[index][i])"
                                                             :class="item.type === 'skill' ? 'is-add-skill' : 'is-add'"
                                                         ></span>
 
-                                                        <img class="talent-img"
+                                                        <img
+                                                            class="talent-img"
                                                             :class="{ 'skill-img': item.type === 'skill' }"
                                                             :src="item.icon | talentIcon"
                                                             :alt="item.name"
-                                                        >
+                                                        />
                                                     </div>
                                                     <!-- COUNT -->
                                                     <span
@@ -244,30 +266,36 @@
                                                     >{{ r_data[index][i] }}</span>
 
                                                     <!-- DESC -->
-                                                    <span class="m-talent2-pop" :class="item.on ? 'on' : ''">
+                                                    <span
+                                                        class="m-talent2-pop"
+                                                        :class="item.on ? 'on' : ''"
+                                                    >
                                                         <b class="m-talent2-name">
                                                             <span>{{ item.name }}</span>
-                                                            <span class="m-talent2-number">
-                                                                第{{ Number(r_data[index][i]) + '/' + item.max }}重
-                                                            </span>
+                                                            <span
+                                                                class="m-talent2-number"
+                                                            >第{{ Number(r_data[index][i]) + '/' + item.max }}重</span>
                                                         </b>
                                                         <!-- <b class="m-talent2-type">
                                                             {{ item.type === 'talent' ? '被动招式': '主动招式' }}
-                                                        </b> -->
+                                                        </b>-->
                                                         <span class="m-talent2-desc">
-                                                             {{ !Number(r_data[index][i]) || xf === '通用'
-                                                                ? item.desc[0]
-                                                                : item.desc[r_data[index][i] - 1]
+                                                            {{ !Number(r_data[index][i]) || xf === '通用'
+                                                            ? item.desc[0]
+                                                            : item.desc[r_data[index][i] - 1]
                                                             }}
                                                         </span>
                                                         <span
                                                             v-if="Number(r_data[index][i]) && Number(r_data[index][i]) < item.max"
                                                             class="m-talent2-desc-next"
                                                         >
-                                                            <span v-if="xf !== '通用'" class="m-next-text">下一重：</span>
+                                                            <span
+                                                                v-if="xf !== '通用'"
+                                                                class="m-next-text"
+                                                            >下一重：</span>
                                                             <span>
                                                                 {{
-                                                                    item.desc[r_data[index][i]]
+                                                                item.desc[r_data[index][i]]
                                                                 }}
                                                             </span>
                                                         </span>
@@ -275,10 +303,17 @@
                                                             v-if="Number(r_data[index][i]) === item.max"
                                                             class="m-max"
                                                         >该招式已练至最高境界</span>
-                                                        <span class="m-talent-retrogress" v-if="Number(r_data[index][i])">右键点击遗忘</span>
+                                                        <span
+                                                            class="m-talent-retrogress"
+                                                            v-if="Number(r_data[index][i])"
+                                                        >右键点击遗忘</span>
                                                     </span>
                                                 </div>
-                                                <div v-else class="m-talent2-content-item-empty" :key="i"></div>
+                                                <div
+                                                    v-else
+                                                    class="m-talent2-content-item-empty"
+                                                    :key="i"
+                                                ></div>
                                             </template>
                                         </div>
                                     </div>
@@ -296,11 +331,7 @@
                     </div>
                     <h2 class="m-talent-subtitle">镇派编码</h2>
                     <div class="m-talent-code">
-                        <el-input
-                            placeholder="粘贴编码亦可自动解析奇穴"
-                            v-model="code"
-                            @change="parseSchema"
-                        ></el-input>
+                        <el-input placeholder="粘贴编码亦可自动解析奇穴" v-model="code" @change="parseSchema"></el-input>
                         <el-input
                             placeholder="配装器编码"
                             type="textarea"
@@ -317,8 +348,7 @@
                                 v-clipboard:error="onError"
                                 size="small"
                                 class="u-btn"
-                                >点击复制</el-button
-                            >
+                            >点击复制</el-button>
                             <el-button
                                 type="success"
                                 :icon="isEditing ? 'el-icon-circle-check' : 'el-icon-document-add'"
@@ -326,8 +356,7 @@
                                 class="u-btn"
                                 @click="save"
                                 v-if="isLogin"
-                                >{{isEditing ? '保存' : '另存为'}}</el-button
-                            >
+                            >{{isEditing ? '保存' : '另存为'}}</el-button>
                         </div>
                     </div>
                 </div>
@@ -335,11 +364,7 @@
                     <h2 class="m-talent-subtitle">预设方案</h2>
                     <div class="m-talent-list" v-loading="loading">
                         <ul v-if="list && list.length">
-                            <li
-                                class="m-talent-list-item"
-                                v-for="(item, i) in list"
-                                :key="i"
-                            >
+                            <li class="m-talent-list-item" v-for="(item, i) in list" :key="i">
                                 <span class="u-name" v-if="!item.edit">{{ item.name }}</span>
                                 <div v-else>
                                     <el-input
@@ -349,40 +374,24 @@
                                         :maxlength="12"
                                         show-word-limit
                                     ></el-input>
-                                    <el-button
-                                        type="text"
-                                        @click="item.edit = false"
-                                        >取消</el-button
-                                    >
+                                    <el-button type="text" @click="item.edit = false">取消</el-button>
                                 </div>
                                 <el-button-group>
-                                   <el-tooltip
-                                        effect="dark"
-                                        content="使用"
-                                        placement="top"
-                                    >
+                                    <el-tooltip effect="dark" content="使用" placement="top">
                                         <el-button
                                             size="mini"
                                             icon="el-icon-position"
                                             @click="use(item)"
                                         ></el-button>
                                     </el-tooltip>
-                                    <el-tooltip
-                                        effect="dark"
-                                        content="修改"
-                                        placement="top"
-                                    >
+                                    <el-tooltip effect="dark" content="修改" placement="top">
                                         <el-button
                                             size="mini"
                                             icon="el-icon-edit"
                                             @click="edit(item)"
                                         ></el-button>
                                     </el-tooltip>
-                                    <el-tooltip
-                                        effect="dark"
-                                        content="删除"
-                                        placement="top"
-                                    >
+                                    <el-tooltip effect="dark" content="删除" placement="top">
                                         <el-button
                                             size="mini"
                                             icon="el-icon-delete"
@@ -402,12 +411,7 @@
                                 :current-page.sync="page"
                             ></el-pagination>
                         </ul>
-                        <el-alert
-                            v-else
-                            title="当前没有任何预设方案"
-                            type="info"
-                            show-icon
-                        ></el-alert>
+                        <el-alert v-else title="当前没有任何预设方案" type="info" show-icon></el-alert>
                     </div>
                 </div>
             </div>
@@ -425,8 +429,11 @@ import {
     __ossRoot,
     __iconPath,
 } from "@jx3box/jx3box-common/data/jx3box.json";
-import { xfConfigs } from '@jx3box/jx3box-data/data/app/talent2.json';
-import { defaultXf, defaultConfigs } from '@jx3box/jx3box-talent2/src/default.json';
+import { xfConfigs } from "@jx3box/jx3box-data/data/app/talent2.json";
+import {
+    defaultXf,
+    defaultConfigs,
+} from "@jx3box/jx3box-talent2/src/default.json";
 import User from "@jx3box/jx3box-common/js/user";
 import cloneDeep from "lodash/cloneDeep";
 import {
@@ -439,17 +446,17 @@ import {
 } from "@/service/talent.js";
 export default {
     name: "Talent2",
-    data: function() {
+    data: function () {
         return {
             activeName: "common",
-            xf: '',
-            code: '0',
-            pzcode: '',
-            begin: 'left',
-            l_name: '山川',
-            r_name: '日月',
+            xf: "",
+            code: "0",
+            pzcode: "",
+            begin: "left",
+            l_name: "山川",
+            r_name: "日月",
 
-            version : '',
+            version: "",
             versions: [], // 版本列表
             talents: {}, // 镇派数据
             total: 0,
@@ -462,11 +469,11 @@ export default {
             // 心法镇派或技能
             talentContent: {
                 left: [],
-                right: []
+                right: [],
             },
 
             isLogin: User.isLogin(),
-            isAdmin : false,
+            isAdmin: false,
             showList: false,
             list: [],
             per: 10,
@@ -479,19 +486,23 @@ export default {
         };
     },
     computed: {
-        lCount: function() {
-            return this.l_data.length ?
-                this.l_data.map(l => l.split('')).flat()
-                    .reduce((prev, current) => Number(prev) + Number(current))
-                        : 0;
+        lCount: function () {
+            return this.l_data.length
+                ? this.l_data
+                      .map((l) => l.split(""))
+                      .flat()
+                      .reduce((prev, current) => Number(prev) + Number(current))
+                : 0;
         },
-        rCount: function() {
-            return this.r_data.length ?
-                this.r_data.map(l => l.split('')).flat()
-                    .reduce((prev, current) => Number(prev) + Number(current))
-                        : 0;
+        rCount: function () {
+            return this.r_data.length
+                ? this.r_data
+                      .map((l) => l.split(""))
+                      .flat()
+                      .reduce((prev, current) => Number(prev) + Number(current))
+                : 0;
         },
-        leftLastIndex: function() {
+        leftLastIndex: function () {
             let index = 0;
             for (let i = this.l_data.length - 1; i > 0; i--) {
                 if (Number(this.l_data[i])) {
@@ -501,7 +512,7 @@ export default {
             }
             return index;
         },
-        rightLastIndex: function() {
+        rightLastIndex: function () {
             let index = 0;
             for (let i = this.r_data.length - 1; i > 0; i--) {
                 if (Number(this.r_data[i])) {
@@ -511,16 +522,16 @@ export default {
             }
             return index;
         },
-        totalCount: function() {
+        totalCount: function () {
             return this.lCount + this.rCount;
         },
-        talent2Data: function() {
-            return this.begin === 'left' ?
-                this.l_data.concat(this.r_data).join(',')
-                : this.r_data.concat(this.l_data).join(',')
+        talent2Data: function () {
+            return this.begin === "left"
+                ? this.l_data.concat(this.r_data).join(",")
+                : this.r_data.concat(this.l_data).join(",");
         },
-        surplus: function (){
-            return this.total - this.totalCount
+        surplus: function () {
+            return this.total - this.totalCount;
         },
 
         client: function () {
@@ -551,83 +562,88 @@ export default {
         },
     },
     methods: {
-        getIcon(key){
-            return __imgPath + 'image/box/' + key + '.svg'
+        getIcon(key) {
+            return __imgPath + "image/box/" + key + ".svg";
         },
-        reload: function(schema) {
+        reload: function (schema) {
             this.l_data = ["0000", "0000", "0000", "0000", "0000", "0000"];
             this.r_data = ["0000", "0000", "0000", "0000", "0000", "0000"];
         },
-        reset: function() {
-        },
+        reset: function () {},
         // 生成code
-        renderCode: function() {
-            const {version, xf, talent2Data, l_data, r_data, talentContent} = this
+        renderCode: function () {
+            const {
+                version,
+                xf,
+                talent2Data,
+                l_data,
+                r_data,
+                talentContent,
+            } = this;
             const _code = {
                 version,
                 xf,
-                sq: talent2Data
+                sq: talent2Data,
             };
             this.code = JSON.stringify(_code);
 
             const _pzcode = [];
 
             l_data.forEach((l, lIndex) => {
-                const leftCode =  l.split('').map(c => parseInt(c));
+                const leftCode = l.split("").map((c) => parseInt(c));
 
                 leftCode.forEach((code, codeIndex) => {
                     if (code) {
-                        const talent = talentContent.left[lIndex][codeIndex]
+                        const talent = talentContent.left[lIndex][codeIndex];
                         const _talent = {
                             id: talent.id,
                             icon: talent.icon,
                             level: code,
-                            name: talent.name
-                        }
+                            name: talent.name,
+                        };
 
-                        _pzcode.push(_talent)
+                        _pzcode.push(_talent);
                     }
-                })
-            })
+                });
+            });
 
             r_data.forEach((r, rIndex) => {
-                const rightCode =  r.split('').map(c => parseInt(c));
+                const rightCode = r.split("").map((c) => parseInt(c));
 
                 rightCode.forEach((code, codeIndex) => {
                     if (code) {
-                        const talent = talentContent.right[rIndex][codeIndex]
+                        const talent = talentContent.right[rIndex][codeIndex];
                         const _talent = {
                             id: talent.id,
                             icon: talent.icon,
                             level: code,
-                            name: talent.name
-                        }
+                            name: talent.name,
+                        };
 
-                        _pzcode.push(_talent)
+                        _pzcode.push(_talent);
                     }
-                })
-            })
+                });
+            });
 
-            this.pzcode = JSON.stringify(_pzcode)
-
+            this.pzcode = JSON.stringify(_pzcode);
         },
-        onCopy: function(val) {
+        onCopy: function (val) {
             this.$message({
                 title: "复制成功",
                 message: "编码复制成功",
                 type: "success",
             });
         },
-        onError: function() {
+        onError: function () {
             this.$message.error({
                 title: "复制失败",
                 message: "请手动复制",
             });
         },
-        isOrigin : function (item){
-            return item['client'].includes('origin')
+        isOrigin: function (item) {
+            return item["client"].includes("origin");
         },
-        parseSchema : function (){
+        parseSchema: function () {
             try {
                 const _code = JSON.parse(this.code);
                 this.version = _code.version;
@@ -637,15 +653,19 @@ export default {
                 this.xfContent = xfConfigs[val]?.content;
                 this.begin = xfConfigs[val]?.begin;
 
-                this.talentContent.left = this.talents[xfConfigs[val].talent[0]];
+                this.talentContent.left = this.talents[
+                    xfConfigs[val].talent[0]
+                ];
                 this.l_name = xfConfigs[val]?.talent[0];
 
-                this.talentContent.right = this.talents[xfConfigs[val].talent[1]];
+                this.talentContent.right = this.talents[
+                    xfConfigs[val].talent[1]
+                ];
                 this.r_name = xfConfigs[val]?.talent[1];
 
-                const _sq = _code.sq.split(',');
+                const _sq = _code.sq.split(",");
 
-                if (this.begin === 'left') {
+                if (this.begin === "left") {
                     this.l_data = [].concat(_sq.slice(0, 6));
                     this.r_data = _sq.slice(6, _sq.length);
                 } else {
@@ -653,11 +673,10 @@ export default {
                     this.l_data = _sq.slice(6, _sq.length);
                 }
 
-                console.log(this.l_data, this.r_data)
-            } catch(e) {
+                console.log(this.l_data, this.r_data);
+            } catch (e) {
                 this.$message.error("编码格式错误");
             }
-
         },
         // talent 单项逻辑
         // -------------------
@@ -667,11 +686,11 @@ export default {
          * @param {string} target 左右区域
          * @returns {boolean} true表示可以编辑
          */
-        canOperate: function(rowIndex, target) {
-            if (target === 'left') {
-                return this.lCount >= rowIndex * 5
+        canOperate: function (rowIndex, target) {
+            if (target === "left") {
+                return this.lCount >= rowIndex * 5;
             } else {
-                return this.rCount >= rowIndex * 5
+                return this.rCount >= rowIndex * 5;
             }
         },
         /**
@@ -681,28 +700,31 @@ export default {
          * @param {string} target 左右区域
          * @returns {boolean} 是否可以修改
          */
-        canLeftItemOperate: function(rowIndex, colIndex) {
-            let canOperate = false
+        canLeftItemOperate: function (rowIndex, colIndex) {
+            let canOperate = false;
             // 初始为left的第一行点亮
-            if (this.begin === 'left') {
+            if (this.begin === "left") {
                 if (!rowIndex) {
-                    canOperate = true
-                } else if (this.lCount > 0 && this.lCount >= (rowIndex) * 5) {
-                    canOperate = true
+                    canOperate = true;
+                } else if (this.lCount > 0 && this.lCount >= rowIndex * 5) {
+                    canOperate = true;
                 }
-            } else if (this.begin === 'right') {
-                if (this.rCount >= this.series_open_need && this.lCount >= 0 && this.lCount >= (rowIndex) * 5) {
-                    canOperate = true
+            } else if (this.begin === "right") {
+                if (
+                    this.rCount >= this.series_open_need &&
+                    this.lCount >= 0 &&
+                    this.lCount >= rowIndex * 5
+                ) {
+                    canOperate = true;
                 }
             }
-            
-            return canOperate
 
+            return canOperate;
         },
         /**
          * 判断left该项父项是否加点
          */
-        isLeftParentAdd: function(rowIndex, colIndex) {
+        isLeftParentAdd: function (rowIndex, colIndex) {
             return Number(this.l_data[rowIndex - 1][colIndex]);
         },
         /**
@@ -712,25 +734,24 @@ export default {
          * @param {number} colIndex 列号
          * @param {Array} target 操作对象
          */
-        leftTalentAdd: function(item, rowIndex, colIndex) {
-
-            if (!this.canOperate(rowIndex, 'left')) return
+        leftTalentAdd: function (item, rowIndex, colIndex) {
+            if (!this.canOperate(rowIndex, "left")) return;
             // 当父项有层数，才可以进行增加层数操作
             if (item?.pretab && !this.isLeftParentAdd(rowIndex, colIndex)) {
                 this.$message.warning({
-                    message: '要激活该天赋需要先激活对应的上层天赋'
-                })
-                return
+                    message: "要激活该天赋需要先激活对应的上层天赋",
+                });
+                return;
             }
 
             const { max, parent } = item;
 
-            if (this.begin === 'right') {
+            if (this.begin === "right") {
                 if (this.rCount < this.series_open_need) {
                     this.$message.warning({
-                        message: `主天赋需要先激活${this.series_open_need}点，才能激活本区域的天赋`
-                    })
-                    return
+                        message: `主天赋需要先激活${this.series_open_need}点，才能激活本区域的天赋`,
+                    });
+                    return;
                 }
             }
 
@@ -741,38 +762,36 @@ export default {
 
                 if (!pTalent) {
                     this.$message({
-                        type: 'warning',
-                        message: '该天赋存在前置天赋，需先激活前置天赋'
-                    })
-                    return 
+                        type: "warning",
+                        message: "该天赋存在前置天赋，需先激活前置天赋",
+                    });
+                    return;
                 }
             }
 
             // 限定最大加点数
             if (this.totalCount >= this.total) {
                 this.$message({
-                    type: 'warning',
-                    message: '最大加点数为' + this.total
-                })
-                return
+                    type: "warning",
+                    message: "最大加点数为" + this.total,
+                });
+                return;
             }
 
             let current = Number(this.l_data[rowIndex][colIndex]);
 
             if (current < max) {
-                
                 current++;
                 // 替换指定talent的层数
-                const row = this.l_data[rowIndex].split('');
+                const row = this.l_data[rowIndex].split("");
 
                 row[colIndex] = String(current);
 
-                this.l_data.splice(rowIndex, 1, row.join(''));
-
+                this.l_data.splice(rowIndex, 1, row.join(""));
             } else {
                 this.$message({
-                    type: 'warning',
-                    message: '该天赋已达最高层数'
+                    type: "warning",
+                    message: "该天赋已达最高层数",
                 });
             }
         },
@@ -782,8 +801,7 @@ export default {
          * @param {number} colIndex 列号
          * @param {Array} target 操作对象
          */
-        leftTalentDecrease: function(rowIndex, colIndex) {
-
+        leftTalentDecrease: function (rowIndex, colIndex) {
             let current = Number(this.l_data[rowIndex][colIndex]);
 
             if (current > 0) {
@@ -792,29 +810,39 @@ export default {
                     // 当前行之前的行
                     const currentArr = this.l_data.slice(0, rowIndex + 1);
                     // 左边或右边总共的点数
-                    const targetCount = this.l_data.map(l => l.split('')).flat()
-                        .reduce((prev, current) => Number(prev) + Number(current));
+                    const targetCount = this.l_data
+                        .map((l) => l.split(""))
+                        .flat()
+                        .reduce(
+                            (prev, current) => Number(prev) + Number(current)
+                        );
 
                     // 当前行之前的行的点数
-                    currentCount = currentArr.map(l => l.split('')).flat()
-                        .reduce((prev, current) => Number(prev) + Number(current));
+                    currentCount = currentArr
+                        .map((l) => l.split(""))
+                        .flat()
+                        .reduce(
+                            (prev, current) => Number(prev) + Number(current)
+                        );
 
-                    if (currentCount <= (this.leftLastIndex) * 5 && targetCount > currentCount) {
+                    if (
+                        currentCount <= this.leftLastIndex * 5 &&
+                        targetCount > currentCount
+                    ) {
                         this.$message.warning({
-                            title: '提醒',
-                            message: '不能再减啦'
-                        })
-                        return
+                            title: "提醒",
+                            message: "不能再减啦",
+                        });
+                        return;
                     }
                 }
                 current--;
                 // 替换指定talent的层数
-                const row = this.l_data[rowIndex].split('');
+                const row = this.l_data[rowIndex].split("");
 
                 row[colIndex] = String(current);
 
-                this.l_data.splice(rowIndex, 1, row.join(''));
-
+                this.l_data.splice(rowIndex, 1, row.join(""));
             }
         },
         /**
@@ -824,27 +852,31 @@ export default {
          * @param {string} target 左右区域
          * @returns {boolean} 是否可以修改
          */
-        canRightItemOperate: function(rowIndex, colIndex) {
-            let canOperate = false
+        canRightItemOperate: function (rowIndex, colIndex) {
+            let canOperate = false;
             // 初始为left的第一行点亮
-            if (this.begin === 'right') {
+            if (this.begin === "right") {
                 if (!rowIndex) {
-                    canOperate = true
-                } else if (this.rCount > 0 && this.rCount >= (rowIndex) * 5) {
-                    canOperate = true
+                    canOperate = true;
+                } else if (this.rCount > 0 && this.rCount >= rowIndex * 5) {
+                    canOperate = true;
                 }
-            } else if (this.begin === 'left') {
-                if (this.lCount >= this.series_open_need && this.rCount >= 0 && this.rCount >= (rowIndex) * 5) {
-                    canOperate = true
+            } else if (this.begin === "left") {
+                if (
+                    this.lCount >= this.series_open_need &&
+                    this.rCount >= 0 &&
+                    this.rCount >= rowIndex * 5
+                ) {
+                    canOperate = true;
                 }
             }
-            
-            return canOperate
+
+            return canOperate;
         },
         /**
          * 判断right该项父项是否加点
          */
-        isRightParentAdd: function(rowIndex, colIndex) {
+        isRightParentAdd: function (rowIndex, colIndex) {
             return Number(this.r_data[rowIndex - 1][colIndex]);
         },
         /**
@@ -854,27 +886,26 @@ export default {
          * @param {number} colIndex 列号
          * @param {Array} target 操作对象
          */
-        rightTalentAdd: function(item, rowIndex, colIndex) {
-
-            if (!this.canOperate(rowIndex, 'right')) return 
+        rightTalentAdd: function (item, rowIndex, colIndex) {
+            if (!this.canOperate(rowIndex, "right")) return;
 
             // 当父项有层数，才可以进行增加层数操作
             if (item?.pretab && !this.isRightParentAdd(rowIndex, colIndex)) {
                 this.$message.warning({
-                    message: '要激活该天赋需要先激活对应的上层天赋'
-                })
-                return
+                    message: "要激活该天赋需要先激活对应的上层天赋",
+                });
+                return;
             }
 
             const { max, parent } = item;
 
-            if (this.begin === 'left') {
+            if (this.begin === "left") {
                 if (this.lCount < this.series_open_need) {
                     this.$message.warning({
-                        title: '提醒',
-                        message: `主天赋需要先激活${this.series_open_need}点，才能激活本区域的天赋`
-                    })
-                    return
+                        title: "提醒",
+                        message: `主天赋需要先激活${this.series_open_need}点，才能激活本区域的天赋`,
+                    });
+                    return;
                 }
             }
 
@@ -885,38 +916,36 @@ export default {
 
                 if (!pTalent) {
                     this.$message({
-                        type: 'warning',
-                        message: '该天赋存在前置天赋，需先激活前置天赋'
-                    })
-                    return 
+                        type: "warning",
+                        message: "该天赋存在前置天赋，需先激活前置天赋",
+                    });
+                    return;
                 }
             }
 
             // 限定最大加点数
             if (this.totalCount >= this.total) {
                 this.$message({
-                    type: 'warning',
-                    message: '最大加点数为' + this.total
-                })
-                return
+                    type: "warning",
+                    message: "最大加点数为" + this.total,
+                });
+                return;
             }
 
             let current = Number(this.r_data[rowIndex][colIndex]);
 
             if (current < max) {
-                
                 current++;
                 // 替换指定talent的层数
-                const row = this.r_data[rowIndex].split('');
+                const row = this.r_data[rowIndex].split("");
 
                 row[colIndex] = String(current);
 
-                this.r_data.splice(rowIndex, 1, row.join(''));
-
+                this.r_data.splice(rowIndex, 1, row.join(""));
             } else {
                 this.$message({
-                    type: 'warning',
-                    message: '该天赋已达最高层数'
+                    type: "warning",
+                    message: "该天赋已达最高层数",
                 });
             }
         },
@@ -926,8 +955,7 @@ export default {
          * @param {number} colIndex 列号
          * @param {Array} target 操作对象
          */
-        rightTalentDecrease: function(rowIndex, colIndex) {
-
+        rightTalentDecrease: function (rowIndex, colIndex) {
             let current = Number(this.r_data[rowIndex][colIndex]);
 
             if (current > 0) {
@@ -936,28 +964,38 @@ export default {
                     // 当前行之前的行
                     const currentArr = this.r_data.slice(0, rowIndex + 1);
                     // 左边或右边总共的点数
-                    const targetCount = this.r_data.map(l => l.split(''))
-                        .flat().reduce((prev, current) => Number(prev) + Number(current));
+                    const targetCount = this.r_data
+                        .map((l) => l.split(""))
+                        .flat()
+                        .reduce(
+                            (prev, current) => Number(prev) + Number(current)
+                        );
                     // 当前行之前的行的点数
-                    currentCount = currentArr.map(l => l.split(''))
-                        .flat().reduce((prev, current) => Number(prev) + Number(current));
+                    currentCount = currentArr
+                        .map((l) => l.split(""))
+                        .flat()
+                        .reduce(
+                            (prev, current) => Number(prev) + Number(current)
+                        );
 
-                    if (currentCount <= (this.rightLastIndex) * 5 && targetCount > currentCount) {
+                    if (
+                        currentCount <= this.rightLastIndex * 5 &&
+                        targetCount > currentCount
+                    ) {
                         this.$message.warning({
-                            title: '提醒',
-                            message: '不能再减啦'
-                        })
-                        return
+                            title: "提醒",
+                            message: "不能再减啦",
+                        });
+                        return;
                     }
                 }
                 current--;
                 // 替换指定talent的层数
-                const row = this.r_data[rowIndex].split('');
+                const row = this.r_data[rowIndex].split("");
 
                 row[colIndex] = String(current);
 
-                this.r_data.splice(rowIndex, 1, row.join(''));
-
+                this.r_data.splice(rowIndex, 1, row.join(""));
             }
         },
         /**
@@ -965,12 +1003,14 @@ export default {
          * @param {string} pos 位置信息
          * @param {number|string} num 图片编号
          */
-        talentBg: function(pos, num) {
-            if (!pos) return 
-            if (pos === 'left') {
-                return __imgPath + `image/talent/${this.xfContent[0]}_${num}.png`
+        talentBg: function (pos, num) {
+            if (!pos) return;
+            if (pos === "left") {
+                return (
+                    __imgPath + `image/talent/${this.xfContent[0]}_${num}.png`
+                );
             }
-            return __imgPath + `image/talent/${this.xfContent[1]}_${num}.png`
+            return __imgPath + `image/talent/${this.xfContent[1]}_${num}.png`;
         },
 
         //  区域逻辑
@@ -979,25 +1019,25 @@ export default {
         // 请求逻辑
         // ---------------------
         // 获取版本列表
-        getVersions: function() {
-            fetch(__ossRoot + 'data/talent2/index.json')
-                .then(res => res.json())
-                .then(response => {
-                    this.versions = response
+        getVersions: function () {
+            fetch(__ossRoot + "data/talent2/index.json")
+                .then((res) => res.json())
+                .then((response) => {
+                    this.versions = response;
                     this.version = this.versions[0]?.version;
-                })
+                });
         },
-        getTalents: function() {
-            fetch(__ossRoot + 'data/talent2/' + this.version + '.json')
-                .then(res => res.json())
-                .then(response => {
-                    this.talents = {...response, ...defaultXf};
-                    this.xf = '通用';
-                    this.total = 66
-                })
+        getTalents: function () {
+            fetch(__ossRoot + "data/talent2/" + this.version + ".json")
+                .then((res) => res.json())
+                .then((response) => {
+                    this.talents = { ...response, ...defaultXf };
+                    this.xf = "通用";
+                    this.total = 66;
+                });
         },
 
-                // 预设方案
+        // 预设方案
         save: function () {
             if (!this.mount) {
                 this.$notify({
@@ -1009,7 +1049,7 @@ export default {
             }
 
             if (this.isEditing) {
-                 if (!this.currentShemaName) {
+                if (!this.currentShemaName) {
                     this.$notify({
                         type: "warning",
                         title: "提示",
@@ -1027,20 +1067,21 @@ export default {
                         title: "成功",
                         message: "修改成功",
                     });
-                    this.currentSchema.name = this.currentShemaName
-                    this.currentSchema.edit = false
+                    this.currentSchema.name = this.currentShemaName;
+                    this.currentSchema.edit = false;
 
-                    this.currentShemaName = ''
-                    this.currentSchema = ''
+                    this.currentShemaName = "";
+                    this.currentSchema = "";
                 });
             } else {
                 this.$prompt("请输入方案名称", "提示", {
                     confirmButtonText: "确定",
                     cancelButtonText: "取消",
-                    inputErrorMessage: '输入不能为空',
-                    inputValidator: (value) => {       // 点击按钮时，对文本框里面的值进行验证
-                        if(!value) {
-                            return '输入不能为空';
+                    inputErrorMessage: "输入不能为空",
+                    inputValidator: (value) => {
+                        // 点击按钮时，对文本框里面的值进行验证
+                        if (!value) {
+                            return "输入不能为空";
                         }
                     },
                 }).then(({ value }) => {
@@ -1062,7 +1103,8 @@ export default {
             this.loading = true;
             getTalents({
                 client: this.client,
-                type: 'talent2'
+                type: "talent2",
+                page : this.page
             })
                 .then((res) => {
                     this.list = res.data.data.list.map((item) => {
@@ -1084,10 +1126,9 @@ export default {
             setTimeout(() => {
                 this.code = JSON.stringify(item.code);
                 this.pzcode = JSON.stringify(item.pzcode);
-    
-    
+
                 this.parseSchema();
-            })
+            });
         },
         edit: function (item) {
             this.use(item);
@@ -1114,18 +1155,18 @@ export default {
         },
     },
     filters: {
-        xficon: function(id) {
+        xficon: function (id) {
             return __imgPath + "image/xf/" + id + ".png";
         },
-        talentIcon: function(id) {
+        talentIcon: function (id) {
             if (id) {
                 return __iconPath + "origin_icon/" + id + ".png";
             }
-            return ''
-        }
+            return "";
+        },
     },
     watch: {
-        version: function(val) {
+        version: function (val) {
             if (val) {
                 this.getTalents();
             }
@@ -1138,48 +1179,55 @@ export default {
                     this.begin = xfConfigs[val]?.begin;
 
                     // 新增pop显示控制
-                    this.talentContent.left = this.talents[xfConfigs[val].talent[0]]?.map(left => {
-                        const _left = left.map(l => {
-                            if (l) this.$set(l, 'on', false);
-                            return l
-                        })
-                        return _left
+                    this.talentContent.left = this.talents[
+                        xfConfigs[val].talent[0]
+                    ]?.map((left) => {
+                        const _left = left.map((l) => {
+                            if (l) this.$set(l, "on", false);
+                            return l;
+                        });
+                        return _left;
                     });
                     this.l_name = xfConfigs[val]?.talent[0];
-    
-                    this.talentContent.right = this.talents[xfConfigs[val].talent[1]]?.map(right => {
-                         const _right = right.map(r => {
-                            if (r) this.$set(r, 'on', false);
-                            return r
-                        })
-                        return _right
+
+                    this.talentContent.right = this.talents[
+                        xfConfigs[val].talent[1]
+                    ]?.map((right) => {
+                        const _right = right.map((r) => {
+                            if (r) this.$set(r, "on", false);
+                            return r;
+                        });
+                        return _right;
                     });
                     this.r_name = xfConfigs[val]?.talent[1];
 
-                    if (val === '通用') {
+                    if (val === "通用") {
                         this.total = 66;
                     } else {
                         this.total = defaultConfigs.total;
                     }
-    
+
                     // 初始化code
-                    this.renderCode()
+                    this.renderCode();
                 }
-            }
+            },
         },
-        talent2Data: function() {
-            this.renderCode()
+        talent2Data: function () {
+            this.renderCode();
+        },
+        page: function () {
+            this.isLogin && this.loadList();
         },
     },
-    mounted: function() {
+    mounted: function () {
         this.getVersions();
         this.series_open_need = defaultConfigs.series_open_need;
 
-        this.isLogin && this.loadList()
-        this.isAdmin = User.isAdmin()
+        this.isLogin && this.loadList();
+        this.isAdmin = User.isAdmin();
     },
     components: {
-        Nav
+        Nav,
     },
 };
 </script>

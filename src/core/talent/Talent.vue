@@ -379,7 +379,8 @@ export default {
             this.loading = true;
             getTalents({
                 client: this.client,
-                type: 'talent'
+                type: 'talent',
+                page : this.page
             })
                 .then((res) => {
                     this.list = res.data.data.list.map((item) => {
@@ -464,6 +465,11 @@ export default {
     mounted: function () {
         this.init();
         this.isAdmin = User.isAdmin()
+    },
+    watch : {
+        page : function (){
+            this.isLogin && this.loadList()
+        }
     },
     components: {
         // Info,
