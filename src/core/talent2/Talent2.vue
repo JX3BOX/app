@@ -1104,7 +1104,8 @@ export default {
             getTalents({
                 client: this.client,
                 type: "talent2",
-                page : this.page
+                page : this.page,
+                per : this.per,
             })
                 .then((res) => {
                     this.list = res.data.data.list.map((item) => {

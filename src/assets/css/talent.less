@@ -38,6 +38,13 @@
         .pa;.rb(0);
     }
 }
+@media screen and (max-width:@phone){
+    .m-talent-panel {
+        .u-toolbar{
+            .ps;.mt(10px);
+        }
+    }
+}
 
 .m-talent-version {
     .db;
@@ -164,10 +171,9 @@
             color:@pink;
         }
     }
-
-    .m-talent-op {
-        .mt(10px);
-    }
+}
+.m-talent-op {
+    .mt(10px);
 }
 .m-talent-extend{
     .u-btn{
@@ -237,5 +243,29 @@
 @media screen and (max-width:@phone){
     .el-message-box{
         .w(100%);
+    }
+}
+
+.m-talent-drawer{
+    .size(100%);.pf;.rt(0);
+
+    .el-drawer{
+        min-width: 400px;
+    }
+
+    .el-drawer__body{
+        overflow-y: auto;
+    }
+
+    .m-talent-my{
+        padding:0 10px;
+    }
+}
+@media screen and (max-width:@phone){
+    .m-talent-drawer{
+        .el-drawer{
+            .w(100%) !important;
+            min-width: 0;
+        }
     }
 }

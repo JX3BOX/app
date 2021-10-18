@@ -21,11 +21,7 @@
                     <div class="m-talent-panel">
                         <div class="m-talent-version">
                             <span class="u-label">选择版本</span>
-                            <el-select
-                                v-model="version"
-                                placeholder="请选择游戏版本"
-                                @change="reload"
-                            >
+                            <el-select v-model="version" placeholder="请选择游戏版本" @change="reload">
                                 <el-option
                                     v-for="item in versions"
                                     :key="item.version"
@@ -34,10 +30,16 @@
                                 ></el-option>
                             </el-select>
                         </div>
-                        <!-- <div class="u-toolbar" v-if="isLogin">
-                            <el-button plain @click="showList = false" icon="el-icon-refresh-left" size="small" v-if="showList">返回</el-button>
-                            <el-button type="primary" @click="showList = true" icon="el-icon-setting" size="small" v-else>我的预设</el-button>
-                        </div>-->
+                        <div class="u-toolbar" v-if="isLogin">
+                            <!-- <el-button plain @click="showList = false" icon="el-icon-refresh-left" size="small" v-if="showList">返回</el-button> -->
+                            <!-- <el-button type="primary" @click="showList = true" icon="el-icon-setting" size="small" v-else>我的预设</el-button> -->
+                            <el-button
+                                type="primary"
+                                @click="drawer = true"
+                                icon="el-icon-setting"
+                                size="small"
+                            >我的预设</el-button>
+                        </div>
                     </div>
                 </div>
                 <div class="m-talent-wrapper">
@@ -50,11 +52,7 @@
                             :key="i"
                             @change="reload"
                         >
-                            <img
-                                class="u-pic"
-                                :src="item.id | xficon"
-                                :alt="item.name"
-                            />
+                            <img class="u-pic" :src="item.id | xficon" :alt="item.name" />
                             <span class="u-txt">{{ item.name }}</span>
                         </el-radio>
                     </div>
@@ -62,18 +60,7 @@
                     <div class="qx-container"></div>
                     <h2 class="m-talent-subtitle">奇穴编码</h2>
                     <div class="m-talent-code">
-                        <el-input
-                            placeholder="粘贴编码亦可自动解析奇穴"
-                            v-model="code"
-                            @change="parseSchema"
-                        ></el-input>
-                        <el-input
-                            placeholder="配装器编码"
-                            type="textarea"
-                            v-model="pzcode"
-                            style="margin-top:10px;"
-                            v-if="isAdmin"
-                        ></el-input>
+                        <el-input placeholder="粘贴编码亦可自动解析奇穴" v-model="code" @change="parseSchema"></el-input>
                         <div class="m-talent-op">
                             <el-button
                                 type="primary"
@@ -83,8 +70,8 @@
                                 v-clipboard:error="onError"
                                 size="small"
                                 class="u-btn"
-                                >点击复制</el-button
-                            >
+                                plain
+                            >点击复制</el-button>
                             <el-button
                                 type="success"
                                 :icon="isEditing ? 'el-icon-circle-check' : 'el-icon-document-add'"
@@ -92,92 +79,95 @@
                                 class="u-btn"
                                 @click="save"
                                 v-if="isLogin"
-                                >{{isEditing ? '保存' : '另存为'}}</el-button
-                            >
+                                plain
+                            >{{isEditing ? '保存' : '另存为'}}</el-button>
                         </div>
                     </div>
+                    <template v-if="isAdmin">
+                        <h2 class="m-talent-subtitle">配装编码</h2>
+                        <el-input placeholder="配装器编码" v-model="pzcode"></el-input>
+                        <div class="m-talent-op">
+                            <el-button
+                                type="primary"
+                                icon="el-icon-document-copy"
+                                v-clipboard:copy="pzcode"
+                                v-clipboard:success="onCopy"
+                                v-clipboard:error="onError"
+                                size="small"
+                                class="u-btn"
+                                plain
+                            >点击复制</el-button>
+                        </div>
+                    </template>
                 </div>
-                <div class="m-talent-my" v-if="isLogin">
-                    <h2 class="m-talent-subtitle">预设方案</h2>
-                    <div class="m-talent-list" v-loading="loading">
-                        <ul v-if="list && list.length">
-                            <li
-                                class="m-talent-list-item"
-                                v-for="(item, i) in list"
-                                :key="i"
-                            >
-                                <span class="u-name" v-if="!item.edit">{{
-                                    item.name
-                                }}</span>
-                                <div v-else>
-                                    <el-input
-                                        v-model="currentShemaName"
-                                        size="mini"
-                                        class="u-shema-name"
-                                        :maxlength="12"
-                                        show-word-limit
-                                    ></el-input>
-                                    <el-button
-                                        type="text"
-                                        @click="item.edit = false"
-                                        >取消</el-button
-                                    >
-                                </div>
-                                <el-button-group>
-                                    <el-tooltip
-                                        effect="dark"
-                                        content="使用"
-                                        placement="top"
-                                    >
-                                        <el-button
+                <el-drawer
+                    :visible.sync="drawer"
+                    v-if="isLogin"
+                    :append-to-body="true"
+                    class="m-talent-drawer"
+                    title="我的预设方案"
+                >
+                    <div class="m-talent-my">
+                        <!-- <h2 class="m-talent-subtitle">
+                            <i class="el-icon-receiving"></i> 预设方案
+                        </h2>-->
+                        <div class="m-talent-list" v-loading="loading">
+                            <ul v-if="list && list.length">
+                                <li class="m-talent-list-item" v-for="(item, i) in list" :key="i">
+                                    <span class="u-name" v-if="!item.edit">
+                                        {{
+                                        item.name
+                                        }}
+                                    </span>
+                                    <div v-else>
+                                        <el-input
+                                            v-model="currentShemaName"
                                             size="mini"
-                                            icon="el-icon-position"
-                                            @click="use(item)"
-                                        ></el-button>
-                                    </el-tooltip>
-                                    <el-tooltip
-                                        effect="dark"
-                                        content="修改"
-                                        placement="top"
-                                    >
-                                        <el-button
-                                            size="mini"
-                                            icon="el-icon-edit"
-                                            @click="edit(item)"
-                                        ></el-button>
-                                    </el-tooltip>
-                                    <el-tooltip
-                                        effect="dark"
-                                        content="删除"
-                                        placement="top"
-                                    >
-                                        <el-button
-                                            size="mini"
-                                            icon="el-icon-delete"
-                                            @click="del(item)"
-                                        ></el-button>
-                                    </el-tooltip>
-                                </el-button-group>
-                            </li>
+                                            class="u-shema-name"
+                                            :maxlength="12"
+                                            show-word-limit
+                                        ></el-input>
+                                        <el-button type="text" @click="item.edit = false">取消</el-button>
+                                    </div>
+                                    <el-button-group>
+                                        <el-tooltip effect="dark" content="使用" placement="top">
+                                            <el-button
+                                                size="mini"
+                                                icon="el-icon-position"
+                                                @click="use(item)"
+                                            ></el-button>
+                                        </el-tooltip>
+                                        <el-tooltip effect="dark" content="修改" placement="top">
+                                            <el-button
+                                                size="mini"
+                                                icon="el-icon-edit"
+                                                @click="edit(item)"
+                                            ></el-button>
+                                        </el-tooltip>
+                                        <el-tooltip effect="dark" content="删除" placement="top">
+                                            <el-button
+                                                size="mini"
+                                                icon="el-icon-delete"
+                                                @click="del(item)"
+                                            ></el-button>
+                                        </el-tooltip>
+                                    </el-button-group>
+                                </li>
 
-                            <el-pagination
-                                class="u-list-pagination"
-                                background
-                                hide-on-single-page
-                                layout="prev,pager,next,->,total"
-                                :total="total"
-                                :page-size="per"
-                                :current-page.sync="page"
-                            ></el-pagination>
-                        </ul>
-                        <el-alert
-                            v-else
-                            title="当前没有任何预设方案"
-                            type="info"
-                            show-icon
-                        ></el-alert>
+                                <el-pagination
+                                    class="u-list-pagination"
+                                    background
+                                    hide-on-single-page
+                                    layout="prev,pager,next,->,total"
+                                    :total="total"
+                                    :page-size="per"
+                                    :current-page.sync="page"
+                                ></el-pagination>
+                            </ul>
+                            <el-alert v-else title="当前没有任何预设方案" type="info" show-icon></el-alert>
+                        </div>
                     </div>
-                </div>
+                </el-drawer>
             </div>
             <Footer></Footer>
         </Main>
@@ -223,13 +213,14 @@ export default {
             schemas,
 
             isLogin: User.isLogin(),
-            isAdmin : false,
+            isAdmin: false,
             showList: false,
             list: [],
             per: 10,
             page: 1,
             total: 0,
             loading: false,
+            drawer: false,
 
             currentShemaName: "",
             currentSchema: "",
@@ -342,11 +333,11 @@ export default {
                         title: "成功",
                         message: "修改成功",
                     });
-                    this.currentSchema.name = this.currentShemaName
-                    this.currentSchema.edit = false
+                    this.currentSchema.name = this.currentShemaName;
+                    this.currentSchema.edit = false;
 
-                    this.currentShemaName = ''
-                    this.currentSchema = ''
+                    this.currentShemaName = "";
+                    this.currentSchema = "";
                     // this.loadList();
                 });
             } else {
@@ -379,8 +370,9 @@ export default {
             this.loading = true;
             getTalents({
                 client: this.client,
-                type: 'talent',
-                page : this.page
+                type: "talent",
+                page: this.page,
+                per: this.per,
             })
                 .then((res) => {
                     this.list = res.data.data.list.map((item) => {
@@ -464,12 +456,12 @@ export default {
     },
     mounted: function () {
         this.init();
-        this.isAdmin = User.isAdmin()
+        this.isAdmin = User.isAdmin();
     },
-    watch : {
-        page : function (){
-            this.isLogin && this.loadList()
-        }
+    watch: {
+        page: function () {
+            this.isLogin && this.loadList();
+        },
     },
     components: {
         // Info,
