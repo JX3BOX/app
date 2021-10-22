@@ -21,7 +21,11 @@
                     <div class="m-talent-panel">
                         <div class="m-talent-version">
                             <span class="u-label">选择版本</span>
-                            <el-select v-model="version" placeholder="请选择游戏版本" @change="reload">
+                            <el-select
+                                v-model="version"
+                                placeholder="请选择游戏版本"
+                                @change="reload"
+                            >
                                 <el-option
                                     v-for="item in versions"
                                     :key="item.version"
@@ -38,7 +42,8 @@
                                 @click="drawer = true"
                                 icon="el-icon-setting"
                                 size="small"
-                            >我的预设</el-button>
+                                >我的预设</el-button
+                            >
                         </div>
                     </div>
                 </div>
@@ -52,7 +57,11 @@
                             :key="i"
                             @change="reload"
                         >
-                            <img class="u-pic" :src="item.id | xficon" :alt="item.name" />
+                            <img
+                                class="u-pic"
+                                :src="item.id | xficon"
+                                :alt="item.name"
+                            />
                             <span class="u-txt">{{ item.name }}</span>
                         </el-radio>
                     </div>
@@ -60,114 +69,66 @@
                     <div class="qx-container"></div>
                     <h2 class="m-talent-subtitle">奇穴编码</h2>
                     <div class="m-talent-code">
-                        <el-input placeholder="粘贴编码亦可自动解析奇穴" v-model="code" @change="parseSchema"></el-input>
-                        <div class="m-talent-op">
-                            <el-button
-                                type="primary"
-                                icon="el-icon-document-copy"
+                        <el-input
+                            placeholder="粘贴编码亦可自动解析奇穴"
+                            v-model="code"
+                            @change="parseSchema"
+                        >
+                            <span
+                                slot="prepend"
                                 v-clipboard:copy="code"
                                 v-clipboard:success="onCopy"
                                 v-clipboard:error="onError"
-                                size="small"
-                                class="u-btn"
-                                plain
-                            >点击复制</el-button>
-                            <el-button
-                                type="success"
-                                :icon="isEditing ? 'el-icon-circle-check' : 'el-icon-document-add'"
-                                size="small"
-                                class="u-btn"
-                                @click="save"
-                                v-if="isLogin"
-                                plain
-                            >{{isEditing ? '保存' : '另存为'}}</el-button>
-                        </div>
+                                class="u-copy"
+                            >
+                                <i class="el-icon-document-copy"></i>
+                                点击复制</span
+                            >
+                        </el-input>
                     </div>
                     <template v-if="isAdmin">
                         <h2 class="m-talent-subtitle">配装编码</h2>
-                        <el-input placeholder="配装器编码" v-model="pzcode"></el-input>
-                        <div class="m-talent-op">
-                            <el-button
-                                type="primary"
-                                icon="el-icon-document-copy"
+                        <el-input placeholder="配装器编码" v-model="pzcode">
+                            <span
+                                slot="prepend"
                                 v-clipboard:copy="pzcode"
                                 v-clipboard:success="onCopy"
                                 v-clipboard:error="onError"
-                                size="small"
-                                class="u-btn"
-                                plain
-                            >点击复制</el-button>
-                        </div>
+                                class="u-copy"
+                            >
+                                <i class="el-icon-document-copy"></i>
+                                点击复制</span
+                            >
+                        </el-input>
                     </template>
-                </div>
-                <el-drawer
-                    :visible.sync="drawer"
-                    v-if="isLogin"
-                    :append-to-body="true"
-                    class="m-talent-drawer"
-                    title="我的预设方案"
-                >
-                    <div class="m-talent-my">
-                        <!-- <h2 class="m-talent-subtitle">
-                            <i class="el-icon-receiving"></i> 预设方案
-                        </h2>-->
-                        <div class="m-talent-list" v-loading="loading">
-                            <ul v-if="list && list.length">
-                                <li class="m-talent-list-item" v-for="(item, i) in list" :key="i">
-                                    <span class="u-name" v-if="!item.edit">
-                                        {{
-                                        item.name
-                                        }}
-                                    </span>
-                                    <div v-else>
-                                        <el-input
-                                            v-model="currentShemaName"
-                                            size="mini"
-                                            class="u-shema-name"
-                                            :maxlength="12"
-                                            show-word-limit
-                                        ></el-input>
-                                        <el-button type="text" @click="item.edit = false">取消</el-button>
-                                    </div>
-                                    <el-button-group>
-                                        <el-tooltip effect="dark" content="使用" placement="top">
-                                            <el-button
-                                                size="mini"
-                                                icon="el-icon-position"
-                                                @click="use(item)"
-                                            ></el-button>
-                                        </el-tooltip>
-                                        <el-tooltip effect="dark" content="修改" placement="top">
-                                            <el-button
-                                                size="mini"
-                                                icon="el-icon-edit"
-                                                @click="edit(item)"
-                                            ></el-button>
-                                        </el-tooltip>
-                                        <el-tooltip effect="dark" content="删除" placement="top">
-                                            <el-button
-                                                size="mini"
-                                                icon="el-icon-delete"
-                                                @click="del(item)"
-                                            ></el-button>
-                                        </el-tooltip>
-                                    </el-button-group>
-                                </li>
 
-                                <el-pagination
-                                    class="u-list-pagination"
-                                    background
-                                    hide-on-single-page
-                                    layout="prev,pager,next,->,total"
-                                    :total="total"
-                                    :page-size="per"
-                                    :current-page.sync="page"
-                                ></el-pagination>
-                            </ul>
-                            <el-alert v-else title="当前没有任何预设方案" type="info" show-icon></el-alert>
-                        </div>
+                    <div class="m-talent-op" v-if="isLogin">
+                        <el-button
+                            type="primary"
+                            icon="el-icon-circle-check"
+                            size="small"
+                            @click="save"
+                            >{{ currentSchema ? "修改" : "保存" }}</el-button
+                        >
+                        <el-button
+                            v-if="isEditing"
+                            type="success"
+                            icon="el-icon-document-add"
+                            size="small"
+                            class="u-btn"
+                            @click="saveAs"
+                            plain
+                            >另存为</el-button
+                        >
                     </div>
-                </el-drawer>
+                </div>
+
+                <talent-drawer
+                    v-if="isLogin"
+                    :drawer="drawer"
+                    @update-drawer="updateDrawer"
+                    @use="use"
+                ></talent-drawer>
             </div>
             <Footer></Footer>
         </Main>
@@ -196,6 +157,7 @@ import {
     removeTalent,
 } from "@/service/talent.js";
 import User from "@jx3box/jx3box-common/js/user";
+import talentDrawer from "./talent_drawer.vue";
 export default {
     name: "Talent",
     props: [],
@@ -215,14 +177,8 @@ export default {
             isLogin: User.isLogin(),
             isAdmin: false,
             showList: false,
-            list: [],
-            per: 10,
-            page: 1,
-            total: 0,
-            loading: false,
             drawer: false,
 
-            currentShemaName: "",
             currentSchema: "",
         };
     },
@@ -254,10 +210,13 @@ export default {
             return xfMaps;
         },
         isEditing: function () {
-            return this.list.some((item) => item.edit);
+            return !!this.currentSchema
         },
     },
     methods: {
+        updateDrawer: function (val) {
+            this.drawer = val;
+        },
         getIcon(key) {
             return __imgPath + "image/box/" + key + ".svg";
         },
@@ -280,6 +239,7 @@ export default {
             });
         },
         reload: function (schema) {
+            this.currentSchema = ""
             this.driver.then((talent) => {
                 talent.load({
                     version: this.version,
@@ -290,14 +250,13 @@ export default {
             });
         },
         onCopy: function (val) {
-            this.$notify({
-                title: "复制成功",
+            this.$message({
                 message: "奇穴编码复制成功",
                 type: "success",
             });
         },
         onError: function () {
-            this.$notify.error({
+            this.$message.error({
                 title: "复制失败",
                 message: "请手动复制",
             });
@@ -315,30 +274,14 @@ export default {
             }
 
             if (this.isEditing) {
-                if (!this.currentShemaName) {
-                    this.$notify({
-                        type: "warning",
-                        title: "提示",
-                        message: "方案名称不能为空",
-                    });
-                    return;
-                }
-
                 putTalent(this.currentSchema.id, {
                     ...this.params,
-                    name: this.currentShemaName,
                 }).then(() => {
                     this.$notify({
                         type: "success",
                         title: "成功",
                         message: "修改成功",
                     });
-                    this.currentSchema.name = this.currentShemaName;
-                    this.currentSchema.edit = false;
-
-                    this.currentShemaName = "";
-                    this.currentSchema = "";
-                    // this.loadList();
                 });
             } else {
                 this.$prompt("请输入方案名称", "提示", {
@@ -361,30 +304,33 @@ export default {
                             title: "成功",
                             message: "保存成功",
                         });
-                        this.loadList();
                     });
                 });
             }
         },
-        loadList: function () {
-            this.loading = true;
-            getTalents({
-                client: this.client,
-                type: "talent",
-                page: this.page,
-                per: this.per,
-            })
-                .then((res) => {
-                    this.list = res.data.data.list.map((item) => {
-                        this.$set(item, "edit", false);
-                        return item;
+        saveAs: function () {
+            this.$prompt("方案另存为", "提示", {
+                    confirmButtonText: "确定",
+                    cancelButtonText: "取消",
+                    inputErrorMessage: "输入不能为空",
+                    inputValue: this.currentSchema?.name,
+                    inputValidator: (value) => {
+                        // 点击按钮时，对文本框里面的值进行验证
+                        if (!value) {
+                            return "输入不能为空";
+                        }
+                    },
+                }).then(({ value }) => {
+                    addTalent({
+                        ...this.params,
+                        name: value,
+                    }).then(() => {
+                        this.$notify({
+                            type: "success",
+                            title: "成功",
+                            message: "保存成功",
+                        });
                     });
-                    this.page = res.data.data.page;
-                    this.per = res.data.data.per;
-                    this.total = res.data.data.total;
-                })
-                .finally(() => {
-                    this.loading = false;
                 });
         },
         use: function (item) {
@@ -395,32 +341,10 @@ export default {
 
             this.xf = parseCode.xf;
 
+            this.currentSchema = item;
+
             this.parseSchema();
         },
-        edit: function (item) {
-            this.use(item);
-            this.currentShemaName = item.name;
-            this.currentSchema = item;
-            item.edit = true;
-        },
-        del: function (item) {
-            this.$confirm(`确认删除预设方案[${item.name}]？`, "提示", {
-                confirmButtonText: "确定",
-                cancelButtonText: "取消",
-                type: "warning",
-            }).then(() => {
-                removeTalent(item.id).then(() => {
-                    this.$notify({
-                        type: "success",
-                        title: "成功",
-                        message: "预设方案删除成功",
-                    });
-
-                    this.list = this.list.filter((li) => li.id !== item.id);
-                });
-            });
-        },
-
         init: function () {
             getTalentVersions().then((res) => {
                 this.versions = res.data;
@@ -445,8 +369,6 @@ export default {
                     vm.pzcode = JSON.stringify(ins.overview);
                 });
             });
-
-            this.isLogin && this.loadList();
         },
     },
     filters: {
@@ -466,6 +388,7 @@ export default {
     components: {
         // Info,
         Nav,
+        talentDrawer,
         // Extend,
         // schema,
     },
