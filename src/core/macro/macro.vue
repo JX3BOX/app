@@ -239,6 +239,10 @@
                                                         label="技能调息完成"
                                                         value="skill_notin_cd"
                                                     ></el-option>
+                                                    <el-option
+                                                        label="药性点数"
+                                                        value="yaoxing"
+                                                    ></el-option>
                                                 </el-select>
                                                 <el-row :gutter="2">
                                                     <el-col
@@ -460,6 +464,7 @@ export default {
                     "npclevel",
                     "nearby_enemy",
                     "tbufftime",
+                    "yaoxing",
                 ],
                 value: [
                     "buff_level",
@@ -477,6 +482,7 @@ export default {
                     "npclevel",
                     "nearby_enemy",
                     "tbufftime",
+                    "yaoxing",
                 ],
                 relationRestricted: ["skill", "noskill", "last_skill"],
             },
