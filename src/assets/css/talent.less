@@ -1,12 +1,12 @@
-@import '../../../node_modules/@jx3box/jx3box-talent/talent.css';
+@import "../../../node_modules/@jx3box/jx3box-talent/talent.css";
 
 .m-talent {
     padding: 20px 30px;
-    max-width:1200px;
+    max-width: 1200px;
     .auto(x);
     min-height: calc(100vh - @header-height - @bread-height - 100px);
 }
-@media screen and (max-width:@phone){
+@media screen and (max-width: @phone) {
     .m-talent {
         padding: 20px;
         overflow: hidden;
@@ -14,7 +14,7 @@
 }
 
 // 头部
-.m-talent-header{
+.m-talent-header {
     .clearfix;
 }
 .m-talent-title {
@@ -23,8 +23,8 @@
     .x;
     margin: 0 0 20px 0;
 }
-@media screen and (max-width:@phone){
-    .m-talent-title{
+@media screen and (max-width: @phone) {
+    .m-talent-title {
         .none;
     }
 }
@@ -34,14 +34,16 @@
     // .x;
     .mb(20px);
     .pr;
-    .u-toolbar{
-        .pa;.rb(0);
+    .u-toolbar {
+        .pa;
+        .rb(0);
     }
 }
-@media screen and (max-width:@phone){
+@media screen and (max-width: @phone) {
     .m-talent-panel {
-        .u-toolbar{
-            .ps;.mt(10px);
+        .u-toolbar {
+            .ps;
+            .mt(10px);
         }
     }
 }
@@ -63,37 +65,37 @@
         border-right: 0;
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
-        .fz(14px,16px);
+        .fz(14px, 16px);
     }
     .el-input__inner {
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
     }
 }
-@media screen and (max-width:@phone){
-    .m-talent-version{
+@media screen and (max-width: @phone) {
+    .m-talent-version {
         display: flex;
     }
 }
 
 // 包裹层
 // .m-talent-wrapper{
-    // max-width:1440px;
-    // .auto(x);
-    // border:1px solid #eee;
-    // padding:10px 20px 20px 20px;
-    // box-sizing: border-box;
-    // background-color:@bg-light;
-    // .r(4px);
+// max-width:1440px;
+// .auto(x);
+// border:1px solid #eee;
+// padding:10px 20px 20px 20px;
+// box-sizing: border-box;
+// background-color:@bg-light;
+// .r(4px);
 // }
-.m-talent-left{
-    margin-top:8px;
+.m-talent-left {
+    margin-top: 8px;
 }
-@media screen and (max-width:1900px){
-    .m-talent-wrapper{
-        .el-col{
+@media screen and (max-width: 1900px) {
+    .m-talent-wrapper {
+        .el-col {
             .db;
-            float:none;
+            float: none;
             .w(auto);
         }
     }
@@ -142,8 +144,8 @@
         }
     }
 }
-@media screen and (max-width:@phone){
-    .m-talent-xf{
+@media screen and (max-width: @phone) {
+    .m-talent-xf {
         .mr(-20px);
     }
 }
@@ -153,119 +155,65 @@
     .fz(1.2rem, 2);
     border-bottom: 1px dotted #ddd;
     //.bold;
-    margin:10px 0 10px 0;
+    margin: 10px 0 10px 0;
     // font-weight: 300;
 }
 
 // 编码
-.m-talent-code{
+.m-talent-code {
     .pointer;
     font-family: Consolas;
-
 }
-.u-copy{
+.u-copy {
     padding: 10px 0;
-    i{
+    i {
         .mr(3px);
     }
-    color:@primary;
-    &:hover{
-        color:@pink;
+    color: @primary;
+    &:hover {
+        color: @pink;
     }
 }
-.m-talent-op {
-    .mt(10px);
-    text-align: center;
-}
-.m-talent-extend{
-    .u-btn{
+.m-talent-extend {
+    .u-btn {
         .mt(10px);
     }
 }
 
-.m-talent-tip{
+.m-talent-tip {
     .fz(13px);
-    color:#888;
+    color: #888;
 }
 
-.m-talent-shortcut{
-    ul,li{
-        list-style:none;
-        padding:0;
-        margin:0;
+.m-talent-shortcut {
+    ul,
+    li {
+        list-style: none;
+        padding: 0;
+        margin: 0;
     }
-    li{
+    li {
         .mb(10px);
     }
 }
 
-.qx-container{
+.qx-container {
     .mb(20px);
 }
 
-.c-footer{
-    max-width:1200px;
+.c-footer {
+    max-width: 1200px;
     .auto(x);
 }
 
-// 预设列表
-.m-talent-my{
-    .mt(20px);
-}
-.m-talent-list{
-    ul{
-        margin: 0;
-        padding:0;
-        list-style: none;
-    }
-    .u-list-pagination {
-        .mt(20px);
-        text-align: center;
-    }
-}
-.m-talent-list-item {
-    display: flex;
-    justify-content: space-between;
-    height: 40px;
-    align-items: center;
-    padding: 5px;
-    .fz(12px,28px);
-    border-bottom:1px dashed #eee;
-
-    .u-shema-name {
-        width: 200px;
-        margin-right: 8px;
-    }
-
-}
-
-
-@media screen and (max-width:@phone){
-    .el-message-box{
+@media screen and (max-width: @phone) {
+    .el-message-box {
         .w(100%);
     }
 }
 
-.m-talent-drawer{
-    .size(100%);.pf;.rt(0);
 
-    .el-drawer{
-        min-width: 400px;
-    }
-
-    .el-drawer__body{
-        overflow-y: auto;
-    }
-
-    .m-talent-my{
-        padding:0 10px;
-    }
-}
-@media screen and (max-width:@phone){
-    .m-talent-drawer{
-        .el-drawer{
-            .w(100%) !important;
-            min-width: 0;
-        }
-    }
+.m-talent-op {
+    .mt(20px);
+    .x;
 }

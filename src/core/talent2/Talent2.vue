@@ -21,11 +21,7 @@
                     <div class="m-talent-panel">
                         <div class="m-talent-version">
                             <span class="u-label">选择版本</span>
-                            <el-select
-                                v-model="version"
-                                placeholder="请选择游戏版本"
-                                @change="reload"
-                            >
+                            <el-select v-model="version" placeholder="请选择游戏版本" @change="reload">
                                 <el-option
                                     v-for="item in versions"
                                     :key="item.version"
@@ -42,8 +38,7 @@
                                 @click="drawer = true"
                                 icon="el-icon-setting"
                                 size="small"
-                                >我的预设</el-button
-                            >
+                            >我的预设</el-button>
                         </div>
                     </div>
                 </div>
@@ -58,11 +53,7 @@
                             @change="reload"
                             v-show="isOrigin(item)"
                         >
-                            <img
-                                class="u-pic"
-                                :src="item.id | xficon"
-                                :alt="item.name"
-                            />
+                            <img class="u-pic" :src="item.id | xficon" :alt="item.name" />
                             <span class="u-txt">{{ item.name }}</span>
                         </el-radio>
                     </div>
@@ -97,14 +88,8 @@
                                                 class="m-talent2-xf-icon"
                                                 :src="xfContent[0] | xficon"
                                             />
-                                            <span
-                                                class="m-talent2-title-count"
-                                                >{{ lCount }}</span
-                                            >
-                                            <span
-                                                class="m-talent2-title-name"
-                                                >{{ l_name }}</span
-                                            >
+                                            <span class="m-talent2-title-count">{{ lCount }}</span>
+                                            <span class="m-talent2-title-name">{{ l_name }}</span>
                                         </div>
                                         <div
                                             class="m-talent2-content-row"
@@ -116,9 +101,7 @@
                                             <template v-for="(item, i) in row">
                                                 <div
                                                     v-if="item"
-                                                    class="
-                                                        m-talent2-content-item
-                                                    "
+                                                    class="m-talent2-content-item"
                                                     :class="[
                                                         {
                                                             'm-talent2-content-item-skill':
@@ -241,9 +224,7 @@
                                                                 l_data[index][i]
                                                             )
                                                         "
-                                                        class="
-                                                            m-talent2-content-item-count
-                                                        "
+                                                        class="m-talent2-content-item-count"
                                                         :class="[
                                                             Number(
                                                                 l_data[index][i]
@@ -251,10 +232,11 @@
                                                                 ? 'm-talent2-content-item-count-under'
                                                                 : '',
                                                         ]"
-                                                        >{{
-                                                            l_data[index][i]
-                                                        }}</span
                                                     >
+                                                        {{
+                                                        l_data[index][i]
+                                                        }}
+                                                    </span>
 
                                                     <!-- DESC -->
                                                     <span
@@ -263,52 +245,43 @@
                                                             item.on ? 'on' : ''
                                                         "
                                                     >
-                                                        <b
-                                                            class="
-                                                                m-talent2-name
-                                                            "
-                                                        >
-                                                            <span>{{
+                                                        <b class="m-talent2-name">
+                                                            <span>
+                                                                {{
                                                                 item.name
-                                                            }}</span>
-                                                            <span
-                                                                class="
-                                                                    m-talent2-number
-                                                                "
-                                                                >第{{
-                                                                    Number(
-                                                                        l_data[
-                                                                            index
-                                                                        ][i]
-                                                                    ) +
-                                                                    "/" +
-                                                                    item.max
-                                                                }}重</span
-                                                            >
+                                                                }}
+                                                            </span>
+                                                            <span class="m-talent2-number">
+                                                                第{{
+                                                                Number(
+                                                                l_data[
+                                                                index
+                                                                ][i]
+                                                                ) +
+                                                                "/" +
+                                                                item.max
+                                                                }}重
+                                                            </span>
                                                         </b>
                                                         <!-- <b class="m-talent2-type">
                                                             {{ item.type === 'talent' ? '被动招式': '主动招式' }}
                                                         </b>-->
-                                                        <span
-                                                            class="
-                                                                m-talent2-desc
-                                                            "
-                                                        >
+                                                        <span class="m-talent2-desc">
                                                             {{
-                                                                !Number(
-                                                                    l_data[
-                                                                        index
-                                                                    ][i]
-                                                                ) ||
-                                                                xf === "通用"
-                                                                    ? item
-                                                                          .desc[0]
-                                                                    : item.desc[
-                                                                          l_data[
-                                                                              index
-                                                                          ][i] -
-                                                                              1
-                                                                      ]
+                                                            !Number(
+                                                            l_data[
+                                                            index
+                                                            ][i]
+                                                            ) ||
+                                                            xf === "通用"
+                                                            ? item
+                                                            .desc[0]
+                                                            : item.desc[
+                                                            l_data[
+                                                            index
+                                                            ][i] -
+                                                            1
+                                                            ]
                                                             }}
                                                         </span>
                                                         <span
@@ -324,27 +297,22 @@
                                                                     ][i]
                                                                 ) < item.max
                                                             "
-                                                            class="
-                                                                m-talent2-desc-next
-                                                            "
+                                                            class="m-talent2-desc-next"
                                                         >
                                                             <span
                                                                 v-if="
                                                                     xf !==
                                                                     '通用'
                                                                 "
-                                                                class="
-                                                                    m-next-text
-                                                                "
-                                                                >下一重：</span
-                                                            >
+                                                                class="m-next-text"
+                                                            >下一重：</span>
                                                             <span>
                                                                 {{
-                                                                    item.desc[
-                                                                        l_data[
-                                                                            index
-                                                                        ][i]
-                                                                    ]
+                                                                item.desc[
+                                                                l_data[
+                                                                index
+                                                                ][i]
+                                                                ]
                                                                 }}
                                                             </span>
                                                         </span>
@@ -357,12 +325,9 @@
                                                                 ) === item.max
                                                             "
                                                             class="m-max"
-                                                            >该招式已练至最高境界</span
-                                                        >
+                                                        >该招式已练至最高境界</span>
                                                         <span
-                                                            class="
-                                                                m-talent-retrogress
-                                                            "
+                                                            class="m-talent-retrogress"
                                                             v-if="
                                                                 Number(
                                                                     l_data[
@@ -370,15 +335,12 @@
                                                                     ][i]
                                                                 )
                                                             "
-                                                            >右键点击遗忘</span
-                                                        >
+                                                        >右键点击遗忘</span>
                                                     </span>
                                                 </div>
                                                 <div
                                                     v-else
-                                                    class="
-                                                        m-talent2-content-item-empty
-                                                    "
+                                                    class="m-talent2-content-item-empty"
                                                     :key="i"
                                                 ></div>
                                             </template>
@@ -401,14 +363,8 @@
                                                 class="m-talent2-xf-icon"
                                                 :src="xfContent[1] | xficon"
                                             />
-                                            <span
-                                                class="m-talent2-title-count"
-                                                >{{ rCount }}</span
-                                            >
-                                            <span
-                                                class="m-talent2-title-name"
-                                                >{{ r_name }}</span
-                                            >
+                                            <span class="m-talent2-title-count">{{ rCount }}</span>
+                                            <span class="m-talent2-title-name">{{ r_name }}</span>
                                         </div>
                                         <div
                                             class="m-talent2-content-row"
@@ -420,9 +376,7 @@
                                             <template v-for="(item, i) in row">
                                                 <div
                                                     v-if="item"
-                                                    class="
-                                                        m-talent2-content-item
-                                                    "
+                                                    class="m-talent2-content-item"
                                                     :class="[
                                                         {
                                                             'm-talent2-content-item-skill':
@@ -545,9 +499,7 @@
                                                                 r_data[index][i]
                                                             )
                                                         "
-                                                        class="
-                                                            m-talent2-content-item-count
-                                                        "
+                                                        class="m-talent2-content-item-count"
                                                         :class="[
                                                             Number(
                                                                 r_data[index][i]
@@ -555,10 +507,11 @@
                                                                 ? 'm-talent2-content-item-count-under'
                                                                 : '',
                                                         ]"
-                                                        >{{
-                                                            r_data[index][i]
-                                                        }}</span
                                                     >
+                                                        {{
+                                                        r_data[index][i]
+                                                        }}
+                                                    </span>
 
                                                     <!-- DESC -->
                                                     <span
@@ -567,52 +520,43 @@
                                                             item.on ? 'on' : ''
                                                         "
                                                     >
-                                                        <b
-                                                            class="
-                                                                m-talent2-name
-                                                            "
-                                                        >
-                                                            <span>{{
+                                                        <b class="m-talent2-name">
+                                                            <span>
+                                                                {{
                                                                 item.name
-                                                            }}</span>
-                                                            <span
-                                                                class="
-                                                                    m-talent2-number
-                                                                "
-                                                                >第{{
-                                                                    Number(
-                                                                        r_data[
-                                                                            index
-                                                                        ][i]
-                                                                    ) +
-                                                                    "/" +
-                                                                    item.max
-                                                                }}重</span
-                                                            >
+                                                                }}
+                                                            </span>
+                                                            <span class="m-talent2-number">
+                                                                第{{
+                                                                Number(
+                                                                r_data[
+                                                                index
+                                                                ][i]
+                                                                ) +
+                                                                "/" +
+                                                                item.max
+                                                                }}重
+                                                            </span>
                                                         </b>
                                                         <!-- <b class="m-talent2-type">
                                                             {{ item.type === 'talent' ? '被动招式': '主动招式' }}
                                                         </b>-->
-                                                        <span
-                                                            class="
-                                                                m-talent2-desc
-                                                            "
-                                                        >
+                                                        <span class="m-talent2-desc">
                                                             {{
-                                                                !Number(
-                                                                    r_data[
-                                                                        index
-                                                                    ][i]
-                                                                ) ||
-                                                                xf === "通用"
-                                                                    ? item
-                                                                          .desc[0]
-                                                                    : item.desc[
-                                                                          r_data[
-                                                                              index
-                                                                          ][i] -
-                                                                              1
-                                                                      ]
+                                                            !Number(
+                                                            r_data[
+                                                            index
+                                                            ][i]
+                                                            ) ||
+                                                            xf === "通用"
+                                                            ? item
+                                                            .desc[0]
+                                                            : item.desc[
+                                                            r_data[
+                                                            index
+                                                            ][i] -
+                                                            1
+                                                            ]
                                                             }}
                                                         </span>
                                                         <span
@@ -628,27 +572,22 @@
                                                                     ][i]
                                                                 ) < item.max
                                                             "
-                                                            class="
-                                                                m-talent2-desc-next
-                                                            "
+                                                            class="m-talent2-desc-next"
                                                         >
                                                             <span
                                                                 v-if="
                                                                     xf !==
                                                                     '通用'
                                                                 "
-                                                                class="
-                                                                    m-next-text
-                                                                "
-                                                                >下一重：</span
-                                                            >
+                                                                class="m-next-text"
+                                                            >下一重：</span>
                                                             <span>
                                                                 {{
-                                                                    item.desc[
-                                                                        r_data[
-                                                                            index
-                                                                        ][i]
-                                                                    ]
+                                                                item.desc[
+                                                                r_data[
+                                                                index
+                                                                ][i]
+                                                                ]
                                                                 }}
                                                             </span>
                                                         </span>
@@ -661,12 +600,9 @@
                                                                 ) === item.max
                                                             "
                                                             class="m-max"
-                                                            >该招式已练至最高境界</span
-                                                        >
+                                                        >该招式已练至最高境界</span>
                                                         <span
-                                                            class="
-                                                                m-talent-retrogress
-                                                            "
+                                                            class="m-talent-retrogress"
                                                             v-if="
                                                                 Number(
                                                                     r_data[
@@ -674,15 +610,12 @@
                                                                     ][i]
                                                                 )
                                                             "
-                                                            >右键点击遗忘</span
-                                                        >
+                                                        >右键点击遗忘</span>
                                                     </span>
                                                 </div>
                                                 <div
                                                     v-else
-                                                    class="
-                                                        m-talent2-content-item-empty
-                                                    "
+                                                    class="m-talent2-content-item-empty"
                                                     :key="i"
                                                 ></div>
                                             </template>
@@ -700,19 +633,13 @@
                                             : 'm-talent2-actions-btn'
                                     "
                                     @click="reload"
-                                >
-                                    重置
-                                </div>
+                                >重置</div>
                             </div>
                         </template>
                     </div>
                     <h2 class="m-talent-subtitle">镇派编码</h2>
                     <div class="m-talent-code">
-                        <el-input
-                            placeholder="粘贴编码亦可自动解析奇穴"
-                            v-model="code"
-                            @change="parseSchema"
-                        >
+                        <el-input placeholder="粘贴编码亦可自动解析奇穴" v-model="code" @change="parseSchema">
                             <span
                                 slot="prepend"
                                 v-clipboard:copy="code"
@@ -721,47 +648,39 @@
                                 class="u-copy"
                             >
                                 <i class="el-icon-document-copy"></i>
-                                点击复制</span
-                            >
+                                点击复制
+                            </span>
                         </el-input>
-                        <el-input
-                            placeholder="配装器编码"
-                            type="textarea"
-                            v-model="pzcode"
-                            style="margin-top: 10px"
-                            v-if="isAdmin"
-                        ></el-input>
-                        <div class="m-talent-op">
-                            <el-button
-                                type="primary"
-                                icon="el-icon-document-copy"
+                    </div>
+                    <template v-if="isAdmin">
+                        <h2 class="m-talent-subtitle">配装编码</h2>
+                        <el-input placeholder="配装器编码" v-model="pzcode">
+                            <span
+                                slot="prepend"
                                 v-clipboard:copy="pzcode"
                                 v-clipboard:success="onCopy"
                                 v-clipboard:error="onError"
-                                size="small"
-                                class="u-btn"
-                                >点击复制</el-button
+                                class="u-copy"
                             >
-                            <el-button
-                                type="primary"
-                                icon="el-icon-circle-check"
-                                size="small"
-                                @click="save"
-                                >{{
-                                    currentSchema ? "修改" : "保存"
-                                }}</el-button
-                            >
-                            <el-button
-                                v-if="isEditing"
-                                type="success"
-                                icon="el-icon-document-add"
-                                size="small"
-                                class="u-btn"
-                                @click="saveAs"
-                                plain
-                                >另存为</el-button
-                            >
-                        </div>
+                                <i class="el-icon-document-copy"></i>
+                                点击复制
+                            </span>
+                        </el-input>
+                    </template>
+                    <div class="m-talent-op" v-if="isLogin">
+                        <el-button
+                            type="primary"
+                            :icon="currentSchema ? 'el-icon-check' : 'el-icon-document-add'"
+                            @click="save"
+                        >{{ currentSchema ? "保存" : "保存为预设" }}</el-button>
+                        <el-button
+                            v-if="isEditing"
+                            type="success"
+                            icon="el-icon-document-add"
+                            class="u-btn"
+                            @click="saveAs"
+                            plain
+                        >另存为</el-button>
                     </div>
                 </div>
 
@@ -932,8 +851,14 @@ export default {
         reset: function () {},
         // 生成code
         renderCode: function () {
-            const { version, xf, talent2Data, l_data, r_data, talentContent } =
-                this;
+            const {
+                version,
+                xf,
+                talent2Data,
+                l_data,
+                r_data,
+                talentContent,
+            } = this;
             const _code = {
                 version,
                 xf,
@@ -1007,12 +932,14 @@ export default {
                 this.xfContent = xfConfigs[val]?.content;
                 this.begin = xfConfigs[val]?.begin;
 
-                this.talentContent.left =
-                    this.talents[xfConfigs[val].talent[0]];
+                this.talentContent.left = this.talents[
+                    xfConfigs[val].talent[0]
+                ];
                 this.l_name = xfConfigs[val]?.talent[0];
 
-                this.talentContent.right =
-                    this.talents[xfConfigs[val].talent[1]];
+                this.talentContent.right = this.talents[
+                    xfConfigs[val].talent[1]
+                ];
                 this.r_name = xfConfigs[val]?.talent[1];
 
                 const _sq = _code.sq.split(",");

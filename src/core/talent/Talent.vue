@@ -21,11 +21,7 @@
                     <div class="m-talent-panel">
                         <div class="m-talent-version">
                             <span class="u-label">选择版本</span>
-                            <el-select
-                                v-model="version"
-                                placeholder="请选择游戏版本"
-                                @change="reload"
-                            >
+                            <el-select v-model="version" placeholder="请选择游戏版本" @change="reload">
                                 <el-option
                                     v-for="item in versions"
                                     :key="item.version"
@@ -42,8 +38,7 @@
                                 @click="drawer = true"
                                 icon="el-icon-setting"
                                 size="small"
-                                >我的预设</el-button
-                            >
+                            >我的预设</el-button>
                         </div>
                     </div>
                 </div>
@@ -57,11 +52,7 @@
                             :key="i"
                             @change="reload"
                         >
-                            <img
-                                class="u-pic"
-                                :src="item.id | xficon"
-                                :alt="item.name"
-                            />
+                            <img class="u-pic" :src="item.id | xficon" :alt="item.name" />
                             <span class="u-txt">{{ item.name }}</span>
                         </el-radio>
                     </div>
@@ -69,11 +60,7 @@
                     <div class="qx-container"></div>
                     <h2 class="m-talent-subtitle">奇穴编码</h2>
                     <div class="m-talent-code">
-                        <el-input
-                            placeholder="粘贴编码亦可自动解析奇穴"
-                            v-model="code"
-                            @change="parseSchema"
-                        >
+                        <el-input placeholder="粘贴编码亦可自动解析奇穴" v-model="code" @change="parseSchema">
                             <span
                                 slot="prepend"
                                 v-clipboard:copy="code"
@@ -82,8 +69,8 @@
                                 class="u-copy"
                             >
                                 <i class="el-icon-document-copy"></i>
-                                点击复制</span
-                            >
+                                点击复制
+                            </span>
                         </el-input>
                     </div>
                     <template v-if="isAdmin">
@@ -97,29 +84,24 @@
                                 class="u-copy"
                             >
                                 <i class="el-icon-document-copy"></i>
-                                点击复制</span
-                            >
+                                点击复制
+                            </span>
                         </el-input>
                     </template>
-
                     <div class="m-talent-op" v-if="isLogin">
                         <el-button
                             type="primary"
-                            icon="el-icon-circle-check"
-                            size="small"
+                            :icon="currentSchema ? 'el-icon-check' : 'el-icon-document-add'"
                             @click="save"
-                            >{{ currentSchema ? "修改" : "保存" }}</el-button
-                        >
+                        >{{ currentSchema ? "保存" : "保存为预设" }}</el-button>
                         <el-button
                             v-if="isEditing"
                             type="success"
                             icon="el-icon-document-add"
-                            size="small"
                             class="u-btn"
                             @click="saveAs"
                             plain
-                            >另存为</el-button
-                        >
+                        >另存为</el-button>
                     </div>
                 </div>
 
@@ -210,7 +192,7 @@ export default {
             return xfMaps;
         },
         isEditing: function () {
-            return !!this.currentSchema
+            return !!this.currentSchema;
         },
     },
     methods: {
@@ -239,7 +221,7 @@ export default {
             });
         },
         reload: function (schema) {
-            this.currentSchema = ""
+            this.currentSchema = "";
             this.driver.then((talent) => {
                 talent.load({
                     version: this.version,
@@ -310,28 +292,28 @@ export default {
         },
         saveAs: function () {
             this.$prompt("方案另存为", "提示", {
-                    confirmButtonText: "确定",
-                    cancelButtonText: "取消",
-                    inputErrorMessage: "输入不能为空",
-                    inputValue: this.currentSchema?.name,
-                    inputValidator: (value) => {
-                        // 点击按钮时，对文本框里面的值进行验证
-                        if (!value) {
-                            return "输入不能为空";
-                        }
-                    },
-                }).then(({ value }) => {
-                    addTalent({
-                        ...this.params,
-                        name: value,
-                    }).then(() => {
-                        this.$notify({
-                            type: "success",
-                            title: "成功",
-                            message: "保存成功",
-                        });
+                confirmButtonText: "确定",
+                cancelButtonText: "取消",
+                inputErrorMessage: "输入不能为空",
+                inputValue: this.currentSchema?.name,
+                inputValidator: (value) => {
+                    // 点击按钮时，对文本框里面的值进行验证
+                    if (!value) {
+                        return "输入不能为空";
+                    }
+                },
+            }).then(({ value }) => {
+                addTalent({
+                    ...this.params,
+                    name: value,
+                }).then(() => {
+                    this.$notify({
+                        type: "success",
+                        title: "成功",
+                        message: "保存成功",
                     });
                 });
+            });
         },
         use: function (item) {
             this.code = JSON.stringify(item.code);
