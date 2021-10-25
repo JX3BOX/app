@@ -84,77 +84,41 @@
                     </el-col>
                     <el-col :span="4">
                         <div class="u-item">
-                            <a href="/dbm" target="_blank">
+                            <a href="./meridians">
                                 <span class="u-pic">
                                     <i class="u-icon">
-                                        <img svg-inline :src="getIcon('dbm')" />
+                                        <img svg-inline :src="getIcon('meridians')" />
                                     </i>
-                                    <span class="u-name">数据构建</span>
+                                    <span class="u-name">经脉模拟器</span>
                                 </span>
                                 <span class="u-features">
-                                    <span class="u-desc">✔️ 自定义未来数据</span>
-                                    <span>✔️ 在线DIY数据</span>
-                                    <span>✔️ 自动分析旧数据</span>
-                                    <span>✔️ 一键云端数据</span>
+                                    <span class="u-desc">✔️ 原汁原味</span>
+                                    <span>✔️ 经典怀旧</span>
+                                    <span>✔️ 模拟加点</span>
+                                    <span>✔️ 属性日志</span>
                                 </span>
                             </a>
                         </div>
                     </el-col>
                     <el-col :span="4">
                         <div class="u-item">
-                            <a href="/battle" target="_blank">
+                            <a href="./macroeditor">
                                 <span class="u-pic">
                                     <i class="u-icon">
-                                        <img svg-inline :src="getIcon('battle')" />
+                                        <img svg-inline :src="getIcon('macroeditor')" />
                                     </i>
-                                    <span class="u-name">战斗分析</span>
+                                    <span class="u-name">宏编辑器</span>
                                 </span>
                                 <span class="u-features">
-                                    <span class="u-desc">✔️ 团队情况分析</span>
-                                    <span>✔️ BOSS时间轴推导</span>
-                                    <span>✔️ 云端存储</span>
-                                    <span>✔️ 自定义权限</span>
+                                    <span class="u-desc">✔️️ 支持自动补全</span>
+                                    <span>✔️️ 支持语法高亮</span>
+                                    <span>✔️️ 支持中文式一键插入宏语句</span>
+                                    <span>✔️️ 萌新写宏好助手</span>
                                 </span>
                             </a>
                         </div>
                     </el-col>
-                    <el-col :span="4">
-                        <div class="u-item">
-                            <a href="/pz" target="_blank">
-                                <span class="u-pic">
-                                    <i class="u-icon">
-                                        <img svg-inline :src="getIcon('pz')" />
-                                    </i>
-                                    <span class="u-name">在线配装</span>
-                                </span>
-                                <span class="u-features">
-                                    <span class="u-desc">✔️ 在线配装分享</span>
-                                    <span>✔️ DPS狂魔必备</span>
-                                    <span>✔️ 支持多端</span>
-                                    <span>✔️ 同步游戏最新版本</span>
-                                </span>
-                                <!-- <img class="u-blank" svg-inline src="./assets/img/logos/blank.svg" /> -->
-                            </a>
-                        </div>
-                    </el-col>
-                    <el-col :span="4">
-                        <div class="u-item">
-                            <a href="./haste/">
-                                <span class="u-pic">
-                                    <i class="u-icon">
-                                        <img svg-inline :src="getIcon('haste')" />
-                                    </i>
-                                    <span class="u-name">急速阈值</span>
-                                </span>
-                                <span class="u-features">
-                                    <span class="u-desc">✔️ 精确计算加速</span>
-                                    <span>✔️ 同步游戏最新版本</span>
-                                    <span>✔️ 支持门派自带</span>
-                                    <span>✔️ DPS狂魔必备</span>
-                                </span>
-                            </a>
-                        </div>
-                    </el-col>
+
                     <el-col :span="4">
                         <div class="u-item">
                             <a href="/team" target="_blank">
@@ -169,6 +133,24 @@
                                     <span>✔️ 微信报名</span>
                                     <span>✔️ 游戏内一键加团</span>
                                     <span>✔️ DKP考勤</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col>
+                    <el-col :span="4">
+                        <div class="u-item">
+                            <a href="/dbm" target="_blank">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('dbm')" />
+                                    </i>
+                                    <span class="u-name">数据构建</span>
+                                </span>
+                                <span class="u-features">
+                                    <span class="u-desc">✔️ 自定义未来数据</span>
+                                    <span>✔️ 在线DIY数据</span>
+                                    <span>✔️ 自动分析旧数据</span>
+                                    <span>✔️ 一键云端数据</span>
                                 </span>
                             </a>
                         </div>
@@ -245,38 +227,59 @@
                             </a>
                         </div>
                     </el-col>
+                    
+
                     <el-col :span="4">
                         <div class="u-item">
-                            <a href="./meridians">
+                            <a href="/pz" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
-                                        <img svg-inline :src="getIcon('meridians')" />
+                                        <img svg-inline :src="getIcon('pz')" />
                                     </i>
-                                    <span class="u-name">经脉模拟器</span>
+                                    <span class="u-name">在线配装</span>
                                 </span>
                                 <span class="u-features">
-                                    <span class="u-desc">✔️ 原汁原味</span>
-                                    <span>✔️ 经典怀旧</span>
-                                    <span>✔️ 模拟加点</span>
-                                    <span>✔️ 属性日志</span>
+                                    <span class="u-desc">✔️ 在线配装分享</span>
+                                    <span>✔️ DPS狂魔必备</span>
+                                    <span>✔️ 支持多端</span>
+                                    <span>✔️ 同步游戏最新版本</span>
+                                </span>
+                                <!-- <img class="u-blank" svg-inline src="./assets/img/logos/blank.svg" /> -->
+                            </a>
+                        </div>
+                    </el-col>
+                    <el-col :span="4">
+                        <div class="u-item">
+                            <a href="./haste/">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('haste')" />
+                                    </i>
+                                    <span class="u-name">急速阈值</span>
+                                </span>
+                                <span class="u-features">
+                                    <span class="u-desc">✔️ 精确计算加速</span>
+                                    <span>✔️ 同步游戏最新版本</span>
+                                    <span>✔️ 支持门派自带</span>
+                                    <span>✔️ DPS狂魔必备</span>
                                 </span>
                             </a>
                         </div>
                     </el-col>
                     <el-col :span="4">
                         <div class="u-item">
-                            <a href="./macroeditor">
+                            <a href="/battle" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
-                                        <img svg-inline :src="getIcon('macroeditor')" />
+                                        <img svg-inline :src="getIcon('battle')" />
                                     </i>
-                                    <span class="u-name">宏编辑器</span>
+                                    <span class="u-name">战斗分析</span>
                                 </span>
                                 <span class="u-features">
-                                    <span class="u-desc">✔️️ 支持自动补全</span>
-                                    <span>✔️️ 支持语法高亮</span>
-                                    <span>✔️️ 支持中文式一键插入宏语句</span>
-                                    <span>✔️️ 萌新写宏好助手</span>
+                                    <span class="u-desc">✔️ 团队情况分析</span>
+                                    <span>✔️ BOSS时间轴推导</span>
+                                    <span>✔️ 云端存储</span>
+                                    <span>✔️ 自定义权限</span>
                                 </span>
                             </a>
                         </div>
