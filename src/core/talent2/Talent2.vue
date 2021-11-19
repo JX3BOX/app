@@ -723,6 +723,7 @@ import {
     removeTalent,
     getTalent,
 } from "@/service/talent.js";
+import { iconLink } from "@jx3box/jx3box-common/js/utils";
 export default {
     name: "Talent2",
     data: function () {
@@ -829,7 +830,7 @@ export default {
         },
         xfMaps: function () {
             const xfMaps = cloneDeep(xfmap);
-            delete xfMaps["山居剑意"];
+            // delete xfMaps["山居剑意"];
             return xfMaps;
         },
         isEditing: function () {
@@ -1404,10 +1405,11 @@ export default {
             return __imgPath + "image/xf/" + id + ".png";
         },
         talentIcon: function (id) {
-            if (id) {
-                return __iconPath + "origin_icon/" + id + ".png";
-            }
-            return "";
+            return iconLink(id);
+            // if (id) {
+            //     return __iconPath + "origin_icon/" + id + ".png";
+            // }
+            // return "";
         },
     },
     watch: {
