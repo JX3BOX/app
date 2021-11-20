@@ -8,7 +8,7 @@
             <li v-for="(o, i) in list" class="u-item u-cantoggle" :key="i">
                 <div class="u-skill">
                     <span class="u-id">ID:{{ o.SkillID }}</span>
-                    <img class="u-pic" :title="'IconID:' + o.IconID" :src="o.IconID | iconURL" />
+                    <img class="u-pic" :title="'IconID:' + o.IconID" :src="iconLink(o.IconID)" />
                     <div class="u-primary">
                         <span class="u-name">
                             {{ o.Name }}
@@ -75,7 +75,7 @@ import skillmap from "@jx3box/jx3box-data/data/app/skill.json";
 import { iconLink } from "@jx3box/jx3box-common/js/utils";
 export default {
     name: "data_skill",
-    props: ["data", "vip", "status"],
+    props: ["data", "vip", "status",'client'],
     data: function () {
         return {
             list: this.data || [],
@@ -99,9 +99,6 @@ export default {
         },
     },
     filters: {
-        iconURL: function (id) {
-            return __iconPath + "icon/" + id + ".png";
-        },
         filterRaw: function (str) {
             str = str && str.replace(/\\n/g, "\n");
             str = str && str.replace(/(\<TALENT.*?\>)/g, "\n$1");
@@ -110,6 +107,9 @@ export default {
         },
     },
     methods: {
+        iconLink : function (id){
+            return iconLink(id,this.client)
+        },
         toggleProps: function (o) {
             o.isopen = !o.isopen;
         },

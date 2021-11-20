@@ -16,7 +16,7 @@
         "@jx3box/jx3box-dict": "^1.1.1",
         "@jx3box/jx3box-facedat": "^2.2.4",
         "@jx3box/jx3box-talent": "^1.1.2",
-        "@jx3box/jx3box-talent2": "^1.2.5",
+        "@jx3box/jx3box-talent2": "^1.2.6",
         "axios": "^0.21.1",
         "codemirror": "^5.62.2",
         "core-js": "^3.16.0",

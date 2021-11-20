@@ -100,7 +100,7 @@
                             <b>Buff</b>
                             <em class="u-count">{{ stat.buff }}</em>
                         </span>
-                        <data-buff :data="buff" :vip="hasRight" :status="done" />
+                        <data-buff :data="buff" :vip="hasRight" :status="done" :client="client"/>
                     </el-tab-pane>
                     <el-tab-pane label="技能" name="skill">
                         <span slot="label">
@@ -112,7 +112,7 @@
                             <b>技能</b>
                             <em class="u-count">{{ stat.skill }}</em>
                         </span>
-                        <data-skill :data="skill" :vip="hasRight" :status="done" />
+                        <data-skill :data="skill" :vip="hasRight" :status="done" :client="client"/>
                     </el-tab-pane>
                     <el-tab-pane label="NPC" name="npc">
                         <span slot="label">
@@ -132,7 +132,7 @@
                             <b>交互物件</b>
                             <em class="u-count">{{ stat.doodad }}</em>
                         </span>
-                        <data-doodad :data="doodad" :vip="hasRight" :status="done" />
+                        <data-doodad :data="doodad" :vip="hasRight" :status="done" :client="client" />
                     </el-tab-pane>
                     <el-tab-pane label="物品" name="item">
                         <span slot="label" href="/item" target="_blank">

@@ -8,7 +8,7 @@
             <li v-for="(o, i) in list" :key="i" class="u-item">
                 <div class="u-doodad">
                     <span class="u-id">ID:{{ o.ID }}</span>
-                    <img class="u-pic" :title="'IconID:' + 10909" :src="10909 | iconURL" />
+                    <img class="u-pic" :title="'IconID:' + 10909" :src="10909 | iconLink" />
                     <div class="u-primary">
                         <span class="u-name">{{ o.Name }}</span>
                         <span class="u-desc">
@@ -62,9 +62,10 @@
 
 <script>
 import { __iconPath, __ossRoot } from "@jx3box/jx3box-common/data/jx3box.json";
+import { iconLink } from "@jx3box/jx3box-common/js/utils";
 export default {
     name: "doodad",
-    props: ["data", "vip", "status"],
+    props: ["data", "vip", "status",'client'],
     data: function () {
         return {
             list: this.data || [],
@@ -104,9 +105,7 @@ export default {
         },
     },
     filters: {
-        iconURL: function (id) {
-            return __iconPath + "icon/" + id + ".png";
-        },
+        iconLink,
         filterRaw: function (str) {
             return str && str.replace(/\\n/g, "\n");
         },

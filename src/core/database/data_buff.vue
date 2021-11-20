@@ -11,7 +11,7 @@
                         ID:{{ o.BuffID }}
                         <span class="u-detach">{{o.DetachType | showDetachType}}</span>
                     </span>
-                    <img class="u-pic" :title="'IconID:' + o.IconID" :src="o.IconID | iconURL" />
+                    <img class="u-pic" :title="'IconID:' + o.IconID" :src="iconLink(o.IconID)" />
                     <div class="u-primary">
                         <span class="u-name">
                             {{ o.Name}}
@@ -66,7 +66,7 @@ import { iconLink } from "@jx3box/jx3box-common/js/utils";
 
 export default {
     name: "data_buff",
-    props: ["data", "vip", "status"],
+    props: ["data", "vip", "status",'client'],
     data: function () {
         return {
             list: this.data || [],
@@ -90,7 +90,6 @@ export default {
         },
     },
     filters: {
-        iconURL: iconLink,
         filterRaw: function (str) {
             return str && str.replace(/\\n/g, "\n");
         },
@@ -103,6 +102,9 @@ export default {
         }
     },
     methods: {
+        iconLink : function (id){
+            return iconLink(id,this.client)
+        },
         toggleProps: function (o) {
             o.isopen = !o.isopen;
         },
