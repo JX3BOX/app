@@ -63,7 +63,7 @@ import { __iconPath, __ossRoot } from "@jx3box/jx3box-common/data/jx3box.json";
 import detach_types from "@/assets/data/detach_type.json";
 import buffmap from "@jx3box/jx3box-data/data/app/buff.json";
 import { iconLink } from "@jx3box/jx3box-common/js/utils";
-
+import {buff as ignore_list} from '@/assets/data/ignore.json'
 export default {
     name: "data_buff",
     props: ["data", "vip", "status",'client'],
@@ -71,6 +71,7 @@ export default {
         return {
             list: this.data || [],
             buffmap,
+            ignore_list, 
         };
     },
     computed: {
@@ -85,7 +86,14 @@ export default {
         data: {
             deep: true,
             handler: function (val) {
-                this.list = val;
+                let raw = val
+                let output = []
+                for(let item of raw){
+                    if(!ignore_list.includes(item.BuffID)){
+                        output.push(item)
+                    }
+                }
+                this.list = output;
             },
         },
     },

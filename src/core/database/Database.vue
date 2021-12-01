@@ -229,7 +229,7 @@ export default {
 
             hasRight: false,
 
-            client : 'std'
+            client : 'std',
         };
     },
     computed: {
