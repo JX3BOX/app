@@ -11,7 +11,7 @@
                 ><span>图标库</span></a
             >
             <a class="u-app" href="/pz" target="_blank"
-                ><i class="u-app-icon"><img svg-inline :src="getIcon('j3pz')"/></i
+                ><i class="u-app-icon"><img svg-inline :src="getIcon('pz')"/></i
                 ><span>在线配装</span
                 ></a>
 
