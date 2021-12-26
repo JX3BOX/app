@@ -12,7 +12,7 @@
                 <el-row :gutter="20">
                     <el-col :span="6">
                         <div class="u-item">
-                            <a href="/app/database/" target="_blank">
+                            <a href="./database/" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
                                         <img svg-inline :src="getIcon('database')" />
@@ -27,7 +27,7 @@
                     </el-col>
                     <el-col :span="6">
                         <div class="u-item">
-                            <a href="/app/icons" target="_blank">
+                            <a href="./icons" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
                                         <img svg-inline :src="getIcon('icons')" />
@@ -42,7 +42,7 @@
                     </el-col>
                     <el-col :span="6">
                         <div class="u-item">
-                            <a href="/app/jx3dat" target="_blank">
+                            <a href="./jx3dat" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
                                         <img svg-inline :src="getIcon('jx3dat')" />
@@ -168,7 +168,7 @@
                     </el-col>
                     <el-col :span="6">
                         <div class="u-item">
-                            <a href="./talent">
+                            <a href="./talent" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
                                         <img svg-inline :src="getIcon('talent')" />
@@ -183,7 +183,7 @@
                     </el-col>
                     <el-col :span="6">
                         <div class="u-item">
-                            <a href="./talent2">
+                            <a href="./talent2" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
                                         <img svg-inline :src="getIcon('talent2')" />
@@ -333,7 +333,7 @@
                     </el-col>
                     <el-col :span="6">
                         <div class="u-item">
-                            <a href="/app/meridians" target="_blank">
+                            <a href="./meridians" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
                                         <img svg-inline :src="getIcon('meridians')" />
@@ -681,7 +681,7 @@
                     </el-col>
                     <el-col :span="6">
                         <div class="u-item">
-                            <a href="/app/facedata" target="_blank">
+                            <a href="./facedata" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
                                         <img svg-inline :src="getIcon('facedata')" />
@@ -711,7 +711,7 @@
                     </el-col>
                     <el-col :span="6">
                         <div class="u-item">
-                            <a href="/app/furniture" target="_blank">
+                            <a href="./furniture" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
                                         <img svg-inline :src="getIcon('furniture')" />
@@ -726,7 +726,7 @@
                     </el-col>
                     <el-col :span="6">
                         <div class="u-item">
-                            <a href="/app/servers" target="_blank">
+                            <a href="./servers" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
                                         <img svg-inline :src="getIcon('servers')" />
@@ -741,7 +741,7 @@
                     </el-col>
                     <el-col :span="6">
                         <div class="u-item">
-                            <a href="/app/price" target="_blank">
+                            <a href="./price" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
                                         <img svg-inline :src="getIcon('price')" />
@@ -756,7 +756,7 @@
                     </el-col>
                     <el-col :span="6">
                         <div class="u-item">
-                            <a href="/app/flower" target="_blank">
+                            <a href="./flower" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
                                         <img svg-inline :src="getIcon('flower')" />
@@ -792,7 +792,7 @@
                 <el-row :gutter="20">
                     <el-col :span="6">
                         <div class="u-item">
-                            <a href="/app/sandbox" target="_blank">
+                            <a href="./sandbox" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
                                         <img svg-inline :src="getIcon('sandbox')" />
