@@ -10,9 +10,6 @@ function getProfile() {
         .get("/api/cms/user/my/profile")
         .then((res) => {
             return res.data.data;
-        })
-        .catch((err) => {
-            console.log(err);
         });
 }
 
@@ -73,11 +70,4 @@ function setMyFocusServers(data) {
         });
 }
 
-export {
-    setFlowerServer,
-    getServer,
-    getProfile,
-    getTempServer,
-    getMyFocusServers,
-    setMyFocusServers,
-};
+export { setFlowerServer, getServer, getProfile, getTempServer, getMyFocusServers, setMyFocusServers };
