@@ -1,8 +1,14 @@
 <template>
     <el-col class="server-node" :span="3">
         <div class="button-wrapper">
-
-            <el-tooltip class="item" effect="dark" :content="`${server.ipAddress}:${server.ipPort}`" placement="bottom" popper-class="tooltip-ipaddress" :disabled="!server.ipAddress || server.ipAddress === ''">
+            <el-tooltip
+                class="item"
+                effect="dark"
+                :content="`${server.ipAddress}:${server.ipPort}`"
+                placement="bottom"
+                popper-class="tooltip-ipaddress"
+                :disabled="!server.ipAddress || server.ipAddress === ''"
+            >
                 <el-button
                     :plain="!focused"
                     type="plain"
@@ -26,42 +32,41 @@
 
 <script>
 export default {
-    name: 'FServerNode',
+    name: "FServerNode",
     components: {},
     props: {
         width: {
             type: String,
-            default: 'auto'
+            default: "auto",
         },
         server: {
             type: Object,
             default: () => {
                 return {
                     connectState: null,
-                    ipAddress: '',
-                    ipPort: '',
-                    mainServer: '',
-                    serverName: '双剑合璧',
-                    zoneName: ''
+                    ipAddress: "",
+                    ipPort: "",
+                    mainServer: "",
+                    serverName: "双剑合璧",
+                    zoneName: "",
                 };
-            }
+            },
         },
         pinned: {
             type: Boolean,
-            default: false
+            default: false,
         },
         focused: {
             type: Boolean,
-            default: false
-        }
+            default: false,
+        },
     },
     data() {
         return {
-            key: 1
+            key: 1,
         };
     },
-    computed: {
-    },
-    methods: {}
+    computed: {},
+    methods: {},
 };
 </script>
