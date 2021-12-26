@@ -12,11 +12,53 @@ module.exports = {
             template: "public/index.html",
             filename: "index.html",
         },
+        database: {
+            title: "剑三数据库 - JX3BOX",
+            entry: "src/core/database/database.js",
+            template: "public/index.html",
+            filename: "database/index.html",
+        },
+        icons: {
+            title: "图标大全 - JX3BOX",
+            entry: "src/core/icons/icons.js",
+            template: "public/index.html",
+            filename: "icons/index.html",
+        },
         talent: {
             title: "奇穴模拟器 - JX3BOX",
             entry: "src/core/talent/talent.js",
             template: "public/index.html",
             filename: "talent/index.html",
+        },
+        talent2: {
+            title: "镇派模拟器 - JX3BOX",
+            entry: "src/core/talent2/talent2.js",
+            template: "public/index.html",
+            filename: "talent2/index.html",
+        },
+        meridians: {
+            title: "经脉模拟器 - JX3BOX",
+            entry: "src/core/meridians/meridians.js",
+            template: "public/index.html",
+            filename: "meridians/index.html",
+        },
+        haste: {
+            title: "急速阈值 - JX3BOX",
+            entry: "src/core/haste/haste.js",
+            template: "public/index.html",
+            filename: "haste/index.html",
+        },
+        macroeditor: {
+            title: "宏编辑器 - JX3BOX",
+            entry: "src/core/macroeditor/macroeditor.js",
+            template: "public/index.html",
+            filename: "macroeditor/index.html",
+        },
+        translator: {
+            title: "簡繁轉換 - JX3BOX",
+            entry: "src/core/translator/translator.js",
+            template: "public/translator.html",
+            filename: "translator/index.html",
         },
         servers: {
             title: "开服监控 - JX3BOX",
@@ -30,24 +72,15 @@ module.exports = {
             template: "public/index.html",
             filename: "price/index.html",
         },
-        icon: {
-            title: "图标大全 - JX3BOX",
-            entry: "src/core/icons/icons.js",
+        sudoku: {
+            title: "九宫格计算器 - JX3BOX",
+            entry: "src/core/sudoku/sudoku.js",
             template: "public/index.html",
-            filename: "icons/index.html",
+            filename: "sudoku/index.html",
         },
-        translator: {
-            title: "簡繁轉換 - JX3BOX",
-            entry: "src/core/translator/translator.js",
-            template: "public/translator.html",
-            filename: "translator/index.html",
-        },
-        macro: {
-            title: "宏编辑器 - JX3BOX",
-            entry: "src/core/macro/macro.js",
-            template: "public/index.html",
-            filename: "macroeditor/index.html",
-        },
+
+
+        // TODO:迁移至pvx栏目
         flower: {
             title: "花价查询 - JX3BOX",
             entry: "src/core/flower/flower.js",
@@ -66,53 +99,12 @@ module.exports = {
             template: "public/index.html",
             filename: "facedata/index.html",
         },
-        database: {
-            title: "剑三数据库 - JX3BOX",
-            entry: "src/core/database/database.js",
-            template: "public/index.html",
-            filename: "database/index.html",
-        },
-        // flog: {
-        //     title: "BOSS日志分析 - JX3BOX",
-        //     entry: "src/core/flog/flog.js",
-        //     template: "public/index.html",
-        //     filename: "flog/index.html",
-        // },
-        sudoku: {
-            title: "九宫格计算器 - JX3BOX",
-            entry: "src/core/sudoku/sudoku.js",
-            template: "public/index.html",
-            filename: "sudoku/index.html",
-        },
+        // TODO:迁移至pvp栏目
         sandbox: {
             title: "阵营沙盘- JX3BOX",
             entry: "src/core/sandbox/sandbox.js",
             template: "public/sandbox.html",
             filename: "sandbox/index.html",
-        },
-        dps: {
-            title: "DPS模拟器 - JX3BOX",
-            entry: "src/core/dps/dps.js",
-            template: "public/index.html",
-            filename: "dps/index.html",
-        },
-        meridians: {
-            title: "经脉模拟器 - JX3BOX",
-            entry: "src/core/meridians/meridians.js",
-            template: "public/index.html",
-            filename: "meridians/index.html",
-        },
-        talent2: {
-            title: "镇派模拟器 - JX3BOX",
-            entry: "src/core/talent2/talent2.js",
-            template: "public/index.html",
-            filename: "talent2/index.html",
-        },
-        haste: {
-            title: "急速阈值 - JX3BOX",
-            entry: "src/core/haste/haste.js",
-            template: "public/index.html",
-            filename: "haste/index.html",
         },
     },
 

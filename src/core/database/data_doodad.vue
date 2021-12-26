@@ -1,8 +1,7 @@
 <template>
     <div class="m-database-doodad">
         <p v-if="list.length && done" class="m-resource-count">
-            <i class="el-icon-s-data"></i> 共找到
-            <b>{{ list.length }}</b> 条记录
+            <i class="el-icon-s-data"></i> 共找到 <b>{{ list.length }}</b> 条记录
         </p>
         <ul class="m-resource-list m-doodad-list" v-if="list && list.length">
             <li v-for="(o, i) in list" :key="i" class="u-item">
@@ -25,22 +24,16 @@
                                 {{ o.Kind }}
                             </span>
                         </span>
-                        <el-button
-                            class="u-raw"
-                            :class="{ on: o.isopen }"
-                            icon="el-icon-view"
-                            plain
-                            size="mini"
-                            @click="toggleProps(o)"
-                            v-if="hasRight"
-                        >{{ o.isopen ? "收起详情" : "展开详情" }}</el-button>
+                        <el-button class="u-raw" :class="{ on: o.isopen }" icon="el-icon-view" plain size="mini" @click="toggleProps(o)" v-if="hasRight">{{
+                            o.isopen ? "收起详情" : "展开详情"
+                        }}</el-button>
                     </div>
                 </div>
                 <div class="u-props" :class="{ on: o.isopen }" v-if="hasRight">
-                    <template v-for="(val,key) in o">
-                        <span class="u-desc" :key="key" v-if="cansee(o,key)">
+                    <template v-for="(val, key) in o">
+                        <span class="u-desc" :key="key" v-if="cansee(o, key)">
                             <!-- <el-tooltip effect="light" :content="key" placement="top"> -->
-                            <em>{{key}}</em>
+                            <em>{{ key }}</em>
                             <!-- </el-tooltip> -->
                             {{ val }}
                         </span>
@@ -65,33 +58,33 @@ import { __iconPath, __ossRoot } from "@jx3box/jx3box-common/data/jx3box.json";
 import { iconLink } from "@jx3box/jx3box-common/js/utils";
 export default {
     name: "doodad",
-    props: ["data", "vip", "status",'client'],
-    data: function () {
+    props: ["data", "vip", "status", "client"],
+    data: function() {
         return {
             list: this.data || [],
         };
     },
     computed: {
-        hasRight: function () {
+        hasRight: function() {
             return this.vip;
         },
-        done: function () {
+        done: function() {
             return this.status;
         },
     },
     watch: {
         data: {
             deep: true,
-            handler: function (val) {
+            handler: function(val) {
                 this.list = val;
             },
         },
     },
     methods: {
-        toggleProps: function (o) {
+        toggleProps: function(o) {
             o.isopen = !o.isopen;
         },
-        cansee: function (o, key) {
+        cansee: function(o, key) {
             // 本地虚拟字段
             if (key == "isopen" || key == "IdKey") return false;
 
@@ -106,11 +99,11 @@ export default {
     },
     filters: {
         iconLink,
-        filterRaw: function (str) {
+        filterRaw: function(str) {
             return str && str.replace(/\\n/g, "\n");
         },
     },
-    mounted: function () {},
+    mounted: function() {},
     components: {},
 };
 </script>

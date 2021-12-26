@@ -1,13 +1,7 @@
 <template>
     <div id="app">
         <Header></Header>
-        <Breadcrumb
-            name="金价走势"
-            slug="price"
-            root="/app/price"
-            :feedbackEnable="true"
-            :crumbEnable="true"
-        >
+        <Breadcrumb name="金价走势" slug="price" root="/app/price" :feedbackEnable="true" :crumbEnable="true">
             <img slot="logo" svg-inline :src="getIcon('price')" />
         </Breadcrumb>
         <LeftSidebar :open="false">
@@ -24,45 +18,25 @@
                         <!-- 头部 -->
                         <div class="m-price-header title-wrapper">
                             <span class="title-server-name">
-                                {{
-                                currentServer !== ""
-                                ? currentServer
-                                : "请选择一个服务器"
-                                }}
+                                {{ currentServer !== "" ? currentServer : "请选择一个服务器" }}
                             </span>
                             <p class="title-origin">
                                 数据来源：
-                                <el-link
-                                    type="primary"
-                                    href="https://jx3.seasunwbl.com/"
-                                    target="_blank"
-                                >万宝楼</el-link>
+                                <el-link type="primary" href="https://jx3.seasunwbl.com/" target="_blank">万宝楼</el-link>
                             </p>
                         </div>
 
                         <!-- 服务器导航 -->
                         <div class="m-price-nav">
-                            <el-tabs
-                                tab-position="top"
-                                v-model="currentGate"
-                                @tab-click="changeServer"
-                            >
-                                <el-tab-pane
-                                    v-for="(server, key) in serverList"
-                                    :key="key"
-                                    :label="server.serverName"
-                                    :name="server.serverName"
-                                ></el-tab-pane>
+                            <el-tabs tab-position="top" v-model="currentGate" @tab-click="changeServer">
+                                <el-tab-pane v-for="(server, key) in serverList" :key="key" :label="server.serverName" :name="server.serverName"></el-tab-pane>
                             </el-tabs>
                         </div>
 
                         <!-- 警告 -->
                         <div class="m-price-notice hint">
-                            ♥
-                            请选择正规平台！警惕交易陷阱！部分虚假交易平台会用低价骗取您购买，但充值后又提示该订单已被出售或无货，导致你的钱在一段时间无法及时提现，而且你提现时又要再次收取手续费。
-                            <span
-                                style="color: #c00; font-weight: bold"
-                            >单价越高，表示1元能买到更多的金，也就说明金价越便宜喔！</span>
+                            ♥ 请选择正规平台！警惕交易陷阱！部分虚假交易平台会用低价骗取您购买，但充值后又提示该订单已被出售或无货，导致你的钱在一段时间无法及时提现，而且你提现时又要再次收取手续费。
+                            <span style="color: #c00; font-weight: bold">单价越高，表示1元能买到更多的金，也就说明金价越便宜喔！</span>
                         </div>
 
                         <!-- 概览 -->
@@ -75,32 +49,17 @@
                                             <div class="price-summary-price">
                                                 <div class="price-summary-detail">
                                                     <span class="price-summary-number">
-                                                        {{
-                                                        singleServerPrice
-                                                        .yesterday[
-                                                        "official"
-                                                        ]
-                                                        }}
+                                                        {{ singleServerPrice.yesterday["official"] }}
                                                     </span>
                                                 </div>
                                                 <div class="price-summary-detail">
                                                     <span class="price-summary-number">
-                                                        {{
-                                                        singleServerPrice
-                                                        .yesterday[
-                                                        "5173"
-                                                        ]
-                                                        }}
+                                                        {{ singleServerPrice.yesterday["5173"] }}
                                                     </span>
                                                 </div>
                                                 <div class="price-summary-detail">
                                                     <span class="price-summary-number">
-                                                        {{
-                                                        singleServerPrice
-                                                        .yesterday[
-                                                        "post"
-                                                        ]
-                                                        }}
+                                                        {{ singleServerPrice.yesterday["post"] }}
                                                     </span>
                                                 </div>
                                             </div>
@@ -125,38 +84,17 @@
                                             <div class="price-summary-price">
                                                 <div class="price-summary-detail">
                                                     <span class="price-summary-number">
-                                                        {{
-                                                        mean(
-                                                        singleServerPrice
-                                                        .today[
-                                                        "official"
-                                                        ]
-                                                        )
-                                                        }}
+                                                        {{ mean(singleServerPrice.today["official"]) }}
                                                     </span>
                                                 </div>
                                                 <div class="price-summary-detail">
                                                     <span class="price-summary-number">
-                                                        {{
-                                                        mean(
-                                                        singleServerPrice
-                                                        .today[
-                                                        "5173"
-                                                        ]
-                                                        )
-                                                        }}
+                                                        {{ mean(singleServerPrice.today["5173"]) }}
                                                     </span>
                                                 </div>
                                                 <div class="price-summary-detail">
                                                     <span class="price-summary-number">
-                                                        {{
-                                                        mean(
-                                                        singleServerPrice
-                                                        .today[
-                                                        "post"
-                                                        ]
-                                                        )
-                                                        }}
+                                                        {{ mean(singleServerPrice.today["post"]) }}
                                                     </span>
                                                 </div>
                                             </div>
@@ -180,15 +118,12 @@
                                             <div class="price-summary-title">建议成交价</div>
                                             <div class="price-summary-price">
                                                 <b>
-                                                    {{
-                                                    singleServerPrice.recommend
-                                                    }}
+                                                    {{ singleServerPrice.recommend }}
                                                 </b>
                                                 金 / ￥100
                                             </div>
                                             <div class="price-summary-server">
-                                                近三天平均成交价
-                                                在扣除手续费及提现费之前的价格
+                                                近三天平均成交价 在扣除手续费及提现费之前的价格
                                             </div>
                                         </div>
                                     </el-card>
@@ -210,42 +145,29 @@
                                 />
                             </div>-->
                             <div class="chart-div chart-line" v-show="currentGate !== ''">
-                                <v-chart
-                                    :options="lineOption"
-                                    :autoresize="true"
-                                    @legendselectchanged="
-                                        onLineChartLegendselectchanged
-                                    "
-                                />
+                                <v-chart :options="lineOption" :autoresize="true" @legendselectchanged="onLineChartLegendselectchanged" />
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- <RightSidebar
-                ><div class="m-price-aside"></div>
-                <Extend
-            /></RightSidebar>-->
             <Footer />
         </Main>
     </div>
 </template>
 
 <script>
-// import Info from "@/components/Info.vue";
 import md5 from "js-md5";
 import Nav from "@/components/Nav.vue";
-// import FServerNode from "../servers/FServerNode.vue";
 import { axios, realUrl } from "@/service/api.js";
 import { JX3BOX } from "@jx3box/jx3box-common";
 import User from "@jx3box/jx3box-common/js/user";
 import { prepareBoxplotData } from "echarts/extension/dataTool";
-// import Extend from "@/components/Extend.vue";
 import serverData from "@jx3box/jx3box-data/data/server/server.json";
-import {__imgPath} from '@jx3box/jx3box-common/data/jx3box.json'
+import { __imgPath } from "@jx3box/jx3box-common/data/jx3box.json";
 export default {
     name: "Price",
-    data: function () {
+    data: function() {
         return {
             searchServerName: "",
             isShowMainServer: true,
@@ -661,13 +583,13 @@ export default {
                     },
                 ],
             },
-            defaultServer:'蝶恋花'
+            defaultServer: "蝶恋花",
         };
     },
     computed: {},
     methods: {
-        getIcon(key){
-            return __imgPath + 'image/box/' + key + '.svg'
+        getIcon(key) {
+            return __imgPath + "image/box/" + key + ".svg";
         },
         async prepareMounted() {
             let tmpdict = {};
@@ -730,9 +652,7 @@ export default {
         median(_arr) {
             const mid = Math.floor(_arr.length / 2),
                 nums = [..._arr].sort((a, b) => a - b);
-            return _arr.length % 2 !== 0
-                ? nums[mid]
-                : (nums[mid - 1] + nums[mid]) / 2;
+            return _arr.length % 2 !== 0 ? nums[mid] : (nums[mid - 1] + nums[mid]) / 2;
         },
         mean(_arr) {
             let sum = 0;
@@ -746,19 +666,13 @@ export default {
                     ++valid_count;
                 }
             }
-            return valid_count === 0
-                ? "无数据"
-                : (Math.floor((sum / valid_count) * 100) / 100).toFixed(2);
+            return valid_count === 0 ? "无数据" : (Math.floor((sum / valid_count) * 100) / 100).toFixed(2);
         },
         calcRecommend() {
             let threeDaysSum = 0;
             for (let count = 0; count < 3; ++count) {
                 let singleDay = this.singleServerPrice.trend[count];
-                let maxPrice = Math.max(
-                    singleDay["5173"],
-                    singleDay["post"],
-                    singleDay["official"] / 0.9405
-                );
+                let maxPrice = Math.max(singleDay["5173"], singleDay["post"], singleDay["official"] / 0.9405);
                 threeDaysSum += maxPrice;
             }
             return Math.floor((threeDaysSum / 3) * 100);
@@ -772,7 +686,7 @@ export default {
             this.showServer();
             this.parsePriceData();
         },
-        changeServer: function (tab, event) {
+        changeServer: function(tab, event) {
             // this.currentGate = gate;
             // this.pinnedChecked = this.currentGate === this.pinnedServerName;
             this.showServer();
@@ -834,10 +748,7 @@ export default {
                     continue;
                 }
                 value.current.split(",").forEach((value) => {
-                    dataArr.push([
-                        parseInt(value),
-                        this.serverList[gate].serverName,
-                    ]);
+                    dataArr.push([parseInt(value), this.serverList[gate].serverName]);
                 });
             }
             this.scatterOption.series[0].data = dataArr;
@@ -872,9 +783,7 @@ export default {
             let priceOfficial = todayPrice["official"];
             let priceTieba = todayPrice["post"];
             // let currentRawArr = todayPrice["5173"].concat(todayPrice.official).concat(todayPrice.post).split(",");
-            let currentRawArr = todayPrice["5173"]
-                .concat(todayPrice.official)
-                .concat(todayPrice.post);
+            let currentRawArr = todayPrice["5173"].concat(todayPrice.official).concat(todayPrice.post);
             let data = prepareBoxplotData([currentRawArr], {
                 layout: "vertical",
             });
@@ -934,19 +843,9 @@ export default {
 
             // 放置昨天的数据
             this.singleServerPrice.yesterday = {
-                official:
-                    sortedTrend[0]["official"] &&
-                    sortedTrend[0]["official"] != 0
-                        ? sortedTrend[0]["official"].toFixed(2)
-                        : "无数据",
-                "5173":
-                    sortedTrend[0]["5173"] && sortedTrend[0]["5173"] != 0
-                        ? sortedTrend[0]["5173"].toFixed(2)
-                        : "无数据",
-                post:
-                    sortedTrend[0]["post"] && sortedTrend[0]["post"] != 0
-                        ? sortedTrend[0]["post"].toFixed(2)
-                        : "无数据",
+                official: sortedTrend[0]["official"] && sortedTrend[0]["official"] != 0 ? sortedTrend[0]["official"].toFixed(2) : "无数据",
+                "5173": sortedTrend[0]["5173"] && sortedTrend[0]["5173"] != 0 ? sortedTrend[0]["5173"].toFixed(2) : "无数据",
+                post: sortedTrend[0]["post"] && sortedTrend[0]["post"] != 0 ? sortedTrend[0]["post"].toFixed(2) : "无数据",
             };
 
             return trends;
@@ -1047,7 +946,7 @@ export default {
         },
     },
     filters: {},
-    mounted: function () {
+    mounted: function() {
         this.getUserId();
         this.prepareMounted();
         // this.loadPriceData();

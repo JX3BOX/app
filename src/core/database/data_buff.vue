@@ -1,20 +1,19 @@
 <template>
     <div class="m-database-buff">
         <p v-if="list.length && done" class="m-resource-count">
-            <i class="el-icon-s-data"></i> 共找到
-            <b>{{ list.length }}</b> 条记录
+            <i class="el-icon-s-data"></i> 共找到 <b>{{ list.length }}</b> 条记录
         </p>
         <ul class="m-resource-list m-buff-list" v-if="list && list.length">
             <li v-for="(o, i) in list" class="u-item u-cantoggle" :key="i">
                 <div class="u-buff">
                     <span class="u-id">
                         ID:{{ o.BuffID }}
-                        <span class="u-detach">{{o.DetachType | showDetachType}}</span>
+                        <span class="u-detach">{{ o.DetachType | showDetachType }}</span>
                     </span>
                     <img class="u-pic" :title="'IconID:' + o.IconID" :src="iconLink(o.IconID)" />
                     <div class="u-primary">
                         <span class="u-name">
-                            {{ o.Name}}
+                            {{ o.Name }}
                             <em v-if="o.BuffName">({{ o.BuffName }})</em>
                         </span>
                         <span class="u-content">{{ o.Desc }}</span>
@@ -22,22 +21,13 @@
                             <span class="u-remark">Level : {{ o.Level }}</span>
                             <span class="u-remark">Remark : {{ o.Remark }}</span>
                         </div>
-                        <el-button
-                            class="u-raw"
-                            :class="{ on: o.isopen }"
-                            icon="el-icon-view"
-                            plain
-                            size="mini"
-                            @click="toggleProps(o)"
-                        >{{ o.isopen ? "收起详情" : "展开详情" }}</el-button>
+                        <el-button class="u-raw" :class="{ on: o.isopen }" icon="el-icon-view" plain size="mini" @click="toggleProps(o)">{{ o.isopen ? "收起详情" : "展开详情" }}</el-button>
                     </div>
                     <div class="u-props" :class="{ on: o.isopen }">
-                        <template v-for="(val,key) in o">
-                            <span class="u-desc" :key="key" v-if="cansee(o,key)">
+                        <template v-for="(val, key) in o">
+                            <span class="u-desc" :key="key" v-if="cansee(o, key)">
                                 <el-tooltip effect="dark" :content="key" placement="top">
-                                    <em
-                                        :class="{'isAdv':buffmap[key]['adv']}"
-                                    >{{buffmap[key]['desc'] || key}}</em>
+                                    <em :class="{ isAdv: buffmap[key]['adv'] }">{{ buffmap[key]["desc"] || key }}</em>
                                 </el-tooltip>
                                 {{ val }}
                             </span>
@@ -63,34 +53,34 @@ import { __iconPath, __ossRoot } from "@jx3box/jx3box-common/data/jx3box.json";
 import detach_types from "@/assets/data/detach_type.json";
 import buffmap from "@jx3box/jx3box-data/data/app/buff.json";
 import { iconLink } from "@jx3box/jx3box-common/js/utils";
-import {buff as ignore_list} from '@/assets/data/ignore.json'
+import { buff as ignore_list } from "@/assets/data/ignore.json";
 export default {
     name: "data_buff",
-    props: ["data", "vip", "status",'client'],
-    data: function () {
+    props: ["data", "vip", "status", "client"],
+    data: function() {
         return {
             list: this.data || [],
             buffmap,
-            ignore_list, 
+            ignore_list,
         };
     },
     computed: {
-        hasRight: function () {
+        hasRight: function() {
             return this.vip;
         },
-        done: function () {
+        done: function() {
             return this.status;
         },
     },
     watch: {
         data: {
             deep: true,
-            handler: function (val) {
-                let raw = val
-                let output = []
-                for(let item of raw){
-                    if(!ignore_list.includes(item.BuffID)){
-                        output.push(item)
+            handler: function(val) {
+                let raw = val;
+                let output = [];
+                for (let item of raw) {
+                    if (!ignore_list.includes(item.BuffID)) {
+                        output.push(item);
                     }
                 }
                 this.list = output;
@@ -98,25 +88,25 @@ export default {
         },
     },
     filters: {
-        filterRaw: function (str) {
+        filterRaw: function(str) {
             return str && str.replace(/\\n/g, "\n");
         },
-        showDetachType : function (val){
-            if(val && detach_types[val]){
-                return detach_types[val]
-            }else{
-                return ''
+        showDetachType: function(val) {
+            if (val && detach_types[val]) {
+                return detach_types[val];
+            } else {
+                return "";
             }
-        }
+        },
     },
     methods: {
-        iconLink : function (id){
-            return iconLink(id,this.client)
+        iconLink: function(id) {
+            return iconLink(id, this.client);
         },
-        toggleProps: function (o) {
+        toggleProps: function(o) {
             o.isopen = !o.isopen;
         },
-        cansee: function (o, key) {
+        cansee: function(o, key) {
             // 本地虚拟字段
             if (key == "isopen" || key == "IdKey") return false;
 
@@ -139,7 +129,7 @@ export default {
             }
         },
     },
-    mounted: function () {},
+    mounted: function() {},
     components: {},
 };
 </script>

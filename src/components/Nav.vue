@@ -2,7 +2,7 @@
     <nav class="m-nav">
         <h5 class="u-title">应用入口</h5>
         <div class="m-app-box">
-            <a class="u-app" v-for="item in data" :key="item.slug" :href="'/app/' + item.slug" :class="{on:isActive(item.slug)}"
+            <a class="u-app" v-for="item in data" :key="item.slug" :href="'../' + item.slug" :class="{on:isActive(item.slug)}"
                 ><i class="u-app-icon"><img :src="getIcon(item.slug)"/></i
                 ><span>{{item.abbr}}</span></a
             >
@@ -56,10 +56,6 @@ export default {
                 {
                     slug : 'price',
                     abbr : '金价'
-                },
-                {
-                    slug : 'flower',
-                    abbr : '花价'
                 },
                 {
                     slug : 'sudoku',

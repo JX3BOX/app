@@ -1,13 +1,7 @@
 <template>
     <div id="app">
         <Header></Header>
-        <Breadcrumb
-            name="簡繁轉換"
-            slug="translator"
-            root="/app/translator"
-            :feedbackEnable="true"
-            :crumbEnable="true"
-        >
+        <Breadcrumb name="簡繁轉換" slug="translator" root="/app/translator" :feedbackEnable="true" :crumbEnable="true">
             <img slot="logo" svg-inline :src="getIcon('translator')" />
         </Breadcrumb>
         <LeftSidebar :open="false">
@@ -17,12 +11,7 @@
             <div class="m-translator">
                 <h1 class="title">簡繁轉換工具</h1>
                 <h3 class="title">將宏或插件數據等轉為劍網三國際服專用繁體</h3>
-                <el-tabs
-                    type="card"
-                    class="translate-wrapper"
-                    :before-leave="tabClick"
-                    v-model="activeTabName"
-                >
+                <el-tabs type="card" class="translate-wrapper" :before-leave="tabClick" v-model="activeTabName">
                     <el-tab-pane label="文字轉換" :disabled="isLoading" name="translate-str">
                         <div class="translate-content">
                             <el-input
@@ -45,35 +34,14 @@
                                 class="textarea-translate textarea-translate-post"
                             ></el-input>
                         </div>
-                        <el-button
-                            type="primary"
-                            :loading="isLoading"
-                            class="btn-convert"
-                            size="medium"
-                            @click="convertText"
-                            v-if="percentage < 0"
-                        >{{ isLoading ? "正在加載" : "轉換" }}</el-button>
-                        <el-progress
-                            :text-inside="true"
-                            :stroke-width="20"
-                            :percentage="percentage"
-                            v-if="isLoading && percentage >= 0"
-                        ></el-progress>
+                        <el-button type="primary" :loading="isLoading" class="btn-convert" size="medium" @click="convertText" v-if="percentage < 0">{{ isLoading ? "正在加載" : "轉換" }}</el-button>
+                        <el-progress :text-inside="true" :stroke-width="20" :percentage="percentage" v-if="isLoading && percentage >= 0"></el-progress>
                     </el-tab-pane>
                     <el-tab-pane label="文件轉換" :disabled="isLoading" name="translate-file">
                         <transition name="el-zoom-in-top">
-                            <el-alert
-                                title="转换成功!"
-                                type="success"
-                                show-icon
-                                v-if="downloadFileUrl !== ''"
-                            >
+                            <el-alert title="转换成功!" type="success" show-icon v-if="downloadFileUrl !== ''">
                                 如果沒有自動下載的話,
-                                <el-button
-                                    type="text"
-                                    class="btn-download"
-                                    @click="downloadByUrl"
-                                >點此下載</el-button>
+                                <el-button type="text" class="btn-download" @click="downloadByUrl">點此下載</el-button>
                             </el-alert>
                         </transition>
                         <h4>上传的文件编码</h4>
@@ -101,38 +69,21 @@
                                 </div>
                                 <div class="el-upload__tip" slot="tip">暫不支持word等帶樣式文檔</div>
                             </el-upload>
-                            <el-progress
-                                type="circle"
-                                :percentage="percentage"
-                                v-if="isLoading && percentage >= 0"
-                                :format="progressFormat"
-                            ></el-progress>
+                            <el-progress type="circle" :percentage="percentage" v-if="isLoading && percentage >= 0" :format="progressFormat"></el-progress>
                         </div>
                     </el-tab-pane>
                     <el-tab-pane label="💖貢獻詞庫" :disabled="isLoading" name="add-dict"></el-tab-pane>
                 </el-tabs>
-                <!-- <div class="translate-wrapper">
-                    
-                </div>-->
             </div>
-            <!-- <RightSidebar
-                ><div class="m-translator-aside">
-                    <Github_REPO REPO="app" coder="172"></Github_REPO>
-                </div>
-                <Extend
-            /></RightSidebar>-->
             <Footer></Footer>
         </Main>
     </div>
 </template>
 
 <script>
-import Info from "@/components/Info.vue";
 import Nav from "@/components/Nav.vue";
 import { axios } from "@/service/api.js";
-import { JX3BOX } from "@jx3box/jx3box-common";
 import User from "@jx3box/jx3box-common/js/user";
-// import Extend from "@/components/Extend.vue";
 var blob = new Blob([document.querySelector("#worker").textContent]);
 var url = window.URL.createObjectURL(blob);
 var worker = new Worker(url);
@@ -140,7 +91,7 @@ import dict from "@jx3box/jx3box-dict/dict.json";
 import { __imgPath } from "@jx3box/jx3box-common/data/jx3box.json";
 export default {
     name: "Translator",
-    data: function () {
+    data: function() {
         return {
             worker: null,
             activeTabName: "translate-str",
@@ -198,16 +149,7 @@ export default {
             });
             worker.addEventListener("error", (event) => {
                 this.$message.error("轉換出錯");
-                console.log(
-                    [
-                        "ERROR: Line ",
-                        e.lineno,
-                        " in ",
-                        e.filename,
-                        ": ",
-                        e.message,
-                    ].join("")
-                );
+                console.log(["ERROR: Line ", e.lineno, " in ", e.filename, ": ", e.message].join(""));
             });
         },
         getDict() {
@@ -262,9 +204,7 @@ export default {
                 if (file.file.size > 1024 * 1024) {
                     isLogin = await this.checkLogin();
                     if (!isLogin) {
-                        this.$message.warning(
-                            "转换的文件大小超过1MB需要先登录再尝试转换~"
-                        );
+                        this.$message.warning("转换的文件大小超过1MB需要先登录再尝试转换~");
                         this.isLoading = false;
                         return;
                     }
@@ -327,7 +267,7 @@ export default {
         this.initWorker();
         this.getDict();
     },
-    mounted: function () {
+    mounted: function() {
         this.getUserId();
     },
     beforeDestroy() {
@@ -335,7 +275,6 @@ export default {
     },
     components: {
         Nav,
-        // Extend,
     },
 };
 </script>

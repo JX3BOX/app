@@ -1,13 +1,7 @@
 <template>
     <div id="app">
         <Header></Header>
-        <Breadcrumb
-            name="图标大全"
-            slug="icons"
-            root="/app/icons"
-            :feedbackEnable="true"
-            :crumbEnable="true"
-        >
+        <Breadcrumb name="图标大全" slug="icons" root="/app/icons" :feedbackEnable="true" :crumbEnable="true">
             <img slot="logo" svg-inline :src="getIcon('icons')" />
         </Breadcrumb>
         <LeftSidebar :open="false">
@@ -27,11 +21,7 @@
                                     @keyup.enter.native="handleSearchIcon"
                                     @change.once="useSearchIcon"
                                 >
-                                    <el-button
-                                        slot="append"
-                                        icon="el-icon-search"
-                                        @click="handleSearchIcon"
-                                    ></el-button>
+                                    <el-button slot="append" icon="el-icon-search" @click="handleSearchIcon"></el-button>
                                 </el-input>
                                 <div class="m-icon-search-tip">
                                     <ul>
@@ -45,24 +35,10 @@
                                 </div>
                             </div>
                             <ul class="m-icon-list" v-loading="isSearchingByName">
-                                <el-alert
-                                    title="以下为部分图标展示，请在上方自定义搜索范围，点击图标即可收藏。"
-                                    type="warning"
-                                    center
-                                    show-icon
-                                    v-if="isNewbie"
-                                ></el-alert>
-                                <li
-                                    v-for="(icon, index) in iconsList"
-                                    :key="index"
-                                    @mouseleave="handleMouseLeaveIcon"
-                                >
+                                <el-alert title="以下为部分图标展示，请在上方自定义搜索范围，点击图标即可收藏。" type="warning" center show-icon v-if="isNewbie"></el-alert>
+                                <li v-for="(icon, index) in iconsList" :key="index" @mouseleave="handleMouseLeaveIcon">
                                     <i class="u-pic" @click="handleAddFavorite(index, icon)">
-                                        <el-image
-                                            :src="`${IconPath}${icon}.png`"
-                                            class="u-img"
-                                            lazy
-                                        >
+                                        <el-image :src="`${IconPath}${icon}.png`" class="u-img" lazy>
                                             <div slot="placeholder" class="image-slot">
                                                 <i class="el-icon-loading"></i>
                                             </div>
@@ -74,56 +50,26 @@
                                             <i
                                                 class="w-heart"
                                                 :class="{
-                                                    'w-heart-animation':
-                                                        index == clickedIndex,
+                                                    'w-heart-animation': index == clickedIndex,
                                                 }"
                                             ></i>
                                         </span>
                                     </i>
-                                    <span
-                                        class="u-iconid"
-                                        v-clipboard:copy="icon"
-                                        v-clipboard:success="onCopy"
-                                        v-clipboard:error="onError"
-                                        title="点击快速复制"
-                                    >{{ icon }}</span>
+                                    <span class="u-iconid" v-clipboard:copy="icon" v-clipboard:success="onCopy" v-clipboard:error="onError" title="点击快速复制">{{ icon }}</span>
                                 </li>
-                                <div
-                                    class="loading-placeholder"
-                                    v-if="
-                                        isSearchingByName &&
-                                            iconsList.length === 0
-                                    "
-                                ></div>
+                                <div class="loading-placeholder" v-if="isSearchingByName && iconsList.length === 0"></div>
                             </ul>
                         </el-tab-pane>
                         <el-tab-pane label="收藏图标" name="favicon" lazy :loading="isSynchronizing">
                             <ul class="m-icon-list" v-if="activeTabName === 'favicon'">
-                                <el-alert
-                                    class="m-icons-sync"
-                                    title="本地有收藏图标未同步到服务器"
-                                    type="info"
-                                    center
-                                    show-icon
-                                    v-if="faviconNeedsSync"
-                                >
+                                <el-alert class="m-icons-sync" title="本地有收藏图标未同步到服务器" type="info" center show-icon v-if="faviconNeedsSync">
                                     <el-button type="text" @click="syncFavicon">点此同步未登录收藏数据</el-button>
                                 </el-alert>
                                 <ul v-if="faviconsList.length">
                                     <transition-group name="el-fade-in">
-                                        <li
-                                            v-for="(icon,
-                                            index) in faviconsList"
-                                            :key="icon"
-                                        >
+                                        <li v-for="(icon, index) in faviconsList" :key="icon">
                                             <i class="u-pic">
-                                                <el-image
-                                                    :src="
-                                                        `${IconPath}${icon}.png`
-                                                    "
-                                                    class="u-img"
-                                                    lazy
-                                                >
+                                                <el-image :src="`${IconPath}${icon}.png`" class="u-img" lazy>
                                                     <div slot="placeholder" class="image-slot">
                                                         <i class="el-icon-loading"></i>
                                                     </div>
@@ -131,20 +77,10 @@
                                                         <i class="el-icon-warning-outline"></i>
                                                     </div>
                                                 </el-image>
-                                                <span
-                                                    class="u-remove"
-                                                    @click="
-                                                        handleRemoveFavorite(
-                                                            index,
-                                                            icon
-                                                        )
-                                                    "
-                                                ></span>
+                                                <span class="u-remove" @click="handleRemoveFavorite(index, icon)"></span>
                                             </i>
                                             <span class="u-iconid">
-                                                {{
-                                                icon
-                                                }}
+                                                {{ icon }}
                                             </span>
                                         </li>
                                     </transition-group>
@@ -155,8 +91,7 @@
                         <el-tab-pane label="表情包" name="emoji" lazy>
                             <ul class="m-emotion-nav">
                                 <li
-                                    v-for="(category,
-                                    index) in emojiCategoryOptions"
+                                    v-for="(category, index) in emojiCategoryOptions"
                                     :key="category.name"
                                     :class="{
                                         active: index === emojiSelection,
@@ -167,43 +102,18 @@
                                     <span>({{ category.total }})</span>
                                 </li>
                             </ul>
-                            <el-select
-                                v-model="emojiSelection"
-                                placeholder="请选择"
-                                class="m-emotion-selection"
-                            >
-                                <el-option
-                                    v-for="(category,
-                                    index) in emojiCategoryOptions"
-                                    :key="category.name"
-                                    :value="index"
-                                    :label="category.name"
-                                >
+                            <el-select v-model="emojiSelection" placeholder="请选择" class="m-emotion-selection">
+                                <el-option v-for="(category, index) in emojiCategoryOptions" :key="category.name" :value="index" :label="category.name">
                                     <span style="float: left">
-                                        {{
-                                        category.name
-                                        }}
+                                        {{ category.name }}
                                     </span>
-                                    <span
-                                        style="float: right; color: #8492a6; font-size: 13px"
-                                    >共{{ category.total }}个</span>
+                                    <span style="float: right; color: #8492a6; font-size: 13px">共{{ category.total }}个</span>
                                 </el-option>
                             </el-select>
                             <template v-if="emojiCategoryOptions.length > 0">
                                 <ul class="m-emotion-list">
-                                    <li
-                                        v-for="(emoji,
-                                        index) in emojiCategoryOptions[
-                                            emojiSelection
-                                        ].total"
-                                        :key="emoji"
-                                    >
-                                        <el-image
-                                            :src="
-                                                `${EmojiPath}${emojiCategoryOptions[emojiSelection].name}/${index}.gif`
-                                            "
-                                            lazy
-                                        >
+                                    <li v-for="(emoji, index) in emojiCategoryOptions[emojiSelection].total" :key="emoji">
+                                        <el-image :src="`${EmojiPath}${emojiCategoryOptions[emojiSelection].name}/${index}.gif`" lazy>
                                             <!-- 这里要用index, 因为这里for遍历的是数字，emoji值会从1开始，而index还是从0开始 -->
                                             <div slot="placeholder" class="image-slot">
                                                 <i class="el-icon-loading"></i>
@@ -216,14 +126,7 @@
                                 </ul>
                                 <!-- <a class="m-emotion-down" href="" download=""></a> -->
 
-                                <el-button
-                                    :loading="isDownloadingEmoji"
-                                    type="primary"
-                                    plain
-                                    @click.native.stop="handleDownloadEmoji"
-                                    icon="el-icon-download"
-                                    class="btn-download-emoji"
-                                >
+                                <el-button :loading="isDownloadingEmoji" type="primary" plain @click.native.stop="handleDownloadEmoji" icon="el-icon-download" class="btn-download-emoji">
                                     <div class="m-emotion-down">
                                         <b>立即下载</b>
                                         <!-- <span>Download</span> -->
@@ -245,16 +148,12 @@ import Nav from "@/components/Nav.vue";
 import { axios, realUrl } from "@/service/api.js";
 import { JX3BOX } from "@jx3box/jx3box-common";
 import User from "@jx3box/jx3box-common/js/user.js";
-import {
-    getIconsByName,
-    getMyFavIcons,
-    setMyFavIcons,
-} from "@/service/icons.js";
+import { getIconsByName, getMyFavIcons, setMyFavIcons } from "@/service/icons.js";
 import default_list from "./default.json";
-import {__imgPath} from '@jx3box/jx3box-common/data/jx3box.json'
+import { __imgPath } from "@jx3box/jx3box-common/data/jx3box.json";
 export default {
     name: "Icons",
-    data: function () {
+    data: function() {
         return {
             activeTabName: "icon",
             searchIconInput: "",
@@ -269,27 +168,23 @@ export default {
             emojiSelection: 0,
             isDownloadingEmoji: false,
             isSearchingByName: false,
-            uid:0,
-            isNewbie:true
+            uid: 0,
+            isNewbie: true,
         };
     },
     computed: {
-        client : function (){
-            return location.href.includes('origin') ? 'origin' : 'std'
+        client: function() {
+            return location.href.includes("origin") ? "origin" : "std";
         },
-        IconPath:function (){
-            if(this.client == 'origin'){
-                return JX3BOX.__iconPath + "origin_icon/"
-            }else{
-                return JX3BOX.__iconPath + "icon/"
+        IconPath: function() {
+            if (this.client == "origin") {
+                return JX3BOX.__iconPath + "origin_icon/";
+            } else {
+                return JX3BOX.__iconPath + "icon/";
             }
         },
         faviconNeedsSync() {
-            if (
-                !this.localFaviconsList ||
-                !this.faviconsList ||
-                this.localFaviconsList.length === 0
-            ) {
+            if (!this.localFaviconsList || !this.faviconsList || this.localFaviconsList.length === 0) {
                 return false;
             }
             if (this.localFaviconsList.length !== this.faviconsList.length) {
@@ -304,8 +199,8 @@ export default {
         },
     },
     methods: {
-        getIcon(key){
-            return __imgPath + 'image/box/' + key + '.svg'
+        getIcon(key) {
+            return __imgPath + "image/box/" + key + ".svg";
         },
         async prepareMounted() {
             this.iconsList = default_list;
@@ -313,12 +208,10 @@ export default {
             // 这里先读取一次存在本地的收藏图标
             this.getFromLocal();
 
-            let allIconsListUrl =
-                JX3BOX.__staticPath.jsdelivr + "jx3-icon@1.1.0/icon.json";
+            let allIconsListUrl = JX3BOX.__staticPath.jsdelivr + "jx3-icon@1.1.0/icon.json";
             let getAllIconsList = axios(allIconsListUrl, "GET");
 
-            let allEmojiListUrl =
-                JX3BOX.__staticPath.jsdelivr + "jx3-icon@1.1.0/emotion.json";
+            let allEmojiListUrl = JX3BOX.__staticPath.jsdelivr + "jx3-icon@1.1.0/emotion.json";
             let getAllEmojiList = axios(allEmojiListUrl, "GET");
 
             let getUserServerSaved = null;
@@ -352,12 +245,8 @@ export default {
         handleDownloadEmoji() {
             this.isDownloadingEmoji = true;
             let link = document.createElement("a");
-            link.href = `${this.EmojiPath}${
-                this.emojiCategoryOptions[this.emojiSelection].name
-            }.zip`;
-            link.download = `${
-                this.emojiCategoryOptions[this.emojiSelection].name
-            }.zip`;
+            link.href = `${this.EmojiPath}${this.emojiCategoryOptions[this.emojiSelection].name}.zip`;
+            link.download = `${this.emojiCategoryOptions[this.emojiSelection].name}.zip`;
             link.click();
             this.isDownloadingEmoji = false;
         },
@@ -406,11 +295,7 @@ export default {
 
             // 如果没有分隔符，先判断是不是按照名字搜索的文字
             let numberReg = /^[0-9]+$/;
-            if (
-                !query.includes(",") &&
-                !query.includes("-") &&
-                !numberReg.test(query)
-            ) {
+            if (!query.includes(",") && !query.includes("-") && !numberReg.test(query)) {
                 // 按照名称搜索
                 this.isSearchingByName = true;
                 let results = await this.searchIconByName(query);
@@ -456,7 +341,7 @@ export default {
             this.iconsList = searchList.slice(0, 500);
         },
         async searchIconByName(name) {
-            getIconsByName(name,this.client)
+            getIconsByName(name, this.client)
                 .then((res) => {
                     let tmpList = [];
                     for (let key in res) {
@@ -490,10 +375,7 @@ export default {
                             // 判断是否是旧版数据
                             // like -> '["345", "332", "  303"]'
                             if (serverValue.includes("[")) {
-                                serverValue = serverValue.replace(
-                                    /[\[\]"\ ]/g,
-                                    ""
-                                );
+                                serverValue = serverValue.replace(/[\[\]"\ ]/g, "");
                             }
                             // // 判断是否是旧版数据
                             // if (serverValue.includes("[")) {
@@ -530,19 +412,14 @@ export default {
         setSavedIcons() {
             if (this.uid) {
                 // 保存到服务器
-                setMyFavIcons(this.faviconsList.join(","),this.client)
+                setMyFavIcons(this.faviconsList.join(","), this.client)
                     .then((res) => {})
                     .catch((e) => {
                         // 如果出问题，先存本地
                         //创建一个并集
                         let union = this.faviconsList;
-                        if (
-                            this.localFaviconsList &&
-                            this.localFaviconsList.length > 0
-                        ) {
-                            union = this.localFaviconsList.concat(
-                                this.faviconsList
-                            );
+                        if (this.localFaviconsList && this.localFaviconsList.length > 0) {
+                            union = this.localFaviconsList.concat(this.faviconsList);
                         }
                         union = new Set(union);
                         this.faviconsList = Array.from(union);
@@ -564,25 +441,25 @@ export default {
                 this.localFaviconsList = this.faviconsList;
             }
         },
-        onCopy: function (val) {
+        onCopy: function(val) {
             this.$notify({
                 title: "复制成功",
                 message: "复制内容 : " + val.text,
                 type: "success",
             });
         },
-        onError: function () {
+        onError: function() {
             this.$notify.error({
                 title: "复制失败",
                 message: "请手动复制",
             });
         },
-        useSearchIcon : function (){
-            this.isNewbie = false
-        }
+        useSearchIcon: function() {
+            this.isNewbie = false;
+        },
     },
     filters: {},
-    mounted: function () {
+    mounted: function() {
         this.getUserId();
         this.prepareMounted();
         this.getSavedIcons();

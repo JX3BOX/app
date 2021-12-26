@@ -1,13 +1,7 @@
 <template>
     <div>
-        <el-input
-            placeholder="点击自动复制"
-            v-model="code"
-            v-clipboard:copy="code"
-            v-clipboard:success="onCopy"
-            v-clipboard:error="onError"
-        >
-            <template slot="prepend">{{ config.desc + '·' + config.name }}</template>
+        <el-input placeholder="点击自动复制" v-model="code" v-clipboard:copy="code" v-clipboard:success="onCopy" v-clipboard:error="onError">
+            <template slot="prepend">{{ config.desc + "·" + config.name }}</template>
             <template slot="append">点击复制</template>
         </el-input>
     </div>
@@ -16,21 +10,20 @@
 <script>
 export default {
     name: "schema",
-    props: ["config","version","xf"],
+    props: ["config", "version", "xf"],
     data: function() {
-        return {
-        };
+        return {};
     },
     computed: {
-        code : function (){
+        code: function() {
             let _code = {
-                version : this.version,
-                xf : this.xf,
-                sq : this.config.sq
-            }
-            console.log(JSON.stringify(_code))
-            return JSON.stringify(_code)
-        }
+                version: this.version,
+                xf: this.xf,
+                sq: this.config.sq,
+            };
+            console.log(JSON.stringify(_code));
+            return JSON.stringify(_code);
+        },
     },
     methods: {
         onCopy: function(val) {

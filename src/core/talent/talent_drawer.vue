@@ -8,12 +8,7 @@
                         <span class="u-name" v-if="!item.edit">
                             <i class="u-icon el-icon-tickets"></i>
                             <span>{{ item.name }}</span>
-                            <i
-                                v-if="!isEditing"
-                                class="u-edit el-icon-edit"
-                                title="修改名称"
-                                @click="edit(item)"
-                            ></i>
+                            <i v-if="!isEditing" class="u-edit el-icon-edit" title="修改名称" @click="edit(item)"></i>
                         </span>
                         <div v-if="item.edit">
                             <el-input v-model="currentShemaName" size="mini" class="u-shema-name"></el-input>
@@ -30,15 +25,7 @@
                         </el-button-group>
                     </li>
 
-                    <el-pagination
-                        class="u-list-pagination"
-                        background
-                        hide-on-single-page
-                        layout="prev,pager,next,->,total"
-                        :total="total"
-                        :page-size="per"
-                        :current-page.sync="page"
-                    ></el-pagination>
+                    <el-pagination class="u-list-pagination" background hide-on-single-page layout="prev,pager,next,->,total" :total="total" :page-size="per" :current-page.sync="page"></el-pagination>
                 </ul>
                 <el-alert v-else title="当前没有任何预设方案" type="info" show-icon></el-alert>
             </div>
@@ -78,12 +65,12 @@ export default {
         };
     },
     computed: {
-        isEditing: function () {
+        isEditing: function() {
             return this.list.some((item) => item.edit);
         },
     },
     methods: {
-        loadList: function () {
+        loadList: function() {
             this.loading = true;
             getTalents({
                 client: this.client,
@@ -104,15 +91,15 @@ export default {
                     this.loading = false;
                 });
         },
-        use: function (item) {
+        use: function(item) {
             this.$emit("use", item);
         },
-        edit: function (item) {
+        edit: function(item) {
             this.currentShemaName = item.name;
             this.currentSchema = item;
             item.edit = true;
         },
-        put: function () {
+        put: function() {
             putTalent(this.currentSchema.id, {
                 name: this.currentShemaName,
             }).then(() => {
@@ -128,7 +115,7 @@ export default {
                 this.currentSchema = "";
             });
         },
-        del: function (item) {
+        del: function(item) {
             this.$confirm(`确认删除预设方案[${item.name}]？`, "提示", {
                 confirmButtonText: "确定",
                 cancelButtonText: "取消",
@@ -147,17 +134,17 @@ export default {
         },
     },
     watch: {
-        drawer: function (val) {
+        drawer: function(val) {
             if (val) {
                 this.loadList();
 
                 this.visible = val;
             }
         },
-        visible: function (val) {
+        visible: function(val) {
             this.$emit("update-drawer", val);
         },
-        page: function () {
+        page: function() {
             this.loadList();
         },
     },
@@ -186,7 +173,7 @@ export default {
     height: 40px;
     align-items: center;
     padding: 5px;
-    .fz(12px,28px);
+    .fz(12px, 28px);
     border-bottom: 1px dashed #eee;
 
     .u-shema-name {
