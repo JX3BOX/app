@@ -303,7 +303,7 @@
                     </el-col>
                     <el-col :span="6">
                         <div class="u-item">
-                            <a href="/bbs/#/collection">
+                            <a href="/bbs/#/collection" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
                                         <img svg-inline :src="getIcon('collection')" />
@@ -318,7 +318,7 @@
                     </el-col>
                     <el-col :span="6">
                         <div class="u-item">
-                            <a href="/bbs/#/exam">
+                            <a href="/bbs/#/exam" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
                                         <img svg-inline :src="getIcon('exam')" />
