@@ -28,7 +28,13 @@
                 <!-- 填入数字 -->
                 <div class="m-table">
                     <el-row class="u-list">
+                      <template v-if="activeName === 'sudoku1'">
+                        <el-col :class="['u-item', {'active': typeof s === 'number'}]" :span="8" v-for="(s, i) in shList" :key="i">
+                          <input  type="text" v-model="shList[i]" min="1" max="9" maxlength="1" @input="shCheck(shList[i],i)">
+                        </el-col>
+                      </template>
                         <el-col
+                            v-else
                             class="u-item"
                             :span="8"
                             v-for="(n, i) in list"
@@ -119,6 +125,8 @@ export default {
                 __ossMirror + "image/app/sudoku/sudoku2/5.png",
                 __ossMirror + "image/app/sudoku/sudoku2/6.png",
             ],
+
+          shList: new Array(9)
         };
     },
     computed: {
@@ -149,7 +157,7 @@ export default {
             ];
         },
         mode1: function() {
-            return this.list.slice(0, 5).join(" ");
+          return this.shList.filter(r => typeof r === 'number').join(' → ')
         },
         mode2: function() {
             let result = [];
@@ -241,11 +249,49 @@ export default {
         },
         clear: function() {
             this.list = ["", "", "", "", "5", "", "", "", ""];
+
+            this.shList = new Array(9)
         },
         handleClick: function() {},
         showpic: function(i) {
             return __ossMirror + "image/app/sudoku/sudoku2/" + i + ".png";
         },
+      shCheck(val, index) {
+        // 正则匹配
+        if (!/^\d$/.test(val)) {
+           this.shList[index] = undefined
+        }
+        // 重复限制
+        for (let i = 0; i < this.shList.length; i++) {
+          if (this.shList[i] === val && index !== i) {
+            this.shList[i] = undefined;
+            break;
+          }
+        }
+
+        // 枚举
+        const enumList = [
+            [2,7,6,9,5,1,4,3,8],
+            [2,9,4,7,5,3,6,1,8],
+            [4,3,8,9,5,1,2,7,6],
+            [8,1,6,3,5,7,4,9,2],
+            [4,9,2,3,5,7,8,1,6],
+            [6,1,8,7,5,3,2,9,4],
+            [6,7,2,1,5,9,8,3,4],
+            [8,3,4,1,5,9,6,7,2],
+        ]
+
+        if (this.shList.filter(r => r).length > 3) {
+          this.shList.forEach((v, i) => {
+            if (v) {
+              enumList.forEach((o, oi) => {
+                o[i] !== +v && enumList.splice(oi, 1)
+              })
+            }
+          })
+          this.shList = enumList[0].map((o, i) => this.shList[i] || o)
+        }
+      }
     },
     filters: {},
     mounted: function() {},
@@ -258,4 +304,8 @@ export default {
 
 <style lang="less">
 @import "../../assets/css/sudoku.less";
+
+.u-item.active {
+  background: #643d74;
+}
 </style>
