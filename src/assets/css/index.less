@@ -3,14 +3,20 @@
     box-sizing: border-box;
 }
 
+.m-app-index{
+    max-width:1280px;
+    .auto(x);
+    padding:40px 20px;
+}
+
 .m-app-index-title{
     .x;
     font-weight:300;
     margin:0;
+    .fz(22px);
 }
 
 .m-app-index {
-    padding: 20px;
     ul {
         padding: 0;
         margin: 0;
@@ -25,85 +31,57 @@
         .mb(20px);
 
         &:hover{
-            border-color:#39d45d;
+            border-color:@color-link;
+            background-color:#f7fbff;
         }
         .pr;
         .clearfix;
+        display: flex;
     }
 
     .u-pic{
-        .fl;
+        // .fl;
         .x;
+        .mr(10px);
     }
 
     .u-icon {
         .db;
-        .mb(10px);
+        // .mb(10px);
         svg,img {
             .db;
             .auto(x);
-            .size(60px);
+            .size(48px);
         }
     }
 
     .u-name {
         .db;
-        font-size: 20px;
-        font-weight: 300;
+        .fz(1rem,1.5);
+        .bold;
         display: block;
-        text-align: center;
+        // text-align: center;
         .nobreak;
         color:@color;
         // .mr(20px);
-        .w(120px);
+        // .w(120px);
     }
 
-    // .u-desc {
-    //     .db;
-    //     font-size: 14px;
-    //     line-height: 2;
-    //     display: block;
-    //     text-align: center;
-    //     color: #999;
-    //     .nobreak;
-    // }
-
-    .u-features {
+    .u-desc {
         .db;
-        text-indent: 20px;
-        overflow: hidden;
-        span {
-            display: block;
-            color: #555;
-            font-size: 13px;
-            line-height: 1.8;
-            white-space: nowrap;
-            word-wrap: normal;
-            word-break: keep-all;
-            text-overflow: ellipsis;
-            overflow: hidden;
-        }
+        font-size: 12px;
+        line-height: 2;
+        display: block;
+        text-align: center;
+        color: #999;
+        .nobreak;
     }
 
     .u-blank{
         .pa;.rt(10px);
     }
 }
-@media screen and (max-width:1919px){
-    .m-app-index{
-        .el-col{
-            .w(20%);
-        }
-    }
-}
-@media screen and (max-width:1600px){
-    .m-app-index{
-        .el-col{
-            .w(25%);
-        }
-    }
-}
-@media screen and (max-width:1280px){
+@media screen and (max-width:@ipad-y){
     .m-app-index{
         .el-col{
             .w(50%);
@@ -112,34 +90,12 @@
 }
 @media screen and (max-width:@phone){
     .m-app-index{
+        .pt(10px);
         .el-col{
             .w(100%);
         }
     }
-}
-@media screen and (max-width:@phone){
     .m-app-index-title{
         .none;
-    }
-    .m-app-index{
-        padding-top:0;
-        .el-col{
-            .w(100%);
-        }
-    }
-}
-
-@media screen and (max-width:@ip5){
-    .m-app-index {
-        .u-pic{
-            padding-top:10px;
-        }
-        .u-icon svg{
-            .size(40px);
-        }
-        .u-name{
-            .w(80px);
-            .fz(14px);
-        }
     }
 }

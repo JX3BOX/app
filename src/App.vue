@@ -1,285 +1,317 @@
 <template>
     <div id="app" class="p-app-index">
         <Header></Header>
-        <Breadcrumb name="应用中心" slug="app" root="/app" :feedbackEnable="true">
+        <Breadcrumb name="魔盒矩阵" slug="app" root="/app" :feedbackEnable="true">
             <img class="u-app-index" slot="logo" svg-inline src="./assets/img/app.svg" />
         </Breadcrumb>
         <div class="m-app m-app-index">
             <h1 class="m-app-index-title">魔盒矩阵</h1>
 
-            <div class="m-app-index-pve">
-                <el-divider content-position="left">PVE</el-divider>
+            <div class="m-app-index-block">
+                <el-divider content-position="left"><i class="el-icon-box"></i> 通用</el-divider>
                 <el-row :gutter="20">
-                    <el-col :span="4">
+                    <el-col :span="6">
                         <div class="u-item">
-                            <a href="./database/">
+                            <a href="/app/database/" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
                                         <img svg-inline :src="getIcon('database')" />
                                     </i>
-                                    <span class="u-name">剑三数据库</span>
                                 </span>
                                 <span class="u-features">
-                                    <span>✔️️ 助力开荒机制全摸透</span>
-                                    <span>✔️️ 技能/Buff/NPC/物品查询</span>
-                                    <span>✔️️ 同步最新版本</span>
-                                    <span>✔️️ 支持全站正文插入</span>
+                                    <span class="u-name">剑三数据库</span>
+                                    <span class="u-desc">技能/Buff/NPC/交互查询</span>
                                 </span>
                             </a>
                         </div>
                     </el-col>
-                    <el-col :span="4">
+                    <el-col :span="6">
                         <div class="u-item">
-                            <a href="./icons">
+                            <a href="/app/icons" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
                                         <img svg-inline :src="getIcon('icons')" />
                                     </i>
-                                    <span class="u-name">图标大全</span>
                                 </span>
                                 <span class="u-features">
-                                    <span>✔️️ 美术收藏控必备</span>
-                                    <span>✔️️ 官方图标/表情等</span>
-                                    <span>✔️️ 支持定制收藏</span>
-                                    <span>✔️️ 支持全站正文插入</span>
+                                    <span class="u-name">图标大全</span>
+                                    <span class="u-desc">剑三图标库/官方聊天表情</span>
                                 </span>
                             </a>
                         </div>
                     </el-col>
-                    <el-col :span="4">
+                    <el-col :span="6">
+                        <div class="u-item">
+                            <a href="/app/jx3dat" target="_blank">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('jx3dat')" />
+                                    </i>
+                                </span>
+                                <span class="u-features">
+                                    <span class="u-name">数据中心</span>
+                                    <span class="u-desc">剑三插件数据/用户云数据</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col>
+                    <el-col :span="6">
+                        <div class="u-item">
+                            <a href="/tool" target="_blank">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('tool')" />
+                                    </i>
+                                </span>
+                                <span class="u-features">
+                                    <span class="u-name">工具教程</span>
+                                    <span class="u-desc">剑三小工具/插件指南</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col>
+                    <el-col :span="6">
+                        <div class="u-item">
+                            <a href="/bbs" target="_blank">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('bbs')" />
+                                    </i>
+                                </span>
+                                <span class="u-features">
+                                    <span class="u-name">剑三茶馆</span>
+                                    <span class="u-desc">剑三攻略心得分享</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col>
+                    <el-col :span="6">
+                        <div class="u-item">
+                            <a href="/bbs/#/joke" target="_blank">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('joke')" />
+                                    </i>
+                                </span>
+                                <span class="u-features">
+                                    <span class="u-name">剑三骚话</span>
+                                    <span class="u-desc">剑三骚话大全</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col>
+                    <el-col :span="6">
+                        <div class="u-item">
+                            <a href="/bbs/#/emotion" target="_blank">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('emotion')" />
+                                    </i>
+                                </span>
+                                <span class="u-features">
+                                    <span class="u-name">剑三表情</span>
+                                    <span class="u-desc">剑三表情大全</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col>
+                    <el-col :span="6">
+                        <div class="u-item">
+                            <a href="/bbs/#/namespace" target="_blank">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('namespace')" />
+                                    </i>
+                                </span>
+                                <span class="u-features">
+                                    <span class="u-name">剑三铭牌</span>
+                                    <span class="u-desc">剑网3.com</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col>
+                </el-row>
+            </div>
+
+            <div class="m-app-index-block">
+                <el-divider content-position="left"><i class="el-icon-box"></i> PVE·门派</el-divider>
+                <el-row :gutter="20">
+                    <el-col :span="6">
+                        <div class="u-item">
+                            <a href="/macro" target="_blank">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('macro')" />
+                                    </i>
+                                </span>
+                                <span class="u-features">
+                                    <span class="u-name">宏库</span>
+                                    <span class="u-desc">剑三全门派宏</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col>
+                    <el-col :span="6">
+                        <div class="u-item">
+                            <a href="/macroeditor" target="_blank">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('macroeditor')" />
+                                    </i>
+                                </span>
+                                <span class="u-features">
+                                    <span class="u-name">宏编辑器</span>
+                                    <span class="u-desc">在线宏编辑器</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col>
+                    <el-col :span="6">
                         <div class="u-item">
                             <a href="./talent">
                                 <span class="u-pic">
                                     <i class="u-icon">
                                         <img svg-inline :src="getIcon('talent')" />
                                     </i>
-                                    <span class="u-name">奇穴模拟器</span>
                                 </span>
                                 <span class="u-features">
-                                    <span class="u-desc">✔️️ 同步游戏最新资料片</span>
-                                    <span>✔️️ 完全模拟游戏界面</span>
-                                    <span>✔️️ 支持不同历史版本</span>
-                                    <span>✔️️ 支持全站正文插入</span>
+                                    <span class="u-name">奇穴模拟器</span>
+                                    <span class="u-desc">奇穴模拟,多版本支持</span>
                                 </span>
                             </a>
                         </div>
                     </el-col>
-                    <el-col :span="4">
+                    <el-col :span="6">
                         <div class="u-item">
-                            <a href="./talent2/">
+                            <a href="./talent2">
                                 <span class="u-pic">
                                     <i class="u-icon">
                                         <img svg-inline :src="getIcon('talent2')" />
                                     </i>
+                                </span>
+                                <span class="u-features">
                                     <span class="u-name">镇派模拟器</span>
-                                </span>
-                                <span class="u-features">
-                                    <span>✔️️ 同步怀旧服</span>
-                                    <span>✔️️ 完全模拟游戏界面</span>
-                                    <span>✔️️ 支持方案分享</span>
-                                    <span>✔️️ 宏栏目联动</span>
+                                    <span class="u-desc">镇派模拟,多版本支持</span>
                                 </span>
                             </a>
                         </div>
                     </el-col>
-                    <el-col :span="4">
+                    <el-col :span="6">
                         <div class="u-item">
-                            <a href="./meridians">
+                            <a href="/bps" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
-                                        <img svg-inline :src="getIcon('meridians')" />
+                                        <img svg-inline :src="getIcon('bps')" />
                                     </i>
-                                    <span class="u-name">经脉模拟器</span>
                                 </span>
                                 <span class="u-features">
-                                    <span class="u-desc">✔️ 原汁原味</span>
-                                    <span>✔️ 经典怀旧</span>
-                                    <span>✔️ 模拟加点</span>
-                                    <span>✔️ 属性日志</span>
+                                    <span class="u-name">白皮书</span>
+                                    <span class="u-desc">剑三全门派攻略</span>
                                 </span>
                             </a>
                         </div>
                     </el-col>
-                    <el-col :span="4">
+                    <el-col :span="6">
                         <div class="u-item">
-                            <a href="./macroeditor">
+                            <a href="/bps/#/raw" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
-                                        <img svg-inline :src="getIcon('macroeditor')" />
+                                        <img svg-inline :src="getIcon('bps-raw')" />
                                     </i>
-                                    <span class="u-name">宏编辑器</span>
                                 </span>
                                 <span class="u-features">
-                                    <span class="u-desc">✔️️ 支持自动补全</span>
-                                    <span>✔️️ 支持语法高亮</span>
-                                    <span>✔️️ 支持中文式一键插入宏语句</span>
-                                    <span>✔️️ 萌新写宏好助手</span>
+                                    <span class="u-name">技能源码</span>
+                                    <span class="u-desc">门派技能原始数据</span>
                                 </span>
                             </a>
                         </div>
                     </el-col>
-
-                    <el-col :span="4">
+                    <el-col :span="6">
                         <div class="u-item">
-                            <a href="/team" target="_blank">
+                            <a href="/bps/#/recipe" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
-                                        <img svg-inline :src="getIcon('team')" />
+                                        <img svg-inline :src="getIcon('bps-recipe')" />
                                     </i>
-                                    <span class="u-name">团队管理</span>
                                 </span>
                                 <span class="u-features">
-                                    <span class="u-desc">✔️ 一键排表</span>
-                                    <span>✔️ 微信报名</span>
-                                    <span>✔️ 游戏内一键加团</span>
-                                    <span>✔️ DKP考勤</span>
+                                    <span class="u-name">秘籍大全</span>
+                                    <span class="u-desc">全门派秘籍大全</span>
                                 </span>
                             </a>
                         </div>
                     </el-col>
-                    <el-col :span="4">
+                    <el-col :span="6">
                         <div class="u-item">
-                            <a href="/dbm" target="_blank">
+                            <a href="/bps/#/collection" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
-                                        <img svg-inline :src="getIcon('dbm')" />
+                                        <img svg-inline :src="getIcon('bps-collection')" />
                                     </i>
-                                    <span class="u-name">数据构建</span>
                                 </span>
                                 <span class="u-features">
-                                    <span class="u-desc">✔️ 自定义未来数据</span>
-                                    <span>✔️ 在线DIY数据</span>
-                                    <span>✔️ 自动分析旧数据</span>
-                                    <span>✔️ 一键云端数据</span>
+                                    <span class="u-name">技能合集</span>
+                                    <span class="u-desc">技能分类集合</span>
                                 </span>
                             </a>
                         </div>
                     </el-col>
-                    <el-col :span="4">
-                        <div class="u-item">
-                            <a href="/rank" target="_blank">
-                                <span class="u-pic">
-                                    <i class="u-icon">
-                                        <img svg-inline :src="getIcon('rank')" />
-                                    </i>
-                                    <span class="u-name">秘境百强</span>
-                                </span>
-                                <span class="u-features">
-                                    <span class="u-desc">✔️ JDT赛事专题</span>
-                                    <span>✔️ 副本挑战最高荣誉</span>
-                                    <span>✔️ 每年两届</span>
-                                    <span>✔️ 丰富奖池</span>
-                                </span>
-                            </a>
-                        </div>
-                    </el-col>
-                    <el-col :span="4">
-                        <div class="u-item">
-                            <a href="/fb/#/skill" target="_blank">
-                                <span class="u-pic">
-                                    <i class="u-icon">
-                                        <img svg-inline :src="getIcon('fbdata')" />
-                                    </i>
-                                    <span class="u-name">副本数据</span>
-                                </span>
-                                <span class="u-features">
-                                    <span class="u-desc">✔️ 副本技能元数据</span>
-                                    <span>✔️ 血量防御全数值一览</span>
-                                    <span>✔️ 开荒进度团必备</span>
-                                    <span>✔️ 冲击五甲</span>
-                                </span>
-                            </a>
-                        </div>
-                    </el-col>
-                    <el-col :span="4">
-                        <div class="u-item">
-                            <a href="/fb/#/drop" target="_blank">
-                                <span class="u-pic">
-                                    <i class="u-icon">
-                                        <img svg-inline :src="getIcon('fbdrop')" />
-                                    </i>
-                                    <span class="u-name">副本掉落</span>
-                                </span>
-                                <span class="u-features">
-                                    <span class="u-desc">✔️ 副本掉落一览</span>
-                                    <span>✔️ 不同难度区分</span>
-                                    <span>✔️ 同步推栏最新</span>
-                                    <span>✔️ 包含家具掉落</span>
-                                </span>
-                            </a>
-                        </div>
-                    </el-col>
-                    <el-col :span="4">
-                        <div class="u-item">
-                            <a href="/fb/#/gem" target="_blank">
-                                <span class="u-pic">
-                                    <i class="u-icon">
-                                        <img svg-inline :src="getIcon('fbgem')" />
-                                    </i>
-                                    <span class="u-name">瑰石大全</span>
-                                </span>
-                                <span class="u-features">
-                                    <span class="u-desc">✔️ 瑰石掉落一览</span>
-                                    <span>✔️ 不同难度区分</span>
-                                    <span>✔️ 同步最新副本</span>
-                                    <span>✔️ 物品完整详情</span>
-                                </span>
-                            </a>
-                        </div>
-                    </el-col>
-                    
-
-                    <el-col :span="4">
+                    <el-col :span="6">
                         <div class="u-item">
                             <a href="/pz" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
                                         <img svg-inline :src="getIcon('pz')" />
                                     </i>
-                                    <span class="u-name">在线配装</span>
                                 </span>
                                 <span class="u-features">
-                                    <span class="u-desc">✔️ 在线配装分享</span>
-                                    <span>✔️ DPS狂魔必备</span>
-                                    <span>✔️ 支持多端</span>
-                                    <span>✔️ 同步游戏最新版本</span>
+                                    <span class="u-name">配装器</span>
+                                    <span class="u-desc">在线配装模拟/对比/分享</span>
                                 </span>
-                                <!-- <img class="u-blank" svg-inline src="./assets/img/logos/blank.svg" /> -->
                             </a>
                         </div>
                     </el-col>
-                    <el-col :span="4">
+                    <el-col :span="6">
                         <div class="u-item">
-                            <a href="./haste/">
+                            <a href="/tool/#/?search=计算器" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
-                                        <img svg-inline :src="getIcon('haste')" />
+                                        <img svg-inline :src="getIcon('dps')" />
                                     </i>
-                                    <span class="u-name">急速阈值</span>
                                 </span>
                                 <span class="u-features">
-                                    <span class="u-desc">✔️ 精确计算加速</span>
-                                    <span>✔️ 同步游戏最新版本</span>
-                                    <span>✔️ 支持门派自带</span>
-                                    <span>✔️ DPS狂魔必备</span>
+                                    <span class="u-name">DPS计算器</span>
+                                    <span class="u-desc">全门派DPS计算器</span>
                                 </span>
                             </a>
                         </div>
                     </el-col>
-                    <el-col :span="4">
+                    <el-col :span="6">
                         <div class="u-item">
                             <a href="/battle" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
                                         <img svg-inline :src="getIcon('battle')" />
                                     </i>
+                                </span>
+                                <span class="u-features">
                                     <span class="u-name">战斗分析</span>
+                                    <span class="u-desc">茗伊团队战斗统计分析</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col>
+                    <el-col :span="6">
+                        <div class="u-item">
+                            <a href="./meridians">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('meridians')" />
+                                    </i>
                                 </span>
                                 <span class="u-features">
-                                    <span class="u-desc">✔️ 团队情况分析</span>
-                                    <span>✔️ BOSS时间轴推导</span>
-                                    <span>✔️ 云端存储</span>
-                                    <span>✔️ 自定义权限</span>
+                                    <span class="u-name">经脉模拟器</span>
+                                    <span class="u-desc">通你妹,原汁原味</span>
                                 </span>
                             </a>
                         </div>
@@ -287,41 +319,170 @@
                 </el-row>
             </div>
 
-            <div class="m-app-index-pvp">
-                <el-divider content-position="left">PVP</el-divider>
+            <div class="m-app-index-block">
+                <el-divider content-position="left"><i class="el-icon-box"></i> PVE·副本</el-divider>
                 <el-row :gutter="20">
-                    <el-col :span="4">
+                    <el-col :span="6">
                         <div class="u-item">
-                            <a href="./sandbox">
+                            <a href="/fb" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
-                                        <img svg-inline :src="getIcon('sandbox')" />
+                                        <img svg-inline :src="getIcon('fb')" />
                                     </i>
-                                    <span class="u-name">阵营沙盘</span>
                                 </span>
                                 <span class="u-features">
-                                    <span class="u-desc">✔️ 全服沙盘查询</span>
-                                    <span>✔️ 攻防路线</span>
-                                    <span>✔️ 据点回溯</span>
-                                    <span>✔️ PVP党必备</span>
+                                    <span class="u-name">副本攻略</span>
+                                    <span class="u-desc">开荒首发机制全解</span>
                                 </span>
                             </a>
                         </div>
                     </el-col>
-                    <el-col :span="4">
+                    <el-col :span="6">
+                        <div class="u-item">
+                            <a href="/jx3dat/#/plugins?subtype=1" target="_blank">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('jx3dat')" />
+                                    </i>
+                                </span>
+                                <span class="u-features">
+                                    <span class="u-name">团控数据</span>
+                                    <span class="u-desc">团队监控数据/订阅号</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col>
+                    <el-col :span="6">
+                        <div class="u-item">
+                            <a href="/dbm" target="_blank">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('dbm')" />
+                                    </i>
+                                </span>
+                                <span class="u-features">
+                                    <span class="u-name">在线构建</span>
+                                    <span class="u-desc">团控数据在线构建</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col>
+                    <el-col :span="6">
+                        <div class="u-item">
+                            <a href="/fb/#/npc" target="_blank">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('fb-boss')" />
+                                    </i>
+                                </span>
+                                <span class="u-features">
+                                    <span class="u-name">首领数据</span>
+                                    <span class="u-desc">BOSS属性一览</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col>
+                    <el-col :span="6">
+                        <div class="u-item">
+                            <a href="/fb/#/skill" target="_blank">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('fb-skill')" />
+                                    </i>
+                                </span>
+                                <span class="u-features">
+                                    <span class="u-name">首领技能</span>
+                                    <span class="u-desc">BOSS技能一览</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col>
+                    <el-col :span="6">
+                        <div class="u-item">
+                            <a href="/fb/#/attr" target="_blank">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('fb-attr')" />
+                                    </i>
+                                </span>
+                                <span class="u-features">
+                                    <span class="u-name">特殊机制</span>
+                                    <span class="u-desc">穿透/穿刺/贯体一览</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col>
+                    <el-col :span="6">
+                        <div class="u-item">
+                            <a href="/fb/#/drop" target="_blank">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('fb-drop')" />
+                                    </i>
+                                </span>
+                                <span class="u-features">
+                                    <span class="u-name">副本掉落</span>
+                                    <span class="u-desc">副本掉落大全</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col>
+                    <el-col :span="6">
+                        <div class="u-item">
+                            <a href="/fb/#/gem" target="_blank">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('fb-gem')" />
+                                    </i>
+                                </span>
+                                <span class="u-features">
+                                    <span class="u-name">副本瑰石</span>
+                                    <span class="u-desc">副本预测掉落,帮会瑰石大全</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col>
+                    <el-col :span="6">
+                        <div class="u-item">
+                            <a href="/fb/#/story" target="_blank">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('fb-story')" />
+                                    </i>
+                                </span>
+                                <span class="u-features">
+                                    <span class="u-name">副本传说</span>
+                                    <span class="u-desc">副本背景故事,官方资料</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col>
+                    <el-col :span="6">
+                        <div class="u-item">
+                            <a href="/fb/#/map" target="_blank">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('fb-map')" />
+                                    </i>
+                                </span>
+                                <span class="u-features">
+                                    <span class="u-name">副本地图</span>
+                                    <span class="u-desc">高清副本地图大全</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col>
+                    <el-col :span="6">
                         <div class="u-item">
                             <a href="/battle" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
                                         <img svg-inline :src="getIcon('battle')" />
                                     </i>
-                                    <span class="u-name">战斗复盘</span>
                                 </span>
                                 <span class="u-features">
-                                    <span class="u-desc">✔️ 战斗日志分析</span>
-                                    <span>✔️ PVE/PVP多维度</span>
-                                    <span>✔️ 云端存储</span>
-                                    <span>✔️ 自定义权限</span>
+                                    <span class="u-name">战斗分析</span>
+                                    <span class="u-desc">茗伊JCL首领战斗分析</span>
                                 </span>
                             </a>
                         </div>
@@ -329,179 +490,299 @@
                 </el-row>
             </div>
 
-            <div class="m-app-index-pvx">
-                <el-divider content-position="left">PVX</el-divider>
+            <div class="m-app-index-block">
+                <el-divider content-position="left"><i class="el-icon-box"></i> PVX·百科</el-divider>
                 <el-row :gutter="20">
-                    <el-col :span="4">
+                    <el-col :span="6">
                         <div class="u-item">
-                            <a href="./servers">
+                            <a href="/cj" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
-                                        <img svg-inline :src="getIcon('servers')" />
+                                        <img svg-inline :src="getIcon('cj')" />
                                     </i>
-                                    <span class="u-name">开服监控</span>
                                 </span>
                                 <span class="u-features">
-                                    <span class="u-desc">✔️ 实时开服状态监控</span>
-                                    <span>✔️ 实时状态无延迟</span>
-                                    <span>✔️ 支持置顶关注</span>
-                                    <span>✔️ 不错过任何机会</span>
+                                    <span class="u-name">成就百科</span>
+                                    <span class="u-desc">最新最全成就百科</span>
                                 </span>
                             </a>
                         </div>
                     </el-col>
-                    <el-col :span="4">
+                    <el-col :span="6">
                         <div class="u-item">
-                            <a href="./price">
+                            <a href="/cj/#/serendipity" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
-                                        <img svg-inline :src="getIcon('price')" />
+                                        <img svg-inline :src="getIcon('serendipity')" />
                                     </i>
-                                    <span class="u-name">金价走势</span>
                                 </span>
                                 <span class="u-features">
-                                    <span class="u-desc">✔️ 基三理财好帮手</span>
-                                    <span>✔️ 官方万宝楼全数据</span>
-                                    <span>✔️ 根据走势选择出入手</span>
-                                    <span>✔️ 全服对比分布一览</span>
+                                    <span class="u-name">奇遇百科</span>
+                                    <span class="u-desc">奇遇百科,奇遇查询</span>
                                 </span>
                             </a>
                         </div>
                     </el-col>
-                    <el-col :span="4">
+                    <el-col :span="6">
                         <div class="u-item">
-                            <a href="./facedata">
+                            <a href="/cj/#/pet" target="_blank">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('pet')" />
+                                    </i>
+                                </span>
+                                <span class="u-features">
+                                    <span class="u-name">宠物百科</span>
+                                    <span class="u-desc">宠物百科,宠物攻略</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col>
+                    <el-col :span="6">
+                        <div class="u-item">
+                            <a href="/item" target="_blank">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('item')" />
+                                    </i>
+                                </span>
+                                <span class="u-features">
+                                    <span class="u-name">物品百科</span>
+                                    <span class="u-desc">物品百科,全服价格</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col>
+                    <el-col :span="6">
+                        <div class="u-item">
+                            <a href="/item/#/plan_list" target="_blank">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('item_plan')" />
+                                    </i>
+                                </span>
+                                <span class="u-features">
+                                    <span class="u-name">物品清单</span>
+                                    <span class="u-desc">自定义清单物品清单</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col>
+                    <el-col :span="6">
+                        <div class="u-item">
+                            <a href="/item/#/cooking" target="_blank">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('cooking')" />
+                                    </i>
+                                </span>
+                                <span class="u-features">
+                                    <span class="u-name">技艺助手</span>
+                                    <span class="u-desc">生活技艺模拟计算</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col>
+                    <el-col :span="6">
+                        <div class="u-item">
+                            <a href="/wiki" target="_blank">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('wiki')" />
+                                    </i>
+                                </span>
+                                <span class="u-features">
+                                    <span class="u-name">江湖百科</span>
+                                    <span class="u-desc">任务/剧情/声望百科</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col>
+                </el-row>
+            </div>
+
+            <div class="m-app-index-block">
+                <el-divider content-position="left"><i class="el-icon-box"></i> PVX·休闲</el-divider>
+                <el-row :gutter="20">
+                    <el-col :span="6">
+                        <div class="u-item">
+                            <a href="/share" target="_blank">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('share')" />
+                                    </i>
+                                </span>
+                                <span class="u-features">
+                                    <span class="u-name">捏脸数据</span>
+                                    <span class="u-desc">捏脸数据下载</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col>
+                    <el-col :span="6">
+                        <div class="u-item">
+                            <a href="/app/facedata" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
                                         <img svg-inline :src="getIcon('facedata')" />
                                     </i>
-                                    <span class="u-name">妆容解析</span>
                                 </span>
                                 <span class="u-features">
-                                    <span class="u-desc">✔️ 怀旧服多端支持</span>
-                                    <span>✔️ 捏脸数据提取分析</span>
-                                    <span>✔️ 自定义修改导出</span>
-                                    <span>✔️ 支持过滤付费数据</span>
+                                    <span class="u-name">妆容解析</span>
+                                    <span class="u-desc">捏脸数据解析,支持双端</span>
                                 </span>
                             </a>
                         </div>
                     </el-col>
-                    <el-col :span="4">
+                    <el-col :span="6">
                         <div class="u-item">
-                            <a href="./flower">
+                            <a href="https://jx3.xoyo.com/zt/2020/09/24/blueprint/#/" target="_blank">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('blueprint')" />
+                                    </i>
+                                </span>
+                                <span class="u-features">
+                                    <span class="u-name">蓝图数据</span>
+                                    <span class="u-desc">家园蓝图下载</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col>
+                    <el-col :span="6">
+                        <div class="u-item">
+                            <a href="/app/furniture" target="_blank">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('furniture')" />
+                                    </i>
+                                </span>
+                                <span class="u-features">
+                                    <span class="u-name">家具大全</span>
+                                    <span class="u-desc">家具数据大全</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col>
+                    <el-col :span="6">
+                        <div class="u-item">
+                            <a href="/app/servers" target="_blank">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('servers')" />
+                                    </i>
+                                </span>
+                                <span class="u-features">
+                                    <span class="u-name">开服监控</span>
+                                    <span class="u-desc">剑三全服务器开服监控</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col>
+                    <el-col :span="6">
+                        <div class="u-item">
+                            <a href="/app/price" target="_blank">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('price')" />
+                                    </i>
+                                </span>
+                                <span class="u-features">
+                                    <span class="u-name">全服金价</span>
+                                    <span class="u-desc">剑三全服务器开服监控</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col>
+                    <el-col :span="6">
+                        <div class="u-item">
+                            <a href="/app/flower" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
                                         <img svg-inline :src="getIcon('flower')" />
                                     </i>
-                                    <span class="u-name">花价查询</span>
                                 </span>
                                 <span class="u-features">
-                                    <span>✔️️ 全区服线路精准数据</span>
-                                    <span>✔️️ 每日更新</span>
-                                    <span>✔️️ 支持关注区服</span>
-                                    <span>✔️️ 支持多模式</span>
+                                    <span class="u-name">家园花价</span>
+                                    <span class="u-desc">全服花价数据</span>
                                 </span>
                             </a>
                         </div>
                     </el-col>
-                    <el-col :span="4">
-                        <div class="u-item">
-                            <a href="./translator">
-                                <span class="u-pic">
-                                    <i class="u-icon">
-                                        <img svg-inline :src="getIcon('translator')" />
-                                    </i>
-                                    <span class="u-name">繁体转换</span>
-                                </span>
-                                <span class="u-features">
-                                    <span class="u-desc">✔️ 國際服專用</span>
-                                    <span>✔️ 標準簡繁轉換</span>
-                                    <span>✔️ 劍網三特殊詞庫</span>
-                                    <span>✔️ 歡迎貢獻詞表</span>
-                                </span>
-                            </a>
-                        </div>
-                    </el-col>
-                    <el-col :span="4">
-                        <div class="u-item">
-                            <a href="./sudoku" target="_blank">
-                                <span class="u-pic">
-                                    <i class="u-icon">
-                                        <img svg-inline src="./assets/img/logos/sudoku.svg" />
-                                    </i>
-                                    <span class="u-name">九宫格计算器</span>
-                                </span>
-                                <span class="u-features">
-                                    <span class="u-desc">✔️ 九宫格小助手</span>
-                                    <span>✔️ 试炼模式</span>
-                                    <span>✔️ 荻花前山模式</span>
-                                    <span>✔️ 附地图指南</span>
-                                </span>
-                            </a>
-                        </div>
-                    </el-col>
-                    <el-col :span="4">
+                    <el-col :span="6">
                         <div class="u-item">
                             <a href="https://j3cx.com/exam/" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
-                                        <img svg-inline :src="getIcon('keju')" />
+                                        <img svg-inline :src="getIcon('exam')" />
                                     </i>
-                                    <span class="u-name">科举题库</span>
                                 </span>
-                                <img class="u-blank" svg-inline src="./assets/img/logos/blank.svg" />
                                 <span class="u-features">
-                                    <span class="u-desc">✔️ 最全科举题库</span>
-                                    <span>✔️ 考试不再挂科</span>
-                                    <span>✔️ 妈妈再也不骂我</span>
-                                    <span>✔️ 深度合作伙伴</span>
-                                </span>
-                            </a>
-                        </div>
-                    </el-col>
-                    <el-col :span="4">
-                        <div class="u-item">
-                            <a href="https://j3cx.com/serendipity" target="_blank">
-                                <span class="u-pic">
-                                    <i class="u-icon">
-                                        <img svg-inline :src="getIcon('qiyu')" />
-                                    </i>
-                                    <span class="u-name">奇遇查询</span>
-                                </span>
-                                <img class="u-blank" svg-inline src="./assets/img/logos/blank.svg" />
-                                <span class="u-features">
-                                    <span class="u-desc">✔️ 在线奇遇查询</span>
-                                    <span>✔️ 查询全服情况</span>
-                                    <span>✔️ 合理推算触发</span>
-                                    <span>✔️ 深度合作伙伴</span>
+                                    <span class="u-name">科举答题</span>
+                                    <span class="u-desc">最新剑三科举题库</span>
                                 </span>
                             </a>
                         </div>
                     </el-col>
                 </el-row>
             </div>
+
+            <div class="m-app-index-block">
+                <el-divider content-position="left"><i class="el-icon-box"></i> PVP·竞技</el-divider>
+                <el-row :gutter="20">
+                    <el-col :span="6">
+                        <div class="u-item">
+                            <a href="/app/sandbox" target="_blank">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('sandbox')" />
+                                    </i>
+                                </span>
+                                <span class="u-features">
+                                    <span class="u-name">沙盘查询</span>
+                                    <span class="u-desc">全服攻防沙盘</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col>
+                    <el-col :span="6">
+                        <div class="u-item">
+                            <a href="/battle" target="_blank">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('battle')" />
+                                    </i>
+                                </span>
+                                <span class="u-features">
+                                    <span class="u-name">战斗分析</span>
+                                    <span class="u-desc">官方战斗统计PVP分析</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col>
+                </el-row>
+            </div>
+
         </div>
     </div>
 </template>
 
 <script>
-import Nav from "@/components/Nav.vue";
-import {__imgPath} from '@jx3box/jx3box-common/data/jx3box.json'
+import { __imgPath } from "@jx3box/jx3box-common/data/jx3box.json";
 export default {
     name: "App",
-    data: function () {
+    data: function() {
         return {};
     },
     computed: {},
     methods: {
-        getIcon(key){
-            return __imgPath + 'image/box/' + key + '.svg'
-        }
+        getIcon(key) {
+            return __imgPath + "image/box/" + key + ".svg";
+        },
     },
     filters: {},
-    mounted: function () {},
+    mounted: function() {},
     components: {
-        // Nav,
     },
 };
 </script>
