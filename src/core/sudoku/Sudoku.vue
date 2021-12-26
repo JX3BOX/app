@@ -240,13 +240,19 @@ export default {
 
             if (this.shList.filter((r) => r).length > 3) {
                 this.shList.forEach((v, i) => {
+                    console.log(v, i)
                     if (v) {
                         enumList.forEach((o, oi) => {
                             o[i] !== +v && enumList.splice(oi, 1);
                         });
                     }
                 });
-                this.shList = enumList[0].map((o, i) => this.shList[i] || o);
+                if (enumList.length) {
+                    this.shList = enumList?.[0]?.map((o, i) => this.shList[i] || o);
+                } else {
+                    this.$message.warning('不存在这种序列')
+                    this.shList = this.$options.data().shList;
+                }
             }
         },
     },
