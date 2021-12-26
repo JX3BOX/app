@@ -1,89 +1,37 @@
 <template>
     <div id="app">
         <Header></Header>
-        <Breadcrumb
-            name="花价查询"
-            slug="flower"
-            root="/app/flower"
-            :feedbackEnable="true"
-            :crumbEnable="true"
-        >
+        <Breadcrumb name="花价查询" slug="flower" root="/app/flower" :feedbackEnable="true" :crumbEnable="true">
             <img slot="logo" svg-inline :src="getIcon('flower')" />
         </Breadcrumb>
         <LeftSidebar :open="false">
             <Nav />
         </LeftSidebar>
-        <Main
-            class="m-flower"
-            :withoutRight="true"
-            :withoutLeft="true"
-            v-loading="loading"
-        >
+        <Main class="m-flower" :withoutRight="true" :withoutLeft="true" v-loading="loading">
             <div class="m-flower-container">
                 <h1 class="m-flower-title">全区服小区花价查询</h1>
-                <el-divider class="m-flower-desc"
-                    >精准数据·居家种田好帮手</el-divider
-                >
+                <el-divider class="m-flower-desc">精准数据·居家种田好帮手</el-divider>
 
                 <div class="m-flower-search">
                     <el-row :gutter="20">
                         <el-col :span="7">
-                            <el-select
-                                class="u-server"
-                                v-model="current_server"
-                                filterable
-                                placeholder="请选择服务器"
-                            >
-                                <el-option
-                                    v-for="item in servers"
-                                    :key="item"
-                                    :label="item"
-                                    :value="item"
-                                >
-                                </el-option>
+                            <el-select class="u-server" v-model="current_server" filterable placeholder="请选择服务器">
+                                <el-option v-for="item in servers" :key="item" :label="item" :value="item"> </el-option>
                             </el-select>
                         </el-col>
                         <el-col :span="7">
-                            <el-select
-                                class="u-server"
-                                v-model="current_map"
-                                filterable
-                                placeholder="请选择小区"
-                            >
-                                <el-option
-                                    v-for="item in maps"
-                                    :key="item"
-                                    :label="item"
-                                    :value="item"
-                                >
-                                </el-option>
+                            <el-select class="u-server" v-model="current_map" filterable placeholder="请选择小区">
+                                <el-option v-for="item in maps" :key="item" :label="item" :value="item"> </el-option>
                             </el-select>
                         </el-col>
                         <el-col :span="7">
-                            <el-select
-                                class="u-type"
-                                v-model="type"
-                                placeholder="请选择花型"
-                            >
+                            <el-select class="u-type" v-model="type" placeholder="请选择花型">
                                 <el-option label="全部" value=""></el-option>
-                                <el-option
-                                    v-for="item in types"
-                                    :key="item.name"
-                                    :label="item.name"
-                                    :value="item.key"
-                                >
-                                </el-option>
+                                <el-option v-for="item in types" :key="item.name" :label="item.name" :value="item.key"> </el-option>
                             </el-select>
                         </el-col>
                         <el-col :span="3">
-                            <el-button
-                                class="u-button"
-                                type="primary"
-                                icon="el-icon-search"
-                                :disabled="isGuest"
-                                @click="loadData"
-                                >查询</el-button
-                            >
+                            <el-button class="u-button" type="primary" icon="el-icon-search" :disabled="isGuest" @click="loadData">查询</el-button>
                         </el-col>
                     </el-row>
                 </div>
@@ -91,32 +39,13 @@
                 <div class="m-flower-all">
                     <div class="m-flower-result" v-if="isTraditional">
                         <el-row :gutter="40" v-if="rank && rank.length">
-                            <el-col
-                                :span="12"
-                                class="u-flower"
-                                v-for="(item, i) in rank"
-                                :key="i"
-                                :class="{ isHidden: item.isHidden }"
-                            >
+                            <el-col :span="12" class="u-flower" v-for="(item, i) in rank" :key="i" :class="{ isHidden: item.isHidden }">
                                 <span class="u-title">
                                     <span class="u-name">{{ item.name }}</span>
                                     <span class="u-icons">
-                                        <i
-                                            class="u-icon"
-                                            v-for="(icon, key) in flowers[
-                                                item.name
-                                            ]"
-                                            :key="key"
-                                        >
-                                            <el-tooltip
-                                                effect="dark"
-                                                :content="icon.color"
-                                                placement="top"
-                                            >
-                                                <img
-                                                    :src="icon.icon | iconURL"
-                                                    :alt="icon.color"
-                                                />
+                                        <i class="u-icon" v-for="(icon, key) in flowers[item.name]" :key="key">
+                                            <el-tooltip effect="dark" :content="icon.color" placement="top">
+                                                <img :src="icon.icon | iconURL" :alt="icon.color" />
                                             </el-tooltip>
                                         </i>
                                     </span>
@@ -141,32 +70,13 @@
                     </div>
                     <div class="m-flower-result" v-else>
                         <el-row :gutter="40" v-if="data && data.length">
-                            <el-col
-                                :span="12"
-                                class="u-flower"
-                                v-for="(item, i) in data"
-                                :key="i"
-                                :class="{ isHidden: item.isHidden }"
-                            >
+                            <el-col :span="12" class="u-flower" v-for="(item, i) in data" :key="i" :class="{ isHidden: item.isHidden }">
                                 <span class="u-title">
                                     <span class="u-name">{{ item.name }}</span>
                                     <span class="u-icons">
-                                        <i
-                                            class="u-icon"
-                                            v-for="(icon, key) in flowers[
-                                                item._name
-                                            ]"
-                                            :key="key"
-                                        >
-                                            <el-tooltip
-                                                effect="dark"
-                                                :content="icon.color"
-                                                placement="top"
-                                            >
-                                                <img
-                                                    :src="icon.icon | iconURL"
-                                                    :alt="icon.color"
-                                                />
+                                        <i class="u-icon" v-for="(icon, key) in flowers[item._name]" :key="key">
+                                            <el-tooltip effect="dark" :content="icon.color" placement="top">
+                                                <img :src="icon.icon | iconURL" :alt="icon.color" />
                                             </el-tooltip>
                                         </i>
                                     </span>
@@ -199,9 +109,9 @@
 <script>
 import User from "@jx3box/jx3box-common/js/user";
 import Nav from "@/components/Nav.vue";
-import { getFlower,getFlowerRank } from "@/service/flower";
+import { getFlower, getFlowerRank } from "@/service/flower";
 import { setFlowerServer, getProfile } from "@/service/server";
-import dateFormat from "@/utils/moment";
+import {showDate as dateFormat} from "@jx3box/jx3box-common/js/moment";
 import servers from "@jx3box/jx3box-data/data/server/flower_server.json";
 import colors from "./colors.json";
 import flowers from "./flowers.json";
@@ -211,7 +121,7 @@ import { __iconPath, __ossRoot } from "@jx3box/jx3box-common/data/jx3box.json";
 import traditional_servers from "@jx3box/jx3box-data/data/server/server_international.json";
 import dict from "./dict.json";
 import maps from "./maps.json";
-import {__imgPath} from '@jx3box/jx3box-common/data/jx3box.json'
+import { __imgPath } from "@jx3box/jx3box-common/data/jx3box.json";
 export default {
     name: "Flower",
     props: [],
@@ -334,8 +244,8 @@ export default {
         },
     },
     methods: {
-        getIcon(key){
-            return __imgPath + 'image/box/' + key + '.svg'
+        getIcon(key) {
+            return __imgPath + "image/box/" + key + ".svg";
         },
         color: function(level) {
             if (this.type) {
@@ -374,9 +284,7 @@ export default {
 
                         let list = [];
                         for (let name in flowers) {
-                            let lines = data[name]
-                                ? data[name]["maxLine"].slice(0, 3)
-                                : [];
+                            let lines = data[name] ? data[name]["maxLine"].slice(0, 3) : [];
                             lines.forEach((item, i) => {
                                 lines[i] = item && item.replace(" 线", "");
                             });
@@ -504,8 +412,7 @@ export default {
                 });
             } else {
                 console.log("1.b.未登录,加载最后一次服务器");
-                this.current_server =
-                    localStorage.getItem("flower_server") || "蝶恋花";
+                this.current_server = localStorage.getItem("flower_server") || "蝶恋花";
             }
         }
     },

@@ -3,7 +3,7 @@
         <!-- logo -->
         <a class="u-channel" :href="APP_INFO.link">
             <slot name="logo"></slot>
-            <span class="u-title">{{APP_INFO.name}}</span>
+            <span class="u-title">{{ APP_INFO.name }}</span>
         </a>
         <!-- stat -->
         <div class="u-stat">
@@ -15,16 +15,16 @@
 <script>
 export default {
     name: "Info",
-    props: ['APP_INFO'],
+    props: ["APP_INFO"],
     data: function() {
         return {};
     },
     computed: {},
     methods: {},
-    mounted: function() {}
+    mounted: function() {},
 };
 </script>
 
 <style lang="less">
-    @import '../assets/css/components/info.less';
+@import "../assets/css/components/info.less";
 </style>
