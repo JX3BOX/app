@@ -596,15 +596,17 @@ export default {
             // let serverUrl = dataPath('server/server.json');
             // let getAllServers = axios(serverUrl, 'GET');
 
-            let priceUrl = "https://box.arkwish.com/api/gold";
-            // let priceUrl = "https://spider.jx3box.com/jx3price";
+            // let priceUrl = "https://box.arkwish.com/api/gold";
             // 准备参数
-            let ts = Math.round(new Date().getTime() / 1000);
-            let access_token = md5(`${ts}secret`);
-            let params = {
-                ts: ts,
-                access_token: access_token,
-            };
+            // let ts = Math.round(new Date().getTime() / 1000);
+            // let access_token = md5(`${ts}secret`);
+            // let params = {
+            //     ts: ts,
+            //     access_token: access_token,
+            // };
+
+            let priceUrl = "https://spider.jx3box.com/jx3price";
+            let params = {}
             let getAllPriceData = axios(priceUrl, "GET", false, {}, {}, params);
 
             let getUserServerSaved = this.defaultServer;
