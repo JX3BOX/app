@@ -82,7 +82,7 @@
                     </el-tab-pane>
                     <el-tab-pane label="NPC" name="npc">
                         <span slot="label">
-                            <img class="u-icon" svg-inline src="../../assets/img/logos/skull.svg" />
+                            <img class="u-icon" svg-inline src="../../assets/img/database/skull.svg" />
                             <b>NPC</b>
                             <em class="u-count">{{ stat.npc }}</em>
                         </span>

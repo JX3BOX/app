@@ -2,7 +2,7 @@
     <div id="app">
         <Header></Header>
         <Breadcrumb name="九宫格计算器" slug="sudoku" root="/app/sudoku" :feedbackEnable="true" :crumbEnable="false">
-            <img slot="logo" svg-inline src="../../assets/img/logos/sudoku.svg" />
+            <img slot="logo" svg-inline src="../../assets/img/sudoku/sudoku.svg" />
         </Breadcrumb>
         <LeftSidebar :open="false">
             <Nav />

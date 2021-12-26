@@ -10,7 +10,7 @@
             <img
                 slot="logo"
                 svg-inline
-                src="../../assets/img/logos/flower.svg"
+                src="../../assets/img/logo.svg"
             />
             <div class="m-info"></div>
         </Breadcrumb>

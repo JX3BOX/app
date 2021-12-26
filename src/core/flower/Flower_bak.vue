@@ -8,11 +8,11 @@
             :feedbackEnable="true"
             :crumbEnable="true"
         >
-            <img
+            <!-- <img
                 slot="logo"
                 svg-inline
                 src="../../assets/img/logos/flower.svg"
-            />
+            /> -->
         </Breadcrumb>
         <LeftSidebar :open="false">
             <Nav />

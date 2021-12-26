@@ -303,7 +303,37 @@
                     </el-col>
                     <el-col :span="6">
                         <div class="u-item">
-                            <a href="./meridians">
+                            <a href="/bbs/#/collection">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('collection')" />
+                                    </i>
+                                </span>
+                                <span class="u-features">
+                                    <span class="u-name">剑三小册</span>
+                                    <span class="u-desc">文集小册</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col>
+                    <el-col :span="6">
+                        <div class="u-item">
+                            <a href="/bbs/#/exam">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('exam')" />
+                                    </i>
+                                </span>
+                                <span class="u-features">
+                                    <span class="u-name">剑三考试</span>
+                                    <span class="u-desc">趣味题目/试卷</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col>
+                    <el-col :span="6">
+                        <div class="u-item">
+                            <a href="/app/meridians" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
                                         <img svg-inline :src="getIcon('meridians')" />
@@ -339,15 +369,30 @@
                     </el-col>
                     <el-col :span="6">
                         <div class="u-item">
-                            <a href="/jx3dat/#/plugins?subtype=1" target="_blank">
+                            <a href="/rank" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
-                                        <img svg-inline :src="getIcon('jx3dat')" />
+                                        <img svg-inline :src="getIcon('rank')" />
                                     </i>
                                 </span>
                                 <span class="u-features">
-                                    <span class="u-name">团控数据</span>
-                                    <span class="u-desc">团队监控数据/订阅号</span>
+                                    <span class="u-name">秘境百强</span>
+                                    <span class="u-desc">剑三秘境百强榜</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col>
+                    <el-col :span="6">
+                        <div class="u-item">
+                            <a href="/team" target="_blank">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('team')" />
+                                    </i>
+                                </span>
+                                <span class="u-features">
+                                    <span class="u-name">团队平台</span>
+                                    <span class="u-desc">团队管理/快照/排表</span>
                                 </span>
                             </a>
                         </div>
@@ -513,12 +558,27 @@
                             <a href="/cj/#/serendipity" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
-                                        <img svg-inline :src="getIcon('serendipity')" />
+                                        <img svg-inline :src="getIcon('qiyu')" />
                                     </i>
                                 </span>
                                 <span class="u-features">
                                     <span class="u-name">奇遇百科</span>
-                                    <span class="u-desc">奇遇百科,奇遇查询</span>
+                                    <span class="u-desc">奇遇百科攻略</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col>
+                    <el-col :span="6">
+                        <div class="u-item">
+                            <a href="https://j3cx.com/serendipity" target="_blank">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('qiyu')" />
+                                    </i>
+                                </span>
+                                <span class="u-features">
+                                    <span class="u-name">奇遇查询</span>
+                                    <span class="u-desc">全服奇遇查询</span>
                                 </span>
                             </a>
                         </div>
@@ -588,7 +648,7 @@
                             <a href="/wiki" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
-                                        <img svg-inline :src="getIcon('wiki')" />
+                                        <img svg-inline :src="getIcon('knowledge')" />
                                     </i>
                                 </span>
                                 <span class="u-features">
@@ -714,7 +774,7 @@
                             <a href="https://j3cx.com/exam/" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
-                                        <img svg-inline :src="getIcon('exam')" />
+                                        <img svg-inline :src="getIcon('keju')" />
                                     </i>
                                 </span>
                                 <span class="u-features">
@@ -777,6 +837,7 @@ export default {
     computed: {},
     methods: {
         getIcon(key) {
+            // return `/logos/${key}.svg`;
             return __imgPath + "image/box/" + key + ".svg";
         },
     },
