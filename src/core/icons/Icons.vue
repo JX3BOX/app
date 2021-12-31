@@ -143,14 +143,13 @@
 </template>
 
 <script>
-import Info from "@/components/Info.vue";
 import Nav from "@/components/Nav.vue";
 import { axios, realUrl } from "@/service/api.js";
 import { JX3BOX } from "@jx3box/jx3box-common";
 import User from "@jx3box/jx3box-common/js/user.js";
 import { getIconsByName, getMyFavIcons, setMyFavIcons } from "@/service/icons.js";
 import default_list from "./default.json";
-import { __imgPath } from "@jx3box/jx3box-common/data/jx3box.json";
+import { __imgPath,__iconPath } from "@jx3box/jx3box-common/data/jx3box.json";
 export default {
     name: "Icons",
     data: function() {
@@ -159,7 +158,7 @@ export default {
             searchIconInput: "",
             iconsList: [],
             clickedIndex: -1,
-            EmojiPath: JX3BOX.__ossMirror + "emotion/official_mini/",
+            EmojiPath: __iconPath + "emotion/emotions/",
             faviconsList: null,
             localFaviconsList: [],
             isSynchronizing: false,

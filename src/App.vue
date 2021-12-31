@@ -318,7 +318,7 @@
                     </el-col>
                     <el-col :span="6">
                         <div class="u-item">
-                            <a href="/bbs/#/exam" target="_blank">
+                            <a href="/exam" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
                                         <img svg-inline :src="getIcon('exam')" />
