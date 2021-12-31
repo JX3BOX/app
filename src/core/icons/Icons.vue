@@ -472,5 +472,5 @@ export default {
 </script>
 
 <style lang="less">
-@import "../../assets/css/icons.less";
+@import "../../assets/css/icons_old.less";
 </style>
