@@ -13,10 +13,10 @@
 				<div class="m-icons-box">
 					<el-tabs v-model="activeTabName" type="card">
 						<el-tab-pane label="图标库" name="icon">
-							<IconsSearch :list="searchList" :favList="favList" :client="client" @onSearch="onSearch" />
+							<IconsSearch :list="searchData" @onSearch="onSearch" />
 						</el-tab-pane>
 						<el-tab-pane label="收藏图标" name="favicon">
-							<IconsFav :list="favList" />
+							<IconsFav :list="favData" @onSearch="onSearch" />
 						</el-tab-pane>
 						<el-tab-pane label="表情包" name="emoji">
 							<IconsEmo />
@@ -57,7 +57,21 @@ export default {
 			return User.isLogin() ? User.getInfo().uid : 0;
 		},
 		localFavList: function () {
-			return [];
+			return window.localStorage.getItem("favicons").split(",") || [];
+		},
+		searchData: function () {
+			return {
+				list: this.searchList,
+				type: this.client,
+				favList: this.favList,
+			};
+		},
+		favData: function () {
+			return {
+				list: this.favList,
+				type: this.client,
+				favList: this.favList,
+			};
 		},
 	},
 	methods: {
@@ -71,6 +85,7 @@ export default {
 				this.searchKey = data;
 			} else {
 				this.favList.includes(data.val) ? (this.favList = this.favList.filter((l) => l !== data.val)) : this.favList.push(data.val);
+				this.setIcons();
 			}
 		},
 		async getSearchData(query) {
@@ -165,23 +180,46 @@ export default {
 							// } else {
 							//     this.faviconsList = serverValue.split(",");
 							// }
-							this.favList = serverValue.split(",");
+							let list = serverValue.split(",");
+							list = list.concat(this.localFavList);
+							this.favList = list.filter((l) => l);
+							console.log(this.favList, "serve");
 						} else {
 							this.favList = [];
 						}
 					})
 					.catch((e) => {
-						this.favList = this.localFaviconsList;
+						this.favList = this.localFavList;
 					});
 			} else {
 				// 本地读取
-				this.favList = this.localFaviconsList;
+				this.favList = this.localFavList;
+			}
+		},
+		setIcons() {
+			if (this.uid) {
+				// 保存到服务器
+				setMyFavIcons(this.favList.join(","), this.client)
+					.then((res) => {})
+					.catch((e) => {
+						this.setFavIcons();
+					})
+					.finally(() => {});
+			} else {
+				this.setFavIcons();
+			}
+		},
+		setFavIcons() {
+			if (window.localStorage) {
+				let names = this.favList.join(",");
+				localStorage.setItem("favicons", names);
 			}
 		},
 	},
 	filters: {},
 	mounted: function () {
 		this.searchList = default_list;
+		this.getFavIcons();
 	},
 	components: {
 		Nav,

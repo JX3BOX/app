@@ -18,33 +18,19 @@
 		<!-- 提示信息 -->
 		<div class="m-icons-tips">
 			<el-alert v-if="isNewbie" title="以下为部分图标展示，请在上方自定义搜索范围，点击图标即可收藏。" type="warning" center show-icon></el-alert>
-			<el-alert v-if="list.length < 1" title="没有找到对应的图标，请重新输入关键词搜索图标。" type="info" center show-icon></el-alert>
+			<el-alert v-if="list.list.length < 1" title="没有找到对应的图标，请重新输入关键词搜索图标。" type="info" center show-icon></el-alert>
 		</div>
 
-		<!-- 展示图标 -->
-		<div :gutter="2" class="m-iconsBox">
-			<div class="u-icons-item" :span="1" v-for="(icon, index) in list" :key="index" @click="handleAddFavorite(icon)">
-				<div class="u-pic">
-					<el-image class="u-img" :src="iconPath(icon)" lazy>
-						<i slot="error" class="el-icon-warning-outline u-error"></i>
-					</el-image>
-					<el-tooltip class="u-love" :disabled="!icon.id" :content="iconName(icon)" placement="top-start">
-						<i class="w-heart" :class="{ 'w-heart-animation': handleHeart(icon) }"></i>
-					</el-tooltip>
-				</div>
-
-				<span>{{ iconId(icon) }}</span>
-			</div>
-		</div>
+		<IconsMatrix :list="list" @onFav="onFav" />
 	</div>
 </template>
 <script>
-import { JX3BOX } from "@jx3box/jx3box-common";
+import IconsMatrix from "./icons_matrix.vue";
 export default {
 	name: "demo",
-	props: ["list", "client", "favList"],
+	props: ["list"],
 	components: {
-		//demo
+		IconsMatrix,
 	},
 	data: function () {
 		return {
@@ -58,26 +44,11 @@ export default {
 		onSearch() {
 			this.$emit("onSearch", this.search);
 		},
+		onFav(val) {
+			this.$emit("onSearch", val);
+		},
 		useSearchIcon() {
 			this.isNewbie = false;
-		},
-		iconPath(val) {
-			val = this.iconId(val);
-			return this.type == "origin" ? JX3BOX.__iconPath + "origin_icon/" : JX3BOX.__iconPath + "icon/" + val + ".png";
-		},
-		handleAddFavorite(val) {
-			val = this.iconId(val);
-			this.$emit("onSearch", { type: "fav", val });
-		},
-		handleHeart(icon) {
-			icon = this.iconId(icon);
-			if (this.favList.includes(icon)) return true;
-		},
-		iconId(icon) {
-			return typeof icon == "object" ? icon.id : String(icon);
-		},
-		iconName(icon) {
-			return typeof icon == "object" ? icon.name : String(icon);
 		},
 	},
 	watch: {

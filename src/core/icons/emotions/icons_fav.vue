@@ -1,28 +1,31 @@
 <template>
-    <div class="m-icons-fav">
-    fav
-    </div>
+	<div class="m-icons-fav">
+		<IconsMatrix :list="list" :favList="favList" @onFav="onFav" v-if="list" />
+	</div>
 </template>
 <script>
-import { getIconsByName, getMyFavIcons, setMyFavIcons } from "@/service/icons.js";
+import IconsMatrix from "./icons_matrix.vue";
 export default {
-    name: 'demo',
-    props: ['list'],
-    components: {
-       //demo
-    },
-    data: function () {
-        return {
-            mode: '',
-        };
-    },
-    computed: {},
-    watch: {},
-    methods: {},
-    filters: {},
-    created: function () {},
-    mounted: function () {},
+	name: "demo",
+	props: ["list", "favList"],
+	components: {
+		IconsMatrix,
+	},
+	data: function () {
+		return {
+			mode: "",
+		};
+	},
+	computed: {},
+	watch: {},
+	methods: {
+		onFav(val) {
+			this.$emit("onSearch", val);
+		},
+	},
+	filters: {},
+	created: function () {},
+	mounted: function () {},
 };
 </script>
-<style lang='less'>
-</style>
+<style lang="less"></style>
