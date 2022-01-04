@@ -16,7 +16,7 @@
 <script>
 import { JX3BOX } from "@jx3box/jx3box-common";
 export default {
-	name: "demo",
+	name: "matrix",
 	props: ["list"],
 	components: {
 		//demo
@@ -58,5 +58,4 @@ export default {
 	created: function () {},
 	mounted: function () {},
 };
-</script>
-<style lang="less"></style>
+</script> 

@@ -6,7 +6,7 @@
 <script>
 import IconsMatrix from "./icons_matrix.vue";
 export default {
-	name: "demo",
+	name: "fav",
 	props: ["list", "favList"],
 	components: {
 		IconsMatrix,
@@ -27,5 +27,4 @@ export default {
 	created: function () {},
 	mounted: function () {},
 };
-</script>
-<style lang="less"></style>
+</script> 

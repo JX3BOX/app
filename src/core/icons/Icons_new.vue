@@ -57,7 +57,7 @@ export default {
 			return User.isLogin() ? User.getInfo().uid : 0;
 		},
 		localFavList: function () {
-			return window.localStorage.getItem("favicons").split(",") || [];
+			return window.localStorage.getItem("favicons")?.split(",") || [];
 		},
 		searchData: function () {
 			return {
@@ -158,7 +158,7 @@ export default {
 					this.searchList = tmpList;
 				})
 				.catch((e) => {
-					// this.getFromLocal();
+					this.favList = this.localFavList;
 				});
 		},
 		getFavIcons() {
@@ -182,8 +182,7 @@ export default {
 							// }
 							let list = serverValue.split(",");
 							list = list.concat(this.localFavList);
-							this.favList = list.filter((l) => l);
-							console.log(this.favList, "serve");
+							this.favList = [...new Set(list)];
 						} else {
 							this.favList = [];
 						}
@@ -204,7 +203,9 @@ export default {
 					.catch((e) => {
 						this.setFavIcons();
 					})
-					.finally(() => {});
+					.finally(() => {
+						this.setFavIcons();
+					});
 			} else {
 				this.setFavIcons();
 			}
@@ -212,7 +213,7 @@ export default {
 		setFavIcons() {
 			if (window.localStorage) {
 				let names = this.favList.join(",");
-				localStorage.setItem("favicons", names);
+				window.localStorage.setItem("favicons", names);
 			}
 		},
 	},

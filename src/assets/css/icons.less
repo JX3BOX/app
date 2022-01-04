@@ -114,83 +114,6 @@ ul li {
 	.mb(10px);
 }
 
-// emoji
-.m-emotion-nav {
-	.mt(10px);
-	list-style: none;
-	.clearfix;
-	li {
-		border: 1px solid #eee;
-		.r(4px);
-		.fz(15px, 30px);
-		padding: 0 20px;
-		.fl;
-		.w(140px);
-		.x;
-		span {
-			color: #777;
-			.fz(13px);
-			.ml(5px);
-		}
-		.pointer;
-		.mr(10px);
-		.mb(10px);
-
-		&.active,
-		&:hover {
-			background-color: #fafafa;
-		}
-	}
-}
-@media screen and (max-width: @ipad) {
-	.m-emotion-nav {
-		.none;
-	}
-}
-.m-emotion-selection {
-	.mt(10px);
-	.none;
-}
-@media screen and (max-width: @ipad) {
-	.m-emotion-selection {
-		.db;
-	}
-}
-.m-emotion-list {
-	list-style: none;
-	.clearfix;
-	li {
-		padding: 10px;
-		.fl;
-	}
-}
-.btn-download-emoji {
-	.pr;
-	.db;
-	.auto(x);
-	i {
-		.pa;
-		.fz(22px);
-		top: 50%;
-		transform: translateY(-50%);
-	}
-	.el-icon-loading {
-		top: 30%;
-	}
-}
-
-.m-emotion-down {
-	.dbi;
-	.x;
-	.ml(28px);
-	.el-icon-cownload {
-		font-size: 22px;
-	}
-	b {
-		font-weight: 300;
-	}
-}
-
 // 分割线
 // 公共
 .el-link {
@@ -259,4 +182,85 @@ ul li {
 	content: "";
 	display: table;
 	clear: both;
+}
+
+// emoji
+.m-icons-nav,
+.m-icons-list {
+	margin: 10px 0 20px 0;
+	display: flex;
+	flex-wrap: wrap;
+}
+.m-icons-nav {
+	.u-btn {
+		.fz(15px, 30px);
+		.w(20%);
+		.x;
+		padding: 5px 10px;
+		box-sizing: border-box;
+		.pointer;
+
+		span {
+			.fz(13px);
+			.db;
+			.full;
+			.r(4px);
+			.color(#3d454d);
+			border: 1px solid #eee;
+			b {
+				color: #777;
+				font-weight: normal;
+			}
+		}
+		&.active span,
+		&:hover span {
+			background-color: #fafafa;
+		}
+	}
+}
+.m-icons-list{
+    .u-img{
+        padding: 10px;
+    }
+}
+@media screen and (max-width: @ipad) {
+	.m-emotion-nav {
+		.none;
+	}
+}
+.m-emotion-selection {
+	.mt(10px);
+	.none;
+}
+@media screen and (max-width: @ipad) {
+	.m-emotion-selection {
+		.db;
+	}
+}
+ 
+.btn-download-emoji {
+	.pr;
+	.db;
+	.auto(x);
+	i {
+		.pa;
+		.fz(22px);
+		top: 50%;
+		transform: translateY(-50%);
+	}
+	.el-icon-loading {
+		top: 30%;
+	}
+}
+
+.m-emotion-down {
+	.dbi;
+	.x;
+	.ml(28px);
+	.el-icon-cownload {
+		font-size: 22px;
+	}
+	b {
+		font-weight: 300;
+	}
 }
