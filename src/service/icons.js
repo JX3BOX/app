@@ -1,11 +1,10 @@
 import axios from "axios";
-import { $cms } from "@jx3box/jx3box-common/js/https";
-import { __node } from "@jx3box/jx3box-common/data/jx3box.json";
-import { JX3BOX } from "@jx3box/jx3box-common";
+import { $cms, $node } from "@jx3box/jx3box-common/js/https";
+import { __staticPath } from "@jx3box/jx3box-common/data/jx3box.json";
 
 function getIconsByName(str, client = "std") {
-	return axios
-		.get(`${__node}icon/name/${str}`, {
+	return $node()
+		.get(`/icon/name/${str}`, {
 			params: {
 				client: client,
 			},
@@ -48,7 +47,7 @@ function setMyFavIcons(data, client = "std") {
 }
 
 function getEmoList() {
-	return axios.get(JX3BOX.__staticPath.jsdelivr + `jx3-icon@1.1.0/emotion.json`).then((res) => {
+	return axios.get(__staticPath.jsdelivr + `jx3-icon@1.1.0/emotion.json`).then((res) => {
 		return res.data;
 	});
 }
