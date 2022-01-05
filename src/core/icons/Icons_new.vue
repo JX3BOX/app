@@ -148,7 +148,9 @@ export default {
 				.then((res) => {
 					let tmpList = [];
 					let idList = [];
-					res.item.forEach((e) => {
+					let list = [];
+					list = list.concat(res.item, res.skill, res.buff);
+					list.forEach((e) => {
 						let iconId = e.iconID + "";
 						if (!idList.includes(iconId)) {
 							idList.push(iconId);
