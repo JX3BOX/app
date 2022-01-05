@@ -13,10 +13,10 @@
 				<div class="m-icons-box">
 					<el-tabs v-model="activeTabName" type="card">
 						<el-tab-pane label="图标库" name="icon">
-							<IconsSearch :list="searchData" @onSearch="onSearch" />
+							<IconsSearch :iconData="searchData" @onSearch="onSearch" />
 						</el-tab-pane>
 						<el-tab-pane label="收藏图标" name="favicon">
-							<IconsFav :list="favData" @onSearch="onSearch" />
+							<IconsFav :iconData="favData" @onSearch="onSearch" />
 						</el-tab-pane>
 						<el-tab-pane label="表情包" name="emoji">
 							<IconsEmo />
@@ -195,20 +195,11 @@ export default {
 				this.favList = this.localFavList;
 			}
 		},
-		setIcons() {
+		async setIcons() {
 			if (this.uid) {
-				// 保存到服务器
-				setMyFavIcons(this.favList.join(","), this.client)
-					.then((res) => {})
-					.catch((e) => {
-						this.setFavIcons();
-					})
-					.finally(() => {
-						this.setFavIcons();
-					});
-			} else {
-				this.setFavIcons();
+				await setMyFavIcons(this.favList.join(","), this.client);
 			}
+			this.setFavIcons();
 		},
 		setFavIcons() {
 			if (window.localStorage) {

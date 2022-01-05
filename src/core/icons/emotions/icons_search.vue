@@ -18,17 +18,17 @@
 		<!-- 提示信息 -->
 		<div class="m-icons-tips">
 			<el-alert v-if="isNewbie" title="以下为部分图标展示，请在上方自定义搜索范围，点击图标即可收藏。" type="warning" center show-icon></el-alert>
-			<el-alert v-if="list.list.length < 1" title="没有找到对应的图标，请重新输入关键词搜索图标。" type="info" center show-icon></el-alert>
+			<el-alert v-if="!iconData.list.length" title="没有找到对应的图标，请重新输入关键词搜索图标。" type="info" center show-icon></el-alert>
 		</div>
 
-		<IconsMatrix :list="list" @onFav="onFav" />
+		<IconsMatrix :iconData="iconData" @onFav="onFav" />
 	</div>
 </template>
 <script>
 import IconsMatrix from "./icons_matrix.vue";
 export default {
 	name: "search",
-	props: ["list"],
+	props: ["iconData"],
 	components: {
 		IconsMatrix,
 	},
@@ -36,7 +36,6 @@ export default {
 		return {
 			search: "",
 			isNewbie: true,
-			noResult: false,
 		};
 	},
 	computed: {},
@@ -51,13 +50,9 @@ export default {
 			this.isNewbie = false;
 		},
 	},
-	watch: {
-		list(val) {
-			if (!val) this.noResult = true;
-		},
-	},
+	watch: {},
 	filters: {},
 	created: function () {},
 	mounted: function () {},
 };
-</script> 
+</script>
