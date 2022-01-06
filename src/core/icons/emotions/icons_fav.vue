@@ -1,23 +1,21 @@
 <template>
-	<div class="m-icons-fav" v-if="iconData">
-		<IconsMatrix :iconData="iconData" @onFav="onFav" />
+	<div class="m-icons-fav">
+		<IconsMatrix />
 	</div>
 </template>
 <script>
 import IconsMatrix from "./icons_matrix.vue";
 export default {
 	name: "fav",
-	props: ["iconData"],
+	props: [],
 	components: {
 		IconsMatrix,
 	},
 	data: function () {
-		return {};
+		return {
+			list: [],
+		};
 	},
-	methods: {
-		onFav(val) {
-			this.$emit("onSearch", val);
-		},
-	},
+	methods: {},
 };
 </script>

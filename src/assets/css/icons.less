@@ -45,7 +45,8 @@
 	padding-left: 20px;
 }
 .m-icons-tips {
-	padding: 10px 0;
+	flex: 1 1 100%;
+	.mb(20px);
 }
 
 ul,
@@ -67,30 +68,37 @@ ul li {
 .m-icons-matrix {
 	display: flex;
 	flex-wrap: wrap;
-	width: 1200px;
-	padding: 0 6px;
+	.mt(20px);
+	// width: 1220px;
+
 	.auto(x);
 	.u-icons-item {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		margin: 10px 5px;
+		.x;
+		margin: 0px 5px 10px 5px;
+
 		.u-pic,
 		.u-img,
 		.u-love {
-			.size(56px);
-			.r(6px);
 			.pointer;
+			.size(50px);
+			.r(6px);
 		}
 		.u-pic {
 			.pr;
 			border: 1px solid #eee;
-			box-sizing: border-box;
 			.u-error {
 				.db;
 				color: #bcbcbc;
-				line-height: 56px;
+				line-height: 50px;
 				.x;
+			}
+			.u-remove {
+				.pa;
+				.rt(-4px);
+				.u-icon;
+				.u-icon-close;
+				.size(16px);
+				.pointer;
 			}
 		}
 		.u-love {
@@ -106,6 +114,12 @@ ul li {
 			.u-love {
 				.tm(1);
 			}
+		}
+
+		.el-image__inner {
+			.pa;
+			.lt(-1px);
+			.full;
 		}
 	}
 }
@@ -140,8 +154,8 @@ ul li {
 	background-position: left;
 	background-repeat: no-repeat;
 	cursor: pointer;
-	.size(56px);
-	background-size: 1624px;
+	.size(50px);
+	background-size: 1450px; //实际背景图片尺寸2900px
 }
 .w-heart:hover {
 	background-position: left; //显示最后一个红心帧
@@ -218,10 +232,10 @@ ul li {
 		}
 	}
 }
-.m-icons-list{
-    .u-img{
-        padding: 10px;
-    }
+.m-icons-list {
+	.u-img {
+		padding: 10px;
+	}
 }
 @media screen and (max-width: @ipad) {
 	.m-emotion-nav {
@@ -237,7 +251,7 @@ ul li {
 		.db;
 	}
 }
- 
+
 .btn-download-emoji {
 	.pr;
 	.db;
@@ -263,4 +277,7 @@ ul li {
 	b {
 		font-weight: 300;
 	}
+}
+.el-tabs__content {
+	overflow: visible;
 }

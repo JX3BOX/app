@@ -13,10 +13,10 @@
 				<div class="m-icons-box">
 					<el-tabs v-model="activeTabName" type="card">
 						<el-tab-pane label="图标库" name="icon">
-							<IconsSearch :iconData="searchData" @onSearch="onSearch" />
+							<IconsSearch />
 						</el-tab-pane>
 						<el-tab-pane label="收藏图标" name="favicon">
-							<IconsFav :iconData="favData" @onSearch="onSearch" />
+							<IconsFav />
 						</el-tab-pane>
 						<el-tab-pane label="表情包" name="emoji">
 							<IconsEmo />
@@ -34,187 +34,22 @@ import Nav from "@/components/Nav.vue";
 import IconsEmo from "./emotions/icons_emo.vue";
 import IconsFav from "./emotions/icons_fav.vue";
 import IconsSearch from "./emotions/icons_search.vue";
-import User from "@jx3box/jx3box-common/js/user.js";
 import { __imgPath } from "@jx3box/jx3box-common/data/jx3box.json";
-import { getIconsByName, getMyFavIcons, setMyFavIcons } from "@/service/icons.js";
-import default_list from "./default.json";
-
 export default {
 	name: "Icons",
 	data: function () {
 		return {
 			activeTabName: "icon",
-			searchList: "",
-			favList: [],
-			searchKey: "",
 		};
 	},
-	computed: {
-		client: function () {
-			return location.href.includes("origin") ? "origin" : "std";
-		},
-		uid: function () {
-			return User.isLogin() ? User.getInfo().uid : 0;
-		},
-		localFavList: function () {
-			return window.localStorage.getItem("favicons")?.split(",") || [];
-		},
-		searchData: function () {
-			return {
-				list: this.searchList,
-				type: this.client,
-				favList: this.favList,
-			};
-		},
-		favData: function () {
-			return {
-				list: this.favList,
-				type: this.client,
-				favList: this.favList,
-			};
-		},
-	},
+	computed: {},
 	methods: {
 		getIcon(key) {
 			return __imgPath + "image/box/" + key + ".svg";
 		},
-		onSearch(data) {
-			if (!data) return;
-			if (!data.type) {
-				this.getSearchData(data);
-				this.searchKey = data;
-			} else {
-				this.favList.includes(data.val) ? (this.favList = this.favList.filter((l) => l !== data.val)) : this.favList.push(data.val);
-				this.setIcons();
-			}
-		},
-		async getSearchData(query) {
-			if (query == this.searchKey) return;
-			query = query.replace(/\ /g, "");
-			let min = 0;
-			let max = 1;
-			let range = [];
-
-			let searchList = [];
-			let tmpList = [];
-			//如果出现全角逗号、顿号、斜杠、飘键进行替换
-			query = query.replace(/，|、|\/|\||\\/g, ",");
-			query = query.replace(/~/g, "-");
-
-			// 如果没有分隔符，先判断是不是按照名字搜索的文字
-			let numberReg = /^[0-9]+$/;
-			// 按照名称搜索
-			if (!query.includes(",") && !query.includes("-") && !numberReg.test(query)) {
-				let results = await this.searchIconByName(query);
-				console.log(results, "results");
-				return;
-			}
-			// 如果同时出现逗号和杠，先拆逗号，再拆杠
-			let bothExist = query.includes(",") && query.includes("-");
-			if (query.includes(",")) tmpList = query.split(",");
-			if (tmpList.length === 0) tmpList = [query];
-
-			tmpList.forEach((value) => {
-				if (value.includes("-")) {
-					range = value.split("-");
-					min = parseInt(range[0]);
-					max = parseInt(range[range.length - 1]);
-					if (!isNaN(min) && !isNaN(max)) {
-						if (min > max) {
-							for (let i = max; i <= min; ++i) {
-								if (!searchList.includes(i)) {
-									searchList.push(i);
-								}
-							}
-						} else {
-							for (let i = min; i <= max; ++i) {
-								if (!searchList.includes(i)) {
-									searchList.push(i);
-								}
-							}
-						}
-					}
-				} else {
-					if (!isNaN(parseInt(value))) {
-						searchList.push(parseInt(value));
-					}
-				}
-			});
-
-			this.searchList = searchList.slice(0, 500);
-		},
-		async searchIconByName(name) {
-			getIconsByName(name, this.client)
-				.then((res) => {
-					let tmpList = [];
-					let idList = [];
-					let list = [];
-					list = list.concat(res.item, res.skill, res.buff);
-					list.forEach((e) => {
-						let iconId = e.iconID + "";
-						if (!idList.includes(iconId)) {
-							idList.push(iconId);
-							tmpList.push({ id: iconId, name: e.Name });
-						}
-					});
-					this.searchList = tmpList;
-				})
-				.catch((e) => {
-					this.favList = this.localFavList;
-				});
-		},
-		getFavIcons() {
-			if (this.uid) {
-				// 从服务器读取
-				// 旧版数据格式 ’["109","3118","3119","13","316","2179","245","889","2178","5389"]‘
-				getMyFavIcons(this.client)
-					.then((data) => {
-						let serverValue = data;
-						if (serverValue) {
-							// 判断是否是旧版数据
-							// like -> '["345", "332", "  303"]'
-							if (serverValue.includes("[")) {
-								serverValue = serverValue.replace(/[\[\]"\ ]/g, "");
-							}
-							// // 判断是否是旧版数据
-							// if (serverValue.includes("[")) {
-							//     this.faviconsList = JSON.parse(serverValue);
-							// } else {
-							//     this.faviconsList = serverValue.split(",");
-							// }
-							let list = serverValue.split(",");
-							list = list.concat(this.localFavList);
-							this.favList = [...new Set(list)];
-						} else {
-							this.favList = [];
-						}
-					})
-					.catch((e) => {
-						this.favList = this.localFavList;
-					});
-			} else {
-				// 本地读取
-				this.favList = this.localFavList;
-			}
-		},
-		async setIcons() {
-			if (this.uid) {
-				await setMyFavIcons(this.favList.join(","), this.client);
-			}
-			this.setFavIcons();
-		},
-		setFavIcons() {
-			if (window.localStorage) {
-				let names = this.favList.join(",");
-				window.localStorage.setItem("favicons", names);
-			}
-		},
 	},
 	filters: {},
-	mounted: function () {
-		this.searchList = default_list;
-		this.getFavIcons();
-	},
+	mounted: function () {},
 	components: {
 		Nav,
 		IconsEmo,

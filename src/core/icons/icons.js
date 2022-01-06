@@ -1,4 +1,4 @@
-Vue.config.productionTip = false;
+Vue.config.productionTip = false; 
 
 // 第三方UI组件
 import Vue from "vue";
@@ -15,13 +15,13 @@ import "@jx3box/jx3box-common/css/normalize.css";
 Vue.use(JX3BOX_UI);
 
 // import router from "../router";
-// import store from "../store";
+import store from "./store";
 
 import Icons from "./Icons.vue";
 // import Icons from "./Icons_new.vue";
 
 new Vue({
     // router,
-    // store,
+    store,
     render: (h) => h(Icons),
 }).$mount("#app");

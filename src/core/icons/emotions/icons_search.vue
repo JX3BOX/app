@@ -15,44 +15,124 @@
 				<li>每次上限500个</li>
 			</ul>
 		</div>
-		<!-- 提示信息 -->
-		<div class="m-icons-tips">
-			<el-alert v-if="isNewbie" title="以下为部分图标展示，请在上方自定义搜索范围，点击图标即可收藏。" type="warning" center show-icon></el-alert>
-			<el-alert v-if="!iconData.list.length" title="没有找到对应的图标，请重新输入关键词搜索图标。" type="info" center show-icon></el-alert>
-		</div>
 
-		<IconsMatrix :iconData="iconData" @onFav="onFav" />
+		<!-- 展示图标 -->
+		<IconsMatrix :list="searchList" :isNewbie="isNewbie" />
 	</div>
 </template>
 <script>
 import IconsMatrix from "./icons_matrix.vue";
+import { getIconsByName } from "@/service/icons.js";
+import default_list from "../default.json";
 export default {
 	name: "search",
-	props: ["iconData"],
+	props: [],
 	components: {
 		IconsMatrix,
 	},
 	data: function () {
 		return {
 			search: "",
+			searchList: "",
 			isNewbie: true,
 		};
 	},
-	computed: {},
+	computed: {
+		client: function () {
+			return this.$store.state.client;
+			return location.href.includes("origin") ? "origin" : "std";
+		},
+	},
 	methods: {
-		onSearch() {
-			this.$emit("onSearch", this.search);
-		},
-		onFav(val) {
-			this.$emit("onSearch", val);
-		},
 		useSearchIcon() {
 			this.isNewbie = false;
+		},
+
+		onSearch() {
+			if (!this.search) return;
+			this.getSearchData(this.search);
+		},
+		async getSearchData(query) {
+			if (query == this.searchKey) return;
+			query = query.replace(/\ /g, "");
+			let min = 0;
+			let max = 1;
+			let range = [];
+
+			let searchList = [];
+			let tmpList = [];
+			//如果出现全角逗号、顿号、斜杠、飘键进行替换
+			query = query.replace(/，|、|\/|\||\\/g, ",");
+			query = query.replace(/~/g, "-");
+
+			// 如果没有分隔符，先判断是不是按照名字搜索的文字
+			let numberReg = /^[0-9]+$/;
+			// 按照名称搜索
+			if (!query.includes(",") && !query.includes("-") && !numberReg.test(query)) {
+				let results = await this.searchIconByName(query);
+				console.log(results, "results");
+				return;
+			}
+			// 如果同时出现逗号和杠，先拆逗号，再拆杠
+			let bothExist = query.includes(",") && query.includes("-");
+			if (query.includes(",")) tmpList = query.split(",");
+			if (tmpList.length === 0) tmpList = [query];
+
+			tmpList.forEach((value) => {
+				if (value.includes("-")) {
+					range = value.split("-");
+					min = parseInt(range[0]);
+					max = parseInt(range[range.length - 1]);
+					if (!isNaN(min) && !isNaN(max)) {
+						if (min > max) {
+							for (let i = max; i <= min; ++i) {
+								if (!searchList.includes(i)) {
+									searchList.push(i);
+								}
+							}
+						} else {
+							for (let i = min; i <= max; ++i) {
+								if (!searchList.includes(i)) {
+									searchList.push(i);
+								}
+							}
+						}
+					}
+				} else {
+					if (!isNaN(parseInt(value))) {
+						searchList.push(parseInt(value));
+					}
+				}
+			});
+
+			this.searchList = searchList.slice(0, 500);
+		},
+		async searchIconByName(name) {
+			getIconsByName(name, this.client)
+				.then((res) => {
+					let tmpList = [];
+					let idList = [];
+					let list = [];
+					list = list.concat(res.item, res.skill, res.buff);
+					list.forEach((e) => {
+						let iconId = e.iconID + "";
+						if (!idList.includes(iconId)) {
+							idList.push(iconId);
+							tmpList.push({ id: iconId, name: e.Name });
+						}
+					});
+					this.searchList = tmpList;
+				})
+				.catch((e) => {
+					console.log("Error:", e);
+				});
 		},
 	},
 	watch: {},
 	filters: {},
-	created: function () {},
+	created: function () {
+		this.searchList = default_list;
+	},
 	mounted: function () {},
 };
 </script>
