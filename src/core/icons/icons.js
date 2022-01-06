@@ -14,8 +14,8 @@ Vue.use(JX3BOX_UI);
 // import router from "../router";
 import store from "./store";
 
-// import Icons from "./Icons.vue";
-import Icons from "./Icons_new.vue";
+import Icons from "./Icons.vue";
+// import Icons from "./Icons_new.vue";
 
 new Vue({
     // router,
