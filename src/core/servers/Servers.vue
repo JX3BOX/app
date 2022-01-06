@@ -45,10 +45,9 @@
 import Nav from "@/components/Nav.vue";
 import FServerNode from "./FServerNode.vue";
 import { axios } from "@/service/api.js";
-import { JX3BOX } from "@jx3box/jx3box-common";
 import User from "@jx3box/jx3box-common/js/user";
 import { getMyFocusServers, setMyFocusServers } from "@/service/server.js";
-import { __imgPath } from "@jx3box/jx3box-common/data/jx3box.json";
+import { __imgPath, __spider } from "@jx3box/jx3box-common/data/jx3box.json";
 export default {
     name: "Servers",
     data: function() {
@@ -85,7 +84,7 @@ export default {
             this.setSavedServers();
         },
         loadAllServers() {
-            let url = JX3BOX.__spider + "jx3servers";
+            let url = __spider + "jx3servers";
             axios(url, "GET")
                 .then((response) => {
                     if (response.msg === "success") {
