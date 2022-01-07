@@ -17,7 +17,7 @@ script
 	</div>
 </template>
 <script>
-import { JX3BOX } from "@jx3box/jx3box-common";
+import { __iconPath } from "@jx3box/jx3box-common/data/jx3box.json";
 export default {
 	name: "matrix",
 	props: ["list", "favList"],
@@ -51,7 +51,7 @@ export default {
 		},
 		iconPath(val) {
 			val = this.iconId(val);
-			return this.client == "origin" ? `${JX3BOX.__iconPath}origin_icon/${val}.png` : `${JX3BOX.__iconPath}icon/${val}.png`;
+			return this.client == "origin" ? `${__iconPath}origin_icon/${val}.png` : `${__iconPath}icon/${val}.png`;
 		},
 		onCopy: function (val) {
 			val = this.iconId(val.value);
