@@ -1,5 +1,10 @@
 Vue.config.productionTip = false; 
 
+import Clipboard from 'v-clipboard'
+ 
+Vue.use(Clipboard)
+ 
+
 // 第三方UI组件
 import Vue from "vue";
 import ElementUI from "element-ui";
