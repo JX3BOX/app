@@ -1,16 +1,18 @@
-script
 <template>
 	<div class="m-icons-matrix">
 		<div class="u-icons-item" v-for="(icon, index) in matrix" :key="index">
-			<div class="u-pic" @click="myFavIcons(icon)">
+			<div class="u-pic">
 				<el-image class="u-img" :src="iconPath(icon)">
 					<i slot="error" class="el-icon-warning-outline u-error"></i>
 				</el-image>
-				<el-tooltip class="u-love" :disabled="!icon.id" :content="iconName(icon)" placement="top-start" v-if="list">
-					<i class="w-heart" :class="{ 'w-heart-animation': handleHeart(icon) }"></i>
-				</el-tooltip>
-				<span class="u-remove" v-else></span>
+				<div class="u-mark" @click="myFavIcons(icon)" v-if="list">
+					<el-tooltip class="u-love" :disabled="!icon.id" :content="iconName(icon)" placement="top-start">
+						<i class="w-heart" :class="{ 'w-heart-animation': handleHeart(icon) }"></i>
+					</el-tooltip>
+				</div>
+				<span class="u-remove" v-else @click="myFavIcons(icon)"></span>
 			</div>
+
 			<span class="u-copy" v-if="list" v-clipboard:copy="icon" v-clipboard:success="onCopy" v-clipboard:error="onError" title="点击快速复制">{{ iconId(icon) }}</span>
 			<span v-else>{{ iconId(icon) }}</span>
 		</div>
@@ -70,10 +72,6 @@ export default {
 	},
 	mounted: function () {},
 	created() {},
-	watch: {
-		matrix(val) {
-			console.log(val);
-		},
-	},
+	watch: {},
 };
 </script>

@@ -45,6 +45,9 @@ export default {
 		client: function () {
 			return this.$store.state.client;
 		},
+		storeList: function () {
+			return this.$store.state.favList || [];
+		},
 	},
 	methods: {
 		useSearchIcon() {
@@ -131,7 +134,7 @@ export default {
 		},
 		getFavList() {
 			let list = window.localStorage.getItem("favicons")?.split(",") || [];
-			if (this.$store.state.favList) list = [...new Set(list.concat(this.$store.state.favList))];
+			list = [...new Set(list.concat(this.storeList))];
 			this.favList = list;
 		},
 	},
