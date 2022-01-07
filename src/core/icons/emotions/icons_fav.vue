@@ -1,3 +1,4 @@
+script
 <template>
 	<div class="m-icons-fav">
 		<el-alert class="m-icons-tips" v-if="!favList.length" title="没有收藏的图标，请搜索图标进行添加。" type="info" center show-icon></el-alert>
@@ -73,15 +74,18 @@ export default {
 			}
 			this.$store.commit("storeFav", this.favList);
 		},
-	},
-	mounted: function () {
-		this.getFavIcons();
+		toRef() {
+			this.$forceUpdate();
+		},
 	},
 	watch: {
 		"$store.state.favList"(val) {
 			this.favList = val;
 			this.setIcons();
 		},
+	},
+	mounted() {
+		this.getFavIcons();
 	},
 };
 </script>

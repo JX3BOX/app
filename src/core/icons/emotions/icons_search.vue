@@ -137,7 +137,9 @@ export default {
 	},
 	watch: {
 		"$store.state.favList"(val) {
-			this.favList = val;
+			if (typeof val !== "undefined") {
+				this.favList = val;
+			}
 		},
 	},
 	filters: {},

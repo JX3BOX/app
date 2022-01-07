@@ -11,7 +11,8 @@ script
 				</el-tooltip>
 				<span class="u-remove" v-else></span>
 			</div>
-			<span v-clipboard:copy="iconId(icon)" v-clipboard:success="onCopy" v-clipboard:error="onError" title="点击快速复制">{{ iconId(icon) }}</span>
+			<span class="u-copy" v-if="list" v-clipboard:copy="icon" v-clipboard:success="onCopy" v-clipboard:error="onError" title="点击快速复制">{{ iconId(icon) }}</span>
+			<span v-else>{{ iconId(icon) }}</span>
 		</div>
 	</div>
 </template>
@@ -53,10 +54,10 @@ export default {
 			return this.client == "origin" ? `${JX3BOX.__iconPath}origin_icon/${val}.png` : `${JX3BOX.__iconPath}icon/${val}.png`;
 		},
 		onCopy: function (val) {
-			console.log(val, "?");
+			val = this.iconId(val.value);
 			this.$notify({
 				title: "复制成功",
-				message: "复制内容 : " + val.value,
+				message: "复制内容 : " + val,
 				type: "success",
 			});
 		},
@@ -69,5 +70,10 @@ export default {
 	},
 	mounted: function () {},
 	created() {},
+	watch: {
+		matrix(val) {
+			console.log(val);
+		},
+	},
 };
 </script>

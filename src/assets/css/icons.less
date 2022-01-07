@@ -20,7 +20,9 @@
 		.none;
 	}
 }
-
+.el-tabs__nav{
+    user-select: none;
+}
 .el-tabs__item {
 	background-color: @bg-light;
 	border-bottom: 1px solid #e4e7ed !important;
@@ -73,7 +75,6 @@ ul li {
 
 	.auto(x);
 	.u-icons-item {
-		.pointer;
 		.x;
 		margin: 0px 5px 10px 5px;
 
@@ -82,6 +83,11 @@ ul li {
 		.u-love {
 			.size(50px);
 			.r(6px);
+			.pointer;
+			user-select: none;
+		}
+		.u-copy {
+			.pointer;
 		}
 		.u-pic {
 			.pr;
