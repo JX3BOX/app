@@ -17,7 +17,10 @@
 		</div>
 
 		<!-- 展示图标 -->
-		<IconsMatrix :list="searchList" :isNewbie="isNewbie" />
+		<el-alert class="m-icons-tips" v-if="isNewbie" title="以下为部分图标展示，请在上方自定义搜索范围，点击图标即可收藏。" type="warning" center show-icon></el-alert>
+		<el-alert class="m-icons-tips" v-if="!searchList.length" title="没有找到对应的图标，请重新输入关键词搜索图标。" type="info" center show-icon></el-alert>
+
+		<IconsMatrix :list="searchList" :favList="favList" />
 	</div>
 </template>
 <script>
@@ -35,19 +38,18 @@ export default {
 			search: "",
 			searchList: "",
 			isNewbie: true,
+			favList: "",
 		};
 	},
 	computed: {
 		client: function () {
 			return this.$store.state.client;
-			return location.href.includes("origin") ? "origin" : "std";
 		},
 	},
 	methods: {
 		useSearchIcon() {
 			this.isNewbie = false;
 		},
-
 		onSearch() {
 			if (!this.search) return;
 			this.getSearchData(this.search);
@@ -127,11 +129,21 @@ export default {
 					console.log("Error:", e);
 				});
 		},
+		getFavList() {
+			let list = window.localStorage.getItem("favicons")?.split(",") || [];
+			if (this.$store.state.favList) list = [...new Set(list.concat(this.$store.state.favList))];
+			this.favList = list;
+		},
 	},
-	watch: {},
+	watch: {
+		"$store.state.favList"(val) {
+			this.favList = val;
+		},
+	},
 	filters: {},
 	created: function () {
 		this.searchList = default_list;
+		this.getFavList();
 	},
 	mounted: function () {},
 };

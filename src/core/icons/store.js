@@ -8,7 +8,11 @@ let store = new Vuex.Store({
 		client: location.href.includes("origin") ? "origin" : "std",
 		favList: [],
 	},
-	mutations: {},
+	mutations: {
+		storeFav(state, list) {
+			state.favList = list;
+		},
+	},
 	getters: {},
 	actions: {},
 	modules: {},
