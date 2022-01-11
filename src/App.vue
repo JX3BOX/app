@@ -273,15 +273,15 @@
                     </el-col>
                     <el-col :span="6">
                         <div class="u-item">
-                            <a href="/tool/#/?search=计算器" target="_blank">
+                            <a href="./haste" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
-                                        <img svg-inline :src="getIcon('dps')" />
+                                        <img svg-inline :src="getIcon('haste')" />
                                     </i>
                                 </span>
                                 <span class="u-features">
-                                    <span class="u-name">DPS计算器</span>
-                                    <span class="u-desc">全门派DPS计算器</span>
+                                    <span class="u-name">加速阈值</span>
+                                    <span class="u-desc">急速断点一览</span>
                                 </span>
                             </a>
                         </div>
@@ -342,6 +342,21 @@
                                 <span class="u-features">
                                     <span class="u-name">经脉模拟器</span>
                                     <span class="u-desc">通你妹,原汁原味</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col>
+                    <el-col :span="6">
+                        <div class="u-item">
+                            <a href="/tool/#/?search=计算器" target="_blank">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('dps')" />
+                                    </i>
+                                </span>
+                                <span class="u-features">
+                                    <span class="u-name">DPS计算器</span>
+                                    <span class="u-desc">全门派DPS计算器</span>
                                 </span>
                             </a>
                         </div>
