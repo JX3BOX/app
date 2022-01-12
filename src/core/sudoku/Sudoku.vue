@@ -207,7 +207,7 @@ export default {
         clear: function() {
             this.list = ["", "", "", "", "5", "", "", "", ""];
 
-            this.shList = new Array(9);
+            this.shList = this.$options.data().shList;
         },
         handleClick: function() {},
         showpic: function(i) {
@@ -231,24 +231,17 @@ export default {
                 [2, 7, 6, 9, 5, 1, 4, 3, 8],
                 [2, 9, 4, 7, 5, 3, 6, 1, 8],
                 [4, 3, 8, 9, 5, 1, 2, 7, 6],
-                [8, 1, 6, 3, 5, 7, 4, 9, 2],
                 [4, 9, 2, 3, 5, 7, 8, 1, 6],
                 [6, 1, 8, 7, 5, 3, 2, 9, 4],
                 [6, 7, 2, 1, 5, 9, 8, 3, 4],
+                [8, 1, 6, 3, 5, 7, 4, 9, 2],
                 [8, 3, 4, 1, 5, 9, 6, 7, 2],
             ];
 
             if (this.shList.filter((r) => r).length > 3) {
-                this.shList.forEach((v, i) => {
-                    console.log(v, i)
-                    if (v) {
-                        enumList.forEach((o, oi) => {
-                            o[i] !== +v && enumList.splice(oi, 1);
-                        });
-                    }
-                });
+                this.shList.forEach((v, i) => v && enumList.forEach((o, oi) => enumList[oi] = o[i] === +v ? o : ''))
                 if (enumList.length) {
-                    this.shList = enumList?.[0]?.map((o, i) => this.shList[i] || o);
+                    this.shList = enumList.find(r => r)?.map((o, i) => this.shList[i] || o)
                 } else {
                     this.$message.warning('不存在这种序列')
                     this.shList = this.$options.data().shList;
