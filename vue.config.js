@@ -78,15 +78,19 @@ module.exports = {
             template: "public/index.html",
             filename: "sudoku/index.html",
         },
-
-
-        // TODO:迁移至pvx栏目
         flower: {
             title: "花价查询 - JX3BOX",
             entry: "src/core/flower/flower.js",
             template: "public/index.html",
             filename: "flower/index.html",
         },
+        cooking: {
+            title: "生活助手 - JX3BOX",
+            entry: "src/core/cooking/cooking.js",
+            template: "public/index.html",
+            filename: "cooking/index.html",
+        },
+        // TODO:迁移至pvx栏目
         furniture: {
             title: "家具大全 - JX3BOX",
             entry: "src/core/furniture/furniture.js",

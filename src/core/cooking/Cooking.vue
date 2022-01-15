@@ -2,9 +2,9 @@
     <div id="app">
         <Header></Header>
         <Breadcrumb
-            name="花价查询"
-            slug="flower"
-            root="/app/flower"
+            name="生活技艺助手"
+            slug="cooking"
+            root="/app/cooking"
             :feedbackEnable="true"
         >
             <img slot="logo" svg-inline :src="getIcon('facedata')" />
@@ -13,7 +13,7 @@
             <Nav />
         </LeftSidebar>
         <Main :withoutRight="true" :withoutLeft="true">
-            <div class="m-flower">
+            <div class="m-cooking">
 
             </div>
             <Footer></Footer>
@@ -25,7 +25,7 @@
 import Nav from "@/components/Nav.vue";
 
 export default {
-    name: "Flower",
+    name: "Cooking",
     props: [],
     data: function() {
         return {
@@ -46,5 +46,5 @@ export default {
 </script>
 
 <style lang="less">
-@import "../../assets/css/flower.less";
+@import "../../assets/css/cooking.less";
 </style>
