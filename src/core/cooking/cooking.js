@@ -13,12 +13,12 @@ Vue.use(JX3BOX_UI);
 
 // 数据与路由
 // import router from "../router";
-import store from "../store";
+import store from "../../store";
 
-import Flower from "./Flower.vue";
+import Cooking from "./Cooking.vue";
 new Vue({
     // router,
     store,
-    render: h => h(Flower),
+    render: h => h(Cooking),
 }).$mount("#app");
 
