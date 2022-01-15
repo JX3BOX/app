@@ -20,32 +20,34 @@
         <el-alert class="m-icons-tips" v-if="isNewbie" title="以下为部分图标展示，请在上方自定义搜索范围，点击图标即可收藏。" type="warning" center show-icon></el-alert>
         <el-alert class="m-icons-tips" v-if="!searchList.length" title="没有找到对应的图标，请重新输入关键词搜索图标。" type="info" center show-icon></el-alert>
 
-        <IconsMatrix :list="searchList" :favList="favList" />
+        <div class="m-icons-matrix">
+            <icon-item v-for="(icon, index) in searchList" :icon="icon" :isFav="false" :key="index"></icon-item>
+        </div>
+
     </div>
 </template>
 <script>
-import IconsMatrix from "./icons_matrix.vue";
+import iconItem from './iconItem.vue';
 import { getIconsByName } from "@/service/icons.js";
 import default_list from "../default.json";
 export default {
     name: "search",
     props: [],
     components: {
-        IconsMatrix,
+        iconItem
     },
     data: function() {
         return {
             search: "",
-            searchList: "",
+            searchList: [],
             isNewbie: true,
-            favList: "",
         };
     },
     computed: {
         client: function() {
             return this.$store.state.client;
         },
-        storeList: function() {
+        favList: function() {
             return this.$store.state.favList || [];
         },
     },
@@ -59,97 +61,81 @@ export default {
         },
         async getSearchData(query) {
             if (query == this.searchKey) return;
-            query = query.replace(/\ /g, "");
-            let min = 0;
-            let max = 1;
-            let range = [];
-
-            let searchList = [];
-            let tmpList = [];
-            //如果出现全角逗号、顿号、斜杠、飘键进行替换
-            query = query.replace(/，|、|\/|\||\\/g, ",");
-            query = query.replace(/~/g, "-");
+            // 如果出现空格、全角逗号、顿号、斜杠、飘键进行替换
+            query = query.replace(/\s/g, "").replace(/，|、|\/|\||\\/g, ",").replace(/~/g, "-");
 
             // 如果没有分隔符，先判断是不是按照名字搜索的文字
             let numberReg = /^[0-9]+$/;
-            // 按照名称搜索
+
+            // 按照名称搜索 请求接口
             if (!query.includes(",") && !query.includes("-") && !numberReg.test(query)) {
-                let results = await this.searchIconByName(query);
-                console.log(results, "results");
+                this.searchList = await this.searchIconByName(query);
                 return;
             }
-            // 如果同时出现逗号和杠，先拆逗号，再拆杠
-            let bothExist = query.includes(",") && query.includes("-");
-            if (query.includes(",")) tmpList = query.split(",");
-            if (tmpList.length === 0) tmpList = [query];
 
-            tmpList.forEach((value) => {
-                if (value.includes("-")) {
-                    range = value.split("-");
-                    min = parseInt(range[0]);
-                    max = parseInt(range[range.length - 1]);
+            let searchList = [];
+            let iconTmp = [];
+
+            // 如果同时出现逗号和杠，先拆逗号，再拆杠
+            if (query.includes(',')) {
+                iconTmp = query.split(',');
+            }
+            if (!iconTmp.length) {
+                iconTmp = [query]
+            }
+
+            iconTmp.forEach(item => {
+                if (item.includes('-')) {
+                    const [min, max] = item.split('-').map(Number).sort();
+
                     if (!isNaN(min) && !isNaN(max)) {
-                        if (min > max) {
-                            for (let i = max; i <= min; ++i) {
-                                if (!searchList.includes(i)) {
-                                    searchList.push(i);
-                                }
-                            }
-                        } else {
-                            for (let i = min; i <= max; ++i) {
-                                if (!searchList.includes(i)) {
-                                    searchList.push(i);
-                                }
+                        for (let i = min; i <= max; i++) {
+                            if (!searchList.includes(i)) {
+                                searchList.push(i)
                             }
                         }
                     }
+
                 } else {
-                    if (!isNaN(parseInt(value))) {
-                        searchList.push(parseInt(value));
+                    if (!isNaN(parseInt(item))) {
+                        searchList.push(parseInt(item));
                     }
                 }
-            });
+            })
 
             this.searchList = searchList.slice(0, 500);
         },
         async searchIconByName(name) {
-            getIconsByName(name, this.client)
+            return getIconsByName(name, this.client)
                 .then((res) => {
-                    let tmpList = [];
-                    let idList = [];
-                    let list = [];
-                    list = list.concat(res.item, res.skill, res.buff);
-                    list.forEach((e) => {
-                        let iconId = e.iconID + "";
-                        if (!idList.includes(iconId)) {
-                            idList.push(iconId);
-                            tmpList.push({ id: iconId, name: e.Name });
+                    const { item, skill, buff } = res
+
+                    const list = [...item, ...skill, ...buff];
+                    const idList = [];
+                    const tmpList = [];
+
+                    list.forEach((item) => {
+
+                        if (item.iconID) {
+                            let iconId = String(item.iconID);
+    
+                            if (!idList.includes(iconId)) {
+                                idList.push(iconId);
+                                tmpList.push({ id: iconId, name: item.Name });
+                            }
                         }
+                        
                     });
-                    this.searchList = tmpList;
+
+                    return tmpList
                 })
                 .catch((e) => {
                     console.log("Error:", e);
                 });
         },
-        getFavList() {
-            let list = window.localStorage.getItem("favicons")?.split(",") || [];
-            list = [...new Set(list.concat(this.storeList))];
-            this.favList = list;
-        },
     },
-    watch: {
-        "$store.state.favList"(val) {
-            if (typeof val !== "undefined") {
-                this.favList = val;
-            }
-        },
-    },
-    filters: {},
     created: function() {
         this.searchList = default_list;
-        this.getFavList();
     },
-    mounted: function() {},
 };
 </script>
