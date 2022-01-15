@@ -1,6 +1,6 @@
 import axios from "axios";
 import { $cms, $node } from "@jx3box/jx3box-common/js/https";
-import { __staticPath } from "@jx3box/jx3box-common/data/jx3box.json";
+import { __iconPath } from "@jx3box/jx3box-common/data/jx3box.json";
 
 function getIconsByName(str, client = "std") {
     return $node()
@@ -47,7 +47,7 @@ function setMyFavIcons(data, client = "std") {
 }
 
 function getEmoList() {
-    return axios.get(__staticPath.jsdelivr + `jx3-icon@1.1.0/emotion.json`).then((res) => {
+    return axios.get(__iconPath + `/emotion/output/catalog.json`).then((res) => {
         return res.data;
     });
 }

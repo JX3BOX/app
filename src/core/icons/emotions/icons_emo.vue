@@ -1,15 +1,26 @@
 <template>
     <div class="m-icons-emo">
         <div class="m-icons-nav">
-            <div class="u-btn" :class="i == index ? 'active' : ''" v-for="(item, i) in emoList" :key="i" @click="toChangeEmo(i)">
+            <div
+                class="u-btn"
+                :class="i == index ? 'active' : ''"
+                v-for="(item, i) in emoList"
+                :key="i"
+                @click="toChangeEmo(i, item)"
+            >
                 <span>
-                    {{ item.name }} <b>（{{ item.total }}）</b>
+                    {{ item.group_name }} <b>（{{ item.items.length }}）</b>
                 </span>
             </div>
         </div>
-        <div class="m-icons-list" v-if="emoList.length > 0">
-            <el-image class="u-img" v-for="(emoji, i) in emoList[index].total" :key="emoji" :src="`${EmojiPath}${emoList[index].name}/${i}.gif`">
-                <!-- 这里要用index, 因为这里for遍历的是数字，emoji值会从1开始，而index还是从0开始 -->
+        <div class="m-icons-list">
+            <el-image
+                class="u-img"
+                v-for="emoji in emoList[index].items"
+                :key="emoji.emotion_id"
+                :title="`${EmojiPath}${emoji.filename}`"
+                :src="`${EmojiPath}${emoji.filename}`"
+            >
                 <div slot="placeholder" class="image-slot">
                     <i class="el-icon-loading"></i>
                 </div>
@@ -18,11 +29,20 @@
                 </div>
             </el-image>
         </div>
-        <el-button :loading="isDownloadingEmoji" type="primary" plain @click.native.stop="handleDownloadEmoji" icon="el-icon-download" class="btn-download-emoji">
-            <div class="m-emotion-down">
-                <b>立即下载</b>
-            </div>
-        </el-button>
+        <div>
+            <el-button
+                :loading="isDownloadingEmoji"
+                type="primary"
+                plain
+                @click.native.stop="handleDownloadEmoji"
+                icon="el-icon-download"
+                class="btn-download-emoji"
+            >
+                <div class="m-emotion-down">
+                    <b>立即下载</b>
+                </div>
+            </el-button>
+        </div>
     </div>
 </template>
 <script>
@@ -31,38 +51,49 @@ import { __iconPath } from "@jx3box/jx3box-common/data/jx3box.json";
 export default {
     name: "emo",
     props: ["list"],
-    data: function() {
+    data: function () {
         return {
-            emoList: "",
+            emoList: [],
             index: 0,
-            EmojiPath: __iconPath + "emotion/emotions/",
+            active: '',
+            EmojiPath: __iconPath + "emotion/output/",
+            zipPath: __iconPath + "emotion/zip/",
             isDownloadingEmoji: false,
         };
     },
-    computed: {},
+    computed: {
+
+    },
     watch: {},
     methods: {
         getData() {
             getEmoList().then((res) => {
                 this.emoList = res;
+
+                this.active = res[0]
             });
         },
-        toChangeEmo(i) {
+        toChangeEmo(i, item) {
             this.index = i;
+            this.active = item;
         },
         handleDownloadEmoji() {
             this.isDownloadingEmoji = true;
+
+            const { zipPath, active } = this
+
             let link = document.createElement("a");
-            link.href = `${this.EmojiPath}${this.emoList[this.index].name}.zip`;
-            link.download = `${this.emoList[this.index].name}.zip`;
+            link.href = `${zipPath}${active.group_name}.zip`;
+            link.download = `${active.group_name}.zip`;
             link.click();
+
             this.isDownloadingEmoji = false;
         },
     },
     filters: {},
-    created: function() {
+    created: function () {
         this.getData();
     },
-    mounted: function() {},
+    mounted: function () {},
 };
 </script>
