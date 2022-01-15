@@ -13,7 +13,9 @@
       <Nav />
     </LeftSidebar>
     <Main :withoutRight="true" :withoutLeft="true">
-      <div class="m-cooking"></div>
+      <div class="m-cooking">
+          123
+      </div>
       <Footer></Footer>
     </Main>
   </div>
