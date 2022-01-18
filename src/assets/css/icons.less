@@ -1,295 +1,216 @@
+.c-main {
+    min-height: calc(100vh - 64px - 48px - 100px);
+}
+
 .m-icons {
-	padding: 20px 30px;
-	max-width: 1200px;
-	.auto(x);
+    padding: 20px 30px;
+    max-width: 1200px;
+    .auto(x);
 }
 @media screen and (max-width: @phone) {
-	.m-icons {
-		padding: 10px;
-	}
+    .m-icons {
+        padding: 10px;
+    }
 }
 .m-icons-title {
-	font-size: 24px;
-	font-weight: 500;
-	.x;
-	margin: 0 0 20px 0;
-	padding: 0;
+    font-size: 24px;
+    font-weight: 500;
+    .x;
+    margin: 0 0 20px 0;
+    padding: 0;
 }
 @media screen and (max-width: @phone) {
-	.m-icons-title {
-		.none;
-	}
+    .m-icons-title {
+        .none;
+    }
 }
 .el-tabs__nav {
-	user-select: none;
+    user-select: none;
 }
 .el-tabs__item {
-	background-color: @bg-light;
-	border-bottom: 1px solid #e4e7ed !important;
+    background-color: @bg-light;
+    border-bottom: 1px solid #e4e7ed !important;
 
-	&.is-active {
-		background-color: #fff;
-		.bold;
-		border-bottom: none !important;
-	}
+    &.is-active {
+        background-color: #fff;
+        .bold;
+        border-bottom: none !important;
+    }
 }
 
 .m-icon-search-tip {
-	margin-top: 10px;
-	background-color: #fafafa;
-	border: 1px dashed #eee;
-	padding: 10px;
-	font-size: 13px;
-	line-height: 2;
+    margin-top: 10px;
+    background-color: #fafafa;
+    border: 1px dashed #eee;
+    padding: 10px;
+    font-size: 13px;
+    line-height: 2;
 }
 .m-icon-search-tip ul {
-	list-style-type: square;
-	padding-left: 20px;
+    list-style-type: square;
+    padding-left: 20px;
 }
 .m-icons-tips {
-	flex: 1 1 100%;
-	.mt(20px);
+    flex: 1 1 100%;
+    .mt(20px);
 }
 
 ul,
 ul li {
-	margin: 0;
-	padding: 0;
+    margin: 0;
+    padding: 0;
 }
 .el-tabs--top {
-	.mt(10px);
+    .mt(10px);
 }
 .searchbar-wrapper {
-	.el-alert--info {
-		margin: 10px auto;
-	}
+    .el-alert--info {
+        margin: 10px auto;
+    }
 }
 .loading-placeholder {
-	height: 50px;
+    height: 48px;
 }
 .m-icons-matrix {
-	display: flex;
-	flex-wrap: wrap;
-	.mt(20px);
-	// width: 1220px;
+    display: flex;
+    flex-wrap: wrap;
+    .mt(20px);
+    // width: 1220px;
 
-	.auto(x);
-	.u-icons-item {
-		.x;
-		margin: 0px 5px 10px 5px;
+    .auto(x);
+    .u-icons-item {
+        .x;
+        margin: 0px 5px 10px 5px;
 
-		.u-pic,
-		.u-img,
-		.u-love,
-		.u-mark {
-			.size(50px);
-			.r(6px);
-			.pointer;
-			user-select: none;
-		}
-		.u-copy {
-			.pointer;
-		}
-		.u-mark {
-			.pa;
-			.lt(0,0);
-			.z(1);
-		}
-		.u-pic {
-			.pr;
-			border: 1px solid #eee;
-			.u-error {
-				.db;
-				color: #bcbcbc;
-				line-height: 50px;
-				.x;
-			}
-			.u-remove {
-				.pa;
-				.rt(-4px);
-				.u-icon;
-				.u-icon-close;
-				.size(16px);
-				.pointer;
-			}
-		}
-		.u-love {
-			.tm(0);
-			.pa;
-			.lt(0,0);
-			background-color: rgba(255, 255, 255, 0.8);
-			i {
-				.db;
-			}
-		}
-		&:hover {
-			.u-love {
-				.tm(1);
-			}
-		}
+        .u-pic,
+        .u-img,
+        .u-love,
+        .u-mark {
+            .size(48px);
+            .r(6px);
+            .pointer;
+            user-select: none;
+        }
+        .u-copy {
+            .pointer;
+        }
+        .u-mark {
+            .pa;
+            .lt(0, 0);
+            .z(1);
+        }
+        .u-pic {
+            .pr;
+            border: 1px solid #eee;
+            .u-error {
+                .db;
+                color: #bcbcbc;
+                line-height: 50px;
+                .x;
+            }
+            .u-remove {
+                .pa;
+                .rt(-4px);
+                .u-icon;
+                .u-icon-close;
+                .size(16px);
+                .pointer;
+            }
+        }
+        .u-love {
+            .tm(0);
+            .pa;
+            .lt(0, 0);
+            background-color: rgba(255, 255, 255, 0.8);
+            i {
+                .db;
+            }
+        }
+        &:hover {
+            .u-love {
+                .tm(1);
+            }
+        }
 
-		.el-image__inner {
-			.pa;
-			.lt(-1px);
-			.full;
-		}
-	}
+        .el-image__inner {
+            .pa;
+            .lt(-1px);
+            .full;
+        }
+    }
 }
 // 收藏
 .m-icons-sync {
-	.mb(10px);
+    .mb(10px);
 }
 
 // 分割线
 // 公共
 .el-link {
-	font-size: 12px;
-	vertical-align: top;
+    font-size: 12px;
+    vertical-align: top;
 }
 .el-button--text {
-	padding: 0;
-	font-size: 12px;
+    padding: 0;
+    font-size: 12px;
 }
 .u-icon {
-	.dbi;
-	.y;
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-position: 0 0;
+    .dbi;
+    .y;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 0 0;
 }
 .u-icon-close {
-	background-image: url(../../assets/img/icons/close.svg);
+    background-image: url(../../assets/img/icons/close.svg);
 }
 /* 爆炸心心-------------------------- */
 .w-heart {
-	background: url(../../assets/img/icons/web_heart_animation.png);
-	background-position: left;
-	background-repeat: no-repeat;
-	cursor: pointer;
-	.size(50px);
-	background-size: 1450px; //实际背景图片尺寸2900px
+    background: url(../../assets/img/icons/web_heart_animation.png);
+    background-position: left;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    .size(50px);
+    background-size: 1450px; //实际背景图片尺寸2900px
 }
 .w-heart:hover {
-	background-position: left; //显示最后一个红心帧
+    background-position: left; //显示最后一个红心帧
 }
 
 @-webkit-keyframes heartBlast {
-	0% {
-		background-position: left;
-	}
-	100% {
-		background-position: right;
-	}
+    0% {
+        background-position: left;
+    }
+    100% {
+        background-position: right;
+    }
 }
 @keyframes heartBlast {
-	0% {
-		background-position: left;
-	}
-	100% {
-		background-position: right;
-	}
+    0% {
+        background-position: left;
+    }
+    100% {
+        background-position: right;
+    }
 }
 .w-heart-animation {
-	-webkit-animation-name: heartBlast; //webkit内核浏览器
-	animation-name: heartBlast;
-	-webkit-animation-duration: 0.8s;
-	animation-duration: 0.8s;
-	-webkit-animation-iteration-count: 1;
-	animation-iteration-count: 1;
-	-webkit-animation-timing-function: steps(28); //共28个背景图片帧
-	animation-timing-function: steps(28);
-	-webkit-animation-fill-mode: forwards;
-	animation-fill-mode: forwards;
-	background-position: right;
+    -webkit-animation-name: heartBlast; //webkit内核浏览器
+    animation-name: heartBlast;
+    -webkit-animation-duration: 0.8s;
+    animation-duration: 0.8s;
+    -webkit-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+    -webkit-animation-timing-function: steps(28); //共28个背景图片帧
+    animation-timing-function: steps(28);
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    background-position: right;
 }
 
 //  分割线
 .m-icons::after {
-	content: "";
-	display: table;
-	clear: both;
+    content: "";
+    display: table;
+    clear: both;
 }
 
-// emoji
-.m-icons-nav,
-.m-icons-list {
-	margin: 10px 0 20px 0;
-	display: flex;
-	flex-wrap: wrap;
-}
-.m-icons-nav {
-	.u-btn {
-		.fz(15px, 30px);
-		.w(20%);
-		.x;
-		padding: 5px 10px;
-		box-sizing: border-box;
-		.pointer;
-
-		span {
-			.fz(13px);
-			.db;
-			.full;
-			.r(4px);
-			.color(#3d454d);
-			border: 1px solid #eee;
-			b {
-				color: #777;
-				font-weight: normal;
-			}
-		}
-		&.active span,
-		&:hover span {
-			background-color: #fafafa;
-		}
-	}
-}
-.m-icons-list {
-	.u-img {
-		padding: 10px;
-	}
-}
-@media screen and (max-width: @ipad) {
-	.m-emotion-nav {
-		.none;
-	}
-}
-.m-emotion-selection {
-	.mt(10px);
-	.none;
-}
-@media screen and (max-width: @ipad) {
-	.m-emotion-selection {
-		.db;
-	}
-}
-
-.btn-download-emoji {
-	.pr;
-	.db;
-	.auto(x);
-	i {
-		.pa;
-		.fz(22px);
-		top: 50%;
-		transform: translateY(-50%);
-	}
-	.el-icon-loading {
-		top: 30%;
-	}
-}
-
-.m-emotion-down {
-	.dbi;
-	.x;
-	.ml(28px);
-	.el-icon-cownload {
-		font-size: 22px;
-	}
-	b {
-		font-weight: 300;
-	}
-}
-.el-tabs__content {
-	overflow: visible;
-}

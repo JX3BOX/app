@@ -23,18 +23,17 @@
         <div class="m-icons-matrix">
             <icon-item v-for="(icon, index) in searchList" :icon="icon" :isFav="false" :key="index"></icon-item>
         </div>
-
     </div>
 </template>
 <script>
-import iconItem from './iconItem.vue';
+import iconItem from "./iconItem.vue";
 import { getIconsByName } from "@/service/icons.js";
 import default_list from "../default.json";
 export default {
     name: "search",
     props: [],
     components: {
-        iconItem
+        iconItem,
     },
     data: function() {
         return {
@@ -62,7 +61,10 @@ export default {
         async getSearchData(query) {
             if (query == this.searchKey) return;
             // 如果出现空格、全角逗号、顿号、斜杠、飘键进行替换
-            query = query.replace(/\s/g, "").replace(/，|、|\/|\||\\/g, ",").replace(/~/g, "-");
+            query = query
+                .replace(/\s/g, "")
+                .replace(/，|、|\/|\||\\/g, ",")
+                .replace(/~/g, "-");
 
             // 如果没有分隔符，先判断是不是按照名字搜索的文字
             let numberReg = /^[0-9]+$/;
@@ -77,57 +79,57 @@ export default {
             let iconTmp = [];
 
             // 如果同时出现逗号和杠，先拆逗号，再拆杠
-            if (query.includes(',')) {
-                iconTmp = query.split(',');
+            if (query.includes(",")) {
+                iconTmp = query.split(",");
             }
             if (!iconTmp.length) {
-                iconTmp = [query]
+                iconTmp = [query];
             }
 
-            iconTmp.forEach(item => {
-                if (item.includes('-')) {
-                    const [min, max] = item.split('-').map(Number).sort();
+            iconTmp.forEach((item) => {
+                if (item.includes("-")) {
+                    const [min, max] = item
+                        .split("-")
+                        .map(Number)
+                        .sort();
 
                     if (!isNaN(min) && !isNaN(max)) {
                         for (let i = min; i <= max; i++) {
                             if (!searchList.includes(i)) {
-                                searchList.push(i)
+                                searchList.push(i);
                             }
                         }
                     }
-
                 } else {
                     if (!isNaN(parseInt(item))) {
                         searchList.push(parseInt(item));
                     }
                 }
-            })
+            });
 
             this.searchList = searchList.slice(0, 500);
         },
         async searchIconByName(name) {
             return getIconsByName(name, this.client)
                 .then((res) => {
-                    const { item, skill, buff } = res
+                    const { item, skill, buff } = res;
 
                     const list = [...item, ...skill, ...buff];
                     const idList = [];
                     const tmpList = [];
 
                     list.forEach((item) => {
-
                         if (item.iconID) {
                             let iconId = String(item.iconID);
-    
+
                             if (!idList.includes(iconId)) {
                                 idList.push(iconId);
                                 tmpList.push({ id: iconId, name: item.Name });
                             }
                         }
-                        
                     });
 
-                    return tmpList
+                    return tmpList;
                 })
                 .catch((e) => {
                     console.log("Error:", e);

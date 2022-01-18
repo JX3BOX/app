@@ -1,21 +1,9 @@
 <template>
     <div class="m-icons-fav">
-        <el-alert
-            class="m-icons-tips"
-            v-if="!favList.length"
-            title="没有收藏的图标，请搜索图标进行添加。"
-            type="info"
-            center
-            show-icon
-        ></el-alert>
+        <el-alert class="m-icons-tips" v-if="!favList.length" title="没有收藏的图标，请搜索图标进行添加。" type="info" center show-icon></el-alert>
 
         <div class="m-icons-matrix" v-else>
-            <icon-item
-                v-for="(icon, index) in favList"
-                :icon="icon"
-                :isFav="true"
-                :key="index"
-            ></icon-item>
+            <icon-item v-for="(icon, index) in favList" :icon="icon" :isFav="true" :key="index"></icon-item>
         </div>
     </div>
 </template>
@@ -31,13 +19,13 @@ export default {
         iconItem,
     },
     computed: {
-        uid: function () {
+        uid: function() {
             return User.isLogin() ? User.getInfo().uid : 0;
         },
-        storeFavList: function (){
+        storeFavList: function() {
             return this.$store.state.favList || [];
         },
-        favList: function () {
+        favList: function() {
             if (this.storeFavList.length) {
                 return this.storeFavList;
             } else if (localStorage.getItem("favList")) {

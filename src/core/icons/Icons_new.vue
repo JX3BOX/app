@@ -23,9 +23,9 @@
                         </el-tab-pane>
                     </el-tabs>
                 </div>
-                <Footer></Footer>
             </div>
         </Main>
+        <Footer></Footer>
     </div>
 </template>
 
