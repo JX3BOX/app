@@ -37,14 +37,15 @@
 // 搜索列表
 .server-wrapper {
     margin-top: 20px;
+    border-bottom:1px dashed #eee;
 }
 
 // 已收藏列表
-.server-group-pinned {
-    padding-top: 20px;
-    border-radius: 10px;
-    border-bottom:1px dashed #eee;
-}
+// .server-group-pinned {
+//     padding-top: 20px;
+//     border-radius: 10px;
+//     border-bottom:1px dashed #eee;
+// }
 
 // 节点
 .server-node {
@@ -194,4 +195,15 @@
     .server-node{
         .w(50%);
     }
+}
+
+.serverbox{
+    .pt(40px);
+    h2{
+        .fz(18px);
+        margin: 0;
+    }
+}
+.serverbox +.serverbox{
+    .pt(20px);
 }

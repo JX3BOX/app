@@ -1,5 +1,6 @@
 import User from "@jx3box/jx3box-common/js/user";
-import { $cms } from "@jx3box/jx3box-common/js/https";
+import { $cms , $https } from "@jx3box/jx3box-common/js/https";
+ 
 
 function setFlowerServer(server) {
     localStorage && localStorage.setItem("flower_server", server);
@@ -70,4 +71,11 @@ function setMyFocusServers(data) {
         });
 }
 
-export { setFlowerServer, getServer, getProfile, getTempServer, getMyFocusServers, setMyFocusServers };
+function getAllServers(data) {
+    return $https('spider')
+        .get(`jx3servers`)
+        .then((res) => {
+            return res.data.data;
+        });
+}
+export { setFlowerServer, getServer, getProfile, getTempServer, getMyFocusServers, setMyFocusServers,getAllServers };

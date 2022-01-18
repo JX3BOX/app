@@ -17,24 +17,21 @@
                     <el-input placeholder="搜索服务器" v-model="searchServerName" class="input-with-select">
                         <template slot="prepend">服务器名</template>
                         <template slot="append">
-                            <el-switch style="display: block" v-model="isShowMainServer" active-color="#13ce66" active-text="只看主服"></el-switch>
+                            <i class="el-icon-search"></i>
                         </template>
                     </el-input>
                 </div>
 
-                <!-- 收藏列表 -->
-                <el-row :gutter="20" class="server-wrapper server-group-pinned" v-show="pinnedServerName.length > 0 && serverList.length > 0">
-                    <template v-for="(server, index) in serverList">
-                        <ServerItem :key="index" :server="server" :pinned="true" @toogle-server="clickServer" v-show="pinnedServerName.includes(server.serverName)" />
+                <!-- 全部列表 --> 
+                <div class="serverbox" v-for="(list,index) in serverData" :key="index">
+                    <template v-if="list.length > 0"> 
+                        <h2>[ {{  index | serverName}} ]</h2>
+                        <el-row :gutter="20" class="server-wrapper server-group-unpinned">
+                            <ServerItem v-for="(server, i) in list" :key="i" :server="server" :pinned="false" @toogle-server="clickServer(server)" />
+                        </el-row>
                     </template>
-                </el-row>
+                </div> 
 
-                <!-- 全部列表 -->
-                <el-row :gutter="20" class="server-wrapper server-group-unpinned">
-                    <template v-for="(server, index) in serverList">
-                        <ServerItem :key="index" :server="server" :pinned="false" @toogle-server="clickServer" v-show="showUnpinnedServerCondition(server)" />
-                    </template>
-                </el-row>
             </div>
             <Footer></Footer>
         </Main>
@@ -46,16 +43,16 @@ import Nav from "@/components/Nav.vue";
 import FServerNode from "./FServerNode.vue";
 import { axios } from "@/service/api.js";
 import User from "@jx3box/jx3box-common/js/user";
-import { getMyFocusServers, setMyFocusServers } from "@/service/server.js";
-import { __imgPath, __spider } from "@jx3box/jx3box-common/data/jx3box.json";
+import { getMyFocusServers, setMyFocusServers,getAllServers } from "@/service/server.js";
+import { __imgPath } from "@jx3box/jx3box-common/data/jx3box.json";
 export default {
     name: "Servers",
     data: function() {
         return {
             searchServerName: "",
             isShowMainServer: true,
-            serverList: [],
-            pinnedServerName: [],
+            serverData: [],
+            serverAllList:[],
             uid: 0,
         };
     },
@@ -64,44 +61,55 @@ export default {
         getIcon(key) {
             return __imgPath + "image/box/" + key + ".svg";
         },
-        showUnpinnedServerCondition(server) {
-            let searchServerNameTrimed = this.searchServerName.replace(/\ /g, "");
-            let isSearchInputEmpty = searchServerNameTrimed === "";
-            let isServerNameSearched = server.serverName.indexOf(searchServerNameTrimed) !== -1;
-            let isMainServer = server.serverName === server.mainServer;
-            return (
-                !this.pinnedServerName.includes(server.serverName) &&
-                ((!isSearchInputEmpty && isServerNameSearched) || (isSearchInputEmpty && !this.isShowMainServer) || (isSearchInputEmpty && isMainServer))
-            );
-        },
-        clickServer(serverName) {
-            let index = this.pinnedServerName.indexOf(serverName);
-            if (index === -1) {
-                this.pinnedServerName.push(serverName);
+        
+        // 点击收藏服务器和取消服务器收藏
+        clickServer(server) {
+            let list = this.serverData.fav || []
+            let index = list.includes(server)
+            if (index) {
+                list = list.filter(l=>l!==server)
             } else {
-                this.pinnedServerName.splice(index, 1);
+                list.push(server)
             }
+            this.serverData.fav = list
             this.setSavedServers();
         },
+
+        // 获取服务器列表
         loadAllServers() {
-            let url = __spider + "jx3servers";
-            axios(url, "GET")
-                .then((response) => {
-                    if (response.msg === "success") {
-                        let tmpMainServerList = [];
-                        let tmpNotMainServerList = response.data.filter((server) => {
-                            if (server.serverName === server.mainServer) {
-                                tmpMainServerList.push(server);
-                            }
-                            return server.serverName !== server.mainServer;
-                        });
-                        this.serverList = tmpMainServerList.concat(tmpNotMainServerList);
+            getAllServers().then((res) => {
+                let tmpMainServerList = [];
+                let tmpNotMainServerList = res.filter((server) => {
+                    if (server.serverName === server.mainServer) {
+                        tmpMainServerList.push(server);
                     }
-                })
-                .catch((e) => {
-                    console.log(e);
-                })
-                .then(() => {});
+                    return server.serverName !== server.mainServer;
+                });
+                this.sortServer(tmpMainServerList)
+                this.serverAllList = tmpMainServerList.concat(tmpNotMainServerList);
+            })
+        },
+        // 将获取的服务器分类 [正式服，怀旧服，其他]
+        sortServer(server){
+            let old = []
+            let other = []
+            server = server.filter((server) => {
+                if(server.zoneName.indexOf('比赛专区') !== -1 || server.zoneName.indexOf('区') == -1){
+                    other.unshift(server)
+                }else{
+                    if (server.zoneName.indexOf('缘起') !== -1) {
+                        old.push(server);
+                    }else{
+                        return server
+                    }
+                }
+            });
+            this.serverData = {
+                fav:[],
+                server,
+                old,
+                other,
+            }
         },
         getUserId() {
             if (User.isLogin()) {
@@ -115,9 +123,9 @@ export default {
                     .then((data) => {
                         let serverValue = data;
                         if (serverValue) {
-                            this.pinnedServerName = serverValue.split(",");
+                            this.serverData.fav = serverValue.split(",");
                         } else {
-                            this.pinnedServerName = [];
+                            this.serverData.fav = [];
                         }
                     })
                     .catch((e) => {
@@ -131,13 +139,14 @@ export default {
             if (window.localStorage) {
                 let current = localStorage.getItem("jx3_servers");
                 if (current) {
-                    this.pinnedServerName = current.split(",");
+                    this.serverData.fav = JSON.parse(current)
                 }
             }
         },
         setSavedServers() {
             if (this.uid) {
-                setMyFocusServers(this.pinnedServerName.join(","))
+                let list = this.serverData.fav.map(l=>l.serverName)
+                setMyFocusServers(list.join(","))
                     .then((data) => {})
                     .catch((e) => {
                         this.setToLocal();
@@ -149,12 +158,22 @@ export default {
         },
         setToLocal() {
             if (window.localStorage) {
-                let names = this.pinnedServerName.join(",");
+                let names = JSON.stringify(this.serverData.fav)
                 localStorage.setItem("jx3_servers", names);
             }
         },
     },
-    filters: {},
+    filters: {
+        serverName(index){
+            let name = {
+                server: '正式服',
+                old: '怀旧服',
+                other: '其他',
+                fav: '收藏'
+            }
+            return name[index]
+        }
+    },
     mounted: function() {
         this.getUserId();
         this.getSavedServers();
@@ -162,7 +181,7 @@ export default {
     },
     components: {
         Nav,
-       ServerItem: FServerNode,
+        ServerItem: FServerNode,
     },
 };
 </script>
