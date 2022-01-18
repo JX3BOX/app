@@ -1,14 +1,14 @@
 <template>
     <div class="m-emotion">
         <div class="m-emotion-nav">
-            <div class="u-btn" :class="i == index ? 'active' : ''" v-for="(item, i) in emoList" :key="i" @click="toChangeEmo(i, item)">
+            <div class="u-btn" :class="{ active: item.group_id === active.group_id }" v-for="(item, i) in emoList" :key="i" @click="toChangeEmo(item)">
                 <span>
                     {{ item.group_name }} <b>（{{ item.items.length }}）</b>
                 </span>
             </div>
         </div>
         <div class="m-emotion-list">
-            <el-image class="u-img" v-for="emoji in emoList[index].items" :key="emoji.emotion_id" :title="`${EmojiPath}${emoji.filename}`" :src="`${EmojiPath}${emoji.filename}`">
+            <el-image class="u-img" v-for="emoji in active.items" :key="emoji.emotion_id" :title="`${EmojiPath}${emoji.filename}`" :src="`${EmojiPath}${emoji.filename}`">
                 <div slot="placeholder" class="image-slot">
                     <i class="el-icon-loading"></i>
                 </div>
@@ -36,7 +36,6 @@ export default {
     data: function() {
         return {
             emoList: [],
-            index: 0,
             active: "",
             EmojiPath: __iconPath + "emotion/output/",
             isDownloadingEmoji: false,
@@ -52,8 +51,7 @@ export default {
                 this.active = res[0];
             });
         },
-        toChangeEmo(i, item) {
-            this.index = i;
+        toChangeEmo(item) {
             this.active = item;
         },
         handleDownloadEmoji(fileType) {

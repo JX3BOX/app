@@ -53,12 +53,12 @@ export default {
 
                         if (localFavList) {
                             localFavList = JSON.parse(localFavList);
-                            favList = [...favList, ...localFavList];
+                            favList = Array.from(new Set([...favList, ...localFavList]));
                         }
                     }
                 });
             }
-            localStorage.setItem("favList", favList);
+            localStorage.setItem("favList", JSON.stringify(favList));
             this.$store.commit("storeFav", favList);
         },
     },

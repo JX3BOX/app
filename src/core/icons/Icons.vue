@@ -18,7 +18,7 @@
                         <el-tab-pane label="收藏图标" name="favicon">
                             <IconsFav />
                         </el-tab-pane>
-                        <el-tab-pane label="表情包" name="emoji">
+                        <el-tab-pane label="表情包" name="emoji" lazy>
                             <IconsEmo />
                         </el-tab-pane>
                     </el-tabs>
