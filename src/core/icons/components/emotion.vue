@@ -18,10 +18,10 @@
             </el-image>
         </div>
         <div class="m-emotion-download">
-            <el-button class="u-btn" :loading="isDownloadingEmoji" type="primary" plain @click.native.stop="handleDownloadEmoji('zip')" icon="el-icon-download">
+            <el-button class="u-btn" :loading="isDownloadingEmoji" type="primary" @click.native.stop="handleDownloadEmoji('zip')" icon="el-icon-download">
                 下载压缩包 (.zip)
             </el-button>
-            <el-button class="u-btn" :loading="isDownloadingEmoji" type="primary" plain @click.native.stop="handleDownloadEmoji('eif')" icon="el-icon-download">
+            <el-button class="u-btn" :loading="isDownloadingEmoji" type="primary" @click.native.stop="handleDownloadEmoji('eif')" icon="el-icon-download">
                 下载QQ表情包
             </el-button>
         </div>
@@ -31,7 +31,7 @@
 import { getEmoList } from "@/service/icons.js";
 import { __iconPath } from "@jx3box/jx3box-common/data/jx3box.json";
 export default {
-    name: "emo",
+    name: "emotion",
     props: ["list"],
     data: function() {
         return {

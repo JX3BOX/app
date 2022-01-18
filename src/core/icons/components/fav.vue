@@ -11,7 +11,7 @@
 <script>
 import { getMyFavIcons } from "@/service/icons.js";
 import User from "@jx3box/jx3box-common/js/user.js";
-import iconItem from "./iconItem.vue";
+import iconItem from "./item.vue";
 export default {
     name: "fav",
     props: [],

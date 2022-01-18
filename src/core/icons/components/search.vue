@@ -26,7 +26,7 @@
     </div>
 </template>
 <script>
-import iconItem from "./iconItem.vue";
+import iconItem from "./item.vue";
 import { getIconsByName } from "@/service/icons.js";
 import default_list from "../default.json";
 export default {

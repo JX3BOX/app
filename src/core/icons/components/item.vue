@@ -20,7 +20,6 @@
 <script>
 import { __iconPath } from "@jx3box/jx3box-common/data/jx3box.json";
 import { setMyFavIcons } from "@/service/icons.js";
-import cloneDeep from 'lodash/cloneDeep';
 import User from "@jx3box/jx3box-common/js/user.js";
 export default {
     name: 'iconItem',

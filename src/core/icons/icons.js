@@ -19,7 +19,7 @@ Vue.use(JX3BOX_UI);
 import store from "./store";
 
 // import Icons from "./Icons.vue";
-import Icons from "./Icons_new.vue";
+import Icons from "./Icons.vue";
 
 new Vue({
     // router,
