@@ -29,18 +29,24 @@
                 </div>
             </el-image>
         </div>
-        <div>
+        <div class="m-download-btns">
             <el-button
                 :loading="isDownloadingEmoji"
                 type="primary"
                 plain
-                @click.native.stop="handleDownloadEmoji"
+                @click.native.stop="handleDownloadEmoji('zip')"
                 icon="el-icon-download"
-                class="btn-download-emoji"
             >
-                <div class="m-emotion-down">
-                    <b>立即下载</b>
-                </div>
+                下载zip
+            </el-button>
+            <el-button
+                :loading="isDownloadingEmoji"
+                type="primary"
+                plain
+                @click.native.stop="handleDownloadEmoji('eif')"
+                icon="el-icon-download"
+            >
+                下载QQ表情包
             </el-button>
         </div>
     </div>
@@ -57,7 +63,6 @@ export default {
             index: 0,
             active: '',
             EmojiPath: __iconPath + "emotion/output/",
-            zipPath: __iconPath + "emotion/zip/",
             isDownloadingEmoji: false,
         };
     },
@@ -77,14 +82,14 @@ export default {
             this.index = i;
             this.active = item;
         },
-        handleDownloadEmoji() {
+        handleDownloadEmoji(fileType) {
             this.isDownloadingEmoji = true;
 
-            const { zipPath, active } = this
+            const { EmojiPath, active } = this
 
             let link = document.createElement("a");
-            link.href = `${zipPath}${active.group_name}.zip`;
-            link.download = `${active.group_name}.zip`;
+            link.href = `${EmojiPath}${active.group_name}.${fileType}`;
+            link.download = `${active.group_name}.${fileType}`;
             link.click();
 
             this.isDownloadingEmoji = false;
@@ -97,3 +102,11 @@ export default {
     mounted: function () {},
 };
 </script>
+
+style <style lang="less">
+.m-download-btns {
+    // display: flex;
+    // align-content: center;
+    text-align: center;
+}
+</style>
