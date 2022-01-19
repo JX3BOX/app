@@ -10,6 +10,7 @@
                 </el-tooltip>
             </div>
             <span class="u-remove" v-else @click="removeFav(icon)"></span>
+            <i v-if="isStar" class="el-icon-star-on" :class="{ on: onFav(icon) }"></i>
         </div>
 
         <span class="u-copy" v-if="!isFav" v-clipboard:copy="icon" v-clipboard:success="onCopy" v-clipboard:error="onError" title="点击快速复制">{{ iconId(icon) }}</span>
@@ -44,6 +45,9 @@ export default {
         uid: function () {
 			return User.isLogin() ? User.getInfo().uid : 0;
 		},
+        isStar: function (){
+            return !this.isFav && this.favList.includes(this.iconId(this.icon))
+        }
     },
     methods: {
         // 收藏
@@ -68,16 +72,14 @@ export default {
         },
         async postFav(favList) {
             const icons = favList.join(',')
+            localStorage.setItem('favList', JSON.stringify(favList))
+            this.$store.commit('storeFav', favList)
             try {
                 if (this.uid) {
                     await setMyFavIcons(icons,  this.client)
                 }
             } catch(e) {
                 console.error(e)
-            } finally {
-                localStorage.setItem('favList', JSON.stringify(favList))
-
-                this.$store.commit('storeFav', favList)
             }
         },
         // icon名称

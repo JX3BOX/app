@@ -18,6 +18,11 @@ export default {
     components: {
         iconItem,
     },
+    data() {
+        return {
+            favList: [],
+        }
+    },
     computed: {
         uid: function() {
             return User.isLogin() ? User.getInfo().uid : 0;
@@ -25,15 +30,24 @@ export default {
         storeFavList: function() {
             return this.$store.state.favList || [];
         },
-        favList: function() {
-            if (this.storeFavList.length) {
-                return this.storeFavList;
-            } else if (localStorage.getItem("favList")) {
-                const favList = localStorage.getItem("favList");
-                return JSON.parse(favList);
+    },
+    watch: {
+        storeFavList: {
+            deep: true,
+            immediate: true,
+            handler() {
+                 if (this.storeFavList.length) {
+                    this.favList = this.storeFavList;
+                } else if (localStorage.getItem("favList")) {
+                    try {
+                        const favList = localStorage.getItem("favList");
+                        this.favList = JSON.parse(favList);
+                    } catch(e) {
+                        localStorage.setItem('favList', '')
+                    }
+                }
             }
-            return [];
-        },
+        }
     },
     methods: {
         async getFavIcons() {
@@ -48,16 +62,18 @@ export default {
                             serverValue = serverValue.replace(/[\[\]"\ ]/g, "");
                         }
                         favList = serverValue.split(",");
-
-                        let localFavList = localStorage.getItem("favList");
-
-                        if (localFavList) {
-                            localFavList = JSON.parse(localFavList);
-                            favList = Array.from(new Set([...favList, ...localFavList]));
-                        }
+                        try {
+                            let localFavList = localStorage.getItem("favList");
+    
+                            if (localFavList) {
+                                localFavList = JSON.parse(localFavList);
+                                favList = Array.from(new Set([...favList, ...localFavList]));
+                            }
+                        } catch (e) {}
                     }
                 });
             }
+            
             localStorage.setItem("favList", JSON.stringify(favList));
             this.$store.commit("storeFav", favList);
         },

@@ -12,13 +12,13 @@
                 <h1 class="m-icons-title">剑三图标库</h1>
                 <div class="m-icons-box">
                     <el-tabs v-model="activeTabName" type="card">
-                        <el-tab-pane label="图标库" name="icon">
+                        <el-tab-pane label="图标库" name="list">
                             <IconsSearch />
                         </el-tab-pane>
                         <el-tab-pane label="收藏图标" name="favicon">
                             <IconsFav />
                         </el-tab-pane>
-                        <el-tab-pane label="表情包" name="emoji" lazy>
+                        <el-tab-pane label="表情包" name="emotion" lazy>
                             <IconsEmo />
                         </el-tab-pane>
                     </el-tabs>
@@ -39,15 +39,21 @@ export default {
     name: "Icons",
     data: function() {
         return {
-            activeTabName: "icon",
+            activeTabName: "list",
         };
     },
-    computed: {},
+    watch: {
+        activeTabName(val) {
+            window.history.pushState('', '', location.origin + location.pathname + `?tab=${val}`)
+        }
+    },
+    mounted() {
+        const tab = new URLSearchParams(location.search).get('tab');
+        this.activeTabName = tab || 'list';
+    },
     methods: {
         getAppIcon,
     },
-    filters: {},
-    mounted: function() {},
     components: {
         Nav,
         IconsEmo,
