@@ -39,7 +39,7 @@ export default {
     name: "Icons",
     data: function() {
         return {
-            activeTabName: "list",
+            activeTabName: "",
         };
     },
     watch: {
