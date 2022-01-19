@@ -15,8 +15,8 @@ Vue.use(JX3BOX_UI);
 // import router from "../router";
 // import store from "../store";
 
-import Servers from "./Servers.vue";
-// import Servers from "./Servers_new.vue";
+// import Servers from "./Servers.vue";
+import Servers from "./Servers_new.vue";
 
 new Vue({
     // router,

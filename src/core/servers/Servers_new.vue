@@ -41,7 +41,6 @@
 <script>
 import Nav from "@/components/Nav.vue";
 import FServerNode from "./FServerNode.vue";
-import { axios } from "@/service/api.js";
 import User from "@jx3box/jx3box-common/js/user";
 import { getMyFocusServers, setMyFocusServers,getAllServers } from "@/service/server.js";
 import { __imgPath } from "@jx3box/jx3box-common/data/jx3box.json";
