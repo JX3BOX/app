@@ -52,12 +52,14 @@ export default {
     methods: {
         // 收藏
         setFav(icon) {
-            const favList = [...this.favList];
+            let favList = [...this.favList];
 
             const _icon = this.iconId(icon)
 
             if (!favList.includes(_icon)) {
                 favList.push(_icon);
+            } else {
+                favList = favList.filter(item => item !== _icon)
             }
 
             this.postFav(favList)
