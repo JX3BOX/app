@@ -8,7 +8,7 @@
             </div>
         </div>
         <div class="m-emotion-list">
-            <el-image class="u-img" v-for="emoji in active.items" :key="emoji.emotion_id" :title="`${EmojiPath}${emoji.filename}`" :src="`${EmojiPath}${emoji.filename}`">
+            <el-image class="u-img" v-for="emoji in active.items" :key="emoji.emotion_id" v-bind:alt="emoji.key" :title="`${emoji.key}`" :src="`${EmojiPath}${emoji.filename}`">
                 <div slot="placeholder" class="image-slot">
                     <i class="el-icon-loading"></i>
                 </div>
