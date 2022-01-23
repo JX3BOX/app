@@ -675,7 +675,7 @@
                     </el-col>
                     <el-col :span="6">
                         <div class="u-item">
-                            <a href="/share" target="_blank">
+                            <a href="/pvx/share" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
                                         <img svg-inline :src="getIcon('share')" />
@@ -690,7 +690,7 @@
                     </el-col>
                     <el-col :span="6">
                         <div class="u-item">
-                            <a href="./facedata" target="_blank">
+                            <a href="/pvx/facedata" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
                                         <img svg-inline :src="getIcon('facedata')" />
@@ -720,7 +720,7 @@
                     </el-col>
                     <el-col :span="6">
                         <div class="u-item">
-                            <a href="./furniture" target="_blank">
+                            <a href="/pvx/furniture" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
                                         <img svg-inline :src="getIcon('furniture')" />

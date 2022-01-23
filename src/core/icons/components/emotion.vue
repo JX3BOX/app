@@ -38,6 +38,7 @@ export default {
             emoList: [],
             active: "",
             EmojiPath: __iconPath + "emotion/output/",
+            EmotionRoot:__iconPath + "emotion/",
             isDownloadingEmoji: false,
         };
     },
@@ -57,10 +58,10 @@ export default {
         handleDownloadEmoji(fileType) {
             this.isDownloadingEmoji = true;
 
-            const { EmojiPath, active } = this;
+            const { EmotionRoot, active } = this;
 
             let link = document.createElement("a");
-            link.href = `${EmojiPath}${active.group_name}.${fileType}`;
+            link.href = `${EmotionRoot}${fileType}/${active.group_name}.${fileType}`;
             link.download = `${active.group_name}.${fileType}`;
             link.click();
 
