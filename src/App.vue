@@ -273,6 +273,21 @@
                     </el-col>
                     <el-col :span="6">
                         <div class="u-item">
+                            <a href="/battle" target="_blank">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('battle')" />
+                                    </i>
+                                </span>
+                                <span class="u-features">
+                                    <span class="u-name">战斗分析</span>
+                                    <span class="u-desc">茗伊团队战斗统计分析</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col>
+                    <el-col :span="6">
+                        <div class="u-item">
                             <a href="./haste" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
@@ -288,15 +303,15 @@
                     </el-col>
                     <el-col :span="6">
                         <div class="u-item">
-                            <a href="/battle" target="_blank">
+                            <a href="/tool/#/?search=计算器" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
-                                        <img svg-inline :src="getIcon('battle')" />
+                                        <img svg-inline :src="getIcon('dps')" />
                                     </i>
                                 </span>
                                 <span class="u-features">
-                                    <span class="u-name">战斗分析</span>
-                                    <span class="u-desc">茗伊团队战斗统计分析</span>
+                                    <span class="u-name">DPS计算器</span>
+                                    <span class="u-desc">全门派DPS计算器</span>
                                 </span>
                             </a>
                         </div>
@@ -342,21 +357,6 @@
                                 <span class="u-features">
                                     <span class="u-name">经脉模拟器</span>
                                     <span class="u-desc">通你妹,原汁原味</span>
-                                </span>
-                            </a>
-                        </div>
-                    </el-col>
-                    <el-col :span="6">
-                        <div class="u-item">
-                            <a href="/tool/#/?search=计算器" target="_blank">
-                                <span class="u-pic">
-                                    <i class="u-icon">
-                                        <img svg-inline :src="getIcon('dps')" />
-                                    </i>
-                                </span>
-                                <span class="u-features">
-                                    <span class="u-name">DPS计算器</span>
-                                    <span class="u-desc">全门派DPS计算器</span>
                                 </span>
                             </a>
                         </div>
@@ -578,7 +578,7 @@
                                 </span>
                                 <span class="u-features">
                                     <span class="u-name">物品百科</span>
-                                    <span class="u-desc">物品百科,物品清单,全服价格</span>
+                                    <span class="u-desc">物品百科,全服交易行价格</span>
                                 </span>
                             </a>
                         </div>
@@ -608,14 +608,14 @@
                                 </span>
                                 <span class="u-features">
                                     <span class="u-name">通识百科</span>
-                                    <span class="u-desc">大事件/八卦</span>
+                                    <span class="u-desc">剑三大事件日历</span>
                                 </span>
                             </a>
                         </div>
                     </el-col>
                     <el-col :span="6">
                         <div class="u-item">
-                            <a href="/pvx/serendipity" target="_blank">
+                            <a href="/pvx/adventure" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
                                         <img svg-inline :src="getIcon('qiyu')" />
@@ -630,6 +630,21 @@
                     </el-col>
                     <el-col :span="6">
                         <div class="u-item">
+                            <a href="https://j3cx.com/serendipity" target="_blank">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('qiyu')" />
+                                    </i>
+                                </span>
+                                <span class="u-features">
+                                    <span class="u-name">奇遇查询</span>
+                                    <span class="u-desc">全服奇遇查询</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col>
+                    <el-col :span="6">
+                        <div class="u-item">
                             <a href="/pvx/pet" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
@@ -638,37 +653,22 @@
                                 </span>
                                 <span class="u-features">
                                     <span class="u-name">宠物大全</span>
-                                    <span class="u-desc">宠物获取与地图</span>
+                                    <span class="u-desc">宠物获取攻略</span>
                                 </span>
                             </a>
                         </div>
                     </el-col>
                     <el-col :span="6">
                         <div class="u-item">
-                            <a href="./cooking" target="_blank">
+                            <a href="/pvx/petmap" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
-                                        <img svg-inline :src="getIcon('cooking')" />
+                                        <img svg-inline :src="getIcon('pet')" />
                                     </i>
                                 </span>
                                 <span class="u-features">
-                                    <span class="u-name">技艺助手</span>
-                                    <span class="u-desc">生活技艺模拟器</span>
-                                </span>
-                            </a>
-                        </div>
-                    </el-col>
-                    <el-col :span="6">
-                        <div class="u-item">
-                            <a href="/item/#/plan_list" target="_blank">
-                                <span class="u-pic">
-                                    <i class="u-icon">
-                                        <img svg-inline :src="getIcon('item_plan')" />
-                                    </i>
-                                </span>
-                                <span class="u-features">
-                                    <span class="u-name">物品清单</span>
-                                    <span class="u-desc">自定义清单物品清单</span>
+                                    <span class="u-name">宠物地图</span>
+                                    <span class="u-desc">摸宠地图标注</span>
                                 </span>
                             </a>
                         </div>
@@ -705,6 +705,36 @@
                     </el-col>
                     <el-col :span="6">
                         <div class="u-item">
+                            <a href="./cooking" target="_blank">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('cooking')" />
+                                    </i>
+                                </span>
+                                <span class="u-features">
+                                    <span class="u-name">技艺助手</span>
+                                    <span class="u-desc">生活技艺模拟器</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col>
+                    <el-col :span="6">
+                        <div class="u-item">
+                            <a href="/item/#/plan_list" target="_blank">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('item_plan')" />
+                                    </i>
+                                </span>
+                                <span class="u-features">
+                                    <span class="u-name">物品清单</span>
+                                    <span class="u-desc">自定义清单物品清单</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col>
+                    <el-col :span="6">
+                        <div class="u-item">
                             <a href="https://jx3.xoyo.com/zt/2020/09/24/blueprint/#/" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
@@ -714,6 +744,21 @@
                                 <span class="u-features">
                                     <span class="u-name">蓝图数据</span>
                                     <span class="u-desc">家园蓝图下载</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col>
+                    <el-col :span="6">
+                        <div class="u-item">
+                            <a href="/pvx/blueprint" target="_blank">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('blueprint')" />
+                                    </i>
+                                </span>
+                                <span class="u-features">
+                                    <span class="u-name">蓝图解析</span>
+                                    <span class="u-desc">蓝图数据解析</span>
                                 </span>
                             </a>
                         </div>
@@ -748,6 +793,7 @@
                             </a>
                         </div>
                     </el-col>
+                    
                     <el-col :span="6">
                         <div class="u-item">
                             <a href="./servers" target="_blank">
@@ -789,21 +835,6 @@
                                 <span class="u-features">
                                     <span class="u-name">科举答题</span>
                                     <span class="u-desc">最新剑三科举题库</span>
-                                </span>
-                            </a>
-                        </div>
-                    </el-col>
-                    <el-col :span="6">
-                        <div class="u-item">
-                            <a href="https://j3cx.com/serendipity" target="_blank">
-                                <span class="u-pic">
-                                    <i class="u-icon">
-                                        <img svg-inline :src="getIcon('qiyu')" />
-                                    </i>
-                                </span>
-                                <span class="u-features">
-                                    <span class="u-name">奇遇查询</span>
-                                    <span class="u-desc">全服奇遇查询</span>
                                 </span>
                             </a>
                         </div>
