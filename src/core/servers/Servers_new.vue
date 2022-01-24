@@ -22,16 +22,15 @@
                     </el-input>
                 </div>
 
-                <!-- 全部列表 --> 
-                <div class="serverbox" v-for="(list,index) in serverData" :key="index">
-                    <template v-if="list.length > 0"> 
-                        <h2>[ {{  index | serverName}} ]</h2>
+                <!-- 全部列表 -->
+                <div class="serverbox" v-for="(list, index) in serverData" :key="index">
+                    <template v-if="list.length > 0">
+                        <h2>[ {{ index | serverName }} ]</h2>
                         <el-row :gutter="20" class="server-wrapper server-group-unpinned">
                             <ServerItem v-for="(server, i) in list" :key="i" :server="server" :pinned="false" @toogle-server="clickServer(server)" />
                         </el-row>
                     </template>
-                </div> 
-
+                </div>
             </div>
             <Footer></Footer>
         </Main>
@@ -42,7 +41,7 @@
 import Nav from "@/components/Nav.vue";
 import FServerNode from "./FServerNode.vue";
 import User from "@jx3box/jx3box-common/js/user";
-import { getMyFocusServers, setMyFocusServers,getAllServers } from "@/service/server.js";
+import { getMyFocusServers, setMyFocusServers, getAllServers } from "@/service/server.js";
 import { __imgPath } from "@jx3box/jx3box-common/data/jx3box.json";
 export default {
     name: "Servers",
@@ -51,7 +50,7 @@ export default {
             searchServerName: "",
             isShowMainServer: true,
             serverData: [],
-            serverAllList:[],
+            serverAllList: [],
             uid: 0,
         };
     },
@@ -60,55 +59,59 @@ export default {
         getIcon(key) {
             return __imgPath + "image/box/" + key + ".svg";
         },
-        
+
         // 点击收藏服务器和取消服务器收藏
         clickServer(server) {
-            let list = this.serverData.fav || []
-            let index = list.includes(server)
-            if (index) {
-                list = list.filter(l=>l!==server)
+            let list = this.serverData.fav || [];
+            let index = JSON.stringify(list).indexOf(JSON.stringify(server));
+            if (index !== -1) {
+                for (let i = 0; i < list.length; i++) {
+                    if (list[i].mainServer == server.mainServer) list.splice(i, 1);
+                }
             } else {
-                list.push(server)
+                list.push(server);
             }
-            this.serverData.fav = list
+            this.serverData.fav = list;
             this.setSavedServers();
         },
 
         // 获取服务器列表
         loadAllServers() {
-            getAllServers().then((res) => {
+            getAllServers().then(res => {
                 let tmpMainServerList = [];
-                let tmpNotMainServerList = res.filter((server) => {
+                let tmpNotMainServerList = res.filter(server => {
                     if (server.serverName === server.mainServer) {
                         tmpMainServerList.push(server);
                     }
                     return server.serverName !== server.mainServer;
                 });
-                this.sortServer(tmpMainServerList)
+                this.sortServer(tmpMainServerList);
                 this.serverAllList = tmpMainServerList.concat(tmpNotMainServerList);
-            })
+            });
         },
         // 将获取的服务器分类 [正式服，怀旧服，其他]
-        sortServer(server){
-            let old = []
-            let other = []
-            server = server.filter((server) => {
-                if(server.zoneName.indexOf('比赛专区') !== -1 || server.zoneName.indexOf('区') == -1){
-                    other.unshift(server)
-                }else{
-                    if (server.zoneName.indexOf('缘起') !== -1) {
+        sortServer(server) {
+            let old = [];
+            let other = [];
+            let fav = this.getFromLocal();
+            server = server.filter(server => {
+                if (server.zoneName.indexOf("比赛专区") !== -1 || server.zoneName.indexOf("区") == -1) {
+                    other.unshift(server);
+                } else {
+                    if (server.zoneName.indexOf("缘起") !== -1) {
                         old.push(server);
-                    }else{
-                        return server
+                    } else {
+                        return server;
                     }
                 }
             });
+
             this.serverData = {
-                fav:[],
+                fav,
                 server,
                 old,
                 other,
-            }
+            };
         },
         getUserId() {
             if (User.isLogin()) {
@@ -119,35 +122,42 @@ export default {
             // 获取用户储存的服务器列表
             if (this.uid) {
                 getMyFocusServers()
-                    .then((data) => {
+                    .then(data => {
                         let serverValue = data;
                         if (serverValue) {
-                            this.serverData.fav = serverValue.split(",");
+                            this.getFromLocal();
+                            let list = this.serverFav(serverValue);
+                            this.serverData.fav = list;
                         } else {
                             this.serverData.fav = [];
                         }
                     })
-                    .catch((e) => {
-                        this.getFromLocal();
+                    .catch(e => {
+                        this.serverData.fav = this.getFromLocal();
                     });
             } else {
-                this.getFromLocal();
+                this.serverData.fav = this.getFromLocal();
             }
         },
+        serverFav(serverValue) {
+            serverValue = [...new Set(serverValue.split(","))].filter(l => l !== "");
+            serverValue.forEach(e => {
+                e = this.serverAllList.find(l.mainServer == e);
+            });
+            return serverValue;
+        },
         getFromLocal() {
-            if (window.localStorage) {
-                let current = localStorage.getItem("jx3_servers");
-                if (current) {
-                    this.serverData.fav = JSON.parse(current)
-                }
-            }
+            let current = localStorage.getItem("jx3_servers");
+            if (current) return (this.serverData.fav = JSON.parse(current));
+            return [];
         },
         setSavedServers() {
             if (this.uid) {
-                let list = this.serverData.fav.map(l=>l.serverName)
+                let list = this.serverData.fav;
+                list = list.map(l => l.serverName);
                 setMyFocusServers(list.join(","))
-                    .then((data) => {})
-                    .catch((e) => {
+                    .then(data => {})
+                    .catch(e => {
                         this.setToLocal();
                     });
             } else {
@@ -156,27 +166,25 @@ export default {
             }
         },
         setToLocal() {
-            if (window.localStorage) {
-                let names = JSON.stringify(this.serverData.fav)
-                localStorage.setItem("jx3_servers", names);
-            }
+            let names = JSON.stringify(this.serverData.fav);
+            localStorage.setItem("jx3_servers", names);
         },
     },
     filters: {
-        serverName(index){
+        serverName(index) {
             let name = {
-                server: '正式服',
-                old: '怀旧服',
-                other: '其他',
-                fav: '收藏'
-            }
-            return name[index]
-        }
+                server: "正式服",
+                old: "怀旧服",
+                other: "其他",
+                fav: "收藏",
+            };
+            return name[index];
+        },
     },
     mounted: function() {
         this.getUserId();
-        this.getSavedServers();
         this.loadAllServers();
+        this.getSavedServers();
     },
     components: {
         Nav,
