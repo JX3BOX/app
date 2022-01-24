@@ -123,14 +123,8 @@ export default {
             if (this.uid) {
                 getMyFocusServers()
                     .then(data => {
-                        let serverValue = data;
-                        if (serverValue) {
-                            this.getFromLocal();
-                            let list = this.serverFav(serverValue);
-                            this.serverData.fav = list;
-                        } else {
-                            this.serverData.fav = [];
-                        }
+                        let list = this.serverFav(data);
+                        this.serverData.fav = list;
                     })
                     .catch(e => {
                         this.serverData.fav = this.getFromLocal();
@@ -140,11 +134,15 @@ export default {
             }
         },
         serverFav(serverValue) {
+            if (!serverValue) return;
+            let list = [];
             serverValue = [...new Set(serverValue.split(","))].filter(l => l !== "");
-            serverValue.forEach(e => {
-                e = this.serverAllList.find(l.mainServer == e);
+            this.serverAllList.forEach(e => {
+                serverValue.forEach(k => {
+                    if (k == e.mainServer && k == e.serverName) list.push(e);
+                });
             });
-            return serverValue;
+            return list;
         },
         getFromLocal() {
             let current = localStorage.getItem("jx3_servers");
@@ -156,14 +154,14 @@ export default {
                 let list = this.serverData.fav;
                 list = list.map(l => l.serverName);
                 setMyFocusServers(list.join(","))
-                    .then(data => {})
+                    .then(data => {
+                        console.log(data, "setSavedServers");
+                    })
                     .catch(e => {
-                        this.setToLocal();
+                        console.log(e);
                     });
-            } else {
-                // 储存在本地
-                this.setToLocal();
             }
+            this.setToLocal();
         },
         setToLocal() {
             let names = JSON.stringify(this.serverData.fav);
