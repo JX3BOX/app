@@ -42,7 +42,7 @@
                     </el-col>
                     <el-col :span="6">
                         <div class="u-item">
-                            <a href="./jx3dat" target="_blank">
+                            <a href="/jx3dat" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
                                         <img svg-inline :src="getIcon('jx3dat')" />
@@ -153,7 +153,7 @@
                     </el-col>
                     <el-col :span="6">
                         <div class="u-item">
-                            <a href="/macroeditor" target="_blank">
+                            <a href="./macroeditor" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
                                         <img svg-inline :src="getIcon('macroeditor')" />
@@ -600,7 +600,7 @@
                     </el-col>
                     <el-col :span="6">
                         <div class="u-item">
-                            <a href="/wiki" target="_blank">
+                            <a href="/knowledge" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
                                         <img svg-inline :src="getIcon('knowledge')" />
