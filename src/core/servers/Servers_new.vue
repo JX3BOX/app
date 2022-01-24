@@ -24,7 +24,7 @@
 
                 <!-- 全部列表 -->
                 <div class="serverbox" v-for="(list, index) in serverData" :key="index">
-                    <template v-if="list.length > 0">
+                    <template v-if="list && list.length > 0">
                         <h2>[ {{ index | serverName }} ]</h2>
                         <el-row :gutter="20" class="server-wrapper server-group-unpinned">
                             <ServerItem v-for="(server, i) in list" :key="i" :server="server" :pinned="false" @toogle-server="clickServer(server)" />
@@ -124,7 +124,8 @@ export default {
                 getMyFocusServers()
                     .then(data => {
                         let list = this.serverFav(data);
-                        this.serverData.fav = list;
+                        let localStorage = this.getFromLocal();
+                        this.serverData.fav = [...new Set(list.concat(localStorage))];
                     })
                     .catch(e => {
                         this.serverData.fav = this.getFromLocal();
@@ -150,6 +151,8 @@ export default {
             return [];
         },
         setSavedServers() {
+            console.log("22");
+            console.log(this.uid, "?");
             if (this.uid) {
                 let list = this.serverData.fav;
                 list = list.map(l => l.serverName);
@@ -164,8 +167,11 @@ export default {
             this.setToLocal();
         },
         setToLocal() {
-            let names = JSON.stringify(this.serverData.fav);
-            localStorage.setItem("jx3_servers", names);
+            try {
+                localStorage.setItem("jx3_servers", JSON.stringify(this.serverData.fav));
+            } catch (e) {
+                localStorage.clear();
+            }
         },
     },
     filters: {
