@@ -12,16 +12,6 @@
                 <!-- 标题 -->
                 <h1 class="m-app-servers-title">剑三服务器实时监控面板</h1>
 
-                <!-- 搜索框 -->
-                <!-- <div class="searchbar-wrapper">
-                    <el-input placeholder="搜索服务器" v-model="searchServerName" class="input-with-select" @change="onSearch">
-                        <template slot="prepend">服务器名</template>
-                        <template slot="append">
-                            <i class="el-icon-search"></i>
-                        </template>
-                    </el-input>
-                </div> -->
-
                 <!-- 全部列表 -->
                 <div class="serverbox" v-for="(list, index) in serverData" :key="index">
                     <template v-if="list && list.length > 0">
@@ -124,8 +114,7 @@ export default {
                 getMyFocusServers()
                     .then(data => {
                         this.serverData.fav = this.serverFav(data);
-                        console.log(this.serverData.fav);
-
+                        console.log(this.serverData.fav, "getMyFocusServers");
                         this.setToLocal();
                     })
                     .catch(e => {
@@ -149,7 +138,7 @@ export default {
             return list;
         },
         getFromLocal() {
-            let current = localStorage.getItem("jx3_servers");
+            let current = localStorage.getItem("jx3_servers") || "";
             if (current) return (this.serverData.fav = JSON.parse(current));
             return [];
         },
@@ -174,10 +163,6 @@ export default {
             } catch (e) {
                 localStorage.clear();
             }
-        },
-        onSearch() {
-            let val = this.searchServerName;
-            console.log(this.serverData,val);
         },
     },
     filters: {
