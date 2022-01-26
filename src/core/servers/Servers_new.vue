@@ -14,7 +14,7 @@
 
                 <!-- 搜索框 -->
                 <div class="searchbar-wrapper">
-                    <el-input placeholder="搜索服务器" v-model="searchServerName" class="input-with-select">
+                    <el-input placeholder="搜索服务器" v-model="searchServerName" class="input-with-select" @change="onSearch">
                         <template slot="prepend">服务器名</template>
                         <template slot="append">
                             <i class="el-icon-search"></i>
@@ -126,6 +126,7 @@ export default {
                         let list = this.serverFav(data);
                         let localStorage = this.getFromLocal();
                         this.serverData.fav = [...new Set(list.concat(localStorage))];
+                        this.setToLocal();
                     })
                     .catch(e => {
                         this.serverData.fav = this.getFromLocal();
@@ -151,8 +152,6 @@ export default {
             return [];
         },
         setSavedServers() {
-            console.log("22");
-            console.log(this.uid, "?");
             if (this.uid) {
                 let list = this.serverData.fav;
                 list = list.map(l => l.serverName);
@@ -168,10 +167,15 @@ export default {
         },
         setToLocal() {
             try {
-                localStorage.setItem("jx3_servers", JSON.stringify(this.serverData.fav));
+                let list = [...new Set(this.serverData.fav)]
+                localStorage.setItem("jx3_servers", JSON.stringify(list));
             } catch (e) {
                 localStorage.clear();
             }
+        },
+        onSearch() {
+            let val = this.searchServerName;
+            console.log(this.serverData);
         },
     },
     filters: {
