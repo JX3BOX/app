@@ -13,14 +13,14 @@
                 <h1 class="m-app-servers-title">剑三服务器实时监控面板</h1>
 
                 <!-- 搜索框 -->
-                <div class="searchbar-wrapper">
+                <!-- <div class="searchbar-wrapper">
                     <el-input placeholder="搜索服务器" v-model="searchServerName" class="input-with-select" @change="onSearch">
                         <template slot="prepend">服务器名</template>
                         <template slot="append">
                             <i class="el-icon-search"></i>
                         </template>
                     </el-input>
-                </div>
+                </div> -->
 
                 <!-- 全部列表 -->
                 <div class="serverbox" v-for="(list, index) in serverData" :key="index">
@@ -123,9 +123,9 @@ export default {
             if (this.uid) {
                 getMyFocusServers()
                     .then(data => {
-                        let list = this.serverFav(data);
-                        let localStorage = this.getFromLocal();
-                        this.serverData.fav = [...new Set(list.concat(localStorage))];
+                        this.serverData.fav = this.serverFav(data);
+                        console.log(this.serverData.fav);
+
                         this.setToLocal();
                     })
                     .catch(e => {
@@ -144,6 +144,8 @@ export default {
                     if (k == e.mainServer && k == e.serverName) list.push(e);
                 });
             });
+            list = list.concat(this.getFromLocal());
+            list = [...new Set(list.map(v => JSON.stringify(v)))].map(v => JSON.parse(v));
             return list;
         },
         getFromLocal() {
@@ -167,7 +169,7 @@ export default {
         },
         setToLocal() {
             try {
-                let list = [...new Set(this.serverData.fav)]
+                let list = [...new Set(this.serverData.fav)];
                 localStorage.setItem("jx3_servers", JSON.stringify(list));
             } catch (e) {
                 localStorage.clear();
@@ -175,7 +177,7 @@ export default {
         },
         onSearch() {
             let val = this.searchServerName;
-            console.log(this.serverData);
+            console.log(this.serverData,val);
         },
     },
     filters: {
