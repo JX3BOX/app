@@ -12,13 +12,27 @@
                 <!-- 标题 -->
                 <h1 class="m-app-servers-title">剑三服务器实时监控面板</h1>
 
+                <!-- 搜索框 -->
+                <div class="searchbar-wrapper">
+                    <el-input placeholder="搜索全部服务器" v-model="searchServerName" class="input-with-select">
+                        <template slot="prepend">服务器名</template>
+                        <template>
+                            <i slot="append" class="el-icon-search"></i>
+                        </template>
+                    </el-input>
+                </div>
+
                 <!-- 全部列表 -->
-                <div class="serverbox" v-for="(list, index) in serverData" :key="index">
-                    <template v-if="list && list.length > 0">
+                <div class="serverbox" v-for="(item, index) in list" :key="index">
+                    <template v-if="item && item.length > 0">
                         <h2>[ {{ index | serverName }} ]</h2>
                         <el-row :gutter="20" class="server-wrapper server-group-unpinned">
-                            <ServerItem v-for="(server, i) in list" :key="i" :server="server" :pinned="false" @toogle-server="clickServer(server)" />
+                            <ServerItem v-for="(server, i) in item" :key="i" :server="server" :pinned="false" @toogle-server="clickServer(server)" />
                         </el-row>
+                    </template>
+                    <template v-else>
+                        <h2>[ {{ index | serverName }} ]</h2>
+                        <el-alert class="u-alert" title="没有对应的服务器" type="info" center show-icon></el-alert>
                     </template>
                 </div>
             </div>
@@ -40,11 +54,16 @@ export default {
             searchServerName: "",
             isShowMainServer: true,
             serverData: [],
+            searchData: [],
             serverAllList: [],
             uid: 0,
         };
     },
-    computed: {},
+    computed: {
+        list: function() {
+            return !this.searchServerName ? this.serverData : this.searchData;
+        },
+    },
     methods: {
         getIcon(key) {
             return __imgPath + "image/box/" + key + ".svg";
@@ -62,6 +81,7 @@ export default {
                 list.push(server);
             }
             this.serverData.fav = list;
+            if (!this.searchServerName) this.searchData.fav = list;
             this.setSavedServers();
         },
 
@@ -114,7 +134,6 @@ export default {
                 getMyFocusServers()
                     .then(data => {
                         this.serverData.fav = this.serverFav(data);
-                        console.log(this.serverData.fav, "getMyFocusServers");
                         this.setToLocal();
                     })
                     .catch(e => {
@@ -164,10 +183,20 @@ export default {
                 localStorage.clear();
             }
         },
+        searchServer(val) {
+            if (!val) return delete this.serverData.search;
+            let list = this.serverAllList;
+            let obj = [];
+            list.forEach(e => {
+                if (e.serverName.indexOf(val) !== -1) obj.push(e);
+            });
+            this.searchData = { fav: this.serverData.fav, search: obj };
+        },
     },
     filters: {
         serverName(index) {
             let name = {
+                search: "搜索结果",
                 server: "正式服",
                 old: "怀旧服",
                 other: "其他",
@@ -184,6 +213,11 @@ export default {
     components: {
         Nav,
         ServerItem: FServerNode,
+    },
+    watch: {
+        searchServerName(val) {
+            this.searchServer(val);
+        },
     },
 };
 </script>
