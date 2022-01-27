@@ -30,7 +30,7 @@
                             <ServerItem v-for="(server, i) in item" :key="i" :server="server" :pinned="false" @toogle-server="clickServer(server)" />
                         </el-row>
                     </template>
-                    <template v-else>
+                    <template v-if="index == 'search' && item.length == 0">
                         <h2>[ {{ index | serverName }} ]</h2>
                         <el-alert class="u-alert" title="没有对应的服务器" type="info" center show-icon></el-alert>
                     </template>
@@ -43,7 +43,7 @@
 
 <script>
 import Nav from "@/components/Nav.vue";
-import FServerNode from "./FServerNode.vue";
+import ServerItem from "./FServerNode.vue";
 import User from "@jx3box/jx3box-common/js/user";
 import { getMyFocusServers, setMyFocusServers, getAllServers } from "@/service/server.js";
 import { __imgPath } from "@jx3box/jx3box-common/data/jx3box.json";
@@ -53,15 +53,21 @@ export default {
         return {
             searchServerName: "",
             isShowMainServer: true,
-            serverData: [],
-            searchData: [],
+            serverData: {},
+            searchData: {},
+            serverList: [],
             serverAllList: [],
-            uid: 0,
         };
     },
     computed: {
         list: function() {
             return !this.searchServerName ? this.serverData : this.searchData;
+        },
+        localFav: function() {
+            return JSON.parse(localStorage.getItem("jx3_servers")) || [];
+        },
+        uid: function() {
+            return User.getInfo().uid || 0;
         },
     },
     methods: {
@@ -72,125 +78,118 @@ export default {
         // 点击收藏服务器和取消服务器收藏
         clickServer(server) {
             let list = this.serverData.fav || [];
-            let index = JSON.stringify(list).indexOf(JSON.stringify(server));
-            if (index !== -1) {
-                for (let i = 0; i < list.length; i++) {
-                    if (list[i].mainServer == server.mainServer) list.splice(i, 1);
-                }
+            if (list.length > 0) {
+                let index = JSON.stringify(list).indexOf(JSON.stringify(server));
+                list = index !== -1 ? list.filter(l => l.mainServer !== server.mainServer) : list.concat(server);
             } else {
-                list.push(server);
+                list = list.concat(server);
             }
+
             this.serverData.fav = list;
-            if (!this.searchServerName) this.searchData.fav = list;
+            if (this.searchServerName) this.searchData.fav = list;
             this.setSavedServers();
         },
 
         // 获取服务器列表
         loadAllServers() {
             getAllServers().then(res => {
-                let tmpMainServerList = [];
-                let tmpNotMainServerList = res.filter(server => {
+                let mainServerList = [];
+                let list = res.filter(server => {
                     if (server.serverName === server.mainServer) {
-                        tmpMainServerList.push(server);
+                        mainServerList.push(server);
                     }
                     return server.serverName !== server.mainServer;
                 });
-                this.sortServer(tmpMainServerList);
-                this.serverAllList = tmpMainServerList.concat(tmpNotMainServerList);
+
+                this.serverList = mainServerList;
+                this.serverAllList = mainServerList.concat(list);
+                this.sortServer(mainServerList);
             });
         },
+
         // 将获取的服务器分类 [正式服，怀旧服，其他]
-        sortServer(server) {
+        sortServer(list) {
             let old = [];
             let other = [];
-            let fav = this.getFromLocal();
-            server = server.filter(server => {
-                if (server.zoneName.indexOf("比赛专区") !== -1 || server.zoneName.indexOf("区") == -1) {
-                    other.unshift(server);
+            let server = [];
+            list.filter(s => {
+                if (s.zoneName.indexOf("比赛专区") !== -1 || s.zoneName.indexOf("区") == -1) {
+                    other.unshift(s);
                 } else {
-                    if (server.zoneName.indexOf("缘起") !== -1) {
-                        old.push(server);
+                    if (s.zoneName.indexOf("缘起") !== -1) {
+                        old.push(s);
                     } else {
-                        return server;
+                        server.push(s);
                     }
                 }
             });
 
             this.serverData = {
-                fav,
+                fav: this.localFav,
                 server,
                 old,
                 other,
             };
         },
-        getUserId() {
-            if (User.isLogin()) {
-                this.uid = User.getInfo().uid;
-            }
-        },
+
+        // 获取服务器收藏列表
         getSavedServers() {
-            // 获取用户储存的服务器列表
             if (this.uid) {
                 getMyFocusServers()
                     .then(data => {
-                        this.serverData.fav = this.serverFav(data);
-                        this.setToLocal();
+                        this.serverData.fav = [...new Set(this.serverFav(data), this.localFav)];
+                        this.setLocalFav();
                     })
                     .catch(e => {
-                        this.serverData.fav = this.getFromLocal();
+                        this.serverData.fav = this.localFav;
                     });
             } else {
-                this.serverData.fav = this.getFromLocal();
+                this.serverData.fav = this.localFav;
             }
         },
-        serverFav(serverValue) {
-            if (!serverValue) return;
+
+        //转服务器数据 str转换成obj
+        serverFav(serverlist) {
+            if (!serverlist) return [];
+
             let list = [];
-            serverValue = [...new Set(serverValue.split(","))].filter(l => l !== "");
-            this.serverAllList.forEach(e => {
-                serverValue.forEach(k => {
-                    if (k == e.mainServer && k == e.serverName) list.push(e);
-                });
+            serverlist = serverlist.split(",");
+            this.serverList.forEach(k => {
+                if (serverlist.includes(k.mainServer)) list.push(k);
             });
-            list = list.concat(this.getFromLocal());
-            list = [...new Set(list.map(v => JSON.stringify(v)))].map(v => JSON.parse(v));
             return list;
         },
-        getFromLocal() {
-            let current = localStorage.getItem("jx3_servers") || "";
-            if (current) return (this.serverData.fav = JSON.parse(current));
-            return [];
-        },
+
+        //登录状态存服务器，未登录存本地
         setSavedServers() {
             if (this.uid) {
-                let list = this.serverData.fav;
-                list = list.map(l => l.serverName);
+                let list = this.serverData.fav.map(l => l.serverName);
                 setMyFocusServers(list.join(","))
                     .then(data => {
-                        console.log(data, "setSavedServers");
+                        console.log(data);
                     })
                     .catch(e => {
                         console.log(e);
                     });
             }
-            this.setToLocal();
+            this.setLocalFav();
         },
-        setToLocal() {
+        // 将收藏存本地
+        setLocalFav() {
             try {
-                let list = [...new Set(this.serverData.fav)];
-                localStorage.setItem("jx3_servers", JSON.stringify(list));
+                localStorage.setItem("jx3_servers", JSON.stringify(this.serverData.fav));
             } catch (e) {
                 localStorage.clear();
             }
         },
+        // 搜索查询服务器
         searchServer(val) {
             if (!val) return delete this.serverData.search;
-            let list = this.serverAllList;
-            let obj = [];
-            list.forEach(e => {
-                if (e.serverName.indexOf(val) !== -1) obj.push(e);
+            let list = [];
+            this.serverAllList.forEach(k => {
+                if (k.serverName.indexOf(val) !== -1) list.push(k);
             });
-            this.searchData = { fav: this.serverData.fav, search: obj };
+            this.searchData = { fav: this.serverData.fav, search: list };
         },
     },
     filters: {
@@ -206,13 +205,12 @@ export default {
         },
     },
     mounted: function() {
-        this.getUserId();
         this.loadAllServers();
         this.getSavedServers();
     },
     components: {
         Nav,
-        ServerItem: FServerNode,
+        ServerItem,
     },
     watch: {
         searchServerName(val) {
