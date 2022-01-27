@@ -52,6 +52,15 @@ export default {
     methods: {
         async getFavIcons() {
             let favList = [];
+            let localFavList = localStorage.getItem("favList") || [];
+            try {
+                if (localFavList.length) {
+                    localFavList = JSON.parse(localFavList);
+                }
+            } catch (e) {
+                console.log(e)
+                localFavList = []
+            }
             if (this.uid) {
                 // 从服务器读取
                 await getMyFavIcons(this.client).then((data) => {
@@ -62,19 +71,12 @@ export default {
                             serverValue = serverValue.replace(/[\[\]"\ ]/g, "");
                         }
                         favList = serverValue.split(",");
-                        try {
-                            let localFavList = localStorage.getItem("favList");
-    
-                            if (localFavList) {
-                                localFavList = JSON.parse(localFavList);
-                                favList = Array.from(new Set([...favList, ...localFavList]));
-                            }
-                        } catch (e) {}
+                        favList = Array.from(new Set([...favList, ...localFavList]));
                     }
                 });
             }
             
-            localStorage.setItem("favList", JSON.stringify(favList));
+            localStorage.setItem("favList", JSON.stringify(Array.from(new Set([...favList, ...localFavList]))));
             this.$store.commit("storeFav", favList);
         },
     },
