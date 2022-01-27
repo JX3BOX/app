@@ -78,12 +78,7 @@ module.exports = {
             template: "public/index.html",
             filename: "sudoku/index.html",
         },
-        flower: {
-            title: "花价查询 - JX3BOX",
-            entry: "src/core/flower/flower.js",
-            template: "public/index.html",
-            filename: "flower/index.html",
-        },
+        // TODO:迁移至item栏目
         cooking: {
             title: "生活助手 - JX3BOX",
             entry: "src/core/cooking/cooking.js",
@@ -97,12 +92,6 @@ module.exports = {
             template: "public/index.html",
             filename: "furniture/index.html",
         },
-        // facedata: {
-        //     title: "妆容解析 - JX3BOX",
-        //     entry: "src/core/facedata/facedata.js",
-        //     template: "public/index.html",
-        //     filename: "facedata/index.html",
-        // },
         // TODO:迁移至pvp栏目
         sandbox: {
             title: "阵营沙盘- JX3BOX",
