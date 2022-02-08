@@ -288,7 +288,7 @@
                     </el-col>
                     <el-col :span="6">
                         <div class="u-item">
-                            <a href="./haste" target="_blank">
+                            <a href="/bps/#/haste" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
                                         <img svg-inline :src="getIcon('haste')" />
@@ -303,7 +303,7 @@
                     </el-col>
                     <el-col :span="6">
                         <div class="u-item">
-                            <a href="/tool/#/?search=计算器" target="_blank">
+                            <a href="/bps/#/dps" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
                                         <img svg-inline :src="getIcon('dps')" />
@@ -357,6 +357,21 @@
                                 <span class="u-features">
                                     <span class="u-name">经脉模拟器</span>
                                     <span class="u-desc">通你妹,原汁原味</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col>
+                    <el-col :span="6">
+                        <div class="u-item">
+                            <a href="./translator" target="_blank">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('translator')" />
+                                    </i>
+                                </span>
+                                <span class="u-features">
+                                    <span class="u-name">繁简转换</span>
+                                    <span class="u-desc">国际服剑三技能词库</span>
                                 </span>
                             </a>
                         </div>

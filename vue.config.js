@@ -42,12 +42,6 @@ module.exports = {
             template: "public/index.html",
             filename: "meridians/index.html",
         },
-        haste: {
-            title: "急速阈值 - JX3BOX",
-            entry: "src/core/haste/haste.js",
-            template: "public/index.html",
-            filename: "haste/index.html",
-        },
         macroeditor: {
             title: "宏编辑器 - JX3BOX",
             entry: "src/core/macroeditor/macroeditor.js",
@@ -77,6 +71,13 @@ module.exports = {
             entry: "src/core/sudoku/sudoku.js",
             template: "public/index.html",
             filename: "sudoku/index.html",
+        },
+        // TODO:迁移至bps栏目
+        haste: {
+            title: "急速阈值 - JX3BOX",
+            entry: "src/core/haste/haste.js",
+            template: "public/index.html",
+            filename: "haste/index.html",
         },
         // TODO:迁移至item栏目
         cooking: {
