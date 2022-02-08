@@ -72,13 +72,6 @@ module.exports = {
             template: "public/index.html",
             filename: "sudoku/index.html",
         },
-        // TODO:迁移至bps栏目
-        haste: {
-            title: "急速阈值 - JX3BOX",
-            entry: "src/core/haste/haste.js",
-            template: "public/index.html",
-            filename: "haste/index.html",
-        },
         // TODO:迁移至item栏目
         cooking: {
             title: "生活助手 - JX3BOX",
@@ -102,7 +95,7 @@ module.exports = {
         },
     },
 
-    //❤️ Porxy ~
+    //❤️ Proxy ~
     devServer: {
         proxy: {
             "/api/cms": {
