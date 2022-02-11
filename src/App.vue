@@ -585,21 +585,6 @@
                     </el-col>
                     <el-col :span="6">
                         <div class="u-item">
-                            <a href="/item" target="_blank">
-                                <span class="u-pic">
-                                    <i class="u-icon">
-                                        <img svg-inline :src="getIcon('item')" />
-                                    </i>
-                                </span>
-                                <span class="u-features">
-                                    <span class="u-name">物品百科</span>
-                                    <span class="u-desc">物品百科,全服交易行价格</span>
-                                </span>
-                            </a>
-                        </div>
-                    </el-col>
-                    <el-col :span="6">
-                        <div class="u-item">
                             <a href="/quest" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
@@ -628,6 +613,83 @@
                             </a>
                         </div>
                     </el-col>
+                    <el-col :span="6">
+                        <div class="u-item">
+                            <a href="https://j3cx.com/exam/" target="_blank">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('keju')" />
+                                    </i>
+                                </span>
+                                <span class="u-features">
+                                    <span class="u-name">科举答题</span>
+                                    <span class="u-desc">最新剑三科举题库</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col>
+
+                    <el-col :span="6">
+                        <div class="u-item">
+                            <a href="/item" target="_blank">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('item')" />
+                                    </i>
+                                </span>
+                                <span class="u-features">
+                                    <span class="u-name">物品百科</span>
+                                    <span class="u-desc">物品百科,全服交易行价格</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col>
+                    <el-col :span="6">
+                        <div class="u-item">
+                            <a href="/item/#/cooking" target="_blank">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('cooking')" />
+                                    </i>
+                                </span>
+                                <span class="u-features">
+                                    <span class="u-name">技艺助手</span>
+                                    <span class="u-desc">生活技艺模拟器</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col>
+                    <el-col :span="6">
+                        <div class="u-item">
+                            <a href="/item/#/plan_list" target="_blank">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('item_plan')" />
+                                    </i>
+                                </span>
+                                <span class="u-features">
+                                    <span class="u-name">物品清单</span>
+                                    <span class="u-desc">自定义清单物品清单</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col>
+                    <el-col :span="6">
+                        <div class="u-item">
+                            <a href="./price" target="_blank">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('price')" />
+                                    </i>
+                                </span>
+                                <span class="u-features">
+                                    <span class="u-name">全服金价</span>
+                                    <span class="u-desc">全服金价走势</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col>
+
                     <el-col :span="6">
                         <div class="u-item">
                             <a href="/pvx/adventure" target="_blank">
@@ -688,66 +750,7 @@
                             </a>
                         </div>
                     </el-col>
-                    <el-col :span="6">
-                        <div class="u-item">
-                            <a href="/share" target="_blank">
-                                <span class="u-pic">
-                                    <i class="u-icon">
-                                        <img svg-inline :src="getIcon('share')" />
-                                    </i>
-                                </span>
-                                <span class="u-features">
-                                    <span class="u-name">捏脸数据</span>
-                                    <span class="u-desc">捏脸数据下载</span>
-                                </span>
-                            </a>
-                        </div>
-                    </el-col>
-                    <el-col :span="6">
-                        <div class="u-item">
-                            <a href="/pvx/facedata" target="_blank">
-                                <span class="u-pic">
-                                    <i class="u-icon">
-                                        <img svg-inline :src="getIcon('facedata')" />
-                                    </i>
-                                </span>
-                                <span class="u-features">
-                                    <span class="u-name">妆容解析</span>
-                                    <span class="u-desc">捏脸数据解析,支持双端</span>
-                                </span>
-                            </a>
-                        </div>
-                    </el-col>
-                    <el-col :span="6">
-                        <div class="u-item">
-                            <a href="./cooking" target="_blank">
-                                <span class="u-pic">
-                                    <i class="u-icon">
-                                        <img svg-inline :src="getIcon('cooking')" />
-                                    </i>
-                                </span>
-                                <span class="u-features">
-                                    <span class="u-name">技艺助手</span>
-                                    <span class="u-desc">生活技艺模拟器</span>
-                                </span>
-                            </a>
-                        </div>
-                    </el-col>
-                    <el-col :span="6">
-                        <div class="u-item">
-                            <a href="/item/#/plan_list" target="_blank">
-                                <span class="u-pic">
-                                    <i class="u-icon">
-                                        <img svg-inline :src="getIcon('item_plan')" />
-                                    </i>
-                                </span>
-                                <span class="u-features">
-                                    <span class="u-name">物品清单</span>
-                                    <span class="u-desc">自定义清单物品清单</span>
-                                </span>
-                            </a>
-                        </div>
-                    </el-col>
+                    
                     <el-col :span="6">
                         <div class="u-item">
                             <a href="https://jx3.xoyo.com/zt/2020/09/24/blueprint/#/" target="_blank">
@@ -811,6 +814,51 @@
                     
                     <el-col :span="6">
                         <div class="u-item">
+                            <a href="/share" target="_blank">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('share')" />
+                                    </i>
+                                </span>
+                                <span class="u-features">
+                                    <span class="u-name">捏脸数据</span>
+                                    <span class="u-desc">捏脸数据下载</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col>
+                    <el-col :span="6">
+                        <div class="u-item">
+                            <a href="/pvx/facedata" target="_blank">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('facedata')" />
+                                    </i>
+                                </span>
+                                <span class="u-features">
+                                    <span class="u-name">妆容解析</span>
+                                    <span class="u-desc">捏脸数据解析,支持双端</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col>
+                    <el-col :span="6">
+                        <div class="u-item">
+                            <a href="/pvx/jewelry" target="_blank" class="disabled">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('facedata')" />
+                                    </i>
+                                </span>
+                                <span class="u-features">
+                                    <span class="u-name">外观大全</span>
+                                    <span class="u-desc">全外观预览</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col>
+                    <el-col :span="6">
+                        <div class="u-item">
                             <a href="./servers" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
@@ -819,37 +867,7 @@
                                 </span>
                                 <span class="u-features">
                                     <span class="u-name">开服监控</span>
-                                    <span class="u-desc">剑三全服务器开服监控</span>
-                                </span>
-                            </a>
-                        </div>
-                    </el-col>
-                    <el-col :span="6">
-                        <div class="u-item">
-                            <a href="./price" target="_blank">
-                                <span class="u-pic">
-                                    <i class="u-icon">
-                                        <img svg-inline :src="getIcon('price')" />
-                                    </i>
-                                </span>
-                                <span class="u-features">
-                                    <span class="u-name">全服金价</span>
-                                    <span class="u-desc">剑三全服务器开服监控</span>
-                                </span>
-                            </a>
-                        </div>
-                    </el-col>
-                    <el-col :span="6">
-                        <div class="u-item">
-                            <a href="https://j3cx.com/exam/" target="_blank">
-                                <span class="u-pic">
-                                    <i class="u-icon">
-                                        <img svg-inline :src="getIcon('keju')" />
-                                    </i>
-                                </span>
-                                <span class="u-features">
-                                    <span class="u-name">科举答题</span>
-                                    <span class="u-desc">最新剑三科举题库</span>
+                                    <span class="u-desc">剑三服务器开服监控</span>
                                 </span>
                             </a>
                         </div>

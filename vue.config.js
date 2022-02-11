@@ -7,7 +7,7 @@ module.exports = {
     //❤️ Multiple pages ~
     pages: {
         index: {
-            title: "应用 - JX3BOX",
+            title: "魔盒矩阵 - JX3BOX",
             entry: "src/main.js",
             template: "public/index.html",
             filename: "index.html",
@@ -60,24 +60,11 @@ module.exports = {
             template: "public/index.html",
             filename: "servers/index.html",
         },
-        price: {
-            title: "金价走势 - JX3BOX",
-            entry: "src/core/price/price.js",
-            template: "public/index.html",
-            filename: "price/index.html",
-        },
         sudoku: {
             title: "九宫格计算器 - JX3BOX",
             entry: "src/core/sudoku/sudoku.js",
             template: "public/index.html",
             filename: "sudoku/index.html",
-        },
-        // TODO:迁移至item栏目
-        cooking: {
-            title: "生活助手 - JX3BOX",
-            entry: "src/core/cooking/cooking.js",
-            template: "public/index.html",
-            filename: "cooking/index.html",
         },
         // TODO:迁移至pvx栏目
         furniture: {
@@ -86,12 +73,12 @@ module.exports = {
             template: "public/index.html",
             filename: "furniture/index.html",
         },
-        // TODO:迁移至pvp栏目
-        sandbox: {
-            title: "阵营沙盘- JX3BOX",
-            entry: "src/core/sandbox/sandbox.js",
-            template: "public/sandbox.html",
-            filename: "sandbox/index.html",
+        // TODO:迁移至item栏目
+        price: {
+            title: "金价走势 - JX3BOX",
+            entry: "src/core/price/price.js",
+            template: "public/index.html",
+            filename: "price/index.html",
         },
     },
 
@@ -103,18 +90,6 @@ module.exports = {
             },
             "/api/vip": {
                 "target": "https://pay.jx3box.com",
-                "onProxyReq": function (request) {
-                    request.setHeader("origin", "");
-                }
-            },
-            "/api/vip/i": {
-                "target": "https://pay.jx3box.com",
-                "onProxyReq": function (request) {
-                    request.setHeader("origin", "");
-                }
-            },
-            "/api/furniture":{
-                "target": "https://www.j3pz.com",
                 "onProxyReq": function (request) {
                     request.setHeader("origin", "");
                 }
