@@ -130,6 +130,21 @@
                             </a>
                         </div>
                     </el-col>
+                    <el-col :span="6">
+                        <div class="u-item">
+                            <a href="/topic" target="_blank">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('topic')" />
+                                    </i>
+                                </span>
+                                <span class="u-features">
+                                    <span class="u-name">专题导航</span>
+                                    <span class="u-desc">历届资料片专题</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col>
                 </el-row>
             </div>
 
@@ -676,20 +691,50 @@
                     </el-col>
                     <el-col :span="6">
                         <div class="u-item">
-                            <a href="./price" target="_blank">
+                            <a href="/pvx/price" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
                                         <img svg-inline :src="getIcon('price')" />
                                     </i>
                                 </span>
                                 <span class="u-features">
-                                    <span class="u-name">全服金价</span>
-                                    <span class="u-desc">全服金价走势</span>
+                                    <span class="u-name">物价大全</span>
+                                    <span class="u-desc">全服物价一览</span>
                                 </span>
                             </a>
                         </div>
                     </el-col>
 
+                    <el-col :span="6">
+                        <div class="u-item">
+                            <a href="/pet" target="_blank">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('pet')" />
+                                    </i>
+                                </span>
+                                <span class="u-features">
+                                    <span class="u-name">宠物大全</span>
+                                    <span class="u-desc">宠物获取攻略</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col>
+                    <el-col :span="6">
+                        <div class="u-item">
+                            <a href="/horse" target="_blank">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('pet')" />
+                                    </i>
+                                </span>
+                                <span class="u-features">
+                                    <span class="u-name">坐骑大全</span>
+                                    <span class="u-desc">坐骑属性一览</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col>
                     <el-col :span="6">
                         <div class="u-item">
                             <a href="/pvx/adventure" target="_blank">
@@ -716,36 +761,6 @@
                                 <span class="u-features">
                                     <span class="u-name">奇遇查询</span>
                                     <span class="u-desc">全服奇遇查询</span>
-                                </span>
-                            </a>
-                        </div>
-                    </el-col>
-                    <el-col :span="6">
-                        <div class="u-item">
-                            <a href="/pet" target="_blank">
-                                <span class="u-pic">
-                                    <i class="u-icon">
-                                        <img svg-inline :src="getIcon('pet')" />
-                                    </i>
-                                </span>
-                                <span class="u-features">
-                                    <span class="u-name">宠物大全</span>
-                                    <span class="u-desc">宠物获取攻略</span>
-                                </span>
-                            </a>
-                        </div>
-                    </el-col>
-                    <el-col :span="6">
-                        <div class="u-item">
-                            <a href="/pvx/petmap" target="_blank">
-                                <span class="u-pic">
-                                    <i class="u-icon">
-                                        <img svg-inline :src="getIcon('pet')" />
-                                    </i>
-                                </span>
-                                <span class="u-features">
-                                    <span class="u-name">宠物地图</span>
-                                    <span class="u-desc">摸宠地图标注</span>
                                 </span>
                             </a>
                         </div>
@@ -872,6 +887,53 @@
                             </a>
                         </div>
                     </el-col>
+
+                    <el-col :span="6">
+                        <div class="u-item">
+                            <a href="./price" target="_blank">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('price')" />
+                                    </i>
+                                </span>
+                                <span class="u-features">
+                                    <span class="u-name">全服金价</span>
+                                    <span class="u-desc">全服金价走势</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col>
+                    <el-col :span="6">
+                        <div class="u-item">
+                            <a href="https://jx3.seasunwbl.com/buyer?t=coin" target="_blank">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('wbl')" />
+                                    </i>
+                                </span>
+                                <span class="u-features">
+                                    <span class="u-name">万宝楼</span>
+                                    <span class="u-desc">官方交易平台（正式服）</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col>
+                    <el-col :span="6">
+                        <div class="u-item">
+                            <a href="https://jx3yq.seasunwbl.com/buyer?t=coin" target="_blank">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('wbl')" />
+                                    </i>
+                                </span>
+                                <span class="u-features">
+                                    <span class="u-name">万宝楼</span>
+                                    <span class="u-desc">官方交易平台（怀旧服）</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col>
+                    
                 </el-row>
             </div>
 
