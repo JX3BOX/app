@@ -691,7 +691,7 @@
                     </el-col>
                     <el-col :span="6">
                         <div class="u-item">
-                            <a href="/pvx/price" target="_blank">
+                            <a href="/merchant/price" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
                                         <img svg-inline :src="getIcon('price')" />
@@ -737,7 +737,7 @@
                     </el-col>
                     <el-col :span="6">
                         <div class="u-item">
-                            <a href="/pvx/adventure" target="_blank">
+                            <a href="/adventure" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
                                         <img svg-inline :src="getIcon('qiyu')" />
@@ -783,7 +783,7 @@
                     </el-col>
                     <el-col :span="6">
                         <div class="u-item">
-                            <a href="/pvx/blueprint" target="_blank">
+                            <a href="/homeland/blueprint" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
                                         <img svg-inline :src="getIcon('blueprint')" />
@@ -798,7 +798,7 @@
                     </el-col>
                     <el-col :span="6">
                         <div class="u-item">
-                            <a href="/pvx/furniture" target="_blank">
+                            <a href="/homeland/furniture" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
                                         <img svg-inline :src="getIcon('furniture')" />
@@ -813,7 +813,7 @@
                     </el-col>
                     <el-col :span="6">
                         <div class="u-item">
-                            <a href="/pvx/flower" target="_blank">
+                            <a href="/homeland/flower" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
                                         <img svg-inline :src="getIcon('flower')" />
@@ -844,7 +844,7 @@
                     </el-col>
                     <el-col :span="6">
                         <div class="u-item">
-                            <a href="/pvx/facedata" target="_blank">
+                            <a href="/share/facedata" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
                                         <img svg-inline :src="getIcon('facedata')" />
@@ -859,7 +859,7 @@
                     </el-col>
                     <el-col :span="6">
                         <div class="u-item">
-                            <a href="/pvx/jewelry" target="_blank" class="disabled">
+                            <a href="/exterior" target="_blank" class="disabled">
                                 <span class="u-pic">
                                     <i class="u-icon">
                                         <img svg-inline :src="getIcon('facedata')" />
