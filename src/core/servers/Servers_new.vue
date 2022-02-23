@@ -93,6 +93,7 @@ export default {
 		// 获取服务器列表
 		loadAllServers() {
 			getAllServers().then((res) => {
+                console.log(res,'?')
 				let mainServerList = [];
 				let list = res.filter((server) => {
 					if (server.serverName === server.mainServer) {
@@ -137,6 +138,7 @@ export default {
 			if (this.uid) {
 				getMyFocusServers()
 					.then((data) => {
+						this.data = data;
 						this.serverData.fav = [...new Set(this.serverFav(data), this.localFav)];
 						this.setLocalFav();
 					})
