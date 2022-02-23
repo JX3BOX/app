@@ -63,9 +63,6 @@ export default {
 		list: function () {
 			return !this.searchServerName ? this.serverData : this.searchData;
 		},
-		localFav: function () {
-			return JSON.parse(localStorage.getItem("jx3_servers")) || [];
-		},
 		uid: function () {
 			return User.getInfo().uid || 0;
 		},
@@ -125,7 +122,7 @@ export default {
 			});
 
 			this.serverData = {
-				fav: this.localFav,
+				fav: [],
 				server,
 				old,
 				other,
@@ -139,13 +136,12 @@ export default {
 					.then((data) => {
 						this.data = data;
 						this.serverData.fav = [...new Set(this.serverFav(data), this.localFav)];
-						this.setLocalFav();
 					})
 					.catch((e) => {
-						this.serverData.fav = this.localFav;
+						this.serverData.fav = [];
 					});
 			} else {
-				this.serverData.fav = this.localFav;
+				this.serverData.fav = [];
 			}
 		},
 
@@ -161,7 +157,7 @@ export default {
 			return list;
 		},
 
-		//登录状态存服务器，未登录存本地
+		//登录状态存服务器，未登录跳转
 		setSavedServers() {
 			if (this.uid) {
 				let list = this.serverData.fav.map((l) => l.serverName);
@@ -172,17 +168,11 @@ export default {
 					.catch((e) => {
 						console.log(e);
 					});
-			}
-			this.setLocalFav();
-		},
-		// 将收藏存本地
-		setLocalFav() {
-			try {
-				localStorage.setItem("jx3_servers", JSON.stringify(this.serverData.fav));
-			} catch (e) {
-				localStorage.clear();
+			} else {
+				return User.toLogin();
 			}
 		},
+
 		// 搜索查询服务器
 		searchServer(val) {
 			if (!val) return delete this.serverData.search;
