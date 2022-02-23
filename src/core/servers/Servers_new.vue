@@ -133,19 +133,19 @@ export default {
 			if (this.uid) {
 				getMyFocusServers().then((data) => {
 					this.data = data;
-					this.serverData.fav = this.serverFav(data) || [];
+					this.serverData.fav = this.serverFav(data);
 				});
 			}
 		},
 
 		//转服务器数据 str转换成obj
-		serverFav(serverlist) {
-			if (!serverlist) return [];
+		serverFav(data) {
+			if (!data) return [];
 
 			let list = [];
-			serverlist = serverlist.split(",");
+			data = data.split(",");
 			this.serverList.forEach((k) => {
-				if (serverlist.includes(k.mainServer)) list.push(k);
+				if (data.includes(k.mainServer)) list.push(k);
 			});
 			return list;
 		},
@@ -200,6 +200,13 @@ export default {
 	watch: {
 		searchServerName(val) {
 			this.searchServer(val);
+		},
+		"serverData.fav": {
+			handler(val) {
+				this.$set(this.serverData, "fav", val);
+			},
+			immediate: true,
+			deep: true,
 		},
 	},
 };
