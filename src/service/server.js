@@ -74,7 +74,7 @@ function setMyFocusServers(data) {
 		});
 }
 
-function getAllServers(data) {
+function getAllServers() {
 	return $spider.get("/jx3servers")
 }
 
