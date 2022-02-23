@@ -74,16 +74,14 @@ export default {
 
 		// 点击收藏服务器和取消服务器收藏
 		clickServer(server) {
-			let list = this.serverData.fav || [];
-			if (list.length > 0) {
-				let index = JSON.stringify(list).indexOf(JSON.stringify(server));
-				list = index !== -1 ? list.filter((l) => l.mainServer !== server.mainServer) : list.concat(server);
-			} else {
-				list = list.concat(server);
+			let list = new Set(this.serverData.fav);
+			let fav = [];
+			list.has(server) ? list.delete(server) : list.add(server);
+			for (let key of list.keys()) {
+				fav.push(key);
 			}
-
-			this.serverData.fav = list;
-			if (this.searchServerName) this.searchData.fav = list;
+			this.serverData.fav = fav;
+			if (this.searchServerName) this.searchData.fav = fav;
 			this.setSavedServers();
 		},
 
@@ -109,6 +107,7 @@ export default {
 			let old = [];
 			let other = [];
 			let server = [];
+			let fav = this.serverData.fav || [];
 			list.filter((s) => {
 				if (s.zoneName.indexOf("比赛专区") !== -1 || s.zoneName.indexOf("区") == -1) {
 					other.unshift(s);
@@ -122,7 +121,7 @@ export default {
 			});
 
 			this.serverData = {
-				fav: [],
+				fav,
 				server,
 				old,
 				other,
@@ -132,16 +131,10 @@ export default {
 		// 获取服务器收藏列表
 		getSavedServers() {
 			if (this.uid) {
-				getMyFocusServers()
-					.then((data) => {
-						this.data = data;
-						this.serverData.fav = [...new Set(this.serverFav(data), this.localFav)];
-					})
-					.catch((e) => {
-						this.serverData.fav = [];
-					});
-			} else {
-				this.serverData.fav = [];
+				getMyFocusServers().then((data) => {
+					this.data = data;
+					this.serverData.fav = this.serverFav(data) || [];
+				});
 			}
 		},
 
@@ -160,7 +153,8 @@ export default {
 		//登录状态存服务器，未登录跳转
 		setSavedServers() {
 			if (this.uid) {
-				let list = this.serverData.fav.map((l) => l.serverName);
+				let list = this.serverData.fav.map((el) => el.serverName);
+
 				setMyFocusServers(list.join(","))
 					.then((data) => {
 						console.log(data);
