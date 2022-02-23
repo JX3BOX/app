@@ -75,9 +75,7 @@ function setMyFocusServers(data) {
 }
 
 function getAllServers(data) {
-	return $spider.get("/jx3servers").then((res) => {
-		return res.data.data;
-	});
+	return $spider.get("/jx3servers")
 }
 
 export { setFlowerServer, getServer, getProfile, getTempServer, getMyFocusServers, setMyFocusServers, getAllServers };

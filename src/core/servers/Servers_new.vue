@@ -93,9 +93,8 @@ export default {
 		// 获取服务器列表
 		loadAllServers() {
 			getAllServers().then((res) => {
-                console.log(res,'?')
 				let mainServerList = [];
-				let list = res.filter((server) => {
+				let list = res.data.data?.filter((server) => {
 					if (server.serverName === server.mainServer) {
 						mainServerList.push(server);
 					}
