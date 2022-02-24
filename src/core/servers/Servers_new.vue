@@ -107,6 +107,12 @@ export default {
 				this.serverList = mainServerList;
 				this.serverAllList = mainServerList.concat(list);
 				this.sortServer(mainServerList);
+                
+				if (this.uid) {
+					getMyFocusServers().then((data) => {
+						this.serverFav(data);
+					});
+				}
 			});
 		},
 
@@ -132,15 +138,6 @@ export default {
 				old,
 				other,
 			};
-		},
-
-		// 获取服务器收藏列表
-		getSavedServers() {
-			if (this.uid) {
-				getMyFocusServers().then((data) => {
-					this.serverFav(data);
-				});
-			}
 		},
 
 		//转服务器数据 str转换成obj
@@ -190,9 +187,8 @@ export default {
 			return name[index];
 		},
 	},
-	mounted: function () {
+	created: function () {
 		this.loadAllServers();
-		this.getSavedServers();
 	},
 	components: {
 		Nav,
