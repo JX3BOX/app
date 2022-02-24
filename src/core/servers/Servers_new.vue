@@ -23,14 +23,22 @@
 				</div>
 
 				<!-- 全部列表 -->
+
+				<div class="serverbox" v-if="favList.length">
+					<h2>[ 收藏 ]</h2>
+					<el-row :gutter="20" class="server-wrapper server-group-unpinned">
+						<ServerItem v-for="(server, i) in favList" :key="i" :server="server" :pinned="false" @toogle-server="clickServer(server)" />
+					</el-row>
+				</div>
+
 				<div class="serverbox" v-for="(item, index) in list" :key="index">
-					<template v-if="item && item.length > 0">
+					<template v-if="item.length">
 						<h2>[ {{ index | serverName }} ]</h2>
 						<el-row :gutter="20" class="server-wrapper server-group-unpinned">
 							<ServerItem v-for="(server, i) in item" :key="i" :server="server" :pinned="false" @toogle-server="clickServer(server)" />
 						</el-row>
 					</template>
-					<template v-if="index !== 'fav' && item.length == 0">
+					<template v-else>
 						<h2>[ {{ index | serverName }} ]</h2>
 						<el-alert class="u-alert" title="没有对应的服务器" type="info" center show-icon></el-alert>
 					</template>
@@ -57,6 +65,7 @@ export default {
 			searchData: {},
 			serverList: [],
 			serverAllList: [],
+			favList: [],
 		};
 	},
 	computed: {
@@ -74,14 +83,13 @@ export default {
 
 		// 点击收藏服务器和取消服务器收藏
 		clickServer(server) {
-			let list = new Set(this.serverData.fav);
+			let list = new Set(this.favList);
 			let fav = [];
 			list.has(server) ? list.delete(server) : list.add(server);
 			for (let key of list.keys()) {
 				fav.push(key);
 			}
-			this.serverData.fav = fav;
-			if (this.searchServerName) this.searchData.fav = fav;
+			this.favList = fav;
 			this.setSavedServers();
 		},
 
@@ -107,7 +115,6 @@ export default {
 			let old = [];
 			let other = [];
 			let server = [];
-			let fav = this.serverData.fav || [];
 			list.filter((s) => {
 				if (s.zoneName.indexOf("比赛专区") !== -1 || s.zoneName.indexOf("区") == -1) {
 					other.unshift(s);
@@ -121,7 +128,6 @@ export default {
 			});
 
 			this.serverData = {
-				fav,
 				server,
 				old,
 				other,
@@ -132,28 +138,24 @@ export default {
 		getSavedServers() {
 			if (this.uid) {
 				getMyFocusServers().then((data) => {
-					this.data = data;
-					this.serverData.fav = this.serverFav(data);
+					this.serverFav(data);
 				});
 			}
 		},
 
 		//转服务器数据 str转换成obj
 		serverFav(data) {
-			if (!data) return [];
-
-			let list = [];
+			if (!data) return;
 			data = data.split(",");
 			this.serverList.forEach((k) => {
-				if (data.includes(k.mainServer)) list.push(k);
+				if (data.includes(k.mainServer)) this.favList.push(k);
 			});
-			return list;
 		},
 
 		//登录状态存服务器，未登录跳转
 		setSavedServers() {
 			if (this.uid) {
-				let list = this.serverData.fav.map((el) => el.serverName);
+				let list = this.favList.map((el) => el.serverName);
 
 				setMyFocusServers(list.join(","))
 					.then((data) => {
@@ -174,7 +176,7 @@ export default {
 			this.serverAllList.forEach((k) => {
 				if (k.serverName.indexOf(val) !== -1) list.push(k);
 			});
-			this.searchData = { fav: this.serverData.fav, search: list };
+			this.searchData = { search: list };
 		},
 	},
 	filters: {
@@ -184,7 +186,6 @@ export default {
 				server: "正式服",
 				old: "怀旧服",
 				other: "其他",
-				fav: "收藏",
 			};
 			return name[index];
 		},
@@ -200,13 +201,6 @@ export default {
 	watch: {
 		searchServerName(val) {
 			this.searchServer(val);
-		},
-		"serverData.fav": {
-			handler(val) {
-				this.$set(this.serverData, "fav", val);
-			},
-			immediate: true,
-			deep: true,
 		},
 	},
 };
