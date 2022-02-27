@@ -768,37 +768,7 @@
                     
                     <el-col :span="6">
                         <div class="u-item">
-                            <a href="https://jx3.xoyo.com/zt/2020/09/24/blueprint/#/" target="_blank">
-                                <span class="u-pic">
-                                    <i class="u-icon">
-                                        <img svg-inline :src="getIcon('blueprint')" />
-                                    </i>
-                                </span>
-                                <span class="u-features">
-                                    <span class="u-name">蓝图数据</span>
-                                    <span class="u-desc">家园蓝图下载</span>
-                                </span>
-                            </a>
-                        </div>
-                    </el-col>
-                    <el-col :span="6">
-                        <div class="u-item">
-                            <a href="/homeland/blueprint" target="_blank">
-                                <span class="u-pic">
-                                    <i class="u-icon">
-                                        <img svg-inline :src="getIcon('blueprint')" />
-                                    </i>
-                                </span>
-                                <span class="u-features">
-                                    <span class="u-name">蓝图解析</span>
-                                    <span class="u-desc">蓝图数据解析</span>
-                                </span>
-                            </a>
-                        </div>
-                    </el-col>
-                    <el-col :span="6">
-                        <div class="u-item">
-                            <a href="/homeland/furniture" target="_blank">
+                            <a href="/furniture" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
                                         <img svg-inline :src="getIcon('furniture')" />
@@ -822,6 +792,36 @@
                                 <span class="u-features">
                                     <span class="u-name">家园花价</span>
                                     <span class="u-desc">全服花价数据</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col>
+                    <el-col :span="6">
+                        <div class="u-item">
+                            <a href="/homeland/maps" target="_blank">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('blueprint')" />
+                                    </i>
+                                </span>
+                                <span class="u-features">
+                                    <span class="u-name">家园指南</span>
+                                    <span class="u-desc">家园地图与攻略</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col>
+                    <el-col :span="6">
+                        <div class="u-item">
+                            <a href="https://jx3.xoyo.com/zt/2020/09/24/blueprint/#/" target="_blank">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('blueprint')" />
+                                    </i>
+                                </span>
+                                <span class="u-features">
+                                    <span class="u-name">蓝图数据</span>
+                                    <span class="u-desc">家园蓝图下载</span>
                                 </span>
                             </a>
                         </div>

@@ -66,13 +66,6 @@ module.exports = {
             template: "public/index.html",
             filename: "sudoku/index.html",
         },
-        // TODO:迁移至pvx栏目
-        furniture: {
-            title: "家具大全 - JX3BOX",
-            entry: "src/core/furniture/furniture.js",
-            template: "public/index.html",
-            filename: "furniture/index.html",
-        },
         // TODO:迁移至item栏目
         price: {
             title: "金价走势 - JX3BOX",
