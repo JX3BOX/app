@@ -623,7 +623,7 @@
                                 </span>
                                 <span class="u-features">
                                     <span class="u-name">通识百科</span>
-                                    <span class="u-desc">剑三大事件日历</span>
+                                    <span class="u-desc">剑三世界概念</span>
                                 </span>
                             </a>
                         </div>

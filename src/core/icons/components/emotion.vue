@@ -29,7 +29,7 @@
 </template>
 <script>
 import { getEmoList } from "@/service/icons.js";
-import { __iconPath } from "@jx3box/jx3box-common/data/jx3box.json";
+import { __dataPath,__imgPath } from "@jx3box/jx3box-common/data/jx3box.json";
 export default {
     name: "emotion",
     props: ["list"],
@@ -37,8 +37,8 @@ export default {
         return {
             emoList: [],
             active: "",
-            EmojiPath: __iconPath + "emotion/output/",
-            EmotionRoot:__iconPath + "emotion/",
+            EmojiPath: __imgPath + "emotion/output/",
+            EmotionRoot:__imgPath + "emotion/",
             isDownloadingEmoji: false,
         };
     },
