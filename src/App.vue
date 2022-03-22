@@ -132,6 +132,21 @@
                     </el-col>
                     <el-col :span="6">
                         <div class="u-item">
+                            <a href="/calendar" target="_blank">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('calendar')" />
+                                    </i>
+                                </span>
+                                <span class="u-features">
+                                    <span class="u-name">剑三日历</span>
+                                    <span class="u-desc">剑三编年史</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col>
+                    <el-col :span="6">
+                        <div class="u-item">
                             <a href="/topic" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
@@ -288,7 +303,7 @@
                     </el-col>
                     <el-col :span="6">
                         <div class="u-item">
-                            <a href="/battle" target="_blank">
+                            <a href="/battle" target="_blank" class="disabled">
                                 <span class="u-pic">
                                     <i class="u-icon">
                                         <img svg-inline :src="getIcon('battle')" />
@@ -444,7 +459,7 @@
                     </el-col>
                     <el-col :span="6">
                         <div class="u-item">
-                            <a href="/dbm" target="_blank">
+                            <a href="/dbm" target="_blank" class="disabled">
                                 <span class="u-pic">
                                     <i class="u-icon">
                                         <img svg-inline :src="getIcon('dbm')" />
@@ -564,7 +579,7 @@
                     </el-col>
                     <el-col :span="6">
                         <div class="u-item">
-                            <a href="/battle" target="_blank">
+                            <a href="/battle" target="_blank" class="disabled">
                                 <span class="u-pic">
                                     <i class="u-icon">
                                         <img svg-inline :src="getIcon('battle')" />
@@ -661,10 +676,10 @@
                     </el-col>
                     <el-col :span="6">
                         <div class="u-item">
-                            <a href="/item/#/cooking" target="_blank">
+                            <a href="/pvg/manufacture" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
-                                        <img svg-inline :src="getIcon('cooking')" />
+                                        <img svg-inline :src="getIcon('manufacture')" />
                                     </i>
                                 </span>
                                 <span class="u-features">
@@ -691,7 +706,7 @@
                     </el-col>
                     <el-col :span="6">
                         <div class="u-item">
-                            <a href="/merchant/price" target="_blank">
+                            <a href="/pvg/price" target="_blank" class="disabled">
                                 <span class="u-pic">
                                     <i class="u-icon">
                                         <img svg-inline :src="getIcon('price')" />
@@ -722,7 +737,7 @@
                     </el-col>
                     <el-col :span="6">
                         <div class="u-item">
-                            <a href="/horse" target="_blank">
+                            <a href="/horse" target="_blank" class="disabled">
                                 <span class="u-pic">
                                     <i class="u-icon">
                                         <img svg-inline :src="getIcon('pet')" />
@@ -957,7 +972,7 @@
                     </el-col>
                     <el-col :span="6">
                         <div class="u-item">
-                            <a href="/battle" target="_blank">
+                            <a href="/battle" target="_blank" class="disabled" >
                                 <span class="u-pic">
                                     <i class="u-icon">
                                         <img svg-inline :src="getIcon('battle')" />
