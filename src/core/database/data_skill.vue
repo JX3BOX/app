@@ -94,7 +94,7 @@ export default {
             o.isopen = !o.isopen;
         },
         scriptAssociate: function(val) {
-            if (val.includes("副本BOSS")) {
+            if (val && val.includes("副本BOSS")) {
                 let path_arr = val.split("/");
                 let start = path_arr.indexOf("副本BOSS");
                 let fb_name = path_arr[start + 1] || "";
