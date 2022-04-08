@@ -140,6 +140,7 @@ import data_skill from "./data_skill.vue";
 import data_npc from "./data_npc.vue";
 import data_doodad from "./data_doodad.vue";
 import { __imgPath } from "@jx3box/jx3box-common/data/jx3box.json";
+import {getIsSuperAuthor} from '@/service/database.js'
 export default {
     name: "Database",
     props: [],
@@ -172,7 +173,7 @@ export default {
             done: false,
             loading: false,
 
-            isSuperAuthor: User.isSuperAuthor(),
+            isSuperAuthor: false,
             schools,
 
             per: 10,
@@ -276,10 +277,14 @@ export default {
             this.stat = data;
         });
 
-        User.isLogin() &&
-            User.isVIP().then((data) => {
-                this.hasRight = data;
-            });
+        getIsSuperAuthor(User.getInfo().uid).then((res) => {
+            this.hasRight = this.isSuperAuthor = res.data?.data;
+        })
+
+        // User.isLogin() &&
+        //     User.isVIP().then((data) => {
+        //         this.hasRight = data;
+        //     });
     },
     mounted: function() {
         let params = new URLSearchParams(location.search);
