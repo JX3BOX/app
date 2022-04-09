@@ -20,8 +20,6 @@
                             </el-select>
                         </div>
                         <div class="u-toolbar" v-if="isLogin">
-                            <!-- <el-button plain @click="showList = false" icon="el-icon-refresh-left" size="small" v-if="showList">返回</el-button> -->
-                            <!-- <el-button type="primary" @click="showList = true" icon="el-icon-setting" size="small" v-else>我的预设</el-button> -->
                             <el-button type="primary" @click="drawer = true" icon="el-icon-setting" size="small">我的预设</el-button>
                         </div>
                     </div>
@@ -60,9 +58,7 @@
                                             <template v-for="(item, i) in row">
                                                 <div
                                                     v-if="item"
-                                                    class="
-                                                        m-talent2-content-item
-                                                    "
+                                                    class=" m-talent2-content-item"
                                                     :class="[
                                                         {
                                                             'm-talent2-content-item-skill': item.type === 'skill',
@@ -93,9 +89,7 @@
 
                                                         <img
                                                             class="talent-img"
-                                                            :class="{
-                                                                'skill-img': item.type === 'skill',
-                                                            }"
+                                                            :class="{'skill-img': item.type === 'skill',}"
                                                             :src="item.icon | talentIcon"
                                                             :alt="item.name"
                                                         />
@@ -103,9 +97,7 @@
                                                     <!-- COUNT -->
                                                     <span
                                                         v-if="Number(l_data[index][i])"
-                                                        class="
-                                                            m-talent2-content-item-count
-                                                        "
+                                                        class="m-talent2-content-item-count"
                                                         :class="[Number(l_data[index][i]) < item.max ? 'm-talent2-content-item-count-under' : '']"
                                                     >
                                                         {{ l_data[index][i] }}
@@ -113,54 +105,36 @@
 
                                                     <!-- DESC -->
                                                     <span class="m-talent2-pop" :class="item.on ? 'on' : ''">
-                                                        <b
-                                                            class="
-                                                                m-talent2-name
-                                                            "
-                                                        >
+                                                        <b class="m-talent2-name">
                                                             <span>
                                                                 {{ item.name }}
+                                                                <small class="u-talent2-id" v-if="item.id">(ID: {{ item.id }})</small>
                                                             </span>
-                                                            <span
-                                                                class="
-                                                                    m-talent2-number
-                                                                "
-                                                            >
+                                                            <span class="m-talent2-number">
                                                                 第{{ Number(l_data[index][i]) + "/" + item.max }}重
                                                             </span>
                                                         </b>
                                                         <!-- <b class="m-talent2-type">
                                                             {{ item.type === 'talent' ? '被动招式': '主动招式' }}
                                                         </b>-->
-                                                        <span
-                                                            class="
-                                                                m-talent2-desc
-                                                            "
-                                                        >
+                                                        <span class=" m-talent2-desc">
                                                             {{ !Number(l_data[index][i]) || xf === "通用" ? item.desc[0] : item.desc[l_data[index][i] - 1] }}
                                                         </span>
                                                         <span
                                                             v-if="Number(l_data[index][i]) && Number(l_data[index][i]) < item.max"
-                                                            class="
-                                                                m-talent2-desc-next
-                                                            "
+                                                            class="m-talent2-desc-next"
                                                         >
                                                             <span
                                                                 v-if="xf !== '通用'"
-                                                                class="
-                                                                    m-next-text
-                                                                "
-                                                                >下一重：</span
-                                                            >
+                                                                class="m-next-text"
+                                                                >下一重：</span>
                                                             <span>
                                                                 {{ item.desc[l_data[index][i]] }}
                                                             </span>
                                                         </span>
                                                         <span v-if="Number(l_data[index][i]) === item.max" class="m-max">该招式已练至最高境界</span>
                                                         <span
-                                                            class="
-                                                                m-talent-retrogress
-                                                            "
+                                                            class="m-talent-retrogress"
                                                             v-if="Number(l_data[index][i])"
                                                             >右键点击遗忘</span
                                                         >
@@ -168,9 +142,7 @@
                                                 </div>
                                                 <div
                                                     v-else
-                                                    class="
-                                                        m-talent2-content-item-empty
-                                                    "
+                                                    class="m-talent2-content-item-empty"
                                                     :key="i"
                                                 ></div>
                                             </template>
@@ -195,9 +167,7 @@
                                             <template v-for="(item, i) in row">
                                                 <div
                                                     v-if="item"
-                                                    class="
-                                                        m-talent2-content-item
-                                                    "
+                                                    class="m-talent2-content-item"
                                                     :class="[
                                                         {
                                                             'm-talent2-content-item-skill': item.type === 'skill',
@@ -238,9 +208,7 @@
                                                     <!-- COUNT -->
                                                     <span
                                                         v-if="Number(r_data[index][i])"
-                                                        class="
-                                                            m-talent2-content-item-count
-                                                        "
+                                                        class="m-talent2-content-item-count"
                                                         :class="[Number(r_data[index][i]) < item.max ? 'm-talent2-content-item-count-under' : '']"
                                                     >
                                                         {{ r_data[index][i] }}
@@ -248,19 +216,12 @@
 
                                                     <!-- DESC -->
                                                     <span class="m-talent2-pop" :class="item.on ? 'on' : ''">
-                                                        <b
-                                                            class="
-                                                                m-talent2-name
-                                                            "
-                                                        >
+                                                        <b class="m-talent2-name">
                                                             <span>
                                                                 {{ item.name }}
+                                                                <small class="u-talent2-id" v-if="item.id">(ID: {{ item.id }})</small>
                                                             </span>
-                                                            <span
-                                                                class="
-                                                                    m-talent2-number
-                                                                "
-                                                            >
+                                                            <span class="m-talent2-number">
                                                                 第{{ Number(r_data[index][i]) + "/" + item.max }}重
                                                             </span>
                                                         </b>
@@ -268,23 +229,17 @@
                                                             {{ item.type === 'talent' ? '被动招式': '主动招式' }}
                                                         </b>-->
                                                         <span
-                                                            class="
-                                                                m-talent2-desc
-                                                            "
+                                                            class="m-talent2-desc"
                                                         >
                                                             {{ !Number(r_data[index][i]) || xf === "通用" ? item.desc[0] : item.desc[r_data[index][i] - 1] }}
                                                         </span>
                                                         <span
                                                             v-if="Number(r_data[index][i]) && Number(r_data[index][i]) < item.max"
-                                                            class="
-                                                                m-talent2-desc-next
-                                                            "
+                                                            class="m-talent2-desc-next"
                                                         >
                                                             <span
                                                                 v-if="xf !== '通用'"
-                                                                class="
-                                                                    m-next-text
-                                                                "
+                                                                class="m-next-text"
                                                                 >下一重：</span
                                                             >
                                                             <span>
@@ -293,9 +248,7 @@
                                                         </span>
                                                         <span v-if="Number(r_data[index][i]) === item.max" class="m-max">该招式已练至最高境界</span>
                                                         <span
-                                                            class="
-                                                                m-talent-retrogress
-                                                            "
+                                                            class="m-talent-retrogress"
                                                             v-if="Number(r_data[index][i])"
                                                             >右键点击遗忘</span
                                                         >
@@ -303,9 +256,7 @@
                                                 </div>
                                                 <div
                                                     v-else
-                                                    class="
-                                                        m-talent2-content-item-empty
-                                                    "
+                                                    class="m-talent2-content-item-empty"
                                                     :key="i"
                                                 ></div>
                                             </template>
@@ -1012,7 +963,7 @@ export default {
             return __imgPath + "image/xf/" + id + ".png";
         },
         talentIcon: function(id) {
-            return iconLink(id);
+            return iconLink(id, 'origin');
             // if (id) {
             //     return __iconPath + "origin_icon/" + id + ".png";
             // }
