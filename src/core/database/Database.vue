@@ -21,8 +21,8 @@
                 <div class="m-databse-subtype">
                     <div class="u-subtype u-client">
                         <el-radio-group v-model="client" size="medium" @change="search">
-                            <el-radio-button label="std">正式服</el-radio-button>
-                            <el-radio-button label="origin">怀旧服</el-radio-button>
+                            <el-radio-button label="std">重制</el-radio-button>
+                            <el-radio-button label="origin">缘起</el-radio-button>
                         </el-radio-group>
                     </div>
                     <!-- <div class="u-label">
