@@ -90,7 +90,7 @@
                                                         <img
                                                             class="talent-img"
                                                             :class="{'skill-img': item.type === 'skill',}"
-                                                            :src="item.icon | talentIcon"
+                                                            :src="talentIcon(item.icon)"
                                                             :alt="item.name"
                                                         />
                                                     </div>
@@ -201,7 +201,7 @@
                                                             :class="{
                                                                 'skill-img': item.type === 'skill',
                                                             }"
-                                                            :src="item.icon | talentIcon"
+                                                            :src="talentIcon(item.icon)"
                                                             :alt="item.name"
                                                         />
                                                     </div>
@@ -957,17 +957,14 @@ export default {
                 this.parseSchema();
             });
         },
+        talentIcon: function(id) {
+            if (this.xf == '通用') return iconLink(id)
+            return iconLink(id, 'origin');
+        },
     },
     filters: {
         xficon: function(id) {
             return __imgPath + "image/xf/" + id + ".png";
-        },
-        talentIcon: function(id) {
-            return iconLink(id, 'origin');
-            // if (id) {
-            //     return __iconPath + "origin_icon/" + id + ".png";
-            // }
-            // return "";
         },
     },
     watch: {
