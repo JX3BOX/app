@@ -780,7 +780,7 @@
                             </a>
                         </div>
                     </el-col>
-                    
+
                     <el-col :span="6">
                         <div class="u-item">
                             <a href="/furniture" target="_blank">
@@ -841,7 +841,7 @@
                             </a>
                         </div>
                     </el-col>
-                    
+
                     <el-col :span="6">
                         <div class="u-item">
                             <a href="/share" target="_blank">
@@ -928,7 +928,7 @@
                                 </span>
                                 <span class="u-features">
                                     <span class="u-name">万宝楼</span>
-                                    <span class="u-desc">官方交易平台（正式服）</span>
+                                    <span class="u-desc">官方交易平台（重制）</span>
                                 </span>
                             </a>
                         </div>
@@ -943,12 +943,12 @@
                                 </span>
                                 <span class="u-features">
                                     <span class="u-name">万宝楼</span>
-                                    <span class="u-desc">官方交易平台（怀旧服）</span>
+                                    <span class="u-desc">官方交易平台（缘起）</span>
                                 </span>
                             </a>
                         </div>
                     </el-col>
-                    
+
                 </el-row>
             </div>
 

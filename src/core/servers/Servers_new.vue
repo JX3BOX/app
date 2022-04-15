@@ -107,7 +107,7 @@ export default {
 				this.serverList = mainServerList;
 				this.serverAllList = mainServerList.concat(list);
 				this.sortServer(mainServerList);
-                
+
 				if (this.uid) {
 					getMyFocusServers().then((data) => {
 						this.serverFav(data);
@@ -180,8 +180,8 @@ export default {
 		serverName(index) {
 			let name = {
 				search: "搜索结果",
-				server: "正式服",
-				old: "怀旧服",
+				server: "重制",
+				old: "缘起",
 				other: "其他",
 			};
 			return name[index];
