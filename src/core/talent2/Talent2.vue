@@ -307,7 +307,7 @@
 import Nav from "@/components/Nav.vue";
 import xfmap from "@jx3box/jx3box-data/data/xf/xf.json";
 import { __ossMirror, __imgPath, __ossRoot, __iconPath } from "@jx3box/jx3box-common/data/jx3box.json";
-import { xfConfigs } from "@jx3box/jx3box-data/data/app/talent2.json";
+import { xfConfigs } from "@jx3box/jx3box-talent2/src/talent2.json";
 import { defaultXf, defaultConfigs } from "@jx3box/jx3box-talent2/src/default.json";
 import User from "@jx3box/jx3box-common/js/user";
 import cloneDeep from "lodash/cloneDeep";
@@ -981,7 +981,7 @@ export default {
                     this.begin = xfConfigs[val]?.begin;
 
                     // 新增pop显示控制
-                    this.talentContent.left = this.talents[xfConfigs[val].talent[0]]?.map((left) => {
+                    this.talentContent.left = this.talents[xfConfigs[val].talent?.[0]]?.map((left) => {
                         const _left = left.map((l) => {
                             if (l) this.$set(l, "on", false);
                             return l;
@@ -990,7 +990,7 @@ export default {
                     });
                     this.l_name = xfConfigs[val]?.talent[0];
 
-                    this.talentContent.right = this.talents[xfConfigs[val].talent[1]]?.map((right) => {
+                    this.talentContent.right = this.talents[xfConfigs[val].talent?.[1]]?.map((right) => {
                         const _right = right.map((r) => {
                             if (r) this.$set(r, "on", false);
                             return r;
