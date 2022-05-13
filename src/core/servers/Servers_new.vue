@@ -125,7 +125,7 @@ export default {
 				if (s.zoneName.indexOf("比赛专区") !== -1 || s.zoneName.indexOf("区") == -1) {
 					other.unshift(s);
 				} else {
-					if (s.zoneName.indexOf("缘起") !== -1) {
+					if (s.zoneName.indexOf("怀旧大区") !== -1) {
 						old.push(s);
 					} else {
 						server.push(s);
