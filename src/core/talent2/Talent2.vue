@@ -117,8 +117,7 @@
                                                         <!-- <b class="m-talent2-type">
                                                             {{ item.type === 'talent' ? '被动招式': '主动招式' }}
                                                         </b>-->
-                                                        <span class=" m-talent2-desc">
-                                                            {{ !Number(l_data[index][i]) || xf === "通用" ? item.desc[0] : item.desc[l_data[index][i] - 1] }}
+                                                        <span class=" m-talent2-desc" v-html="!Number(l_data[index][i]) || xf === '通用' ? item.desc[0] : item.desc[l_data[index][i] - 1]">
                                                         </span>
                                                         <span
                                                             v-if="Number(l_data[index][i]) && Number(l_data[index][i]) < item.max"
@@ -230,8 +229,8 @@
                                                         </b>-->
                                                         <span
                                                             class="m-talent2-desc"
+                                                            v-html="!Number(r_data[index][i]) || xf === '通用' ? item.desc[0] : item.desc[r_data[index][i] - 1]"
                                                         >
-                                                            {{ !Number(r_data[index][i]) || xf === "通用" ? item.desc[0] : item.desc[r_data[index][i] - 1] }}
                                                         </span>
                                                         <span
                                                             v-if="Number(r_data[index][i]) && Number(r_data[index][i]) < item.max"
