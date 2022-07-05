@@ -6,7 +6,7 @@
         <ul class="m-npc-list" v-if="list && list.length">
             <li v-for="(o, i) in list" class="u-item" :key="o + i">
                 <div class="u-npc">
-                    <Mark class="u-id" BGL="#333" :value="'ID:' + o.ID" :key="o.ID" v-clipboard:copy="o.ID" v-clipboard:success="onCopy" v-clipboard:error="onError" />
+                    <Mark class="u-id" BGL="#333" :value="'ID:' + o.ID" :key="o.ID" v-clipboard:copy="''+o.ID" v-clipboard:success="onCopy" v-clipboard:error="onError" />
                     <div class="u-title">
                         <span class="u-name">{{ o.Name }}</span>
                         <span class="u-name-add">
@@ -201,54 +201,54 @@ import npcmap from "@/assets/data/npc.json";
 export default {
     name: "npc",
     props: ["data", "vip", "status"],
-    data: function() {
+    data: function () {
         return {
             list: this.data || [],
             npcmap,
         };
     },
     computed: {
-        hasRight: function() {
+        hasRight: function () {
             return this.vip;
         },
-        done: function() {
+        done: function () {
             return this.status;
         },
     },
     watch: {
         data: {
             deep: true,
-            handler: function(val) {
+            handler: function (val) {
                 this.list = val;
             },
         },
     },
-    filters: {
-        iconURL: function(id) {
-            return __iconPath + "icon/" + id + ".png";
-        },
-        filterRaw: function(str) {
-            return str && str.replace(/\\n/g, "\n");
-        },
-    },
+    // filters: {
+    //     iconURL: function (id) {
+    //         return __iconPath + "icon/" + id + ".png";
+    //     },
+    //     filterRaw: function (str) {
+    //         return str && str.replace(/\\n/g, "\n");
+    //     },
+    // },
     methods: {
-        onCopy: function(val) {
+        onCopy: function (val) {
             this.$notify({
                 title: "复制成功",
                 message: "复制内容 : " + val.text,
                 type: "success",
             });
         },
-        onError: function() {
+        onError: function () {
             this.$notify.error({
                 title: "复制失败",
                 message: "请手动复制",
             });
         },
-        toggleProps: function(o) {
+        toggleProps: function (o) {
             o.isopen = !o.isopen;
         },
-        cansee: function(o, key) {
+        cansee: function (o, key) {
             // 本地虚拟字段
             if (key == "isopen" || key == "IdKey") return false;
 
@@ -262,7 +262,7 @@ export default {
         },
     },
     filters: {
-        showKeyLabel: function(key) {
+        showKeyLabel: function (key) {
             return npcmap[key]?.["desc"] || key;
         },
     },

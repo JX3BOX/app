@@ -6,9 +6,9 @@
         <ul class="m-resource-list m-buff-list" v-if="list && list.length">
             <li v-for="(o, i) in list" class="u-item u-cantoggle" :key="i">
                 <div class="u-buff">
-                    <span class="u-id">
+                    <span class="u-id" v-clipboard:copy="'' + o.BuffID" v-clipboard:success="onCopy" v-clipboard:error="onError" title="点击快速复制">
                         ID:{{ o.BuffID }}
-                        <span class="u-detach">{{ o.DetachType | showDetachType }}</span>
+                        <span class="u-detach">{{ showDetachType(o.DetachType) }}</span>
                     </span>
                     <img class="u-pic" :title="'IconID:' + o.IconID" :src="iconLink(o.IconID)" />
                     <div class="u-primary">
@@ -57,7 +57,7 @@ import { buff as ignore_list } from "@/assets/data/ignore.json";
 export default {
     name: "data_buff",
     props: ["data", "vip", "status", "client"],
-    data: function() {
+    data: function () {
         return {
             list: this.data || [],
             buffmap,
@@ -65,17 +65,17 @@ export default {
         };
     },
     computed: {
-        hasRight: function() {
+        hasRight: function () {
             return this.vip;
         },
-        done: function() {
+        done: function () {
             return this.status;
         },
     },
     watch: {
         data: {
             deep: true,
-            handler: function(val) {
+            handler: function (val) {
                 let raw = val;
                 let output = [];
                 for (let item of raw) {
@@ -87,26 +87,26 @@ export default {
             },
         },
     },
-    filters: {
-        filterRaw: function(str) {
-            return str && str.replace(/\\n/g, "\n");
-        },
-        showDetachType: function(val) {
+    // filters: {
+    //     filterRaw: function (str) {
+    //         return str && str.replace(/\\n/g, "\n");
+    //     },
+    // },
+    methods: {
+        showDetachType: function (val) {
             if (val && detach_types[val]) {
                 return detach_types[val];
             } else {
                 return "";
             }
         },
-    },
-    methods: {
-        iconLink: function(id) {
+        iconLink: function (id) {
             return iconLink(id, this.client);
         },
-        toggleProps: function(o) {
+        toggleProps: function (o) {
             o.isopen = !o.isopen;
         },
-        cansee: function(o, key) {
+        cansee: function (o, key) {
             // 本地虚拟字段
             if (key == "isopen" || key == "IdKey") return false;
 
@@ -128,8 +128,21 @@ export default {
                 return false;
             }
         },
+        onCopy: function (val) {
+            this.$notify({
+                title: "复制成功",
+                message: "复制内容 : " + val.text,
+                type: "success",
+            });
+        },
+        onError: function () {
+            this.$notify.error({
+                title: "复制失败",
+                message: "请手动复制",
+            });
+        },
     },
-    mounted: function() {},
+    mounted: function () {},
     components: {},
 };
 </script>

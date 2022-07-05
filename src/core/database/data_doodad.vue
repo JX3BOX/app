@@ -6,8 +6,8 @@
         <ul class="m-resource-list m-doodad-list" v-if="list && list.length">
             <li v-for="(o, i) in list" :key="i" class="u-item">
                 <div class="u-doodad">
-                    <span class="u-id">ID:{{ o.ID }}</span>
-                    <img class="u-pic" :title="'IconID:' + 10909" :src="10909 | iconLink" />
+                    <span class="u-id" v-clipboard:copy="'' + o.ID" v-clipboard:success="onCopy" v-clipboard:error="onError" title="点击快速复制">ID:{{ o.ID }}</span>
+                    <img class="u-pic" :title="'IconID:' + 10909" :src="iconLink(10909)" />
                     <div class="u-primary">
                         <span class="u-name">{{ o.Name }}</span>
                         <span class="u-desc">
@@ -59,32 +59,32 @@ import { iconLink } from "@jx3box/jx3box-common/js/utils";
 export default {
     name: "doodad",
     props: ["data", "vip", "status", "client"],
-    data: function() {
+    data: function () {
         return {
             list: this.data || [],
         };
     },
     computed: {
-        hasRight: function() {
+        hasRight: function () {
             return this.vip;
         },
-        done: function() {
+        done: function () {
             return this.status;
         },
     },
     watch: {
         data: {
             deep: true,
-            handler: function(val) {
+            handler: function (val) {
                 this.list = val;
             },
         },
     },
     methods: {
-        toggleProps: function(o) {
+        toggleProps: function (o) {
             o.isopen = !o.isopen;
         },
-        cansee: function(o, key) {
+        cansee: function (o, key) {
             // 本地虚拟字段
             if (key == "isopen" || key == "IdKey") return false;
 
@@ -96,14 +96,25 @@ export default {
 
             return true;
         },
-    },
-    filters: {
+        onCopy: function (val) {
+            this.$notify({
+                title: "复制成功",
+                message: "复制内容 : " + val.text,
+                type: "success",
+            });
+        },
+        onError: function () {
+            this.$notify.error({
+                title: "复制失败",
+                message: "请手动复制",
+            });
+        }, 
         iconLink,
-        filterRaw: function(str) {
+        filterRaw: function (str) {
             return str && str.replace(/\\n/g, "\n");
         },
     },
-    mounted: function() {},
+    mounted: function () {},
     components: {},
 };
 </script>

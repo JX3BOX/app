@@ -250,7 +250,7 @@
                                     </i>
                                 </span>
                                 <span class="u-features">
-                                    <span class="u-name">技能源码</span>
+                                    <span class="u-name">技能数据</span>
                                     <span class="u-desc">门派技能原始数据</span>
                                 </span>
                             </a>
@@ -615,6 +615,21 @@
                     </el-col>
                     <el-col :span="6">
                         <div class="u-item">
+                            <a href="/item" target="_blank">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('item')" />
+                                    </i>
+                                </span>
+                                <span class="u-features">
+                                    <span class="u-name">物品百科</span>
+                                    <span class="u-desc">物品百科,全服交易行价格</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col>
+                    <el-col :span="6">
+                        <div class="u-item">
                             <a href="/quest" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
@@ -622,8 +637,8 @@
                                     </i>
                                 </span>
                                 <span class="u-features">
-                                    <span class="u-name">江湖百科</span>
-                                    <span class="u-desc">任务/剧情/声望百科</span>
+                                    <span class="u-name">任务百科</span>
+                                    <span class="u-desc">任务与剧情全流程指南</span>
                                 </span>
                             </a>
                         </div>
@@ -643,6 +658,7 @@
                             </a>
                         </div>
                     </el-col>
+
                     <el-col :span="6">
                         <div class="u-item">
                             <a href="https://j3cx.com/exam/" target="_blank">
@@ -658,66 +674,37 @@
                             </a>
                         </div>
                     </el-col>
-
                     <el-col :span="6">
                         <div class="u-item">
-                            <a href="/item" target="_blank">
+                            <a href="/book" target="_blank" class="disabled">
                                 <span class="u-pic">
                                     <i class="u-icon">
-                                        <img svg-inline :src="getIcon('item')" />
+                                        <img svg-inline :src="getIcon('knowledge')" />
                                     </i>
                                 </span>
                                 <span class="u-features">
-                                    <span class="u-name">物品百科</span>
-                                    <span class="u-desc">物品百科,全服交易行价格</span>
+                                    <span class="u-name">书籍大全</span>
+                                    <span class="u-desc">我们都是读书人</span>
                                 </span>
                             </a>
                         </div>
                     </el-col>
                     <el-col :span="6">
                         <div class="u-item">
-                            <a href="/pvg/manufacture" target="_blank">
+                            <a href="/book" target="_blank" class="disabled">
                                 <span class="u-pic">
                                     <i class="u-icon">
-                                        <img svg-inline :src="getIcon('manufacture')" />
+                                        <img svg-inline :src="getIcon('knowledge')" />
                                     </i>
                                 </span>
                                 <span class="u-features">
-                                    <span class="u-name">技艺助手</span>
-                                    <span class="u-desc">生活技艺模拟器</span>
+                                    <span class="u-name">声望大全</span>
+                                    <span class="u-desc">声望剧情党手册</span>
                                 </span>
                             </a>
                         </div>
                     </el-col>
                     <el-col :span="6">
-                        <div class="u-item">
-                            <a href="/item/#/plan_list" target="_blank">
-                                <span class="u-pic">
-                                    <i class="u-icon">
-                                        <img svg-inline :src="getIcon('item_plan')" />
-                                    </i>
-                                </span>
-                                <span class="u-features">
-                                    <span class="u-name">物品清单</span>
-                                    <span class="u-desc">自定义清单物品清单</span>
-                                </span>
-                            </a>
-                        </div>
-                    </el-col>
-                    <el-col :span="6">
-                        <div class="u-item">
-                            <a href="/pvg/price" target="_blank" class="disabled">
-                                <span class="u-pic">
-                                    <i class="u-icon">
-                                        <img svg-inline :src="getIcon('price')" />
-                                    </i>
-                                </span>
-                                <span class="u-features">
-                                    <span class="u-name">物价大全</span>
-                                    <span class="u-desc">全服物价一览</span>
-                                </span>
-                            </a>
-                        </div>
                     </el-col>
 
                     <el-col :span="6">
@@ -765,6 +752,7 @@
                             </a>
                         </div>
                     </el-col>
+
                     <el-col :span="6">
                         <div class="u-item">
                             <a href="https://j3cx.com/serendipity" target="_blank">
@@ -883,6 +871,39 @@
                                 <span class="u-features">
                                     <span class="u-name">外观大全</span>
                                     <span class="u-desc">全外观预览</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col>
+                    <el-col :span="6">
+                    </el-col>
+
+                    <el-col :span="6">
+                        <div class="u-item">
+                            <a href="/pvg/manufacture" target="_blank">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('manufacture')" />
+                                    </i>
+                                </span>
+                                <span class="u-features">
+                                    <span class="u-name">技艺助手</span>
+                                    <span class="u-desc">生活技艺模拟器</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col>
+                    <el-col :span="6">
+                        <div class="u-item">
+                            <a href="/item/#/plan_list" target="_blank">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('item_plan')" />
+                                    </i>
+                                </span>
+                                <span class="u-features">
+                                    <span class="u-name">物品清单</span>
+                                    <span class="u-desc">自定义清单物品清单</span>
                                 </span>
                             </a>
                         </div>

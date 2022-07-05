@@ -6,14 +6,14 @@
         <ul class="m-resource-list m-skill-list" v-if="list && list.length">
             <li v-for="(o, i) in list" class="u-item u-cantoggle" :key="i">
                 <div class="u-skill">
-                    <span class="u-id">ID:{{ o.SkillID }}</span>
+                    <span class="u-id" v-clipboard:copy="'' + o.SkillID" v-clipboard:success="onCopy" v-clipboard:error="onError" title="点击快速复制">ID:{{ o.SkillID }}</span>
                     <img class="u-pic" :title="'IconID:' + o.IconID" :src="iconLink(o.IconID)" />
                     <div class="u-primary">
                         <span class="u-name">
                             {{ o.Name }}
                             <em v-if="o.SkillName">({{ o.SkillName }})</em>
                         </span>
-                        <span class="u-content">{{ o.Desc | filterRaw }}</span>
+                        <span class="u-content">{{ filterRaw(o.Desc)  }}</span>
                         <div class="u-remarks">
                             <span class="u-remark">Level : {{ o.Level }}</span>
                             <span class="u-remark">Remark : {{ o.Remark }}</span>
@@ -56,44 +56,43 @@ import { iconLink } from "@jx3box/jx3box-common/js/utils";
 export default {
     name: "data_skill",
     props: ["data", "vip", "status", "client"],
-    data: function() {
+    data: function () {
         return {
             list: this.data || [],
             skillmap,
         };
     },
     computed: {
-        hasRight: function() {
+        hasRight: function () {
             return this.vip;
         },
-        done: function() {
+        done: function () {
             return this.status;
         },
     },
     watch: {
         data: {
             deep: true,
-            handler: function(val) {
+            handler: function (val) {
                 this.list = val;
             },
         },
     },
-    filters: {
-        filterRaw: function(str) {
+
+    methods: {
+        filterRaw: function (str) {
             str = str && str.replace(/\\n/g, "\n");
             str = str && str.replace(/(\<TALENT.*?\>)/g, "\n$1");
             str = str && str.replace(/(\<EnchantID.*?\>)/g, "\n$1");
             return str;
         },
-    },
-    methods: {
-        iconLink: function(id) {
+        iconLink: function (id) {
             return iconLink(id, this.client);
         },
-        toggleProps: function(o) {
+        toggleProps: function (o) {
             o.isopen = !o.isopen;
         },
-        scriptAssociate: function(val) {
+        scriptAssociate: function (val) {
             if (val && val.includes("副本BOSS")) {
                 let path_arr = val.split("/");
                 let start = path_arr.indexOf("副本BOSS");
@@ -103,7 +102,7 @@ export default {
                 return "";
             }
         },
-        cansee: function(o, key) {
+        cansee: function (o, key) {
             // 本地虚拟字段
             if (key == "isopen" || key == "IdKey") return false;
 
@@ -125,14 +124,27 @@ export default {
                 return false;
             }
         },
+        onCopy: function (val) {
+            this.$notify({
+                title: "复制成功",
+                message: "复制内容 : " + val.text,
+                type: "success",
+            });
+        },
+        onError: function () {
+            this.$notify.error({
+                title: "复制失败",
+                message: "请手动复制",
+            });
+        },
     },
-    mounted: function() {},
+    mounted: function () {},
     components: {},
 };
 </script>
 
 <style scoped lang="less">
-.u-content {
-    white-space: pre-wrap;
-}
+    .u-content {
+        white-space: pre-wrap;
+    }
 </style>
