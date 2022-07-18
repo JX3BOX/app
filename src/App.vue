@@ -87,7 +87,7 @@
                     </el-col>
                     <el-col :span="6">
                         <div class="u-item">
-                            <a href="/bbs/#/joke" target="_blank">
+                            <a href="/joke" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
                                         <img svg-inline :src="getIcon('joke')" />
@@ -102,7 +102,7 @@
                     </el-col>
                     <el-col :span="6">
                         <div class="u-item">
-                            <a href="/bbs/#/emotion" target="_blank">
+                            <a href="/emotion" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
                                         <img svg-inline :src="getIcon('emotion')" />
@@ -117,7 +117,7 @@
                     </el-col>
                     <el-col :span="6">
                         <div class="u-item">
-                            <a href="/bbs/#/namespace" target="_blank">
+                            <a href="/namespace" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
                                         <img svg-inline :src="getIcon('namespace')" />
@@ -348,7 +348,7 @@
                     </el-col>
                     <el-col :span="6">
                         <div class="u-item">
-                            <a href="/bbs/#/collection" target="_blank">
+                            <a href="/collection" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
                                         <img svg-inline :src="getIcon('collection')" />
