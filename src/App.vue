@@ -705,6 +705,19 @@
                         </div>
                     </el-col>
                     <el-col :span="6">
+                        <div class="u-item">
+                            <a href="/exterior" target="_blank" class="disabled">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('facedata')" />
+                                    </i>
+                                </span>
+                                <span class="u-features">
+                                    <span class="u-name">外观大全</span>
+                                    <span class="u-desc">全外观预览</span>
+                                </span>
+                            </a>
+                        </div>
                     </el-col>
 
                     <el-col :span="6">
@@ -784,7 +797,7 @@
                             </a>
                         </div>
                     </el-col>
-                    <el-col :span="6">
+                    <!-- <el-col :span="6">
                         <div class="u-item">
                             <a href="/homeland/flower" target="_blank">
                                 <span class="u-pic">
@@ -798,8 +811,8 @@
                                 </span>
                             </a>
                         </div>
-                    </el-col>
-                    <el-col :span="6">
+                    </el-col> -->
+                    <!-- <el-col :span="6">
                         <div class="u-item">
                             <a href="/homeland/maps" target="_blank">
                                 <span class="u-pic">
@@ -813,7 +826,7 @@
                                 </span>
                             </a>
                         </div>
-                    </el-col>
+                    </el-col> -->
                     <el-col :span="6">
                         <div class="u-item">
                             <a href="https://jx3.xoyo.com/zt/2020/09/24/blueprint/#/" target="_blank">
@@ -859,23 +872,6 @@
                                 </span>
                             </a>
                         </div>
-                    </el-col>
-                    <el-col :span="6">
-                        <div class="u-item">
-                            <a href="/exterior" target="_blank" class="disabled">
-                                <span class="u-pic">
-                                    <i class="u-icon">
-                                        <img svg-inline :src="getIcon('facedata')" />
-                                    </i>
-                                </span>
-                                <span class="u-features">
-                                    <span class="u-name">外观大全</span>
-                                    <span class="u-desc">全外观预览</span>
-                                </span>
-                            </a>
-                        </div>
-                    </el-col>
-                    <el-col :span="6">
                     </el-col>
 
                     <el-col :span="6">
