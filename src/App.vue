@@ -845,7 +845,7 @@
 
                     <el-col :span="6">
                         <div class="u-item">
-                            <a href="/share" target="_blank">
+                            <a href="/face" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
                                         <img svg-inline :src="getIcon('share')" />
