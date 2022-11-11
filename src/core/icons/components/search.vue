@@ -20,7 +20,7 @@
         <el-alert class="m-icons-tips" v-if="isNewbie" title="以下为部分图标展示，请在上方自定义搜索范围，点击图标即可收藏。" type="warning" center show-icon></el-alert>
         <el-alert class="m-icons-tips" v-if="!searchList.length" title="没有找到对应的图标，请重新输入关键词搜索图标。" type="info" center show-icon></el-alert>
 
-        <div class="m-icons-matrix">
+        <div class="m-icons-matrix" v-if="searchList.length>0">
             <icon-item v-for="(icon, index) in searchList" :icon="icon" :isFav="false" :key="index"></icon-item>
         </div>
     </div>
@@ -77,7 +77,7 @@ export default {
 
             let searchList = [];
             let iconTmp = [];
-
+            this.searchList=[] //数据置空
             // 如果同时出现逗号和杠，先拆逗号，再拆杠
             if (query.includes(",")) {
                 iconTmp = query.split(",");
@@ -106,8 +106,11 @@ export default {
                     }
                 }
             });
+            //置空数据界面渲染结束后赋值，防止复制插件data-clipboard-click-handler等不被重新渲染
+            this.$nextTick(()=>{
+                this.searchList = searchList.slice(0, 500);
+            })
 
-            this.searchList = searchList.slice(0, 500);
         },
         async searchIconByName(name) {
             return getIconsByName(name, this.client)
