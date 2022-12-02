@@ -1,43 +1,46 @@
 .m-app-servers-bread {
-  .u-app-servers {
-      padding: 5px;
-      box-sizing: border-box;
-  }
-  .u-misc {
-      .fl;
-      .fz(13px);
-      .ml(5px);
-  }
+    .u-app-servers {
+        padding: 5px;
+        box-sizing: border-box;
+    }
+
+    .u-misc {
+        .fl;
+        .fz(13px);
+        .ml(5px);
+    }
 }
 
 .m-app-servers {
-  padding: 20px 30px;
-  .auto(x);
-  box-sizing: border-box;
+    padding: 20px 30px;
+    .auto(x);
+    box-sizing: border-box;
 }
+
 // 标题
 .m-app-servers-title {
-  .x;
-  font-weight: 300;
-  margin: 0 auto 20px auto;
-  font-size: 42px;
+    .x;
+    font-weight: 300;
+    margin: 0 auto 20px auto;
+    font-size: 42px;
 }
 
 // 搜索框
 .searchbar-wrapper {
-  display: flex;
-  align-items: center;
-  margin: auto 0 !important;
-  .el-switch__label.is-active {
-      color: @color;
-      .bold;
-  }
+    display: flex;
+    align-items: center;
+    margin: auto 0 !important;
+
+    .el-switch__label.is-active {
+        color: @color;
+        .bold;
+    }
 }
 
 // 搜索列表
 .server-wrapper {
-  margin-top: 20px;
-  border-bottom: 1px dashed #eee;
+    margin-top: 20px;
+    border-bottom: 1px dashed #eee;
 }
 
 // 已收藏列表
@@ -49,171 +52,204 @@
 
 // 节点
 .server-node {
-  box-sizing: border-box;
-  margin-bottom: 20px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
 
-  .server-button {
-      position: relative;
-      line-height: 20px;
-      padding: 10px 30px;
-      .w(100%);
-      box-sizing: border-box;
-      .x(left);
-      // border-color:#07485e;
-      // color:#07485e;
-  }
-  .server-button:focus,
-  .server-button:hover {
-      background-color: @bg-light;
-      // color:#07485e;
-      // border-color:#07485e;
-  }
-  .u-server-icon {
-      .size(16px, 16px);
-      .db;
-      .fl;
-      .mt(2px);
-      // svg{.size(100%,auto);}
-      border-radius: 8px;
-      background-color: #70b603;
-      margin-right: 10px;
-  }
-  .u-server-ismain {
-      color: #c00;
-  }
+    .server-button {
+        position: relative;
+        line-height: 20px;
+        padding: 10px 30px;
+        .w(100%);
+        box-sizing: border-box;
+        .x(left);
+        // border-color:#07485e;
+        // color:#07485e;
+    }
 
-  .text-wrapper {
-      text-align: center;
-      font-size: 12px;
-      color: #999;
-      padding: 10px 0 5px 0;
-  }
+    .server-button:focus,
+    .server-button:hover {
+        background-color: @bg-light;
+        // color:#07485e;
+        // border-color:#07485e;
+    }
 
-  @keyframes spark {
-      from {
-          fill: #00ff94;
-      }
-      to {
-          fill: #ffd422;
-      }
-  }
-  @keyframes sparkRE {
-      from {
-          fill: #ffd422;
-      }
-      to {
-          fill: #00ff94;
-      }
-  }
+    .u-server-icon {
+        .size(16px, 16px);
+        .db;
+        .fl;
+        .mt(2px);
+        // svg{.size(100%,auto);}
+        border-radius: 8px;
+        background-color: #70b603;
+        margin-right: 10px;
+    }
 
-  .server-online {
-      visibility: visible;
-      // svg{
-      //     path:nth-child(4){
-      //         animation: spark 0.4s infinite;
-      //     }
-      //     path:nth-child(5){
-      //         animation: sparkRE 0.4s infinite;
-      //     }
-      // }
-  }
-  .server-offline {
-      // .tm(0.4);
-      visibility: visible;
-      i {
-          background-color: #aaaaaa;
-      }
-      // svg{
-      //     path:nth-child(2){
-      //         fill:#999;
-      //     }
-      //     path:nth-child(1){
-      //         fill:#444;
-      //     }
-      //     path:nth-child(3){
-      //         fill:#fff !important;
-      //     }
-      //     path:nth-child(4),path:nth-child(5){
-      //         fill:#fff !important;
-      //     }
-      // }
-  }
+    .u-server-ismain {
+        color: #c00;
+    }
 
-  // PIN
-  .server-button::after {
-      content: "";
-      background: url("../../assets/img/servers/pin.svg") no-repeat center center;
-      background-size: contain;
-      height: 20px;
-      width: 20px;
-      display: inline-block;
-      vertical-align: top;
-      margin-left: 5px;
-      visibility: hidden;
-  }
-  .server-button:hover::after {
-      visibility: visible;
-  }
-  // .server-pinned::after {
-  // filter: saturate(0%);
-  // }
-  .server-pinned:hover::after {
-      visibility: visible;
-      filter: saturate(0%);
-      opacity: 0.5;
-  }
+    .text-wrapper {
+        text-align: center;
+        font-size: 12px;
+        color: #999;
+        padding: 10px 0 5px 0;
+    }
+
+    @keyframes spark {
+        from {
+            fill: #00ff94;
+        }
+
+        to {
+            fill: #ffd422;
+        }
+    }
+
+    @keyframes sparkRE {
+        from {
+            fill: #ffd422;
+        }
+
+        to {
+            fill: #00ff94;
+        }
+    }
+
+    .server-online {
+        visibility: visible;
+        // svg{
+        //     path:nth-child(4){
+        //         animation: spark 0.4s infinite;
+        //     }
+        //     path:nth-child(5){
+        //         animation: sparkRE 0.4s infinite;
+        //     }
+        // }
+    }
+
+    .server-offline {
+        // .tm(0.4);
+        visibility: visible;
+
+        i {
+            background-color: #aaaaaa;
+        }
+
+        // svg{
+        //     path:nth-child(2){
+        //         fill:#999;
+        //     }
+        //     path:nth-child(1){
+        //         fill:#444;
+        //     }
+        //     path:nth-child(3){
+        //         fill:#fff !important;
+        //     }
+        //     path:nth-child(4),path:nth-child(5){
+        //         fill:#fff !important;
+        //     }
+        // }
+    }
+
+    // PIN
+    .server-button::after {
+        content: "";
+        background: url("../../assets/img/servers/pin.svg") no-repeat center center;
+        background-size: contain;
+        height: 20px;
+        width: 20px;
+        display: inline-block;
+        vertical-align: top;
+        margin-left: 5px;
+        visibility: hidden;
+    }
+
+    .server-button:hover::after {
+        visibility: visible;
+    }
+
+    // .server-pinned::after {
+    // filter: saturate(0%);
+    // }
+    .server-pinned:hover::after {
+        visibility: visible;
+        filter: saturate(0%);
+        opacity: 0.5;
+    }
 }
 
 .tooltip-ipaddress {
-  font-size: 14px !important;
-  line-height: 0.8;
+    font-size: 14px !important;
+    line-height: 0.8;
 }
 
 // 适配
 @media screen and (max-width: 1680px) {
-  .server-node {
-      .w(20%);
-  }
+    .server-node {
+        .w(20%);
+    }
 }
+
 @media screen and (max-width: @notebook) {
-  .server-node {
-      .w(25%);
-  }
+    .server-node {
+        .w(25%);
+    }
 }
+
 @media screen and (max-width: @ipad-y) {
-  .server-node {
-      .w(33.3333%);
-  }
+    .server-node {
+        .w(33.3333%);
+    }
 }
+
 @media screen and (max-width: @phone) {
-  .m-app-servers-title {
-      .none;
-  }
-  .searchbar-wrapper .el-input-group__prepend {
-      .none;
-  }
-  .searchbar-wrapper .el-input__inner {
-      border-top-left-radius: 4px;
-      border-bottom-left-radius: 4px;
-  }
-  .m-app-servers {
-      padding: 20px;
-  }
-  .server-node {
-      .w(50%);
-  }
+    .m-app-servers-title {
+        .none;
+    }
+
+    .searchbar-wrapper .el-input-group__prepend {
+        .none;
+    }
+
+    .searchbar-wrapper .el-input__inner {
+        border-top-left-radius: 4px;
+        border-bottom-left-radius: 4px;
+    }
+
+    .m-app-servers {
+        padding: 20px;
+    }
+
+    .server-node {
+        .w(50%);
+    }
 }
 
 .serverbox {
-  .pt(40px);
-  h2 {
-      .fz(18px);
-      margin: 0;
-  }
-  .u-alert {
-      .mt(20px);
-  }
+    .serverbox-list-item {
+        display: flex;
+        flex-wrap: wrap;
+        .serverbox-list-serverItem {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 15%;
+            margin-top: 20px
+        }
+    }
+
+    .pt(40px);
+
+    h2 {
+        .fz(18px);
+        margin: 0;
+    }
+
+    .u-alert {
+        .mt(20px);
+    }
 }
-.serverbox + .serverbox {
-  .pt(20px);
+
+.serverbox+.serverbox {
+    .pt(20px);
 }

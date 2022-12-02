@@ -12,7 +12,6 @@
       <div class="m-app-servers">
         <!-- 标题 -->
         <h1 class="m-app-servers-title">剑三服务器实时监控面板</h1>
-
         <!-- 搜索框 -->
         <div class="searchbar-wrapper">
           <el-input placeholder="搜索全部服务器" v-model="searchServerName" class="input-with-select">
@@ -23,28 +22,26 @@
           </el-input>
         </div>
         <!-- 全部列表 -->
-        <div class="serverbox" v-if="favList.length">
-          <!-- <h2>[ 收藏 ]</h2>
-          <el-row :gutter="20" class="server-wrapper server-group-unpinned">
-          </el-row> -->
-          <el-collapse value="1">
-            <el-collapse-item title="收藏">
-              
+        <div class="serverbox">
+          <el-collapse v-model="showCollapse">
+            <el-collapse-item v-if="favList.length" title="收藏" :name="1">
+              <div class="serverbox-list-item">
+                <div class="serverbox-list-serverItem" v-for="(serverItem, serverIndex) in favList" :key="serverIndex">
+                  <server-card :data="serverItem" :isSave="true" @clickServer="clickServer"></server-card>
+                </div>
+              </div>
             </el-collapse-item>
+            <div v-if="list.length">
+              <el-collapse-item v-for="(item, index) in list" :key="index" :title="item.zone_name" :name="(index + 2)">
+                <div class="serverbox-list-item">
+                  <div class="serverbox-list-serverItem" v-for="(serverItem, serverIndex) in item.serverArr"
+                    :key="serverIndex">
+                    <server-card :data="serverItem" @clickServer="clickServer"></server-card>
+                  </div>
+                </div>
+              </el-collapse-item>
+            </div>
           </el-collapse>
-        </div>
-        <div class="serverbox" v-for="(item, index) in list" :key="index">
-          <template v-if="item.length">
-            <h2>[ {{ index | serverName }} ]</h2>
-            <el-row :gutter="20" class="server-wrapper server-group-unpinned">
-              <!-- <ServerItem v-for="(server, i) in item" :key="i" :server="server" :pinned="false"
-                @toogle-server="clickServer(server)" /> -->
-            </el-row>
-          </template>
-          <template v-else>
-            <h2>[ {{ index | serverName }} ]</h2>
-            <el-alert class="u-alert" title="没有对应的服务器" type="info" center show-icon></el-alert>
-          </template>
         </div>
       </div>
       <Footer></Footer>
@@ -58,6 +55,7 @@ import User from "@jx3box/jx3box-common/js/user";
 import { getMyFocusServers, setMyFocusServers, getAllServers } from "@/service/server2.js";
 import { __imgPath } from "@jx3box/jx3box-common/data/jx3box.json";
 import server_map from "@jx3box/jx3box-data/data/server/server_map.json";
+import serverCard from "./components/serverCard/serverCard.vue";
 export default {
   name: "Servers2",
   data: function () {
@@ -69,15 +67,18 @@ export default {
       serverList: [],
       serverAllList: [],
       favList: [],
+      serverArr: [],//接口获取的服务器参数
+      showCollapse: 2,
     };
   },
   computed: {
     list: function () {
-      return !this.searchServerName ? this.serverData : this.searchData;
+      return !this.searchServerName ? this.serverArr : this.searchData;
     },
     uid: function () {
       return User.getInfo().uid || 0;
     },
+
   },
   methods: {
     getIcon (key) {
@@ -90,27 +91,42 @@ export default {
       let fav = [];
       list.has(server) ? list.delete(server) : list.add(server);
       for (let key of list.keys()) {
+        console.log(list.keys());
         fav.push(key);
       }
       this.favList = fav;
+      this.showCollapse = 1
       this.setSavedServers();
     },
 
     // 获取服务器列表
     loadAllServers () {
       getAllServers().then((res) => {
-        let mainServerList = [];
-        let list = res.data.data?.filter((server) => {
-          if (server.serverName === server.mainServer) {
-            mainServerList.push(server);
+        console.log(res.data);
+        let zoneNameArr = [...new Set(res.data.map(item => item.zone_name))]
+        this.serverArr = zoneNameArr.map(item => {
+          return {
+            zone_name: item,
+            serverArr: res.data.filter(server => server.zone_name === item).map(serverItem => {
+              return {
+                ...serverItem,
+                connect_state_name: serverItem.connect_state ? '已开服' : '维护中'
+              }
+            })
           }
-          return server.serverName !== server.mainServer;
-        });
-
+        })
+        this.serverFav('大美江湖,行云流水');
+        return
+        let mainServerList = [];
+        // let list = res.data.data?.filter((server) => {
+        //   if (server.serverName === server.mainServer) {
+        //     mainServerList.push(server);
+        //   }
+        //   return server.serverName !== server.mainServer;
+        // });
         this.serverList = mainServerList;
         this.serverAllList = mainServerList.concat(list);
         this.sortServer(mainServerList);
-
         if (this.uid) {
           getMyFocusServers().then((data) => {
             this.serverFav(data);
@@ -126,7 +142,6 @@ export default {
       list.filter((s) => {
         if (server_map[s.serverName]) server_map[s.serverName].client == "std" ? server.push(s) : old.push(s);
       });
-
       this.serverData = {
         server,
         old,
@@ -137,16 +152,20 @@ export default {
     serverFav (data) {
       if (!data) return;
       data = data.split(",");
-      this.serverList.forEach((k) => {
-        if (data.includes(k.mainServer)) this.favList.push(k);
+      console.log(data, '123123');
+      this.serverArr.forEach((k) => {
+        console.log(k, data.includes(k.server_name));
+        if (data.includes(k.server_name)) this.favList.push(k);
       });
+      console.log(this.favList);
     },
 
     //登录状态存服务器，未登录跳转
     setSavedServers () {
+      console.log(this.favList, this.favList.map((el) => el.server_name));
+      return
       if (this.uid) {
-        let list = this.favList.map((el) => el.serverName);
-
+        let list = this.favList.map((el) => el.server_name);
         setMyFocusServers(list.join(","))
           .then((data) => {
             console.log(data);
@@ -184,6 +203,7 @@ export default {
   },
   components: {
     Nav,
+    serverCard,
   },
   watch: {
     searchServerName (val) {
