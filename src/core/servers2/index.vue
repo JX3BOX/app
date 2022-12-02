@@ -187,6 +187,9 @@ export default {
       });
       this.searchData = { search: list };
     },
+
+    //拼接
+    
   },
   filters: {
     serverName (index) {
