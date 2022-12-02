@@ -33,14 +33,20 @@
             </el-collapse-item>
             <div v-if="list.length">
               <el-collapse-item v-for="(item, index) in list" :key="index" :title="item.zone_name" :name="(index + 2)">
-                <div class="serverbox-list-item">
+                <div v-if="item.serverArr" class="serverbox-list-item">
                   <div class="serverbox-list-serverItem" v-for="(serverItem, serverIndex) in item.serverArr"
                     :key="serverIndex">
                     <server-card :data="serverItem" @clickServer="clickServer"></server-card>
                   </div>
                 </div>
+                <template v-else>
+                  <el-alert class="u-alert" title="没有对应的服务器" type="info" center show-icon></el-alert>
+                </template>
               </el-collapse-item>
             </div>
+            <template v-else>
+              <el-alert class="u-alert" title="没有对应的服务器" type="info" center show-icon></el-alert>
+            </template>
           </el-collapse>
         </div>
       </div>
@@ -61,19 +67,19 @@ export default {
   data: function () {
     return {
       searchServerName: "",
-      isShowMainServer: true,
       serverData: {},
       searchData: {},
-      serverList: [],
       serverAllList: [],
+      serverAllArr: [],//接口获取的服务器参数
       favList: [],
-      serverArr: [],//接口获取的服务器参数
-      showCollapse: 2,
+      serverArr: [],//拼接后的服务器参数
+      searchArr: [],//搜索到的参数
+      showCollapse: [2],//当前展开的栏目
     };
   },
   computed: {
     list: function () {
-      return !this.searchServerName ? this.serverArr : this.searchData;
+      return !this.searchServerName ? this.serverArr : this.searchArr;
     },
     uid: function () {
       return User.getInfo().uid || 0;
@@ -81,12 +87,12 @@ export default {
 
   },
   methods: {
-    getIcon (key) {
+    getIcon(key) {
       return __imgPath + "image/box/" + key + ".svg";
     },
 
     // 点击收藏服务器和取消服务器收藏
-    clickServer (server) {
+    clickServer(server) {
       let list = new Set(this.favList);
       let fav = [];
       list.has(server) ? list.delete(server) : list.add(server);
@@ -95,48 +101,40 @@ export default {
         fav.push(key);
       }
       this.favList = fav;
-      this.showCollapse = 1
+      this.showCollapse = [...new Set([...this.showCollapse, 1].map(item => item))]
       this.setSavedServers();
     },
 
     // 获取服务器列表
-    loadAllServers () {
+    loadAllServers() {
       getAllServers().then((res) => {
-        console.log(res.data);
-        let zoneNameArr = [...new Set(res.data.map(item => item.zone_name))]
-        this.serverArr = zoneNameArr.map(item => {
+        this.serverAllArr = res.data.map(serverItem => {
           return {
-            zone_name: item,
-            serverArr: res.data.filter(server => server.zone_name === item).map(serverItem => {
-              return {
-                ...serverItem,
-                connect_state_name: serverItem.connect_state ? '已开服' : '维护中'
-              }
-            })
+            ...serverItem,
+            connect_state_name: serverItem.connect_state ? '已开服' : '维护中'
           }
         })
+        this.serverArr = this.setItemData(this.serverAllArr)
         this.serverFav('大美江湖,行云流水');
-        return
-        let mainServerList = [];
-        // let list = res.data.data?.filter((server) => {
-        //   if (server.serverName === server.mainServer) {
-        //     mainServerList.push(server);
-        //   }
-        //   return server.serverName !== server.mainServer;
-        // });
-        this.serverList = mainServerList;
-        this.serverAllList = mainServerList.concat(list);
-        this.sortServer(mainServerList);
         if (this.uid) {
           getMyFocusServers().then((data) => {
             this.serverFav(data);
           });
         }
+        // let mainServerList = [];
+        // // let list = res.data.data?.filter((server) => {
+        // //   if (server.serverName === server.mainServer) {
+        // //     mainServerList.push(server);
+        // //   }
+        // //   return server.serverName !== server.mainServer;
+        // // });
+        // this.serverList = mainServerList;
+        // this.serverAllList = mainServerList.concat(list);
+        // this.sortServer(mainServerList);
       });
     },
-
     // 将获取的服务器分类 [正式服，怀旧服，其他]
-    sortServer (list) {
+    sortServer(list) {
       let old = [];
       let server = [];
       list.filter((s) => {
@@ -147,22 +145,17 @@ export default {
         old,
       };
     },
-
     //转服务器数据 str转换成obj
-    serverFav (data) {
+    serverFav(data) {
       if (!data) return;
       data = data.split(",");
-      console.log(data, '123123');
-      this.serverArr.forEach((k) => {
-        console.log(k, data.includes(k.server_name));
+      this.serverAllArr.forEach((k) => {
         if (data.includes(k.server_name)) this.favList.push(k);
       });
-      console.log(this.favList);
+      this.showCollapse = [1]
     },
-
     //登录状态存服务器，未登录跳转
-    setSavedServers () {
-      console.log(this.favList, this.favList.map((el) => el.server_name));
+    setSavedServers() {
       return
       if (this.uid) {
         let list = this.favList.map((el) => el.server_name);
@@ -177,22 +170,30 @@ export default {
         return User.toLogin();
       }
     },
-
     // 搜索查询服务器
-    searchServer (val) {
-      if (!val) return delete this.serverData.search;
-      let list = [];
-      this.serverAllList.forEach((k) => {
-        if (k.serverName.indexOf(val) !== -1) list.push(k);
-      });
-      this.searchData = { search: list };
+    searchServer(val) {
+      if (!val) return;
+      const list = this.setItemData(this.serverAllArr.filter(item => item.server_name.indexOf(val) !== -1))
+      console.log(list);
+      this.searchArr = list
+      list.forEach((item, index) => {
+        this.showCollapse = [...new Set([...this.showCollapse, index + 2].map(i => i))]
+      })
     },
-
-    //拼接
-    
+    //设置数据
+    setItemData(arr) {
+      if (!arr.length) return []
+      let zoneNameArr = [...new Set(arr.map(item => item.zone_name))]
+      return zoneNameArr.map(item => {
+        return {
+          zone_name: item,
+          serverArr: arr.filter(server => server.zone_name === item)
+        }
+      })
+    },
   },
   filters: {
-    serverName (index) {
+    serverName(index) {
       let name = {
         search: "搜索结果",
         server: "重制",
@@ -209,7 +210,7 @@ export default {
     serverCard,
   },
   watch: {
-    searchServerName (val) {
+    searchServerName(val) {
       this.searchServer(val);
     },
   },
