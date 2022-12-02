@@ -101,7 +101,7 @@ export default {
         fav.push(key);
       }
       this.favList = fav;
-      this.showCollapse = [...new Set([...this.showCollapse, 1].map(item => item))]
+      this.showCollapse = this.setCollapseIndex(1)
       this.setSavedServers();
     },
 
@@ -115,6 +115,7 @@ export default {
           }
         })
         this.serverArr = this.setItemData(this.serverAllArr)
+        
         this.serverFav('大美江湖,行云流水');
         if (this.uid) {
           getMyFocusServers().then((data) => {
@@ -152,7 +153,7 @@ export default {
       this.serverAllArr.forEach((k) => {
         if (data.includes(k.server_name)) this.favList.push(k);
       });
-      this.showCollapse = [1]
+      this.showCollapse = this.setCollapseIndex(1)
     },
     //登录状态存服务器，未登录跳转
     setSavedServers() {
@@ -177,7 +178,8 @@ export default {
       console.log(list);
       this.searchArr = list
       list.forEach((item, index) => {
-        this.showCollapse = [...new Set([...this.showCollapse, index + 2].map(i => i))]
+        this.showCollapse = this.setCollapseIndex(index + 2)
+        console.log(this.showCollapse);
       })
     },
     //设置数据
@@ -190,6 +192,10 @@ export default {
           serverArr: arr.filter(server => server.zone_name === item)
         }
       })
+    },
+    //设置展示栏目
+    setCollapseIndex(index) {
+      return [...new Set([...this.showCollapse, index].map(i => i))]
     },
   },
   filters: {
