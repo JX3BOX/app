@@ -52,6 +52,9 @@ export default {
     .u-title {
         .fz(15px);
         .bold;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
     }
 }
 .m-server-card__content {
