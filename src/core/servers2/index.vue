@@ -142,14 +142,14 @@ export default {
       if (!data) return;
       data = data.split(",");
       this.serverAllArr.forEach((k) => {
-        if (data.includes(k.server_name)) this.favList.push(k);
+        if (data.includes(k.main_server)) this.favList.push(k);
       });
       this.showCollapse = this.setCollapseIndex(1)
     },
     //登录状态存服务器，未登录跳转
     setSavedServers() {
       if (this.uid) {
-        let list = this.favList.map((el) => el.server_name);
+        let list = this.favList.map((el) => el.main_server);
         setMyFocusServers(list.join(","))
           .then((data) => {
             console.log(data);
@@ -164,7 +164,7 @@ export default {
     // 搜索查询服务器
     searchServer(val) {
       if (!val) return;
-      const list = this.setItemData(this.serverAllArr.filter(item => item.server_name.indexOf(val) !== -1))
+      const list = this.setItemData(this.serverAllArr.filter(item => item.main_server.indexOf(val) !== -1))
       this.searchArr = list
       list.forEach((item, index) => {
         this.showCollapse = this.setCollapseIndex(index + 2)
