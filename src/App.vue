@@ -906,7 +906,7 @@
                     </el-col>
                     <el-col :span="6">
                         <div class="u-item">
-                            <a href="./servers" target="_blank">
+                            <a href="./servers2" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
                                         <img svg-inline :src="getIcon('servers')" />
