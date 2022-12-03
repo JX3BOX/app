@@ -223,6 +223,18 @@ export default {
             return name[index];
         },
     },
+    created: function () {
+        this.loadAllServers();
+    },
+    components: {
+        Nav,
+        serverCard,
+    },
+    watch: {
+        searchServerName(val) {
+            this.searchServer(val);
+        },
+    },
 };
 </script>
 <style lang="less">
