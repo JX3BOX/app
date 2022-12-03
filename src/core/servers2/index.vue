@@ -97,7 +97,7 @@ export default {
       let fav = [];
       list.has(server) ? list.delete(server) : list.add(server);
       for (let key of list.keys()) {
-        console.log(list.keys());
+        // console.log(list.keys());
         fav.push(key);
       }
       this.favList = fav;
@@ -115,26 +115,17 @@ export default {
           }
         })
         this.serverArr = this.setItemData(this.serverAllArr)
-        
-        this.serverFav('大美江湖,行云流水');
+        this.serverArr.forEach((item, index) => {
+          this.showCollapse = this.setCollapseIndex(index + 2)
+        })
         if (this.uid) {
           getMyFocusServers().then((data) => {
             this.serverFav(data);
           });
         }
-        // let mainServerList = [];
-        // // let list = res.data.data?.filter((server) => {
-        // //   if (server.serverName === server.mainServer) {
-        // //     mainServerList.push(server);
-        // //   }
-        // //   return server.serverName !== server.mainServer;
-        // // });
-        // this.serverList = mainServerList;
-        // this.serverAllList = mainServerList.concat(list);
-        // this.sortServer(mainServerList);
       });
     },
-    // 将获取的服务器分类 [正式服，怀旧服，其他]
+    // 将获取的服务器分类 [正式服，怀旧服，其他] 暂时没用到
     sortServer(list) {
       let old = [];
       let server = [];
@@ -157,7 +148,6 @@ export default {
     },
     //登录状态存服务器，未登录跳转
     setSavedServers() {
-      return
       if (this.uid) {
         let list = this.favList.map((el) => el.server_name);
         setMyFocusServers(list.join(","))
@@ -175,11 +165,9 @@ export default {
     searchServer(val) {
       if (!val) return;
       const list = this.setItemData(this.serverAllArr.filter(item => item.server_name.indexOf(val) !== -1))
-      console.log(list);
       this.searchArr = list
       list.forEach((item, index) => {
         this.showCollapse = this.setCollapseIndex(index + 2)
-        console.log(this.showCollapse);
       })
     },
     //设置数据
