@@ -1,7 +1,7 @@
 <template>
     <el-card class="m-server-card">
         <div class="m-server-card__header" slot="header">
-            <b class="u-title">{{ data.server_name }}</b>
+            <b class="u-title">{{ data.main_server }}</b>
             <el-button class="u-action" @click="favHandle" plain size="mini" :type="isSaved ? 'info' : ''"
                 >{{ isSaved ? "取消" : "" }}收藏</el-button
             >
@@ -34,8 +34,7 @@ export default {
         },
     },
     methods: {
-        clickServer() {
-            console.log(123);
+        favHandle() {
             this.$emit("clickServer", this.data);
         },
     },
