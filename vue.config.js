@@ -56,7 +56,7 @@ module.exports = {
         },
         servers: {
             title: "开服监控 - JX3BOX",
-            entry: "src/core/servers/servers.js",
+            entry: "src/core/servers2/servers2.js",
             template: "public/index.html",
             filename: "servers/index.html",
         },
