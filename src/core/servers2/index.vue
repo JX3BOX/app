@@ -162,7 +162,6 @@ export default {
         },
         //登录状态存服务器，未登录跳转
         setSavedServers() {
-            return
             if (this.uid) {
                 let list = this.favList.map((el) => el.main_server);
                 setMyFocusServers(list.join(","))
