@@ -2,9 +2,9 @@
     <el-card class="m-server-card">
         <div class="m-server-card__header" slot="header">
             <b class="u-title">{{ data.main_server }}</b>
-            <el-button class="u-action" @click="favHandle" plain size="mini" :type="isSaved ? 'info' : ''"
-                >{{ isSaved ? "取消" : "" }}收藏</el-button
-            >
+            <el-button class="u-action" @click="favHandle" plain size="mini" :type="isSaved ? 'info' : ''">{{ isSaved ?
+                    "取消" : ""
+            }}收藏</el-button>
         </div>
         <div class="m-server-card__content">
             <div class="u-item u-status">
@@ -19,7 +19,7 @@
 
 <script>
 export default {
-    props: ["data", "isSaved"],
+    props: ["data", "favList"],
     computed: {
         getTime() {
             return (time) => {
@@ -32,6 +32,9 @@ export default {
                 return `${Y}-${M}-${D} ${H}:${m}`;
             };
         },
+        isSaved() {
+            return this.favList.filter((item) => item.main_server.indexOf(this.data.main_server) !== -1).length > 0
+        }
     },
     methods: {
         favHandle() {
@@ -45,10 +48,12 @@ export default {
 .m-server-card {
     .w(240px);
 }
+
 .m-server-card__header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
     .u-title {
         .fz(15px);
         .bold;
@@ -57,12 +62,15 @@ export default {
         overflow: hidden;
     }
 }
+
 .m-server-card__content {
     .u-status {
         .fz(12px);
-        b{
+
+        b {
             .bold;
         }
+
         .isOpen {
             color: #70b603;
         }
@@ -71,8 +79,9 @@ export default {
             color: #aaa;
         }
     }
-    .u-item{
-        span{
+
+    .u-item {
+        span {
             .mr(5px);
         }
     }

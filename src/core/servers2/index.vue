@@ -39,7 +39,7 @@
                                 >
                                     <server-card
                                         :data="serverItem"
-                                        :isSaved="true"
+                                        :favList="favList"
                                         @clickServer="clickServer"
                                     ></server-card>
                                 </div>
@@ -58,7 +58,7 @@
                                         v-for="(serverItem, serverIndex) in item.serverArr"
                                         :key="serverIndex"
                                     >
-                                        <server-card :data="serverItem" @clickServer="clickServer"></server-card>
+                                        <server-card :data="serverItem" :favList="favList" @clickServer="clickServer"></server-card>
                                     </div>
                                 </div>
                                 <template v-else>
@@ -88,7 +88,6 @@ import Nav from "@/components/Nav.vue";
 import User from "@jx3box/jx3box-common/js/user";
 import { getMyFocusServers, setMyFocusServers, getAllServers } from "@/service/server2.js";
 import { __imgPath } from "@jx3box/jx3box-common/data/jx3box.json";
-import server_map from "@jx3box/jx3box-data/data/server/server_map.json";
 import serverCard from "./components/serverCard/serverCard.vue";
 export default {
     name: "Servers2",
@@ -152,18 +151,6 @@ export default {
                 }
             });
         },
-        // 将获取的服务器分类 [正式服，怀旧服，其他] 暂时没用到
-        sortServer(list) {
-            let old = [];
-            let server = [];
-            list.filter((s) => {
-                if (server_map[s.serverName]) server_map[s.serverName].client == "std" ? server.push(s) : old.push(s);
-            });
-            this.serverData = {
-                server,
-                old,
-            };
-        },
         //转服务器数据 str转换成obj
         serverFav(data) {
             if (!data) return;
@@ -175,6 +162,7 @@ export default {
         },
         //登录状态存服务器，未登录跳转
         setSavedServers() {
+            return
             if (this.uid) {
                 let list = this.favList.map((el) => el.main_server);
                 setMyFocusServers(list.join(","))
