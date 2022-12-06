@@ -37,7 +37,16 @@ export default {
 
 <style lang="less">
 .m-server-card {
-    .w(240px);
+    .w(250px);
+}
+@media screen and (max-width:@phone){
+    .serverbox-list{
+        flex-direction: column;
+    }
+    .m-server-card{
+        .w(100%);
+        box-sizing: border-box;
+    }
 }
 
 .m-server-card__header {
