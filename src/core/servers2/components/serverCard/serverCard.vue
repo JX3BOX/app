@@ -39,6 +39,15 @@ export default {
 .m-server-card {
     .w(260px);
 }
+@media screen and (max-width:@phone){
+    .serverbox-list{
+        flex-direction: column;
+    }
+    .m-server-card{
+        .w(100%);
+        box-sizing: border-box;
+    }
+}
 
 .m-server-card__header {
     display: flex;
