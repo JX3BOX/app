@@ -56,9 +56,15 @@ module.exports = {
         },
         servers: {
             title: "开服监控 - JX3BOX",
-            entry: "src/core/servers2/servers2.js",
+            entry: "src/core/servers/servers.js",
             template: "public/index.html",
             filename: "servers/index.html",
+        },
+        servers2: {
+            title: "开服监控 - JX3BOX",
+            entry: "src/core/servers2/servers2.js",
+            template: "public/index.html",
+            filename: "servers2/index.html",
         },
         sudoku: {
             title: "九宫格计算器 - JX3BOX",
