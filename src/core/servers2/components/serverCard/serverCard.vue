@@ -37,7 +37,7 @@ export default {
 
 <style lang="less">
 .m-server-card {
-    .w(250px);
+    .w(260px);
 }
 @media screen and (max-width:@phone){
     .serverbox-list{
