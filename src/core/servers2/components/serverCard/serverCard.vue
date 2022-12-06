@@ -12,31 +12,22 @@
                 <b :class="data.connect_state ? 'isOpen' : 'isClose'">{{ data.connect_state_name }}</b>
             </div>
             <div class="u-item u-ip"><span>IP:</span>{{ data.ip_address }}</div>
-            <div class="u-item u-time"><span>最近维护时间:</span>{{ getTime(data.maintain_time) }}</div>
+            <div class="u-item u-time"><span>最近维护时间:</span>{{ dayjs(data.maintain_time * 1000).format('YYYY-MM-DD HH:mm:ss') }}</div>
         </div>
     </el-card>
 </template>
 
 <script>
+import dayjs from 'dayjs'
 export default {
     props: ["data", "favList"],
     computed: {
-        getTime() {
-            return (time) => {
-                const date = new Date(time * 1000);
-                const Y = date.getFullYear();
-                const M = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
-                const D = date.getDate();
-                const H = date.getHours();
-                const m = date.getMinutes();
-                return `${Y}-${M}-${D} ${H}:${m}`;
-            };
-        },
         isSaved() {
             return this.favList.filter((item) => item.main_server.indexOf(this.data.main_server) !== -1).length > 0
         }
     },
     methods: {
+        dayjs,
         favHandle() {
             this.$emit("clickServer", this.data);
         },

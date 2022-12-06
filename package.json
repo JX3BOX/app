@@ -21,6 +21,7 @@
         "codemirror": "^5.62.2",
         "core-js": "^3.16.0",
         "csslab": "^4.0.3",
+        "dayjs": "^1.11.6",
         "echarts": "^4.7.0",
         "element-ui": "^2.13.0",
         "ini": "^2.0.0",
