@@ -37,7 +37,7 @@ export default {
 
 <style lang="less">
 .m-server-card {
-    .w(240px);
+    .w(260px);
 }
 
 .m-server-card__header {
