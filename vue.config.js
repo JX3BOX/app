@@ -79,6 +79,12 @@ module.exports = {
             template: "public/index.html",
             filename: "price/index.html",
         },
+        bhhjSimulator: {
+            title: "八荒衡鉴模拟器 - JX3BOX",
+            entry: "src/core/bhhjSimulator/bhhjSimulator.js",
+            template: "public/index.html",
+            filename: "bhhjSimulator/index.html",
+        },
     },
 
     //❤️ Proxy ~
@@ -98,7 +104,7 @@ module.exports = {
                 "onProxyReq": function (request) {
                     request.setHeader("origin", "");
                 }
-            },
+            }
         },
         disableHostCheck: true
     },

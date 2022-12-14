@@ -1,0 +1,66 @@
+.m-bhhj{
+    padding: 20px 30px;
+    max-width: 1200px;
+    .auto(x);
+    .m-bhhj-title {
+        .fz(24px);
+        .bold(500);
+        .x;
+        margin: 0 0 20px 0;
+        padding: 0;
+    }
+    .m-bhhj-box{
+        .flex;
+        .m-bhhj-left{
+            user-select: none;
+            -webkit-box-sizing:border-box;
+            -moz-box-sizing:border-box;
+            -ms-box-sizing:border-box;
+            box-sizing:border-box;
+            .w(300px);
+            /deep/.el-tabs__header{
+                margin: 0;
+            }
+            .m-tab-box{
+                min-height: 65vh;
+                border: 1px solid #e3e3e3;
+                border-top:none;
+                .flex;
+                .flex(x);
+                flex-wrap:wrap;
+                .u-bhhj-l-box{
+                    .dbi;
+                    margin: 4px;
+                    .w(50px);
+                    text-align: center;
+                }
+            }
+        }
+        .m-bhhj-content{
+            flex: 1;
+            margin: 0 20px;
+            min-width: 400px;
+        }
+        .m-bhhj-right{
+            .w(300px);
+            min-width: 240px;
+            .m-scheme{
+                .flex;
+                padding: 4px 0;
+                justify-content: space-between;
+                .fz(12px,28px);
+                .u-title{
+                    .w(calc(100% - 100px));
+                    .h(30px);
+                    .clip();
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
+                .u-btn{
+                    .w(100px);
+                }
+            }
+        }
+    }
+
+}

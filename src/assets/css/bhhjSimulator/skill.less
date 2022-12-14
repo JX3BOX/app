@@ -1,0 +1,101 @@
+.m-bhhj-skill{
+    .dbi;
+    .pr;
+    .m-shape{
+        cursor: pointer;
+    }
+    //图标
+    .m-bhhj-icon {
+        .dbi;
+        .pr;
+
+        &::before {
+            transition: opacity 0.2s linear;
+            content: '';
+            position: absolute;
+            height: 48px;
+            width: 48px;
+            //border-radius: 48px;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 10;
+            opacity: 1; //透明度
+        }
+        .u-bhhj-img{
+            .size(48px);
+        }
+    }
+    .bhhjSelect{
+        &::before {
+            opacity: 0; //透明度
+        }
+    }
+
+    .m-bhhj-pop{
+        text-align: left;
+        .pa;
+        bottom: calc(100% + 3px);
+        left: 0;
+        background-color: rgba(0,0,0,.8);
+        margin-left: 4px;
+        border-radius: 3px;
+        padding: 10px;
+        width: 320px;
+        max-width: none;
+        z-index: 23;
+        display: none;
+        * {
+            display: block;
+            white-space: normal;
+            word-wrap: break-word;
+            word-break: break-all;
+        }
+        .m-bhhj-name {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            line-height: 2;
+            color: #ff0;
+
+            .u-bhhj-id {
+                font-size: 12px;
+                color: #52eded;
+                display: inline;
+                font-weight: normal;
+                margin-left: 3px;
+            }
+        }
+        .m-bhhj-type {
+            color: #fff;
+            font-size: 13px;
+            line-height: 20px;
+        }
+        .m-bhhj-desc {
+            font-size: 12px;
+            line-height: 20px;
+            color: #ff0;
+        }
+    }
+    .on {
+        display: block;
+    }
+    //图标转圆
+    .m-bhhj-icon-y {
+        .u-bhhj-img {
+            border-radius: 48px;
+            transform: scale(0.95);
+        }
+        &::before {
+            border-radius: 48px;
+        }
+        &::after {
+            transition: background-color 5s linear;
+            content: '';
+            position: absolute;
+            .size(52px);
+            background-image: url('../../img/bhhjSimulator/skill_bg.png');
+            z-index: 6;
+            left: -1px;
+            top: -2px;
+        }
+    }
+}
