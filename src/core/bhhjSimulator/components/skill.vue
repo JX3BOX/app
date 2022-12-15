@@ -1,28 +1,24 @@
 <template>
-    <div class="m-bhhj-skill">
+    <div class="m-bahuang-skill">
         <!--        技能图标及描述-->
-        <div class="m-bhhj-icon m-shape" :class="[select?'bhhjSelect':'',!skillType?'m-bhhj-icon-y':'']"  @mouseover="popStatus(true)" @mouseleave="popStatus(false)" v-if="noPop">
-            <img class="u-bhhj-img" :src="info.IconID|skillIcon(info.IconID)" />
+        <div class="m-bahuang-icon m-shape" :class="[select?'bhhjSelect':'',!skillType?'m-bahuang-icon-y':'']"  @mouseover="popStatus(true)" @mouseleave="popStatus(false)" v-if="noPop">
+            <img class="u-bahuang-img" :src="info.IconID|skillIcon(info.IconID)" />
         </div>
-        <div class="m-bhhj-icon" :class="[select?'bhhjSelect':'',!skillType?'m-bhhj-icon-y':'']" v-else>
-            <img class="u-bhhj-img" :src="info.IconID|skillIcon(info.IconID)" />
+        <div class="m-bahuang-icon" :class="[select?'bhhjSelect':'',!skillType?'m-bahuang-icon-y':'']" v-else>
+            <img class="u-bahuang-img" :src="info.IconID|skillIcon(info.IconID)" />
         </div>
         <!-- 弹窗描述 -->
-        <span class="m-bhhj-pop" :class="showPop ? 'on' : ''">
-                <b class="m-bhhj-name">
-                    <span>{{ info.Name }}<small class="u-bhhj-id" >(ID: {{ info.IdKey }})</small></span>
+        <span class="m-bahuang-pop" :class="showPop ? 'on' : ''">
+                <b class="m-bahuang-name">
+                    <span>{{ info.Name }}<small class="u-bahuang-id" >(ID: {{ info.IdKey }})</small></span>
                 </b>
-                <b class="m-bhhj-type">
+                <b class="m-bahuang-type">
                 {{skillType?'主动技能':'被动招式'}}
                 </b>
-                <span class=" m-bhhj-desc">
+                <span class=" m-bahuang-desc">
                     {{ info.Desc }}
                 </span>
             </span>
-        <!--        方形秘技-->
-<!--        <div class="m-bhhj-icon">-->
-<!--            <img src="https://icon.jx3box.com/icon/22.png" />-->
-<!--        </div>-->
     </div>
 </template>
 

@@ -1,17 +1,17 @@
-.m-bhhj{
+.m-bahuang{
     padding: 20px 30px;
     max-width: 1200px;
     .auto(x);
-    .m-bhhj-title {
+    .m-bahuang-title {
         .fz(24px);
         .bold(500);
         .x;
         margin: 0 0 20px 0;
         padding: 0;
     }
-    .m-bhhj-box{
+    .m-bahuang-box{
         .flex;
-        .m-bhhj-left{
+        .m-bahuang-left{
             user-select: none;
             -webkit-box-sizing:border-box;
             -moz-box-sizing:border-box;
@@ -22,45 +22,47 @@
                 margin: 0;
             }
             .m-tab-box{
-                min-height: 65vh;
+                //min-height: 65vh;
+                .min-width(300px);
                 border: 1px solid #e3e3e3;
                 border-top:none;
-                .flex;
-                .flex(x);
-                flex-wrap:wrap;
-                .u-bhhj-l-box{
-                    .dbi;
-                    margin: 4px;
-                    .w(50px);
-                    text-align: center;
+                .u-name{
+                    .fz(14px,12px);
+                }
+                .u-box{
+                    //text-align: center;
+                    .grid;
+                    //.flex(x);
+                    //justify-content: space-between;
+                    .grid(x);
+                    grid-template-columns:repeat(5,60px); ;
+                    .u-bahuang-l-box{
+                        .dbi;
+                        margin: 4px;
+                        .w(50px);
+                        text-align: center;
+                    }
                 }
             }
         }
-        .m-bhhj-content{
+        .m-bahuang-content{
             flex: 1;
             margin: 0 20px;
             min-width: 400px;
         }
-        .m-bhhj-right{
-            .w(300px);
-            min-width: 240px;
-            .m-scheme{
-                .flex;
-                padding: 4px 0;
-                justify-content: space-between;
-                .fz(12px,28px);
-                .u-title{
-                    .w(calc(100% - 100px));
-                    .h(30px);
-                    .clip();
-                    text-overflow: ellipsis;
-                    white-space: nowrap;
-                }
-                .u-btn{
-                    .w(100px);
-                }
-            }
+        .m-bahuang-right{
         }
     }
 
+}
+@media screen and (max-width: @phone) {
+    .m-bahuang{
+        .m-bahuang-box{
+            .db;
+            .m-bahuang-content{
+                margin: 10px 0;
+                min-width: 100%;
+            }
+        }
+    }
 }

@@ -8,66 +8,55 @@
             <Nav />
         </LeftSidebar>
         <Main :withoutRight="true" :withoutLeft="true">
-            <div class="m-bhhj">
-                <h1 class="m-bhhj-title">八荒衡鉴模拟器</h1>
+            <div class="m-bahuang">
+                <h1 class="m-bahuang-title">八荒衡鉴模拟器</h1>
 <!--                盒子左中右分栏-->
-                <div class="m-bhhj-box" v-loading="loading">
-                    <div class="m-bhhj-left">
+                <div class="m-bahuang-box" v-loading="loading">
+                    <div class="m-bahuang-left">
                         <el-tabs v-model="activeTabName" type="card">
                             <el-tab-pane label="秘术" name="arcane"/>
                             <el-tab-pane label="秘技" name="cheats"/>
                             <el-tab-pane label="绝学" name="stunt" />
                         </el-tabs>
                         <div class="m-tab-box" v-show="activeTabName==='arcane'">
-                            <div v-for="(item,i) in leftOptions.arcane" :key="'a'+i" class="u-bhhj-l-box" @click="leftIconClick(item,i,1)">
-                                <skill :info="item" :select="item.select" :skillType="false"/>
-                                <span>{{item.Name}}</span>
+                            <div class="u-box">
+                                <div v-for="(item,i) in leftOptions.arcane" :key="'a'+i" class="u-bahuang-l-box" @click="leftIconClick(item,i,1)">
+                                    <skill :info="item" :select="item.select" :skillType="false"/>
+                                    <span class="u-name">{{item.Name}}</span>
+                                </div>
                             </div>
                         </div>
                         <div class="m-tab-box" v-show="activeTabName==='cheats'">
-                            <div v-for="(item,i) in leftOptions.cheats" :key="'c'+i" style="display: inline-block" class="u-bhhj-l-box" @click="leftIconClick(item,i,2)">
+                            <div class="u-box">
+                            <div v-for="(item,i) in leftOptions.cheats" :key="'c'+i" class="u-bahuang-l-box" @click="leftIconClick(item,i,2)">
                                 <skill :info="item" :select="item.select" :skillType="true"/>
-                                <span>{{item.Name}}</span>
+                                <span class="u-name">{{item.Name}}</span>
+                            </div>
                             </div>
                         </div>
                         <div class="m-tab-box" v-show="activeTabName==='stunt'">
-                            <div v-for="(item,i) in leftOptions.stunt" :key="'s'+i" style="display: inline-block" class="u-bhhj-l-box" @click="leftIconClick(item,i,3)">
-                                <skill :info="item" :select="item.select" :skillType="true"/>
-                                <span>{{item.Name}}</span>
+                            <div class="u-box">
+                                <div v-for="(item,i) in leftOptions.stunt" :key="'s'+i" class="u-bahuang-l-box" @click="leftIconClick(item,i,3)">
+                                    <skill :info="item" :select="item.select" :skillType="true"/>
+                                    <span class="u-name">{{item.Name}}</span>
+                                </div>
+<!--                                <div class="u-placeholder"></div>-->
                             </div>
                         </div>
 
                     </div>
-                    <div class="m-bhhj-content" v-loading="rightLoading">
-                        <RightBox :selectOptions="selectOptions" :isLogin="isLogin" :isEdit="isEdit" @skillClick="rightSkill($event)" @saveScheme="openSaveScheme($event)"/>
+                    <div class="m-bahuang-content" v-loading="rightLoading">
+                        <RightBox :selectOptions="selectOptions" :isLogin="isLogin" :isEdit="isEdit" @skillClick="rightSkill($event)" @saveScheme="openSaveScheme($event)" @icoRemove="icoRightRemove($event)"  @update-drawer="updateDrawer"/>
                     </div>
-                    <div class="m-bhhj-right" v-if="isLogin">
-                        <el-card  v-loading="schemeLoading">
-                            <div slot="header">
-                                <span>我的预设方案</span>
-                                <el-button style="float: right; padding: 3px 0" type="text"></el-button>
-                            </div>
-                            <el-tag type="info" v-show="schemeList.length===0">暂无相关预设方案</el-tag>
-                            <div v-for="(item,i) in schemeList" :key="'s'+i" class="m-scheme">
-                                <span class="u-title" :title="item.title">{{item.title }}</span>
-                                <div class="u-btn">
-                                    <el-button-group>
-                                        <el-tooltip effect="dark" content="使用" placement="top">
-                                            <el-button size="mini" icon="el-icon-position" @click="useScheme(item)"></el-button>
-                                        </el-tooltip>
-                                        <el-tooltip effect="dark" content="删除" placement="top">
-                                            <el-button size="mini" icon="el-icon-delete" @click="delScheme(item)"></el-button>
-                                        </el-tooltip>
-                                    </el-button-group>
-                                </div>
-
-                            </div>
-                        </el-card>
-                    </div>
+<!--                    <div class="m-bahuang-right" v-if="isLogin">-->
+<!--                        <el-button type="primary" @click="schemeDrawer = true" icon="el-icon-setting" size="small">我的预设</el-button>-->
+<!--                    </div>-->
                 </div>
             </div>
         </Main>
         <Footer></Footer>
+<!--        预设方案抽屉-->
+        <drawer v-if="isLogin" :drawer="schemeDrawer" @update-drawer="updateDrawer" @use="useScheme($event)" ></drawer>
 <!--        保存方案弹窗-->
         <el-dialog :title="title" :visible.sync="dialogFormVisible" :close-on-press-escape="false" :close-on-click-modal="false">
             <el-form :model="schemeForm">
@@ -78,7 +67,7 @@
                     <el-input v-model="schemeForm.desc" autocomplete="off" type="textarea"></el-input>
                 </el-form-item>
             </el-form>
-            <div slot="footer" class="dialog-footer">
+            <div slot="footer">
                 <el-button @click="reload">取 消</el-button>
                 <el-button type="primary" @click="saveScheme">保 存</el-button>
             </div>
@@ -91,12 +80,14 @@ import Nav from "@/components/Nav.vue";
 import { getAppIcon,iconLink } from "@jx3box/jx3box-common/js/utils";
 import RightBox from './components/right';
 import skill from './components/skill';
-import {getBhhjInfo,savebh,getBh,putBh,delBh,getBhList} from '@/service/bhhjSimulator'
+import drawer from './components/drawer';
+import {getBhhjInfo,savebh,getBh,putBh} from '@/service/bhhjSimulator'
 import User from "@jx3box/jx3box-common/js/user";
+import  xf from '@jx3box/jx3box-data/data/xf/school.json'
 export default {
     name: "BhhjSimulator",
     components: {
-        Nav,RightBox,skill
+        Nav,RightBox,skill,drawer
     },
     data: function() {
         return {
@@ -105,6 +96,7 @@ export default {
             rightLoading:false,
             activeTabName: "",
             isLogin: User.isLogin(),
+            xf_filtrate:[],
             leftOptions:{
                 arcane:[],
                 cheats:[],
@@ -120,6 +112,7 @@ export default {
             //秘术右侧激活数量
             rightArcaneNum:0,
             schemeList:[],
+            schemeDrawer:false,
             dialogFormVisible:false,
             title:'预设方案',
             isEdit:false,
@@ -144,9 +137,14 @@ export default {
     },
     created() {
         this.getBhhj()
-        if(this.isLogin){
-            this.getSchemeList()
+        //xf筛选
+        let xf_filtrate=[],xfArr=Object.entries(xf)
+        for(let i=0;i<xfArr.length;i++){
+            if(xfArr[i][1].client.indexOf('origin') !== -1){
+                xf_filtrate.push(xfArr[i])
+            }
         }
+        this.xf_filtrate=xf_filtrate
     },
     methods: {
         getAppIcon,
@@ -158,15 +156,9 @@ export default {
                 //心决处理，0 1下标0 一段效果 1二段效果
                 this.xffiltrate(data[0],data[1])
                 this.loading=false
-            })
-        },
-        //方案列表
-        getSchemeList(){
-            this.schemeLoading=true
-            getBhList().then(data=>{
-                this.schemeLoading=false
-                this.schemeList=data.data.data.list
-            })
+            }).finally(() => {
+                this.loading = false;
+            });
         },
         /**
          * 心决重排处理
@@ -174,20 +166,18 @@ export default {
          * @param xj2 2段效果
          */
         xffiltrate(xj1,xj2){
-            let xf=[
-                '少林','纯阳','七秀','天策','万花','五毒','藏剑','唐门'
-            ]
+            let xf_filtrate=this.xf_filtrate
             let xjArr=[]
-            for(let i=0;i<xf.length;i++){
+            for(let i=0;i<xf_filtrate.length;i++){
                 let json={
-                    name:xf[i],
+                    name:xf_filtrate[i][0],
                     value:i
                 }
                 let xjFilter1=xj1.filter(x=>{
-                    return x.Remark.indexOf(xf[i]) !== -1
+                    return x.Remark.indexOf(json.name) !== -1
                 });
                 let xjFilter2=xj2.filter(x=>{
-                    return x.Remark.indexOf(xf[i]) !== -1
+                    return x.Remark.indexOf(json.name) !== -1
                 });
                 json.content=xjFilter1.concat(xjFilter2)
                 xjArr.push(json)
@@ -323,6 +313,9 @@ export default {
                 }
 
         },
+        icoRightRemove(e){
+          this.leftIconClick(e.item.info,e.item.index,e.type)
+        },
         openSaveScheme(e){
             this.reload(1)
             let s=this.selectOptions
@@ -353,7 +346,6 @@ export default {
                         message: '编辑成功',
                         type: 'success'
                     });
-                    this.getSchemeList()
                 })
             }else{
                 savebh(this.schemeForm).then(data=>{
@@ -362,9 +354,11 @@ export default {
                         message: '保存成功',
                         type: 'success'
                     });
-                    this.getSchemeList()
                 })
             }
+        },
+        updateDrawer: function(val) {
+            this.schemeDrawer = val;
         },
         useScheme(item){
             this.$confirm('确认使用该方案，操作会覆盖当前?', '提示', {
@@ -374,6 +368,11 @@ export default {
             }).then(() => {
                 this.rightLoading=true
                 getBh(item.id).then(data=>{
+                    this.$notify({
+                        type: "success",
+                        title: "成功",
+                        message: "方案设置成功",
+                    });
                     this.rightLoading=false
                     this.isEdit=true
                     let res=data.data.data
@@ -382,27 +381,14 @@ export default {
                     this.$set(this.selectOptions,'stunt',res.content.stunt)
                     this.$set(this.selectOptions,'citta',res.content.citta)
                     this.$set(this,'editForm',res)
-                })
+                }).finally(() => {
+                    this.rightLoading = false;
+                });
             }).catch(() => {
             });
 
         },
-        delScheme(item){
-            this.$confirm('确认删除'+item.title+'?', '提示', {
-                confirmButtonText: '确定',
-                cancelButtonText: '取消',
-                type: 'warning'
-            }).then(() => {
-                delBh(item.id).then((data=>{
-                    this.$message({
-                        type: 'success',
-                        message: '删除成功!'
-                    });
-                    this.getSchemeList()
-                }))
-            }).catch(() => {
-            });
-        }
+
     },
 
 };

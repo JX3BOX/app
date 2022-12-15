@@ -1,18 +1,22 @@
 <template>
-<div class="m-bhhj-rightBox">
+<div class="m-bahuang-rightBox">
 <!--    心决-->
-    <div class="m-bhhj-r-citta">
-        <div class="u-bhhj-citta">
+    <div class="m-bahuang-r-citta">
+        <div class="u-bahuang-citta">
             <span class="u-label">心决</span>
             <el-select v-model="selectOptions.citta" placeholder="请选择门派" @change="cittaChange">
                 <el-option v-for="item in selectOptions.cittaArr" :key="item.value" :label="item.name" :value="item.value"></el-option>
             </el-select>
+            <div class="u-my-scheme">
+                <el-button type="primary" @click="openScheme" icon="el-icon-setting" size="small">我的预设</el-button>
+            </div>
         </div>
+
     </div>
 <!--    心决效果-->
     <div class="m-citta" v-show="cittaEffect.length>0">
         <div class="m-citta-box" v-for="(item,i) in cittaEffect" :key="'xj'+i">
-            <img class="u-bhhj-img" :src="item.IconID|skillIcon(item.IconID)" />
+            <img class="u-bahuang-img" :src="item.IconID|skillIcon(item.IconID)" />
             <div class="u-content">
                 <div class="u-name">名称：{{item.Name}}</div>
                 <div class="u-desc">效果：{{item.Desc}}</div>
@@ -20,47 +24,56 @@
         </div>
     </div>
 <!--秘术-->
-    <div class="u-bhhj-r-title">秘术</div>
+    <div class="u-bahuang-r-title">秘术<br/>
+        <span class="u-tip">(左键选择激活，右键可删除秘术)</span>
+    </div>
 <!--    秘术区域-->
-    <div class="m-bhhj-r-arcane" :class="isLogin?'m-r-arcane-box':''">
+    <div class="m-bahuang-r-arcane" :class="isLogin?'m-r-arcane-box':''">
 <!--       秘术展示-->
         <span class="u-tips" v-show="selectOptions.arcane.length===0">
             尚未选择
         </span>
-        <div class="u-skill" v-for="(item,i) in selectOptions.arcane" :key="'a'+i">
+        <div class="u-skill" v-for="(item,i) in selectOptions.arcane" :key="'a'+i" @contextmenu.prevent.capture='rightCancel(item,i,1)'>
             <skill :info="item.info" :select="item.select_r" :skillType="false" class="u-skill" @click.native="skillClick(item,i)"/><br/>
             <span>{{item.info.Name}}</span>
         </div>
 
     </div>
     <!--    激活秘术信息展示区域-->
-    <div class="u-bhhj-r-title">已激活秘术</div>
+    <div class="u-bahuang-r-title">已激活秘术</div>
     <div class="m-arcane-active">
 
         <div v-for="(item,i) in selectOptions.arcane" :key="'aa'+i" :class="item.select_r?'u-arcane-active':''">
-            <skill :info="item.info" :select="item.select_r" :skillType="false" :noPop="false"  v-if="item.select_r" class="u-skill"/>
+<!--            <skill :info="item.info" :select="item.select_r" :skillType="false" :noPop="false"  v-if="item.select_r" class="u-skill"/>-->
             <div class="u-content" v-if="item.select_r">
-                <div class="u-name">名称：{{item.info.Name}}</div>
-                <div class="u-desc">效果：{{item.info.Desc}}</div>
+                <span class="u-name">
+                    {{item.info.Name}}:
+                    <span class="u-desc">{{item.info.Desc}}</span>
+                </span>
             </div>
         </div>
     </div>
     <!--    秘技4个-->
-    <div class="u-bhhj-r-title">秘技</div>
-    <div class="m-bhhj-r-cheats">
+    <div class="u-bahuang-r-title">秘技
+        <br/>
+        <span class="u-tip">(右键可删除秘技)</span></div>
+    <div class="m-bahuang-r-cheats">
         <span class="u-tips" v-show="selectOptions.cheats.length===0">
             尚未选择
         </span>
-        <skill v-for="(item,i) in selectOptions.cheats" :key="'c'+i" :info="item.info" :select="item.info.select" :skillType="true" class="u-skill"/>
+        <div class="u-bahuang-cheats" v-for="(item,i) in selectOptions.cheats" :key="'c'+i"  @contextmenu.prevent.capture='rightCancel(item,i,2)'>
+            <skill  :info="item.info" :select="item.info.select" :skillType="true" class="u-skill" />
+        </div>
+
     </div>
 
     <!--    绝技1个-->
-    <div class="u-bhhj-r-title">绝技</div>
-    <div class="m-bhhj-r-stunt">
+    <div class="u-bahuang-r-title">绝技</div>
+    <div class="m-bahuang-r-stunt">
         <span class="u-tips" v-show="selectOptions.stunt.length===0">
             尚未选择
         </span>
-        <skill v-for="(item,i) in selectOptions.stunt" :key="'s'+i" :info="item.info" :select="item.info.select" :skillType="true" class="u-skill"/>
+        <skill v-for="(item,i) in selectOptions.stunt" :key="'s'+i" :info="item.info" :select="item.info.select" :skillType="true" class="u-skill" />
     </div>
     <div class="m-btn">
         <el-button class="u-btn" type="primary" icon="el-icon-document-add" v-if="isLogin" @click="saveScheme(1)">保存为预设</el-button>
@@ -112,7 +125,8 @@ export default {
     },
     data: function() {
         return {
-            cittaEffect:[]
+            cittaEffect:[],
+            visible:false,
         };
     },
     computed:{
@@ -136,12 +150,27 @@ export default {
         skillClick(item,i){
             this.$emit('skillClick',{info:item,index:i})
         },
+        // getActiveArcane(arcane){
+        //     let arr=[]
+        //     for(let i=0;i<arcane.length;i++){
+        //         if(arcane[i].select_r){
+        //             arr.push(arcane[i])
+        //         }
+        //     }
+        //     return arr;
+        // },
+        openScheme(){
+            this.$emit("update-drawer", true);
+        },
         /**
          * 保存
          * @param type 1 保存 2编辑状态另存为
          */
         saveScheme(type){
             this.$emit('saveScheme',{type:type})
+        },
+        rightCancel(item,i,type){
+            this.$emit('icoRemove',{item:item,index:i,type:type})
         }
     }
 }
