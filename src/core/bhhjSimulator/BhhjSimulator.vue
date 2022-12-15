@@ -46,7 +46,7 @@
 
                     </div>
                     <div class="m-bahuang-content" v-loading="rightLoading">
-                        <RightBox :selectOptions="selectOptions" :isLogin="isLogin" :isEdit="isEdit" @skillClick="rightSkill($event)" @saveScheme="openSaveScheme($event)" @icoRemove="icoRightRemove($event)"  @update-drawer="updateDrawer"/>
+                        <RightBox :selectOptions="selectOptions" :isEdit="isEdit" @skillClick="rightSkill($event)" @saveScheme="openSaveScheme($event)" @icoRemove="icoRightRemove($event)"  @update-drawer="updateDrawer"/>
                     </div>
 <!--                    <div class="m-bahuang-right" v-if="isLogin">-->
 <!--                        <el-button type="primary" @click="schemeDrawer = true" icon="el-icon-setting" size="small">我的预设</el-button>-->
@@ -56,7 +56,7 @@
         </Main>
         <Footer></Footer>
 <!--        预设方案抽屉-->
-        <drawer v-if="isLogin" :drawer="schemeDrawer" @update-drawer="updateDrawer" @use="useScheme($event)" ></drawer>
+        <drawer :drawer="schemeDrawer" @update-drawer="updateDrawer" @use="useScheme($event)" ></drawer>
 <!--        保存方案弹窗-->
         <el-dialog :title="title" :visible.sync="dialogFormVisible" :close-on-press-escape="false" :close-on-click-modal="false">
             <el-form :model="schemeForm">
@@ -82,7 +82,6 @@ import RightBox from './components/right';
 import skill from './components/skill';
 import drawer from './components/drawer';
 import {getBhhjInfo,savebh,getBh,putBh} from '@/service/bhhjSimulator'
-import User from "@jx3box/jx3box-common/js/user";
 import  xf from '@jx3box/jx3box-data/data/xf/school.json'
 export default {
     name: "BhhjSimulator",
@@ -94,8 +93,7 @@ export default {
             loading:true,
             schemeLoading:false,
             rightLoading:false,
-            activeTabName: "",
-            isLogin: User.isLogin(),
+            activeTabName: "",           
             xf_filtrate:[],
             leftOptions:{
                 arcane:[],

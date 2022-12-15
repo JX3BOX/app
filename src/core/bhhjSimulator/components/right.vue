@@ -7,7 +7,7 @@
             <el-select v-model="selectOptions.citta" placeholder="请选择门派" @change="cittaChange">
                 <el-option v-for="item in selectOptions.cittaArr" :key="item.value" :label="item.name" :value="item.value"></el-option>
             </el-select>
-            <div class="u-my-scheme">
+            <div class="u-my-scheme" v-if="isLogin">
                 <el-button type="primary" @click="openScheme" icon="el-icon-setting" size="small">我的预设</el-button>
             </div>
         </div>
@@ -87,6 +87,7 @@
 <script>
 import {iconLink} from "@jx3box/jx3box-common/js/utils";
 import skill from './skill'
+import User from "@jx3box/jx3box-common/js/user";
 export default {
     name: "right",
     components: {
@@ -102,10 +103,6 @@ export default {
                         stunt:[]
                 }
             }
-        },
-        isLogin:{
-            type:Boolean,
-            default:false
         },
         isEdit:{
             type:Boolean,
@@ -127,6 +124,7 @@ export default {
         return {
             cittaEffect:[],
             visible:false,
+            isLogin: User.isLogin(),
         };
     },
     computed:{
