@@ -592,6 +592,21 @@
                             </a>
                         </div>
                     </el-col>
+                    <el-col :span="6">
+                        <div class="u-item">
+                            <a href="./bhhj" target="_blank">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('bhhj')" />
+                                    </i>
+                                </span>
+                                <span class="u-features">
+                                    <span class="u-name">八荒衡鉴</span>
+                                    <span class="u-desc">八荒衡鉴模拟器</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col>
                 </el-row>
             </div>
 
