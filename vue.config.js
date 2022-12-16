@@ -83,7 +83,7 @@ module.exports = {
             title: "八荒衡鉴模拟器 - JX3BOX",
             entry: "src/core/bhhjSimulator/bhhjSimulator.js",
             template: "public/index.html",
-            filename: "bhhjSimulator/index.html",
+            filename: "bhhj/index.html",
         },
     },
 
