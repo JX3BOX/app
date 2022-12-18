@@ -1,25 +1,27 @@
 <template>
 <div class="m-bahuang-rightBox">
-<!--    心决-->
-    <div class="m-bahuang-r-citta">
-        <div class="u-bahuang-citta">
-            <span class="u-label">心决</span>
-            <el-select v-model="selectOptions.citta" placeholder="请选择门派" @change="cittaChange">
-                <el-option v-for="item in selectOptions.cittaArr" :key="item.value" :label="item.name" :value="item.value"></el-option>
-            </el-select>
-            <div class="u-my-scheme" v-if="isLogin">
-                <el-button type="primary" @click="openScheme" icon="el-icon-setting" size="small">我的预设</el-button>
+    <div class="u-bahuang-r-title">
+        <span>心决</span> 
+        <div class="m-bahuang-r-citta">
+            <div class="u-bahuang-citta">
+                <el-select v-model="selectOptions.citta" placeholder="请选择门派" @change="cittaChange">
+                    <el-option v-for="item in selectOptions.cittaArr" :key="item.value" :label="item.name" :value="item.value"></el-option>
+                </el-select>
             </div>
         </div>
-
     </div>
+<!--    心决-->
+    
 <!--    心决效果-->
+    <span class="u-tips" v-show="!cittaEffect">
+        尚未选择
+    </span>
     <div class="m-citta" v-show="cittaEffect.length>0">
         <div class="m-citta-box" v-for="(item,i) in cittaEffect" :key="'xj'+i">
             <img class="u-bahuang-img" :src="item.IconID|skillIcon(item.IconID)" />
             <div class="u-content">
-                <div class="u-name">名称：{{item.Name}}</div>
-                <div class="u-desc">效果：{{item.Desc}}</div>
+                <div class="u-name">{{item.Name}}</div>
+                <div class="u-desc">{{item.Desc}}</div>
             </div>
         </div>
     </div>
@@ -44,7 +46,6 @@
     <div class="m-arcane-active">
 
         <div v-for="(item,i) in selectOptions.arcane" :key="'aa'+i" :class="item.select_r?'u-arcane-active':''">
-<!--            <skill :info="item.info" :select="item.select_r" :skillType="false" :noPop="false"  v-if="item.select_r" class="u-skill"/>-->
             <div class="u-content" v-if="item.select_r">
                 <span class="u-name">
                     {{item.info.Name}}:

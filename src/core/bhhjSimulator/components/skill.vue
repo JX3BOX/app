@@ -1,6 +1,6 @@
 <template>
     <div class="m-bahuang-skill">
-        <!--        技能图标及描述-->
+        <!-- 技能图标及描述-->
         <div class="m-bahuang-icon m-shape" :class="[select?'bhhjSelect':'',!skillType?'m-bahuang-icon-y':'']"  @mouseover="popStatus(true)" @mouseleave="popStatus(false)" v-if="noPop">
             <img class="u-bahuang-img" :src="info.IconID|skillIcon(info.IconID)" />
         </div>
@@ -61,11 +61,7 @@ export default {
         },
 
     },
-    created() {
-
-    },
     methods:{
-
         popStatus(status){
             this.showPop=status
         }

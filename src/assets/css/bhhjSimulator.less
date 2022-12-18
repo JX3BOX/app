@@ -1,6 +1,9 @@
-.m-bahuang{
+.m-bahuang {
     padding: 20px 30px;
     max-width: 1200px;
+    .u-my-scheme {
+        float: right;
+    }
     .auto(x);
     .m-bahuang-title {
         .fz(24px);
@@ -9,34 +12,37 @@
         margin: 0 0 20px 0;
         padding: 0;
     }
-    .m-bahuang-box{
+    .m-bahuang-box {
         .flex;
-        .m-bahuang-left{
+        .m-bahuang-left {
             user-select: none;
-            -webkit-box-sizing:border-box;
-            -moz-box-sizing:border-box;
-            -ms-box-sizing:border-box;
-            box-sizing:border-box;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -ms-box-sizing: border-box;
+            box-sizing: border-box;
             .w(300px);
-            /deep/.el-tabs__header{
-                margin: 0;
+            .mr(16px);
+            // /deep/ 好像有兼容性问题，我的浏览器用不了
+            .el-tabs__header {
+                margin-bottom: 0;
             }
-            .m-tab-box{
-                //min-height: 65vh;
-                .min-width(300px);
+
+            .m-tab-box {
+                min-width: 300px;
                 border: 1px solid #e3e3e3;
-                border-top:none;
-                .u-name{
+                border-top: none;
+                min-height: 680px;
+                .u-name {
                     .fz(14px,12px);
                 }
-                .u-box{
-                    //text-align: center;
+                .u-box {
                     .grid;
-                    //.flex(x);
-                    //justify-content: space-between;
                     .grid(x);
-                    grid-template-columns:repeat(5,60px); ;
-                    .u-bahuang-l-box{
+                    grid-template-columns: repeat(5, 60px);
+                    .pt(16px);
+                    .pb(16px);
+
+                    .u-bahuang-l-box {
                         .dbi;
                         margin: 4px;
                         .w(50px);
@@ -45,23 +51,28 @@
                 }
             }
         }
-        .m-bahuang-content{
+        .m-bahuang-content {
             flex: 1;
             margin: 0 20px;
             min-width: 400px;
         }
-        .m-bahuang-right{
-        }
     }
-
 }
 @media screen and (max-width: @phone) {
-    .m-bahuang{
-        .m-bahuang-box{
+    .m-bahuang {
+        .m-bahuang-box {
             .db;
-            .m-bahuang-content{
+            .m-bahuang-content {
                 margin: 10px 0;
                 min-width: 100%;
+            }
+            .m-bahuang-left {
+                .mr(0);
+                .w(100%);
+                .m-tab-box {
+                    min-height: 0;
+                    min-width: 0;
+                }
             }
         }
     }
