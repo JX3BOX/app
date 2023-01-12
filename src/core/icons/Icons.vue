@@ -44,7 +44,7 @@ export default {
     },
     watch: {
         activeTabName(val) {
-            window.history.pushState('', '', location.origin + location.pathname + `?tab=${val}`)
+            // window.history.pushState('', '', location.origin + location.pathname + `?tab=${val}`)
         }
     },
     mounted() {
