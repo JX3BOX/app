@@ -35,7 +35,7 @@
                                     v-for="(item, i) in leftOptions[activeTabName]"
                                     :key="'a' + i"
                                     class="u-bahuang-l-box"
-                                    @click="leftIconClick(item, i, 1)"
+                                    @click="leftIconClick(item, i, activeTabName)"
                                 >
                                     <skill :info="item" :select="item.select" :skillType="false" />
                                     <span class="u-name">{{ item.Name }}</span>
@@ -208,14 +208,26 @@ export default {
          * 左侧模块图标点击事件处理
          * @param item 图标信息
          * @param i 图标下标
-         * @param type 图标所属模块 1秘术 2秘技 3绝学
+         * @param typeName 图标所属模块 arcane 1秘术 cheats 2秘技 stunt 3绝学
          */
-        leftIconClick(item, i, type) {
+        leftIconClick(item, i, typeName) {
             // 秘术最多选择12个，秘技4个，绝学1个
             let json = {
                 info: item,
                 index: i,
             };
+            let type=typeName
+            switch(typeName) {
+                case 'arcane':
+                    type=1
+                    break;
+                case 'cheats':
+                    type=2
+                    break;
+                case 'stunt':
+                    type=3
+                    break;
+            }
             if (type === 1) {
                 //先判断是否取消，若为取消需移除
                 if (item.select) {
@@ -232,6 +244,7 @@ export default {
                         json.select_r = true;
                         this.rightArcaneNum = this.selectOptions.arcane.length + 1;
                     }
+                    // json.item.select=true
                     this.selectOptions.arcane.push(json);
                 }
             } else if (type === 2) {
