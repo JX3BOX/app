@@ -47,7 +47,7 @@
                 @click.native.stop="handleDownloadEmoji('eif')"
                 icon="el-icon-download"
             >
-                下载QQ表情包
+                下载QQ表情包 (.eif)
             </el-button>
         </div>
     </div>

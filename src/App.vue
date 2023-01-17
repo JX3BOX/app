@@ -160,6 +160,21 @@
                             </a>
                         </div>
                     </el-col>
+                    <!-- <el-col :span="6">
+                        <div class="u-item">
+                            <a href="/vip/mall" target="_blank">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('mall')" />
+                                    </i>
+                                </span>
+                                <span class="u-features">
+                                    <span class="u-name">积分商城</span>
+                                    <span class="u-desc">积分兑换好礼</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col> -->
                 </el-row>
             </div>
 
