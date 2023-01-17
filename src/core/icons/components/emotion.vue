@@ -40,7 +40,7 @@
             >
                 下载压缩包 (.zip)
             </el-button>
-            <!-- <el-button
+            <el-button
                 class="u-btn"
                 :loading="isDownloadingEmoji"
                 type="primary"
@@ -48,7 +48,7 @@
                 icon="el-icon-download"
             >
                 下载QQ表情包
-            </el-button> -->
+            </el-button>
         </div>
     </div>
 </template>
