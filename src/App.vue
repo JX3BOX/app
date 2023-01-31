@@ -160,7 +160,7 @@
                             </a>
                         </div>
                     </el-col>
-                    <!-- <el-col :span="6">
+                    <el-col :span="6">
                         <div class="u-item">
                             <a href="/vip/mall" target="_blank">
                                 <span class="u-pic">
@@ -174,7 +174,7 @@
                                 </span>
                             </a>
                         </div>
-                    </el-col> -->
+                    </el-col>
                 </el-row>
             </div>
 
@@ -622,6 +622,21 @@
                             </a>
                         </div>
                     </el-col>
+                    <el-col :span="6">
+                        <div class="u-item">
+                            <a href="/fb/#/baizhan" target="_blank">
+                                <span class="u-pic">
+                                    <i class="u-icon">
+                                        <img svg-inline :src="getIcon('baizhan')" />
+                                    </i>
+                                </span>
+                                <span class="u-features">
+                                    <span class="u-name">百战查询</span>
+                                    <span class="u-desc">百战技能查询</span>
+                                </span>
+                            </a>
+                        </div>
+                    </el-col>
                 </el-row>
             </div>
 
@@ -767,7 +782,7 @@
                     </el-col>
                     <el-col :span="6">
                         <div class="u-item">
-                            <a href="/horse" target="_blank" class="disabled">
+                            <a href="/horse" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
                                         <img svg-inline :src="getIcon('pet')" />
