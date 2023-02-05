@@ -9,7 +9,7 @@
         <div class="m-server-card__content">
             <div class="u-item u-status">
                 <span>当前状态:</span>
-                <b :class="data.connect_state ? 'isOpen' : 'isClose'">{{ data.connect_state_name }}</b>
+                <b :class="data.connect_stateClass">{{ data.connect_state_name }}</b>
             </div>
             <div class="u-item u-ip"><span>IP:</span>{{ data.ip_address }}</div>
             <div class="u-item u-time"><span>最近维护时间:</span>{{ dayjs(data.maintain_time * 1000).format('YYYY-MM-DD HH:mm:ss') }}</div>
@@ -77,6 +77,12 @@ export default {
 
         .isClose {
             color: #aaa;
+        }
+        .isBusy {
+            color: #E6A23C;
+        }
+        .isFullLoad {
+            color: #F56C6C;
         }
     }
 

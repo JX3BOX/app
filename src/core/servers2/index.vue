@@ -58,7 +58,11 @@
                                         v-for="(serverItem, serverIndex) in item.serverArr"
                                         :key="serverIndex"
                                     >
-                                        <server-card :data="serverItem" :favList="favList" @clickServer="clickServer"></server-card>
+                                        <server-card
+                                            :data="serverItem"
+                                            :favList="favList"
+                                            @clickServer="clickServer"
+                                        ></server-card>
                                     </div>
                                 </div>
                                 <template v-else>
@@ -102,6 +106,28 @@ export default {
             serverArr: [], //拼接后的服务器参数
             searchArr: [], //搜索到的参数
             showCollapse: [2], //当前展开的栏目
+            heatStateArr: [
+                {
+                    value: "6",
+                    label: "良好",
+                    class: "isOpen",
+                },
+                {
+                    value: "7",
+                    label: "繁忙",
+                    class: "isBusy",
+                },
+                {
+                    value: "8",
+                    label: "爆满",
+                    class: "isFullLoad",
+                },
+                {
+                    value: "3",
+                    label: "维护中",
+                    class: "isClose",
+                },
+            ],
         };
     },
     computed: {
@@ -110,6 +136,14 @@ export default {
         },
         uid: function () {
             return User.getInfo().uid || 0;
+        },
+        findValue: function () {
+            return (arr, value, valueKey = "value", labelKey = "label") => {
+                const obj = arr.find((item) => {
+                    return item[valueKey] == value;
+                });
+                return obj ? obj[labelKey] : "";
+            };
         },
     },
     methods: {
@@ -137,7 +171,8 @@ export default {
                 this.serverAllArr = res.data.map((serverItem) => {
                     return {
                         ...serverItem,
-                        connect_state_name: serverItem.connect_state ? "已开服" : "维护中",
+                        connect_state_name: this.findValue(this.heatStateArr, serverItem.heat),
+                        connect_stateClass: this.findValue(this.heatStateArr, serverItem.heat, "value", "class"),
                     };
                 });
                 this.serverArr = this.setItemData(this.serverAllArr);
