@@ -26,6 +26,10 @@ export default {
                     abbr : '图标',
                 },
                 {
+                    slug : 'macroeditor',
+                    abbr : '写宏'
+                },
+                {
                     slug : 'talent',
                     abbr : '奇穴',
                 },
@@ -37,14 +41,10 @@ export default {
                     slug : 'meridians',
                     abbr : '经脉',
                 },
-                {
-                    slug : 'haste',
-                    abbr : '急速'
-                },
-                {
-                    slug : 'macroeditor',
-                    abbr : '写宏'
-                },
+                // {
+                //     slug : 'haste',
+                //     abbr : '急速'
+                // },
                 {
                     slug : 'translator',
                     abbr : '繁體'
