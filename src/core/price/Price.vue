@@ -22,25 +22,35 @@
                             </span>
                             <p class="title-origin">
                                 数据来源：
-                                <el-link type="primary" href="https://jx3.seasunwbl.com/" target="_blank">万宝楼</el-link>
+                                <el-link type="primary" href="https://jx3.seasunwbl.com/" target="_blank"
+                                    >万宝楼</el-link
+                                >
                             </p>
                         </div>
 
                         <!-- 服务器导航 -->
                         <div class="m-price-nav">
                             <el-tabs tab-position="top" v-model="currentGate" @tab-click="changeServer">
-                                <el-tab-pane v-for="(server, key) in serverList" :key="key" :label="server.serverName" :name="server.serverName"></el-tab-pane>
+                                <el-tab-pane
+                                    v-for="(server, key) in serverList"
+                                    :key="key"
+                                    :label="server.serverName"
+                                    :name="server.serverName"
+                                ></el-tab-pane>
                             </el-tabs>
                         </div>
 
                         <!-- 警告 -->
                         <div class="m-price-notice hint">
-                            ♥ 请选择正规平台！警惕交易陷阱！部分虚假交易平台会用低价骗取您购买，但充值后又提示该订单已被出售或无货，导致你的钱在一段时间无法及时提现，而且你提现时又要再次收取手续费。
-                            <span style="color: #c00; font-weight: bold">单价越高，表示1元能买到更多的金，也就说明金价越便宜喔！</span>
+                            ♥
+                            请选择正规平台！警惕交易陷阱！部分虚假交易平台会用低价骗取您购买，但充值后又提示该订单已被出售或无货，导致你的钱在一段时间无法及时提现，而且你提现时又要再次收取手续费。
+                            <span style="color: #c00; font-weight: bold"
+                                >单价越高，表示1元能买到更多的金，也就说明金价越便宜喔！</span
+                            >
                         </div>
 
                         <!-- 概览 -->
-                        <div class="m-price-overview" v-if="singleServerPrice.today">
+                        <div class="m-price-overview" v-if="Object.keys(singleServerPrice).length">
                             <el-row :gutter="20" class="card-wrapper card-wrapper-single-server">
                                 <el-col :xs="24" :md="8">
                                     <el-card>
@@ -49,17 +59,27 @@
                                             <div class="price-summary-price">
                                                 <div class="price-summary-detail">
                                                     <span class="price-summary-number">
-                                                        {{ singleServerPrice.yesterday["official"] }}
+                                                        {{ serverPriceCardInfo.yesterday["WBL"] }}
                                                     </span>
                                                 </div>
                                                 <div class="price-summary-detail">
                                                     <span class="price-summary-number">
-                                                        {{ singleServerPrice.yesterday["5173"] }}
+                                                        {{ serverPriceCardInfo.yesterday["5173"] }}
                                                     </span>
                                                 </div>
                                                 <div class="price-summary-detail">
                                                     <span class="price-summary-number">
-                                                        {{ singleServerPrice.yesterday["post"] }}
+                                                        {{ serverPriceCardInfo.yesterday["7881"] }}
+                                                    </span>
+                                                </div>
+                                                <div class="price-summary-detail">
+                                                    <span class="price-summary-number">
+                                                        {{ serverPriceCardInfo.yesterday["DD373"] }}
+                                                    </span>
+                                                </div>
+                                                <div class="price-summary-detail">
+                                                    <span class="price-summary-number">
+                                                        {{ serverPriceCardInfo.yesterday["UU898"] }}
                                                     </span>
                                                 </div>
                                             </div>
@@ -71,7 +91,13 @@
                                                     <span class="price-summary-mini">5173</span>
                                                 </div>
                                                 <div class="price-summary-detail">
-                                                    <span class="price-summary-mini">贴吧</span>
+                                                    <span class="price-summary-mini">7881</span>
+                                                </div>
+                                                <div class="price-summary-detail">
+                                                    <span class="price-summary-mini">DD373</span>
+                                                </div>
+                                                <div class="price-summary-detail">
+                                                    <span class="price-summary-mini">UU898</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -84,17 +110,27 @@
                                             <div class="price-summary-price">
                                                 <div class="price-summary-detail">
                                                     <span class="price-summary-number">
-                                                        {{ mean(singleServerPrice.today["official"]) }}
+                                                        {{ serverPriceCardInfo.today["WBL"] }}
                                                     </span>
                                                 </div>
                                                 <div class="price-summary-detail">
                                                     <span class="price-summary-number">
-                                                        {{ mean(singleServerPrice.today["5173"]) }}
+                                                        {{ serverPriceCardInfo.today["5173"] }}
                                                     </span>
                                                 </div>
                                                 <div class="price-summary-detail">
                                                     <span class="price-summary-number">
-                                                        {{ mean(singleServerPrice.today["post"]) }}
+                                                        {{ serverPriceCardInfo.today["7881"] }}
+                                                    </span>
+                                                </div>
+                                                <div class="price-summary-detail">
+                                                    <span class="price-summary-number">
+                                                        {{ serverPriceCardInfo.today["DD373"] }}
+                                                    </span>
+                                                </div>
+                                                <div class="price-summary-detail">
+                                                    <span class="price-summary-number">
+                                                        {{ serverPriceCardInfo.today["UU898"] }}
                                                     </span>
                                                 </div>
                                             </div>
@@ -106,7 +142,13 @@
                                                     <span class="price-summary-mini">5173</span>
                                                 </div>
                                                 <div class="price-summary-detail">
-                                                    <span class="price-summary-mini">贴吧</span>
+                                                    <span class="price-summary-mini">7881</span>
+                                                </div>
+                                                <div class="price-summary-detail">
+                                                    <span class="price-summary-mini">DD373</span>
+                                                </div>
+                                                <div class="price-summary-detail">
+                                                    <span class="price-summary-mini">UU898</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -118,7 +160,7 @@
                                             <div class="price-summary-title">建议成交价</div>
                                             <div class="price-summary-price">
                                                 <b>
-                                                    {{ singleServerPrice.recommend }}
+                                                    {{ serverPriceCardInfo.recommend }}
                                                 </b>
                                                 金 / ￥100
                                             </div>
@@ -145,7 +187,11 @@
                                 />
                             </div>-->
                             <div class="chart-div chart-line" v-show="currentGate !== ''">
-                                <v-chart :options="lineOption" :autoresize="true" @legendselectchanged="onLineChartLegendselectchanged" />
+                                <v-chart
+                                    :options="lineOption"
+                                    :autoresize="true"
+                                    @legendselectchanged="onLineChartLegendselectchanged"
+                                />
                             </div>
                         </div>
                     </div>
@@ -167,7 +213,7 @@ import serverData from "@jx3box/jx3box-data/data/server/server.json";
 import { __imgPath } from "@jx3box/jx3box-common/data/jx3box.json";
 export default {
     name: "Price",
-    data: function() {
+    data: function () {
         return {
             searchServerName: "",
             isShowMainServer: true,
@@ -180,6 +226,22 @@ export default {
             allServersPrice: {},
             singleServerPrice: {},
             singleServerDisplayTotalFull: false,
+            serverPriceCardInfo: {
+                yesterday: {
+                    5173: "无数据",
+                    7881: "无数据",
+                    DD373: "无数据",
+                    UU898: "无数据",
+                    WBL: "无数据",
+                },
+                today: {
+                    5173: "无数据",
+                    7881: "无数据",
+                    DD373: "无数据",
+                    UU898: "无数据",
+                    WBL: "无数据",
+                },
+            },
             scatterOption: {
                 tooltip: {
                     show: true,
@@ -463,6 +525,65 @@ export default {
                         },
                         silent: true,
                     },
+                    //7881
+                    {
+                        type: "line",
+                        name: "7881",
+                        animationDuration: 300,
+                        smooth: false,
+                        symbol: "circle",
+                        symbolSize: 10,
+                        sampling: "average",
+                        itemStyle: {
+                            color: "rgb(255 ,143 ,0)",
+                        },
+                        data: [], // data
+                        markPoint: {
+                            data: [
+                                { type: "max", name: "[7881]最大值" },
+                                { type: "min", name: "[7881]最小值" },
+                            ],
+                            itemStyle: {
+                                color: "rgb(255 ,143 ,0)",
+                            },
+                            symbolOffset: [0, "-10%"],
+                        },
+                        markLine: {
+                            data: [
+                                {
+                                    type: "median",
+                                    label: {
+                                        position: "start",
+                                        formatter: "[7881]\n均价\n{c}",
+                                    },
+                                    name: "[7881]均价",
+                                },
+                            ],
+                            lineStyle: {
+                                color: "rgb(255 ,143 ,0)",
+                                width: 3,
+                                type: "dotted",
+                            },
+                            symbol: "none",
+                        },
+                    },
+                    {
+                        type: "line",
+                        animationDuration: 300,
+                        smooth: false,
+                        symbol: "none",
+                        symbolSize: 0,
+                        sampling: "average",
+                        itemStyle: {
+                            color: "rgb(255 ,143 ,0)",
+                        },
+                        data: [],
+                        connectNulls: true,
+                        lineStyle: {
+                            type: "dashed",
+                        },
+                        silent: true,
+                    },
                     // 官方
                     {
                         type: "line",
@@ -522,26 +643,26 @@ export default {
                         },
                         silent: true,
                     },
-                    // 贴吧
+                    //DD373
                     {
                         type: "line",
-                        name: "贴吧",
+                        name: "DD373",
                         animationDuration: 300,
                         smooth: false,
                         symbol: "circle",
                         symbolSize: 10,
                         sampling: "average",
                         itemStyle: {
-                            color: "#22c3aa",
+                            color: "rgb(113 ,219 ,211)",
                         },
                         data: [], // data
                         markPoint: {
                             data: [
-                                { type: "max", name: "[贴吧]最大值" },
-                                { type: "min", name: "[贴吧]最小值" },
+                                { type: "max", name: "[DD373]最大值" },
+                                { type: "min", name: "[DD373]最小值" },
                             ],
                             itemStyle: {
-                                color: "#22c3aa",
+                                color: "rgb(113 ,219 ,211)",
                             },
                             symbolOffset: [0, "-10%"],
                         },
@@ -551,13 +672,13 @@ export default {
                                     type: "median",
                                     label: {
                                         position: "start",
-                                        formatter: "[贴吧]\n均价\n{c}",
+                                        formatter: "[DD373]\n均价\n{c}",
                                     },
-                                    name: "[贴吧]均价",
+                                    name: "[DD373]均价",
                                 },
                             ],
                             lineStyle: {
-                                color: "#22c3aa",
+                                color: "rgb(113 ,219 ,211)",
                                 width: 3,
                                 type: "dotted",
                             },
@@ -572,7 +693,66 @@ export default {
                         symbolSize: 0,
                         sampling: "average",
                         itemStyle: {
-                            color: "#22c3aa",
+                            color: "rgb(113 ,219 ,211)",
+                        },
+                        data: [],
+                        connectNulls: true,
+                        lineStyle: {
+                            type: "dashed",
+                        },
+                        silent: true,
+                    },
+                    //UU898
+                    {
+                        type: "line",
+                        name: "UU898",
+                        animationDuration: 300,
+                        smooth: false,
+                        symbol: "circle",
+                        symbolSize: 10,
+                        sampling: "average",
+                        itemStyle: {
+                            color: "rgb(127, 24, 255)",
+                        },
+                        data: [], // data
+                        markPoint: {
+                            data: [
+                                { type: "max", name: "[UU898]最大值" },
+                                { type: "min", name: "[UU898]最小值" },
+                            ],
+                            itemStyle: {
+                                color: "rgb(127, 24, 255)",
+                            },
+                            symbolOffset: [0, "-10%"],
+                        },
+                        markLine: {
+                            data: [
+                                {
+                                    type: "median",
+                                    label: {
+                                        position: "start",
+                                        formatter: "[UU898]\n均价\n{c}",
+                                    },
+                                    name: "[UU898]均价",
+                                },
+                            ],
+                            lineStyle: {
+                                color: "rgb(127, 24, 255)",
+                                width: 3,
+                                type: "dotted",
+                            },
+                            symbol: "none",
+                        },
+                    },
+                    {
+                        type: "line",
+                        animationDuration: 300,
+                        smooth: false,
+                        symbol: "none",
+                        symbolSize: 0,
+                        sampling: "average",
+                        itemStyle: {
+                            color: "rgb(127, 24, 255)",
                         },
                         data: [],
                         connectNulls: true,
@@ -605,14 +785,16 @@ export default {
             //     access_token: access_token,
             // };
 
-            let priceUrl = "https://spider.jx3box.com/jx3price";
-            let params = {}
+            // let priceUrl = "https://spider.jx3box.com/jx3price";
+            let priceUrl = "https://spider2.jx3box.com/api/spider/gold/trend";
+
+            let params = {};
             let getAllPriceData = axios(priceUrl, "GET", false, {}, {}, params);
 
             let getUserServerSaved = this.defaultServer;
             if (this.uid) {
                 let userUrl = realUrl(JX3BOX.__cms, "api/cms/user/my/profile");
-                getUserServerSaved = axios(userUrl, "GET", true);
+                getUserServerSaved = axios(userUrl, "GET", false);
             } else {
                 getUserServerSaved = this.getFromLocal();
             }
@@ -631,11 +813,10 @@ export default {
                         }
                     }
                     this.serverList = tmpdict;
-                    serverName = result[0].data.jx3_server || this.defaultServer;
-
+                    serverName = result[0]?.data?.jx3_server || this.defaultServer;
                     let priceData = result[1];
-                    if (priceData.code !== undefined && priceData.code === 0) {
-                        this.allPriceDataRaw = priceData.data;
+                    if (priceData) {
+                        this.allPriceDataRaw = priceData;
                     }
                     this.currentGate = serverName;
                     axiosSuccess = true;
@@ -672,23 +853,20 @@ export default {
         },
         calcRecommend() {
             let threeDaysSum = 0;
-            for (let count = 0; count < 3; ++count) {
-                let singleDay = this.singleServerPrice.trend[count];
-                let maxPrice = Math.max(singleDay["5173"], singleDay["post"], singleDay["official"] / 0.9405);
+            for (let count = 1; count < 4; ++count) {
+                let singleDay = this.singleServerPrice;
+                let maxPrice = Math.max(
+                    singleDay["5173"][singleDay["5173"].length - count]?.average,
+                    singleDay["WBL"][singleDay["WBL"].length - count]?.average,
+                    singleDay["7881"][singleDay["7881"].length - count]?.average,
+                    singleDay["UU898"][singleDay["UU898"].length - count]?.average,
+                    singleDay["DD373"][singleDay["DD373"].length - count]?.average / 0.9405
+                );
                 threeDaysSum += maxPrice;
             }
             return Math.floor((threeDaysSum / 3) * 100);
         },
-        clickServer(serverName, gate) {
-            if (this.currentGate === gate) {
-                return;
-            }
-            this.currentGate = gate;
-            // this.pinnedChecked = this.currentGate === this.pinnedServerName;
-            this.showServer();
-            this.parsePriceData();
-        },
-        changeServer: function(tab, event) {
+        changeServer: function (tab, event) {
             // this.currentGate = gate;
             // this.pinnedChecked = this.currentGate === this.pinnedServerName;
             this.showServer();
@@ -760,7 +938,6 @@ export default {
                 // 如果已经加载过数据，就不重复加载
                 return;
             }
-
             let serverArr = [];
             let dataArr = [];
             for (const [gate, value] of Object.entries(this.allPriceDataRaw)) {
@@ -768,7 +945,7 @@ export default {
                     continue;
                 }
                 serverArr.push(this.serverList[gate].serverName);
-                dataArr.push(无parseInt(value.average));
+                dataArr.push(parseInt(value.average));
             }
             this.barOption.xAxis.data = serverArr;
             this.barOption.series[0].data = dataArr;
@@ -777,7 +954,7 @@ export default {
             this.singleServerPrice = this.allPriceDataRaw[this.currentGate];
             // this.drawBoxplotChart();
             this.drawLineChart();
-            this.singleServerPrice.recommend = this.calcRecommend();
+            this.serverPriceCardInfo.recommend = this.calcRecommend();
         },
         drawBoxplotChart() {
             let todayPrice = this.singleServerPrice.today;
@@ -798,22 +975,23 @@ export default {
             this.boxplotOption.series[2].data = scatterData;
         },
         drawLineChart() {
-            let trendsRawArr = this.parseTrend(this.singleServerPrice.trend);
-            let trendsArr = {
-                5173: [],
-                official: [],
-                post: [],
-            };
             let seriesConter = 0;
-            for (const [source, trends] of Object.entries(trendsRawArr)) {
+            for (const [source, trends] of Object.entries(this.singleServerPrice)) {
                 let hasNullValue = false;
-                let trendsArr = trends.map((value) => {
-                    if (value == "0") {
-                        hasNullValue = true;
-                        return null;
-                    }
-                    return parseInt(value);
-                });
+                this.serverPriceCardInfo.yesterday[source] =
+                    trends.find((item, index) => index == trends.length - 2)?.average?.toFixed(2) || "无数据";
+                this.serverPriceCardInfo.today[source] =
+                    trends.find((item, index) => index == trends.length - 1)?.average?.toFixed(2) || "无数据";
+                let trendsArr = trends
+                    .filter((itme, index) => index + 1 !== trends.length)
+                    .map((item) => {
+                        if (item.average == "0") {
+                            hasNullValue = true;
+                            return null;
+                        }
+                        return parseInt(item.average);
+                    })
+                    .reverse();
                 this.lineOption.series[seriesConter].data = trendsArr;
                 if (hasNullValue) {
                     this.lineOption.series[seriesConter + 1].data = trendsArr;
@@ -836,6 +1014,8 @@ export default {
                     return a["date"] < b["date"] ? 1 : -1;
                 };
             };
+            console.log(trend, "trend");
+            // console.log(trend.sort(compareTrend()));
             let sortedTrend = trend.sort(compareTrend());
             for (let singleDay of sortedTrend) {
                 trends["5173"].push(singleDay["5173"]);
@@ -845,9 +1025,18 @@ export default {
 
             // 放置昨天的数据
             this.singleServerPrice.yesterday = {
-                official: sortedTrend[0]["official"] && sortedTrend[0]["official"] != 0 ? sortedTrend[0]["official"].toFixed(2) : "无数据",
-                "5173": sortedTrend[0]["5173"] && sortedTrend[0]["5173"] != 0 ? sortedTrend[0]["5173"].toFixed(2) : "无数据",
-                post: sortedTrend[0]["post"] && sortedTrend[0]["post"] != 0 ? sortedTrend[0]["post"].toFixed(2) : "无数据",
+                official:
+                    sortedTrend[0]["official"] && sortedTrend[0]["official"] != 0
+                        ? sortedTrend[0]["official"].toFixed(2)
+                        : "无数据",
+                5173:
+                    sortedTrend[0]["5173"] && sortedTrend[0]["5173"] != 0
+                        ? sortedTrend[0]["5173"].toFixed(2)
+                        : "无数据",
+                post:
+                    sortedTrend[0]["post"] && sortedTrend[0]["post"] != 0
+                        ? sortedTrend[0]["post"].toFixed(2)
+                        : "无数据",
             };
 
             return trends;
@@ -868,31 +1057,7 @@ export default {
             }
         },
         onLineChartLegendselectchanged(e) {
-            switch (e.name) {
-                case "5173":
-                    if (e.selected["5173"] === false) {
-                        this.lineOption.series[1].data = [];
-                    } else {
-                        this.lineOption.series[1].data = this.lineOption.series[0].data;
-                    }
-                    break;
-                case "万宝楼":
-                    if (e.selected["万宝楼"] === false) {
-                        this.lineOption.series[3].data = [];
-                    } else {
-                        this.lineOption.series[3].data = this.lineOption.series[2].data;
-                    }
-                    break;
-                case "贴吧":
-                    if (e.selected["贴吧"] === false) {
-                        this.lineOption.series[5].data = [];
-                    } else {
-                        this.lineOption.series[5].data = this.lineOption.series[4].data;
-                    }
-                    break;
-                default:
-                    break;
-            }
+            console.log(e);
         },
         // getSavedServers() {
         //     // 获取用户储存的服务器列表
@@ -948,7 +1113,7 @@ export default {
         },
     },
     filters: {},
-    mounted: function() {
+    mounted: function () {
         this.getUserId();
         this.prepareMounted();
         // this.loadPriceData();
