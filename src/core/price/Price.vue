@@ -853,16 +853,18 @@ export default {
         },
         calcRecommend() {
             let threeDaysSum = 0;
-            // for (let count = 0; count < 3; ++count) {
-            //     let singleDay = this.singleServerPrice;
-            //     let maxPrice = Math.max(singleDay["5173"], singleDay["post"], singleDay["official"] / 0.9405);
-            //     threeDaysSum += maxPrice;
-            // }
-            //
-            for (const [source, trends] of Object.entries(this.singleServerPrice)) {
+            for (let count = 1; count < 4; ++count) {
+                let singleDay = this.singleServerPrice;
+                let maxPrice = Math.max(
+                    singleDay["5173"][singleDay["5173"].length - count]?.average,
+                    singleDay["WBL"][singleDay["WBL"].length - count]?.average,
+                    singleDay["7881"][singleDay["7881"].length - count]?.average,
+                    singleDay["UU898"][singleDay["UU898"].length - count]?.average,
+                    singleDay["DD373"][singleDay["DD373"].length - count]?.average / 0.9405
+                );
+                threeDaysSum += maxPrice;
             }
-            console.log(this.singleServerPrice, Object.keys(this.singleServerPrice).length);
-            return Math.floor((threeDaysSum / 5) * 100);
+            return Math.floor((threeDaysSum / 3) * 100);
         },
         changeServer: function (tab, event) {
             // this.currentGate = gate;
