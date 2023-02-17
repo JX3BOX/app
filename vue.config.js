@@ -24,36 +24,30 @@ module.exports = {
             template: "public/index.html",
             filename: "icons/index.html",
         },
-        talent: {
-            title: "奇穴模拟器 - JX3BOX",
-            entry: "src/core/talent/talent.js",
-            template: "public/index.html",
-            filename: "talent/index.html",
-        },
-        talent2: {
-            title: "镇派模拟器 - JX3BOX",
-            entry: "src/core/talent2/talent2.js",
-            template: "public/index.html",
-            filename: "talent2/index.html",
-        },
-        meridians: {
-            title: "经脉模拟器 - JX3BOX",
-            entry: "src/core/meridians/meridians.js",
-            template: "public/index.html",
-            filename: "meridians/index.html",
-        },
-        macroeditor: {
-            title: "宏编辑器 - JX3BOX",
-            entry: "src/core/macroeditor/macroeditor.js",
-            template: "public/index.html",
-            filename: "macroeditor/index.html",
-        },
-        translator: {
-            title: "簡繁轉換 - JX3BOX",
-            entry: "src/core/translator/translator.js",
-            template: "public/translator.html",
-            filename: "translator/index.html",
-        },
+        // talent: {
+        //     title: "奇穴模拟器 - JX3BOX",
+        //     entry: "src/core/talent/talent.js",
+        //     template: "public/index.html",
+        //     filename: "talent/index.html",
+        // },
+        // talent2: {
+        //     title: "镇派模拟器 - JX3BOX",
+        //     entry: "src/core/talent2/talent2.js",
+        //     template: "public/index.html",
+        //     filename: "talent2/index.html",
+        // },
+        // meridians: {
+        //     title: "经脉模拟器 - JX3BOX",
+        //     entry: "src/core/meridians/meridians.js",
+        //     template: "public/index.html",
+        //     filename: "meridians/index.html",
+        // },
+        // macroeditor: {
+        //     title: "宏编辑器 - JX3BOX",
+        //     entry: "src/core/macroeditor/macroeditor.js",
+        //     template: "public/index.html",
+        //     filename: "macroeditor/index.html",
+        // },
         servers: {
             title: "开服监控 - JX3BOX",
             entry: "src/core/servers/servers.js",
@@ -66,12 +60,20 @@ module.exports = {
             template: "public/index.html",
             filename: "servers2/index.html",
         },
+
+        translator: {
+            title: "簡繁轉換 - JX3BOX",
+            entry: "src/core/translator/translator.js",
+            template: "public/translator.html",
+            filename: "translator/index.html",
+        },
         sudoku: {
             title: "九宫格计算器 - JX3BOX",
             entry: "src/core/sudoku/sudoku.js",
             template: "public/index.html",
             filename: "sudoku/index.html",
         },
+
         // TODO:迁移至item栏目
         price: {
             title: "金价走势 - JX3BOX",
