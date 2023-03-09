@@ -6,9 +6,15 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [v16.18.1]
     steps:
-      - name: Checkout
-        uses: actions/checkout@master
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
 
       - name: Install && Build
         run: |
@@ -31,4 +37,3 @@ jobs:
           access-key-id: ${{secrets.AccessKey_ID}}
           access-key-secret: ${{secrets.Access_Key_Secret}}
       - run: ossutil cp -rf dist oss://jx3box/static/app
-    #   - run: ossutil cp -rf dist oss://jx3box-www/app

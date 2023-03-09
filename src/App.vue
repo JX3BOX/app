@@ -785,7 +785,7 @@
                             <a href="/horse" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
-                                        <img svg-inline :src="getIcon('pet')" />
+                                        <img svg-inline :src="getIcon('horse')" />
                                     </i>
                                 </span>
                                 <span class="u-features">
@@ -905,7 +905,7 @@
                     </el-col>
                     <el-col :span="6">
                         <div class="u-item">
-                            <a href="/share/facedata" target="_blank">
+                            <a href="/face/facedata" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
                                         <img svg-inline :src="getIcon('facedata')" />
