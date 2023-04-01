@@ -318,15 +318,15 @@
                     </el-col>
                     <el-col :span="6">
                         <div class="u-item">
-                            <a href="/battle" target="_blank">
+                            <a href="/jcl" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
-                                        <img svg-inline :src="getIcon('battle')" />
+                                        <img svg-inline :src="getIcon('jcl')" />
                                     </i>
                                 </span>
                                 <span class="u-features">
-                                    <span class="u-name">战斗分析</span>
-                                    <span class="u-desc">茗伊团队战斗统计分析</span>
+                                    <span class="u-name">日志分析</span>
+                                    <span class="u-desc">JCL战斗日志分析</span>
                                 </span>
                             </a>
                         </div>
@@ -601,8 +601,8 @@
                                     </i>
                                 </span>
                                 <span class="u-features">
-                                    <span class="u-name">战斗分析</span>
-                                    <span class="u-desc">茗伊JCL首领战斗分析</span>
+                                    <span class="u-name">战斗统计</span>
+                                    <span class="u-desc">茗伊/官方战斗统计分析</span>
                                 </span>
                             </a>
                         </div>
@@ -736,7 +736,7 @@
                     </el-col>
                     <el-col :span="6">
                         <div class="u-item">
-                            <a href="/reputation" target="_blank" >
+                            <a href="/reputation" target="_blank">
                                 <span class="u-pic">
                                     <i class="u-icon">
                                         <img svg-inline :src="getIcon('reputation')" />
@@ -1010,7 +1010,6 @@
                             </a>
                         </div>
                     </el-col>
-
                 </el-row>
             </div>
 
@@ -1034,22 +1033,21 @@
                     </el-col>
                     <el-col :span="6">
                         <div class="u-item">
-                            <a href="/battle" target="_blank" class="disabled" >
+                            <a href="/jcl" target="_blank" class="disabled">
                                 <span class="u-pic">
                                     <i class="u-icon">
-                                        <img svg-inline :src="getIcon('battle')" />
+                                        <img svg-inline :src="getIcon('jcl')" />
                                     </i>
                                 </span>
                                 <span class="u-features">
-                                    <span class="u-name">战斗分析</span>
-                                    <span class="u-desc">官方战斗统计PVP分析</span>
+                                    <span class="u-name">竞技分析</span>
+                                    <span class="u-desc">JCL战斗日志分析</span>
                                 </span>
                             </a>
                         </div>
                     </el-col>
                 </el-row>
             </div>
-
         </div>
     </div>
 </template>
@@ -1058,7 +1056,7 @@
 import { __imgPath } from "@jx3box/jx3box-common/data/jx3box.json";
 export default {
     name: "App",
-    data: function() {
+    data: function () {
         return {};
     },
     computed: {},
@@ -1069,9 +1067,8 @@ export default {
         },
     },
     filters: {},
-    mounted: function() {},
-    components: {
-    },
+    mounted: function () {},
+    components: {},
 };
 </script>
 
