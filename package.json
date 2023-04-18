@@ -10,13 +10,13 @@
         "update": "npm --registry https://registry.npmjs.org install @jx3box/jx3box-common-ui@latest @jx3box/jx3box-common@latest @jx3box/jx3box-data@latest @jx3box/jx3box-facedat@latest @jx3box/jx3box-talent@latest @jx3box/jx3box-talent2@latest @jx3box/jx3box-dict@latest"
     },
     "dependencies": {
-        "@jx3box/jx3box-common": "^7.7.6",
-        "@jx3box/jx3box-common-ui": "^7.1.1",
-        "@jx3box/jx3box-data": "^3.0.6",
+        "@jx3box/jx3box-common": "^7.8.9",
+        "@jx3box/jx3box-common-ui": "^7.2.5",
+        "@jx3box/jx3box-data": "^3.1.0",
         "@jx3box/jx3box-dict": "^2.0.0",
         "@jx3box/jx3box-facedat": "^2.3.9",
-        "@jx3box/jx3box-talent": "^1.1.9",
-        "@jx3box/jx3box-talent2": "^1.4.8",
+        "@jx3box/jx3box-talent": "^1.2.1",
+        "@jx3box/jx3box-talent2": "^1.4.10",
         "axios": "^0.21.1",
         "codemirror": "^5.62.2",
         "core-js": "^3.16.0",
