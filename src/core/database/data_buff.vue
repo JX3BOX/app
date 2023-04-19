@@ -27,7 +27,7 @@
                         <template v-for="(val, key) in o">
                             <span class="u-desc" :key="key" v-if="cansee(o, key)">
                                 <el-tooltip effect="dark" :content="key" placement="top">
-                                    <em :class="{ isAdv: buffmap[key]['adv'] }">{{ buffmap[key]["desc"] || key }}</em>
+                                    <em :class="{ isAdv: buffmap[key] && buffmap[key]['adv'] }">{{ buffmap[key] && buffmap[key]["desc"] || key }}</em>
                                 </el-tooltip>
                                 {{ val }}
                             </span>
@@ -114,15 +114,15 @@ export default {
             if (o[key] === null) return false;
 
             // 不包含基础类型
-            if (this.buffmap[key]["basic"]) return false;
+            if (this.buffmap?.[key]?.["basic"]) return false;
 
             // return true;
 
             // 如果不需要权限
-            if (!this.buffmap[key]["adv"]) {
+            if (!this.buffmap?.[key]?.["adv"]) {
                 return true;
                 // 如果需要权限且有权限
-            } else if (this.buffmap[key]["adv"] && this.hasRight) {
+            } else if (this.buffmap?.[key]?.["adv"] && this.hasRight) {
                 return true;
             } else {
                 return false;

@@ -110,7 +110,7 @@ export default {
             if (o[key] === null) return false;
 
             // 不包含基础类型
-            if (this.skillmap[key]["basic"]) return false;
+            if (this.skillmap?.[key]?.["basic"]) return false;
 
             // return true;
 
